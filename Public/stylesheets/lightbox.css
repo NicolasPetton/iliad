@@ -1,0 +1,31 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  z-index: 500;
+
+  filter: alpha(opacity=30);
+  -moz-opacity: 0.3;
+  opacity: 0.3;
+}
+
+/* IE 6 specific fix for lack of 'position: fixed' implementation */
+* html .overlay {
+  position: absolute;
+  left: expression(documentElement.scrollLeft + 'px');
+  top: expression(documentElement.scrollTop + 'px');
+  width: expression(document.documentElement.clientWidth + 'px');
+  height: expression(document.documentElement.clientHeight + 'px');
+}
+
+.lightbox {
+  /*position: fixed;
+  _position: absolute; */
+  z-index: 725;
+  background-color: #fdfffc;
+  padding: 10px;
+  border: 1px solid #3b3b3b;
+}

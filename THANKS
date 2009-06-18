@@ -1,0 +1,32 @@
+Acknowledgements
+----------------
+
+The following parts of Iliad reuses portions of code from the Seaside framework:
+- The Widget class and its decorators
+- The HTTP abstraction library
+- The Swazoo adapter
+
+Seaside is licenced under the MIT Licence.
+Copyright © 2001–2009 Avi Bryant, Julian Fitzell
+Copyright © 2007–2009 Lukas Renggli, Michel Bany, Philippe Marschall
+Copyright © Seaside Contributors
+
+http://www.seaside.st/about/licence
+
+----------------
+
+The JSON library is adapted from http://www.squeaksource.com/Diplomacy/ 
+written by Avi Bryant and licenced under the MIT licence.
+
+----------------
+
+The Application class reuses code from HttpView2.
+HttpView2 is written by Göran Krampe and Giovanni Corriga and licenced
+under the MIT licence.
+
+http://www.squeaksource.com/HttpView2
+
+----------------
+
+The javascript layer is inspired by the LISP web framework Weblocks
+http://weblocks.viridian-project.de/
