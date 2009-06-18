@@ -1,0 +1,21 @@
+<package>
+  <name>Iliad-More-Widgets</name>
+  <prereq>Iliad-Core</prereq>
+  <namespace>Iliad</namespace>
+
+
+  <filein>TimeSelectorWidget.st</filein> 
+  <filein>DateSelectorWidget.st</filein> 
+  <filein>Lightbox.st</filein> 
+  <filein>CalendarWidget.st</filein> 
+  <filein>Extensions.st</filein> 
+
+
+  <file>TimeSelectorWidget.st</file> 
+  <file>DateSelectorWidget.st</file> 
+  <file>Lightbox.st</file> 
+  <file>CalendarWidget.st</file> 
+  <file>Extensions.st</file> 
+
+
+</package>

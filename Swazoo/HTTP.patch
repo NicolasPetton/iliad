@@ -1,0 +1,38 @@
+*** ./HTTP.st	2009-03-06 12:43:35.000000000 +0100
+--- ./HTTP_fixed.st	2009-03-06 12:41:27.000000000 +0100
+***************
+*** 235,241 ****
+  	| first index |
+  	first := aBoundaryBytes first.
+  	"fast test"
+! 	((self ptr + 1 to: endPtr) 
+  	    contains: [:inx | (collection at: inx) = first]) ifFalse: [^0].
+  	"full or partial boundary on the edge of buffer test"
+  	index := self indexOfBoundary: aBoundaryBytes.	"index of full, or partial boundary at the edge"
+--- 235,241 ----
+  	| first index |
+  	first := aBoundaryBytes first.
+  	"fast test"
+! 	((ptr + 1 to: endPtr) 
+  	    contains: [:inx | (collection at: inx) = first]) ifFalse: [^0].
+  	"full or partial boundary on the edge of buffer test"
+  	index := self indexOfBoundary: aBoundaryBytes.	"index of full, or partial boundary at the edge"
+***************
+*** 737,744 ****
+  		char = $% 
+  		    ifTrue: 
+  			[targetStream 
+! 			    nextPut: (SpEnvironment integerFromString: '16r' , (sourceStream next: 2)) 
+! 				    asCharacter]
+  		    ifFalse: 
+  			[char == $+ 
+  			    ifTrue: [targetStream nextPut: Character space]
+--- 737,744 ----
+  		char = $% 
+  		    ifTrue: 
+  			[targetStream 
+! 			    nextPut: (Character value: (SpEnvironment integerFromString: '16r' , (sourceStream next: 2))) 
+! 				    ]
+  		    ifFalse: 
+  			[char == $+ 
+  			    ifTrue: [targetStream nextPut: Character space]

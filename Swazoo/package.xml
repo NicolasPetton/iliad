@@ -1,0 +1,12 @@
+<package>
+  <name>Iliad-Swazoo</name>
+  <prereq>Iliad-Core</prereq>
+  <prereq>Swazoo</prereq>
+  <namespace>Iliad</namespace>
+
+  <file>Site.st</file>
+  <file>SwazooIliad.st</file>
+
+  <filein>Site.st</filein>
+  <filein>SwazooIliad.st</filein>
+</package>
