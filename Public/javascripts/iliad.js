@@ -89,7 +89,7 @@ var Iliad = {
     _evalScript:function(script) {
         try {eval(jQuery(script).html())}
         catch(e){}
-},
+    },
 
     _insertAjaxLoader:function() {
         jQuery('body').append('<div class="ajax_loader" style="position: fixed; top: 10px; right: 10px; z-index: 9999"><img src="/images/ajax_loader.gif"/></div>')
