@@ -32,8 +32,8 @@ var Iliad = {
             dataType: 'json',
             data: data,
             beforeSend: function(xhr) {
-            xhr.setRequestHeader("X-Requested-With", ""); 
-            Iliad._insertAjaxLoader()},
+                xhr.setRequestHeader("X-Requested-With", ""); 
+                that._insertAjaxLoader()},
             success: function(json) {
                 that._processUpdates(json);
                 that._removeAjaxLoader();
