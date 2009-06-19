@@ -59,18 +59,24 @@ var Iliad = {
 
 	_processUpdates:function(json) {
 		/* handle redirect if any */
-		if(json["redirect"]) {
-			window.location.href = json["redirect"]
+		if(json.redirect) {
+			return window.location.href = json.redirect
 		}
+		
+		/* Refresh if there is no widget to update 
+		   (session expired or the action is invalid) */
+		if(this.sizeOf(json.widgets) == 0) {
+		    return location.reload()
+		} 
 	
 		/* else update dirty widgets */
-		var dirtyWidgets = json['widgets'];
+		var dirtyWidgets = json.widgets;
 		for(var i in dirtyWidgets) {
 			this._updateWidget(i, dirtyWidgets[i]);
 		}
 
 		/* evaluate scripts */
-		var scripts = json['scripts'];
+		var scripts = json.scripts;
 		for(var i in scripts) {
 			this._evalScript(scripts[i]);
 		}
@@ -95,5 +101,13 @@ var Iliad = {
 
 	_removeAjaxLoader:function() {
 		jQuery(".ajax_loader").replaceWith("");
+	},
+	
+	sizeOf:function(obj) {
+	    var size = 0, key;
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) size++;
+        }
+        return size;
 	}
 }
