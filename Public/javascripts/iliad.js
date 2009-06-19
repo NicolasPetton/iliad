@@ -82,8 +82,8 @@ var Iliad = {
         }
     },
     
-    _updateWidget:function(widget, contents) {
-        jQuery("#"+widget).replaceWith(contents)
+    _updateWidget:function(id, contents) {
+        jQuery("#"+id).replaceWith(contents)
     },
 
     _evalScript:function(script) {
