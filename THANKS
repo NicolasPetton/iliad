@@ -28,5 +28,16 @@ http://www.squeaksource.com/HttpView2
 
 ----------------
 
+The Element hierarchy is largely inspired from the Aida/Web web framework, 
+written by Janko Mivsek.
+Aida/Web is licenced under the MIT licence
+
+Copyright (c) 2000-2007 Janko Mivšek
+Copyright (c) 2007-2009 Janko Mivšek, Nicolas Petton, contributors
+
+http://www.aidaweb.si
+
+----------------
+
 The javascript layer is inspired by the LISP web framework Weblocks
 http://weblocks.viridian-project.de/
