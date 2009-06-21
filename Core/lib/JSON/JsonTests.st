@@ -102,6 +102,7 @@ TestCase subclass: JsonTests [
 		should: [Json new readFrom: '@Missing[]' readStream]
 		raise: JsonSyntaxError
     ]
+
     testWriteString [
 	<category: 'tests'>
 	self render: '"' equals: '"\""'.
