@@ -1,7 +1,7 @@
 Object subclass: Encoder [
 
     <shape: #byte>
-    <category: 'Iliad-Core-Base'>
+    <category: 'Iliad-Core-Utilities'>
     <comment: nil>
 
     Encoder class [
