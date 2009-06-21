@@ -1,4 +1,4 @@
-GST_PACK=/usr/bin/env gst-package
+GST_PACK="/usr/bin/env gst-package"
 
 CURR_DIR=`pwd`
 echo "Packaging in $CURR_DIR ..." > make_packages.log
