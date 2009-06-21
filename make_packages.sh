@@ -1,3 +1,5 @@
+#!/bin/bash
+
 GST_PACK="/usr/bin/env gst-package"
 
 CURR_DIR=`pwd`
