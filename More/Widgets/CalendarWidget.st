@@ -39,7 +39,7 @@
 
 
 Widget subclass: CalendarWidget [
-    | month |
+    | month date |
     
     <comment: nil>
     <category: 'Iliad-Core-Widgets'>
@@ -47,7 +47,8 @@ Widget subclass: CalendarWidget [
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
-	month := Date today month
+	date := Date today.
+	month := date month
     ]
 
     date [
@@ -77,12 +78,12 @@ Widget subclass: CalendarWidget [
 
     months [
 	<category: 'accessing'>
-	^(1 to: 12) collect: [:i | Month month: i year: self year]
+	^(1 to: 12) collect: [:i | Date nameOfMonth: i]
     ]
 
     year [
 	<category: 'accessing'>
-	^self month year
+	^self date year
     ]
 
     year: anInteger [
@@ -111,63 +112,50 @@ Widget subclass: CalendarWidget [
 
     calendarTableContents [
 	<category: 'building'>
-	^
-	[:e | 
-	| table |
-	table := e table.
-	table build: self daysOfWeekRowContents.
-	self month weeksDo: [:each | table build: (self rowContentsForWeek: each)]]
+	^[:e || table |
+	    table := e table.
+	    table build: self daysOfWeekRowContents.
+	    self month weeksDo: [:each | 
+		table build: (self rowContentsForWeek: each)]]
     ]
 
     cellContentsForDate: aDate [
 	<category: 'building'>
-	^
-	[:e | 
-	| data |
-	data := e tableData.
-	aDate month = self month 
-	    ifTrue: 
-		[(data anchor)
+	^[:e || data |
+	    data := e tableData.
+	    aDate month = self month ifTrue: [
+		data anchor
 		    action: [self selectDate: aDate];
 		    text: aDate dayOfMonth asString]]
     ]
 
     contents [
 	<category: 'building'>
-	^
-	[:e | 
-	| div |
-	div := e div class: 'calendar'.
-	div build: self monthSelectionFormContents.
-	div build: self calendarTableContents]
+	^[:e || div |
+	    div := e div class: 'calendar'.
+	    div build: self monthSelectionFormContents.
+	    div build: self calendarTableContents]
     ]
 
     daysOfWeekRowContents [
 	<category: 'building'>
-	^
-	[:e | 
-	| head |
-	head := e tableHead.
-	self daysOfWeek do: [:each | head tableData text: each]]
+	^[:e || head |
+	    head := e tableHead.
+	    self daysOfWeek do: [:each | head tableData text: each]]
     ]
 
     monthSelectionFormContents [
 	<category: 'building'>
-	^
-	[:e | 
-	| form select |
-	form := (e form)
-		    class: 'month_selection';
-		    yourself.
-	select := (form select)
-		    action: [:val | self selectMonth: val];
-		    yourself.
+	^[:e || form select |
+	    form := e form class: 'month_selection'; yourself.
+	select := form select.
 	self months do: 
-		[:each | 
-		| option |
-		option := select option.
-		option text: each name.
-		each = self month ifTrue: [option selected]].
+	    [:each || option |
+	    option := select option.
+	    option 
+		text: each asString;
+		action: [self selectMonth: each asString].
+	    each = self month ifTrue: [option selected]].
 	(form input)
 	    maxLength: 4;
 	    action: [:val | self selectYear: val];
@@ -177,11 +165,10 @@ Widget subclass: CalendarWidget [
 
     rowContentsForWeek: aWeek [
 	<category: 'building'>
-	^
-	[:e | 
-	| row |
-	row := e tableRow.
-	aWeek datesDo: [:each | row build: (self cellContentsForDate: each)]]
+	^[:e | | row |
+	    row := e tableRow.
+	    aWeek datesDo: [:each | 
+		row build: (self cellContentsForDate: each)]]
     ]
 ]
 
