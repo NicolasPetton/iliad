@@ -50,7 +50,7 @@ Delegator subclass: Lightbox [
 		    class: 'lightbox';
 		    yourself.
 	div script: self lighter.
-	div add: self widget build]
+	div build: self widget]
     ]
 
     lighter [

@@ -49,7 +49,7 @@ Application subclass: CounterApplication [
     counter [
 	<category: 'views'>
 	^[:e |
-	    e add: self counters first build]
+	    e build: self counters first]
     ]
 
     index [
@@ -61,7 +61,7 @@ Application subclass: CounterApplication [
 	<category: 'views'>
 	^[:e | 
 	    self counters do: [:each |
-		e add: each build]]
+		e build: each]]
     ]
 
     counters [

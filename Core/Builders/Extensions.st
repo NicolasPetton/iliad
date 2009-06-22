@@ -50,3 +50,11 @@ Object extend [
 	self displayOn: aResponse
     ]
 ]
+
+BlockClosure extend [
+    
+    buildOn: anElement [
+	<category:'Iliad-Core'>
+	self value: anElement
+    ]
+]

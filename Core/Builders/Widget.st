@@ -65,13 +65,7 @@ See Iliad.Element hierarchy for more information about building HTML with elemen
 For instance, to build a sub-widget in a view block, you should write something like:
 
 contents [
-    ^[:e | e add: mySubWidget build]
-]
-
-but never:
-
-contents [
-    ^[:e | e build: mySubwidget contents]
+    ^[:e | e build: mySubWidget]
 ]
 
 I can show (display instead of me) other widgets with #show* methods or answer 

@@ -79,12 +79,17 @@ My subclasses must override the #build method, which should return an instance o
 	self subclassResponsibility
     ]
 
-     redirectTo: aString [
+    buildOn: anElement [
+	<category: 'building'>
+	anElement add: self build
+    ]
+
+    redirectTo: aString [
 	<category: 'redirecting'>
 	self application redirectTo: aString
     ]
 
-     redirectToLocal: aString [
+    redirectToLocal: aString [
 	<category: 'redirecting'>
 	self application redirectToLocal: aString
     ]

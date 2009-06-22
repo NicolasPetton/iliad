@@ -82,7 +82,7 @@ Application subclass: TodoListApplication [
 	[:e | 
 	e h1: 'Todo list'.
 	e build: self selectionContents.
-	e add: self todoListWidget build]
+	e build: self todoListWidget]
     ]
 
     selectionContents [

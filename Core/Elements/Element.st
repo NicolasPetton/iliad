@@ -149,9 +149,9 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	    aStream nextPutAll: '>']
     ]
 
-    build: aOneArgBlock [
+    build: aBuildable [
 	<category: 'building'>
-	aOneArgBlock value: self
+	aBuildable buildOn: self
     ]
 
     add: anElement [

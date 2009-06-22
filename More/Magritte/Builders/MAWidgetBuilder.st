@@ -98,7 +98,7 @@ MAVisitor subclass: MAWidgetBuilder [
 
     buildControlFor: aDescription [
 	<category: 'building'>
-	^[:e | e add: (self childAt: aDescription) build]
+	^[:e | e build: (self childAt: aDescription)]
     ]
 
     buildElementFor: aDescription [

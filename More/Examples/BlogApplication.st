@@ -82,7 +82,7 @@ Application subclass: BlogApplication [
 	    e h2 anchor
 		text: aPost title;
 		action: [self redirectToLocal: 'post/', aPost title, aPost hash printString].
-	    e add: (self postWidgetFor: aPost) build]
+	    e build: (self postWidgetFor: aPost)]
     ]
 
     addPost [
