@@ -39,18 +39,14 @@ Object extend [
 
     asResponse [
 	<category: 'converting'>
-	^Iliad.Response ok
-	    nextPutAll: self printString;
-	    yourself
+	| response |
+	response := Iliad.Response ok.
+	self respondOn: response.
+	^response
     ]
-]
 
-String extend [
-
-    asResponse [
+    respondOn: aResponse [
 	<category: 'converting'>
-	^Iliad.Response ok
-	    nextPutAll: self;
-	    yourself
+	self displayOn: aResponse
     ]
 ]

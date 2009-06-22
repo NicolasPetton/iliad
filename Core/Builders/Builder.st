@@ -89,9 +89,9 @@ My subclasses must override the #build method, which should return an instance o
 	self application redirectToLocal: aString
     ]
 
-    asResponse [
-	<category: 'responding'>
-	^self build asResponse
+    respondOn: aResponse [
+	<category: 'converting'>
+	self build respondOn: aResponse
     ]
 ]
 

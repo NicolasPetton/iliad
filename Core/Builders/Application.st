@@ -286,11 +286,11 @@ the application mode:
 	^[:e | ]
     ]
 
-    asResponse [
-	<category: 'responding'>
+    respondOn: aResponse [
+	<category: 'converting'>
 	self build.
 	self updatePage.
-	^self page asResponse
+	self page respondOn: aResponse
     ]
 
     defaultPageClass [

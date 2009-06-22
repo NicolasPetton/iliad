@@ -77,8 +77,8 @@ IliadObject subclass: Action [
 	^self block cull: self value
     ]
 
-    asResponse [
-	<category: 'request handling'>
-	^self value asResponse
+    respondOn: aResponse [
+	<category: 'converting'>
+	^self value displayOn: aResponse
     ]
 ]

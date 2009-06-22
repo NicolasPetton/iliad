@@ -177,15 +177,9 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	^(AttributeNotUnderstood element: self attribute: aString) signal
     ]
 
-    asResponse [
-	<category: 'request handling'>
-	| str |
-	str := WriteStream on: ''.
-	self printHtmlOn: str.
-	children := OrderedCollection new.
-	^Response ok
-	    contentType: self contentType;
-	    nextPutAll: str contents;
-	    yourself
+    respondOn: aResponse [
+	<category: 'converting'>
+	self printHtmlOn: aResponse.
+	aResponse contentType: self contentType
     ]
 ]
