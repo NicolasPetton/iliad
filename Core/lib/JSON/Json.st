@@ -248,7 +248,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
     readDictionary [
 	<category: 'private'>
 	| m k v needComma |
-	m := JsonObject new.
+	m := Dictionary new.
 	needComma := false.
 	
 	[self skipWhitespace.
