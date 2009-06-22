@@ -189,13 +189,6 @@
   <filein>RequestHandlers/ApplicationHandler.st</filein> 
   <filein>RequestHandlers/RedirectHandler.st</filein> 
 
-  <filein>Tests/Functional/TestSAU.st</filein>
-  <filein>Tests/Functional/TestCounter.st</filein>
-  <filein>Tests/Functional/TestMultiCounter.st</filein>
-  <filein>Tests/Functional/TestForm.st</filein>
-  <filein>Tests/Functional/TestImage.st</filein>
-  <filein>Tests/Functional/TestApplication.st</filein>
-
   <file>Utilities/IliadObject.st</file>
   <file>Utilities/Support.st</file> 
   <file>Utilities/Id.st</file> 
@@ -339,10 +332,4 @@
   <file>lib/JSON/JsonObject.st</file>
   <file>lib/JSON/JsonTests.st</file>
 
-  <file>Tests/Functional/TestSAU.st</file>
-  <file>Tests/Functional/TestCounter.st</file>
-  <file>Tests/Functional/TestMultiCounter.st</file>
-  <file>Tests/Functional/TestForm.st</file>
-  <file>Tests/Functional/TestImage.st</file>
-  <file>Tests/Functional/TestApplication.st</file>
 </package>
