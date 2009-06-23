@@ -108,7 +108,7 @@ Application subclass: BlogApplication [
 	post := self model posts 
 	    detect: [:each | (each title , each hash printString) = path]
 	    ifNone: [self redirectToIndex].
-	^[:e | e build: (self postContentsFor: post)]
+	^self postContentsFor: post
     ]
 
     posts [
