@@ -39,7 +39,7 @@ Widget extend [
 
     lightbox: aWidget [
 	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-Widgtes'>
+	<category: '*Iliad-More-Widgets'>
 
 	self lightbox: aWidget onAnswer: [:ans | ]
     ]
