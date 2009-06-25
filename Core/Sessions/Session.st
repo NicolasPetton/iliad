@@ -49,6 +49,7 @@ IliadObject subclass: Session [
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
+	expired := false.
 	self setCreatedTimestamp; 
 	    setRandomId
     ]
@@ -343,7 +344,7 @@ IliadObject subclass: Session [
 	(DateTime now asSeconds - self modifiedTimestamp asSeconds
 	    > self expirySeconds) ifTrue: [
 		self expire].
-	^self expired
+	^expired
     ]
 
     isNew [
@@ -377,11 +378,6 @@ IliadObject subclass: Session [
     expire [
 	<category: 'private'>
 	expired := true
-    ]
-
-    expired [
-	<category: 'private'>
-	^expired ifNil: [expired := false]
     ]
 
     setRandomId [
