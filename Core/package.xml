@@ -5,11 +5,11 @@
   <namespace>Iliad</namespace>
 
   <test>
-    <filein>Tests/Unit/Builders/ActionTest.st</filein>
-    <filein>Tests/Unit/Builders/WidgetMock1.st</filein>
-    <filein>Tests/Unit/Builders/WidgetMock2.st</filein>
-    <filein>Tests/Unit/Builders/WidgetMock3.st</filein>
-    <filein>Tests/Unit/Builders/WidgetTest.st</filein>
+    <filein>Tests/Unit/Buildables/ActionTest.st</filein>
+    <filein>Tests/Unit/Buildables/WidgetMock1.st</filein>
+    <filein>Tests/Unit/Buildables/WidgetMock2.st</filein>
+    <filein>Tests/Unit/Buildables/WidgetMock3.st</filein>
+    <filein>Tests/Unit/Buildables/WidgetTest.st</filein>
     <filein>Tests/Unit/Dispatching/RouteTest.st</filein>
     <filein>Tests/Unit/Sessions/CurrentContextTest.st</filein>
     <filein>Tests/Unit/Sessions/SessionManagerTest.st</filein>
@@ -165,16 +165,16 @@
   <filein>XHTMLElements/TableFootElement.st</filein> 
   <filein>XHTMLElements/TableHeadElement.st</filein> 
 
-  <filein>Builders/Extensions.st</filein>  
-  <filein>Builders/Action.st</filein> 
-  <filein>Builders/Builder.st</filein> 
-  <filein>Builders/Decorator.st</filein> 
-  <filein>Builders/AnswerHandler.st</filein> 
-  <filein>Builders/Delegator.st</filein> 
-  <filein>Builders/MessageDecorator.st</filein> 
-  <filein>Builders/Widget.st</filein> 
-  <filein>Builders/Application.st</filein> 
-  <filein>Builders/Page.st</filein> 
+  <filein>Buildables/Extensions.st</filein>  
+  <filein>Buildables/Action.st</filein> 
+  <filein>Buildables/Buildable.st</filein> 
+  <filein>Buildables/Decorator.st</filein> 
+  <filein>Buildables/AnswerHandler.st</filein> 
+  <filein>Buildables/Delegator.st</filein> 
+  <filein>Buildables/MessageDecorator.st</filein> 
+  <filein>Buildables/Widget.st</filein> 
+  <filein>Buildables/Application.st</filein> 
+  <filein>Buildables/Page.st</filein> 
 
   <filein>Dispatching/DispatchError.st</filein>
   <filein>Dispatching/Dispatcher.st</filein> 
@@ -264,16 +264,16 @@
   <file>XHTMLElements/TableFootElement.st</file> 
   <file>XHTMLElements/TableHeadElement.st</file> 
 
-  <file>Builders/Extensions.st</file> 
-  <file>Builders/Action.st</file> 
-  <file>Builders/Builder.st</file> 
-  <file>Builders/Decorator.st</file> 
-  <file>Builders/AnswerHandler.st</file> 
-  <file>Builders/Delegator.st</file> 
-  <file>Builders/MessageDecorator.st</file> 
-  <file>Builders/Widget.st</file> 
-  <file>Builders/Application.st</file> 
-  <file>Builders/Page.st</file> 
+  <file>Buildables/Extensions.st</file> 
+  <file>Buildables/Action.st</file> 
+  <file>Buildables/Buildable.st</file> 
+  <file>Buildables/Decorator.st</file> 
+  <file>Buildables/AnswerHandler.st</file> 
+  <file>Buildables/Delegator.st</file> 
+  <file>Buildables/MessageDecorator.st</file> 
+  <file>Buildables/Widget.st</file> 
+  <file>Buildables/Application.st</file> 
+  <file>Buildables/Page.st</file> 
 
   <file>Dispatching/DispatchError.st</file> 
   <file>Dispatching/Dispatcher.st</file> 
@@ -288,11 +288,11 @@
   <file>RequestHandlers/ApplicationHandler.st</file> 
   <file>RequestHandlers/RedirectHandler.st</file> 
 
-  <file>Tests/Unit/Builders/ActionTest.st</file>
-  <file>Tests/Unit/Builders/WidgetMock1.st</file>
-  <file>Tests/Unit/Builders/WidgetMock2.st</file>
-  <file>Tests/Unit/Builders/WidgetMock3.st</file>
-  <file>Tests/Unit/Builders/WidgetTest.st</file>
+  <file>Tests/Unit/Buildables/ActionTest.st</file>
+  <file>Tests/Unit/Buildables/WidgetMock1.st</file>
+  <file>Tests/Unit/Buildables/WidgetMock2.st</file>
+  <file>Tests/Unit/Buildables/WidgetMock3.st</file>
+  <file>Tests/Unit/Buildables/WidgetTest.st</file>
   <file>Tests/Unit/Dispatching/RouteTest.st</file>
   <file>Tests/Unit/Sessions/CurrentContextTest.st</file>
   <file>Tests/Unit/Sessions/SessionManagerTest.st</file>
