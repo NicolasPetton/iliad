@@ -38,7 +38,7 @@
 IliadObject subclass: Action [
     | key block value |
     
-    <category: 'Iliad-Core-Buildables'>
+    <category: 'Iliad-Core-Builders'>
     <comment: nil>
     
     block [

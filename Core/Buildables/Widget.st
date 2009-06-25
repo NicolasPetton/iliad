@@ -39,10 +39,10 @@
 
 
 
-Buildable subclass: Widget [
+Builder subclass: Widget [
     | id decorator owner |
 
-    <category: 'Iliad-Core-Buildables'>
+    <category: 'Iliad-Core-Builders'>
     <comment: 'I am a stateful graphical component. 
 
 To build HTML override the #contents method, which should always 

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Page class definition
+|   Iliad.Buildable class definition
 |
  ======================================================================"
 
@@ -8,7 +8,11 @@
 |
 | Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
-| Sébastien Audier <sebastien.audier@gmail.com> 
+| Sébastien Audier <sebastien.audier@gmail.com>
+|
+| Some parts of this file reuse code from the Seaside framework written 
+| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
+| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -35,48 +39,65 @@
 
 
 
-Builder subclass: Page [
+IliadObject subclass: Buildable [
+    | attributes |
+    
+    <category: 'Iliad-Core-Buildables'>
+    <comment: 'I am an abstract buildable object. 
+My subclasses must override the #build method, which should return an instance of a subclass of Iliad.Element.'>
 
-    <comment: nil>
-    <category: 'Iliad-Core-Builders'>
-
-    bodyElement [
-	<category: 'accessing attributes'>
-	^self attributeAt: #bodyElement ifAbsentPut: [BodyElement new]
+    page [
+	<category: 'accessing'>
+	^self application page
     ]
 
-    headElement [
+    attributeAt: aSymbol [
 	<category: 'accessing attributes'>
-	^self attributeAt: #headElement ifAbsentPut: [HeadElement new]
+	^self attributes at: aSymbol ifAbsent: [nil]
     ]
 
-    htmlElement [
+    attributeAt: aSymbol ifAbsentPut: aBlock [
 	<category: 'accessing attributes'>
-	^self attributeAt: #htmlElement ifAbsentPut: [HtmlElement new]
+	^self attributes at: aSymbol ifAbsentPut: aBlock
     ]
 
-    rootElement [
+    attributeAt: aSymbol put: anObject [
 	<category: 'accessing attributes'>
-	^self attributeAt: #rootElement ifAbsentPut: [self rootElementClass new]
+	^self attributes at: aSymbol put: anObject
     ]
 
-    rootElementClass [
+    attributes [
 	<category: 'accessing attributes'>
-	^self attributeAt: #rootElementClass
-	    ifAbsentPut: [self defaultRootElementClass]
-    ]
-
-    defaultRootElementClass [
-	<category: 'defaults'>
-	^XHTMLElement
+	^attributes ifNil: [attributes := Dictionary new]
     ]
 
     build [
+	"Override this method in subclasses.
+	It must answer an element"
 	<category: 'building'>
-	self htmlElement add: self headElement.
-	self htmlElement add: self bodyElement.
-	self rootElement add: self htmlElement.
-	^self rootElement
+	
+	self subclassResponsibility
+    ]
+
+    buildOn: anElement [
+	<category: 'building'>
+	anElement add: self build
+    ]
+
+    redirectTo: aString [
+	<category: 'redirecting'>
+	self application redirectTo: aString
+    ]
+
+    redirectToLocal: aString [
+	<category: 'redirecting'>
+	self application redirectToLocal: aString
+    ]
+
+    respondOn: aResponse [
+	<category: 'converting'>
+	self build respondOn: aResponse
     ]
 ]
+
 

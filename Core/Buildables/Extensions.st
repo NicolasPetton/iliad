@@ -54,7 +54,7 @@ Object extend [
 BlockClosure extend [
     
     buildOn: anElement [
-	<category:'*Iliad-Core'>
+	<category:'Iliad-Core'>
 	self value: anElement
     ]
 ]

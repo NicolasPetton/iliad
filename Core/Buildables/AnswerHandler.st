@@ -42,7 +42,7 @@
 Decorator subclass: AnswerHandler [
     | action |
     
-    <category: 'Iliad-Core-Buildable'>
+    <category: 'Iliad-Core-Builders'>
     <comment: 'I am a special decorator for Widgets, used to handle widget answers. 
 See #handleAnswer: and Widget>>show:onAnswer:'>
 

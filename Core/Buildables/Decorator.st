@@ -39,10 +39,10 @@
 
 
 
-Buildable subclass: Decorator [
+Builder subclass: Decorator [
     | decoratee |
     
-    <category: 'Iliad-Core-Buildable'>
+    <category: 'Iliad-Core-Builders'>
     <comment: 'I am an abstract decorator for Widgets. I can be added to a widget by calling: #addDecoration: from a widget.
 Subclasses can be used to modify the building process of a widget, or change its behavior'>
 
