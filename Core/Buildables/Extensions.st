@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Page class definition
+|    Smalltalk Classes extensions
 |
  ======================================================================"
 
@@ -8,7 +8,7 @@
 |
 | Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
-| Sébastien Audier <sebastien.audier@gmail.com> 
+| Sébastien Audier <sebastien.audier@gmail.com>
 |
 | This file is part of the Iliad framework.
 |
@@ -35,48 +35,26 @@
 
 
 
-Builder subclass: Page [
+Object extend [
 
-    <comment: nil>
-    <category: 'Iliad-Core-Builders'>
-
-    bodyElement [
-	<category: 'accessing attributes'>
-	^self attributeAt: #bodyElement ifAbsentPut: [BodyElement new]
+    asResponse [
+	<category: 'converting'>
+	| response |
+	response := Iliad.Response ok.
+	self respondOn: response.
+	^response
     ]
 
-    headElement [
-	<category: 'accessing attributes'>
-	^self attributeAt: #headElement ifAbsentPut: [HeadElement new]
-    ]
-
-    htmlElement [
-	<category: 'accessing attributes'>
-	^self attributeAt: #htmlElement ifAbsentPut: [HtmlElement new]
-    ]
-
-    rootElement [
-	<category: 'accessing attributes'>
-	^self attributeAt: #rootElement ifAbsentPut: [self rootElementClass new]
-    ]
-
-    rootElementClass [
-	<category: 'accessing attributes'>
-	^self attributeAt: #rootElementClass
-	    ifAbsentPut: [self defaultRootElementClass]
-    ]
-
-    defaultRootElementClass [
-	<category: 'defaults'>
-	^XHTMLElement
-    ]
-
-    build [
-	<category: 'building'>
-	self htmlElement add: self headElement.
-	self htmlElement add: self bodyElement.
-	self rootElement add: self htmlElement.
-	^self rootElement
+    respondOn: aResponse [
+	<category: 'converting'>
+	self displayOn: aResponse
     ]
 ]
 
+BlockClosure extend [
+    
+    buildOn: anElement [
+	<category:'*Iliad-Core'>
+	self value: anElement
+    ]
+]

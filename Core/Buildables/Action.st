@@ -1,6 +1,6 @@
 "======================================================================
 |
-|    Smalltalk Classes extensions
+|   Iliad.Action class definition
 |
  ======================================================================"
 
@@ -35,26 +35,50 @@
 
 
 
-Object extend [
+IliadObject subclass: Action [
+    | key block value |
+    
+    <category: 'Iliad-Core-Buildables'>
+    <comment: nil>
+    
+    block [
+	<category: 'accessing'>
+	^block
+    ]
 
-    asResponse [
-	<category: 'converting'>
-	| response |
-	response := Iliad.Response ok.
-	self respondOn: response.
-	^response
+    block: aBlock [
+	<category: 'accessing'>
+	block := aBlock
+    ]
+
+    key [
+	<category: 'accessing'>
+	^key
+    ]
+
+    key: anId [
+	<category: 'accessing'>
+	key := anId
+    ]
+
+    value [
+	<category: 'accessing'>
+	^value
+    ]
+
+    value: anObject [
+	<category: 'accessing'>
+	value := anObject
+    ]
+
+    evaluate [
+	<category: 'evaluating'>
+	self block ifNil: [^nil].
+	^self block cull: self value
     ]
 
     respondOn: aResponse [
 	<category: 'converting'>
-	self displayOn: aResponse
-    ]
-]
-
-BlockClosure extend [
-    
-    buildOn: anElement [
-	<category:'Iliad-Core'>
-	self value: anElement
+	^self value displayOn: aResponse
     ]
 ]

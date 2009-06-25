@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Action class definition
+|   Iliad.Delegator class definition
 |
  ======================================================================"
 
@@ -9,6 +9,10 @@
 | Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
+|
+| Some parts of this file reuse code from the Seaside framework written 
+| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
+| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -35,50 +39,39 @@
 
 
 
-IliadObject subclass: Action [
-    | key block value |
-    
-    <category: 'Iliad-Core-Builders'>
+Decorator subclass: Delegator [
+    | widget |
+
     <comment: nil>
-    
-    block [
+    <category: 'Iliad-Core-Buildables'>
+
+    widget [
 	<category: 'accessing'>
-	^block
+	^widget
     ]
 
-    block: aBlock [
+    widget: aWidget [
 	<category: 'accessing'>
-	block := aBlock
+	widget := aWidget
     ]
 
-    key [
+    newRootElement [
 	<category: 'accessing'>
-	^key
+	^self widget newRootElement
     ]
 
-    key: anId [
-	<category: 'accessing'>
-	key := anId
+    contents [
+	<category: 'building'>
+	^self widget decorator contents
     ]
 
-    value [
-	<category: 'accessing'>
-	^value
+    handleAnswer: anAnswer [
+	<category: 'decorations'>
+	self widget handleAnswer: anAnswer
     ]
 
-    value: anObject [
-	<category: 'accessing'>
-	value := anObject
-    ]
-
-    evaluate [
-	<category: 'evaluating'>
-	self block ifNil: [^nil].
-	^self block cull: self value
-    ]
-
-    respondOn: aResponse [
-	<category: 'converting'>
-	^self value displayOn: aResponse
+    isGlobal [
+	<category: 'testing'>
+	^true
     ]
 ]

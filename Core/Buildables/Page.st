@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Delegator class definition
+|   Iliad.Page class definition
 |
  ======================================================================"
 
@@ -8,11 +8,7 @@
 |
 | Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
-| Sébastien Audier <sebastien.audier@gmail.com>
-|
-| Some parts of this file reuse code from the Seaside framework written 
-| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
-| Marschall and Seaside contributors http://www.seaside.st 
+| Sébastien Audier <sebastien.audier@gmail.com> 
 |
 | This file is part of the Iliad framework.
 |
@@ -39,39 +35,48 @@
 
 
 
-Decorator subclass: Delegator [
-    | widget |
+Buildable subclass: Page [
 
     <comment: nil>
-    <category: 'Iliad-Core-Builders'>
+    <category: 'Iliad-Core-Buildables'>
 
-    widget [
-	<category: 'accessing'>
-	^widget
+    bodyElement [
+	<category: 'accessing attributes'>
+	^self attributeAt: #bodyElement ifAbsentPut: [BodyElement new]
     ]
 
-    widget: aWidget [
-	<category: 'accessing'>
-	widget := aWidget
+    headElement [
+	<category: 'accessing attributes'>
+	^self attributeAt: #headElement ifAbsentPut: [HeadElement new]
     ]
 
-    newRootElement [
-	<category: 'accessing'>
-	^self widget newRootElement
+    htmlElement [
+	<category: 'accessing attributes'>
+	^self attributeAt: #htmlElement ifAbsentPut: [HtmlElement new]
     ]
 
-    contents [
+    rootElement [
+	<category: 'accessing attributes'>
+	^self attributeAt: #rootElement ifAbsentPut: [self rootElementClass new]
+    ]
+
+    rootElementClass [
+	<category: 'accessing attributes'>
+	^self attributeAt: #rootElementClass
+	    ifAbsentPut: [self defaultRootElementClass]
+    ]
+
+    defaultRootElementClass [
+	<category: 'defaults'>
+	^XHTMLElement
+    ]
+
+    build [
 	<category: 'building'>
-	^self widget decorator contents
-    ]
-
-    handleAnswer: anAnswer [
-	<category: 'decorations'>
-	self widget handleAnswer: anAnswer
-    ]
-
-    isGlobal [
-	<category: 'testing'>
-	^true
+	self htmlElement add: self headElement.
+	self htmlElement add: self bodyElement.
+	self rootElement add: self htmlElement.
+	^self rootElement
     ]
 ]
+

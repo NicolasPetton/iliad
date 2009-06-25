@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.MessageDecorator class definition
+|   Iliad.AnswerHandler class definition
 |
  ======================================================================"
 
@@ -38,46 +38,29 @@
  ======================================================================"
 
 
-
 
-Decorator subclass: MessageDecorator [
-    | level message |
+Decorator subclass: AnswerHandler [
+    | action |
     
-    <comment: nil>
-    <category: 'Iliad-Core-Builders'>
+    <category: 'Iliad-Core-Buildable'>
+    <comment: 'I am a special decorator for Widgets, used to handle widget answers. 
+See #handleAnswer: and Widget>>show:onAnswer:'>
 
-    contents [
-	<category: 'building'>
-	^[:e | 
-	    (e header)
-		level: self level;
-		text: self message.
-	    e build: self decoratee contents]
-    ]
-
-    level [
+    action [
 	<category: 'accessing'>
-	^level ifNil: [3]
+	^action
     ]
 
-    level: anInteger [
+    action: anAction [
 	<category: 'accessing'>
-	level := anInteger
+	action := anAction
     ]
 
-    message [
-	<category: 'accessing'>
-	^message
-    ]
-
-    message: aString [
-	<category: 'accessing'>
-	message := aString
-    ]
-
-    isGlobal [
-	<category: 'testing'>
-	^true
+    handleAnswer: anAnswer [
+	<category: 'decorations'>
+	(self action)
+	    value: anAnswer;
+	    evaluate
     ]
 ]
 
