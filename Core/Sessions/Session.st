@@ -358,13 +358,6 @@ IliadObject subclass: Session [
 		includesKey: self sessionManager cookieName) not
     ]
 
-    removeYourself [
-	<category: 'removing'>
-	SessionManager current sessions 
-	    removeKey: self id asString 
-	    ifAbsent: []
-    ]
-
     addToDirtyWidgets: aWidget [
 	<category: 'states'>
 	self dirtyWidgets add: aWidget

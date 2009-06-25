@@ -91,6 +91,11 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^self preferenceAt: #actionKey ifAbsentPut: ['_action']
     ]
 
+    tokenKey [
+	<category: 'accessing preferences'>
+	^self preferenceAt: #tokenKey ifAbsentPut: ['_token']
+    ]
+
     cookieName [
 	<category: 'accessing preferences'>
 	^self preferenceAt: #cookieName ifAbsentPut: ['_iliad685744']
@@ -131,11 +136,6 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^self preferences at: #sessionClass put: aSessionClass
     ]
 
-    tokenKey [
-	<category: 'accessing preferences'>
-	^self preferenceAt: #tokenKey ifAbsentPut: ['_token']
-    ]
-
     addSession: aSession [
 	<category: 'adding-removing'>
 	self sessions at: aSession id asString put: aSession
@@ -153,17 +153,11 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^self findSessionWithId: (self sessionIdFromRequest: aRequest)
     ]
 
-    removeSession: aSession [
-	<category: 'adding-removing'>
-	aSession removeYourself
-    ]
-
     shouldRemoveExpiredSessions [
-	"Do not remove all expired sessions for each request,
-	so only answer true if sessions size modulo 10 equals 0"
+	"Do not remove all expired sessions for each request"
 	<category: 'testing'>
 
-	^(self sessions size \\ 10) = 0
+	^(Random new next * 10) asInteger = 0
     ]
 
     findSessionWithId: anId [
@@ -190,11 +184,17 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^session
     ]
 
+    removeSession: aSession [
+	<category: 'adding-removing'>
+	self sessions 
+	    removeKey: aSession id asString
+	    ifAbsent: []
+    ]
+
     removeAllSessions [
 	"Remove all sessions. Use for maintenance"
 	<category: 'private'>
 
-	self sessions values do: [:each | self removeSession: each].
 	sessions := Dictionary new
     ]
 
