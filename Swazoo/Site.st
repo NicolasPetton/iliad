@@ -1,4 +1,4 @@
-Swazoo.Site subclass: Site [
+Swazoo.SwazooSite subclass: Site [
     | encoder |    
     <comment: nil>
     <category: 'Iliad-Swazoo'>

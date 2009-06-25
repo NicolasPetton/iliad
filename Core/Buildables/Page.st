@@ -35,10 +35,10 @@
 
 
 
-Builder subclass: Page [
+Buildable subclass: Page [
 
     <comment: nil>
-    <category: 'Iliad-Core-Builders'>
+    <category: 'Iliad-Core-Buildables'>
 
     bodyElement [
 	<category: 'accessing attributes'>

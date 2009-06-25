@@ -41,7 +41,7 @@
 Widget subclass: Application [
     | model page originalRoutePosition |
 
-    <category: 'Iliad-Core-Builders'>
+    <category: 'Iliad-Core-Buildables'>
     <comment: 'I am the implementation of an application.
  
 The first thing to do to develop web applications with Iliad is to subclass me.
