@@ -1,7 +1,7 @@
 Widget subclass: WidgetMock2 [
 
     <comment: nil>
-    <category: 'Iliad-Tests-Unit-Builders'>
+    <category: 'Iliad-Tests-Unit-Buildables'>
 
     contents [
 	<category: 'building'>

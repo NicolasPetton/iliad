@@ -2,7 +2,7 @@ TestCase subclass: WidgetTest [
     | c1 c2 c3 |
 
     <comment: nil>
-    <category: 'Iliad-Tests-Unit-Builders'>
+    <category: 'Iliad-Tests-Unit-Buildables'>
 
     setUp [
 	<category: 'running'>

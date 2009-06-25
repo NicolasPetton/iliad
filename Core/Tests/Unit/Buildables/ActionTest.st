@@ -2,7 +2,7 @@ TestCase subclass: ActionTest [
     | action |
 
     <comment: nil>
-    <category: 'Iliad-Tests-Unit-Builders'>
+    <category: 'Iliad-Tests-Unit-Buildables'>
 
     setUp [
 	<category: 'running'>
