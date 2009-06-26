@@ -92,4 +92,21 @@ RequestHandler subclass: ErrorHandler [
 			self error resumeContext backtraceOn: str]).
 		page build printHtmlOn: stream])]
     ]
+    
+    walkbackStringsFor: anError [
+	| ctx strings |
+	strings := OrderedCollection new.
+	ctx := anError resumeContext.
+	[strings size <= 20 and: [ctx notNil] ] whileTrue: [
+	    ctx isInternalExceptionHandlingContext
+		ifFalse: [ strings add: ctx printString ].
+	    ctx := ctx parentContext ].
+	^strings
+    ]
+]
+
+Signal extend [
+    resumeContext [
+	^resumeBlock outerContext home
+    ]
 ]
