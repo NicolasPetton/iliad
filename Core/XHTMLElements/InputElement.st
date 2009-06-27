@@ -120,11 +120,6 @@ FormElementElement subclass: InputElement [
 	self type: 'password'
     ]
 
-    beRadio [
-	<category: 'accessing attributes-types'>
-	self type: 'radio'
-    ]
-
     beReset [
 	<category: 'accessing attributes-types'>
 	self type: 'reset'
