@@ -19,6 +19,7 @@
     <filein>Tests/Unit/Elements/BodyElementTest.st</filein>
     <filein>Tests/Unit/Elements/ButtonElementTest.st</filein>
     <filein>Tests/Unit/Elements/CheckboxElementTest.st</filein>
+    <filein>Tests/Unit/Elements/RadioButtonElementTest.st</filein>
     <filein>Tests/Unit/Elements/DirectionElementTest.st</filein>
     <filein>Tests/Unit/Elements/FormElementElementTest.st</filein>
     <filein>Tests/Unit/Elements/HeadElementTest.st</filein>
@@ -133,6 +134,7 @@
   <filein>XHTMLElements/FormElementElement.st</filein> 
   <filein>XHTMLElements/ButtonElement.st</filein> 
   <filein>XHTMLElements/CheckboxElement.st</filein> 
+  <filein>XHTMLElements/RadioButtonElement.st</filein> 
   <filein>XHTMLElements/InputElement.st</filein> 
   <filein>XHTMLElements/SelectElement.st</filein> 
   <filein>XHTMLElements/TextAreaElement.st</filein> 
