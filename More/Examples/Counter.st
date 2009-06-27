@@ -57,7 +57,7 @@ Widget subclass: Counter [
 	    e space.
 	    e anchor
 		action: [self decrease];
-		text: '--'.]
+		text: '--']
     ]
 
     decrease [
