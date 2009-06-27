@@ -67,6 +67,11 @@ FormElementElement subclass: RadioButtonElement [
 	aBoolean ifTrue: [self attributeAt: 'checked' put: 'checked']
     ]
 
+    value: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: #value put: aString
+    ]
+
     beforePrintHtml [
 	<category: 'printing'>
 	self attributeAt: 'type' put: 'radio'
