@@ -54,7 +54,7 @@ MATextInputWidget subclass: MATimeSelectorWidget [
     choose [
 	<category: 'actions'>
 	| selector |
-	selector := ILTimeSelectorWidget new.
+	selector := TimeSelectorWidget new.
 	selector
 	    showSeconds: true;
 	    selectedTime: ((self value notNil and: [

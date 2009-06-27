@@ -102,7 +102,7 @@ I am a server independent http response object.'>
 
     cookieAt: key put: value [
 	<category: 'accessing'>
-	^self addCookie: (ILCookie key: key value: value)
+	^self addCookie: (Cookie key: key value: value)
     ]
 
     cookies [

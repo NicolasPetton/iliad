@@ -48,7 +48,7 @@ Instead, you can change my preferences with methods in the
 <accessing preferences> protocol.
 
 In addition, do not try to access the current session from here, 
-use ILContext>>session instead.
+use Context>>session instead.
 
 -- maintenance --
 

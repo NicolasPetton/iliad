@@ -102,7 +102,7 @@ MAElementWidget subclass: MAFileUploadWidget [
     upload: aFile [
 	<category: 'actions'>
 	self markDirty.
-	self value: ((aFile isKindOf: ILFileProxy) 
+	self value: ((aFile isKindOf: FileProxy) 
 		    ifTrue: 
 			[(self description kind new)
 			    mimetype: aFile contentType;
