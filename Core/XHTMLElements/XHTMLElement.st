@@ -594,7 +594,7 @@ Element subclass: XHTMLElement [
 
     radioButton [
 	<category: 'adding-conveniance'>
-	^self add: RadioButton new
+	^self add: RadioButtonElement new
     ]
 
     resetInput [
