@@ -49,7 +49,7 @@ FormElementElement subclass: RadioButtonElement [
     action: aBlock [
 	<category: 'accessing attributes'>
 	| action |
-	action := ILAction new
+	action := Action new
 	    block: aBlock;
 	    key: self session nextId;
 	    yourself.
