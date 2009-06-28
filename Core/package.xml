@@ -152,6 +152,7 @@
   <filein>XHTMLElements/OptionElement.st</filein> 
   <filein>XHTMLElements/OptionGroupElement.st</filein> 
   <filein>XHTMLElements/ParagraphElement.st</filein> 
+  <filein>XHTMLElements/RawHtmlElement.st</filein> 
   <filein>XHTMLElements/RubyTextElement.st</filein> 
   <filein>XHTMLElements/ScriptElement.st</filein> 
   <filein>XHTMLElements/SpanElement.st</filein> 
@@ -252,6 +253,7 @@
   <file>XHTMLElements/OptionElement.st</file> 
   <file>XHTMLElements/OptionGroupElement.st</file> 
   <file>XHTMLElements/ParagraphElement.st</file> 
+  <file>XHTMLElements/RawHtmlElement.st</file> 
   <file>XHTMLElements/RubyTextElement.st</file> 
   <file>XHTMLElements/ScriptElement.st</file> 
   <file>XHTMLElements/SpanElement.st</file> 
