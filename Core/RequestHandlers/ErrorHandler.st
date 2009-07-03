@@ -82,14 +82,19 @@ RequestHandler subclass: ErrorHandler [
 
     produceVerboseResponse [
 	<category: 'responding'>
+	| info |
+	info := WriteStream on: ''. 
 	self respond: [:response || page e |
 	    response nextPutAll: (String streamContents: [:stream |
 		page := Page new.
 		page bodyElement h1: 'Internal Error';
 		    h2: self error description;
-		    h3: self error messageText;
-		    preformatted: (String streamContents: [:str |
-			self error resumeContext backtraceOn: str]).
+		    h3: self error messageText.
+		self error examineOn: info.
+		info nextPut: Character cr.
+		self error resumeContext backtraceOn: info.
+		page bodyElement preformatted: info contents.
+		Transcript show: info contents; cr.
 		page build printHtmlOn: stream])]
     ]
 ]
