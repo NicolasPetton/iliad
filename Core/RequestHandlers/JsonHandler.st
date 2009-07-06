@@ -65,8 +65,8 @@ RequestHandler subclass: JsonHandler [
 			scripts add: child]]].
 	    jsonContents at: 'widgets' put: widgets.
 	    jsonContents at: 'scripts' put: scripts.
-	    response nextPutAll: (GSTEncoder encode: (String streamContents: [:stream |
-		jsonContents printJsonOn: stream])).
+	    response nextPutAll: (String streamContents: [:stream |
+		jsonContents printJsonOn: stream]).
 	    self session
 		clearDirtyWidgets;
 		clearRedirectUrl]
