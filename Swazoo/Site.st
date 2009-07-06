@@ -167,7 +167,7 @@ Swazoo.SwazooSite subclass: Site [
 	type := tokens first.
 	type = 'text' ifTrue: [^false].
 	tokens size = 1 ifTrue: [^true].
-	subTypes := tokens second tokenize: '+'.
+	subTypes := tokens second tokenize: '\+'.
 	^subTypes noneSatisfy: [:each |
 	    #('x-javascript' 'xml' 'json') includes: each]
     ]
