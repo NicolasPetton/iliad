@@ -84,7 +84,7 @@ the application mode:
 	     It should return a string"
 	    <category: 'accessing'>
 	    
-	    ^nil
+	    ^''
 	]
 
 	selectorFilter [
