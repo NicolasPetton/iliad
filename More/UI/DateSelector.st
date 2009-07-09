@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.DateSelectorWidget class definition
+|   Iliad.DateSelector class definition
 |
  ======================================================================"
 
@@ -34,11 +34,11 @@
  ======================================================================"
 
 
-Widget subclass: DateSelectorWidget [
+UIWidget subclass: DateSelector [
     | actionBlock selectedMonth selectedDay selectedYear |
     
     <comment: nil>
-    <category: 'Iliad-Core-Widgets'>
+    <category: 'Iliad-Core-UI'>
 
     actionBlock [
 	<category: 'accessing'>

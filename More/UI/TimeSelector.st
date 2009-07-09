@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.TimeSelectorWidget class definition
+|   Iliad.TimeSelector class definition
 |
  ======================================================================"
 
@@ -36,11 +36,11 @@
 
 
 
-Widget subclass: TimeSelectorWidget [
+UIWidget subclass: TimeSelector [
     | actionBlock selectedHours selectedMinutes showSeconds selectedSeconds |
     
     <comment: nil>
-    <category: 'Iliad-Core-Widgets'>
+    <category: 'Iliad-Core-UI'>
 
     actionBlock [
 	<category: 'accessing'>
@@ -108,25 +108,22 @@ Widget subclass: TimeSelectorWidget [
 
     contents [
 	<category: 'building'>
-	^[:e | 
-	| form |
-	    self selectedTimeIsValid 
-		ifFalse: 
-		    [(e div)
-			class: 'error';
-			text: 'Invalid time'].
+	^[:e || form |
+	    self selectedTimeIsValid ifFalse: [
+		e div
+		    class: 'error';
+		    text: 'Invalid time'].
 	    form := e form.
 	    form
 		build: self hoursInputContents;
 		text: ':';
 		build: self minutesInputContents.
-	    self showSeconds 
-		ifTrue: 
-		    [form
-			text: ':';
-			build: self secondsInputContents].
+	    self showSeconds ifTrue: [
+		form
+		    text: ':';
+		    build: self secondsInputContents].
 	    form space.
-	    (form button)
+	    form button
 		text: 'Select';
 		action: [self selectTime]]
     ]

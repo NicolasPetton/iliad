@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad-More-UI classes extensions
+|   Iliad.Tabs class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -33,24 +33,70 @@
 |
  ======================================================================"
 
-
 
-Widget extend [
+UIWidget subclass: Tabs [
+    | widgets labels selectedWidget |
+    
+    <comment: nil>
+    <category: 'Iliad-More-UI'>
 
-    lightbox: aWidget [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-
-	self lightbox: aWidget onAnswer: [:ans | ]
+    contents [
+	<category: 'building'>
+	^[:e || div |
+	    div := e div class: self cssClass.
+	    div build: self tabsContents.
+	    e div
+		class: 'contents';
+		add: self selectedWidget build]
     ]
 
-    lightbox: aWidget onAnswer: aBlock [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-	
-	self 
-		show: aWidget 
-		onAnswer: aBlock
-		delegator: (Lightbox new widget: aWidget; yourself)
+    tabsContents [
+	<category: 'building'>
+	^[:e || ul |
+	    ul := e unorderedList.
+	    self widgets do: [:each || li |
+		li := ul listItem.
+		li anchor
+		    text: (self labels at: (self widgets indexOf: each));
+		    action: [self selectWidget: each].
+		self selectedWidget = each ifTrue: [
+		    li class: 'selected']]]
+    ]
+
+    cssClass [
+	<category: 'accessing'>
+	^super cssClass, ' tabs'
+    ]
+
+    labels [
+	<category: 'accessing'>
+	^labels
+    ]
+
+    labels: aCollection [
+	<category: 'accessing'>
+	labels := aCollection
+    ]
+
+    selectedWidget [
+	<category: 'accessing'>
+	^selectedWidget ifNil: [self widgets first]
+    ]
+
+    widgets [
+	<category: 'accessing'>
+	^widgets
+    ]
+
+    widgets: aCollection [
+	<category: 'accessing'>
+	widgets := aCollection
+    ]
+
+    selectWidget: aWidget [
+	<category: 'actions'>
+	selectedWidget := aWidget.
+	self markDirty
     ]
 ]
+

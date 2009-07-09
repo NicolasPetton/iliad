@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad-More-UI classes extensions
+|   Iliad.Spacer class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -35,22 +35,31 @@
 
 
 
-Widget extend [
+UIWidget subclass: Spacer [
+    | spaces |
+    
+    <comment: nil>
+    <category: 'Iliad-More-UI'>
 
-    lightbox: aWidget [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-
-	self lightbox: aWidget onAnswer: [:ans | ]
+    cssClass [
+	<category: 'accessing'>
+	^super cssClass , ' spacer'
     ]
 
-    lightbox: aWidget onAnswer: aBlock [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-	
-	self 
-		show: aWidget 
-		onAnswer: aBlock
-		delegator: (Lightbox new widget: aWidget; yourself)
+    spaces [
+	<category: 'accessing'>
+	^spaces ifNil: [spaces := 1]
+    ]
+
+    spaces: anInteger [
+	<category: 'accessing'>
+	spaces := anInteger
+    ]
+
+    contents [
+	<category: 'building'>
+	^[:e || div |
+	    div := e div class: self cssClass.
+	    self spaces timesRepeat: [div nbsp]]
     ]
 ]

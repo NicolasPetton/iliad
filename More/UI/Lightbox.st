@@ -37,7 +37,7 @@
 Delegator subclass: Lightbox [
     
     <comment: nil>
-    <category: 'Iliad-Core-Widgets'>
+    <category: 'Iliad-Core-UI'>
 
     contents [
 	<category: 'building'>

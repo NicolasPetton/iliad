@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad-More-UI classes extensions
+|   Iliad.VerticalBox class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -33,24 +33,15 @@
 |
  ======================================================================"
 
-
 
-Widget extend [
+Box subclass: VerticalBox [
+    
+    <comment: nil>
+    <category: 'Iliad-More-UI'>
 
-    lightbox: aWidget [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-
-	self lightbox: aWidget onAnswer: [:ans | ]
-    ]
-
-    lightbox: aWidget onAnswer: aBlock [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-	
-	self 
-		show: aWidget 
-		onAnswer: aBlock
-		delegator: (Lightbox new widget: aWidget; yourself)
+    cssClass [
+	<category: 'accessing'>
+	^super cssClass, ' vbox'
     ]
 ]
+

@@ -1,0 +1,103 @@
+/* ---
+    Layouts
+----------------------------------------------------------------------------- */
+
+._ui {
+    /*outline: 2px dashed #0088CC*/
+}
+
+._ui ._widget {
+    margin: 0 5px
+}
+
+._ui.vbox>._widget, ._ui.vpaned>._widget {
+    float: left
+}
+
+._ui.hbox, ._ui.hpaned {
+    float: none
+}
+
+
+/* ---
+    Tree
+----------------------------------------------------------------------------- */
+
+._ui.tree ._widget {
+    padding: 0; 
+    margin: 0
+}
+
+._ui.tree ul {
+    list-style: none; 
+    margin: 0
+}
+
+._ui.tree .arrow img {
+    border: none
+}
+
+
+/* ---
+    Tabs
+----------------------------------------------------------------------------- */
+
+._ui.tabs {
+    border-bottom : 1px solid #ccc;
+    padding-bottom : 23px;
+    padding-left : 10px;
+    margin-bottom: 10px;
+}
+
+._ui.tabs ul, ._ui.tabs li {
+    display : inline;
+    list-style-type : none;
+    margin : 0;
+    padding : 0;
+}
+
+._ui.tabs a:link, ._ui.tabs a:visited	{
+	background : #E8EBF0;
+	border : 1px solid #ccc;
+	color : #666;
+	float : left;
+	font-size : 18px;
+    font-style: normal;
+	font-weight : normal;
+	line-height : 18px;
+	margin-right : 8px;
+	padding : 2px 10px 2px 10px;
+	text-decoration : none;
+}
+
+._ui.tabs li.selected a, ._ui.tabs li.selected a:visited {
+	background : #fff;
+	border-bottom : 1px solid #fff;
+	color : #000;
+}
+
+._ui.tabs ul a:hover	{
+	color : #0088CC;
+}
+
+._ui.tabs .selected a {
+	background : #fff;
+	border-bottom : 1px solid #fff;
+	color : #000;
+}
+
+._ui.tabs li.selected a, ._ui.tabs li.selected a:visited {
+	background : #fff;
+	border-bottom : 1px solid #fff;
+	color : #000;
+}
+
+._ui.tabs ul a:hover	{
+	color : #0088CC;
+}
+
+._ui.tabs .selected a {
+	background : #fff;
+	border-bottom : 1px solid #fff;
+	color : #000;
+}

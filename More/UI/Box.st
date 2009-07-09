@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad-More-UI classes extensions
+|   Iliad.Box class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -33,24 +33,54 @@
 |
  ======================================================================"
 
-
 
-Widget extend [
+UIWidget subclass: Box [
+    | widgets |
+    
+    <comment: nil>
+    <category: 'Iliad-More-UI'>
 
-    lightbox: aWidget [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-
-	self lightbox: aWidget onAnswer: [:ans | ]
+    widgets [
+	<category: 'accessing'>
+	^widgets ifNil: [widgets := OrderedCollection new]
     ]
 
-    lightbox: aWidget onAnswer: aBlock [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-	
-	self 
-		show: aWidget 
-		onAnswer: aBlock
-		delegator: (Lightbox new widget: aWidget; yourself)
+    contents [
+	<category: 'building'>
+	^[:e || div |
+	    div := e div class: self cssClass.
+	    self widgets do: [:each | div build: each]]
+    ]
+
+    hbox [
+	<category: 'adding-convenience'>
+	^self add: HorizontalBox new
+    ]
+
+    hpaned [
+	<category: 'adding-convenience'>
+	^self add: HorizontalPaned new
+    ]
+
+    vbox [
+	<category: 'adding-convenience'>
+	^self add: VerticalBox new
+    ]
+
+    vpaned [
+	<category: 'adding-convenience'>
+	^self add: VerticalPaned new
+    ]
+
+    spacer [
+	<category: 'adding-convenience'>
+	^self add: Spacer new
+    ]
+
+    add: aWidget [
+	<category: 'adding'>
+	self widgets add: aWidget.
+	^aWidget
     ]
 ]
+

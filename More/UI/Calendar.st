@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.CalendarWidget class definition
+|   Iliad.Calendar class definition
 |
  ======================================================================"
 
@@ -38,11 +38,11 @@
  ======================================================================"
 
 
-Widget subclass: CalendarWidget [
+UIWidget subclass: Calendar [
     | month date |
     
     <comment: nil>
-    <category: 'Iliad-Core-Widgets'>
+    <category: 'Iliad-Core-UI'>
 
     initialize [
 	<category: 'initialize-release'>
