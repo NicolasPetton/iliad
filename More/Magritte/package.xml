@@ -2,6 +2,7 @@
   <name>Iliad-More-Magritte</name>
   <prereq>Magritte</prereq>
   <prereq>Iliad-Core</prereq>
+  <prereq>Iliad-More-UI</prereq>
   <namespace>Magritte</namespace>
 
 
