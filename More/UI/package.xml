@@ -1,5 +1,5 @@
 <package>
-  <name>Iliad-More-Widgets</name>
+  <name>Iliad-More-UI</name>
   <prereq>Iliad-Core</prereq>
   <namespace>Iliad</namespace>
 

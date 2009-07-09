@@ -2,6 +2,6 @@
   <name>Iliad-More</name>
   <prereq>Iliad-Core</prereq>
   <prereq>Iliad-More-Magritte</prereq>
-  <prereq>Iliad-More-Widgets</prereq>
+  <prereq>Iliad-More-UI</prereq>
   <prereq>Iliad-More-Examples</prereq>
 </package>
