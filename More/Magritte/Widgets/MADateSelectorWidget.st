@@ -54,7 +54,7 @@ MATextInputWidget subclass: MADateSelectorWidget [
     choose [
 	<category: 'actions'>
 	| selector |
-	selector := DateSelectorWidget new.
+	selector := DateSelector new.
 	selector 
 	    selectedDate: ((self value notNil and: [
 		self description isSatisfiedBy: self value]) 
