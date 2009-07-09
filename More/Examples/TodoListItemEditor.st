@@ -128,7 +128,7 @@ Widget subclass: TodoListItemEditor [
 
     setItemDeadline [
 	<category: 'actions'>
-	self show: CalendarWidget new onAnswer: [:date |
+	self show: Calendar new onAnswer: [:date |
 		self item deadline: date]
     ]
 
