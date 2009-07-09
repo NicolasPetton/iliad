@@ -518,6 +518,12 @@ Element subclass: XHTMLElement [
 	^self add: MetaElement new
     ]
 
+    nbsp [
+	^self add: (RawHtmlElement new 
+	    contents: '&nbsp;'; 
+	    yourself)
+    ]
+
     object [
 	<category: 'adding-conveniance'>
 	^self add: ObjectElement new
