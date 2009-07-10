@@ -37,8 +37,12 @@
 UIWidget subclass: Tabs [
     | widgets labels selectedWidget |
     
-    <comment: nil>
     <category: 'Iliad-More-UI'>
+    <comment: 'Usage example:
+
+Tabs new
+    labels: #(''Counter 1'' ''Counter 2'');
+    widgets: {Counter new. Counter new}'>
 
     contents [
 	<category: 'building'>
@@ -74,7 +78,10 @@ UIWidget subclass: Tabs [
     ]
 
     labels: aCollection [
+	"aCollection -- of strings -- must have the same size as 
+	widgets collection"
 	<category: 'accessing'>
+
 	labels := aCollection
     ]
 
@@ -89,7 +96,10 @@ UIWidget subclass: Tabs [
     ]
 
     widgets: aCollection [
+	"aCollection of widgets to be displayed in the tabs.
+	Each widget has an associated label, set with #labels: method"
 	<category: 'accessing'>
+
 	widgets := aCollection
     ]
 

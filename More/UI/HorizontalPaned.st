@@ -36,8 +36,9 @@
 
 Paned subclass: HorizontalPaned [
     
-    <comment: nil>
     <category: 'Iliad-More-UI'>
+    <comment: 'I am a container widget with two panes arranged horizontally.
+The division between the two panes is adjustable by the user by dragging a handle.'>
 
     cssClass [
 	<category: 'accessing'>

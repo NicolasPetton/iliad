@@ -36,8 +36,8 @@
 
 Box subclass: HorizontalBox [
     
-    <comment: nil>
     <category: 'Iliad-More-UI'>
+    <comment: 'I am a container widget that organizes child widgets into a single row. '>
 
     cssClass [
 	<category: 'accessing'>

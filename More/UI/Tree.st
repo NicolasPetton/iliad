@@ -38,8 +38,15 @@
 UIWidget subclass: Tree [
     | item expanded childrenBlock subTrees root contentsBlock |
     
-    <comment: nil>
     <category: 'Iliad-More-UI'>
+    <comment: 'I am a graphical tree widget.
+
+Usage example:
+
+Tree new
+    item: Object;
+    childrenBlock: [:class | class subclasses];
+    contentsBlock: [:e :class | e text: class name]'>
 
     contents [
 	<category: 'building'>
@@ -86,7 +93,10 @@ UIWidget subclass: Tree [
     ]
 
     childrenBlock: aBlock [
+	"aBlock is used to compute the children of the given argument.
+	Example: [:item | item children]"
 	<category: 'accessing'>
+
 	childrenBlock := aBlock
     ]
 
@@ -96,7 +106,10 @@ UIWidget subclass: Tree [
     ]
 
     contentsBlock: aViewBlock [
+	"aViewBlock takes two arguments.
+	Example: [:e :item | e text: item printString]"		
 	<category: 'accessing'>
+
 	contentsBlock := aViewBlock
     ]
 

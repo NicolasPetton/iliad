@@ -36,8 +36,8 @@
 
 Box subclass: VerticalBox [
     
-    <comment: nil>
     <category: 'Iliad-More-UI'>
+    <comment: 'I am a container widget that organizes child widgets into a single column. '>
 
     cssClass [
 	<category: 'accessing'>
