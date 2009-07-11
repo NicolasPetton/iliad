@@ -20,7 +20,7 @@ Object subclass: Encoder [
 	    ifTrue: [^aStream nextPut: aCharacter].
 	value := aCharacter asInteger.
 	aStream nextPut: $%.
-	aStream nextPutAll: ((value printStringBase: 16) padded: #left to: 2 with: $0)
+	aStream nextPutAll: ((value radix: 16) copyFrom: 4)
 	]
 
 	encodeForHTTP: aString [
