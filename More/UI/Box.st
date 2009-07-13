@@ -59,7 +59,7 @@ UIWidget subclass: Box [
 
     hpaned [
 	<category: 'adding-convenience'>
-	^self add: HorizontalPaned new
+	^self add: HorizontallyPaned new
     ]
 
     vbox [
@@ -69,7 +69,7 @@ UIWidget subclass: Box [
 
     vpaned [
 	<category: 'adding-convenience'>
-	^self add: VerticalPaned new
+	^self add: VerticallyPaned new
     ]
 
     spacer [
