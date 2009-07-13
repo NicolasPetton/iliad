@@ -41,16 +41,12 @@ Delegator subclass: Lightbox [
 
     contents [
 	<category: 'building'>
-	^
-	[:e | 
-	| div |
-	e build: self decoratee contents.
-	e div class: 'overlay'.
-	div := (e div)
-		    class: 'lightbox';
-		    yourself.
-	div script: self lighter.
-	div build: self widget]
+	^[:e || div |
+	    e build: self decoratee contents.
+	    e div class: 'overlay'.
+	    div := e div class: 'lightbox'; yourself.
+	    div script: self lighter.
+	    div build: self widget]
     ]
 
     lighter [
