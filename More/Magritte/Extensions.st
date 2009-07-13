@@ -276,3 +276,11 @@ MAToOneRelationDescription class extend [
 	^Array with: MAExternalEditorWidget with: MAInternalEditorWidget
     ]
 ]
+
+MAToManyRelationDescription class extend [
+
+    defaultWidgetClasses [
+	<category: '*Iliad-More-Magritte'>
+	^Array with: MAOneToManyWidget
+    ]
+]

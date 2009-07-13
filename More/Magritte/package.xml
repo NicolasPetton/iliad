@@ -10,6 +10,18 @@
   <filein>Builders/MATableBuilder.st</filein> 
 
   <filein>Widgets/MAWidget.st</filein> 
+
+  <filein>Report/MAColumnWidget.st</filein> 
+  <filein>Report/MAActionColumnWidget.st</filein> 
+  <filein>Report/MACommandColumnWidget.st</filein> 
+  <filein>Report/MAIndexedCommandColumnWidget.st</filein> 
+  <filein>Report/MASelectionColumnWidget.st</filein> 
+  <filein>Report/MACheckboxColumnWidget.st</filein> 
+  <filein>Report/MADescribedColumnWidget.st</filein> 
+  <filein>Report/MADescribedScalarColumnWidget.st</filein> 
+  <filein>Report/MAToggleColumnWidget.st</filein> 
+  <filein>Report/MAReportWidget.st</filein> 
+
   <filein>Widgets/MADescriptionWidget.st</filein> 
   <filein>Widgets/MAContainerWidget.st</filein> 
   <filein>Widgets/MAElementWidget.st</filein> 
@@ -23,6 +35,7 @@
   <filein>Widgets/MASelectListWidget.st</filein> 
   <filein>Widgets/MARelationWidget.st</filein> 
   <filein>Widgets/MAOneToOneWidget.st</filein> 
+  <filein>Widgets/MAOneToManyWidget.st</filein> 
   <filein>Widgets/MAExternalEditorWidget.st</filein> 
   <filein>Widgets/MAInternalEditorWidget.st</filein> 
   <filein>Widgets/MATextAreaWidget.st</filein> 
@@ -48,6 +61,19 @@
   <file>Builders/MATableBuilder.st</file> 
 
   <file>Widgets/MAWidget.st</file> 
+
+  <file>Report/MAColumnWidget.st</file> 
+  <file>Report/MAActionColumnWidget.st</file> 
+  <file>Report/MACommandColumnWidget.st</file> 
+  <file>Report/MAIndexedCommandColumnWidget.st</file> 
+  <file>Report/MASelectionColumnWidget.st</file> 
+  <file>Report/MACheckboxColumnWidget.st</file> 
+  <file>Report/MADescribedColumnWidget.st</file> 
+  <file>Report/MADescribedScalarColumnWidget.st</file> 
+  <file>Report/MAToggleColumnWidget.st</file> 
+  <file>Report/MAReportWidget.st</file> 
+
+
   <file>Widgets/MADescriptionWidget.st</file> 
   <file>Widgets/MAContainerWidget.st</file> 
   <file>Widgets/MAElementWidget.st</file> 
@@ -61,6 +87,7 @@
   <file>Widgets/MASelectListWidget.st</file> 
   <file>Widgets/MARelationWidget.st</file> 
   <file>Widgets/MAOneToOneWidget.st</file> 
+  <file>Widgets/MAOneToManyWidget.st</file> 
   <file>Widgets/MAExternalEditorWidget.st</file> 
   <file>Widgets/MAInternalEditorWidget.st</file> 
   <file>Widgets/MATextAreaWidget.st</file> 
