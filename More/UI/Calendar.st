@@ -10,10 +10,6 @@
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
-| Adapted from the Seaside WAMiniCalendar. Seaside is written
-| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
-| Marschall and Seaside contributors http://www.seaside.st 
-|
 | This file is part of the Iliad framework.
 |
 | Permission is hereby granted, free of charge, to any person obtaining
@@ -39,31 +35,82 @@
 
 
 UIWidget subclass: Calendar [
-    | month date |
-    
+    | month year actionBlock |
+
     <comment: nil>
     <category: 'Iliad-Core-UI'>
 
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
-	date := Date today.
-	month := date month
+	self date: Date today.
+	self actionBlock: [:val | self answer: val]
     ]
 
-    date [
-	<category: 'accessing'>
-	^date
+    contents [
+	<category: 'building'>
+	^[:e |
+	    e 
+		build:self monthSelectionFormContents;
+		build: self calendarTableContents]
     ]
 
-    date: aDate [
-	<category: 'accessing'>
-	date := aDate
+    monthSelectionFormContents [
+	<category: 'building'>
+	^[:e || form select |
+	    form := e form class: 'month_selection'; yourself.
+	    select := form select.
+	    self months do: [:each || option |
+		option := select option.
+		option 
+		    text: each asString;
+		    action: [self selectMonth: (Date indexOfMonth: each)].
+		(Date indexOfMonth: each) = self month ifTrue: [
+		    option selected]].
+	    form input 
+		maxLength: 4; 
+		action: [:val | self selectYear: val];
+		value: self year.
+	    form button text: 'select']
     ]
 
-    daysOfWeek [
+    calendarTableContents [
+	<category: 'building'>
+	^[:e || table row date |
+	    table := e table.
+	    date := Date newDay: 1 monthIndex: self month year: self year.
+	    table build: self daysOfWeekRowContents.
+	    row := table tableRow.
+	    date dayOfWeek - 1 timesRepeat: [row tableData].
+	    date daysInMonth timesRepeat: [
+		date dayOfWeek - 1 \\ 7 = 0 ifTrue: [row := table tableRow].
+		row tableData anchor
+		    action: [self selectDate: date];
+		    text: date dayOfMonth asString.
+		date := date addDays: 1]]
+    ]
+
+    daysOfWeekRowContents [
+	<category: 'building'>
+	^[:e || head |
+	    head := e tableHead.
+	    self daysOfWeek do: [:each |
+		head tableData text: each]]
+    ]
+
+    cssClass [
 	<category: 'accessing'>
-	^#('Sun' 'Mon' 'Tue' 'Wed' 'Thu' 'Fri' 'Sat')
+	^super cssClass, ' calendar'
+    ]
+
+    actionBlock [
+	<category: 'accessing'>
+	^actionBlock
+    ]
+
+    actionBlock: aBlock [
+	<category: 'accessing'>
+	actionBlock := aBlock
     ]
 
     month [
@@ -71,36 +118,52 @@ UIWidget subclass: Calendar [
 	^month
     ]
 
-    month: aMonth [
+    month: anInteger [
 	<category: 'accessing'>
-	month := aMonth
-    ]
-
-    months [
-	<category: 'accessing'>
-	^(1 to: 12) collect: [:i | Date nameOfMonth: i]
+	month := anInteger
     ]
 
     year [
 	<category: 'accessing'>
-	^self date year
+	^year
     ]
 
     year: anInteger [
 	<category: 'accessing'>
-	| year |
-	year := [anInteger asNumber] on: Error do: [:e | 1900].
-	month := Month month: self month monthIndex year: year
+	year := [anInteger asNumber] on: Error do: [:error | 1970].
+    ]
+
+    date [
+	<category: 'accessing'>
+	^Date newDay: 1 monthIndex: self month year: self year
+    ]
+
+    date: aDate [
+	<category: 'accessing'>
+	self month: aDate monthIndex.
+	self year: aDate year.
+    ]
+
+    daysOfWeek [
+	<category: 'accessing'>
+	^(1 to: 7) collect: [:i |
+	    (Date nameOfDay: i) first: 3]
+    ]
+
+    months [
+	<category: 'accessing'>
+	^(1 to: 12) collect: [:i | 
+	    Date nameOfMonth: i]
     ]
 
     selectDate: aDate [
 	<category: 'actions'>
-	self answer: aDate
+	self actionBlock value: aDate
     ]
 
-    selectMonth: aString [
+    selectMonth: anInteger [
 	<category: 'actions'>
-	self month: (Month month: aString year: self year).
+	self month: anInteger.
 	self markDirty
     ]
 
@@ -108,67 +171,6 @@ UIWidget subclass: Calendar [
 	<category: 'actions'>
 	self year: anInteger.
 	self markDirty
-    ]
-
-    calendarTableContents [
-	<category: 'building'>
-	^[:e || table |
-	    table := e table.
-	    table build: self daysOfWeekRowContents.
-	    self month weeksDo: [:each | 
-		table build: (self rowContentsForWeek: each)]]
-    ]
-
-    cellContentsForDate: aDate [
-	<category: 'building'>
-	^[:e || data |
-	    data := e tableData.
-	    aDate month = self month ifTrue: [
-		data anchor
-		    action: [self selectDate: aDate];
-		    text: aDate dayOfMonth asString]]
-    ]
-
-    contents [
-	<category: 'building'>
-	^[:e || div |
-	    div := e div class: 'calendar'.
-	    div build: self monthSelectionFormContents.
-	    div build: self calendarTableContents]
-    ]
-
-    daysOfWeekRowContents [
-	<category: 'building'>
-	^[:e || head |
-	    head := e tableHead.
-	    self daysOfWeek do: [:each | head tableData text: each]]
-    ]
-
-    monthSelectionFormContents [
-	<category: 'building'>
-	^[:e || form select |
-	    form := e form class: 'month_selection'; yourself.
-	select := form select.
-	self months do: 
-	    [:each || option |
-	    option := select option.
-	    option 
-		text: each asString;
-		action: [self selectMonth: each asString].
-	    each = self month ifTrue: [option selected]].
-	(form input)
-	    maxLength: 4;
-	    action: [:val | self selectYear: val];
-	    value: self year.
-	form button text: 'select']
-    ]
-
-    rowContentsForWeek: aWeek [
-	<category: 'building'>
-	^[:e | | row |
-	    row := e tableRow.
-	    aWeek datesDo: [:each | 
-		row build: (self cellContentsForDate: each)]]
     ]
 ]
 
