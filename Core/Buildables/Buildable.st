@@ -46,11 +46,6 @@ IliadObject subclass: Buildable [
     <comment: 'I am an abstract buildable object. 
 My subclasses must override the #build method, which should return an instance of a subclass of Iliad.Element.'>
 
-    page [
-	<category: 'accessing'>
-	^self application page
-    ]
-
     attributeAt: aSymbol [
 	<category: 'accessing attributes'>
 	^self attributes at: aSymbol ifAbsent: [nil]

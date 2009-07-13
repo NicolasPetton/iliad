@@ -120,10 +120,10 @@ Application subclass: BlogApplication [
 		do: [:each | e build: (self postContentsFor: each)]]
     ]
 
-    updatePage [
+    updatePage: aPage [
 	<category: 'building'>
-	super updatePage.
-	self page headElement stylesheet href: '/stylesheets/iliad.css'
+	super updatePage: aPage.
+	aPage head stylesheet href: '/stylesheets/iliad.css'
     ]
 ]
 

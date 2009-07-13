@@ -73,10 +73,10 @@ Application subclass: CounterApplication [
 			Counter new}]
     ]
 
-    updatePage [
+    updatePage: aPage [
 	<category: 'as yet unclassified'>
-	super updatePage.
-	self page headElement stylesheet href: '/stylesheets/iliad.css'
+	super updatePage: aPage.
+	aPage head stylesheet href: '/stylesheets/iliad.css'
     ]
 ]
 

@@ -39,7 +39,7 @@
 
 
 Widget subclass: Application [
-    | model page originalRoutePosition |
+    | model originalRoutePosition |
 
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am the implementation of an application.
@@ -172,11 +172,6 @@ the application mode:
 	model := anObject
     ]
 
-    page [
-	<category: 'accessing'>
-	^page
-    ]
-
     route [
 	<category: 'accessing'>
 	^self context route
@@ -195,21 +190,14 @@ the application mode:
 	     e build: self dispatch]
     ]
 
-    updatePage [
-	"Override to add elements to the page.
+    updatePage: aPage [
+	"Override to add elements to aPage.
 	 super should always be called"
 	<category: 'building'>
 
-	self page headElement javascript source: '/javascripts/jquery132min.js'.
-	self page headElement javascript source: '/javascripts/no_conflict.js'.
-	self page headElement javascript source: '/javascripts/iliad.js'.
-	self page headElement javascript source: '/javascripts/lightbox.js'.
-	self page headElement stylesheet href: '/stylesheets/lightbox.css'.
-    ]
-
-    pageClass [
-	<category: 'defaults'>
-	^Page
+	aPage head javascript source: '/javascripts/jquery132min.js'.
+	aPage head javascript source: '/javascripts/no_conflict.js'.
+	aPage head javascript source: '/javascripts/iliad.js'.
     ]
 
     allowedSelector: aSelector [
@@ -288,14 +276,16 @@ the application mode:
 
     respondOn: aResponse [
 	<category: 'converting'>
-	self build.
-	self updatePage.
-	self page respondOn: aResponse
+	| page |
+	page := self defaultPageClass new.
+	self buildOn: page body.
+	self updatePage: page.
+	page respondOn: aResponse
     ]
 
     defaultPageClass [
 	<category: 'defaults'>
-	^Page
+	^XHTMLPage
     ]
 
     isDebugMode [
@@ -311,15 +301,6 @@ the application mode:
     isDeploymentMode [
 	<category: 'testing'>
 	^self class isDeploymentMode
-    ]
-
-    newRootElement [
-	"Set a new page instance of #defaultPageClass.
-	 Answer the #bodyElement of the page"
-	<category: 'private'>
-
-	page := self defaultPageClass new.
-	^page bodyElement
     ]
 
     originalUrl [

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Page class definition
+|   Iliad.XHTMLPage class definition
 |
  ======================================================================"
 
@@ -35,48 +35,32 @@
 
 
 
-Buildable subclass: Page [
+Buildable subclass: XHTMLPage [
 
     <comment: nil>
     <category: 'Iliad-Core-Buildables'>
 
-    bodyElement [
+    body [
 	<category: 'accessing attributes'>
-	^self attributeAt: #bodyElement ifAbsentPut: [BodyElement new]
+	^self attributeAt: #body ifAbsentPut: [BodyElement new]
     ]
 
-    headElement [
+    head [
 	<category: 'accessing attributes'>
-	^self attributeAt: #headElement ifAbsentPut: [HeadElement new]
+	^self attributeAt: #head ifAbsentPut: [HeadElement new]
     ]
 
-    htmlElement [
+    html [
 	<category: 'accessing attributes'>
-	^self attributeAt: #htmlElement ifAbsentPut: [HtmlElement new]
-    ]
-
-    rootElement [
-	<category: 'accessing attributes'>
-	^self attributeAt: #rootElement ifAbsentPut: [self rootElementClass new]
-    ]
-
-    rootElementClass [
-	<category: 'accessing attributes'>
-	^self attributeAt: #rootElementClass
-	    ifAbsentPut: [self defaultRootElementClass]
-    ]
-
-    defaultRootElementClass [
-	<category: 'defaults'>
-	^XHTMLElement
+	^self attributeAt: #html ifAbsentPut: [HtmlElement new]
     ]
 
     build [
 	<category: 'building'>
-	self htmlElement add: self headElement.
-	self htmlElement add: self bodyElement.
-	self rootElement add: self htmlElement.
-	^self rootElement
+	^self html
+	    add: self head;
+	    add: self body;
+	    yourself
     ]
 ]
 

@@ -86,14 +86,14 @@ RequestHandler subclass: ErrorHandler [
 	info := WriteStream on: ''. 
 	self respond: [:response || page e |
 	    response nextPutAll: (String streamContents: [:stream |
-		page := Page new.
-		page bodyElement h1: 'Internal Error';
+		page := XHTMLPage new.
+		page body h1: 'Internal Error';
 		    h2: self error description;
 		    h3: self error messageText.
 		self error examineOn: info.
 		info nextPut: Character cr.
 		self error resumeContext backtraceOn: info.
-		page bodyElement preformatted: info contents.
+		page body preformatted: info contents.
 		Transcript show: info contents; cr.
 		page build printHtmlOn: stream])]
     ]

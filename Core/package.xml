@@ -176,7 +176,7 @@
   <filein>Buildables/MessageDecorator.st</filein> 
   <filein>Buildables/Widget.st</filein> 
   <filein>Buildables/Application.st</filein> 
-  <filein>Buildables/Page.st</filein> 
+  <filein>Buildables/XHTMLPage.st</filein> 
 
   <filein>Dispatching/DispatchError.st</filein>
   <filein>Dispatching/Dispatcher.st</filein> 
@@ -277,7 +277,7 @@
   <file>Buildables/MessageDecorator.st</file> 
   <file>Buildables/Widget.st</file> 
   <file>Buildables/Application.st</file> 
-  <file>Buildables/Page.st</file> 
+  <file>Buildables/XHTMLPage.st</file> 
 
   <file>Dispatching/DispatchError.st</file> 
   <file>Dispatching/Dispatcher.st</file> 

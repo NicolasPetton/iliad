@@ -107,10 +107,12 @@ Application subclass: TodoListApplication [
 	^todoListWidget ifNil: [todoListWidget := TodoListWidget new]
     ]
 
-    updatePage [
+    updatePage: aPage [
 	<category: 'building'>
-	super updatePage.
-	self page headElement stylesheet href: '/stylesheets/iliad.css'
+	super updatePage: aPage.
+	aPage head stylesheet href: '/stylesheets/iliad.css'.
+	aPage head javascript source: '/javascripts/lightbox.js'.
+	aPage head stylesheet href: '/stylesheets/lightbox.css'.
     ]
 ]
 
