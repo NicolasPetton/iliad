@@ -135,7 +135,10 @@ UIWidget subclass: Calendar [
 
     date [
 	<category: 'accessing'>
-	^Date newDay: 1 monthIndex: self month year: self year
+	^Date 
+	    newDay: 1 
+	    monthIndex: self month 
+	    year: self year
     ]
 
     date: aDate [
