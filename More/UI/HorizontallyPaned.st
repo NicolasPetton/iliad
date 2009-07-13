@@ -1,7 +1,6 @@
-
 "======================================================================
 |
-|   Iliad.VerticalPaned class definition
+|   Iliad.HorizontallyPaned class definition
 |
  ======================================================================"
 
@@ -35,15 +34,14 @@
  ======================================================================"
 
 
-Paned subclass: VerticalPaned [
+Paned subclass: HorizontallyPaned [
     
     <category: 'Iliad-More-UI'>
-    <comment: 'I am a container widget with two panes arranged vertically.
+    <comment: 'I am a container widget with two panes arranged horizontally.
 The division between the two panes is adjustable by the user by dragging a handle.'>
 
     cssClass [
 	<category: 'accessing'>
-	^super cssClass, ' vpaned'
+	^super cssClass, ' hpaned'
     ]
 ]
-

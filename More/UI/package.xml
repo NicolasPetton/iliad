@@ -8,8 +8,8 @@
   <filein>VerticalBox.st</filein> 
   <filein>HorizontalBox.st</filein> 
   <filein>Paned.st</filein> 
-  <filein>HorizontalPaned.st</filein> 
-  <filein>VerticalPaned.st</filein> 
+  <filein>HorizontallyPaned.st</filein> 
+  <filein>VerticallyPaned.st</filein> 
   <filein>TimeSelector.st</filein> 
   <filein>DateSelector.st</filein> 
   <filein>Lightbox.st</filein> 
@@ -23,8 +23,8 @@
   <file>VerticalBox.st</file> 
   <file>HorizontalBox.st</file> 
   <file>Paned.st</file> 
-  <file>HorizontalPaned.st</file> 
-  <file>VerticalPaned.st</file> 
+  <file>HorizontallyPaned.st</file> 
+  <file>VerticallyPaned.st</file> 
   <file>TimeSelector.st</file> 
   <file>DateSelector.st</file> 
   <file>Lightbox.st</file> 
