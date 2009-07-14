@@ -33,6 +33,12 @@ ByteArray subclass: Id [
 	<category: 'accessing'>
 	^($a to: $z) , ($0 to: $9) , (Array with: $_ with: $-)
     ]
+
+    printOn: aStream [
+	<category: 'printing'>
+	self do: [:each | 
+	    aStream nextPut: (Character value: each)]
+    ]
 ]
 
 
