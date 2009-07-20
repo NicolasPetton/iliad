@@ -67,10 +67,16 @@ My subclasses must override the #build method, which should return an instance o
     ]
 
     build [
-	"Override this method in subclasses.
-	It must answer an element"
 	<category: 'building'>
+	self withActionRegistry: [
+	    ^self buildContents]	
+    ]
+
+    buildContents [
+	"Override this method in subclasses.
+	It must answer an Element"
 	
+	<category: 'building'>
 	self subclassResponsibility
     ]
 
@@ -92,6 +98,15 @@ My subclasses must override the #build method, which should return an instance o
     respondOn: aResponse [
 	<category: 'converting'>
 	self build respondOn: aResponse
+    ]
+
+    withActionRegistry: aBlock [
+	<category: 'private'>
+	CurrentActionRegistry 
+	    use: ((self session actionRegistryFor: self)
+		unregisterAllActions;
+		yourself)
+	    during: aBlock
     ]
 ]
 

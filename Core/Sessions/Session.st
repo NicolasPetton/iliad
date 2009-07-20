@@ -37,7 +37,7 @@
 
 
 IliadObject subclass: Session [
-    | id preferences timestamps expired redirectUrl applications actions dirtyWidgets nextId token |
+    | id preferences timestamps expired redirectUrl applications actionRegistries dirtyWidgets nextId token |
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
@@ -82,17 +82,12 @@ IliadObject subclass: Session [
 	<category: 'accessing'>
 	nextId ifNil: [nextId := (Random new next * 100000) asInteger].
 	nextId := nextId + 1.
-	^nextId
+	^nextId printString
     ]
 
     clearNextId [ 
 	<category: 'accessing'>
 	nextId := nil
-    ]
-
-    actions [
-	<category: 'accessing'>
-	^actions ifNil: [actions := Dictionary new]
     ]
 
     applications [
@@ -246,14 +241,41 @@ IliadObject subclass: Session [
 	^'en'
     ]
 
+    actionRegistries [
+	<category: 'actions'>
+	^actionRegistries ifNil: 
+	    [actionRegistries := OrderedCollection new]
+    ]
+
+    actionRegistryFor: aWidget [
+	<category: 'actions'>
+	^self actionRegistries 
+	    detect: [:each | each owner = aWidget]
+	    ifNone: [self addActionRegistryFor: aWidget]
+    ]
+    
+    addActionRegistryFor: aWidget [
+	<category: 'actions'>
+	^self actionRegistries add: (ActionRegistry owner: aWidget)
+    ]
+
+    clearActionRegistries [
+	<category: 'actions'>
+	actionRegistries := OrderedCollection new
+    ]
+
     actionAt: aKeyString [
 	<category: 'actions'>
-	^self actions at: aKeyString ifAbsent: [nil]
+	| action |
+	self actionRegistries do: [:each |
+	    action := each actionAt: aKeyString.
+	    action ifNotNil: [^action]].
+	^nil
     ]
 
     registerAction: anAction [
 	<category: 'actions'>
-	self actions at: anAction key printString put: anAction
+	CurrentActionRegistry value register: anAction
     ]
 
     registerActionFor: aBlock [
@@ -264,25 +286,12 @@ IliadObject subclass: Session [
 	    block: aBlock;
 	    yourself.
 	self registerAction: action.
-	^action key
     ]
 
     evaluateActionKey: aString [
 	<category: 'actions'>
-	| action |
-	action := (self actionAt: aString) ifNil: [^nil].
-	action evaluate
-    ]
-
-    unregisterAction: anAction [
-	<category: 'actions'>
-	(self actions includesKey: anAction key printString) ifFalse: [^nil].
-	self actions removeKey: anAction key printString
-    ]
-
-    unregisterAllActions [
-	<category: 'actions'>
-	actions := Dictionary new
+	self actionRegistries do: [:each |
+	    each evaluateActionKey: aString]
     ]
 
     urlForAction: anAction [
@@ -294,9 +303,9 @@ IliadObject subclass: Session [
 	<category: 'actions'>
 	^self baseUrl
 	    addParameter: self sessionManager actionKey
-	    value: aKey printString;
+	    value: aKey;
 	    addParameter: self sessionManager tokenKey
-	    value: self token asString;
+	    value: self token;
 	    yourself
     ]
    

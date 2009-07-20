@@ -91,6 +91,7 @@
   </test>
 
   <filein>Utilities/IliadObject.st</filein>
+  <filein>Utilities/DynamicVariable.st</filein>
   <filein>Utilities/Support.st</filein> 
   <filein>Utilities/Id.st</filein> 
   <filein>Utilities/Encoder.st</filein> 
@@ -109,6 +110,8 @@
   <filein>Sessions/Context.st</filein> 
   <filein>Sessions/Action.st</filein> 
   <filein>Sessions/CurrentContext.st</filein> 
+  <filein>Sessions/CurrentActionRegistry.st</filein> 
+  <filein>Sessions/ActionRegistry.st</filein> 
   <filein>Sessions/Session.st</filein> 
   <filein>Sessions/SessionManager.st</filein> 
 
@@ -192,6 +195,7 @@
   <filein>RequestHandlers/RedirectHandler.st</filein> 
 
   <file>Utilities/IliadObject.st</file>
+  <file>Utilities/DynamicVariable.st</file>
   <file>Utilities/Support.st</file> 
   <file>Utilities/Id.st</file> 
   <file>Utilities/Encoder.st</file> 
@@ -210,6 +214,8 @@
   <file>Sessions/Context.st</file> 
   <file>Sessions/Action.st</file> 
   <file>Sessions/CurrentContext.st</file> 
+  <file>Sessions/CurrentActionRegistry.st</file> 
+  <file>Sessions/ActionRegistry.st</file> 
   <file>Sessions/Session.st</file> 
   <file>Sessions/SessionManager.st</file> 
 

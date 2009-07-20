@@ -110,7 +110,7 @@ added to the decoration chain with #addDecoration:.'>
 	^self
     ]
 
-    build [
+    buildContents [
 	"Do *not* override this method. Use #contents instead"
 	<category: 'building'>
 	

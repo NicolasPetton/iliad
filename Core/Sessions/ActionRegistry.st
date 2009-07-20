@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.CurrentContext class definition
+|   Iliad.ActionRegistry class definition
 |
  ======================================================================"
 
@@ -34,12 +34,75 @@
 |
  ======================================================================"
 
-
 
-
-
-DynamicVariable subclass: CurrentContext [
+IliadObject subclass: ActionRegistry [
+    | actions owner |
+    
     <category: 'Iliad-Core-Sessions'>
-    <comment: nil>
+    <comment: 'I implement a registry of actions.
+    
+    My <owner> is responsible for registering actions,
+    and unregister them when they are obsolete. 
+    
+    Action registries should always be stored in Iliad sessions.'>
+
+    ActionRegistry class >> owner: aWidget [
+	<category: 'instance creation'>
+	^self basicNew
+	    owner: aWidget;
+	    initialize;
+	    yourself
+    ]
+
+    actionAt: aKeyString [
+	<category: 'accessing'>
+	^self actions 
+	    detect: [:each | each key = aKeyString] 
+	    ifNone: [nil]
+    ]
+
+    actions [
+	<category: 'accessing'>
+	^actions ifNil: [actions := OrderedCollection new]
+    ]
+
+    owner [
+	<category: 'accessing'>
+	^owner
+    ]
+
+    owner: anObject [
+	<category: 'accessing'>
+	owner := anObject
+    ]
+
+    evaluate: anAction [
+	<category: 'actions'>
+	(self actions includes: anAction) ifTrue: [
+	    anAction evaluate]
+    ]
+
+    evaluateActionKey: aString [
+	<category: 'actions'>
+	| action |
+	action := self actionAt: aString.
+	action ifNotNil: [self evaluate: action]
+    ]
+
+    register: anAction [
+	<category: 'actions'>
+	self actions add: anAction
+    ]
+
+    unregister: anAction [
+	<category: 'actions'>
+	(self actions includes: anAction) ifTrue: [
+	    self actions remove: anAction]
+    ]
+
+    unregisterAllActions [
+	<category: 'actions'>
+	actions := nil
+    ]
 ]
 

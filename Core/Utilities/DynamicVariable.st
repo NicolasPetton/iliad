@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad.CurrentContext class definition
+|   Iliad.DynamicVariable class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -38,8 +38,28 @@
 
 
 
-DynamicVariable subclass: CurrentContext [
-    <category: 'Iliad-Core-Sessions'>
+Notification subclass: DynamicVariable [
+    <category: 'Iliad-Core-Utilities'>
     <comment: nil>
+
+    DynamicVariable class >> defaultValue [
+	<category: 'defaults'>
+	^nil
+    ]
+
+    DynamicVariable class >> use: aContext during: aBlock [
+	<category: 'evaluating'>
+	^aBlock on: self do: [:notification | notification resume: aContext]
+    ]
+
+    DynamicVariable class >> value [
+	<category: 'evaluating'>
+	^self signal
+    ]
+
+    defaultAction [
+	<category: 'defaults'>
+	^self class defaultValue
+    ]
 ]
 

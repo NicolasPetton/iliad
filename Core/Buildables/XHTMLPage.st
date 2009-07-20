@@ -55,7 +55,7 @@ Buildable subclass: XHTMLPage [
 	^self attributeAt: #html ifAbsentPut: [HtmlElement new]
     ]
 
-    build [
+    buildContents [
 	<category: 'building'>
 	^self html
 	    add: self head;

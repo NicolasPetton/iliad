@@ -70,7 +70,7 @@ RequestHandler subclass: ApplicationHandler [
 	self session 
 	    clearDirtyWidgets;
 	    clearNextId;
-	    unregisterAllActions.
+	    clearActionRegistries.
 	(self shouldRedirect)
 	    ifTrue: [RedirectHandler new handleRequest]
 	    ifFalse: [self produceResponse]

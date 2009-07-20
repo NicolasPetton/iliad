@@ -88,10 +88,14 @@ LinkableElement subclass: AnchorElement [
 
     action: aBlock [
 	<category: 'links'>
-	| actionKey |
-    actionKey := self session registerActionFor: aBlock.
-    self href: (self session urlForActionKey: actionKey).
-    self onClick: ('Iliad.evaluateAnchorAction(this); return false;')
+	| action |
+	action := Action new
+	    block: aBlock;
+	    key: self session nextId;
+	    yourself.
+	self session registerAction: action.
+	self href: (self session urlForAction: action).
+	self onClick: ('Iliad.evaluateAnchorAction(this); return false;')
     ]
 ]
 
