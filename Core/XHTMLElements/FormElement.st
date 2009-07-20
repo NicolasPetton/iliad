@@ -145,13 +145,13 @@ XHTMLElement subclass: FormElement [
 	self add: (InputElement new
 		beHidden;
 		name: SessionManager current tokenKey;
-		value: self session token asString;
+		value: self session token;
 		yourself).
 	self session shouldUseSessionField ifTrue: [
 	    self add: (InputElement new
 		beHidden;
 		name: SessionManager current sessionKey;
-		value: self session id asString;
+		value: self session id;
 		yourself)]
     ]
 

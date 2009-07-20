@@ -107,6 +107,7 @@
   <filein>lib/JSON/Extensions.st</filein> 
 
   <filein>Sessions/Context.st</filein> 
+  <filein>Sessions/Action.st</filein> 
   <filein>Sessions/CurrentContext.st</filein> 
   <filein>Sessions/Session.st</filein> 
   <filein>Sessions/SessionManager.st</filein> 
@@ -168,7 +169,6 @@
   <filein>XHTMLElements/TableHeadElement.st</filein> 
 
   <filein>Buildables/Extensions.st</filein>  
-  <filein>Buildables/Action.st</filein> 
   <filein>Buildables/Buildable.st</filein> 
   <filein>Buildables/Decorator.st</filein> 
   <filein>Buildables/AnswerHandler.st</filein> 
@@ -208,6 +208,7 @@
   <file>lib/JSON/Extensions.st</file> 
 
   <file>Sessions/Context.st</file> 
+  <file>Sessions/Action.st</file> 
   <file>Sessions/CurrentContext.st</file> 
   <file>Sessions/Session.st</file> 
   <file>Sessions/SessionManager.st</file> 
@@ -269,7 +270,6 @@
   <file>XHTMLElements/TableHeadElement.st</file> 
 
   <file>Buildables/Extensions.st</file> 
-  <file>Buildables/Action.st</file> 
   <file>Buildables/Buildable.st</file> 
   <file>Buildables/Decorator.st</file> 
   <file>Buildables/AnswerHandler.st</file> 
