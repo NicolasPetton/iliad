@@ -54,16 +54,16 @@ IliadObject subclass: ActionRegistry [
 	    yourself
     ]
 
-    actionAt: aKeyString [
+    actionAt: aKey [
 	<category: 'accessing'>
 	^self actions 
-	    detect: [:each | each key = aKeyString] 
-	    ifNone: [nil]
+	    at: aKey 
+	    ifAbsent: [nil]
     ]
 
     actions [
 	<category: 'accessing'>
-	^actions ifNil: [actions := OrderedCollection new]
+	^actions ifNil: [actions := LookupTable new]
     ]
 
     owner [
@@ -76,28 +76,23 @@ IliadObject subclass: ActionRegistry [
 	owner := anObject
     ]
 
-    evaluate: anAction [
-	<category: 'actions'>
-	(self actions includes: anAction) ifTrue: [
-	    anAction evaluate]
-    ]
-
     evaluateActionKey: aString [
 	<category: 'actions'>
 	| action |
 	action := self actionAt: aString.
-	action ifNotNil: [self evaluate: action]
+	action ifNotNil: [action evaluate]
     ]
 
     register: anAction [
 	<category: 'actions'>
-	self actions add: anAction
+	self actions at: anAction key put: anAction
     ]
 
     unregister: anAction [
 	<category: 'actions'>
-	(self actions includes: anAction) ifTrue: [
-	    self actions remove: anAction]
+	self actions 
+	    removeKey: anAction key
+	    ifAbsent: [nil]
     ]
 
     unregisterAllActions [
