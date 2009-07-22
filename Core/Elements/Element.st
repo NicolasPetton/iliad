@@ -36,24 +36,17 @@
 
 
 
-IliadObject subclass: Element [
-    | children attributes |
+Composite subclass: Element [
+    | attributes |
     
     <category: 'Iliad-Core-Elements'>
     <comment: 'I am the abstract root class of the composite element hierarchy.
 
 I know how to print myself in HTML format with the #printHtmlOn: method'>
 
-    initialize [
-	<category: 'initialize-release'>
-	super initialize.
-	children := OrderedCollection new.
-	attributes := Dictionary new
-    ]
-
     attributes [
 	<category: 'accessing'>
-	^attributes
+	^attributes ifNil: [attributes := Dictionary new]
     ]
 
     attributeAt: akey [
@@ -76,11 +69,6 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	^self attributes at: akey put: aValue
     ]
 
-    children [
-	<category: 'accessing'>
-	^children
-    ]
-
     contentType [
 	<category: 'accessing'>
 	self subclassResponsibility
@@ -89,13 +77,6 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
     tag [
 	<category: 'accessing'>
 	^nil
-    ]
-
-    withAllChildrenDo: aBlock [
-	<category: 'accessing'>
-	self children do: [:each |
-	    aBlock value: each.
-	    each withAllChildrenDo: aBlock]
     ]
 
     printJsonOn: aStream [
@@ -110,7 +91,8 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	<category: 'printing'>
 	self beforePrintHtml.
 	self printOpenTagOn: aStream.
-	self children do: [:each | each printHtmlOn: aStream].
+	self childrenDo: [:each | 
+	    each printHtmlOn: aStream].
 	self printCloseTagOn: aStream.
 	self afterPrintHtml
     ]
@@ -152,12 +134,6 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
     build: aBuildable [
 	<category: 'building'>
 	aBuildable buildOn: self
-    ]
-
-    add: anElement [
-	<category: 'adding'>
-	self children add: anElement.
-	^anElement
     ]
 
     text: aString [

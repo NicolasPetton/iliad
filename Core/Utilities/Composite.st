@@ -1,15 +1,18 @@
 "======================================================================
 |
-|   Iliad.ActionRegistry class definition
+|   Iliad.Composite class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
+| Some parts of this file reuse code from the Seaside framework written 
+| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
+| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -35,69 +38,49 @@
  ======================================================================"
 
 
-IliadObject subclass: ActionRegistry [
-    | actions owner |
+IliadObject subclass: Composite [
+    | tail next |
     
-    <category: 'Iliad-Core-Sessions'>
-    <comment: 'I implement a registry of actions.
-    
-    My <owner> is responsible for registering actions,
-    and unregister them when they are obsolete. 
-    
-    Action registries should always be stored in Iliad sessions.'>
+    <comment: nil>
+    <category: 'Iliad-Core-Utilities'>
 
-    ActionRegistry class >> owner: aWidget [
-	<category: 'instance creation'>
-	^self basicNew
-	    owner: aWidget;
-	    initialize;
-	    yourself
+    add: aComposite [
+	<category: 'adding'>
+	| head |
+	tail ifNil: [tail := aComposite].
+	head := tail next ifNil: [tail].
+	tail next: aComposite.
+	tail := tail next.
+	tail next: head.
+	^aComposite
     ]
 
-    actionAt: aKey [
+    allChildrenDo: aBlock [
+	<category: 'iterating'>
+	self childrenDo: [:each | 
+	    aBlock value: each.
+	    each allChildrenDo: aBlock]
+    ]
+
+    childrenDo: aBlock [
+	<category: 'iterating'>
+	| child |
+	tail ifNil: [^self].
+	child := tail next.
+	[child == tail] whileFalse: [
+	    aBlock value: child.
+	    child := child next].
+	aBlock value: tail
+    ]
+
+    next [
 	<category: 'accessing'>
-	^self actions 
-	    at: aKey 
-	    ifAbsent: [nil]
+	^next
     ]
 
-    actions [
+    next: aLinkedObject [
 	<category: 'accessing'>
-	^actions ifNil: [actions := Dictionary new]
-    ]
-
-    owner [
-	<category: 'accessing'>
-	^owner
-    ]
-
-    owner: anObject [
-	<category: 'accessing'>
-	owner := anObject
-    ]
-
-    evaluateActionKey: aString [
-	<category: 'actions'>
-	| action |
-	action := self actionAt: aString.
-	action ifNotNil: [action evaluate]
-    ]
-
-    register: anAction [
-	<category: 'actions'>
-	self actions at: anAction key put: anAction
-    ]
-
-    unregister: anAction [
-	<category: 'actions'>
-	self actions 
-	    removeKey: anAction key
-	    ifAbsent: [nil]
-    ]
-
-    unregisterAllActions [
-	<category: 'actions'>
-	actions := nil
+	next := aLinkedObject
     ]
 ]
 

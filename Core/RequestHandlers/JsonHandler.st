@@ -60,7 +60,7 @@ RequestHandler subclass: JsonHandler [
 	    self session dirtyWidgets do: [:each || e |
 		e := each build.
 		widgets at: each id put: e.
-		e withAllChildrenDo: [:child |
+		e allChildrenDo: [:child |
 		    child tag = 'script' ifTrue: [
 			scripts add: child]]].
 	    jsonContents at: 'widgets' put: widgets.
