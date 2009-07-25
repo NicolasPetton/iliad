@@ -526,8 +526,10 @@ RequestHandler subclass: FileHandler [
 
     produceResponse [
 	<category: 'responding'>
-	self respond: [:response |
-	    response nextPutAll: file readStream binary contentsStream.
+	self respond: [:response || stream |
+	    stream := file readStream.
+	    [response nextPutAll: stream binary contentsStream]
+		ensure: [stream close].
 	    response contentType: (self mimeTypeFor: file filename).
 	    self addAllowHeaderTo: response.
 	    self session useCookies ifTrue: [
