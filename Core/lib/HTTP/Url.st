@@ -57,7 +57,7 @@ password:		<String> or nil
 hostname:		<String> or nil
 port:			<Integer> or nil
 path:			<OrderedCollection> or nil
-parameters:		<Dictionary>
+parameters:		<SmallDictionary>
 fragment:		<String> or nil'>
 
     Url class >> absolute: aString [
@@ -283,12 +283,7 @@ fragment:		<String> or nil'>
 
     parameters [
 	<category: 'accessing'>
-	^parameters ifNil: [parameters := Dictionary new]
-    ]
-
-    parameters: aDictionary [
-	<category: 'accessing'>
-	parameters := aDictionary
+	^parameters ifNil: [parameters := SmallDictionary new]
     ]
 
     password [

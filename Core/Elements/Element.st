@@ -46,7 +46,7 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 
     attributes [
 	<category: 'accessing'>
-	^attributes ifNil: [attributes := Dictionary new]
+	^attributes ifNil: [attributes := SmallDictionary new]
     ]
 
     attributeAt: akey [
