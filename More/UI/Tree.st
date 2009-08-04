@@ -53,7 +53,7 @@ Tree new
 	^[:e || div |
 	    div := e div.
 	    self isRoot ifTrue: [
-		div class: self cssClass].
+		div class: 'tree'].
 	    div build: self contentsForItem]
     ]
 
@@ -111,11 +111,6 @@ Tree new
 	<category: 'accessing'>
 
 	contentsBlock := aViewBlock
-    ]
-
-    cssClass [
-	<category: 'accessing'>
-	^super cssClass, ' tree'
     ]
 
     cssClassForItem [

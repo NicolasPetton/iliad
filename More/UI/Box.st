@@ -47,9 +47,9 @@ UIWidget subclass: Box [
 
     contents [
 	<category: 'building'>
-	^[:e || div |
-	    div := e div class: self cssClass.
-	    self widgets do: [:each | div build: each]]
+	^[:e |
+	    self widgets do: [:each | 
+		e build: each]]
     ]
 
     hbox [

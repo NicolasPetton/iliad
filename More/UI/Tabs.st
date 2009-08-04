@@ -46,9 +46,8 @@ Tabs new
 
     contents [
 	<category: 'building'>
-	^[:e || div |
-	    div := e div class: self cssClass.
-	    div build: self tabsContents.
+	^[:e |
+	    e build: self tabsContents.
 	    e div
 		class: 'contents';
 		add: self selectedWidget build]

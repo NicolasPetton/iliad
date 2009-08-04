@@ -42,7 +42,7 @@ Widget subclass: UIWidget [
 
     cssClass [
 	<category: 'accessing'>
-	^' _ui'
+	^'_ui'
     ]
 ]
 

@@ -58,8 +58,8 @@ UIWidget subclass: Spacer [
 
     contents [
 	<category: 'building'>
-	^[:e || div |
-	    div := e div class: self cssClass.
-	    self spaces timesRepeat: [div nbsp]]
+	^[:e |
+	    self spaces timesRepeat: [
+		e nbsp]]
     ]
 ]
