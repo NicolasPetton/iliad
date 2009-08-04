@@ -82,10 +82,11 @@ UIWidget subclass: Calendar [
 	    table build: self daysOfWeekRowContents.
 	    row := table tableRow.
 	    date dayOfWeek - 1 timesRepeat: [row tableData].
-	    date daysInMonth timesRepeat: [
+	    date daysInMonth timesRepeat: [| selectedDate |
+		selectedDate := date.
 		date dayOfWeek - 1 \\ 7 = 0 ifTrue: [row := table tableRow].
 		row tableData anchor
-		    action: [self selectDate: date];
+		    action: [self selectDate: selectedDate];
 		    text: date dayOfMonth asString.
 		date := date addDays: 1]]
     ]
