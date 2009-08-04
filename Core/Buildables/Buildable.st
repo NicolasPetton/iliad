@@ -75,8 +75,8 @@ My subclasses must override the #buildContents method, which should return an in
     buildContents [
 	"Override this method in subclasses.
 	It must answer an Element"
-	
 	<category: 'building'>
+
 	self subclassResponsibility
     ]
 
