@@ -1,6 +1,5 @@
 <package>
   <name>Iliad-Core</name>
-  <prereq>Sport</prereq>
   <prereq>Iconv</prereq>
   <namespace>Iliad</namespace>
 
