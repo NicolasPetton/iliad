@@ -518,8 +518,8 @@ RequestHandler subclass: FileHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	file := SpFilename named: (self adjustPath: self request url asString).
-	(file exists not or: [file isDirectory]) ifTrue: [
+	file := File name: (self adjustPath: self request url asString).
+	file exists ifFalse: [
 	    DispatchError signal].
 	super handleRequest
     ]
@@ -528,9 +528,9 @@ RequestHandler subclass: FileHandler [
 	<category: 'responding'>
 	self respond: [:response || stream |
 	    stream := file readStream.
-	    [response nextPutAll: stream binary contentsStream]
+	    [response nextPutAll: stream contents]
 		ensure: [stream close].
-	    response contentType: (self mimeTypeFor: file filename).
+	    response contentType: (self mimeTypeFor: file name).
 	    self addAllowHeaderTo: response.
 	    self session useCookies ifTrue: [
 		self addCookieHeaderTo: response].
