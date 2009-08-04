@@ -84,9 +84,9 @@ added to the decoration chain with #addDecoration:.'>
     ]
 
     cssClass [
-	<category: 'acessing'>
 	"Override in subclasses to add css classes to widget.
 	Answer nil or a astring"
+	<category: 'acessing'>
 
 	^nil
     ]
