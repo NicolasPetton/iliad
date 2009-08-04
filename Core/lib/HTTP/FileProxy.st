@@ -111,9 +111,8 @@ Object subclass: FileProxy [
     writeToFile [
 	<category: 'writing'>
 	| file |
-	file := SpFilename named: self filename.
+	file := File name: self filename.
 	(file writeStream)
-	    binary;
 	    nextPutAll: self contents;
 	    close
     ]
