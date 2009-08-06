@@ -7,15 +7,15 @@
 }
 
 ._ui ._widget {
-    margin: 0 5px
+    margin: 0 5px;
 }
 
 ._ui.vbox>._widget, ._ui.vpaned>._widget {
-    float: left
+    display: inline;
 }
 
 ._ui.hbox, ._ui.hpaned {
-    float: none
+    display: block;
 }
 
 
@@ -23,18 +23,18 @@
     Tree
 ----------------------------------------------------------------------------- */
 
-._ui.tree ._widget {
+._ui .tree ._widget {
     padding: 0; 
-    margin: 0
+    margin: 0;
 }
 
-._ui.tree ul {
+._ui .tree ul {
     list-style: none; 
-    margin: 0
+    margin: 0;
 }
 
-._ui.tree .arrow img {
-    border: none
+._ui .tree .arrow img {
+    border: none;
 }
 
 
