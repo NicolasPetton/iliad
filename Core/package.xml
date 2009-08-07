@@ -179,6 +179,7 @@
   <filein>Buildables/Delegator.st</filein> 
   <filein>Buildables/MessageDecorator.st</filein> 
   <filein>Buildables/Widget.st</filein> 
+  <filein>Buildables/Profiler.st</filein> 
   <filein>Buildables/Application.st</filein> 
   <filein>Buildables/XHTMLPage.st</filein> 
 
@@ -285,6 +286,7 @@
   <file>Buildables/Delegator.st</file> 
   <file>Buildables/MessageDecorator.st</file> 
   <file>Buildables/Widget.st</file> 
+  <file>Buildables/Profiler.st</file> 
   <file>Buildables/Application.st</file> 
   <file>Buildables/XHTMLPage.st</file> 
 
