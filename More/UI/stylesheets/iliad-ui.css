@@ -14,7 +14,7 @@
     display: inline;
 }
 
-._ui.hbox, ._ui.hpaned {
+._ui.hbox>._widget, ._ui.hpaned>._widget {
     display: block;
 }
 
