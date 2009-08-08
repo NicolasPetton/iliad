@@ -12,6 +12,10 @@ var Iliad = {
         var data = jQuery(form).serialize();
         this.evaluateAction(actionUrl, "post", data);
     },
+
+	evaluateFormElementAction: function(formElement) {
+		this.evaluateFormAction(jQuery(formElement).closest("form"));
+	},
     
     enableSubmitAction: function(button) {
         var name = jQuery(button).attr("name");
