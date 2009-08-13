@@ -1,9 +1,14 @@
 var Iliad = {
 
     /* Public */
-    
-    evaluateAnchorAction: function(anchor) {
+
+	hash: "",
+
+    evaluateAnchorAction: function(anchor, hashString) {
         var actionUrl = jQuery(anchor).attr('href');
+		if(hashString) {
+			this._setHashLocation(hashString);
+		}
         this.evaluateAction(actionUrl);
     },
 
@@ -26,11 +31,11 @@ var Iliad = {
         }
     },
 
-    evaluateAction:function(actionUrl, method, data) {
+    evaluateAction: function(actionUrl, method, data) {
         if(!method) {method = 'get'};
         var that = this;
         jQuery.ajax({
-        url: actionUrl,
+        	url: actionUrl,
             type: method,
             processUpdates: true,
             dataType: 'json',
@@ -47,21 +52,54 @@ var Iliad = {
             }
         });
     },
-    
+   
+	checkHashChange: function() {
+		var newHash = this._getHashLocation();
+		if(this.hash != newHash) {
+			this.hash = newHash;
+			jQuery.ajax({
+				url: window.location.pathname + '?_hash=' + this.hash.substr(1),
+				dataType: "html",
+            	beforeSend: function(xhr) {
+                	xhr.setRequestHeader("X-Requested-With", ""); 
+				},
+            	success: function(response) {
+					var extractor = /<body[^>]*>((.|\s)*)<\/body>/;
+                	jQuery("body").html(extractor.exec(response)[1]);
+            	}
+			});
+		}
+	},
 
     /* Private */
-    
-    _hasActionUrl:function(anchor) {
+
+    _hasActionUrl: function(anchor) {
         if(anchor && jQuery(anchor).attr('href')) {
-            return /action?=(.*)$/.test(jQuery(anchor).attr('href'));
+            return /_action?=(.*)$/.test(jQuery(anchor).attr('href'));
         }
     },
     
-    _getFormActionUrl:function(form) {
+	_setHashLocation: function(hashString) {
+		if(typeof window.location.hash !== 'undefined') {
+			window.location.hash = this.hash;
+		} else {
+			location.hash = this.hash;
+		}
+	},
+
+	_getHashLocation: function() {
+		if(typeof window.location.hash !== 'undefined') {
+			return window.location.hash;
+		} else {
+			return location.hash;
+		}
+	},
+
+    _getFormActionUrl: function(form) {
         return jQuery(form).attr('action')
     },
 
-    _processUpdates:function(json) {
+    _processUpdates: function(json) {
         /* handle redirect if any */
         if(json.redirect) {
             return window.location.href = json.redirect
@@ -86,32 +124,39 @@ var Iliad = {
         }
     },
     
-    _updateWidget:function(id, contents) {
+    _updateWidget: function(id, contents) {
         jQuery("#"+id).replaceWith(contents)
     },
 
-    _evalScript:function(script) {
+    _evalScript: function(script) {
         try {eval(jQuery(script).html())}
         catch(e){}
     },
 
-    _insertAjaxLoader:function() {
+    _insertAjaxLoader: function() {
         jQuery('body').append('<div class="ajax_loader" style="position: fixed; top: 10px; right: 10px; z-index: 9999"><img src="/images/ajax_loader.gif"/></div>')
     },
 
-    _showError:function(actionUrl){
+    _showError: function(actionUrl){
         jQuery("body").html("<h1>Error 500: Internal server error</h1>")
     },
 
-    _removeAjaxLoader:function() {
+    _removeAjaxLoader: function() {
         jQuery(".ajax_loader").replaceWith("");
     },
     
-    sizeOf:function(obj) {
+    sizeOf: function(obj) {
         var size = 0, key;
         for (key in obj) {
             if (obj.hasOwnProperty(key)) size++;
         }
         return size;
     }
-}
+};
+
+
+jQuery(document).ready(function() {
+	setInterval("Iliad.checkHashChange()", 200);
+});
+
+
