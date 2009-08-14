@@ -57,7 +57,7 @@ MADescriptionWidget subclass: MAContainerWidget [
 
     addForm: aCollection [
 	<category: 'decorating'>
-	self decorateWith: (MAFormDecorator buttonsdecorateWith)
+	self decorateWith: (MAFormDecorator buttons: aCollection)
     ]
 
     addSwitch [
