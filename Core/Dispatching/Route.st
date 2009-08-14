@@ -36,7 +36,7 @@
 
 
 
-Object subclass: Route [
+IliadObject subclass: Route [
     | path stream |
 
     <category: 'Iliad-Core-Dispatching'>
@@ -53,7 +53,6 @@ and can be streamed with methods in the <streaming> protocol.'>
 	<category: 'instance creation'>
 	^self basicNew
 	    initializeWithPath: aCollection;
-	    initialize;
 	    yourself
     ]
 
