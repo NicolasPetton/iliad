@@ -88,7 +88,7 @@ A can be accessed through IliadObject>>context'>
 	<category: 'accessing'>
 	| hash |
 	hash := self request hashLocationField ifNil: [''].
-	^hashRoute ifNil: [hashRoute := Route path: (hash findTokens: $/)]
+	^hashRoute ifNil: [hashRoute := Route path: (hash tokenize: '/')]
     ]
 
     request [
