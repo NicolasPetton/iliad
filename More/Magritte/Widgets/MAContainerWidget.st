@@ -57,12 +57,12 @@ MADescriptionWidget subclass: MAContainerWidget [
 
     addForm: aCollection [
 	<category: 'decorating'>
-	self addDecoration: (MAFormDecorator buttons: aCollection)
+	self decorateWith: (MAFormDecorator buttonsdecorateWith)
     ]
 
     addSwitch [
 	<category: 'decorating'>
-	self addDecoration: MASwitchDecorator new.
+	self decorateWith: MASwitchDecorator new.
 	self readonly: true
     ]
 
@@ -89,7 +89,7 @@ MADescriptionWidget subclass: MAContainerWidget [
 
     addValidation [
 	<category: 'decorating'>
-	self addDecoration: MAValidationDecorator new
+	self decorateWith: MAValidationDecorator new
     ]
 
     buildChildren [
