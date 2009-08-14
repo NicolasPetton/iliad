@@ -51,8 +51,8 @@ LinkableElement subclass: AnchorElement [
 	
 	| action |
 	action := self session actionFor: aBlock.
-	self href: (self session urlForAction: action).
-	self onClick: ('Iliad.evaluateAnchor(this, "', aString, '"); return false;')
+	self href: (self context urlGenerator urlForAction: action).
+	self onClick: ('Iliad.evaluateAnchorAction(this, "', aString, '"); return false;')
     ]
 
     tag [

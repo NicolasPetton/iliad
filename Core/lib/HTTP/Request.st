@@ -94,28 +94,28 @@ I am a server independent http request object.'>
     hashLocationField [
 	<category: 'accessing'>
 	^self
-	    at: SessionManager current hashLocationKey
+	    at: UrlGenerator default hashKey
 	    ifAbsent: [nil]
     ]
 
     sessionField [
 	<category: 'accessing'>
 	^self 
-	    at: SessionManager current sessionKey
+	    at: UrlGenerator default sessionKey
 	    ifAbsent: [nil]
     ]
 
     tokenField [
 	<category: 'accessing'>
 	^self
-	    at: SessionManager current tokenKey
+	    at: UrlGenerator default tokenKey
 	    ifAbsent: [nil]
     ]
 
     actionField [
 	<category: 'accessing'>
 	^self 
-	    at: SessionManager current actionKey
+	    at: UrlGenerator default actionKey
 	    ifAbsent: [nil]
     ]
 

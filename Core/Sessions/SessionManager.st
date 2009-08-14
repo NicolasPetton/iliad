@@ -79,23 +79,6 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^self sessions values select: [:each | each isExpired]
     ]
 
-    sessionKey [
-	"session key in requests"
-	<category: 'accessing preferences'>
-
-	^self preferenceAt: #sessionKey ifAbsentPut: ['_session']
-    ]
-
-    actionKey [
-	<category: 'accessing preferences'>
-	^self preferenceAt: #actionKey ifAbsentPut: ['_action']
-    ]
-
-    tokenKey [
-	<category: 'accessing preferences'>
-	^self preferenceAt: #tokenKey ifAbsentPut: ['_token']
-    ]
-
     cookieName [
 	<category: 'accessing preferences'>
 	^self preferenceAt: #cookieName ifAbsentPut: ['_iliad685744']
@@ -104,11 +87,6 @@ To remove all expired sessions, call #removeExpiredSessions'>
     cookieName: aString [
 	<category: 'accessing preferences'>
 	^self preferenceAt: #cookieName put: aString
-    ]
-
-    hashLocationKey [
-	<category: 'accessing preferences'>
-	^self preferenceAt: #hashLocationKey ifAbsentPut: ['_hash']
     ]
 
     preferenceAt: aSymbol [

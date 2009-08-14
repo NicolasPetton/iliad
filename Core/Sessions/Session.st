@@ -286,21 +286,6 @@ IliadObject subclass: Session [
 	    each evaluateActionKey: aString]
     ]
 
-    urlForAction: anAction [
-	<category: 'actions'>
-	^self urlForActionKey: anAction key
-    ]
-
-    urlForActionKey: aKey [
-	<category: 'actions'>
-	^self context baseUrl
-	    addParameter: self sessionManager actionKey
-	    value: aKey;
-	    addParameter: self sessionManager tokenKey
-	    value: self token;
-	    yourself
-    ]
-   
     clearRedirectUrl [
 	<category: 'redirection'>
 	redirectUrl := nil
@@ -329,10 +314,7 @@ IliadObject subclass: Session [
 
     redirectUrl: aString [
 	<category: 'redirection'>
-	redirectUrl := Url absolute: aString.
-	self shouldUseSessionField ifTrue: [
-	    redirectUrl addParameter:
-		self sessionManager sessionKey value: self id asString]
+	redirectUrl := self context urlGenerator urlForRedirection: aString
     ]
 
     redirectToIndex [

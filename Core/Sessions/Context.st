@@ -48,6 +48,15 @@ Object subclass: Context [
 
 A can be accessed through IliadObject>>context'>
 
+    Context class [
+	| default |
+    ]
+
+    default class [
+	<category: 'accessing'>
+	^default ifNil: [default := self new]
+    ]
+
     Context class >> new [
     <category: 'instance creation'>
     ^self basicNew
@@ -71,19 +80,9 @@ A can be accessed through IliadObject>>context'>
 
     baseUrl [
 	<category: 'accessing'>
-	| url |
-	url := Url absolute: self route pathString.
-	self session shouldUseSessionField ifTrue: [
-	    url 
-		addParameter: self session sessionManager sessionKey 
-		value: self session id asString].
-	self request hashLocationField notNil ifTrue: [
-	    url 
-		addParameter: self session sessionManager hashLocationKey 
-		value: self request hashLocationField].
-	^url
+	^self urlGenerator baseUrl
     ]
-    
+   
     hashRoute [
 	<category: 'accessing'>
 	| hash |
@@ -114,6 +113,11 @@ A can be accessed through IliadObject>>context'>
     route [
 	<category: 'accessing'>
 	^route ifNil: [route := Route path: self request url path]
+    ]
+    
+    urlGenerator [
+	<category: 'accessing'>
+	^UrlGenerator default
     ]
 ]
 
