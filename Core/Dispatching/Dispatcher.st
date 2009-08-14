@@ -101,7 +101,6 @@ and wait for a ResponseNotification to respond to them.'>
 	aBlock 
 	    on: Error 
 	    do: [:error | 
-		self halt.
 		ErrorHandler new 
 		    error: error; 
 		    handleRequest]
