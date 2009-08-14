@@ -49,19 +49,13 @@ Object subclass: Context [
 A can be accessed through IliadObject>>context'>
 
     Context class [
-	| default |
-    ]
 
-    default class [
-	<category: 'accessing'>
-	^default ifNil: [default := self new]
-    ]
-
-    Context class >> new [
-    <category: 'instance creation'>
-    ^self basicNew
-	initialize;
-	yourself
+	new [
+	    <category: 'instance creation'>
+	    ^self basicNew
+		initialize;
+		yourself
+	]
     ]
 
     initialize [
