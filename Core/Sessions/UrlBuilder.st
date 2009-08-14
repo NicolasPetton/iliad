@@ -34,7 +34,7 @@
  ======================================================================"
 
 
-Object subclass: UrlBuilder [
+IliadObject subclass: UrlBuilder [
     | actionKey sessionKey tokenKey hashKey |
     
     <comment: nil>
