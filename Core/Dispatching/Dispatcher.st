@@ -64,7 +64,7 @@ and wait for a ResponseNotification to respond to them.'>
     dispatch: aRequest [
 	"Entry point of requests"
 	<category: 'dispatching'>
-
+	
 	self withErrorHandling: [
 	    CurrentContext 
 		use: (self createContextFor: aRequest)
