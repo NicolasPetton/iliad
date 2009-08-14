@@ -44,21 +44,22 @@ Object subclass: Route [
 My path is a collection of string, representing each part of the path of an url,
 and can be streamed with methods in the <streaming> protocol.'>
 
-    Route class >> delimiter [
+    Route class >> delimiters [
 	<category: 'accessing'>
-	^$/
+	^Array with: $/
     ]
 
-    Route class >> from: anUrl [
+    Route class >> from: aString [
 	<category: 'instance creation'>
 	^self basicNew
-	    initializeWithPath: anUrl path;
+	    initializeFromString: aString;
 	    yourself
     ]
 
-    initializeWithPath: aCollection [
+    initializeFromString: aString [
 	<category: 'initialize-release'>
-	aCollection do: [:each | self path add: each].
+	(aString findTokens: self delimiter) do: [:each |
+	    self path add: each].
 	stream := ReadStream on: self path
     ]
 
@@ -70,7 +71,7 @@ and can be streamed with methods in the <streaming> protocol.'>
 
     delimiter [
 	<category: 'accessing'>
-	^self class delimiter
+	^self class delimiters first
     ]
 
     path [
@@ -142,7 +143,9 @@ and can be streamed with methods in the <streaming> protocol.'>
     printOn: aStream [
 	<category: 'printing'>
 	super printOn: aStream.
-	aStream nextPutAll: self uriString
+	aStream 
+	    nextPut: Character space;
+	    nextPutAll: self uriString
     ]
 ]
 

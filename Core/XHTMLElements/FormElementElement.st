@@ -72,13 +72,26 @@ XHTMLElement subclass: FormElementElement [
 	self attributeAt: 'readonly' put: aBoolean printString
     ]
 
+    beSubmitOnChange [
+	<category: 'accessing attributes'>
+	self beSubmitOnEvent: 'change'
+    ]
+
     beSubmitOnClick [
 	<category: 'accessing attributes'>
-	self onClick: 'Iliad.evaluateFormAction(jQuery(this).closest("form"))'
+	self beSubmitOnEvent: 'click'
     ]
-    
-    disabled: aBoolean [
+   
+    beSubmitOnEvent: aString [
 	<category: 'accessing attributes'>
+	self onEvent: aString do: 'Iliad.evaluateFormElementElementAction(this)'
+    ]
+
+    disabled: aBoolean [
+	<category: 'accessing attributes'>application: anApplication [
+	<category: 'accessing'>
+	application := anApplication
+    ]
 	aBoolean ifTrue: [
 	self attributeAt: 'disabled' put: 'disabled']
     ]

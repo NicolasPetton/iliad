@@ -273,12 +273,7 @@ IliadObject subclass: Session [
 	^nil
     ]
 
-    registerAction: anAction [
-	<category: 'actions'>
-	CurrentActionRegistry value register: anAction
-    ]
-
-    registerActionFor: aBlock [
+    actionFor: aBlock [
 	<category: 'actions'>
 	| action |
 	action := Action new
@@ -286,6 +281,12 @@ IliadObject subclass: Session [
 	    block: aBlock;
 	    yourself.
 	self registerAction: action.
+	^action
+    ]
+
+    registerAction: anAction [
+	<category: 'actions'>
+	CurrentActionRegistry value register: anAction
     ]
 
     evaluateActionKey: aString [

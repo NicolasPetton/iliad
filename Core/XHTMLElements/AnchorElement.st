@@ -41,6 +41,20 @@ LinkableElement subclass: AnchorElement [
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
+    action: aBlock [
+	<category: 'accessing'>
+	self action: aBlock hash: ''
+    ]
+
+    action: aBlock hash: aString [
+	<category: 'accessing'>
+	
+	| action |
+	action := self session actionFor: aBlock.
+	self href: (self session urlForAction: action).
+	self onClick: ('Iliad.evaluateAnchor(this, "', aString, '"); return false;')
+    ]
+
     tag [
 	<category: 'accessing'>
 	^'a'
@@ -84,18 +98,6 @@ LinkableElement subclass: AnchorElement [
     shape: aString [
 	<category: 'accessing attributes-imagemap'>
 	self attributeAt: 'shape' put: aString
-    ]
-
-    action: aBlock [
-	<category: 'links'>
-	| action |
-	action := Action new
-	    block: aBlock;
-	    key: self session nextId;
-	    yourself.
-	self session registerAction: action.
-	self href: (self session urlForAction: action).
-	self onClick: ('Iliad.evaluateAnchorAction(this); return false;')
     ]
 ]
 

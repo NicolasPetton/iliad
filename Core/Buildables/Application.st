@@ -162,6 +162,11 @@ the application mode:
 	]
     ]
 
+    hashRoute [
+	<category: 'accessing'>
+	^self context hashRoute
+    ]
+
     model [
 	<category: 'accessing'>
 	^model

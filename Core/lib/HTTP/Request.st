@@ -91,6 +91,13 @@ I am a server independent http request object.'>
 	fields := anObject
     ]
 
+    hashLocationField [
+	<category: 'accessing'>
+	^self
+	    at: SessionManager current hashLocationKey
+	    ifAbsent: [nil]
+    ]
+
     sessionField [
 	<category: 'accessing'>
 	^self 
@@ -175,7 +182,7 @@ I am a server independent http request object.'>
     hasCookies [
 	<category: 'testing'>
 	^self cookies notNil and: [self cookies notEmpty]
-    ]
+    ]    
 
     isAjaxRequest [
 	<category: 'testing'>

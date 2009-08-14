@@ -106,6 +106,11 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^self preferenceAt: #cookieName put: aString
     ]
 
+    hashLocationKey [
+	<category: 'accessing preferences'>
+	^self preferenceAt: #hashLocationKey ifAbsentPut: ['_hash']
+    ]
+
     preferenceAt: aSymbol [
 	<category: 'accessing preferences'>
 	^self preferences at: aSymbol ifAbsent: [nil]

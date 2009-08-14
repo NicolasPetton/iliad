@@ -64,11 +64,6 @@ FormElementElement subclass: SelectElement [
 	self attributeAt: 'multiple' put: 'multiple'
     ]
 
-    beSubmitOnChange [
-	<category: 'accessing attributes'>
-	self onChange: 'Iliad.evaluateFormAction(jQuery(this).closest("form"))'
-    ]
-
     size: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'size' put: anInteger printString
