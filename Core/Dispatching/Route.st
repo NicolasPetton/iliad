@@ -58,7 +58,7 @@ and can be streamed with methods in the <streaming> protocol.'>
 
     initializeFromString: aString [
 	<category: 'initialize-release'>
-	(aString findTokens: self delimiter) do: [:each |
+	(aString tokenize: self delimiter asString) do: [:each |
 	    self path add: each].
 	stream := ReadStream on: self path
     ]
