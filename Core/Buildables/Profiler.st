@@ -42,19 +42,13 @@ Decorator subclass: Profiler [
 
     contents [
 	<category: 'building'>
-	^[:e || profile |
-	    profile := self profileSendsDuring: [
-		e build: self decoratee contents].
+	^[:e |
 	    Transcript 
 		show: '-- Iliad Profiler on: ', self widget printString , ' --';
 		cr.
-	    profile do: [:each | Transcript show: each printString; cr].
+	    [e build: self decoratee contents] profile do: [:each | 
+		Transcript show: each printString; cr].
 	]
-    ]
-
-    profileSendsDuring: aBlock [
-	<category: 'private'>
-	^aBlock profile
     ]
 ]
 
@@ -62,23 +56,21 @@ BlockClosure extend [
     
     profile [
 	<category: 'profiling'>
-	
-	| s profProcess workProcess results context |
+	| results workProcess finished s profProcess |
 	s := Semaphore new.
 	results := IdentityBag new.
-	workProcess := self newProcess.
-	context := Iliad.CurrentContext value.
-	Iliad.CurrentContext use: context during: [
-	    profProcess := [
-		workProcess resume.
-		[(Delay forMilliseconds: 5) wait.
-		workProcess isTerminated] whileFalse: [
-		    results add: workProcess suspendedContext method.
-		].
-	    s signal
-	    ] forkAt: Processor highIOPriority].
-	s wait.
-	^results sortedByCount
+	workProcess := Processor activeProcess.
+	finished := false.
+	profProcess := [
+	    [(Delay forMilliseconds: 5) wait.
+	    finished] whileFalse: [
+		results add: workProcess suspendedContext method].
+	    s signal] 
+		forkAt: Processor highIOPriority.
+	self ensure: [
+	    finished := true.
+	    s wait.
+	    ^results sortedByCount]	
     ]
 ]
 
