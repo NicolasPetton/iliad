@@ -57,15 +57,18 @@ var Iliad = {
 		var newHash = this._getHashLocation();
 		if(this.hash != newHash) {
 			this.hash = newHash;
+			var that = this;
 			jQuery.ajax({
 				url: window.location.pathname + '?_hash=' + this.hash.substr(1),
 				dataType: "html",
             	beforeSend: function(xhr) {
                 	xhr.setRequestHeader("X-Requested-With", ""); 
+                	that._insertAjaxLoader();
 				},
             	success: function(response) {
 					var extractor = /<body[^>]*>((.|\s)*)<\/body>/;
                 	jQuery("body").html(extractor.exec(response)[1]);
+                	that._removeAjaxLoader();
             	}
 			});
 		}
