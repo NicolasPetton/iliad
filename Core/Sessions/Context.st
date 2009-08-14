@@ -76,13 +76,6 @@ A can be accessed through IliadObject>>context'>
 	<category: 'accessing'>
 	^self urlBuilder baseUrl
     ]
-   
-    hashRoute [
-	<category: 'accessing'>
-	| hash |
-	hash := self request hashLocationField ifNil: [''].
-	^hashRoute ifNil: [hashRoute := Route path: (hash tokenize: '/')]
-    ]
 
     request [
 	<category: 'accessing'>
@@ -109,6 +102,13 @@ A can be accessed through IliadObject>>context'>
 	^route ifNil: [route := Route path: self request url path]
     ]
     
+    hashRoute [
+	<category: 'accessing'>
+	| hash |
+	hash := self request hashLocationField ifNil: [''].
+	^hashRoute ifNil: [hashRoute := Route path: (hash tokenize: '/')]
+    ]
+   
     urlBuilder [
 	<category: 'accessing'>
 	^UrlBuilder default
