@@ -88,10 +88,7 @@ XHTMLElement subclass: FormElementElement [
     ]
 
     disabled: aBoolean [
-	<category: 'accessing attributes'>application: anApplication [
-	<category: 'accessing'>
-	application := anApplication
-    ]
+	<category: 'accessing attributes'>
 	aBoolean ifTrue: [
 	self attributeAt: 'disabled' put: 'disabled']
     ]
