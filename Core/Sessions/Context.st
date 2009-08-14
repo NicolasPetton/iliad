@@ -38,7 +38,7 @@
 
 Object subclass: Context [
 
-    | request application route session hashRoute |
+    | request application route hashRoute session |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I store current request context objects:
 - the route
@@ -71,6 +71,7 @@ A can be accessed through IliadObject>>context'>
 
     hashRoute [
 	<category: 'accessing'>
+	| hash |
 	hash := self request hashLocationField ifNil: [''].
 	^hashRoute ifNil: [hashRoute := Route from: hash]
     ]
