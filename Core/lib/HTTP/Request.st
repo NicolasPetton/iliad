@@ -217,7 +217,7 @@ I am a server independent http request object.'>
 
     isTypeOfRequestForJson [
 	<category: 'testing'>
-	^(self headerAt: 'accept') matchRegex: '.*application/json.*'
+	^(self headerAt: 'accept' ifAbsent: ['']) matchRegex: '.*application/json.*'
     ]
 
     authorization [
