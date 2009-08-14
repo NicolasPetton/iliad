@@ -59,7 +59,7 @@ RequestHandler subclass: RedirectHandler [
     setRedirectUrl [
 	<category: 'private'>
 	self session redirectUrl ifNil: [
-	    self session redirectUrl: self session baseUrl asString]
+	    self session redirectUrl: self context baseUrl asString]
     ]
 
     newResponse [

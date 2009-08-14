@@ -69,6 +69,17 @@ A can be accessed through IliadObject>>context'>
 	application := anApplication
     ]
 
+    baseUrl [
+	<category: 'accessing'>
+	| url |
+	url := Url absolute: self route pathString.
+	self session shouldUseSessionField ifTrue: [
+	    url addParameter: self session sessionManager sessionKey value: self session id asString].
+	self request hashLocationField notNil ifTrue: [
+	    url addParameter: self session sessionManager hashLocationKey value: self request hashLocationField].
+	^url
+    ]
+    
     hashRoute [
 	<category: 'accessing'>
 	| hash |

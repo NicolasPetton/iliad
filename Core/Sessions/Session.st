@@ -54,15 +54,6 @@ IliadObject subclass: Session [
 	    setRandomId
     ]
 
-    baseUrl [
-	<category: 'accessing'>
-	| url |
-	url := Url absolute: self route pathString.
-	self shouldUseSessionField ifTrue: [
-	    url addParameter: self sessionManager sessionKey value: self id asString].
-	^url
-    ]
-
     clearToken [
 	<category: 'accessing'>
 	token := nil
@@ -302,7 +293,7 @@ IliadObject subclass: Session [
 
     urlForActionKey: aKey [
 	<category: 'actions'>
-	^self baseUrl
+	^self context baseUrl
 	    addParameter: self sessionManager actionKey
 	    value: aKey;
 	    addParameter: self sessionManager tokenKey
