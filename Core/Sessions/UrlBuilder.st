@@ -10,7 +10,6 @@
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
-|
 | This file is part of the Iliad framework.
 |
 | Permission is hereby granted, free of charge, to any person obtaining
@@ -34,8 +33,6 @@
 |
  ======================================================================"
 
-
-
 
 Object subclass: UrlBuilder [
     | actionKey sessionKey tokenKey hashKey |
@@ -46,11 +43,10 @@ Object subclass: UrlBuilder [
     UrlBuilder class [
 	| default |
 	
-    ]
-
-    UrlBuilder class >> default [
-	<category: 'instance creation'>
-	^default ifNil: [default := self new]
+	default [
+	    <category: 'instance creation'>
+	    ^default ifNil: [default := self new]
+	]
     ]
 
     actionKey [
@@ -75,11 +71,14 @@ Object subclass: UrlBuilder [
 
     addDefaultParametersTo: anUrl [
 	<category: 'generating'>
-	self shouldUseSessionField 
-	    ifTrue: [anUrl addParameter: self sessionKey value: self session id asString].
-	self shouldUseHashField 
-	    ifTrue: 
-		[anUrl addParameter: self hashKey value: self request hashLocationField]
+	self shouldUseSessionField ifTrue: [
+	    anUrl 
+		addParameter: self sessionKey 
+		value: self session id asString].
+	self shouldUseHashField ifTrue: [
+	    anUrl 
+		addParameter: self hashKey 
+		value: self request hashLocationField]
     ]
 
     baseUrl [
@@ -97,7 +96,7 @@ Object subclass: UrlBuilder [
 
     urlForActionKey: aKey [
 	<category: 'generating'>
-	^(self baseUrl)
+	^self baseUrl
 	    addParameter: self actionKey value: aKey;
 	    addParameter: self tokenKey value: self session token;
 	    yourself
@@ -107,8 +106,8 @@ Object subclass: UrlBuilder [
 	<category: 'generating'>
 	| url |
 	url := Url absolute: aString.
-	self shouldUseSessionField 
-	    ifTrue: [url addParameter: self sessionKey value: self session id asString].
+	self shouldUseSessionField ifTrue: [
+	    url addParameter: self sessionKey value: self session id asString].
 	^url
     ]
 
@@ -139,8 +138,7 @@ Object subclass: UrlBuilder [
 
     shouldUseSessionField [
 	<category: 'testing'>
-	^(self request cookies includesKey: self session sessionManager cookieName) 
-	    not
+	^(self request cookies 
+	    includesKey: self session sessionManager cookieName) not
     ]
 ]
-

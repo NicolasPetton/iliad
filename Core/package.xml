@@ -108,6 +108,7 @@
   <filein>lib/JSON/Json.st</filein> 
   <filein>lib/JSON/Extensions.st</filein> 
 
+  <filein>Sessions/UrlBuilder.st</filein> 
   <filein>Sessions/Context.st</filein> 
   <filein>Sessions/Action.st</filein> 
   <filein>Sessions/CurrentContext.st</filein> 
@@ -215,6 +216,7 @@
   <file>lib/JSON/Json.st</file> 
   <file>lib/JSON/Extensions.st</file> 
 
+  <file>Sessions/UrlBuilder.st</file> 
   <file>Sessions/Context.st</file> 
   <file>Sessions/Action.st</file> 
   <file>Sessions/CurrentContext.st</file> 
