@@ -6,7 +6,7 @@ TestCase subclass: RouteTest [
 
     setUp [
 	<category: 'running'>
-	route := Route from: 'hello/world/foo/bar'
+	route := Route path: (Url absolute: 'hello/world/foo/bar') path
     ]
 
     testBasePath [

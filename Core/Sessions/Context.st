@@ -73,7 +73,7 @@ A can be accessed through IliadObject>>context'>
 	<category: 'accessing'>
 	| hash |
 	hash := self request hashLocationField ifNil: [''].
-	^hashRoute ifNil: [hashRoute := Route from: hash]
+	^hashRoute ifNil: [hashRoute := Route path: (hash findTokens: $/)]
     ]
 
     request [
@@ -98,7 +98,7 @@ A can be accessed through IliadObject>>context'>
 
     route [
 	<category: 'accessing'>
-	^route ifNil: [route := Route from: self request url pathString]
+	^route ifNil: [route := Route path: self request url path]
     ]
 ]
 

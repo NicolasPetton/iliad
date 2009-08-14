@@ -49,18 +49,12 @@ and can be streamed with methods in the <streaming> protocol.'>
 	^Array with: $/
     ]
 
-    Route class >> from: aString [
+    Route class >> path: aCollection [
 	<category: 'instance creation'>
 	^self basicNew
-	    initializeFromString: aString;
+	    initializeWithPath: aCollection;
+	    initialize;
 	    yourself
-    ]
-
-    initializeFromString: aString [
-	<category: 'initialize-release'>
-	(aString tokenize: self delimiter asString) do: [:each |
-	    self path add: each].
-	stream := ReadStream on: self path
     ]
 
     basePath [
@@ -71,7 +65,12 @@ and can be streamed with methods in the <streaming> protocol.'>
 
     delimiter [
 	<category: 'accessing'>
-	^self class delimiters first
+	^self delimiters first
+    ]
+
+    delimiters [
+	<category: 'accessing'>
+	^self class delimiters
     ]
 
     path [
@@ -79,8 +78,14 @@ and can be streamed with methods in the <streaming> protocol.'>
 	^path ifNil: [path := OrderedCollection new]
     ]
 
+    initializeWithPath: aCollection [
+	<category:'initialize-release'>
+	path := aCollection.
+	stream := ReadStream on: path
+    ]
+
     currentPath [
-	"Return an absolute url of the current path
+	"Return an absolute url of the current streamed path
 	 separated with delimiters, like this:
 	 /foo/bar/baz"
 	<category: 'iterating'>
