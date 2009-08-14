@@ -20,16 +20,5 @@ TestCase subclass: ElementTest [
 	e attributeAt: 'foo' put: 'bar'.
 	self shouldHaveAttribute: 'foo' value: 'bar'
     ]
-
-    testComposite [
-	<category: 'testing'>
-	| e1 e2 |
-	e1 := e2 := Element new.
-	self assert: e children isEmpty.
-	e add: e1.
-	self assert: e children asArray = (Array with: e1).
-	e add: e2.
-	self assert: e children asArray = (Array with: e1 with: e2)
-    ]
 ]
 

@@ -144,13 +144,13 @@ XHTMLElement subclass: FormElement [
 	    self onSubmit: 'Iliad.evaluateFormAction(this); return false;'].
 	self add: (InputElement new
 		beHidden;
-		name: self context urlGenerator tokenKey;
+		name: self context urlBuilder tokenKey;
 		value: self session token;
 		yourself).
 	self session shouldUseSessionField ifTrue: [
 	    self add: (InputElement new
 		beHidden;
-		name: self context urlGenerator sessionKey;
+		name: self context urlBuilder sessionKey;
 		value: self session id;
 		yourself)]
     ]

@@ -31,10 +31,10 @@ TestCase subclass: WidgetTest [
 	| d1 d2 |
 	d1 := Decorator new.
 	d2 := Decorator new.
-	c1 addDecoration: d1.
+	c1 decorateWith: d1.
 	self assert: c1 decorator decoratee = d1.
 	self assert: c1 decorator decoratee decoratee = c1.
-	c1 addDecoration: d2.
+	c1 decorateWith: d2.
 	self assert: c1 decorator decoratee decoratee = d2.
 	self assert: c1 decorator decoratee decoratee decoratee = c1.
 	d1 removeYourself.

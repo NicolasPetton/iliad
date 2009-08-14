@@ -79,14 +79,14 @@ Subclasses can be used to modify the building process of a widget, or change its
 	^self decoratee handleAnswer: anAnswer
     ]
 
-    removeDecoration: aDecorator [
+    removeDecorator: aDecorator [
 	<category: 'decorations'>
-	self decoratee removeDecoration: aDecorator
+	self decoratee removeDecorator: aDecorator
     ]
 
     removeYourself [
 	<category: 'decorations'>
-	self decoratee removeDecoration: self
+	self decoratee removeDecorator: self
     ]
 
     isGlobal [

@@ -40,6 +40,16 @@ IliadObject subclass: Composite [
     <comment: nil>
     <category: 'Iliad-Core-Utilities'>
 
+    next [
+	<category: 'accessing'>
+	^next
+    ]
+
+    next: aLinkedObject [
+	<category: 'accessing'>
+	next := aLinkedObject
+    ]
+    
     add: aComposite [
 	<category: 'adding'>
 	| head |
@@ -52,14 +62,14 @@ IliadObject subclass: Composite [
     ]
 
     allChildrenDo: aBlock [
-	<category: 'iterating'>
+	<category: 'enumerating'>
 	self childrenDo: [:each | 
 	    aBlock value: each.
 	    each allChildrenDo: aBlock]
     ]
 
     childrenDo: aBlock [
-	<category: 'iterating'>
+	<category: 'enumerating'>
 	| child |
 	tail ifNil: [^self].
 	child := tail next.
@@ -67,16 +77,6 @@ IliadObject subclass: Composite [
 	    aBlock value: child.
 	    child := child next].
 	aBlock value: tail
-    ]
-
-    next [
-	<category: 'accessing'>
-	^next
-    ]
-
-    next: aLinkedObject [
-	<category: 'accessing'>
-	next := aLinkedObject
     ]
 ]
 

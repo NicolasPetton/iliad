@@ -138,11 +138,11 @@ added to the decoration chain with #addDecoration:.'>
 	^[:e | ]
     ]
 
-    addDecoration: aDecorator [
-	<category: 'decorations'>
+    decorateWith: aDecorator [
+	<category: 'decorators'>
 	| prev dec |
 	prev := nil.
-	dec := self decorator.
+	dec := decorator.
 	[dec = self or: [
 	    aDecorator isGlobal]] whileFalse: [
 		    prev := dec.
@@ -155,26 +155,33 @@ added to the decoration chain with #addDecoration:.'>
 
     addMessage: aString [
 	<category: 'decorations'>
-	self addDecoration: ((MessageDecorator decoratee: self) message: aString)
+	self decorateWith: ((MessageDecorator decoratee: self) message: aString)
     ]
 
     addMessage: aString level: anInteger [
 	<category: 'decorations'>
-	self addDecoration: ((MessageDecorator decoratee: self)
+	self decorateWith: ((MessageDecorator decoratee: self)
 	message: aString;
 	level: anInteger;
 	yourself)
     ]
 
+    decorateWith: aDecorator during: aBlock [
+	<category: 'decorators'>
+	self decorateWith: aDecorator.
+	aBlock value.
+	aDecorator removeYourself
+    ]
+
     decorator [
-	<category: 'decorations'>
+	<category: 'decorators'>
 	^decorator
     ]
 
-    removeDecoration: aDecorator [
+    removeDecorator: aDecorator [
 	"Remove <aDecorator> from the decoration chain,
 	except if <aDecorator> is the initial one"
-	<category: 'decorations'>
+	<category: 'decorators'>
 
 	decorator = aDecorator 
 	    ifTrue: [
@@ -237,7 +244,7 @@ added to the decoration chain with #addDecoration:.'>
 	<category: 'show/answer'>
 	| answerHandler |
 	answerHandler := AnswerHandler new.
-	self addDecoration: aDelegator.
+	self decorateWith: aDelegator.
 	answerHandler action: (Action new block: [:value |
 	    aDelegator removeYourself.
 	    self markDirty.
@@ -247,7 +254,7 @@ added to the decoration chain with #addDecoration:.'>
 	aWidget
 	    owner: self;
 	    markDirty;
-	    addDecoration: answerHandler
+	    decorateWith: answerHandler
     ]
 
     printJsonOn: aStream [

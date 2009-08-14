@@ -50,8 +50,8 @@ LinkableElement subclass: AnchorElement [
 	<category: 'accessing'>
 	
 	| action |
-	action := self session actionFor: aBlock.
-	self href: (self context urlGenerator urlForAction: action).
+	action := self session registerActionFor: aBlock.
+	self href: (self context urlBuilder urlForAction: action).
 	self onClick: ('Iliad.evaluateAnchorAction(this, "', aString, '"); return false;')
     ]
 

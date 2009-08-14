@@ -74,7 +74,7 @@ A can be accessed through IliadObject>>context'>
 
     baseUrl [
 	<category: 'accessing'>
-	^self urlGenerator baseUrl
+	^self urlBuilder baseUrl
     ]
    
     hashRoute [
@@ -109,9 +109,9 @@ A can be accessed through IliadObject>>context'>
 	^route ifNil: [route := Route path: self request url path]
     ]
     
-    urlGenerator [
+    urlBuilder [
 	<category: 'accessing'>
-	^UrlGenerator default
+	^UrlBuilder default
     ]
 ]
 

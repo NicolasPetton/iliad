@@ -264,7 +264,7 @@ IliadObject subclass: Session [
 	^nil
     ]
 
-    actionFor: aBlock [
+    registerActionFor: aBlock [
 	<category: 'actions'>
 	| action |
 	action := Action new
@@ -314,7 +314,7 @@ IliadObject subclass: Session [
 
     redirectUrl: aString [
 	<category: 'redirection'>
-	redirectUrl := self context urlGenerator urlForRedirection: aString
+	redirectUrl := self context urlBuilder urlForRedirection: aString
     ]
 
     redirectToIndex [

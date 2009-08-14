@@ -69,14 +69,9 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	self shouldNotImplement
     ]
 
-    sessions [
-	<category: 'accessing'>
-	^sessions ifNil: [sessions := Dictionary new]
-    ]
-
     expiredSessions [
 	<category: 'accessing'>
-	^self sessions values select: [:each | each isExpired]
+	^sessions values select: [:each | each isExpired]
     ]
 
     cookieName [
@@ -121,7 +116,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 
     addSession: aSession [
 	<category: 'adding-removing'>
-	self sessions at: aSession id asString put: aSession
+	sessions at: aSession id asString put: aSession
     ]
 
     findOrMakeSessionFor: aRequest [
@@ -133,7 +128,18 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	
 	self shouldRemoveExpiredSessions ifTrue: [
 		self removeExpiredSessions].
-	^self findSessionWithId: (self sessionIdFromRequest: aRequest)
+	^self findOrMakeSessionWithId: (self sessionIdFromRequest: aRequest)
+    ]
+
+    sesionsDo: aBlock [
+	<category: 'enumerating'>
+	sessions values do: aBlock
+    ]
+
+    initialize [
+	<category: 'initialize-release'>
+	super initialize.
+	sessions := Dictionary new
     ]
 
     shouldRemoveExpiredSessions [
@@ -143,13 +149,18 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^(Random new next * 10) asInteger = 0
     ]
 
-    findSessionWithId: anId [
+    hasSession: aSession [
+	<category: 'testing'>
+	^sessions values includes: aSession
+    ]
+
+    findOrMakeSessionWithId: anId [
 	"find and answer  a not expired session with id <anId>.
 	Create a new session is no session found"
 	<category: 'private'>
 
 	| session |
-	session := self sessions at: anId ifAbsent: [^self newSession].
+	session := sessions at: anId ifAbsent: [^self newSession].
 	session isExpired
 	    ifFalse: [
 		session setModifiedTimestamp.
@@ -169,7 +180,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 
     removeSession: aSession [
 	<category: 'adding-removing'>
-	self sessions 
+	sessions 
 	    removeKey: aSession id asString
 	    ifAbsent: []
     ]
