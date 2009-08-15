@@ -4,7 +4,6 @@
   <namespace>Iliad</namespace>
 
   <test>
-    <filein>Tests/Unit/Buildables/ActionTest.st</filein>
     <filein>Tests/Unit/Buildables/WidgetMock1.st</filein>
     <filein>Tests/Unit/Buildables/WidgetMock2.st</filein>
     <filein>Tests/Unit/Buildables/WidgetMock3.st</filein>
