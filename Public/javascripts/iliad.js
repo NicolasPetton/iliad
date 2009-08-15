@@ -6,9 +6,7 @@ var Iliad = {
 
     evaluateAnchorAction: function(anchor, hashString) {
         var actionUrl = jQuery(anchor).attr('href');
-		if(hashString) {
-			this._setHashLocation(hashString);
-		}
+		if(hashString) {this._setHashLocation(hashString)};
         this.evaluateAction(actionUrl);
     },
 
@@ -56,10 +54,13 @@ var Iliad = {
 	checkHashChange: function() {
 		var newHash = this._getHashLocation();
 		if(this.hash != newHash) {
+			alert("hash changed");
+			alert(this.hash);
+			alert(newHash);
 			this.hash = newHash;
 			var that = this;
 			jQuery.ajax({
-				url: window.location.pathname + '?_hash=' + this.hash.substr(1),
+				url: window.location.pathname + '?_hash=' + this.hash,
 				dataType: "html",
             	beforeSend: function(xhr) {
                 	xhr.setRequestHeader("X-Requested-With", ""); 
@@ -83,19 +84,12 @@ var Iliad = {
     },
     
 	_setHashLocation: function(hashString) {
-		if(typeof window.location.hash !== 'undefined') {
-			window.location.hash = this.hash;
-		} else {
-			location.hash = this.hash;
-		}
+		this.hash = hashString;
+		window.location.hash = this.hash;
 	},
 
 	_getHashLocation: function() {
-		if(typeof window.location.hash !== 'undefined') {
-			return window.location.hash;
-		} else {
-			return location.hash;
-		}
+		return window.location.hash.substr(1);
 	},
 
     _getFormActionUrl: function(form) {
@@ -111,7 +105,7 @@ var Iliad = {
         /* Refresh if there is no widget to update 
            (session expired or the action is invalid) */
         if(this.sizeOf(json.widgets) == 0) {
-            return location.reload()
+            return window.location.reload()
         } 
     
         /* else update dirty widgets */
