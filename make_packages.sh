@@ -1,6 +1,7 @@
 #!/bin/bash
 
 GST_PACK="/usr/bin/env gst-package"
+GST="/usr/bin/env gst"
 CURR_DIR=`pwd`
 PACK_BUILDER=$CURR_DIR"/PackageBuilder.st"
 
@@ -10,7 +11,7 @@ do
     echo "creating xml file for $i ..."
 	DIR=`dirname $i`
 	cd $DIR
-	$PACK_BUILDER -a package.st > package.xml
+	$GST $PACK_BUILDER -a package.st > package.xml
 	cd $CURR_DIR
 
     echo "packaging..."
