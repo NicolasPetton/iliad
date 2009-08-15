@@ -54,9 +54,6 @@ var Iliad = {
 	checkHashChange: function() {
 		var newHash = this._getHashLocation();
 		if(this.hash != newHash) {
-			alert("hash changed");
-			alert(this.hash);
-			alert(newHash);
 			this.hash = newHash;
 			var that = this;
 			jQuery.ajax({
