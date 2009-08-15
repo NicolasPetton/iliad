@@ -8,11 +8,6 @@ TestCase subclass: CurrentContextTest [
 	context := Context new
     ]
 
-    tearDown [
-	<category: 'running'>
-	context := nil
-    ]
-
     testCurrentContext [
 	<category: 'testing'>
 	CurrentContext use: context

@@ -80,7 +80,9 @@ IliadObject subclass: ActionRegistry [
 	<category: 'actions'>
 	| action |
 	action := self actionAt: aString.
-	action ifNotNil: [action evaluate]
+	^action
+	   ifNil: [nil] 
+	   ifNotNil: [action evaluate]
     ]
 
     register: anAction [

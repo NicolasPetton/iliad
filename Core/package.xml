@@ -12,7 +12,8 @@
     <filein>Tests/Unit/Dispatching/RouteTest.st</filein>
     <filein>Tests/Unit/Sessions/CurrentContextTest.st</filein>
     <filein>Tests/Unit/Sessions/SessionManagerTest.st</filein>
-    <filein>Tests/Unit/Elements/ElementTest.st</filein>
+    <filein>Tests/Unit/Sessions/ActionRegistryTest.st</filein>
+	<filein>Tests/Unit/Elements/ElementTest.st</filein>
     <filein>Tests/Unit/Elements/AnchorTest.st</filein>
     <filein>Tests/Unit/Elements/AreaElementTest.st</filein>
     <filein>Tests/Unit/Elements/BodyElementTest.st</filein>
@@ -44,6 +45,7 @@
     <filein>Tests/Unit/Elements/TableElementTest.st</filein>
     <filein>Tests/Unit/Elements/TextAreaElementTest.st</filein>
     <filein>Tests/Unit/Elements/TextElementTest.st</filein>
+    <filein>Tests/Unit/Utilities/CompositeTest.st</filein>
     <filein>lib/JSON/JsonDummyTestObject.st</filein>
     <filein>lib/JSON/JsonObject.st</filein>
     <filein>lib/JSON/JsonTests.st</filein>
@@ -53,6 +55,7 @@
       Iliad.RouteTest
       Iliad.CurrentContextTest
       Iliad.SessionManagerTest
+	  Iliad.ActionRegistryTest
       Iliad.ElementTest
       Iliad.AnchorTest
       Iliad.AreaElementTest
@@ -85,6 +88,7 @@
       Iliad.TableElementTest
       Iliad.TextAreaElementTest
       Iliad.TextElementTest
+	  Iliad.CompositeTest
       Iliad.JsonTests
     </sunit>
   </test>

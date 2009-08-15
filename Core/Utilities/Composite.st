@@ -45,9 +45,9 @@ IliadObject subclass: Composite [
 	^next
     ]
 
-    next: aLinkedObject [
+    next: aComposite [
 	<category: 'accessing'>
-	next := aLinkedObject
+	next := aComposite
     ]
     
     add: aComposite [
