@@ -13,6 +13,7 @@
     <filein>Tests/Unit/Sessions/CurrentContextTest.st</filein>
     <filein>Tests/Unit/Sessions/SessionManagerTest.st</filein>
     <filein>Tests/Unit/Sessions/ActionRegistryTest.st</filein>
+    <filein>Tests/Unit/Sessions/ActionTest.st</filein>
 	<filein>Tests/Unit/Elements/ElementTest.st</filein>
     <filein>Tests/Unit/Elements/AnchorTest.st</filein>
     <filein>Tests/Unit/Elements/AreaElementTest.st</filein>
@@ -56,6 +57,7 @@
       Iliad.CurrentContextTest
       Iliad.SessionManagerTest
 	  Iliad.ActionRegistryTest
+	  Iliad.ActionTest
       Iliad.ElementTest
       Iliad.AnchorTest
       Iliad.AreaElementTest
