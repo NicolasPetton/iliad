@@ -49,7 +49,7 @@ FormElementElement subclass: ButtonElement [
     action: aBlock [
 	<category: 'accessing attributes'>
 	super action: aBlock.
-	self onClick: 'Iliad.enableSubmitAction(this);'
+	self onClick: 'iliad.enableSubmitAction(this);'
     ]
 
     beButton [

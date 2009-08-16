@@ -84,7 +84,7 @@ XHTMLElement subclass: FormElementElement [
    
     beSubmitOnEvent: aString [
 	<category: 'accessing attributes'>
-	self onEvent: aString do: 'Iliad.evaluateFormElementAction(this)'
+	self onEvent: aString do: 'iliad.evaluateFormElementAction(this)'
     ]
 
     disabled: aBoolean [

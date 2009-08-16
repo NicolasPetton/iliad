@@ -52,7 +52,7 @@ LinkableElement subclass: AnchorElement [
 	| action |
 	action := self session registerActionFor: aBlock.
 	self href: (self context urlBuilder urlForAction: action).
-	self onClick: ('Iliad.evaluateAnchorAction(this, "', aString, '"); return false;')
+	self onClick: ('iliad.evaluateAnchorAction(this, "', aString, '"); return false;')
     ]
 
     tag [

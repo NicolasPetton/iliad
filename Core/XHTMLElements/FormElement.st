@@ -141,7 +141,7 @@ XHTMLElement subclass: FormElement [
 	self attributeAt: 'method' ifAbsent: [self usePost].
 	self attributeAt: 'accept-charset' ifAbsentPut: [self session charset].
 	self isMultipart ifFalse: [
-	    self onSubmit: 'Iliad.evaluateFormAction(this); return false;'].
+	    self onSubmit: 'iliad.evaluateFormAction(this); return false;'].
 	self add: (InputElement new
 		beHidden;
 		name: self context urlBuilder tokenKey;
