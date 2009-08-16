@@ -116,6 +116,10 @@ var iliad = function() {
 		}
 	};
 
+	var getFormActionUrl = function(form) {
+		return jQuery(form).attr('action')
+	};
+
 
 	/* ---
 	 * Enable bookmarking for ajax actions
@@ -148,10 +152,6 @@ var iliad = function() {
 
 	var getHash = function() {
 		return window.location.hash.substr(1);
-	};
-
-	var getFormActionUrl = function(form) {
-		return jQuery(form).attr('action')
 	};
 
 
