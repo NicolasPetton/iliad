@@ -1,4 +1,4 @@
-ElementTest subclass: AnchorTest [
+ElementTest subclass: AnchorElementTest [
     
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Elements'>

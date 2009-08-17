@@ -3,7 +3,6 @@ Eval [
     name: 'Iliad-Core';
     namespace: 'Iliad';
     prereq: 'Iconv';
-    testsBelow: 'Tests' matching: '*.st';
     filein: 'Utilities/IliadObject.st';
     filein: 'Utilities/SmallDictionary.st';
     filein: 'Utilities/Composite.st';
