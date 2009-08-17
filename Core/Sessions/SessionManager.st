@@ -131,7 +131,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^self findOrMakeSessionWithId: (self sessionIdFromRequest: aRequest)
     ]
 
-    sesionsDo: aBlock [
+    sessionsDo: aBlock [
 	<category: 'enumerating'>
 	sessions values do: aBlock
     ]
