@@ -84,6 +84,14 @@ and wait for a ResponseNotification to respond to them.'>
 		ifNotNil: [ApplicationHandler new handleRequest]]
     ]
 
+    createContextFor: aRequest [
+	<category: 'error handling'>
+	^Context new
+	    request: aRequest;
+	    session: (self findSessionFor: aRequest);
+	    yourself
+    ]
+
     withDispatchErrorHandling: aBlock [
 	"Catch dispatch errors"
 	<category: 'error-handling'>
@@ -133,14 +141,6 @@ and wait for a ResponseNotification to respond to them.'>
 	^ applicationClass
     ]
     
-    createContextFor: aRequest [
-	<category: 'private'>
-	^Context new
-	    request: aRequest;
-	    session: (self findSessionFor: aRequest);
-	    yourself
-    ]
-
     findApplicationFor: aRoute [
 	<category: 'private'>
 	| applicationClass |

@@ -47,7 +47,7 @@ TestCase subclass: SessionTest [
 	s := Session new.
 	s expirySeconds: 1.
 	self deny: s isExpired.
-	(Delay forSeconds: 1.5) wait.
+	(Delay forSeconds: 2) wait.
 	self assert: s isExpired
     ]
 ]
