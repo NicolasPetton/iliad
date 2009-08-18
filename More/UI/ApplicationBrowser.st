@@ -59,22 +59,18 @@ Application subclass: ApplicationBrowser [
 
     index [
 	<category: 'views'>
-	^
-	[:e | 
-	e image source: '/images/iliad.png' alternativeText: 'Iliad'.
-	e h3: 'Application Browser'.
-	e build: self pathListContents]
+	^[:e | 
+	    e image source: '/images/iliad.png' alternativeText: 'Iliad'.
+	    e h3: 'Application Browser'.
+	    e build: self pathListContents]
     ]
 
     pathListContents [
 	<category: 'views-parts'>
-	^
-	[:e | 
-	| ul |
-	ul := e unorderedList.
-	self applications do: 
-		[:each | 
-		(ul listItem anchor)
+	^[:e || ul |
+	    ul := e unorderedList.
+	    self applications do: [:each | 
+		ul listItem anchor
 		    text: each name;
 		    linkTo: (self pathFor: each)]]
     ]

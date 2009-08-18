@@ -18,7 +18,7 @@ Eval [
     filein: 'Extensions.st'; 
     filein: 'Tabs.st'; 
     filein: 'Tree.st'; 
-    filein: 'ApplicationBrowser.st'
+    filein: 'ApplicationBrowser.st';
     
     buildXml
 ]
