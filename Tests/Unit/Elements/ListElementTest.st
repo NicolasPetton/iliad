@@ -1,7 +1,7 @@
 ElementTest subclass: ListElementTest [
     
     <comment: nil>
-    <category: 'Iliad-Tests-Elements'>
+    <category: 'Iliad-Tests-Unit-Elements'>
 
     setUp [
 	e := ListElement new
