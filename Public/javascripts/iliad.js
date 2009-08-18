@@ -120,18 +120,7 @@ var iliad = function() {
 		var newHash = getHash();
 		if(hash != newHash) {
 			hash = newHash;
-			jQuery.ajax({
-				url: window.location.pathname + '?_hash=' + hash,
-				dataType: "html",
-				beforeSend: function(xhr) {
-				xhr.setRequestHeader("X-Requested-With", ""); 
-					insertAjaxLoader();
-				},
-				success: function(response) {
-					updateBody(response);
-					removeAjaxLoader();
-				}
-			});
+			evaluateAction(window.location.pathname + '?_hash=' + hash);
 		}
 	};
 
@@ -177,11 +166,6 @@ var iliad = function() {
 
 	var updateWidget = function(id, contents) {
 		jQuery("#"+id).replaceWith(contents)
-	};
-
-	var updateBody = function(contents) {
-		var extractor = /<body[^>]*>((.|\s)*)<\/body>/;
-		jQuery("body").html(extractor.exec(contents)[1]);
 	};
 
 	var evalScript = function(script) {

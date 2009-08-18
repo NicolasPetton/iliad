@@ -37,7 +37,7 @@
 
 
 RequestHandler subclass: JsonHandler [
-    | jsonContents |
+    | jsonContents widgetsToUpdate |
 
     <comment: nil>
     <category: 'Iliad-Core-RequestHandlers'>
@@ -46,6 +46,14 @@ RequestHandler subclass: JsonHandler [
 	<category: 'initialize-release'>
 	super initialize.
 	jsonContents := Dictionary new
+    ]
+
+    handleRequest [
+	<category: 'request handling'>
+	self shouldUpdateApplication 
+	    ifTrue: [widgetsToUpdate := {self application}]
+	    ifFalse: [widgetsToUpdate := self session dirtyWidgets].
+	super handleRequest
     ]
 
     produceResponse [
@@ -57,7 +65,7 @@ RequestHandler subclass: JsonHandler [
 		    put: self session redirectUrl asString].
 		widgets := Dictionary new.
 		scripts := OrderedCollection new.
-	    self session dirtyWidgets do: [:each || e |
+	    widgetsToUpdate do: [:each || e |
 		e := each build.
 		widgets at: each id put: e.
 		e allChildrenDo: [:child |
@@ -75,6 +83,12 @@ RequestHandler subclass: JsonHandler [
     shouldRedirect [
 	<category: 'testing'>
 	^self session redirectUrl notNil
+    ]
+
+    shouldUpdateApplication [
+	<category: 'testing'>
+	^self request hashLocationField notNil and: [
+	    self request actionField isNil]
     ]
 
     newResponse [
