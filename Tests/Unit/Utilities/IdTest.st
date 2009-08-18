@@ -3,7 +3,7 @@ TestCase subclass: IdTest [
     | ids |
     
     <comment: nil>
-    <category: 'Iliad-Tests-Unit-Support'>
+    <category: 'Iliad-Tests-Unit-Utilities'>
 
     setUp [
 	<category: 'running'>
