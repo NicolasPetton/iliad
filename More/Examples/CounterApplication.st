@@ -46,20 +46,26 @@ Application subclass: CounterApplication [
 	^'examples/counters'
     ]
 
-    counter [
-	<category: 'views'>
-	^[:e |
-	    e build: self counters first]
-    ]
-
     index [
 	<category: 'views'>
 	^self counter
     ]
 
+    counter [
+	<category: 'views'>
+	^[:e |
+	    e anchor
+		text: 'Switch to multi counter example';
+		linkToLocal: 'multicounter'.
+	    e build: self counters first]
+    ]
+
     multicounter [
 	<category: 'views'>
 	^[:e | 
+	    e anchor
+		text: 'Switch to simple counter example';
+		linkToLocal: 'counter'.
 	    self counters do: [:each |
 		e build: each]]
     ]
