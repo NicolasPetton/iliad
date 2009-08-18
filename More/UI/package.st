@@ -4,6 +4,7 @@ Eval [
     namespace: 'Iliad';
     prereq: 'Iliad-Core';
 
+    filein: 'ApplicationBrowser'
     filein: 'UIWidget.st'; 
     filein: 'Box.st'; 
     filein: 'VerticalBox.st'; 
