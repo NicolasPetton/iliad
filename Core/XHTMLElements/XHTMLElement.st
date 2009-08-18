@@ -178,7 +178,7 @@ Element subclass: XHTMLElement [
     blockquote: aString [
 	<category: 'adding-conveniance'>
 	^self blockquote
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
@@ -192,7 +192,7 @@ Element subclass: XHTMLElement [
     bold: aString [
 	<category: 'adding-conveniance'>
 	^self bold
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
@@ -221,7 +221,7 @@ Element subclass: XHTMLElement [
     cite: aString [
 	<category: 'adding-conveniance'>
 	^self cite
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
@@ -235,7 +235,7 @@ Element subclass: XHTMLElement [
     code: aString [
 	<category: 'adding-conveniance'>
 	^self code
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
@@ -292,7 +292,7 @@ Element subclass: XHTMLElement [
     emphasis: aString [
 	<category: 'adding-conveniance'>
 	^self emphasis
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
@@ -462,7 +462,7 @@ Element subclass: XHTMLElement [
     italic: aString [
 	<category: 'adding-conveniance'>
 	^self italic
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
@@ -594,7 +594,7 @@ Element subclass: XHTMLElement [
     quote: aString [
 	<category: 'adding-conveniance'>
 	^self quote
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
@@ -637,7 +637,7 @@ Element subclass: XHTMLElement [
     small: aString [
 	<category: 'adding-conveniance'>
 	^self small
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
