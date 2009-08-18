@@ -1,7 +1,7 @@
 ElementTest subclass: RadioButtonElementTest [
     
     <comment: nil>
-    <category: 'Iliad-Tests-Elements'>
+    <category: 'Iliad-Tests-Unit-Elements'>
 
     setUp [
 	e := RadioButtonElement new
