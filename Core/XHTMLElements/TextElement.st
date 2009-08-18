@@ -47,6 +47,11 @@ Element subclass: TextElement [
 	ElementError signal: 'Can''t add an element to a ' , self class name
     ]
 
+    text: aString [
+	<category: 'adding'>
+	self contents: aString
+    ]
+
     big [
 	<category: 'accessing'>
 	self tag: 'big'
