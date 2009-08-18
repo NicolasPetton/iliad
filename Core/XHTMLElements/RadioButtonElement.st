@@ -69,7 +69,7 @@ FormElementElement subclass: RadioButtonElement [
 
     value: aString [
 	<category: 'accessing attributes'>
-	self attributeAt: #value put: aString
+	self attributeAt: 'value' put: aString
     ]
 
     beforePrintHtml [

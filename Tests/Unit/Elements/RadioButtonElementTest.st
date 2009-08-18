@@ -9,7 +9,7 @@ ElementTest subclass: RadioButtonElementTest [
 
     testBeSelected [
 	e beSelected.
-	self shouldHaveAttribute: #checked value: 'checked'
+	self shouldHaveAttribute: 'checked' value: 'checked'
     ]
 
     testBeforePrintHtml [
@@ -19,7 +19,7 @@ ElementTest subclass: RadioButtonElementTest [
 
     testSelected [
 	e selected: true.
-	self shouldHaveAttribute: #checked value: 'checked'
+	self shouldHaveAttribute: 'checked' value: 'checked'
     ]
 
     testValue [

@@ -112,7 +112,7 @@ XHTMLElement subclass: FormElement [
 
     name: aString [
 	<category: 'accessing attributes'>
-	self id: aString printString
+	self id: aString 
     ]
 
     useGet [
