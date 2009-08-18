@@ -1,4 +1,4 @@
-TestCase subclass: JsonTests [
+TestCase subclass: JsonTest [
 
     <category: 'Iliad-Core-lib-JSON'>
     <comment: 'I provide a number of test cases for class Json.'>
@@ -85,7 +85,7 @@ TestCase subclass: JsonTests [
 	self json: '{}' equals: (Dictionary new).
 	self json: '{"a": "a"}' equals: (Dictionary new at: 'a' put: 'a'; yourself).
 	self json: '{"a": [[]]}' equals: (Dictionary new at: 'a' put: #(#()); yourself).
-	self json: '{"a":"b", "b":"a"}' equals: ({'a'->'b'. 'b'->'a'} as: Dictionary).
+	self json: '{"a":"b", "b":"a"}' equals: (Dictionary from: {'a'->'b'. 'b'->'a'}).
     ]
 
     testMissingCtor [
