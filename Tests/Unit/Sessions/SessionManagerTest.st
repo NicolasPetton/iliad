@@ -24,7 +24,7 @@ TestCase subclass: SessionManagerTest [
 	manager addSession: session2.
 	self assert: (manager hasSession: session2).
 	manager removeSession: session1.
-	self deny: (manager hasSsession: session1).
+	self deny: (manager hasSession: session1).
 	manager removeSession: session2.
 	self deny: (manager hasSession: session2).
 	session1 := session2 := nil
