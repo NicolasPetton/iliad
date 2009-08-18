@@ -44,17 +44,6 @@ var iliad = function() {
 	var hash       = "";
 	var iFrameHash = null;
 	
-	/* ---
-	 * Debugging
-	 * -------------------------------------------------------------- */
-
-
-	console       = console || {};
-	console.log   = console.log || function(){};
-	console.warn  = console.warn || console.log;
-	console.debug = console.debug || console.log;
-	console.error = console.error || console.log;
-
 
 	/* ---
 	 * Action evaluation
