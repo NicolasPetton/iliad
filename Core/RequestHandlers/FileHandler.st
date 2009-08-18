@@ -519,7 +519,7 @@ RequestHandler subclass: FileHandler [
     handleRequest [
 	<category: 'request handling'>
 	file := File name: (self adjustPath: self request url asString).
-	file exists ifFalse: [
+	file isFile ifFalse: [
 	    DispatchError signal].
 	super handleRequest
     ]
