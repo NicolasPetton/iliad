@@ -33,10 +33,14 @@ TestCase subclass: DispatcherTest [
 	| context |
 	context := dispatcher createContextFor: request1.
 	CurrentContext use: context
-	    during: [self assert: (dispatcher findApplicationFor: context route) = app1].
+	    during: [
+		context session applications at: app1 class put: app1.
+		self assert: ((dispatcher findApplicationFor: context route) = app1)].
 	context := dispatcher createContextFor: request2.
 	CurrentContext use: context
-	    during: [self assert: (dispatcher findApplicationFor: context route) = app2]
+	    during: [
+		context session applications at: app2 class put: app2.
+		self assert: ((dispatcher findApplicationFor: context route) = app2)]
     ]
 ]
 
