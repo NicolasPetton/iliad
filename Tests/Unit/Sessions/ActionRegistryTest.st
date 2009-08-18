@@ -2,7 +2,7 @@ TestCase subclass: ActionRegistryTest [
     | registry |
     
     <comment: nil>
-    <category: 'Iliad-Core-Tests-Sessions'>
+    <category: 'Iliad-Tests-Unit-Sessions'>
 
     setUp [
 	<category: 'running'>

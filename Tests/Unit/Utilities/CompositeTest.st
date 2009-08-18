@@ -1,7 +1,7 @@
 TestCase subclass: CompositeTest [
     
     <comment: nil>
-    <category: 'Iliad-Core-Tests-Utilities'>
+    <category: 'Iliad-Tests-Unit-Utilities'>
 
     testAdd [
 	<category: 'testing'>

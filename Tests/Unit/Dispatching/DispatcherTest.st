@@ -2,7 +2,7 @@ TestCase subclass: DispatcherTest [
     | dispatcher app1 app2 request1 request2 |
     
     <comment: nil>
-    <category: 'Iliad-Core-Tests-Dispatching'>
+    <category: 'Iliad-Tests-Unit-Dispatching'>
 
     setUp [
 	<category: 'running'>
