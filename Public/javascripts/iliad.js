@@ -37,6 +37,7 @@
 
 var iliad = function() {
 
+
 	/* ---
 	 * Variables
 	 * -------------------------------------------------------------- */
@@ -188,6 +189,11 @@ var iliad = function() {
 		catch(e){}
 	};
 
+
+	/* ---
+	 * Various
+	 * -------------------------------------------------------------- */
+
 	var insertAjaxLoader = function() {
 	jQuery('body').append(
 		"<div class='ajax_loader'" +
@@ -210,6 +216,11 @@ var iliad = function() {
 		}
 		return size;
 	};
+
+
+	/* ---
+	 * Public API
+	 * -------------------------------------------------------------- */
 
 	that = {};
 	that.evaluateAnchorAction = evaluateAnchorAction;
