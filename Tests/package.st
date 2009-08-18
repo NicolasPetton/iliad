@@ -66,7 +66,7 @@ Eval [
     filein: 'Unit/Sessions/CurrentContextTest.st';
     filein: 'Unit/Sessions/SessionManagerTest.st';
     filein: 'Unit/Sessions/SessionTest.st';
-    filein: 'Unit/Support/IdTest.st';
+    filein: 'Unit/Utilities/IdTest.st';
     filein: 'Unit/Utilities/CompositeTest.st';
     buildXml
 ]
