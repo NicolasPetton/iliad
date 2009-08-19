@@ -233,6 +233,7 @@ var iliad = function() {
 
 
 jQuery(document).ready(function() {
+	iliad.checkHashChange();
 	setInterval("iliad.checkHashChange()", 200);
 });
 
