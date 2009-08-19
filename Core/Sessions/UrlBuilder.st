@@ -74,11 +74,7 @@ IliadObject subclass: UrlBuilder [
 	self shouldUseSessionField ifTrue: [
 	    anUrl 
 		addParameter: self sessionKey 
-		value: self session id asString].
-	self shouldUseHashField ifTrue: [
-	    anUrl 
-		addParameter: self hashKey 
-		value: self request hashLocationField]
+		value: self session id asString]
     ]
 
     baseUrl [
@@ -129,11 +125,6 @@ IliadObject subclass: UrlBuilder [
     defaultTokenKey [
 	<category: 'defaults'>
 	^'_token'
-    ]
-
-    shouldUseHashField [
-	<category: 'testing'>
-	^self request hashLocationField notNil
     ]
 
     shouldUseSessionField [
