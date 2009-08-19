@@ -53,10 +53,10 @@ var iliad = function() {
 
 	evaluateAnchorAction = function(anchor, hashString) {
 		var actionUrl = jQuery(anchor).attr('href');
+		this.evaluateAction(actionUrl);
 		if(hashString) {
 			setHash(hashString)
 		}
-		this.evaluateAction(actionUrl);
 	};
 
 	evaluateFormAction = function(form) {
