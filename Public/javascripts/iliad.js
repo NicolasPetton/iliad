@@ -44,6 +44,7 @@ var iliad = function() {
 	
 	var hash       = "";
 	var iFrameHash = null;
+	var actionsLocked = false;
 	
 
 	/* ---
@@ -80,24 +81,37 @@ var iliad = function() {
 	};
 
 	evaluateAction = function(actionUrl, method, data) {
-		if(!method) {method = 'get'}
-		jQuery.ajax({
-			url: actionUrl,
-			type: method,
-			processUpdates: true,
-			dataType: 'json',
-			data: data,
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader("X-Requested-With", ""); 
-				insertAjaxLoader()},
-			success: function(json) {
-				processUpdates(json);
-				removeAjaxLoader();
-			},
-			error: function(err) {
-				showError(actionUrl);
-			}
-		});
+		if(!actionsLocked) {
+			if(!method) {method = 'get'}
+			lockActions();
+			jQuery.ajax({
+				url: actionUrl,
+				type: method,
+				processUpdates: true,
+				dataType: 'json',
+				data: data,
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader("X-Requested-With", ""); 
+					insertAjaxLoader()},
+				success: function(json) {
+					processUpdates(json);
+					removeAjaxLoader();
+					unlockActions();
+				},
+				error: function(err) {
+					showError(actionUrl);
+					unlockActions();
+				}
+			});
+		}
+	};
+
+	var lockActions = function() {
+		actionsLocked = true;
+	};
+
+	var unlockActions = function() {
+		actionsLocked = false;
 	};
 
 	var hasActionUrl = function(anchor) {
