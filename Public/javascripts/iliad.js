@@ -141,12 +141,29 @@ var iliad = function() {
 	var setHash = function(hashString) {
 		hash = hashString;
 		window.location.hash = hash;
+		//IE is different, as usual....
+		if(jQuery.browser.msie && parseInt(jQuery.browser.version) < 8) {
+			fixHistoryForIE();
+		}
 	};
 
 	var getHash = function() {
 		return window.location.hash.substr(1);
 	};
 
+	//Special hack for IE < 8. 
+	//Else IE won't add an entry to the history
+	var fixHistoryForIE = function() {
+		if(!iFrameHash) {
+			iFrameHash = 
+				jQuery("<iframe id='_iliad_hash_iframe'" +
+				"style='display: none'></iframe>").prependTo("body")[0];
+		}
+		//Add history entry
+		iFrameHash.contentWindow.document.open();
+		iFrameHash.contentWindow.document.close();
+		iFrameHash.contentWindow.document.location.hash = hash;
+	};
 
 	/* ---
 	 * Page updates
