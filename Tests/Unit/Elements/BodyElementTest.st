@@ -19,13 +19,5 @@ ElementTest subclass: BodyElementTest [
 	e onUnload: 'foo'.
 	self shouldHaveAttribute: 'onUnload' value: 'foo'
     ]
-
-    testPrintHtml [
-	<category: 'tests'>
-	| str |
-	str := WriteStream on: String new.
-	e printHtmlOn: str.
-	self assert: str contents = '<body></body>'
-    ]
 ]
 
