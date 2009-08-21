@@ -11,6 +11,7 @@ Eval [
     filein: 'TodoListItem.st'; 
     filein: 'TodoListItemRepository.st'; 
     filein: 'TodoListWidget.st'; 
+    filein: 'TodoListGridWidget.st'; 
     filein: 'TodoListItemEditor.st'; 
     filein: 'TodoListApplication.st'; 
     filein: 'BlogPost.st';
