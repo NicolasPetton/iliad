@@ -234,7 +234,8 @@ var iliad = function() {
 	var insertAjaxLoader = function() {
 	jQuery('body').append(
 		"<div class='ajax_loader'" +
-		"style='position: fixed; top: 10px; right: 10px; z-index: 9999'>" +
+		"style='position: fixed; _position: absolute;" +
+		"top: 10px; right: 10px; z-index: 9999'>" +
 		"<img src='/images/ajax_loader.gif'/></div>")
 	};
 
