@@ -42,8 +42,11 @@ var iliad = function() {
 	 * Variables
 	 * -------------------------------------------------------------- */
 	
-	var hash       = "";
-	var actionsLocked = false;
+	var hash           = "";
+	var iframeHash     = "";
+	var iframe         = null;
+	var actionsLocked  = false;
+	var ie67           = false;
 	
 
 	/* ---
@@ -132,7 +135,9 @@ var iliad = function() {
 	var checkHashChange = function() {
 		var newHash = getHash();
 		if(hash != newHash) {
+			alert(newHash);
 			hash = newHash;
+			if(ie67) {window.location.hash = hash}
 			evaluateAction(window.location.pathname + '?_hash=' + hash);
 		}
 	};
@@ -140,10 +145,44 @@ var iliad = function() {
 	var setHash = function(hashString) {
 		hash = hashString;
 		window.location.hash = hash;
+		//IE is different, as usual....
+        if(ie67) {fixHistoryForIE()}
 	};
 
 	var getHash = function() {
+        if(ie67) {return iframe.location.hash.substr(1)}
 		return window.location.hash.substr(1);
+	};
+
+	//Special hack for IE < 8. 
+	//Else IE won't add an entry to the history
+	var fixHistoryForIE = function() {
+		//Add history entry
+		iframe.open();
+		iframe.close();
+		iframe.location.hash = hash;
+		//iframe.location = '/iliad_ie_history.html#' + hash;
+		//iframe.location.title = window.title;
+	};
+
+	var initialize = function() {
+		ie67 = jQuery.browser.msie && parseInt(jQuery.browser.version) < 8;
+		if(ie67) {
+			var iDoc = jQuery("<iframe id='_iliad_ie_history_iframe'" +
+				"src='/iliad_ie_history.html'" +
+				"style='display: none'></iframe>").prependTo("body")[0];
+			iframe = iDoc.contentWindow.document || iDoc.document;
+			if(window.location.hash) {
+				hash = window.location.hash.substr(1);
+				alert(hash);
+				iframe.location.hash = hash;
+				evaluateAction(window.location.pathname + '?_hash=' + hash);
+			}
+			//iframe.open();
+			//iframe.close();
+			iframe.location.title = window.title;
+			checkHashChange();
+		}
 	};
 
 
@@ -226,12 +265,14 @@ var iliad = function() {
 	that.evaluateAction = evaluateAction;
 	that.enableSubmitAction = enableSubmitAction;
 	that.checkHashChange = checkHashChange;
+	that.initialize = initialize;
 
 	return that
 }();
 
 
 jQuery(document).ready(function() {
+	iliad.initialize();
 	setInterval(iliad.checkHashChange, 200);
 });
 
