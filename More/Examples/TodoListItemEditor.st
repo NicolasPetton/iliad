@@ -41,6 +41,11 @@ Widget subclass: TodoListItemEditor [
     <comment: nil>
     <category: 'Iliad-Core-Examples'>
 
+    cancel [
+	<category: 'accessing'>
+	self answer: nil
+    ]
+    
     completedContents [
 	<category: 'building'>
 	^[:e | 
@@ -93,7 +98,10 @@ Widget subclass: TodoListItemEditor [
 	    tbody tableRow build: self completedContents.
 	    (form button)
 		action: [self saveItem];
-		text: 'save']
+		text: 'save'.
+	    form button
+		action: [self cancel];
+		text: 'cancel']
     ]
 
     titleContents [
