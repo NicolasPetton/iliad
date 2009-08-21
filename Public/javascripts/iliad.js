@@ -43,11 +43,34 @@ var iliad = function() {
 	 * -------------------------------------------------------------- */
 	
 	var hash           = "";
-	var iframeHash     = "";
 	var iframe         = null;
 	var actionsLocked  = false;
 	var ie67           = false;
 	
+
+	/* ---
+	 * Initialization
+	 * -------------------------------------------------------------- */
+
+	var initialize = function() {
+		ie67 = jQuery.browser.msie && parseInt(jQuery.browser.version) < 8;
+		if(ie67) {
+			var iDoc = jQuery("<iframe id='_iliad_ie_history_iframe'" +
+				"src='/iliad_ie_history.html'" +
+				"style='display: none'></iframe>").prependTo("body")[0];
+			iframe = iDoc.contentWindow.document || iDoc.document;
+			if(window.location.hash) {
+				hash = window.location.hash.substr(1);
+				iframe.location.hash = hash;
+				evaluateAction(window.location.pathname + '?_hash=' + hash);
+			}
+			//iframe.open();
+			//iframe.close();
+			iframe.location.title = window.title;
+		}
+		checkHashChange();
+	};
+
 
 	/* ---
 	 * Action evaluation
@@ -160,27 +183,7 @@ var iliad = function() {
 		iframe.open();
 		iframe.close();
 		iframe.location.hash = hash;
-		//iframe.location = '/iliad_ie_history.html#' + hash;
 		//iframe.location.title = window.title;
-	};
-
-	var initialize = function() {
-		ie67 = jQuery.browser.msie && parseInt(jQuery.browser.version) < 8;
-		if(ie67) {
-			var iDoc = jQuery("<iframe id='_iliad_ie_history_iframe'" +
-				"src='/iliad_ie_history.html'" +
-				"style='display: none'></iframe>").prependTo("body")[0];
-			iframe = iDoc.contentWindow.document || iDoc.document;
-			if(window.location.hash) {
-				hash = window.location.hash.substr(1);
-				iframe.location.hash = hash;
-				evaluateAction(window.location.pathname + '?_hash=' + hash);
-			}
-			//iframe.open();
-			//iframe.close();
-			iframe.location.title = window.title;
-			checkHashChange();
-		}
 	};
 
 
