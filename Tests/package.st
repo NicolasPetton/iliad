@@ -70,5 +70,6 @@ Eval [
     filein: 'Unit/Utilities/IdTest.st';
     filein: 'Unit/Utilities/ModelProxyTest.st'; 
     filein: 'Unit/Utilities/CompositeTest.st';
+    filein: 'Unit/RequestHandlers/RequestHandlerTest.st'; 
     buildXml
 ]
