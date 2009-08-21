@@ -50,7 +50,7 @@ var iliad = function() {
 	 * Action evaluation
 	 * -------------------------------------------------------------- */
 
-	evaluateAnchorAction = function(anchor, hashString) {
+	var evaluateAnchorAction = function(anchor, hashString) {
 		var actionUrl = jQuery(anchor).attr('href');
 		this.evaluateAction(actionUrl);
 		if(hashString) {
@@ -58,18 +58,18 @@ var iliad = function() {
 		}
 	};
 
-	evaluateFormAction = function(form) {
+	var evaluateFormAction = function(form) {
 		var actionUrl = getFormActionUrl(form);
 		var data = jQuery(form).serialize();
 		this.evaluateAction(actionUrl, "post", data);
 	};
 
-	evaluateFormElementAction = function(formElement) {
+	var evaluateFormElementAction = function(formElement) {
 		var form = jQuery(formElement).closest("form");
 		this.evaluateFormAction(form);
 	};
 
-	enableSubmitAction = function(button) {
+	var enableSubmitAction = function(button) {
 		var name = jQuery(button).attr("name");
 		if(name) {
 			var hidden = 
@@ -79,7 +79,7 @@ var iliad = function() {
 		}
 	};
 
-	evaluateAction = function(actionUrl, method, data) {
+	var evaluateAction = function(actionUrl, method, data) {
 		if(!actionsLocked) {
 			if(!method) {method = 'get'}
 			lockActions();
@@ -129,7 +129,7 @@ var iliad = function() {
 	 * and fix the back button
 	 * -------------------------------------------------------------- */
 	
-	checkHashChange = function() {
+	var checkHashChange = function() {
 		var newHash = getHash();
 		if(hash != newHash) {
 			hash = newHash;
