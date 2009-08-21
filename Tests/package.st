@@ -15,6 +15,7 @@ Eval [
     filein: 'Unit/Dispatching/DispatcherTest.st';
     filein: 'Unit/Dispatching/RouteTest.st';
     filein: 'Unit/Elements/ElementTest.st';
+    filein: 'Unit/Elements/XHTMLElementTest.st';
     filein: 'Unit/Elements/AnchorElementTest.st';
     filein: 'Unit/Elements/AreaElementTest.st';
     filein: 'Unit/Elements/BodyElementTest.st';

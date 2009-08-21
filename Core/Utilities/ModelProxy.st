@@ -90,7 +90,7 @@ Object subclass: ModelProxy [
 
     performRealWrite: aSymbol with: anObject [
 	<category: 'private'>
-	model perform: aSymbol asSymbol asMutator with: anObject
+	model perform: (aSymbol copyWith: $:) asSymbol with: anObject
     ]
 
     performWrite: aSymbol with: anObject [
@@ -105,3 +105,16 @@ Object subclass: ModelProxy [
     ]
 ]
 
+
+Symbol extend [
+
+    isKeyword [
+	<category: 'testing'>
+	^self last = $:
+    ]
+
+    isUnary [
+	<category: 'testing'>
+	^self numArgs = 0
+    ]
+]
