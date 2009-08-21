@@ -11,6 +11,7 @@ Eval [
     filein: 'Utilities/Id.st'; 
     filein: 'Utilities/Encoder.st'; 
     filein: 'Utilities/GSTEncoder.st'; 
+    filein: 'Utilities/ModelProxy.st'; 
 
     filein: 'lib/HTTP/Url.st'; 
     filein: 'lib/HTTP/FileProxy.st'; 
