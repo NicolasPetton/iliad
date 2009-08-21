@@ -37,7 +37,7 @@
 
 
 Application subclass: TodoListApplication [
-    | todoListWidget |
+    | todoListGridWidget |
     
     <comment: nil>
     <category: 'Iliad-Core-Examples'>
@@ -47,27 +47,21 @@ Application subclass: TodoListApplication [
 	^'examples/todo'
     ]
 
-    all [
-	<category: 'views'>
-	self todoListWidget selectBlock: [:item | true].
-	^self mainContents
+    selectCompleted [
+	<category: 'accessing'>
+	self todoListGridWidget selectBlock: [:item | item completed].
+	self markDirty
     ]
 
-    completed [
-	<category: 'views'>
-	self todoListWidget selectBlock: [:item | item completed].
-	^self mainContents
+    selectPending [
+	<category: 'accessing'>
+	self todoListGridWidget selectBlock: [:item | item completed not].
+	self markDirty
     ]
 
-    index [
-	<category: 'views'>
-	^self all
-    ]
-
-    pending [
-	<category: 'views'>
-	self todoListWidget selectBlock: [:item | item completed not].
-	^self mainContents
+    todoListGridWidget [
+	<category: 'accessing'>
+	^todoListGridWidget ifNil: [todoListGridWidget := TodoListGridWidget new]
     ]
 
     initialize [
@@ -76,35 +70,12 @@ Application subclass: TodoListApplication [
 	self model: TodoListItemRepository default
     ]
 
-    mainContents [
-	<category: 'views-parts'>
-	^
-	[:e | 
-	e h1: 'Todo list'.
-	e build: self selectionContents.
-	e build: self todoListWidget]
-    ]
-
-    selectionContents [
-	<category: 'views-parts'>
-	^
-	[:e | 
-	| div |
-	div := (e div)
-		class: 'selection';
-		yourself.
-	#('all' 'completed' 'pending') do: 
-		[:each | 
-		(div anchor)
-		    action: [self redirectToLocal: each];
-		    text: each]
-	    separatedBy: [div space].
-	e break]
-    ]
-
-    todoListWidget [
-	<category: 'accessing'>
-	^todoListWidget ifNil: [todoListWidget := TodoListWidget new]
+    updateFromHash [
+	<category: 'building'>
+	| path |
+	path := self hashRoute next.
+	path = 'pending' ifTrue: [self selectPending].
+	path = 'completed' ifTrue: [self selectCompleted] 
     ]
 
     updatePage: aPage [
@@ -113,6 +84,31 @@ Application subclass: TodoListApplication [
 	aPage head stylesheet href: '/stylesheets/iliad.css'.
 	aPage head javascript source: '/javascripts/lightbox.js'.
 	aPage head stylesheet href: '/stylesheets/lightbox.css'.
+    ]
+
+    index [
+	<category: 'views'>
+	self updateFromHash.
+	^ [:e |
+	    e h1: 'Todo List'.
+	    e build: self actionLinksContents.
+	    e build: self todoListGridWidget]
+    ]
+
+    actionLinksContents [
+	<category: 'views-parts'>
+	^[:e ||div|
+	    div := e div class: 'selection'; yourself.
+	    div anchor
+		action: [self selectPending]
+		hash: 'pending';
+		text: 'pending'.
+	    div space.
+	    div anchor
+		action: [self selectCompleted]
+		hash: 'completed';
+		text: 'completed'.
+	    e break]
     ]
 ]
 
