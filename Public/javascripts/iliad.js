@@ -135,7 +135,6 @@ var iliad = function() {
 	var checkHashChange = function() {
 		var newHash = getHash();
 		if(hash != newHash) {
-			alert(newHash);
 			hash = newHash;
 			if(ie67) {window.location.hash = hash}
 			evaluateAction(window.location.pathname + '?_hash=' + hash);
@@ -174,7 +173,6 @@ var iliad = function() {
 			iframe = iDoc.contentWindow.document || iDoc.document;
 			if(window.location.hash) {
 				hash = window.location.hash.substr(1);
-				alert(hash);
 				iframe.location.hash = hash;
 				evaluateAction(window.location.pathname + '?_hash=' + hash);
 			}
