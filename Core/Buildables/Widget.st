@@ -75,7 +75,7 @@ When using the javascript layer, call #markDirty whenever my state change,
 so I will be updated on AJAX requests.
 
 I can also have decorators that may modify my behavior. A decorator can be 
-added to the decoration chain with #addDecoration:.'>
+added to the decoration chain with #decorateWith:.'>
 
     initialize [
 	<category: 'initialize-release'>
