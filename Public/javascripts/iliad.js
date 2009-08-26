@@ -69,7 +69,7 @@ var iliad = (function() {
 			iframe.location.title = window.title;
 		}
 		checkHashChange();
-	};
+	}
 
 
 	/* ---
@@ -82,18 +82,18 @@ var iliad = (function() {
 		if(hashString) {
 			setHash(hashString)
 		}
-	};
+	}
 
 	function evaluateFormAction(form) {
 		var actionUrl = getFormActionUrl(form);
 		var data = jQuery(form).serialize();
 		this.evaluateAction(actionUrl, "post", data);
-	};
+	}
 
 	function evaluateFormElementAction(formElement) {
 		var form = jQuery(formElement).closest("form");
 		this.evaluateFormAction(form);
-	};
+	}
 
 	function enableSubmitAction(button) {
 		var name = jQuery(button).attr("name");
@@ -103,7 +103,7 @@ var iliad = (function() {
 			var form = jQuery(button).closest("form");
 			jQuery(form).append(hidden);
 		}
-	};
+	}
 
 	function evaluateAction(actionUrl, method, data) {
 		if(!actionsLocked) {
@@ -129,25 +129,25 @@ var iliad = (function() {
 				}
 			});
 		}
-	};
+	}
 
 	function lockActions() {
 		actionsLocked = true;
-	};
+	}
 
 	function unlockActions() {
 		actionsLocked = false;
-	};
+	}
 
 	function hasActionUrl(anchor) {
 		if(anchor && jQuery(anchor).attr('href')) {
 			return /_action?=(.*)$/.test(jQuery(anchor).attr('href'));
 		}
-	};
+	}
 
 	function getFormActionUrl(form) {
 		return jQuery(form).attr('action')
-	};
+	}
 
 
 	/* ---
@@ -162,19 +162,19 @@ var iliad = (function() {
 			if(ie67) {window.location.hash = hash}
 			evaluateAction(window.location.pathname + '?_hash=' + hash);
 		}
-	};
+	}
 
 	function setHash(hashString) {
 		hash = hashString;
 		window.location.hash = hash;
 		//IE is different, as usual....
         	if(ie67) {fixHistoryForIE()}
-	};
+	}
 
 	function getHash() {
         	if(ie67) {return iframe.location.hash.substr(1)}
 		return window.location.hash.substr(1);
-	};
+	}
 
 	//Special hack for IE < 8. 
 	//Else IE won't add an entry to the history
@@ -184,7 +184,7 @@ var iliad = (function() {
 		iframe.close();
 		iframe.location.hash = hash;
 		//iframe.location.title = window.title;
-	};
+	}
 
 
 	/* ---
@@ -215,15 +215,15 @@ var iliad = (function() {
 		for(var i in scripts) {
 			evalScript(scripts[i]);
 		}
-	};
+	}
 
 	function updateWidget(id, contents) {
 		jQuery("#"+id).replaceWith(contents)
-	};
+	}
 
 	function evalScript(script) {
 		eval(jQuery(script).html())
-	};
+	}
 
 
 	/* ---
@@ -236,23 +236,24 @@ var iliad = (function() {
 		"style='position: fixed; _position: absolute;" +
 		"top: 10px; right: 10px; z-index: 9999'>" +
 		"<img src='/images/ajax_loader.gif'/></div>")
-	};
+	}
 
 	function showError(actionUrl){
 		jQuery("body").html("<h1>Error 500: Internal server error</h1>")
-	};
+	}
 
 	function removeAjaxLoader() {
 		jQuery(".ajax_loader").replaceWith("");
-	};
+	}
 
 	function sizeOf(obj) {
 		var size = 0, key;
 		for (key in obj) {
-			if (obj.hasOwnProperty(key)) size++;
+			if (obj[key] !== Object.prototype[key]) size++;
+			//if (obj.hasOwnProperty(key)) size++;
 		}
 		return size;
-	};
+	}
 
 
 	/* ---
