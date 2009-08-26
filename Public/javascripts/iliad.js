@@ -35,7 +35,7 @@
 
 
 
-var iliad = function() {
+var iliad = (function() {
 
 
 	/* ---
@@ -269,7 +269,7 @@ var iliad = function() {
 	that.initialize = initialize;
 
 	return that
-}();
+})();
 
 
 jQuery(document).ready(function() {
