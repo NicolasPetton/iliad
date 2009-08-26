@@ -52,7 +52,7 @@ var iliad = function() {
 	 * Initialization
 	 * -------------------------------------------------------------- */
 
-	var initialize = function() {
+	function initialize() {
 		ie67 = jQuery.browser.msie && parseInt(jQuery.browser.version) < 8;
 		if(ie67) {
 			var iDoc = jQuery("<iframe id='_iliad_ie_history_iframe'" +
@@ -76,7 +76,7 @@ var iliad = function() {
 	 * Action evaluation
 	 * -------------------------------------------------------------- */
 
-	var evaluateAnchorAction = function(anchor, hashString) {
+	 function evaluateAnchorAction(anchor, hashString) {
 		var actionUrl = jQuery(anchor).attr('href');
 		this.evaluateAction(actionUrl);
 		if(hashString) {
@@ -84,28 +84,28 @@ var iliad = function() {
 		}
 	};
 
-	var evaluateFormAction = function(form) {
+	function evaluateFormAction(form) {
 		var actionUrl = getFormActionUrl(form);
 		var data = jQuery(form).serialize();
 		this.evaluateAction(actionUrl, "post", data);
 	};
 
-	var evaluateFormElementAction = function(formElement) {
+	function evaluateFormElementAction(formElement) {
 		var form = jQuery(formElement).closest("form");
 		this.evaluateFormAction(form);
 	};
 
-	var enableSubmitAction = function(button) {
+	function enableSubmitAction(button) {
 		var name = jQuery(button).attr("name");
 		if(name) {
-			var hidden = 
-				"<input type='hidden' name='" + name + "'></input>";
+			var hidden = "<input type='hidden' name='" + 
+				name + "'></input>";
 			var form = jQuery(button).closest("form");
 			jQuery(form).append(hidden);
 		}
 	};
 
-	var evaluateAction = function(actionUrl, method, data) {
+	function evaluateAction(actionUrl, method, data) {
 		if(!actionsLocked) {
 			if(!method) {method = 'get'}
 			lockActions();
@@ -131,21 +131,21 @@ var iliad = function() {
 		}
 	};
 
-	var lockActions = function() {
+	function lockActions() {
 		actionsLocked = true;
 	};
 
-	var unlockActions = function() {
+	function unlockActions() {
 		actionsLocked = false;
 	};
 
-	var hasActionUrl = function(anchor) {
+	function hasActionUrl(anchor) {
 		if(anchor && jQuery(anchor).attr('href')) {
 			return /_action?=(.*)$/.test(jQuery(anchor).attr('href'));
 		}
 	};
 
-	var getFormActionUrl = function(form) {
+	function getFormActionUrl(form) {
 		return jQuery(form).attr('action')
 	};
 
@@ -155,7 +155,7 @@ var iliad = function() {
 	 * and fix the back button
 	 * -------------------------------------------------------------- */
 	
-	var checkHashChange = function() {
+	function checkHashChange() {
 		var newHash = getHash();
 		if(hash != newHash) {
 			hash = newHash;
@@ -164,21 +164,21 @@ var iliad = function() {
 		}
 	};
 
-	var setHash = function(hashString) {
+	function setHash(hashString) {
 		hash = hashString;
 		window.location.hash = hash;
 		//IE is different, as usual....
         	if(ie67) {fixHistoryForIE()}
 	};
 
-	var getHash = function() {
+	function getHash() {
         	if(ie67) {return iframe.location.hash.substr(1)}
 		return window.location.hash.substr(1);
 	};
 
 	//Special hack for IE < 8. 
 	//Else IE won't add an entry to the history
-	var fixHistoryForIE = function() {
+	function fixHistoryForIE() {
 		//Add history entry
 		iframe.open();
 		iframe.close();
@@ -191,7 +191,7 @@ var iliad = function() {
 	 * Page updates
 	 * -------------------------------------------------------------- */
 
-	var processUpdates = function(json) {
+	function processUpdates(json) {
 		
 		/* handle redirect if any */
 		if(json.redirect) {
@@ -217,13 +217,12 @@ var iliad = function() {
 		}
 	};
 
-	var updateWidget = function(id, contents) {
+	function updateWidget(id, contents) {
 		jQuery("#"+id).replaceWith(contents)
 	};
 
-	var evalScript = function(script) {
-		try {eval(jQuery(script).html())}
-		catch(e){}
+	function evalScript(script) {
+		eval(jQuery(script).html())
 	};
 
 
@@ -231,7 +230,7 @@ var iliad = function() {
 	 * Various
 	 * -------------------------------------------------------------- */
 
-	var insertAjaxLoader = function() {
+	function insertAjaxLoader() {
 	jQuery('body').append(
 		"<div class='ajax_loader'" +
 		"style='position: fixed; _position: absolute;" +
@@ -239,15 +238,15 @@ var iliad = function() {
 		"<img src='/images/ajax_loader.gif'/></div>")
 	};
 
-	var showError = function(actionUrl){
+	function showError(actionUrl){
 		jQuery("body").html("<h1>Error 500: Internal server error</h1>")
 	};
 
-	var removeAjaxLoader = function() {
+	function removeAjaxLoader() {
 		jQuery(".ajax_loader").replaceWith("");
 	};
 
-	var sizeOf = function(obj) {
+	function sizeOf(obj) {
 		var size = 0, key;
 		for (key in obj) {
 			if (obj.hasOwnProperty(key)) size++;
