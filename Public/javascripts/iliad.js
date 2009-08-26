@@ -168,11 +168,11 @@ var iliad = function() {
 		hash = hashString;
 		window.location.hash = hash;
 		//IE is different, as usual....
-        if(ie67) {fixHistoryForIE()}
+        	if(ie67) {fixHistoryForIE()}
 	};
 
 	var getHash = function() {
-        if(ie67) {return iframe.location.hash.substr(1)}
+        	if(ie67) {return iframe.location.hash.substr(1)}
 		return window.location.hash.substr(1);
 	};
 
