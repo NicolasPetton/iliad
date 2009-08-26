@@ -259,16 +259,15 @@ var iliad = (function() {
 	 * Public API
 	 * -------------------------------------------------------------- */
 
-	that = {};
-	that.evaluateAnchorAction = evaluateAnchorAction;
-	that.evaluateFormAction = evaluateFormAction;
-	that.evaluateFormElementAction = evaluateFormElementAction;
-	that.evaluateAction = evaluateAction;
-	that.enableSubmitAction = enableSubmitAction;
-	that.checkHashChange = checkHashChange;
-	that.initialize = initialize;
-
-	return that
+	return {
+		evaluateAnchorAction: evaluateAnchorAction,
+		evaluateFormAction: evaluateFormAction,
+		evaluateFormElementAction: evaluateFormElementAction,
+		evaluateAction: evaluateAction,
+		enableSubmitAction: enableSubmitAction,
+		checkHashChange: checkHashChange,
+		initialize: initialize,
+	}
 })();
 
 
