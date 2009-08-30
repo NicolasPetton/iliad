@@ -140,17 +140,17 @@ added to the decoration chain with #decorateWith:.'>
 
     decorateWith: aDecorator [
 	<category: 'decorators'>
-	| prev dec |
-	prev := nil.
-	dec := decorator.
-	[dec = self or: [
+	| dec1 dec2 |
+	dec1 := nil.
+	dec2 := decorator.
+	[dec2 = self or: [
 	    aDecorator isGlobal]] whileFalse: [
-		    prev := dec.
-		    dec := dec decoratee].
-	aDecorator decoratee: dec.
-	prev isNil 
+		    dec1 := dec2.
+		    dec2 := dec2 decoratee].
+	aDecorator decoratee: dec2.
+	dec1 isNil 
 	    ifTrue: [decorator := aDecorator]
-	    ifFalse: [prev decoratee: aDecorator]
+	    ifFalse: [dec1 decoratee: aDecorator]
     ]
 
     addMessage: aString [
