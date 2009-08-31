@@ -64,8 +64,8 @@ var iliad = (function() {
 				iframe.location.hash = hash;
 				evaluateAction(window.location.pathname + '?_hash=' + hash);
 			}
-			iframe.open();
-			iframe.close();
+			//iframe.open();
+			//iframe.close();
 			iframe.location.title = window.title;
 		}
 		checkHashChange();
@@ -267,7 +267,7 @@ var iliad = (function() {
 		evaluateAction: evaluateAction,
 		enableSubmitAction: enableSubmitAction,
 		checkHashChange: checkHashChange,
-		initialize: initialize,
+		initialize: initialize
 	}
 })();
 
