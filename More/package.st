@@ -6,5 +6,6 @@ Eval [
 	prereq: 'Iliad-More-Magritte';
 	prereq: 'Iliad-More-UI';
 	prereq: 'Iliad-More-Examples';
+	"prereq: 'Iliad-More-DevTools';"
 	buildXml
 ]

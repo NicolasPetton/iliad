@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Tabs class definition
+|   Iliad.WidgetTabs class definition
 |
  ======================================================================"
 
@@ -34,8 +34,8 @@
  ======================================================================"
 
 
-UIWidget subclass: Tabs [
-    | widgets labels selectedWidget |
+UIWidget subclass: WidgetTabs [
+    | widgets labels hashes selectedWidget |
     
     <category: 'Iliad-More-UI'>
     <comment: 'Usage example:
@@ -55,20 +55,17 @@ Tabs new
 
     tabsContents [
 	<category: 'building'>
-	^[:e || ul |
-	    ul := e unorderedList.
+	^[:e || div ul |
+	    div := e div class: 'tabs'.
+	    ul := div unorderedList.
 	    self widgets do: [:each || li |
 		li := ul listItem.
 		li anchor
-		    text: (self labels at: (self widgets indexOf: each));
-		    action: [self selectWidget: each].
+		    text: (self labelFor: each);
+		    action: [self selectWidget: each]
+		    hash: (self hashFor: each).
 		self selectedWidget = each ifTrue: [
 		    li class: 'selected']]]
-    ]
-
-    cssClass [
-	<category: 'accessing'>
-	^super cssClass, ' tabs'
     ]
 
     labels [
@@ -82,6 +79,33 @@ Tabs new
 	<category: 'accessing'>
 
 	labels := aCollection
+    ]
+
+    hashes [
+	<category: 'accessing'>
+	^hashes ifNil: [#()]
+    ]
+
+    hashes: aCollection [
+	"aCollection -- of strings -- must have the same size as 
+	widgets collection"
+	<category: 'accessing'>
+
+	hashes := aCollection
+    ]
+
+    hashFor: aWidget [
+	<category: 'accessing'>
+	^self hashes 
+	    at: (self widgets indexOf: aWidget) 
+	    ifAbsent: ['']
+    ]
+
+    labelFor: aWidget [
+	<category: 'accessing'>
+	^self labels
+	    at: (self widgets indexOf: aWidget) 
+	    ifAbsent: ['']
     ]
 
     selectedWidget [

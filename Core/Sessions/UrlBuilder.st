@@ -107,6 +107,13 @@ IliadObject subclass: UrlBuilder [
 	^url
     ]
 
+    absolutePathFor: anApplicationClass [
+	<category: 'generating'>
+	(anApplicationClass path beginsWith: '/')
+	    ifTrue: [^anApplicationClass path]
+	    ifFalse: [^'/', anApplicationClass path]
+    ]
+
     defaultActionKey [
 	<category: 'defaults'>
 	^'_action'

@@ -121,13 +121,6 @@ and wait for a ResponseNotification to respond to them.'>
 		self request sessionField notNil and: [self request hasCookies]]
     ]
 
-    absolutePathFor: anApplicationClass [
-	<category: 'private'>
-	(anApplicationClass path startsWith: '/')
-	ifTrue: [^anApplicationClass path]
-	ifFalse: [^'/', anApplicationClass path]
-    ]
-
     applicationClassFor: aRoute [
 	<category: 'private'>
 	| applicationClass |
@@ -136,7 +129,7 @@ and wait for a ResponseNotification to respond to them.'>
 	    aRoute next.
 	    applicationClass := Application allSubclasses
 		detect: [:each | 
-		    (self absolutePathFor: each) = aRoute currentPath]
+		    (self context urlBuilder absolutePathFor: each) = aRoute currentPath]
 		ifNone: [nil]].
 	^ applicationClass
     ]

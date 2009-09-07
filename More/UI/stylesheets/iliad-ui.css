@@ -11,6 +11,7 @@
 }
 
 ._ui.vbox>._widget, ._ui.vpaned>._widget {
+    float: left;
     display: inline;
 }
 

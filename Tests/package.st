@@ -66,6 +66,7 @@ Eval [
     filein: 'Unit/Sessions/ActionTest.st';
     filein: 'Unit/Sessions/CurrentContextTest.st';
     filein: 'Unit/Sessions/SessionManagerTest.st';
+    filein: 'Unit/Sessions/UrlBuilderTest.st';
     filein: 'Unit/Sessions/SessionTest.st';
     filein: 'Unit/Utilities/IdTest.st';
     filein: 'Unit/Utilities/ModelProxyTest.st'; 

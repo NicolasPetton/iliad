@@ -52,11 +52,6 @@ Application subclass: ApplicationBrowser [
 		asSortedCollection: [:a :b | a name < b name]
     ]
 
-    pathFor: anApplication [
-	<category: 'accessing'>
-	^Dispatcher current absolutePathFor: anApplication
-    ]
-
     index [
 	<category: 'views'>
 	^[:e | 
@@ -72,7 +67,7 @@ Application subclass: ApplicationBrowser [
 	    self applications do: [:each | 
 		ul listItem anchor
 		    text: each name;
-		    linkTo: (self pathFor: each)]]
+		    linkToApplication: each]]
     ]
 
     updatePage: aPage [

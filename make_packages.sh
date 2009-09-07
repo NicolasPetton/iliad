@@ -18,16 +18,13 @@ do
     $GST_PACK -t ~/.st $DIR/package.xml >> make_packages.log
 done
 
-if [ -d More/UI ]; then
-	for i in `find More/UI/stylesheets -type f | grep -v '\.svn'`
-		do
-    		echo "linking $i to Public..."
-			ln -fs ../../$i Public/stylesheets/ >> make_packages.log
-	done
-	for i in `find More/UI/images -type f | grep -v '\.svn'`
-		do
-    		echo "linking $i to Public..."
-			ln -fs ../../$i Public/images/ >> make_packages.log
-	done
-fi
-
+for i in `find . -type f | grep -v '\.svn' | grep -v 'Public' | grep '\.css'`
+	do
+    	echo "linking $i to Public..."
+		ln -fs ../../$i Public/stylesheets/ >> make_packages.log
+done
+for i in `find . -type f | grep -v '\.svn' | grep -v 'Public' | grep '\.png'`
+	do
+   	echo "linking $i to Public..."
+		ln -fs ../../$i Public/images/ >> make_packages.log
+done

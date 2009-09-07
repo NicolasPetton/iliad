@@ -73,7 +73,7 @@ Object subclass: MAColumnWidget [
 	[:e | 
 	e tableData build: (self format 
 		    valueWithArguments: ((Array with: anObject with: anInteger) 
-			    first: self format numArgs))]
+			    first: self format selector numArgs))]
     ]
 
     buildCellContent: anObject [
