@@ -66,6 +66,11 @@ XHTMLElement subclass: LinkableElement [
 	self href: aString
     ]
 
+    linkToLocal: aString [
+	<category: 'accessing attributes'>
+	self href: (self application originalUrl, '/', aString)
+    ]
+
     linkToApplication: anApplicationClass [
 	<category: 'accessing attributes'>
 	self linkToApplication: anApplicationClass view: ''

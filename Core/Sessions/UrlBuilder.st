@@ -109,7 +109,7 @@ IliadObject subclass: UrlBuilder [
 
     absolutePathFor: anApplicationClass [
 	<category: 'generating'>
-	(anApplicationClass path beginsWith: '/')
+	(anApplicationClass path startsWith: '/')
 	    ifTrue: [^anApplicationClass path]
 	    ifFalse: [^'/', anApplicationClass path]
     ]

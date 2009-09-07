@@ -13,19 +13,14 @@ TestCase subclass: DispatcherTest [
 	request2 := Request new url: (Url absolute: '/test2')
     ]
 
-    testAbsolutePath [
-	<category: 'tests'>
-	self assert: (dispatcher absolutePathFor: app1 class) = '/test1'.
-	self assert: (dispatcher absolutePathFor: app2 class) = '/test2'
-    ]
-
     testApplicationClass [
 	<category: 'tests'>
 	| route1 route2 |
 	route1 := Route path: #('test1').
 	route2 := Route path: #('test2').
-	self assert: (dispatcher applicationClassFor: route1) = app1 class.
-	self assert: (dispatcher applicationClassFor: route2) = app2 class
+	CurrentContext use: Context new during: [
+	    self assert: (dispatcher applicationClassFor: route1) = app1 class.
+	    self assert: (dispatcher applicationClassFor: route2) = app2 class]
     ]
 
     testFindApplication [
