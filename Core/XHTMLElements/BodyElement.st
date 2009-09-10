@@ -55,10 +55,5 @@ XHTMLElement subclass: BodyElement [
 	<category: 'addessing attributes-events'>
 	self onEvent: 'Unload' do: aString
     ]
-
-    beforePrintHtml [
-	<category: 'printing'>
-	self onLoad: 'iliad.checkHashChange();'
-    ]
 ]
 
