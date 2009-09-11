@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.WidgetTabs class definition
+|   Iliad.ViewTabs class definition
 |
  ======================================================================"
 
@@ -33,31 +33,26 @@
 |
  ======================================================================"
 
+
+
 
-UIWidget subclass: WidgetTabs [
-    | contentsBlock labelBlock items selectedItem hashBlock |
+UIWidget subclass: ViewTabs [
+    | views labels selectedView |
     
-    <comment: ''>
+    <comment: nil>
     <category: 'Iliad-More-UI'>
 
     contents [
 	<category: 'building'>
-	^[:e | 
-	    e build: self tabsContents.
-	    self contentsBlock value: e value: self selectedItem]
-    ]
-
-    tabsContents [
-	<category: 'building'>
 	^[:e || ul div |
-	   div := e div class: self cssClass.
+	    div := e div class: self cssClass.
 	    ul := div unorderedList.
-	    self items do: [:each || li |
+	    self views do: [:each || li |
 		li := ul listItem.
 		li anchor
-		    text: (self labelBlock value: each);
-		    action: [self selectItem: each] hash: (self hashBlock value: each).
-		self selectedItem = each ifTrue: [li class: 'selected']]]
+		    text: (self labelFor: each);
+		    linkToLocal: each.
+		self selectedView = each ifTrue: [li class: 'selected']]]
     ]
 
     cssClass [
@@ -65,68 +60,43 @@ UIWidget subclass: WidgetTabs [
 	^super cssClass, ' tabs'
     ]
 
-    contentsBlock [
+    labelFor: aView [
 	<category: 'accessing'>
-	^contentsBlock
+	^self labels at: (self views indexOf: aView)
     ]
 
-    contentsBlock: aViewBlock [
+    labels [
 	<category: 'accessing'>
-	contentsBlock := aViewBlock
+	^labels
     ]
 
-    hashBlock [
+    labels: aCollection [
+	"aCollection of strings.
+	 aCollection must have the same size as widgets collection"
+
 	<category: 'accessing'>
-	^hashBlock ifNil: [[:item | '']]
+	labels := aCollection
     ]
 
-    hashBlock: aBlock [
+    selectedView [
 	<category: 'accessing'>
-	hashBlock := aBlock
+	| route |
+	route := self context route copy.
+	route position: self application originalRoutePosition.
+	^route next ifNil: [self views first]
     ]
 
-    items [
+    views [
 	<category: 'accessing'>
-	^items
+	^views
     ]
 
-    items: aCollection [
+    views: aCollection [
+	"aCollection of strings to be displayed in the tabs.
+	 Each view has an associated label, set with #labels: method"
+
 	<category: 'accessing'>
-	items := aCollection
-    ]
-
-    labelBlock [
-	<category: 'accessing'>
-	^labelBlock
-    ]
-
-    labelBlock: aBlock [
-	<category: 'accessing'>
-	labelBlock := aBlock
-    ]
-
-    selectedItem [
-	<category: 'accessing'>
-	^selectedItem ifNil: [self items first]
-    ]
-
-    selectedItem: anItem [
-	<category: 'accessing'>
-	selectedItem := anItem
-    ]
-
-    selectItem: anItem [
-	<category: 'actions'>
-	self selectedItem: anItem.
-	self markDirty
-    ]
-
-    updateFromHash: aString [
-	<category: 'updating'>
-	self items do: [:each | 
-	    (self hashBlock value: each) = aString ifTrue: [
-		self selectedItem: each.
-		^self]]
+	views := aCollection
     ]
 ]
 

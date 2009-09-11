@@ -53,7 +53,7 @@ Tree new
 	^[:e || div |
 	    div := e div.
 	    self isRoot ifTrue: [
-		div class: 'tree'].
+		div class: self cssClass].
 	    div build: self contentsForItem]
     ]
 
@@ -80,6 +80,11 @@ Tree new
 		ul := div unorderedList.
 		self subTrees do: [:each | 
 		    ul listItem build: each]]]
+    ]
+
+    cssClass [
+	<category: 'accessing'>
+	^super cssClass, ' tree'
     ]
 
     children [

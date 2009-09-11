@@ -40,6 +40,11 @@ UIWidget subclass: DateSelector [
     <comment: nil>
     <category: 'Iliad-Core-UI'>
 
+    cssClass [
+	<category: 'accessing'>
+	^super cssClass, ' date_selector'
+    ]
+
     actionBlock [
 	<category: 'accessing'>
 	^actionBlock
@@ -102,14 +107,14 @@ UIWidget subclass: DateSelector [
 
     contents [
 	<category: 'building'>
-	^[:e | 
-	| form |
+	^[:e || div form |
+	    div := e div class: self cssClass.
 	    self selectedDateIsValid 
-		ifFalse: 
-		    [(e div)
+		ifFalse: [
+		    div div
 			class: 'error';
 			text: 'Invalid date'].
-	    form := e form.
+	    form := div form.
 	    form
 		build: self monthSelectionContents;
 		build: self dayInputContents;
