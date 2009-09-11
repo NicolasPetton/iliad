@@ -182,6 +182,11 @@ the application mode:
 	^self context route
     ]
 
+    originalRoutePosition [
+	<category: 'accessing'>
+	^originalRoutePosition
+    ]
+
     selectorFilter [
 	<category: 'accessing'>
 	^self class selectorFilter

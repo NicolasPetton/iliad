@@ -83,14 +83,6 @@ added to the decoration chain with #decorateWith:.'>
 	decorator := Decorator decoratee: self
     ]
 
-    cssClass [
-	"Override in subclasses to add css classes to widget.
-	Answer nil or a astring"
-	<category: 'acessing'>
-
-	^nil
-    ]
-
     id: aString [
 	<category: 'accessing'>
 	id := aString
@@ -124,9 +116,7 @@ added to the decoration chain with #decorateWith:.'>
 	
 	^self newRootElement div 
 	    id: self id;
-	    class: (self cssClass
-		ifNil: ['_widget']
-		ifNotNil: [:class | '_widget ', class]);
+	    class: '_widget';
 	    build: decorator contents;
 	    yourself
     ]
