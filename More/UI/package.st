@@ -17,6 +17,7 @@ Eval [
     filein: 'Calendar.st'; 
     filein: 'Extensions.st'; 
     filein: 'WidgetTabs.st'; 
+    filein: 'ViewTabs.st'; 
     filein: 'Tree.st'; 
     filein: 'ApplicationBrowser.st';
     
