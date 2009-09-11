@@ -11,6 +11,7 @@ Eval [
     filein: 'Paned.st'; 
     filein: 'HorizontallyPaned.st'; 
     filein: 'VerticallyPaned.st'; 
+    filein: 'Spacer.st'; 
     filein: 'TimeSelector.st'; 
     filein: 'DateSelector.st'; 
     filein: 'Lightbox.st'; 
