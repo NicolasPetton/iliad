@@ -50,7 +50,7 @@ UIWidget subclass: Calendar [
     contents [
 	<category: 'building'>
 	^[:e |
-	    (e div class: self csClass)
+	    (e div class: self cssClass)
 		build:self monthSelectionFormContents;
 		build: self calendarTableContents]
     ]
