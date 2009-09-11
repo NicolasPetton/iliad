@@ -5,12 +5,6 @@ Eval [
     prereq: 'Iliad-Core';
 
     filein: 'UIWidget.st'; 
-    filein: 'Box.st'; 
-    filein: 'VerticalBox.st'; 
-    filein: 'HorizontalBox.st'; 
-    filein: 'Paned.st'; 
-    filein: 'HorizontallyPaned.st'; 
-    filein: 'VerticallyPaned.st'; 
     filein: 'TimeSelector.st'; 
     filein: 'DateSelector.st'; 
     filein: 'Lightbox.st'; 
