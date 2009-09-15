@@ -151,9 +151,9 @@ added to the decoration chain with #decorateWith:.'>
     addMessage: aString level: anInteger [
 	<category: 'decorations'>
 	self decorateWith: ((MessageDecorator decoratee: self)
-	message: aString;
-	level: anInteger;
-	yourself)
+	    message: aString;
+	    level: anInteger;
+	    yourself)
     ]
 
     decorateWith: aDecorator during: aBlock [

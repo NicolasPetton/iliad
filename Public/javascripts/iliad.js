@@ -105,10 +105,11 @@ var iliad = (function() {
 		}
 	}
 
-	function evaluateAction(actionUrl, method, data) {
+	function evaluateAction(actionUrl, method, data, lock) {
 		if(!actionsLocked) {
 			if(!method) {method = 'get'}
-			lockActions();
+			if(lock == null) {lock = true}
+			if(lock) {lockActions()}
 			jQuery.ajax({
 				url: actionUrl,
 				type: method,
