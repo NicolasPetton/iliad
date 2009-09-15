@@ -199,12 +199,6 @@ var iliad = (function() {
 			return window.location.href = json.redirect
 		}
 		
-		/* Refresh if there is no widget to update 
-		(session expired or the action is invalid) */
-		if(sizeOf(json.widgets) == 0) {
-			return window.location.reload()
-		} 
-
 		/* else update dirty widgets */
 		var dirtyWidgets = json.widgets;
 		for(var i in dirtyWidgets) {
