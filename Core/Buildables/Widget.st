@@ -40,7 +40,7 @@
 
 
 Buildable subclass: Widget [
-    | id decorator owner |
+    | id decorator owner dependentWidgets |
 
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am a stateful graphical component. 
@@ -81,6 +81,7 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'initialize-release'>
 	super initialize.
 	decorator := Decorator decoratee: self
+	dependentWidgets := OrderedCollection new
     ]
 
     id: aString [
@@ -193,7 +194,7 @@ added to the decoration chain with #decorateWith:.'>
     answer [
 	"Give the control back to the owner, i.e, the widget which showed me.
 	 Answer self"
-	<category: 'show/answer'>
+	<category: 'control flow'>
 	
 	^self answer: self
     ]
@@ -201,20 +202,20 @@ added to the decoration chain with #decorateWith:.'>
     answer: anAnswer [
 	"Give the control back to the owner, i.e, the widget which showed me.
 	Answer <anAnswer>"
-	<category: 'show/answer'>
+	<category: 'control flow'>
 
 	 decorator handleAnswer: anAnswer
     ]
     
     handleAnswer: anAnswer [
-	<category: 'show/answer'>
+	<category: 'control flow'>
 	^nil
     ]
     
     show: aWidget [
 	"Show another widget instead of myself.
 	I am also implicitely marked dirty"
-	<category: 'show/answer'>
+	<category: 'control flow'>
 
 	self show: aWidget onAnswer: [:ans | ]
     ]
@@ -222,7 +223,7 @@ added to the decoration chain with #decorateWith:.'>
     show: aWidget onAnswer: aBlock [
 	"Show another widget instead o myself, and catch the answer in <aBlock>.
 	I am also implicitely marked dirty"
-	<category: 'show/answer'>
+	<category: 'control flow'>
 	
 	self
 	    show: aWidget
@@ -261,7 +262,8 @@ added to the decoration chain with #decorateWith:.'>
 	
 	self owner
 	    ifNil: [self setDirty]
-	    ifNotNil: [self owner markDirty]
+	    ifNotNil: [self owner markDirty].
+	dependentWidgets do: [:each | each markDirty]
     ]
  
     setDirty [
@@ -270,7 +272,23 @@ added to the decoration chain with #decorateWith:.'>
 	
 	^self session addToDirtyWidgets: self
     ]
-  
+
+    addDependentWidget: aWidget [
+	"Add <aWidget> to my dependent widgets.
+	Each dependent widget will be rebuilt on AJAX requests whenever
+	I am rebuilt"
+	<category: 'control flow'>
+
+	(dependentWidgets includes: aWidget) ifFalse: [
+	    dependentWidgets add: aWidget]
+    ]
+
+    removeDependentWidget: aWidget [
+	<category: 'control flow'>
+	(dependentWidgets includes: aWidget) ifTrue: [
+	    dependentWidgets remove: aWidget]
+    ]
+
     newRootElement [
 	<category: 'private'>
 	^self defaultRootElementClass new
