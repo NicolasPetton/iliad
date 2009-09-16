@@ -80,7 +80,7 @@ added to the decoration chain with #decorateWith:.'>
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
-	decorator := Decorator decoratee: self
+	decorator := Decorator decoratee: self.
 	dependentWidgets := OrderedCollection new
     ]
 
