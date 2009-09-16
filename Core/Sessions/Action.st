@@ -79,6 +79,6 @@ IliadObject subclass: Action [
 
     respondOn: aResponse [
 	<category: 'converting'>
-	^self value displayOn: aResponse
+	^self value respondOn: aResponse
     ]
 ]

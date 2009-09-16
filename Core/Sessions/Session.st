@@ -89,7 +89,7 @@ IliadObject subclass: Session [
 
     dirtyWidgets [
 	<category: 'accessing'>
-	^dirtyWidgets ifNil: [dirtyWidgets := OrderedCollection new]
+	^dirtyWidgets ifNil: [dirtyWidgets := IdentitySet new]
     ]
 
     encoding [
@@ -252,7 +252,7 @@ IliadObject subclass: Session [
 
     clearActionRegistries [
 	<category: 'actions'>
-	actionRegistries := OrderedCollection new
+	actionRegistries := nil
     ]
 
     actionAt: aKeyString [
@@ -348,7 +348,9 @@ IliadObject subclass: Session [
     
     clearDirtyWidgets [
 	<category: 'states'>
-	dirtyWidgets := OrderedCollection new
+	self dirtyWidgets do: [:each |
+	    (self actionRegistryFor: each) unregisterAllActions].
+	dirtyWidgets := nil
     ]
 
     expire [

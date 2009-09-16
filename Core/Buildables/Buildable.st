@@ -103,9 +103,7 @@ My subclasses must override the #buildContents method, which should return an in
     withActionRegistry: aBlock [
 	<category: 'private'>
 	CurrentActionRegistry 
-	    use: ((self session actionRegistryFor: self)
-		unregisterAllActions;
-		yourself)
+	    use: (self session actionRegistryFor: self)
 	    during: aBlock
     ]
 ]

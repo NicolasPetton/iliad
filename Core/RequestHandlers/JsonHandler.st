@@ -52,7 +52,8 @@ RequestHandler subclass: JsonHandler [
 	<category: 'request handling'>
 	self shouldUpdateApplication 
 	    ifTrue: [widgetsToUpdate := {self application}]
-	    ifFalse: [widgetsToUpdate := self session dirtyWidgets].
+	    ifFalse: [widgetsToUpdate := self session dirtyWidgets copy].
+	self session clearDirtyWidgets.
 	super handleRequest
     ]
 
@@ -75,14 +76,12 @@ RequestHandler subclass: JsonHandler [
 	    jsonContents at: 'scripts' put: scripts.
 	    response nextPutAll: (String streamContents: [:stream |
 		jsonContents printJsonOn: stream]).
-	    self session
-		clearDirtyWidgets;
-		clearRedirectUrl]
+	    self session clearRedirectUrl]
     ]
 
     shouldRedirect [
 	<category: 'testing'>
-	^self session redirectUrl notNil
+	^self session redirectUrl notNil or: [self session isNew]
     ]
 
     shouldUpdateApplication [
