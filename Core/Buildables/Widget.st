@@ -144,19 +144,6 @@ added to the decoration chain with #decorateWith:.'>
 	    ifFalse: [dec1 decoratee: aDecorator]
     ]
 
-    addMessage: aString [
-	<category: 'decorations'>
-	self decorateWith: ((MessageDecorator decoratee: self) message: aString)
-    ]
-
-    addMessage: aString level: anInteger [
-	<category: 'decorations'>
-	self decorateWith: ((MessageDecorator decoratee: self)
-	    message: aString;
-	    level: anInteger;
-	    yourself)
-    ]
-
     decorateWith: aDecorator during: aBlock [
 	<category: 'decorators'>
 	self decorateWith: aDecorator.

@@ -13,6 +13,7 @@ Eval [
     filein: 'WidgetTabs.st'; 
     filein: 'ViewTabs.st'; 
     filein: 'Tree.st'; 
+    filein: 'MessageDecorator.st'; 
     filein: 'ApplicationBrowser.st';
     
     buildXml
