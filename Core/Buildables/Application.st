@@ -274,7 +274,24 @@ the application mode:
 	"Abort all other request handling.
 	 Make a redirection to another view method in this application"
 	<category: 'redirecting'>
+
 	self redirectTo: self originalUrl , '/' , aView
+    ]
+
+    redirectToApplication: aClass [
+	"Abort all other request handling.
+	Redirect to the index view of <aClass>"
+	<category: 'redirecting'>
+
+	self redirectToApplication: aClass view: ''
+    ]
+
+    redirectToApplication: anApplicationClass view: aString [
+	"Abort all other request handling.
+	Redirect to the view named <aString> of <aClass>"
+	<category: 'redirecting'>
+
+	self redirectTo: (self context urlBuilder absolutePathFor: anApplicationClass), '/', aString
     ]
 
     index [
