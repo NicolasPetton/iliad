@@ -60,9 +60,8 @@ Widget extend [
 	    message: aString)
     ]
 
-    addMessage: aString [
+    addMessage: aString level: anInteger[
 	<category: '*Iliad-More-UI'>
-	addMessage: aString level: anInteger
 	self decorateWith: ((MessageDecorator decoratee: self) 
 	    message: aString;
 	    level: anInteger;
