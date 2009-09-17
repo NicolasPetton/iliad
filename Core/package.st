@@ -93,7 +93,6 @@ Eval [
     filein: 'Buildables/Decorator.st'; 
     filein: 'Buildables/AnswerHandler.st'; 
     filein: 'Buildables/Delegator.st'; 
-    filein: 'Buildables/MessageDecorator.st'; 
     filein: 'Buildables/Widget.st'; 
     filein: 'Buildables/Profiler.st'; 
     filein: 'Buildables/Application.st'; 

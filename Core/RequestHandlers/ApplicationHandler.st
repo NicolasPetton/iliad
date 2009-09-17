@@ -63,15 +63,14 @@ RequestHandler subclass: ApplicationHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	self isRequestTokenValid ifTrue: [self evaluateActions].
-	(self shouldRespondInJson) ifTrue: [
+	self isRequestValid 
+	    ifTrue: [self evaluateActions]
+	    ifFalse: [RedirectHandler new handleRequest].
+	self shouldRespondInJson ifTrue: [
 	    JsonHandler new handleRequest].
 	self request isAjaxRequest ifTrue: [self returnResponse: self lastAction asResponse].
-	self session 
-	    clearDirtyWidgets;
-	    clearNextId;
-	    clearActionRegistries.
-	(self shouldRedirect)
+	self cleanUpSession.
+	self shouldRedirect
 	    ifTrue: [RedirectHandler new handleRequest]
 	    ifFalse: [self produceResponse]
     ]
@@ -84,9 +83,10 @@ RequestHandler subclass: ApplicationHandler [
 	self session refreshOnBacktrack ifTrue: [self addNoCacheHeaderTo: response]]
     ]
 
-    isRequestTokenValid [
+    isRequestValid [
 	<category: 'testing'>
-	^self request tokenField = self session token asString
+	^(self request tokenField = self session token asString) or: [
+	    self request actionField isNil and: [self request isGet]]
     ]
 
     shouldRedirect [
@@ -119,5 +119,14 @@ RequestHandler subclass: ApplicationHandler [
 		    action := self session actionAt: asso key.
 		    action ifNotNil: [action value: asso value]].
 		action ifNotNil: [actions add: action]]]
+    ]
+
+    cleanUpSession [
+	<category: 'private'>
+	self session
+	    clearNextId;
+	    clearToken;
+	    clearActionRegistries;
+	    clearDirtyWidgets
     ]
 ]

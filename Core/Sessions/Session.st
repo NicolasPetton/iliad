@@ -55,8 +55,30 @@ IliadObject subclass: Session [
     ]
 
     clearToken [
-	<category: 'accessing'>
+	<category: 'cleaning'>
 	token := nil
+    ]
+
+    clearNextId [ 
+	<category: 'cleaning'>
+	nextId := nil
+    ]
+
+    clearDirtyWidgets [
+	<category: 'cleaning'>
+	self dirtyWidgets do: [:each |
+	    (self actionRegistryFor: each) unregisterAllActions].
+	dirtyWidgets := nil
+    ]
+
+    clearRedirectUrl [
+	<category: 'cleaning'>
+	redirectUrl := nil
+    ]
+
+    clearActionRegistries [
+	<category: 'cleaning'>
+	actionRegistries := nil
     ]
 
     id [
@@ -74,11 +96,6 @@ IliadObject subclass: Session [
 	nextId ifNil: [nextId := (Random new next * 100000) asInteger].
 	nextId := nextId + 1.
 	^nextId printString
-    ]
-
-    clearNextId [ 
-	<category: 'accessing'>
-	nextId := nil
     ]
 
     applications [
@@ -250,11 +267,6 @@ IliadObject subclass: Session [
 	^self actionRegistries add: (ActionRegistry owner: aWidget)
     ]
 
-    clearActionRegistries [
-	<category: 'actions'>
-	actionRegistries := nil
-    ]
-
     actionAt: aKeyString [
 	<category: 'actions'>
 	| action |
@@ -284,11 +296,6 @@ IliadObject subclass: Session [
 	<category: 'actions'>
 	self actionRegistries do: [:each |
 	    each evaluateActionKey: aString]
-    ]
-
-    clearRedirectUrl [
-	<category: 'redirection'>
-	redirectUrl := nil
     ]
 
     redirect [
@@ -344,13 +351,6 @@ IliadObject subclass: Session [
     addToDirtyWidgets: aWidget [
 	<category: 'states'>
 	self dirtyWidgets add: aWidget
-    ]
-    
-    clearDirtyWidgets [
-	<category: 'states'>
-	self dirtyWidgets do: [:each |
-	    (self actionRegistryFor: each) unregisterAllActions].
-	dirtyWidgets := nil
     ]
 
     expire [
