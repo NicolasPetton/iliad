@@ -94,6 +94,7 @@ Eval [
     filein: 'Buildables/AnswerHandler.st'; 
     filein: 'Buildables/Delegator.st'; 
     filein: 'Buildables/Widget.st'; 
+    filein: 'Buildables/PluggableWidget.st';
     filein: 'Buildables/Profiler.st'; 
     filein: 'Buildables/Application.st'; 
     filein: 'Buildables/XHTMLPage.st'; 
