@@ -41,7 +41,7 @@
 
 
 Decorator subclass: MessageDecorator [
-    | level message |
+    | message |
     
     <comment: nil>
     <category: 'Iliad-Core-Buildables'>
@@ -49,20 +49,8 @@ Decorator subclass: MessageDecorator [
     contents [
 	<category: 'building'>
 	^[:e | 
-	    (e header)
-		level: self level;
-		text: self message.
+	    e build: self message.
 	    e build: self decoratee contents]
-    ]
-
-    level [
-	<category: 'accessing'>
-	^level ifNil: [3]
-    ]
-
-    level: anInteger [
-	<category: 'accessing'>
-	level := anInteger
     ]
 
     message [
@@ -70,9 +58,9 @@ Decorator subclass: MessageDecorator [
 	^message
     ]
 
-    message: aString [
+    message: aBlock [
 	<category: 'accessing'>
-	message := aString
+	message := aBlock
     ]
 
     isGlobal [

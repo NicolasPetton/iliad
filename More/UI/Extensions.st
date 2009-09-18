@@ -54,17 +54,9 @@ Widget extend [
 		delegator: (Lightbox new widget: aWidget; yourself)
     ]
 
-    addMessage: aString [
+    addMessage: aBlock [
 	<category: '*Iliad-More-UI'>
 	self decorateWith: ((MessageDecorator decoratee: self) 
-	    message: aString)
-    ]
-
-    addMessage: aString level: anInteger[
-	<category: '*Iliad-More-UI'>
-	self decorateWith: ((MessageDecorator decoratee: self) 
-	    message: aString;
-	    level: anInteger;
-	    yourself)
+	    message: aBlock)
     ]
 ]

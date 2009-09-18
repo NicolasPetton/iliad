@@ -68,12 +68,11 @@ MARelationWidget subclass: MAOneToManyWidget [
 	<category: 'actions'>
 	self root 
 	    show: ((self selected new asWidget)
-		addMessage: 'Add ' , self selected label;
+		addMessage: [:e | e h3: 'Add ' , self selected label];
 		addValidatedForm;
 		yourself)
 	    onAnswer: [:ans | 
-		ans ifNotNil: [
-		    self value: (self value copyWith: ans); refresh]]
+		ans ifNotNil: [self value: (self value copyWith: ans); refresh]]
     ]
 
     down: anElement [
@@ -83,8 +82,8 @@ MARelationWidget subclass: MAOneToManyWidget [
 
     edit: anObject [
 	<category: 'actions'>
-	self root show: ((anObject asWidget)
-	    addMessage: 'Edit ' , self selected label;
+	self root show: (anObject asWidget
+	    addMessage: [:e | e h3: 'Edit ' , self selected label];
 	    addValidatedForm;
 	    yourself).
 	self refresh
@@ -137,11 +136,11 @@ MARelationWidget subclass: MAOneToManyWidget [
 	commands := MACommandColumnWidget new setReport: self report.
 	self description isDefinitive ifFalse: [
 	    commands
-	        addCommandOn: self selector: #edit: text: 'edit';
-	        addCommandOn: self selector: #remove: text: 'remove'].
+		addCommandOn: self selector: #edit: text: 'edit';
+		addCommandOn: self selector: #remove: text: 'remove'].
 	self description isOrdered ifTrue: [
 	    commands
-	        addCommandOn: self selector: #up: text: 'up';
+		addCommandOn: self selector: #up: text: 'up';
 		addCommandOn: self selector: #down: text: 'down'].
 	^commands
     ]

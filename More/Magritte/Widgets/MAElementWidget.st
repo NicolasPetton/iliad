@@ -109,10 +109,12 @@ MADescriptionWidget subclass: MAElementWidget [
 
     chooser: aWidget titled: aString [
 	<category: 'show/answer'>
-	self root show: (aWidget
-		    addMessage: aString;
-		    yourself)
-	    onAnswer: [:ans | ans isNil ifFalse: [self value: ans]]
+	self root 
+	    show: (aWidget
+		addMessage: [:e | e h3: aString];
+		yourself)
+	    onAnswer: [:ans |
+		ans isNil ifFalse: [self value: ans]]
     ]
 ]
 
