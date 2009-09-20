@@ -26,22 +26,43 @@ TestCase subclass: WidgetTest [
 		c3 answer: 10]
     ]
 
-    testDecorations [
+    testDecorators [
 	<category: 'testing'>
-	| d1 d2 |
+	| d1 d2 d3 |
 	d1 := Decorator new.
 	d2 := Decorator new.
+	d3 := Decorator new.
 	c1 decorateWith: d1.
-	self assert: c1 decorator decoratee = d1.
-	self assert: c1 decorator decoratee decoratee = c1.
+	self assert: d1 decoratee = c1.
 	c1 decorateWith: d2.
-	self assert: c1 decorator decoratee decoratee = d2.
-	self assert: c1 decorator decoratee decoratee decoratee = c1.
-	d1 removeYourself.
-	self assert: c1 decorator decoratee = d2.
-	self assert: c1 decorator decoratee decoratee = c1.
+	self assert: d1 decoratee = d2.
+	self assert: d1 decoratee decoratee = c1.
+	c1 decorateWith: d3.
+	self assert: d1 decoratee = d2.
+	self assert: d1 decoratee decoratee = d3.
+	self assert: d1 decoratee decoratee decoratee = c1.
 	d2 removeYourself.
-	self assert: c1 decorator decoratee = c1
+	self assert: d1 decoratee = d3.
+	self assert: d1 decoratee decoratee = c1.
+	d3 removeYourself.
+	self assert: d1 decoratee = c1
+    ]
+
+    testRetrieveControl [
+	<category: 'testing'>
+	| str |
+	str := WriteStream on: ''.
+	CurrentContext
+	    use: (Context new session: Session new)
+	    during: [
+		c1 show: c2.
+		c1 show: c3.
+		c1 build printHtmlOn: str.
+		self deny: ('*test widget 1*' match: str contents).
+		c1 retrieveControl.
+		str := WriteStream on: ''.
+		c1 build printHtmlOn: str.
+		self assert: ('*test widget 1*' match: str contents)]
     ]
 
     testShow [

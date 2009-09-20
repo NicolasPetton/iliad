@@ -151,11 +151,6 @@ added to the decoration chain with #decorateWith:.'>
 	aDecorator removeYourself
     ]
 
-    decorator [
-	<category: 'decorators'>
-	^decorator
-    ]
-
     decoratorsDo: aBlock [
 	<category: 'decorators'>
 	| dec |
