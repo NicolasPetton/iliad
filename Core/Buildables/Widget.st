@@ -156,6 +156,15 @@ added to the decoration chain with #decorateWith:.'>
 	^decorator
     ]
 
+    decoratorsDo: aBlock [
+	<category: 'decorators'>
+	| dec |
+	dec := decorator.
+	[dec ~= self] whileTrue: [
+	    aBlock value: dec.
+	    dec := dec decoratee]
+    ]
+
     removeDecorator: aDecorator [
 	"Remove <aDecorator> from the decoration chain,
 	except if <aDecorator> is the initial one"
@@ -198,7 +207,16 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'control flow'>
 	^nil
     ]
-    
+   
+    retrieveControl [
+	"Get the control back from any showed widget, and make it answer nil"
+	<category: 'control flow'>
+
+	self decoratorsDo: [:each |
+	    each isDelegator ifTrue: [
+		each widget answer: nil]]
+    ]
+
     show: aWidget [
 	"Show another widget instead of myself.
 	I am also implicitely marked dirty"
