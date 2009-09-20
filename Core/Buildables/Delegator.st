@@ -62,7 +62,7 @@ Decorator subclass: Delegator [
 
     contents [
 	<category: 'building'>
-	^self widget decorator contents
+	^[:e | e build: self widget] 
     ]
 
     handleAnswer: anAnswer [
@@ -70,6 +70,11 @@ Decorator subclass: Delegator [
 	self widget handleAnswer: anAnswer
     ]
 
+    isDelegator [
+	<category: 'testing'>
+	^true
+    ]
+    
     isGlobal [
 	<category: 'testing'>
 	^true

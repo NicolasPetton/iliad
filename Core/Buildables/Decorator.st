@@ -89,6 +89,11 @@ Subclasses can be used to modify the building process of a widget, or change its
 	self decoratee removeDecorator: self
     ]
 
+    isDelegator [
+	<category: 'testing'>
+	^false
+    ]
+
     isGlobal [
 	<category: 'testing'>
 	^false

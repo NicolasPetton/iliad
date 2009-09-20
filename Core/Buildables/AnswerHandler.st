@@ -58,7 +58,7 @@ See #handleAnswer: and Widget>>show:onAnswer:'>
 
     handleAnswer: anAnswer [
 	<category: 'decorations'>
-	(self action)
+	self action
 	    value: anAnswer;
 	    evaluate
     ]

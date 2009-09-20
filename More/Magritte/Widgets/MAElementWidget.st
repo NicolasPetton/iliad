@@ -113,8 +113,7 @@ MADescriptionWidget subclass: MAElementWidget [
 	    show: (aWidget
 		addMessage: [:e | e h3: aString];
 		yourself)
-	    onAnswer: [:ans |
-		ans isNil ifFalse: [self value: ans]]
+	    onAnswer: [:ans | self value: ans]
     ]
 ]
 
