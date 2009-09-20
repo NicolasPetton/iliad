@@ -207,7 +207,31 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'control flow'>
 	^nil
     ]
-   
+  
+    replace: aWidget with: anotherWidget [
+	"Similar to #show:* methods, except that several widgets can't be
+	stacked. If <aWidget> is already replaced with another one, force
+	the replacing widget to answer nil"
+	<category: 'control flow'>
+
+	self
+	    replace: aWidget
+	    with: anotherWidget
+	    onAnswer: [:ans | ]
+    ]
+
+    replace: aWidget with: anotherWidget onAnswer: aBlock [
+	"Similar to #show:* methods, except that several widgets can't be
+	stacked. If <aWidget> is already replaced with another one, force
+	the replacing widget to answer nil"
+	<category: 'control flow'>
+
+	aWidget
+	    retrieveControl;
+	    show: anotherWidget
+	    onAnswer: aBlock
+    ]
+
     retrieveControl [
 	"Get the control back from any showed widget, and make it answer nil"
 	<category: 'control flow'>
