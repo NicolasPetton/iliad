@@ -48,14 +48,13 @@ MAActionColumnWidget subclass: MASelectionColumnWidget [
 	<category: 'building'>
 	| selected |
 	selected := self isSelected: anObject.
-	^
-	[:e | 
-	(e anchor)
-	    class: (selected isNil ifFalse: ['selected']);
-	    action: [self selectRow: anObject value: selected not];
-	    text: (selected 
-			ifTrue: [self stringSelected]
-			ifFalse: [self stringDeselected])]
+	^[:e | 
+	    e anchor
+		class: (selected isNil ifFalse: ['selected']);
+		action: [self selectRow: anObject value: selected not];
+		build: (selected 
+		    ifTrue: [self stringSelected]
+		    ifFalse: [self stringDeselected])]
     ]
 
     defaultSelection [
@@ -135,11 +134,8 @@ MAActionColumnWidget subclass: MASelectionColumnWidget [
 
     webdings: aString [
 	<category: 'private'>
-	^
-	[:html | 
-	(html span)
+	^[:e | e span
 	    style: 'font-family: Webdings';
-	    with: [html html: aString]]
-    ]
+	    text: aString]
 ]
 

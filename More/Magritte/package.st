@@ -19,7 +19,8 @@ Eval [
 	filein: 'Report/MACheckboxColumnWidget.st'; 
 	filein: 'Report/MADescribedColumnWidget.st'; 
 	filein: 'Report/MADescribedScalarColumnWidget.st'; 
-	filein: 'Report/MAToggleColumnWidget.st'; 
+	filein: 'Report/MAToggleColumnWidget.st';
+	filein: 'Report/MAContentsColumnWidget.st';
 	filein: 'Report/MAReportWidget.st'; 
 
 	filein: 'Widgets/MADescriptionWidget.st'; 

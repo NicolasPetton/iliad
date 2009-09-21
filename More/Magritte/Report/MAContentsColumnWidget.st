@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Magritte.MACommandColumnWidget class definition
+|   Magritte.MAContentsColumnWidget class definition
 |
  ======================================================================"
 
@@ -38,74 +38,30 @@
 
 
 
-MAActionColumnWidget subclass: MACommandColumnWidget [
-    | commands |
+MAColumnWidget subclass: MAContentsColumnWidget [
+    | contentsBlock |
     
     <comment: nil>
     <category: 'Iliad-More-Magritte-Report'>
 
-    addCommand: aBlock text: aString [
-	<category: 'actions'>
-	self addCommand: aBlock text: aString hash: [:val | '']
-    ]
-
-    addCommand: aBlock text: aString hash: anotherBlock [
-	<category: 'actions'>
-	self commands add: (aBlock -> anotherBlock) -> aString
-    ]
-
-    addCommandOn: anObject selector: aSelector [
-	<category: 'actions'>
-	self 
-	    addCommandOn: anObject
-	    selector: aSelector
-	    text: aSelector allButLast asCapitalizedPhrase
-    ]
-
-    addCommandOn: anObject selector: aSelector text: aString [
-	<category: 'actions'>
-	self addCommand: (MessageSend receiver: anObject selector: aSelector)
-	    text: aString
-    ]
-
-    buildCellFormContent: anObject [
+    buildCellContent: anObject [
 	<category: 'building'>
-	^[:e | 
-	    self commands do: 
-		[:each | 
-		    (e submitButton)
-			action: [each key key value: anObject]
-			hash: [each key value value: anObject];
-			text: each value]
-		separatedBy: [e space]]
+	^[:e | self contentsBlock value: e value: anObject]
     ]
 
-    buildCellLinkContent: anObject [
-	<category: 'building'>
-	^[:e | 
-	    self commands do: 
-		[:each | 
-		e anchor
-		    action: [each key key value: anObject]
-		    hash: (each key value value: anObject);
-		    text: each value]
-	    separatedBy: [e space]]
-    ]
-
-    commands [
+    contentsBlock [
 	<category: 'accessing'>
-	^commands
+	^contentsBlock
     ]
 
-    commands: aCollection [
+    contentsBlock: aBlock [
 	<category: 'accessing'>
-	commands := aCollection
+	contentsBlock := aBlock
     ]
 
-    initialize [
-	<category: 'initialization'>
-	super initialize.
-	self commands: OrderedCollection new
+    defaultTitle [
+	<category: 'accessing-defaults'>
+	^String new
     ]
 ]
 
