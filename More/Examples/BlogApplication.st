@@ -91,7 +91,7 @@ Application subclass: BlogApplication [
 	    show: (((BlogPost new asWidget)
 		addValidatedForm;
 		yourself) addMessage: [:e | e h3:'Add new post'])
-	    onAnswer: [:ans | self model posts add: ans]
+	    onAnswer: [:ans | ans ifNotNil: [self model posts add: ans]]
     ]
 
     index [

@@ -245,8 +245,8 @@ added to the decoration chain with #decorateWith:.'>
     ]
 
     show: aWidget onAnswer: aBlock [
-	"Show another widget instead of myself, and catch the answer in <aBlock>, if
-	the answers is not nil. I am also implicitely marked dirty"
+	"Show another widget instead of myself and catch the answer in <aBlock>.
+	I am also implicitely marked dirty"
 	<category: 'control flow'>
 	
 	self
@@ -265,7 +265,7 @@ added to the decoration chain with #decorateWith:.'>
 	    self markDirty.
 	    aWidget owner: nil.
 	    answerHandler removeYourself.
-	    value ifNotNil: [aBlock value: value]]).
+	    aBlock value: value]).
 	aWidget
 	    owner: self;
 	    markDirty;

@@ -8,12 +8,10 @@ Widget subclass: TodoListGridWidget [
 	<category: 'actions'>
 	| newItem |
 	newItem := TodoListItem new.
-	self 
-	    lightbox: ((TodoListItemEditor new)
+	self lightbox: ((TodoListItemEditor new)
 		item: newItem;
 		yourself)
-	    onAnswer: [:item |
-		self application model addItem: item]
+	    onAnswer: [:item | item ifNotNil: [self application model addItem: item]]
     ]
 
     editItem: anItem [
@@ -21,7 +19,7 @@ Widget subclass: TodoListGridWidget [
 	self lightbox: ((TodoListItemEditor new)
 		    item: (ModelProxy on: anItem);
 		    yourself)
-	    onAnswer: [:proxy | proxy commit]
+	    onAnswer: [:proxy | proxy ifNotNil:  [proxy commit]]
     ]
 
     removeItem: anItem [

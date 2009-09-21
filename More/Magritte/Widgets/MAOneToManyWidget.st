@@ -67,11 +67,12 @@ MARelationWidget subclass: MAOneToManyWidget [
     add [
 	<category: 'actions'>
 	self root 
-	    show: (self selected new asWidget
+	    show: ((self selected new asWidget)
 		addMessage: [:e | e h3: 'Add ' , self selected label];
 		addValidatedForm;
 		yourself)
-	    onAnswer: [:ans | self value: (self value copyWith: ans); refresh]
+	    onAnswer: [:ans |
+		ans ifNotNil: [self value: (self value copyWith: ans); refresh]]
     ]
 
     down: anElement [
