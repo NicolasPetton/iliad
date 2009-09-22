@@ -137,5 +137,6 @@ MAActionColumnWidget subclass: MASelectionColumnWidget [
 	^[:e | e span
 	    style: 'font-family: Webdings';
 	    text: aString]
+    ]
 ]
 
