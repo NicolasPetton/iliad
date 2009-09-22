@@ -125,13 +125,14 @@ and wait for a ResponseNotification to respond to them.'>
 	<category: 'private'>
 	| applicationClass |
 	applicationClass := nil.
-	[applicationClass isNil and: [aRoute atEnd not]] whileTrue: [
+	[aRoute atEnd not] whileTrue: [
 	    aRoute next.
 	    applicationClass := Application allSubclasses
-		detect: [:each | 
-		    (self context urlBuilder absolutePathFor: each) = aRoute currentPath]
-		ifNone: [nil]].
-	^ applicationClass
+		detect: [:each | (self context urlBuilder absolutePathFor: each) = aRoute currentPath]
+		ifNone: [applicationClass]].
+	 applicationClass ifNotNil: [
+	    aRoute position: (applicationClass path findTokens: aRoute delimiter asString) size].
+	    ^applicationClass
     ]
     
     findApplicationFor: aRoute [
