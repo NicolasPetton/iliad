@@ -4,7 +4,7 @@ Application subclass: ApplicationMock1 [
     <category: 'Iliad-Tests-Unit-Dispatching'>
 
     ApplicationMock1 class >> path [
-	^'/test1'
+	^'/test'
     ]
 ]
 
