@@ -128,10 +128,11 @@ and wait for a ResponseNotification to respond to them.'>
 	[aRoute atEnd not] whileTrue: [
 	    aRoute next.
 	    applicationClass := Application allSubclasses
-		detect: [:each | (self context urlBuilder absolutePathFor: each) = aRoute currentPath]
+		detect: [:each | 
+		    (self context urlBuilder absolutePathFor: each) = aRoute currentPath]
 		ifNone: [applicationClass]].
 	 applicationClass ifNotNil: [
-	    aRoute position: (applicationClass path findTokens: aRoute delimiter asString) size].
+	    aRoute position: (Url absolute: applicationClass path) path size].
 	    ^applicationClass
     ]
     
