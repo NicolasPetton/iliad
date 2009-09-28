@@ -116,8 +116,7 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'building'>
 	
 	^self newRootElement div 
-	    id: self id;
-	    class: '_widget';
+	    class: '_widget ', self id;
 	    build: decorator contents;
 	    yourself
     ]

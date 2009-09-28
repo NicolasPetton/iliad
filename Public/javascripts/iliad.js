@@ -212,7 +212,7 @@ var iliad = (function() {
 	}
 
 	function updateWidget(id, contents) {
-		jQuery("#"+id).replaceWith(contents)
+		jQuery("."+id).replaceWith(contents)
 	}
 
 	function evalScript(script) {
