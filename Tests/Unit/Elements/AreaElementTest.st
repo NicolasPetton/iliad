@@ -10,13 +10,13 @@ ElementTest subclass: AreaElementTest [
 
     testAccessKey [
 	<category: 'testing'>
-	e accessKey: 'a'.
+	e accesskey: $a.
 	self shouldHaveAttribute: 'accesskey' value: 'a'
     ]
 
     testAlternativeText [
 	<category: 'testing'>
-	e alternativeText: 'foo'.
+	e alt: 'foo'.
 	self shouldHaveAttribute: 'alt' value: 'foo'
     ]
 
@@ -34,7 +34,7 @@ ElementTest subclass: AreaElementTest [
 
     testNoHref [
 	<category: 'testing'>
-	e noHref.
+	e nohref.
 	self shouldHaveAttribute: 'nohref' value: 'nohref'
     ]
 
@@ -52,7 +52,7 @@ ElementTest subclass: AreaElementTest [
 
     testTabIndex [
 	<category: 'testing'>
-	e tabIndex: 2.
+	e tabindex: 2.
 	self shouldHaveAttribute: 'tabindex' value: '2'
     ]
 

@@ -22,19 +22,19 @@ ElementTest subclass: ObjectElementTest [
 
     testClassId [
 	<category: 'testing'>
-	e classId: 'foo'.
+	e classid: 'foo'.
 	self shouldHaveAttribute: 'classid' value: 'foo'
     ]
 
     testCodeBase [
 	<category: 'testing'>
-	e codeBase: 'foo'.
+	e codebase: 'foo'.
 	self shouldHaveAttribute: 'codebase' value: 'foo'
     ]
 
     testCodeType [
 	<category: 'testing'>
-	e codeType: 'foo'.
+	e codetype: 'foo'.
 	self shouldHaveAttribute: 'codetype' value: 'foo'
     ]
 
@@ -70,7 +70,7 @@ ElementTest subclass: ObjectElementTest [
 
     testTabIndex [
 	<category: 'testing'>
-	e tabIndex: 2.
+	e tabindex: 2.
 	self shouldHaveAttribute: 'tabindex' value: '2'
     ]
 
@@ -87,7 +87,7 @@ ElementTest subclass: ObjectElementTest [
 
     testUseMap [
 	<category: 'testing'>
-	e useMap: 'foo'.
+	e usemap: 'foo'.
 	self shouldHaveAttribute: 'usemap' value: 'foo'
     ]
 

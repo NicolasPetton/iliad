@@ -45,7 +45,7 @@ ElementTest subclass: FormElementTest [
 
     testEncodingType [
 	<category: 'tests'>
-	e encodingType: 'foo'.
+	e enctype: 'foo'.
 	self assert: (e attributeAt: 'enctype') = 'foo'
     ]
 
@@ -53,12 +53,6 @@ ElementTest subclass: FormElementTest [
 	<category: 'tests'>
 	e multipart: true.
 	self assert: (e attributeAt: 'enctype') = 'multipart/form-data'
-    ]
-
-    testName [
-	<category: 'tests'>
-	e name: 'hello'.
-	self assert: e id = 'hello'
     ]
 
     testUseGet [

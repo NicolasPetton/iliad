@@ -10,7 +10,7 @@ ElementTest subclass: RubyTextElementTest [
 
     testRubyBaseSpan [
 	<category: 'testing'>
-	e rubyBaseSpan: 2.
+	e rbspan: 2.
 	self shouldHaveAttribute: 'rbspan' value: '2'
     ]
 

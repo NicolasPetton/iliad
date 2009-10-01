@@ -10,7 +10,7 @@ ElementTest subclass: CheckboxElementTest [
 
     testAccessKey [
 	<category: 'testing'>
-	e accessKey: 'a'.
+	e accessKey: $a.
 	self shouldHaveAttribute: 'accesskey' value: 'a'
     ]
 

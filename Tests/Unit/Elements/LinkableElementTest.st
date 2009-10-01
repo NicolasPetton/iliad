@@ -16,7 +16,7 @@ ElementTest subclass: LinkableElementTest [
 
     testHrefLang [
 	<category: 'testing'>
-	e hrefLang: 'foo'.
+	e hreflang: 'foo'.
 	self shouldHaveAttribute: 'hreflang' value: 'foo'
     ]
 

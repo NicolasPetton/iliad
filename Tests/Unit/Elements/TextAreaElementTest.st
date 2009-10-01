@@ -8,12 +8,6 @@ ElementTest subclass: TextAreaElementTest [
 	e := TextAreaElement new
     ]
 
-    testColumns [
-	<category: 'testing'>
-	e columns: 2.
-	self shouldHaveAttribute: 'cols' value: '2'
-    ]
-
     testDisabled [
 	<category: 'testing'>
 	e disabled.

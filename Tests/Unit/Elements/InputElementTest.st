@@ -22,13 +22,13 @@ ElementTest subclass: InputElementTest [
 
     testAccessKey [
 	<category: 'testing'>
-	e accessKey: 'a'.
+	e accesskey: $a.
 	self shouldHaveAttribute: 'accesskey' value: 'a'
     ]
 
     testAlternativeText [
 	<category: 'testing'>
-	e alternativeText: 'foo'.
+	e alt: 'foo'.
 	self shouldHaveAttribute: 'alt' value: 'foo'
     ]
 
@@ -40,13 +40,13 @@ ElementTest subclass: InputElementTest [
 
     testIsMap [
 	<category: 'testing'>
-	e isMap.
+	e ismap.
 	self shouldHaveAttribute: 'ismap' value: 'ismap'
     ]
 
     testMaxLength [
 	<category: 'testing'>
-	e maxLength: 2.
+	e maxlength: 2.
 	self shouldHaveAttribute: 'maxlength' value: '2'
     ]
 
@@ -69,7 +69,7 @@ ElementTest subclass: InputElementTest [
 
     testUseMap [
 	<category: 'testing'>
-	e useMap: 'foo'.
+	e usemap: 'foo'.
 	self shouldHaveAttribute: 'usemap' value: 'foo'
     ]
 

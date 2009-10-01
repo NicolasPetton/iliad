@@ -10,13 +10,13 @@ ElementTest subclass: AnchorElementTest [
 
     testAccessKey [
 	<category: 'testing'>
-	e accessKey: $a.
+	e accesskey: $a.
 	self shouldHaveAttribute: 'accesskey' value: 'a'
     ]
 
     testCircularShape [
 	<category: 'testing'>
-	e circularShape.
+	e circleShape.
 	self shouldHaveAttribute: 'shape' value: 'circle'
     ]
 
@@ -34,13 +34,13 @@ ElementTest subclass: AnchorElementTest [
 
     testPolygonalShape [
 	<category: 'testing'>
-	e polygonalShape.
+	e polyShape.
 	self shouldHaveAttribute: 'shape' value: 'poly'
     ]
 
     testRectangularShape [
 	<category: 'testing'>
-	e rectangularShape.
+	e rectShape.
 	self shouldHaveAttribute: 'shape' value: 'rect'
     ]
 
@@ -52,7 +52,7 @@ ElementTest subclass: AnchorElementTest [
 
     testTabIndex [
 	<category: 'testing'>
-	e tabIndex: 3.
+	e tabindex: 3.
 	self shouldHaveAttribute: 'tabindex' value: '3'
     ]
 

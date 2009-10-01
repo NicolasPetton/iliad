@@ -16,13 +16,13 @@ ElementTest subclass: TableElementTest [
 
     testCellPadding [
 	<category: 'testing'>
-	e cellPadding: 2.
+	e cellpadding: 2.
 	self shouldHaveAttribute: 'cellpadding' value: '2'
     ]
 
     testCellSpacing [
 	<category: 'testing'>
-	e cellSpacing: 2.
+	e cellspacing: 2.
 	self shouldHaveAttribute: 'cellspacing' value: '2'
     ]
 

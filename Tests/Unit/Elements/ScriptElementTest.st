@@ -10,7 +10,7 @@ ElementTest subclass: ScriptElementTest [
 
     testCharSet [
 	<category: 'testing'>
-	e charSet: 'foo'.
+	e charset: 'foo'.
 	self shouldHaveAttribute: 'charset' value: 'foo'
     ]
 
@@ -22,7 +22,7 @@ ElementTest subclass: ScriptElementTest [
 
     testSrc [
 	<category: 'testing'>
-	e source: 'foo'.
+	e src: 'foo'.
 	self shouldHaveAttribute: 'src' value: 'foo'
     ]
 

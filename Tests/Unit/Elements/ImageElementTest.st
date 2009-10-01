@@ -10,7 +10,7 @@ ElementTest subclass: ImageElementTest [
 
     testAlternativeText [
 	<category: 'testing'>
-	e alternativeText: 'foo'.
+	e alt: 'foo'.
 	self shouldHaveAttribute: 'alt' value: 'foo'
     ]
 
@@ -22,19 +22,19 @@ ElementTest subclass: ImageElementTest [
 
     testIsMap [
 	<category: 'testing'>
-	e isMap.
+	e ismap.
 	self shouldHaveAttribute: 'ismap' value: 'ismap'
     ]
 
     testLongDescription [
 	<category: 'testing'>
-	e longDescription: 'foo bar'.
+	e longdesc: 'foo bar'.
 	self shouldHaveAttribute: 'longdesc' value: 'foo bar'
     ]
 
     testSource [
 	<category: 'testing'>
-	e source: 'foo'.
+	e src: 'foo'.
 	self shouldHaveAttribute: 'src' value: 'foo'
     ]
 
@@ -45,7 +45,7 @@ ElementTest subclass: ImageElementTest [
 
     testUsemap [
 	<category: 'testing'>
-	e useMap: 'foo'.
+	e usemap: 'foo'.
 	self shouldHaveAttribute: 'usemap' value: 'foo'
     ]
 

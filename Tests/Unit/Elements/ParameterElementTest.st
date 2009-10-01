@@ -38,7 +38,7 @@ ElementTest subclass: ParameterElementTest [
 
     testValueType [
 	<category: 'testing'>
-	e valueType: 'foo'.
+	e valuetype: 'foo'.
 	self shouldHaveAttribute: 'valuetype' value: 'foo'
     ]
 ]

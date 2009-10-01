@@ -10,13 +10,13 @@ ElementTest subclass: TableElementElementTest [
 
     testAlignment [
 	<category: 'testing'>
-	e alignment: 'foo'.
+	e align: 'foo'.
 	self shouldHaveAttribute: 'align' value: 'foo'
     ]
 
     testVerticalAlignment [
 	<category: 'testing'>
-	e verticalAlignment: 'foo'.
+	e valign: 'foo'.
 	self shouldHaveAttribute: 'valign' value: 'foo'
     ]
 ]

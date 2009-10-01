@@ -14,12 +14,6 @@ ElementTest subclass: MetaElementTest [
 	self shouldHaveAttribute: 'content' value: 'foo'
     ]
 
-    testHttpEquiv [
-	<category: 'testing'>
-	e httpEquiv: 'foo'.
-	self shouldHaveAttribute: 'http-equiv' value: 'foo'
-    ]
-
     testHttpEquivalent [
 	<category: 'testing'>
 	e httpEquivalent: 'foo'.

@@ -10,7 +10,7 @@ ElementTest subclass: TableCellElementTest [
 
     testAbbreviation [
 	<category: 'testing'>
-	e abbreviation: 'foo'.
+	e abbr: 'foo'.
 	self shouldHaveAttribute: 'abbr' value: 'foo'
     ]
 
@@ -22,7 +22,7 @@ ElementTest subclass: TableCellElementTest [
 
     testColumnSpan [
 	<category: 'testing'>
-	e columnSpan: 2.
+	e colspan: 2.
 	self shouldHaveAttribute: 'colspan' value: '2'
     ]
 
@@ -34,7 +34,7 @@ ElementTest subclass: TableCellElementTest [
 
     testRowSpan [
 	<category: 'testing'>
-	e rowSpan: 2.
+	e rowspan: 2.
 	self shouldHaveAttribute: 'rowspan' value: '2'
     ]
 
