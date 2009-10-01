@@ -8,7 +8,7 @@ Eval [
     filein: 'RSSCategoryElement.st'; 
     filein: 'RSSCloudElement.st'; 
     filein: 'RSSCommentsElement.st'; 
-    filein: 'RSSEnclosure.st'; 
+    filein: 'RSSEnclosureElement.st'; 
     filein: 'RSSGuidElement.st'; 
     filein: 'RSSRssElement.st'; 
     filein: 'RSSSourceElement.st'; 
