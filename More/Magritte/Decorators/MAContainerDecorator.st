@@ -70,7 +70,7 @@ MAWidgetDecorator subclass: MAContainerDecorator [
 		yourself.
 	    self buttons do: [:each | 
 		div button
-		    accessKey: each value first;
+		    accesskey: each value first;
 		    action: [self execute: each key];
 		    text: each value]]
     ]
