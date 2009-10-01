@@ -63,7 +63,7 @@ MAElementWidget subclass: MATextInputWidget [
     inputContents [
 	<category: 'rendering'>
 	^[:e | 
-	    (e textInput)
+	    e input
 		id: self labelId;
 		value: self string;
 		action: [:val | self string: val]]

@@ -71,10 +71,11 @@ MAElementWidget subclass: MAFileUploadWidget [
     uploadContents [
 	<category: 'building'>
 	^[:e | 
-	    (e fileInput)
+	    e file
 		id: self labelId;
 		action: [:val | self upload: val].
-	    e button text: 'upload']
+	    e button
+		text: 'upload']
     ]
 
     viewerContents [

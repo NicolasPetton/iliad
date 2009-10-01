@@ -52,13 +52,13 @@ MAElementWidget subclass: MATextPasswordWidget [
     editorContents [
 	<category: 'building'>
 	^[:e | 
-	    (e passwordInput)
+	    e password
 		id: self labelId;
 		value: self string;
 		action: [:val | self string: val]]
     ]
 
-    hasLabelId [
+    hasLabelId 
 	<category: 'testing'>
 	^self isReadonly not
     ]

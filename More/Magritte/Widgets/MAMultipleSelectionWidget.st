@@ -96,12 +96,10 @@ MAOptionWidget subclass: MAMultipleSelectionWidget [
 
     viewerContents [
 	<category: 'building'>
-	^[:e | 
-	    | list |
-	    list := e unorderedList.
-	    self selectedList do: 
-		[:each | 
-		(list listItem)
+	^[:e | | list |
+	    list := e ul.
+	    self selectedList do: [:each | 
+		list li
 		    id: self labelId;
 		    text: (self labelForOption: each)]]
     ]

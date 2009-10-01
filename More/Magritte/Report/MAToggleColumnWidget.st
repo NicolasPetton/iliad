@@ -47,9 +47,8 @@ MADescribedColumnWidget subclass: MAToggleColumnWidget [
 	<category: 'building'>
 	| value |
 	value := self valueFor: anObject.
-	^
-	[:e | 
-	(e anchor)
+	^[:e | 
+	e a
 	    action: [anObject write: value not using: self description];
 	    text: (self description toString: value)]
     ]

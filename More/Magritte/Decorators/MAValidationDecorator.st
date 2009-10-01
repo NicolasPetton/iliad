@@ -60,11 +60,11 @@ MAWidgetDecorator subclass: MAValidationDecorator [
     errorsContents [
 	<category: 'building'>
 	^[:e | | list |
-	    list := e unorderedList
+	    list := e ul
 		class: 'errors';
 		yourself.
 	self errors do: [:each |
-	    list listItem text: each printString]]
+	    list li text: each printString]]
     ]
 ]
 

@@ -54,7 +54,7 @@ MAWidgetBuilder subclass: MATableBuilder [
     buildControlFor: aDescription [
 	<category: 'building'>
 	^[:e | 
-	    e tableData
+	    e td
 		class: (self classFor: aDescription);
 		build: (super buildControlFor: aDescription)]
     ]
@@ -62,9 +62,9 @@ MAWidgetBuilder subclass: MATableBuilder [
     buildElementFor: aDescription [
 	<category: 'building'>
 	^[:e | 
-	    aDescription group = group ifFalse: [
-		self buildGroupFor: aDescription].
-	    e tableRow
+	    aDescription group = group 
+		ifFalse: [self buildGroupFor: aDescription].
+	    e tr
 		build: (self buildLabelFor: aDescription);
 		build: (self buildControlFor: aDescription)]
     ]
@@ -74,9 +74,7 @@ MAWidgetBuilder subclass: MATableBuilder [
 	^[:e || trow |
 	    e build: (super buildGroupFor: aDescription).
 	    group isNil ifTrue: [^self].
-	    trow := e tableRow
-		class: 'group';
-		yourself.
+	    trow := e tr class: 'group'; yourself.
 	    trow tableHeading
 		colSpan: 2;
 		text: group]
@@ -85,7 +83,7 @@ MAWidgetBuilder subclass: MATableBuilder [
     buildLabelFor: aDescription [
 	<category: 'building'>
 	^[:e | 
-	e tableHeader
+	    e th
 	    title: aDescription comment;
 	    class: (self classFor: aDescription);
 	    build: (super buildLabelFor: aDescription)]

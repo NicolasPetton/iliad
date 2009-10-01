@@ -64,17 +64,15 @@ MAWidgetDecorator subclass: MAContainerDecorator [
 
     buttonsContents [
 	<category: 'building'>
-	^
-	[:e | 
-	| div |
-	div := e div
-	    class: 'buttons';
-	    yourself.
-	self buttons do: [:each | 
-	    div button
-		accessKey: each value first;
-		action: [self execute: each key];
-		text: each value]]
+	^[:e || div |
+	    div := e div
+		class: 'buttons';
+		yourself.
+	    self buttons do: [:each | 
+		div button
+		    accessKey: each value first;
+		    action: [self execute: each key];
+		    text: each value]]
     ]
 
     contents [
