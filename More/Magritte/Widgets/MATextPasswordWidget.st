@@ -58,7 +58,7 @@ MAElementWidget subclass: MATextPasswordWidget [
 		action: [:val | self string: val]]
     ]
 
-    hasLabelId 
+    hasLabelId [ 
 	<category: 'testing'>
 	^self isReadonly not
     ]
