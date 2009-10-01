@@ -68,10 +68,10 @@ XHTMLElement subclass: LinkableElement [
 
     linkToApplication: anApplicationClass [
 	<category: 'accessing attributes'>
-	self linkToApplication: anApplicationClass view: ''
+	self linkToApplication: anApplicationClass controller: ''
     ]
 
-    linkToApplication: anApplicationClass view: aString [
+    linkToApplication: anApplicationClass controller: aString [
 	<category: 'accessing attributes'>
 	self href: (self context urlBuilder absolutePathFor: anApplicationClass), '/', aString
     ]

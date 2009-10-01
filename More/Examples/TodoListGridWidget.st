@@ -36,49 +36,43 @@ Widget subclass: TodoListGridWidget [
 
     contents [
 	<category: 'building'>
-	^
-	[:e | 
-	| table |
-	table := e table.
-	table build: self tableHeadContents.
-	(self items asSortedCollection: [:a :b | a deadline < b deadline]) 
-	    do: [:each | table build: (self rowContentsForItem: each)].
-	(e div anchor)
-	    action: [self addNewItem];
-	    text: 'new']
+	^[:e || table |
+	    table := e table.
+	    table build: self tableHeadContents.
+	    (self items asSortedCollection: [:a :b | a deadline < b deadline]) 
+		do: [:each | table build: (self rowContentsForItem: each)].
+	    e div a
+		action: [self addNewItem];
+		text: 'new']
     ]
 
     rowContentsForItem: anItem [
 	<category: 'building'>
-	^
-	[:e | 
-	| row |
-	row := e tableRow.
-	(row tableData form checkbox)
-	    checked: anItem completed;
-	    beSubmitOnClick;
-	    action: [:val | self setItem: anItem completed: val].
-	row tableData text: anItem title.
-	row tableData text: anItem description.
-	row tableData text: anItem deadline asString.
-	(row tableData anchor)
-	    action: [self editItem: anItem];
-	    text: 'edit'.
-	(row tableData anchor)
-	    action: [self removeItem: anItem];
-	    text: 'remove']
+	^[:e || row |
+	    row := e tr.
+	    (row td form checkbox)
+		checked: anItem completed;
+		beSubmitOnClick;
+		action: [:val | self setItem: anItem completed: val].
+	    row td text: anItem title.
+	    row td text: anItem description.
+	    row td text: anItem deadline asString.
+	    row td a
+		action: [self editItem: anItem];
+		text: 'edit'.
+	    row td a
+		action: [self removeItem: anItem];
+		text: 'remove']
     ]
 
     tableHeadContents [
 	<category: 'building'>
-	^
-	[:e | 
-	| head |
-	head := e tableHead.
-	head tableData text: ''.
-	head tableData text: 'Title'.
-	head tableData text: 'Description'.
-	head tableData text: 'Deadline']
+	^[:e || head |
+	    head := e thead.
+	    head td text: ''.
+	    head td text: 'Title'.
+	    head td text: 'Description'.
+	    head td text: 'Deadline']
     ]
 
     items [

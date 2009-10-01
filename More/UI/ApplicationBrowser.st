@@ -53,7 +53,12 @@ Application subclass: ApplicationBrowser [
     ]
 
     index [
-	<category: 'views'>
+	<category: 'controllers'>
+	^self mainContents
+    ]
+
+    mainContents [
+	<category: 'building'>
 	^[:e | 
 	    e image source: '/images/iliad.png' alternativeText: 'Iliad'.
 	    e h3: 'Application Browser'.
@@ -61,7 +66,7 @@ Application subclass: ApplicationBrowser [
     ]
 
     pathListContents [
-	<category: 'views-parts'>
+	<category: 'building'>
 	^[:e || ul |
 	    ul := e unorderedList.
 	    self applications do: [:each | 

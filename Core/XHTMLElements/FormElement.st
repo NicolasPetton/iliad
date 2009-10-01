@@ -91,7 +91,7 @@ XHTMLElement subclass: FormElement [
 
     beMultipart [
 	<category: 'accessing attributes'>
-	self encodingType: self class multipartFormData
+	self enctype: self class multipartFormData
     ]
 
     enctype [
@@ -152,7 +152,7 @@ XHTMLElement subclass: FormElement [
 
     isMultipart [
 	<category: 'testing'>
-	^self encodingType = self class multipartFormData
+	^self enctype = self class multipartFormData
     ]
 ]
 

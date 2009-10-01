@@ -81,14 +81,19 @@ Application subclass: TodoListApplication [
     updatePage: aPage [
 	<category: 'building'>
 	super updatePage: aPage.
-	aPage head stylesheet href: '/stylesheets/iliad.css'.
-	aPage head javascript source: '/javascripts/lightbox.js'.
-	aPage head stylesheet href: '/stylesheets/lightbox.css'.
+	aPage head css href: '/stylesheets/iliad.css'.
+	aPage head javascript src: '/javascripts/lightbox.js'.
+	aPage head css href: '/stylesheets/lightbox.css'.
     ]
 
     index [
-	<category: 'views'>
+	<category: 'controllers'>
 	self updateFromHash.
+	^self mainContents
+    ]
+
+    mainContents [
+	<category: 'building'>
 	^ [:e |
 	    e h1: 'Todo List'.
 	    e build: self actionLinksContents.
@@ -96,19 +101,18 @@ Application subclass: TodoListApplication [
     ]
 
     actionLinksContents [
-	<category: 'views-parts'>
+	<category: 'building'>
 	^[:e ||div|
 	    div := e div class: 'selection'; yourself.
-	    div anchor
+	    div a
 		action: [self selectPending]
 		hash: 'pending';
 		text: 'pending'.
 	    div space.
-	    div anchor
+	    div a
 		action: [self selectCompleted]
 		hash: 'completed';
 		text: 'completed'.
-	    e break]
+	    e br]
     ]
 ]
-

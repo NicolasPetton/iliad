@@ -65,24 +65,33 @@ Application subclass: BlogApplication [
     ]
 
     actionsContents [
-	<category: 'views-parts'>
+	<category: 'building'>
 	^[:e | 
 	    | div |
 	    div := (e div)
 		class: 'actions';
 		yourself.
-	    (div anchor)
+	    div a
 		text: 'new post';
 		action: [self addPost]]
     ]
 
     postContentsFor: aPost [
-	<category: 'views-parts'>
+	<category: 'building'>
 	^[:e | 
-	    e h2 anchor
+	    e h2 a
 		text: aPost title;
 		action: [self redirectToLocal: 'post/', aPost title, aPost hash printString].
 	    e build: (self postWidgetFor: aPost)]
+    ]
+
+    postsContents [
+	<category: 'building'>
+	^[:e | 
+	    e h1: 'Blog Example'.
+	    e build: self actionsContents.
+	    (self model posts asSortedCollection: [:a :b | a timestamp > b timestamp]) 
+		do: [:each | e build: (self postContentsFor: each)]]
     ]
 
     addPost [
@@ -95,13 +104,13 @@ Application subclass: BlogApplication [
     ]
 
     index [
-	<category: 'views'>
+	<category: 'controllers'>
 	^self posts
     ]
 
     post [
-	"View for a specific post"
-	<category: 'views'>
+	"Controller for a specific post"
+	<category: 'controllers'>
 	
 	| post path |
 	path := self route next.
@@ -112,18 +121,14 @@ Application subclass: BlogApplication [
     ]
 
     posts [
-	<category: 'views'>
-	^[:e | 
-	    e h1: 'Blog Example'.
-	    e build: self actionsContents.
-	    (self model posts asSortedCollection: [:a :b | a timestamp > b timestamp]) 
-		do: [:each | e build: (self postContentsFor: each)]]
+	<category: 'controllers'>
+	^self postsContents
     ]
 
     updatePage: aPage [
 	<category: 'building'>
 	super updatePage: aPage.
-	aPage head stylesheet href: '/stylesheets/iliad.css'
+	aPage head css href: '/stylesheets/iliad.css'
     ]
 ]
 

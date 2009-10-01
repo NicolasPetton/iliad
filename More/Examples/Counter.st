@@ -51,9 +51,9 @@ Widget subclass: Counter [
 	<category: 'building'>
 	^[:e |
 	    e h2: count printString.
-	    e anchor action: [self increase]; text: '++'.
+	    e a action: [self increase]; text: '++'.
 	    e space.
-	    e anchor action: [self decrease]; text: '--']
+	    e a action: [self decrease]; text: '--']
     ]
 
     decrease [

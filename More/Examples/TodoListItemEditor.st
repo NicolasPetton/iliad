@@ -49,8 +49,8 @@ Widget subclass: TodoListItemEditor [
     completedContents [
 	<category: 'building'>
 	^[:e | 
-	    e tableData text: 'Completed'.
-	    (e tableData checkbox)
+	    e td text: 'Completed'.
+	    (e td checkbox)
 		action: [:val | self setItemCompleted: val];
 		checked: self item completed]
     ]
@@ -69,8 +69,8 @@ Widget subclass: TodoListItemEditor [
     deadlineContents [
 	<category: 'building'>
 	^[:e | 
-	    e tableData text: 'Deadline'.
-	    e tableData anchor
+	    e td text: 'Deadline'.
+	    e td a
 		action: [self setItemDeadline];
 		text: self item deadline asString]
     ]
@@ -78,10 +78,10 @@ Widget subclass: TodoListItemEditor [
     descriptionContents [
 	<category: 'building'>
 	^[:e | 
-	    e tableData text: 'Decription'.
-	    e tableData textArea
+	    e td text: 'Decription'.
+	    e td textarea
 		text: self item description;
-		columns: 40;
+		cols: 40;
 		rows: 4;
 		action: [:val | self setItemDescription: val]]
     ]
@@ -91,11 +91,11 @@ Widget subclass: TodoListItemEditor [
 	^[:e | 
 	    | form tbody |
 	    form := e form.
-	    tbody := form table tableBody.
-	    tbody tableRow build: self deadlineContents.
-	    tbody tableRow build: self titleContents.
-	    tbody tableRow build: self descriptionContents.
-	    tbody tableRow build: self completedContents.
+	    tbody := form table tbody.
+	    tbody tr build: self deadlineContents.
+	    tbody tr build: self titleContents.
+	    tbody tr build: self descriptionContents.
+	    tbody tr build: self completedContents.
 	    (form button)
 		action: [self saveItem];
 		text: 'save'.
@@ -107,8 +107,8 @@ Widget subclass: TodoListItemEditor [
     titleContents [
 	<category: 'building'>
 	^[:e | 
-	    e tableData text: 'Title'.
-	    e tableData input
+	    e td text: 'Title'.
+	    e td input
 		value: self item title;
 		size: 30;
 		action: [:val | self setItemTitle: val]]

@@ -47,23 +47,23 @@ Application subclass: CounterApplication [
     ]
 
     index [
-	<category: 'views'>
+	<category: 'controllers'>
 	^self counter
     ]
 
     counter [
-	<category: 'views'>
+	<category: 'controllers'>
 	^[:e |
-	    e anchor
+	    e a
 		text: 'Switch to multi counter example';
 		linkToLocal: 'multicounter'.
 	    e build: self counters first]
     ]
 
     multicounter [
-	<category: 'views'>
+	<category: 'controllers'>
 	^[:e | 
-	    e anchor
+	    e a
 		text: 'Switch to simple counter example';
 		linkToLocal: 'counter'.
 	    self counters do: [:each |
@@ -82,7 +82,7 @@ Application subclass: CounterApplication [
     updatePage: aPage [
 	<category: 'as yet unclassified'>
 	super updatePage: aPage.
-	aPage head stylesheet href: '/stylesheets/iliad.css'
+	aPage head css href: '/stylesheets/iliad.css'
     ]
 ]
 

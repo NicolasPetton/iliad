@@ -52,16 +52,16 @@ In concrete subclasses, the class method #path should return the base path
 
 Like other widgets, I have state, and can have decorators.
 Unlike other widgets I know how to dispatch a request with #dispatch : 
-the view method corresponding to the url will be called.
+the controller method corresponding to the url will be called.
 
 View methods must:
- - answer a view block, ie, a block closure taking an element as parameter.
- - be in the ''views'' method protocol (with the default selector filter)
+ - answer a buildable.
+ - be in the ''controllers'' method protocol (with the default selector filter)
 
-The default view method is #index.
+The default controller method is #index.
 
-The class inst var <selectorFilter> is used to filter view methods. 
-By default it allows all methods in the ''views'' protocol,
+The class inst var <selectorFilter> is used to filter controller methods. 
+By default it allows all methods in the ''controllers'' protocol,
 but you can override the class method #defaultSelectorFilter to supply 
 your own selectorFilter or plug it in using the class method #selectorFilter:
 
@@ -131,7 +131,7 @@ the application mode:
 		(self canUnderstand: selector) and: [
 		    (self 
 			categoryOfElement: selector 
-			inClassOrSuperclass: self) = 'views']]
+			inClassOrSuperclass: self) = 'controllers']]
 	]
 
 	categoryOfElement: aSelector inClassOrSuperclass: aClass [
@@ -193,7 +193,7 @@ the application mode:
     ]
 
     contents [
-	"Call #dispatch. A view block is expected from #dispatch"
+	"Call #dispatch. A buildable is expected from #dispatch"
 	<category: 'building'>
 	
 	^[:e |
@@ -219,7 +219,7 @@ the application mode:
     ]
 
     dispatch [
-	"Dispatch to correct method in this view.
+	"Dispatch to correct controller method.
 	 If dispatchOverride returns something
 	 different from nil, consider it handled."
 	<category: 'dispatching'>
@@ -264,31 +264,31 @@ the application mode:
 
     redirectToIndex [
 	"Abort all other request handling.
-	 Redirect to the index view of this class"
+	 Redirect to the index method of this class"
 	<category: 'redirecting'>
 
 	self redirectToLocal: 'index'
     ]
 
-    redirectToLocal: aView [
+    redirectToLocal: aString [
 	"Abort all other request handling.
-	 Make a redirection to another view method in this application"
+	 Make a redirection to another controller method in this application"
 	<category: 'redirecting'>
 
-	self redirectTo: self originalUrl , '/' , aView
+	self redirectTo: self originalUrl , '/' , aString
     ]
 
     redirectToApplication: aClass [
 	"Abort all other request handling.
-	Redirect to the index view of <aClass>"
+	Redirect to the index method of <aClass>"
 	<category: 'redirecting'>
 
-	self redirectToApplication: aClass view: ''
+	self redirectToApplication: aClass controller: ''
     ]
 
-    redirectToApplication: anApplicationClass view: aString [
+    redirectToApplication: anApplicationClass controller: aString [
 	"Abort all other request handling.
-	Redirect to the view named <aString> of <aClass>"
+	Redirect to the controller named <aString> of <aClass>"
 	<category: 'redirecting'>
 
 	self redirectTo: (self context urlBuilder absolutePathFor: anApplicationClass), '/', aString
@@ -316,7 +316,7 @@ the application mode:
 
     index [
 	"default view method"
-	<category: 'views'>
+	<category: 'controllers'>
 
 	^[:e | ]
     ]
