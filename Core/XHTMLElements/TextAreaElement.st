@@ -51,17 +51,12 @@ FormElementElement subclass: TextAreaElement [
 	self attributeAt: 'cols' put: anInteger printString
     ]
 
-    columns: anInteger [
-	<category: 'accessing attributes'>
-	self cols: anInteger
-    ]
-
     rows: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'rows' put: anInteger printString
     ]
 
-    tabIndex: anInteger [
+    tabindex: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'tabindex' put: anInteger printString
     ]

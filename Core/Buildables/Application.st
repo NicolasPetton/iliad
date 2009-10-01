@@ -205,9 +205,9 @@ the application mode:
 	 super should always be called"
 	<category: 'building'>
 
-	aPage head javascript source: '/javascripts/jquery132min.js'.
-	aPage head javascript source: '/javascripts/no_conflict.js'.
-	aPage head javascript source: '/javascripts/iliad.js'.
+	aPage head javascript src: '/javascripts/jquery132min.js'.
+	aPage head javascript src: '/javascripts/no_conflict.js'.
+	aPage head javascript src: '/javascripts/iliad.js'.
     ]
 
     allowedSelector: aSelector [
@@ -292,6 +292,26 @@ the application mode:
 	<category: 'redirecting'>
 
 	self redirectTo: (self context urlBuilder absolutePathFor: anApplicationClass), '/', aString
+    ]
+
+    respond: aBlock [
+	"Abort all other request handling"
+	<category: 'redirecting'>
+
+	| response |
+	response := Response new.
+	aBlock value: response.
+	self returnResponse: response
+    ]
+
+    respond: aBlock [
+	"Abort all other request handling"
+	<category: 'redirecting'>
+
+	| response |
+	response := ILResponse new.
+	aBlock value: response.
+	self returnResponse: response
     ]
 
     index [

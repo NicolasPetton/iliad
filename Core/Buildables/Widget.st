@@ -54,7 +54,7 @@ contents
     ^[:e || div |
         div := e div class: ''foo''.
         div h1: ''Bar''.
-        div anchor
+        div a
             text: ''do something'';
             action: [self doSomething]]
 

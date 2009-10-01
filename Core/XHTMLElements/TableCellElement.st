@@ -41,7 +41,7 @@ TableElementElement subclass: TableCellElement [
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    abbreviation: aString [
+    abbr: aString [
 	<category: 'accessing attributes-table'>
 	self attributeAt: 'abbr' put: aString
     ]
@@ -51,17 +51,17 @@ TableElementElement subclass: TableCellElement [
 	self attributeAt: 'axis' put: aString
     ]
 
-    columnGroupScope [
+    colgroupScope [
 	<category: 'accessing attributes-table'>
 	self scope: 'colgroup'
     ]
 
-    columnScope [
+    colScope [
 	<category: 'accessing attributes-table'>
 	self scope: 'col'
     ]
 
-    columnSpan: anInteger [
+    colspan: anInteger [
 	<category: 'accessing attributes-table'>
 	self attributeAt: 'colspan' put: anInteger printString
     ]
@@ -75,7 +75,7 @@ TableElementElement subclass: TableCellElement [
 	self attributeAt: 'headers' put: headers contents
     ]
 
-    rowGroupScope [
+    rowgroupScope [
 	<category: 'accessing attributes-table'>
 	self scope: 'rowgroup'
     ]
@@ -85,7 +85,7 @@ TableElementElement subclass: TableCellElement [
 	self scope: 'row'
     ]
 
-    rowSpan: anInteger [
+    rowspan: anInteger [
 	<category: 'accessing attributes-table'>
 	self attributeAt: 'rowspan' put: anInteger printString
     ]

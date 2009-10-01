@@ -62,7 +62,7 @@ XHTMLElement subclass: ScriptElement [
 	self type: 'text/javascript'
     ]
 
-    charSet: aString [
+    charset: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'charset' put: aString
     ]
@@ -77,7 +77,7 @@ XHTMLElement subclass: ScriptElement [
 	self attributeAt: 'language' put: aString
     ]
 
-    source: aString [
+    src: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'src' put: aString
     ]

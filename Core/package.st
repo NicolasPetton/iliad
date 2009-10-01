@@ -34,10 +34,11 @@ Eval [
 
     filein: 'Elements/Elements-Error.st'; 
     filein: 'Elements/Element.st'; 
+    filein: 'Elements/TextElement.st'; 
     filein: 'Elements/Extensions.st'; 
 
-    filein: 'XHTMLElements/TextElement.st'; 
     filein: 'XHTMLElements/XHTMLElement.st'; 
+    filein: 'XHTMLElements/Deprecated.st'; 
     filein: 'XHTMLElements/TitleElement.st'; 
     filein: 'XHTMLElements/BodyElement.st'; 
     filein: 'XHTMLElements/ClosingElement.st'; 
@@ -84,7 +85,6 @@ Eval [
     filein: 'XHTMLElements/TableDataElement.st'; 
     filein: 'XHTMLElements/TableHeaderElement.st'; 
     filein: 'XHTMLElements/TableRowElement.st'; 
-    filein: 'XHTMLElements/TableColumnElementElement.st'; 
     filein: 'XHTMLElements/TableFootElement.st'; 
     filein: 'XHTMLElements/TableHeadElement.st'; 
 

@@ -41,7 +41,7 @@ XHTMLElement subclass: LinkableElement [
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    charSet: aString [
+    charset: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'charset' put: aString
     ]
@@ -56,14 +56,9 @@ XHTMLElement subclass: LinkableElement [
 	self attributeAt: 'href' put: aString
     ]
 
-    hrefLang: aString [
+    hreflang: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'hreflang' put: aString
-    ]
-
-    linkTo: aString [
-	<category: 'accessing attributes'>
-	self href: aString
     ]
 
     linkToLocal: aString [

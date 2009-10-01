@@ -46,7 +46,7 @@ XHTMLElement subclass: LegendElement [
 	^'legend'
     ]
     
-    accessKey: aCharacter [
+    accesskey: aCharacter [
 	<category: 'accessing attributes'>
 	self attributeAt: 'accesskey' put: aCharacter asString
     ]

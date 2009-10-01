@@ -46,7 +46,7 @@ ClosingElement subclass: ImageElement [
 	^'img'
     ]
 
-    alternativeText: aString [
+    alt: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'alt' put: aString
     ]
@@ -56,29 +56,29 @@ ClosingElement subclass: ImageElement [
 	self attributeAt: 'height' put: anInteger printString
     ]
 
-    isMap [
+    ismap [
 	<category: 'accessing attributes'>
 	self attributeAt: 'ismap' put: 'ismap'
     ]
 
-    longDescription: aString [
+    longdesc: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'longdesc' put: aString
     ]
 
-    source: aString [
+    src: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'src' put: aString
     ]
 
-    source: src alternativeText: alt [
+    src: src alt: alt [
 	<category: 'accessing attributes'>
 	self
-	    source: src;
-	    alternativeText: alt
+	    src: src;
+	    alt: alt
     ]
 
-    useMap: aString [
+    usemap: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'usemap' put: aString
     ]

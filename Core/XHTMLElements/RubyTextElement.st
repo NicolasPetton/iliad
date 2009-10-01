@@ -46,7 +46,7 @@ XHTMLElement subclass: RubyTextElement [
 	^'rt'
     ]
     
-    rubyBaseSpan: anInteger [
+    rbspan: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'rbspan' put: anInteger printString
     ]

@@ -41,24 +41,24 @@ XHTMLElement subclass: TableElementElement [
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    alignment: aString [
+    align: aString [
 	<category: 'accessing attributes-table'>
 	self attributeAt: 'align' put: aString
     ]
 
-    baselineAlignment [
+    baselineValign [
 	<category: 'accessing attributes-table'>
-	self verticalAlignment: 'baseline'
+	self valign: 'baseline'
     ]
 
-    bottomAlignment [
+    bottomValign [
 	<category: 'accessing attributes-table'>
-	self verticalAlignment: 'bottom'
+	self valign: 'bottom'
     ]
 
-    centerAlignment [
+    centerAlign [
 	<category: 'accessing attributes-table'>
-	self alignment: 'center'
+	self align: 'center'
     ]
 
     character: aCharacter [
@@ -70,44 +70,44 @@ XHTMLElement subclass: TableElementElement [
 	self attributeAt: 'char' put: aCharacter printString
     ]
 
-    characterAlignment [
+    characterAlign [
 	<category: 'accessing attributes-table'>
-	self alignment: 'char'
+	self align: 'char'
     ]
 
-    characterOffset: anInteger [
+    charoff: anInteger [
 	<category: 'accessing attributes-table'>
 	self attributeAt: 'char'
 	    ifAbsent: [self attributeError: 'Must specify alignment character'].
 	self attributeAt: 'charoff' put: anInteger printString
     ]
 
-    justifiedAlignment [
+    justifyAlign [
 	<category: 'accessing attributes-table'>
-	self alignment: 'justify'
+	self align: 'justify'
     ]
 
-    leftAlignment [
+    leftAlign [
 	<category: 'accessing attributes-table'>
-	self alignment: 'left'
+	self align: 'left'
     ]
 
-    middleAlignment [
+    middleValign [
 	<category: 'accessing attributes-table'>
-	self verticalAlignment: 'middle'
+	self valign: 'middle'
     ]
 
-    rightAlignment [
+    rightAlign [
 	<category: 'accessing attributes-table'>
-	self alignment: 'right'
+	self align: 'right'
     ]
 
-    topAlignment [
+    topValign [
 	<category: 'accessing attributes-table'>
 	self verticalAlignment: 'top'
     ]
 
-    verticalAlignment: aString [
+    valign: aString [
 	<category: 'accessing attributes-table'>
 	self attributeAt: 'valign' put: aString
     ]

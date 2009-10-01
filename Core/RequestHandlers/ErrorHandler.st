@@ -93,7 +93,7 @@ RequestHandler subclass: ErrorHandler [
 		self error examineOn: info.
 		info nextPut: Character cr.
 		self error resumeContext backtraceOn: info.
-		page body preformatted: info contents.
+		page body pre: info contents.
 		Transcript show: info contents; cr.
 		page build printHtmlOn: stream])]
     ]

@@ -60,17 +60,17 @@ LinkableElement subclass: AnchorElement [
 	^'a'
     ]
 
-    accessKey: aCharacter [
+    accesskey: aCharacter [
 	<category: 'accessing attributes'>
 	self attributeAt: 'accesskey' put: aCharacter asString
     ]
 
-    tabIndex: anInteger [
+    tabindex: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'tabindex' put: anInteger printString
     ]
 
-    circularShape [
+    circleShape [
 	<category: 'accessing attributes-imagemap'>
 	self shape: 'circle'
     ]
@@ -85,12 +85,12 @@ LinkableElement subclass: AnchorElement [
 	self shape: 'default'
     ]
 
-    polygonalShape [
+    polyShape [
 	<category: 'accessing attributes-imagemap'>
 	self shape: 'poly'
     ]
 
-    rectangularShape [
+    rectShape [
 	<category: 'accessing attributes-imagemap'>
 	self shape: 'rect'
     ]

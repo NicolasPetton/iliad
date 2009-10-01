@@ -65,17 +65,12 @@ FormElementElement subclass: InputElement [
 	self alternativeText: aString
     ]
 
-    alternativeText: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'alt' put: aString
-    ]
-
-    isMap [
+    ismap [
 	<category: 'accessing attributes'>
 	self attributeAt: 'ismap' put: 'ismap'
     ]
 
-    maxLength: anInteger [
+    maxlength: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'maxlength' put: anInteger printString
     ]
@@ -85,12 +80,7 @@ FormElementElement subclass: InputElement [
 	self attributeAt: 'size' put: anInteger printString
     ]
 
-    source: aString [
-	<category: 'accessing attributes'>
-	self doesNotUnderstandAttribute: 'src'
-    ]
-
-    useMap: aString [
+    usemap: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'usemap' put: aString
     ]

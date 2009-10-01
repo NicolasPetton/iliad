@@ -60,17 +60,17 @@ XHTMLElement subclass: ObjectElement [
 	self attributeAt: 'archive' put: archives contents
     ]
 
-    classId: aString [
+    classid: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'classid' put: aString
     ]
 
-    codeBase: aString [
+    codebase: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'codebase' put: aString
     ]
 
-    codeType: aString [
+    codetype: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'codetype' put: aString
     ]
@@ -105,7 +105,7 @@ XHTMLElement subclass: ObjectElement [
 	self attributeAt: 'standby' put: aString
     ]
 
-    tabIndex: anInteger [
+    tabindex: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'tabindex' put: anInteger printString
     ]
@@ -115,7 +115,7 @@ XHTMLElement subclass: ObjectElement [
 	self attributeAt: 'type' put: aString
     ]
 
-    useMap: aString [
+    usemap: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'usemap' put: aString
     ]

@@ -76,11 +76,6 @@ ClosingElement subclass: MetaElement [
 	self attributeAt: 'http-equiv' put: aString
     ]
 
-    httpEquivalent: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'http-equiv' put: aString
-    ]
-
     name: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'name' put: aString

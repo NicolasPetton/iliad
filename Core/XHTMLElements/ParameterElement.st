@@ -49,17 +49,17 @@ ClosingElement subclass: ParameterElement [
 
     beData [
 	<category: 'accessing attributes'>
-	self valueType: 'data'
+	self valuetype: 'data'
     ]
 
     beObject [
 	<category: 'accessing attributes'>
-	self valueType: 'object'
+	self valuetype: 'object'
     ]
 
     beReference [
 	<category: 'accessing attributes'>
-	self valueType: 'ref'
+	self valuetype: 'ref'
     ]
 
     name: aString [
@@ -77,7 +77,7 @@ ClosingElement subclass: ParameterElement [
 	self attributeAt: 'value' put: aString
     ]
 
-    valueType: aString [
+    valuetype: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'valuetype' put: aString
     ]

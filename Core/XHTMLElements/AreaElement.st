@@ -45,12 +45,12 @@ ClosingElement subclass: AreaElement [
 	^'area'
     ]
 
-    accessKey: aCharacter [
+    accesskey: aCharacter [
 	<category: 'accessing attributes'>
 	self attributeAt: 'accesskey' put: aCharacter asString
     ]
 
-    alternativeText: aString [
+    alt: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'alt' put: aString
     ]
@@ -60,17 +60,17 @@ ClosingElement subclass: AreaElement [
 	self attributeAt: 'href' put: aString
     ]
 
-    noHref [
+    nohref [
 	<category: 'accessing attributes'>
 	self attributeAt: 'nohref' put: 'nohref'
     ]
 
-    tabIndex: anInteger [
+    tabindex: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'tabindex' put: anInteger printString
     ]
 
-    circularShape [
+    circleShape [
 	<category: 'accessing attributes-imagemap'>
 	self shape: 'circle'
     ]
@@ -85,12 +85,12 @@ ClosingElement subclass: AreaElement [
 	self shape: 'default'
     ]
 
-    polygonalShape [
+    polyShape [
 	<category: 'accessing attributes-imagemap'>
 	self shape: 'poly'
     ]
 
-    rectangularShape [
+    rectShape [
 	<category: 'accessing attributes-imagemap'>
 	self shape: 'rect'
     ]

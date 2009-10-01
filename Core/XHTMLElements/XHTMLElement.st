@@ -46,6 +46,17 @@ Element subclass: XHTMLElement [
 	^'text/html'
     ]
 
+    title [
+	<category: 'accessing attributes'>
+	^self attributeAt: 'title'
+    ]
+
+    title: aString [
+	<category: 'accessing attributes'>
+	^self attributeAt: 'title' put: aString
+    ]
+
+
     class: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'class' put: aString
@@ -144,7 +155,7 @@ Element subclass: XHTMLElement [
 	self onEvent: 'select' do: aString
     ]
 
-    anchor [
+    a [
 	<category: 'adding-conveniance'>
 	^self add: AnchorElement new
     ]
@@ -154,10 +165,15 @@ Element subclass: XHTMLElement [
 	^self add: AreaElement new
     ]
 
+    bdo [
+	<category: 'adding-conveniance'>
+	^self add: DirectionElement new
+    ]
+
     big [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new big;
+	^self add: (TextElement new 
+	    tag: 'big';
 	    yourself)
     ]
 
@@ -170,8 +186,8 @@ Element subclass: XHTMLElement [
 
     blockquote [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new blockquote;
+	^self add: (TextElement new 
+	    tag: 'blockquote';
 	    yourself)
     ]
 
@@ -184,8 +200,8 @@ Element subclass: XHTMLElement [
 
     bold [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new bold;
+	^self add: (TextElement new 
+	    tag: 'bold';
 	    yourself)
     ]
 
@@ -196,7 +212,7 @@ Element subclass: XHTMLElement [
 	    yourself
     ]
 
-    break [
+    br [
 	<category: 'adding-conveniance'>
 	^self add: BreakElement new
     ]
@@ -213,8 +229,8 @@ Element subclass: XHTMLElement [
 
     cite [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new cite;
+	^self add: (TextElement new 
+	    tag: 'cite';
 	    yourself)
     ]
 
@@ -227,8 +243,8 @@ Element subclass: XHTMLElement [
 
     code [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new code;
+	^self add: (TextElement new 
+	    tag: 'code';
 	    yourself)
     ]
 
@@ -239,42 +255,32 @@ Element subclass: XHTMLElement [
 	    yourself
     ]
 
-    column [
+    dd [
 	<category: 'adding-conveniance'>
-	^self add: TableColumnElementElement new
-    ]
-
-    definition [
-	<category: 'adding-conveniance'>
-	^self
-	    add: TextElement new definition;
-	    yourself
-    ]
-
-    definitionData [
-	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new definitionData;
+	^self add: (TextElement new 
+	    tag: 'dd';
 	    yourself)
     ]
 
-    definitionList [
+    dfn [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new definitionList;
+	^self add: (TextElement new 
+	    tag: 'dfn';
 	    yourself)
     ]
 
-    definitionTerm [
+    dl [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new definitionTerm;
+	^self add: (TextElement new 
+	    tag: 'dl';
 	    yourself)
     ]
 
-    direction [
+    dt [
 	<category: 'adding-conveniance'>
-	^self add: DirectionElement new
+	^self add: (TextElement new 
+	    tag: 'dt';
+	    yourself)
     ]
 
     div [
@@ -282,16 +288,16 @@ Element subclass: XHTMLElement [
 	^self add: DivElement new
     ]
 
-    emphasis [
+    em [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new emphasis;
+	^self add: (TextElement new 
+	    tag: 'em';
 	    yourself)
     ]
 
-    emphasis: aString [
+    em: aString [
 	<category: 'adding-conveniance'>
-	^self emphasis
+	^self em
 	    contents: aString;
 	    yourself
     ]
@@ -315,7 +321,7 @@ Element subclass: XHTMLElement [
 	^self add: FieldsetElement new
     ]
 
-    fileInput [
+    file [
 	<category: 'adding-conveniance'>
 	^self input
 	    beFile;
@@ -330,8 +336,8 @@ Element subclass: XHTMLElement [
     h1 [
 	<category: 'adding-conveniance'>
 	^self add: (HeadingElement new
-		    level: 1;
-		    yourself)
+	    level: 1;
+	    yourself)
     ]
 
     h1: aString [
@@ -344,8 +350,8 @@ Element subclass: XHTMLElement [
     h2 [
 	<category: 'adding-conveniance'>
 	^self add: (HeadingElement new
-		    level: 2;
-		    yourself)
+	    level: 2;
+	    yourself)
     ]
 
     h2: aString [
@@ -358,8 +364,8 @@ Element subclass: XHTMLElement [
     h3 [
 	<category: 'adding-conveniance'>
 	^self add: (HeadingElement new
-		    level: 3;
-		    yourself)
+	    level: 3;
+	    yourself)
     ]
 
     h3: aString [
@@ -372,8 +378,8 @@ Element subclass: XHTMLElement [
     h4 [
 	<category: 'adding-conveniance'>
 	^self add: (HeadingElement new
-		    level: 4;
-		    yourself)
+	    level: 4;
+	    yourself)
     ]
 
     h4: aString [
@@ -386,8 +392,8 @@ Element subclass: XHTMLElement [
     h5 [
 	<category: 'adding-conveniance'>
 	^self add: (HeadingElement new
-		    level: 5;
-		    yourself)
+	    level: 5;
+	    yourself)
     ]
 
     h5: aString [
@@ -400,8 +406,8 @@ Element subclass: XHTMLElement [
     h6 [
 	<category: 'adding-conveniance'>
 	^self add: (HeadingElement new
-		    level: 6;
-		    yourself)
+	    level: 6;
+	    yourself)
     ]
 
     h6: aString [
@@ -411,12 +417,12 @@ Element subclass: XHTMLElement [
 	    yourself
     ]
 
-    header [
+    h [
 	<category: 'adding-conveniance'>
 	^self add: HeadingElement new
     ]
 
-    horizontalRule [
+    hr [
 	<category: 'adding-conveniance'>
 	^self add: HorizontalRuleElement new
     ]
@@ -428,22 +434,15 @@ Element subclass: XHTMLElement [
 	    yourself)
     ]
 
-    image [
+    img [
 	<category: 'adding-conveniance'>
 	^self add: ImageElement new
     ]
 
-    image: aString [
+    img: aString [
 	<category: 'adding-conveniance'>
-	^self image
+	^self img
 	    source: aString;
-	    yourself
-    ]
-
-    imageInput [
-	<category: 'adding-conveniance'>
-	^self input
-	    beImage;
 	    yourself
     ]
 
@@ -452,16 +451,16 @@ Element subclass: XHTMLElement [
 	^self add: InputElement new
     ]
 
-    italic [
+    i [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new italic;
+	^self add: (TextElement new 
+	    tag: 'i';
 	    yourself)
     ]
 
-    italic: aString [
+    i: aString [
 	<category: 'adding-conveniance'>
-	^self italic
+	^self i
 	    contents: aString;
 	    yourself
     ]
@@ -499,11 +498,11 @@ Element subclass: XHTMLElement [
     ]
 
     link [
-	<category: 'adding-conveniance'>
+	<category: 'adding-conveenience'>
 	^self add: LinkElement new
     ]
 
-    listItem [
+    li [
 	<category: 'adding-conveniance'>
 	^self add: ListItemElement new
     ]
@@ -534,24 +533,24 @@ Element subclass: XHTMLElement [
 	^self add: OptionElement new
     ]
 
-    optionGroup [
+    optgroup [
 	<category: 'adding-conveniance'>
 	^self add: OptionGroupElement new
     ]
     
-    orderedList [
+    ol [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (ListElement new beOrdered;
+	^self add: (ListElement new 
+	    beOrdered;
 	    yourself)
     ]
 
-    paragraph [
+    p [
 	<category: 'adding-conveniance'>
 	^self add: ParagraphElement new
     ]
 
-    parameter [
+    param [
 	<category: 'adding-conveniance'>
 	^self add: ParameterElement new
     ]
@@ -563,31 +562,24 @@ Element subclass: XHTMLElement [
 	    yourself
     ]
 
-    passwordInput [
+    pre [
 	<category: 'adding-conveniance'>
-	^self input
-	    bePassword;
-	    yourself
-    ]
-
-    preformatted [
-	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new preformatted;
+	^self add: (TextElement new 
+	    tag: 'pre';
 	    yourself)
     ]
 
-    preformatted: aString [
+    pre: aString [
 	<category: 'adding-conveniance'>
-	^self preformatted
+	^self pre
 	    contents: aString;
 	    yourself
     ]
 
     quote [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new quote;
+	^self add: (TextElement new 
+	    tag: 'quote';
 	    yourself)
     ]
 
@@ -598,12 +590,12 @@ Element subclass: XHTMLElement [
 	    yourself
     ]
 
-    radioButton [
+    radio [
 	<category: 'adding-conveniance'>
 	^self add: RadioButtonElement new
     ]
 
-    resetInput [
+    reset [
 	<category: 'adding-conveniance'>
 	^self input
 	    beReset;
@@ -629,8 +621,8 @@ Element subclass: XHTMLElement [
 
     small [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new small;
+	^self add: (TextElement new 
+	    tag: 'small';
 	    yourself)
     ]
 
@@ -653,26 +645,26 @@ Element subclass: XHTMLElement [
 
     strong [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new strong;
+	^self add: (TextElement new 
+	    tag: 'strong';
 	    yourself)
     ]
 
     strong: aString [
 	<category: 'adding-conveniance'>
 	^self strong
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
-    stylesheet [
+    css [
 	<category: 'adding-conveniance'>
 	^self link
 	    beStylesheet;
 	    yourself
     ]
 
-    submitInput [
+    submit [
 	<category: 'adding-conveniance'>
 	^self input
 	    beSubmit;
@@ -682,28 +674,28 @@ Element subclass: XHTMLElement [
     subscript [
 	<category: 'adding-conveniance'>
 	^self text
-	    subscript;
+	    tag: 'subscript';
 	    yourself
     ]
 
     subscript: aString [
 	<category: 'adding-conveniance'>
 	^self subscript
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
     superscript [
 	<category: 'adding-conveniance'>
 	^self text
-	    superscript;
+	    tag: 'superscript';
 	    yourself
     ]
 
     superscript: aString [
 	<category: 'adding-conveniance'>
 	^self superscript
-	    text: aString;
+	    contents: aString;
 	    yourself
     ]
 
@@ -712,83 +704,66 @@ Element subclass: XHTMLElement [
 	^self add: TableElement new
     ]
 
-    tableBody [
+    tbody [
 	<category: 'adding-conveniance'>
 	^self add: TableBodyElement new
     ]
 
-    tableData [
+    td [
 	<category: 'adding-conveniance'>
 	^self add: TableDataElement new
     ]
 
-    tableFoot [
+    tfoot [
 	<category: 'adding-conveniance'>
 	^self add: TableFootElement new
     ]
 
-    tableHead [
+    thead [
 	<category: 'adding-conveniance'>
 	^self add: TableHeadElement new
     ]
 
-    tableHeader [
+    th [
 	<category: 'adding-conveniance'>
 	^self add: TableHeaderElement new
     ]
 
-    tableRow [
+    tr [
 	<category: 'adding-conveniance'>
 	^self add: TableRowElement new
     ]
 
-    teletype [
+    tt [
 	<category: 'adding-conveniance'>
-	^self
-	    add: (TextElement new teletype;
+	^self add: (TextElement new 
+	    tag: 'teletype';
 	    yourself)
     ]
 
-    textArea [
+    textarea [
 	<category: 'adding-conveniance'>
 	^self add: TextAreaElement new
     ]
 
-    textInput [
-	<category: 'adding-conveniance'>
-	^self input
-	    beText;
-	    yourself
-    ]
-
-    title [
-	<category: 'adding-conveniance'>
-	^self attributeAt: 'title'
-    ]
-
-    title: aString [
-	<category: 'adding-conveniance'>
-	^self attributeAt: 'title' put: aString
-    ]
-
-    unorderedList [
+    ul [
 	<category: 'adding-conveniance'>
 	^self
 	    add: (ListElement new beUnordered;
 	    yourself)
     ]
 
-    variable [
+    var [
 	<category: 'adding-conveniance'>
 	^self text
-	    variable;
+	    tag: 'var';
 	    yourself
     ]
 
-    variable: aString [
+    var: aString [
 	<category: 'adding-conveniance'>
-	^self variable
-	    text: aString;
+	^self var
+	    contents: aString;
 	    yourself
     ]
 ]

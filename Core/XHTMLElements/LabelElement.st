@@ -46,7 +46,7 @@ XHTMLElement subclass: LabelElement [
 	^'label'
     ]
 
-    accessKey: aCharacter [
+    accesskey: aCharacter [
 	<category: 'accessing attributes'>
 	self attributeAt: 'accesskey' put: aCharacter asString
     ]

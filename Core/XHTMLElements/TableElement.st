@@ -76,17 +76,17 @@ XHTMLElement subclass: TableElement [
 	self frame: 'box'
     ]
 
-    cellPadding: anInteger [
+    cellpadding: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'cellpadding' put: anInteger printString
     ]
 
-    cellSpacing: anInteger [
+    cellspacing: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'cellspacing' put: anInteger printString
     ]
 
-    columnRules [
+    cols [
 	<category: 'accessing attributes'>
 	self rules: 'cols'
     ]
@@ -96,17 +96,17 @@ XHTMLElement subclass: TableElement [
 	self attributeAt: 'frame' put: aString
     ]
 
-    groupRules [
+    groups [
 	<category: 'accessing attributes'>
 	self rules: 'groups'
     ]
 
-    horizontalFrame [
+    hsides [
 	<category: 'accessing attributes'>
 	self frame: 'hsides'
     ]
 
-    leftSideFrame [
+    lhsFrame [
 	<category: 'accessing attributes'>
 	self frame: 'lhs'
     ]
@@ -116,12 +116,12 @@ XHTMLElement subclass: TableElement [
 	self rules: 'none'
     ]
 
-    rightSideFrame [
+    rhsFrame [
 	<category: 'accessing attributes'>
 	self frame: 'rhs'
     ]
 
-    rowRules [
+    rowsRules [
 	<category: 'accessing attributes'>
 	self rules: 'rows'
     ]
@@ -136,7 +136,7 @@ XHTMLElement subclass: TableElement [
 	self attributeAt: 'summary' put: aString
     ]
 
-    verticalFrame [
+    vsidesFrame [
 	<category: 'accessing attributes'>
 	self frame: 'vsides'
     ]

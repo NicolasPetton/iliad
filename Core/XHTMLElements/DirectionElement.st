@@ -51,6 +51,11 @@ XHTMLElement subclass: DirectionElement [
 	self doesNotUnderstandAttribute: 'xml:lang'
     ]
 
+    dir: aString [
+	<category: 'acessing attributes'>
+	self attributeAt: 'dir' put: aString
+    ]
+
     onEvent: event do: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , event

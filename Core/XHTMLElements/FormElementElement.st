@@ -41,7 +41,7 @@ XHTMLElement subclass: FormElementElement [
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    accessKey: aCharacter [
+    accesskey: aCharacter [
 	<category: 'accessing'>
 	self attributeAt: 'accesskey' put: aCharacter asString
     ]

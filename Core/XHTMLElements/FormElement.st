@@ -94,12 +94,12 @@ XHTMLElement subclass: FormElement [
 	self encodingType: self class multipartFormData
     ]
 
-    encodingType [
+    enctype [
 	<category: 'accessing attributes'>
 	^self attributeAt: 'enctype'
     ]
 
-    encodingType: aString [
+    enctype: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'enctype' put: aString
     ]
@@ -108,11 +108,6 @@ XHTMLElement subclass: FormElement [
 	<category: 'accessing attributes'>
 	aBoolean ifTrue:
 	    [self beMultipart]
-    ]
-
-    name: aString [
-	<category: 'accessing attributes'>
-	self id: aString 
     ]
 
     useGet [
