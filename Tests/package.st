@@ -3,6 +3,7 @@ Eval [
     name: 'Iliad-Tests';
     namespace: 'Iliad';
     prereq: 'Iliad-Core';
+    prereq: 'Iliad-More';
     prereq: 'SUnit';
     testsBelow: 'Unit' matching: '*.st';
     filein: 'Unit/Buildables/ApplicationMock1.st';
