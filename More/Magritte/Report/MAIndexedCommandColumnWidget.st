@@ -46,12 +46,13 @@ MACommandColumnWidget subclass: MAIndexedCommandColumnWidget [
 
     buildCellContent: anObject index: anInteger [
 	<category: 'building'>
-	^
-	[:e | 
-	self commands do: 
-		[:each | 
-		(e anchor)
-		    action: [each key valueWithArguments: (Array with: anObject with: anInteger)];
+	^[:e | 
+	    self commands 
+		do: [:each | 
+		e a
+		    action: [each key valueWithArguments: (Array
+			with: anObject
+			with: anInteger)];
 		    text: each value]
 	    separatedBy: [e space]]
     ]

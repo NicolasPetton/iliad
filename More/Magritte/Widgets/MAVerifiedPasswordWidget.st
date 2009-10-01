@@ -57,8 +57,8 @@ MATextPasswordWidget subclass: MAVerifiedPasswordWidget [
 	<category: 'buidling'>
 	^[:e | 
 	    e build: super editorContents.
-	    e break.
-	    (e passwordInput)
+	    e br.
+	    e password
 		class: 'verification';
 		value: self verificationString;
 		action: [:val | self verificationString: val]]

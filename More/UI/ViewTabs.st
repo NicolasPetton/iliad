@@ -46,13 +46,14 @@ UIWidget subclass: ViewTabs [
 	<category: 'building'>
 	^[:e || ul div |
 	    div := e div class: self cssClass.
-	    ul := div unorderedList.
+	    ul := div ul.
 	    self views do: [:each || li |
-		li := ul listItem.
-		li anchor
+		li := ul li.
+		li a
 		    text: (self labelFor: each);
 		    linkToLocal: each.
-		self selectedView = each ifTrue: [li class: 'selected']]]
+		self selectedView = each ifTrue: [
+		    li class: 'selected']]]
     ]
 
     cssClass [

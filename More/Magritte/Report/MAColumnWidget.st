@@ -69,11 +69,10 @@ Object subclass: MAColumnWidget [
 
     buildCell: anObject index: anInteger [
 	<category: 'building'>
-	^
-	[:e | 
-	e tableData build: (self format 
-		    valueWithArguments: ((Array with: anObject with: anInteger) 
-			    first: self format selector numArgs))]
+	^[:e | 
+	e td build: (self format 
+	    valueWithArguments: ((Array with: anObject with: anInteger) 
+	    first: self format selector numArgs))]
     ]
 
     buildCellContent: anObject [
@@ -85,7 +84,7 @@ Object subclass: MAColumnWidget [
     buildFootCell [
 	<category: 'building'>
 	^[:e |
-	    e tableData build: self buildFootContent]
+	    e td build: self buildFootContent]
     ]
 
     buildFootContent [
@@ -99,14 +98,13 @@ Object subclass: MAColumnWidget [
 	<category: 'building'>
 	^[:e | 
 	    | th |
-	    th := (e tableHeader)
+	    th := e th
 		class: self sorterStyle;
 		title: (self comment ifNil: ['']);
 		yourself.
 	    self isSortable 
 		ifFalse: [th build: self buildHeadContent]
-		ifTrue: 
-		    [(th anchor)
+		ifTrue: [th a
 			action: [self report sort: self];
 			build: self buildHeadContent]]
     ]

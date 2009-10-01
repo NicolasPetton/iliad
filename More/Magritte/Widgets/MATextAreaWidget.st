@@ -51,7 +51,7 @@ MAElementWidget subclass: MATextAreaWidget [
     editorContents [
 	<category: 'buidling'>
 	^[:e | 
-	    (e textArea)
+	    e textarea
 		id: self labelId;
 		rows: self description lineCount;
 		text: self string;
@@ -61,9 +61,9 @@ MAElementWidget subclass: MATextAreaWidget [
     viewerContents [
 	<category: 'buidling'>
 	^[:e | 
-	    (self string tokenize: Character cr asString) do: [:each | 
-		e text: each]
-		separatedBy: [e break]]
+	    (self string tokenize: Character cr asString)
+		do: [:each | e text: each]
+		separatedBy: [e br]]
     ]
 
     hasLabelId [

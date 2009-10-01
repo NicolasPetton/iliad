@@ -52,20 +52,23 @@ MAMultipleSelectionWidget subclass: MACheckboxGroupWidget [
     editorContents [
 	<category: 'building'>
 	^[:e | 
-	    e input beHidden action: [self clear].
-	    self optionsWithIndexDo: 
-		[:each :index | 
+	    e input 
+		beHidden 
+		action: [self clear].
+	    self optionsWithIndexDo: [:each :index | 
 		| optionId |
 		optionId := self optionId: index.
-		(e checkbox)
+		e checkbox
 		    id: optionId;
 		    checked: (self selectedList includes: each);
-		    action: [:val | val ifTrue: [self add: each] ifFalse: [self remove: each]].
+		    action: [:val | val
+			ifTrue: [self add: each]
+			ifFalse: [self remove: each]].
 		e space.
-		(e label)
+		e label
 		    for: optionId;
 		    text: (self labelForOption: each)]
-	    separatedBy: [e break]]
+	    separatedBy: [e br]]
     ]
 
     hasLabelId [

@@ -83,13 +83,13 @@ MAActionColumnWidget subclass: MACommandColumnWidget [
     buildCellLinkContent: anObject [
 	<category: 'building'>
 	^[:e | 
-	    self commands do: 
-		[:each | 
-		e anchor
-		    action: [each key key value: anObject]
-		    hash: (each key value value: anObject);
-		    text: each value]
-	    separatedBy: [e space]]
+	    self commands
+		do: [:each | 
+		    e a
+			action: [each key key value: anObject]
+			hash: (each key value value: anObject);
+			text: each value]
+		separatedBy: [e space]]
     ]
 
     commands [

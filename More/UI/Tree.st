@@ -62,24 +62,24 @@ Tree new
 	^[:e || div |
 	    div := e div class: self cssClassForItem.
 	    self hasChildren ifTrue: [| arrow |
-		arrow := div anchor class: 'arrow'.
+		arrow := div a class: 'arrow'.
 		self expanded 
 		    ifTrue: [
-			arrow image 
-			   source: '/images/arrow_down.png' 
-			    alternativeText: 'collapse'.
+			arrow img 
+			    src: '/images/arrow_down.png' 
+			    alt: 'collapse'.
 			arrow action: [self collapse]]
 		    ifFalse: [
-			arrow image 
-			    source: '/images/arrow_right.png' 
-			    alternativeText: 'expand'.
+			arrow img
+			    src: '/images/arrow_right.png' 
+			    alt: 'expand'.
 			arrow action: [self expand]]].
 	    div space.
 	    self contentsBlock value: div value: self item.
 	    (self hasChildren and: [self expanded]) ifTrue: [| ul |
-		ul := div unorderedList.
-		self subTrees do: [:each | 
-		    ul listItem build: each]]]
+		ul := div ul.
+		    self subTrees do: [:each | 
+			ul li build: each]]]
     ]
 
     cssClass [

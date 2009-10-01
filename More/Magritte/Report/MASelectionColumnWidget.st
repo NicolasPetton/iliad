@@ -49,7 +49,7 @@ MAActionColumnWidget subclass: MASelectionColumnWidget [
 	| selected |
 	selected := self isSelected: anObject.
 	^[:e | 
-	    e anchor
+	    e a
 		class: (selected isNil ifFalse: ['selected']);
 		action: [self selectRow: anObject value: selected not];
 		build: (selected 

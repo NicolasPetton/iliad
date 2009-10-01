@@ -68,7 +68,7 @@ UIWidget subclass: Calendar [
 		(Date indexOfMonth: each) = self month ifTrue: [
 		    option selected]].
 	    form input 
-		maxLength: 4; 
+		maxlength: 4; 
 		action: [:val | self selectYear: val];
 		value: self year.
 	    form button text: 'select']
@@ -80,23 +80,23 @@ UIWidget subclass: Calendar [
 	    table := e table.
 	    date := Date newDay: 1 monthIndex: self month year: self year.
 	    table build: self daysOfWeekRowContents.
-	    row := table tableRow.
-	    date dayOfWeek - 1 timesRepeat: [row tableData].
+	    row := table tr.
+	    date dayOfWeek - 1 timesRepeat: [row td].
 	    date daysInMonth timesRepeat: [| selectedDate |
 		selectedDate := date.
-		date dayOfWeek - 1 \\ 7 = 0 ifTrue: [row := table tableRow].
-		row tableData anchor
+		date dayOfWeek - 1 \\ 7 = 0 ifTrue: [row := table tr].
+		row td a
 		    action: [self selectDate: selectedDate];
-		    text: date dayOfMonth asString.
+		    text: selectDate dayOfMonth asString.
 		date := date addDays: 1]]
     ]
 
     daysOfWeekRowContents [
 	<category: 'building'>
 	^[:e || head |
-	    head := e tableHead.
+	    head := e thead.
 	    self daysOfWeek do: [:each |
-		head tableData text: each]]
+		head td text: each]]
     ]
 
     cssClass [

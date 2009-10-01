@@ -84,14 +84,12 @@ MASingleSelectionWidget subclass: MASelectListWidget [
     groupsContents [
 	<category: 'building-grouped'>
 	^[:e | 
-	    self groups do: 
-		[:association | 
-		    | optgroup |
-		    optgroup := (e optionGroup)
+	    self groups do: [:association || optgroup |
+		    optgroup := e optgroup
 			label: association key;
 			yourself.
-		association value 
-		    do: [:option | optgroup build: (self optionContentsFor: option)]]]
+		association value do: [:option |
+		    optgroup build: (self optionContentsFor: option)]]]
     ]
 
     optionContentsFor: option [

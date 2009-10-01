@@ -50,14 +50,16 @@ UIWidget subclass: WidgetTabs [
     tabsContents [
 	<category: 'building'>
 	^[:e || ul div |
-	   div := e div class: self cssClass.
-	    ul := div unorderedList.
+	    div := e div class: self cssClass.
+	    ul := div ul.
 	    self items do: [:each || li |
-		li := ul listItem.
-		li anchor
+		li := ul li.
+		li a
 		    text: (self labelBlock value: each);
-		    action: [self selectItem: each] hash: (self hashBlock value: each).
-		self selectedItem = each ifTrue: [li class: 'selected']]]
+		    action: [self selectItem: each]
+		    hash: (self hashBlock value: each).
+		self selectedItem = each ifTrue: [
+		    li class: 'selected']]]
     ]
 
     cssClass [

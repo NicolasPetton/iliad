@@ -277,7 +277,7 @@ MAWidget subclass: MAReportWidget [
 	[:e | 
 	self isOnFirstPage 
 	    ifFalse: 
-		[(e anchor)
+		[e a
 		    action: [self batchPage: self defaultBatchPage];
 		    text: '|<']
 	    ifTrue: [e text: '|<'].
@@ -291,16 +291,15 @@ MAWidget subclass: MAReportWidget [
 		e text: '...'; space].
 	    self batchPageRange do: [:index | 
 		self batchPage = index 
-		    ifFalse: [(e anchor) action: [self batchPage: index];
-			    text: index printString]
-		    ifTrue: [(e span)
-			    class: 'current';
-			    text: index printString].
+		    ifFalse: [e a action: [self batchPage: index];
+			text: index printString]
+		    ifTrue: [e span class: 'current';
+			text: index printString].
 		e space].
 	    self batchPageRangeEnd < (self batchMaxPages - 1) ifTrue: [
 		e text: '...'; space].
 	    self batchPageRangeEnd = self batchMaxPages ifFalse: [
-		e anchor
+		e a
 		    action: [self batchPage: self batchMaxPages];
 		    text: self batchMaxPages printString]]
     ]
@@ -310,36 +309,26 @@ MAWidget subclass: MAReportWidget [
 	^
 	[:e | 
 	self isOnLastPage 
-	    ifFalse: 
-		[(e anchor)
-		    action: [self batchPage: self batchMaxPages];
+	    ifFalse: [e a action: [self batchPage: self batchMaxPages];
 		    text: '>|']
 	    ifTrue: [e text: '>|']]
     ]
 
     batchNextContents [
 	<category: 'building-batch'>
-	^
-	[:e | 
-	self isOnLastPage 
-	    ifFalse: 
-		[(e anchor)
-		    action: [self nextPage];
-		    text: '>>']
+	^[:e | 
+	    self isOnLastPage 
+	    ifFalse: [e a action: [self nextPage]; text: '>>']
 	    ifTrue: [e text: '>>'].
 	e space]
     ]
 
     batchPreviousContents [
 	<category: 'building-batch'>
-	^
-	[:e | 
-	self isOnFirstPage 
-	    ifFalse: 
-		[(e anchor)
-		    action: [self previousPage];
-		    text: '<<']
-	    ifTrue: [e text: '<<'].
+	^[:e | 
+	    self isOnFirstPage 
+		ifFalse: [e a action: [self previousPage]; text: '<<']
+		ifTrue: [e text: '<<'].
 	e space]
     ]
 
@@ -609,22 +598,26 @@ MAWidget subclass: MAReportWidget [
 
     tableContents [
 	<category: 'building'>
-	^
-	[:e | 
-	| thead tfoot tbody |
-	self showCaption ifTrue: [e build: self tableCaptionContents].
-	self showSummary ifTrue: [e build: self tableSummaryContents].
-	thead := e tableHead.
-	self showHeader ifTrue: [thead build: self tableHeadContents].
-	((self showBatch and: [self hasMoreThanOnePage]) or: [self showFooter]) 
-	    ifTrue: 
+	^[:e || thead tfoot tbody |
+	    self showCaption ifTrue: [
+		e build: self tableCaptionContents].
+	    self showSummary ifTrue: [
+		e build: self tableSummaryContents].
+	    thead := e thead.
+	    self showHeader ifTrue: [
+		thead build: self tableHeadContents].
+	    ((self showBatch
+		and: [self hasMoreThanOnePage])
+		or: [self showFooter]) ifTrue: 
 		["we must not produce an empty tfoot element, this is not valid xhtml"
-
-		tfoot := e tableFoot.
-		self showFooter ifTrue: [tfoot build: self tableFootContents].
-		self showBatch ifTrue: [tfoot build: self tableBatchContents]].
-	tbody := e tableBody.
-	self showBody ifTrue: [tbody build: self tableBodyContents]]
+		tfoot := e tfoot.
+		self showFooter ifTrue: [
+		    tfoot build: self tableFootContents].
+		self showBatch ifTrue: [
+		    tfoot build: self tableBatchContents]].
+	tbody := e tbody.
+	self showBody ifTrue: [
+	    tbody build: self tableBodyContents]]
     ]
 
     defaultBatchPage [
@@ -867,39 +860,40 @@ MAWidget subclass: MAReportWidget [
 
     tableBatchContents [
 	<category: 'building-table'>
-	^
-	[:e | 
-	self hasMoreThanOnePage 
-	    ifTrue: 
-		[| td |
-		td := (e tableRow tableData)
-			    class: 'batch';
-			    columnSpan: self visibleColumns size;
-			    yourself.
-		self showBatchFirstLast ifTrue: [td build: self batchFirstContents].
-		self showBatchPreviousNext ifTrue: [td build: self batchPreviousContents].
-		self showBatchPages ifTrue: [td build: self batchItemsContents].
-		self showBatchPreviousNext ifTrue: [td build: self batchNextContents].
-		self showBatchFirstLast ifTrue: [td build: self batchLastContents]]]
+	^[:e | 
+	    self hasMoreThanOnePage ifTrue: [| td |
+		td := e tr td
+		    class: 'batch';
+		    colspan: self visibleColumns size;
+			yourself.
+		self showBatchFirstLast
+		    ifTrue: [td build: self batchFirstContents].
+		self showBatchPreviousNext
+		    ifTrue: [td build: self batchPreviousContents].
+		self showBatchPages
+		    ifTrue: [td build: self batchItemsContents].
+		self showBatchPreviousNext
+		    ifTrue: [td build: self batchNextContents].
+		self showBatchFirstLast
+		    ifTrue: [td build: self batchLastContents]]]
     ]
 
     tableBodyContents [
 	<category: 'building-table'>
-	^
-	[:e | 
-	self visible isEmpty 
-	    ifTrue: [| tr |
-		tr := e tableRow
+	^[:e | 
+	    self visible isEmpty 
+		ifTrue: [| tr |
+		    tr := e tr
 			class: 'empty';
 			yourself.
-		tr tableData
-		    columnSpan: self visibleColumns size;
+		tr td
+		    colspan: self visibleColumns size;
 		    text: self tableEmpty]
-	    ifFalse: [| tr |
-		self visible keysAndValuesDo: [:index :row | 
-			tr := e tableRow
-				class: (self rowStyleForNumber: index);
-				yourself.
+		ifFalse: [| tr |
+		    self visible keysAndValuesDo: [:index :row | 
+			tr := e tr
+			    class: (self rowStyleForNumber: index);
+			    yourself.
 			self visibleColumns do: [:col |
 			    tr build: (col
 				buildCell: row
@@ -913,20 +907,18 @@ MAWidget subclass: MAReportWidget [
 
     tableFootContents [
 	<category: 'building-table'>
-	^
-	[:e | 
-	| tr |
-	tr := e tableRow.
-	self visibleColumns do: [:each | tr build: each buildFootCell]]
+	^[:e | | tr |
+	tr := e tr.
+	self visibleColumns do: [:each |
+	    tr build: each buildFootCell]]
     ]
 
     tableHeadContents [
 	<category: 'building-table'>
-	^
-	[:e | 
-	| tr |
-	tr := e tableRow.
-	self visibleColumns do: [:each | tr build: each buildHeadCell]]
+	^[:e | | tr |
+	tr := e tr.
+	self visibleColumns do: [:each |
+	    tr build: each buildHeadCell]]
     ]
 
     tableSummaryContents [
