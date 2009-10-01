@@ -62,7 +62,7 @@ FormElementElement subclass: InputElement [
 
     alt: aString [
 	<category: 'accessing attributes'>
-	self alternativeText: aString
+	self attributeAt: 'alt' put: aString
     ]
 
     ismap [
