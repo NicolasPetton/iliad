@@ -55,7 +55,7 @@ Application subclass: ApplicationBrowser [
     index [
 	<category: 'views'>
 	^[:e | 
-	    e image source: '/images/iliad.png' alternativeText: 'Iliad'.
+	    e img src: '/images/iliad.png' alt: 'Iliad'.
 	    e h3: 'Application Browser'.
 	    e build: self pathListContents]
     ]
@@ -63,9 +63,9 @@ Application subclass: ApplicationBrowser [
     pathListContents [
 	<category: 'views-parts'>
 	^[:e || ul |
-	    ul := e unorderedList.
+	    ul := e ul.
 	    self applications do: [:each | 
-		ul listItem anchor
+		ul li a
 		    text: each name;
 		    linkToApplication: each]]
     ]
@@ -73,7 +73,7 @@ Application subclass: ApplicationBrowser [
     updatePage: aPage [
 	<category: 'building'>
 	super updatePage: aPage.
-	aPage head stylesheet href: '/stylesheets/iliad.css'
+	aPage head css href: '/stylesheets/iliad.css'
     ]
 ]
 
