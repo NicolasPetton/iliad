@@ -42,7 +42,6 @@ var iliad = (function() {
 	 * -------------------------------------------------------------- */
 	
 	var hash           = "";
-	var iframe         = null;
 	var actionsLocked  = false;
 	var ie67           = false;
 	
@@ -57,14 +56,12 @@ var iliad = (function() {
 			var iDoc = jQuery("<iframe id='_iliad_ie_history_iframe'" +
 				"src='/iliad_ie_history.html'" +
 				"style='display: none'></iframe>").prependTo("body")[0];
-			iframe = iDoc.contentWindow.document || iDoc.document;
+			var iframe = iDoc.contentWindow.document || iDoc.document;
 			if(window.location.hash) {
 				hash = window.location.hash.substr(1);
 				iframe.location.hash = hash;
 				evaluateAction(window.location.pathname + '?_hash=' + hash);
 			}
-			//iframe.open();
-			//iframe.close();
 			iframe.location.title = window.title;
 		}
 		checkHashChange();
@@ -78,9 +75,7 @@ var iliad = (function() {
 	 function evaluateAnchorAction(anchor, hashString) {
 		var actionUrl = jQuery(anchor).attr('href');
 		this.evaluateAction(actionUrl);
-		if(hashString) {
-			setHash(hashString)
-		}
+		if(hashString) setHash(hashString);
 	}
 
 	function evaluateFormAction(form) {
@@ -106,9 +101,9 @@ var iliad = (function() {
 
 	function evaluateAction(actionUrl, method, data, lock) {
 		if(!actionsLocked) {
-			if(!method) {method = 'get'}
-			if(lock == null) {lock = true}
-			if(lock) {lockActions()}
+			if(!method) method = 'get';
+			if(lock === null) lock = true;
+			if(lock) lockActions();
 			jQuery.ajax({
 				url: actionUrl,
 				type: method,
@@ -116,8 +111,7 @@ var iliad = (function() {
 				dataType: 'json',
 				data: data,
 				beforeSend: function(xhr) {
-					xhr.setRequestHeader("X-Requested-With", ""); 
-					insertAjaxLoader()},
+					insertAjaxLoader();},
 				success: function(json) {
 					processUpdates(json);
 					removeAjaxLoader();
@@ -141,12 +135,12 @@ var iliad = (function() {
 
 	function hasActionUrl(anchor) {
 		if(anchor && jQuery(anchor).attr('href')) {
-			return /_action?=(.*)$/.test(jQuery(anchor).attr('href'));
+			return (/_action?=(.*)$/).test(jQuery(anchor).attr('href'));
 		}
 	}
 
 	function getFormActionUrl(form) {
-		return jQuery(form).attr('action')
+		return jQuery(form).attr('action');
 	}
 
 
@@ -159,7 +153,7 @@ var iliad = (function() {
 		var newHash = getHash();
 		if(hash != newHash) {
 			hash = newHash;
-			if(ie67) {window.location.hash = hash}
+			if(ie67) window.location.hash = hash;
 			evaluateAction(window.location.pathname + '?_hash=' + hash);
 		}
 	}
@@ -168,22 +162,26 @@ var iliad = (function() {
 		hash = hashString;
 		window.location.hash = hash;
 		//IE is different, as usual....
-        	if(ie67) {fixHistoryForIE()}
+        	if(ie67) fixHistoryForIE();
 	}
 
 	function getHash() {
-        	if(ie67) {return iframe.location.hash.substr(1)}
+		var newHash = getIframe().location.hash;
+        	if(ie67) return newHash.substr(1);
 		return window.location.hash.substr(1);
+	}
+
+	function getIframe() {
+		return jQuery('#_iliad_ie_history_iframe')[0].contentWindow.document;
 	}
 
 	//Special hack for IE < 8. 
 	//Else IE won't add an entry to the history
 	function fixHistoryForIE() {
 		//Add history entry
-		iframe.open();
-		iframe.close();
-		iframe.location.hash = hash;
-		//iframe.location.title = window.title;
+		getIframe().open();
+		getIframe().close();
+		getIframe().location.hash = hash;
 	}
 
 
@@ -195,7 +193,7 @@ var iliad = (function() {
 		
 		/* handle redirect if any */
 		if(json.redirect) {
-			return window.location.href = json.redirect
+			return (window.location.href = json.redirect);
 		}
 		
 		/* else update dirty widgets */
@@ -212,11 +210,11 @@ var iliad = (function() {
 	}
 
 	function updateWidget(id, contents) {
-		jQuery("."+id).replaceWith(contents)
+		jQuery("."+id).replaceWith(contents);
 	}
 
 	function evalScript(script) {
-		eval(jQuery(script).html())
+		eval(jQuery(script).html());
 	}
 
 
@@ -229,11 +227,11 @@ var iliad = (function() {
 		"<div class='ajax_loader'" +
 		"style='position: fixed; _position: absolute;" +
 		"top: 10px; right: 10px; z-index: 9999'>" +
-		"<img src='/images/ajax_loader.gif'/></div>")
+		"<img src='/images/ajax_loader.gif'/></div>");
 	}
 
 	function showError(actionUrl){
-		jQuery("body").html("<h1>Error 500: Internal server error</h1>")
+		jQuery("body").html("<h1>Error 500: Internal server error</h1>");
 	}
 
 	function removeAjaxLoader() {
@@ -262,7 +260,7 @@ var iliad = (function() {
 		enableSubmitAction: enableSubmitAction,
 		checkHashChange: checkHashChange,
 		initialize: initialize
-	}
+	};
 })();
 
 
