@@ -87,7 +87,7 @@ UIWidget subclass: Calendar [
 		date dayOfWeek - 1 \\ 7 = 0 ifTrue: [row := table tr].
 		row td a
 		    action: [self selectDate: selectedDate];
-		    text: selectDate dayOfMonth asString.
+		    text: selectedDate dayOfMonth asString.
 		date := date addDays: 1]]
     ]
 
