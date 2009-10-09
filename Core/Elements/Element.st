@@ -138,7 +138,7 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 
     text: aString [
 	<category: 'adding-conveniance'>
-	self add: (TextElement new
+	^self add: (TextElement new
 	    contents: aString;
 	    yourself)
     ]

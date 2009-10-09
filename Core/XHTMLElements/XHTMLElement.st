@@ -673,9 +673,9 @@ Element subclass: XHTMLElement [
 
     subscript [
 	<category: 'adding-conveniance'>
-	^self text
+	^self add: (TextElement new
 	    tag: 'subscript';
-	    yourself
+	    yourself)
     ]
 
     subscript: aString [
@@ -687,9 +687,9 @@ Element subclass: XHTMLElement [
 
     superscript [
 	<category: 'adding-conveniance'>
-	^self text
+	^self add: (TextElement new
 	    tag: 'superscript';
-	    yourself
+	    yourself)
     ]
 
     superscript: aString [
@@ -755,9 +755,9 @@ Element subclass: XHTMLElement [
 
     var [
 	<category: 'adding-conveniance'>
-	^self text
+	^self add: (TextElement new
 	    tag: 'var';
-	    yourself
+	    yourself)
     ]
 
     var: aString [
