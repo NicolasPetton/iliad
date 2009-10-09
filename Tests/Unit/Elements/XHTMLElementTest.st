@@ -166,6 +166,7 @@ ElementTest subclass: XHTMLElementTest [
 
     testFavicon [
 	<category: 'testing'>
+	e := e favicon.
 	self assert: (e isKindOf: LinkElement).
 	self shouldHaveAttribute: 'rel' value: 'shortcut icon'.
 	e := e favicon: 'hello'.
@@ -584,7 +585,7 @@ ElementTest subclass: XHTMLElementTest [
 	<category: 'testing'>
 	e := e ul.
 	self assert: (e isKindOf: ListElement).
-	self assert: (e tag: 'ul')
+	self assert: (e tag = 'ul')
     ]
 
     testVar [
@@ -593,8 +594,11 @@ ElementTest subclass: XHTMLElementTest [
 	var := e var.
 	self assert: (var isKindOf: TextElement).
 	self assert: (var tag = 'var').
-	var := e var: 'hello'.
-	self assert: (var contents = 'hello')
+	
+	"This test makes gst crash...."
+	self assert: false.
+	"var := e var: 'hello'.
+	self assert: (var contents = 'hello')"
     ]
 
     testXmlLang [

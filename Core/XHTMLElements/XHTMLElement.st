@@ -737,7 +737,7 @@ Element subclass: XHTMLElement [
     tt [
 	<category: 'adding-conveniance'>
 	^self add: (TextElement new 
-	    tag: 'teletype';
+	    tag: 'tt';
 	    yourself)
     ]
 
