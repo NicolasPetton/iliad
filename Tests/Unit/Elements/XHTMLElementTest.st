@@ -107,6 +107,14 @@ ElementTest subclass: XHTMLElementTest [
 	self assert: code contents = 'coucou'
     ]
 
+    testCss [
+	<category: 'testing'>
+	e := e css.
+	self assert: (e isKindOf: LinkElement).
+	self shouldHaveAttribute: 'rel' value: 'Stylesheet'.
+	self shouldHaveAttribute: 'type' value: 'text/css'
+    ]
+
     testDd [
 	<category: 'testing'>
 	| dd |
@@ -156,11 +164,26 @@ ElementTest subclass: XHTMLElementTest [
 	self assert: em contents = 'coucou'
     ]
 
+    testFavicon [
+	<category: 'testing'>
+	self assert: (e isKindOf: LinkElement).
+	self shouldHaveAttribute: 'rel' value: 'shortcut icon'.
+	e := e favicon: 'hello'.
+	self shouldHaveAttribute: 'href' value: 'hello'
+    ]
+
     testFieldset [
 	<category: 'testing'>
 	| fieldset |
 	fieldset := e fieldset.
 	self assert: (fieldset isKindOf: FieldsetElement)
+    ]
+
+    testFile [
+	<category: 'testing'>
+	e := e file.
+	self assert: (e isKindOf: InputElement).
+	self shouldHaveAttribute: 'type' value: 'file'
     ]
 
     testForm [
@@ -270,6 +293,15 @@ ElementTest subclass: XHTMLElementTest [
 	self assert: (input isKindOf: InputElement)
     ]
 
+    testJavascript [
+	<category: 'testing'>
+	e := e javascript.
+	self assert: (e isKindOf: ScriptElement).
+	self shouldHaveAttribute: 'type' value: 'text/javascript'.
+	e := e javascript: 'hello'.
+	self assert: (e contents = 'hello')
+    ]
+
     testLabel [
 	<category: 'testing'>
 	| label |
@@ -333,6 +365,13 @@ ElementTest subclass: XHTMLElementTest [
 	self assert: (object isKindOf: ObjectElement)
     ]
 
+    testOl [
+	<category: 'testing'>
+	e := e ol.
+	self assert: (e isKindOf: ListElement).
+	self assert: (e tag = 'ol')
+    ]
+
     testOptGroup [
 	<category: 'testing'>
 	| optgroup |
@@ -388,6 +427,13 @@ ElementTest subclass: XHTMLElementTest [
 	self assert: (radio isKindOf: RadioButtonElement)
     ]
 
+    testReset [
+	<category: 'testing'>
+	e := e reset.
+	self assert: (e isKindOf: InputElement).
+	self shouldHaveAttribute: 'type' value: 'reset'
+    ]
+
     testScript [
 	<category: 'testing'>
 	| script |
@@ -405,6 +451,13 @@ ElementTest subclass: XHTMLElementTest [
 	self assert: small tag = 'small'.
 	small := e small: 'coucou'.
 	self assert: small contents = 'coucou'
+    ]
+
+    testSpace [
+	<category: 'testing'>
+	e := e space.
+	self assert: (e isKindOf: TextElement).
+	self assert: (e contents = ' ')
     ]
 
     testSpan [
@@ -428,6 +481,32 @@ ElementTest subclass: XHTMLElementTest [
 	<category: 'testing'>
 	e style: 'foo'.
 	self shouldHaveAttribute: 'style' value: 'foo'
+    ]
+
+    testSubmit [
+	<category: 'testing'>
+	e := e submit.
+	self assert: (e isKindOf: InputElement).
+	self shouldHaveAttribute: 'type' value: 'submit'
+    ]
+
+    testSubscript [
+	<category: 'testing'>
+	| sub |
+	sub := e subscript.
+	self assert: (sub isKindOf: TextElement).
+	self assert: (sub tag = 'subscript').
+	sub := e subscript: 'hello'.
+	self assert: (sub contents = 'hello')
+    ]
+
+    testSuperscript [
+	<category: 'testing'>
+	superscript := e superscript.
+	self assert: (superscript isKindOf: TextElement).
+	self assert: (superscript tag = 'superscript').
+	superscript := e superscript: 'hello'.
+	self assert: (superscript contents = 'hello')
     ]
 
     testTable [
@@ -498,6 +577,23 @@ ElementTest subclass: XHTMLElementTest [
 	tt := e tt.
 	self assert: (tt isKindOf: TextElement).
 	self assert: (tt tag = 'tt')
+    ]
+
+    testUl [
+	<category: 'testing'>
+	e := e ul.
+	self assert: (e isKindOf: ListElement).
+	self assert: (e tag: 'ul')
+    ]
+
+    testVar [
+	<category: 'testing'>
+	| var |
+	var := e var.
+	self assert: (var isKindOf: TextElement).
+	self assert: (var tag = 'var').
+	var := e var: 'hello'.
+	self assert: (var contents = 'hello')
     ]
 
     testXmlLang [
