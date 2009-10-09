@@ -72,6 +72,7 @@ Eval [
     filein: 'Unit/Utilities/ModelProxyTest.st'; 
     filein: 'Unit/Utilities/CompositeTest.st';
     filein: 'Unit/RequestHandlers/RequestHandlerTest.st'; 
+    filein: 'Unit/RSS/RSSElementTest.st';
     filein: 'Unit/RSS/RSSCategoryElementTest.st';
     filein: 'Unit/RSS/RSSCloudElementTest.st';   
     filein: 'Unit/RSS/RSSCommentsElementTest.st'; 
