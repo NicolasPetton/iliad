@@ -116,7 +116,7 @@ added to the decoration chain with #decorateWith:.'>
 	ex: myWidget := self widgetFor: [:e | e h1: 'Hello world!']"
 	
 	^PluggableWidget new 
-	    contents: aBuildable; 
+	    contentsBlock: aBuildable; 
 	    yourself
     ]
 
