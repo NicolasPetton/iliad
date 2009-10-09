@@ -111,6 +111,15 @@ added to the decoration chain with #decorateWith:.'>
 	^self
     ]
 
+    widgetFor: aBuildable [
+	"Convenience method. This is useful for building anonymous widgets.
+	ex: myWidget := self widgetFor: [:e | e h1: 'Hello world!']"
+	
+	^PluggableWidget new 
+	    contents: aBuildable; 
+	    yourself
+    ]
+
     buildContents [
 	"Do *not* override this method. Use #contents instead"
 	<category: 'building'>
