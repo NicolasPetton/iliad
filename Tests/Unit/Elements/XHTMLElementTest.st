@@ -497,7 +497,7 @@ ElementTest subclass: XHTMLElementTest [
 	| tt |
 	tt := e tt.
 	self assert: (tt isKindOf: TextElement).
-	self assert: tt tag = 'tt'
+	self assert: (tt tag = 'tt')
     ]
 
     testXmlLang [
