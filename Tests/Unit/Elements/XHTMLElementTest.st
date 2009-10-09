@@ -502,6 +502,7 @@ ElementTest subclass: XHTMLElementTest [
 
     testSuperscript [
 	<category: 'testing'>
+	| superscript |
 	superscript := e superscript.
 	self assert: (superscript isKindOf: TextElement).
 	self assert: (superscript tag = 'superscript').
