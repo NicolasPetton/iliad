@@ -166,8 +166,10 @@ var iliad = (function() {
 	}
 
 	function getHash() {
-		var newHash = getIframe().location.hash;
-        	if(ie67) return newHash.substr(1);
+        	if(ie67) {
+			var newHash = getIframe().location.hash;
+			return newHash.substr(1);
+		}
 		return window.location.hash.substr(1);
 	}
 
