@@ -38,7 +38,6 @@ Eval [
     filein: 'Elements/Extensions.st'; 
 
     filein: 'XHTMLElements/XHTMLElement.st'; 
-    filein: 'XHTMLElements/Deprecated.st'; 
     filein: 'XHTMLElements/TitleElement.st'; 
     filein: 'XHTMLElements/BodyElement.st'; 
     filein: 'XHTMLElements/ClosingElement.st'; 
