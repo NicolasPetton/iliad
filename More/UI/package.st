@@ -12,6 +12,9 @@ Eval [
     filein: 'Extensions.st'; 
     filein: 'WidgetTabs.st'; 
     filein: 'ViewTabs.st'; 
+    filein: 'Paginator.st'; 
+    filein: 'DataGrid.st'; 
+    filein: 'PagedDataGrid.st'; 
     filein: 'Tree.st'; 
     filein: 'MessageDecorator.st'; 
     filein: 'ApplicationBrowser.st';
