@@ -1,5 +1,5 @@
 TestCase subclass: WidgetTest [
-    | c1 c2 c3 |
+    | c1 c2 c3 c4 |
 
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Buildables'>
@@ -8,7 +8,8 @@ TestCase subclass: WidgetTest [
 	<category: 'running'>
 	c1 := WidgetMock1 new.
 	c2 := WidgetMock2 new.
-	c3 := WidgetMock3 new
+	c3 := WidgetMock3 new.
+	c4 := WidgetMock3 new
     ]
 
     testAnswer [
@@ -46,6 +47,36 @@ TestCase subclass: WidgetTest [
 	self assert: d1 decoratee decoratee = c1.
 	d3 removeYourself.
 	self assert: d1 decoratee = c1
+    ]
+
+    testDependentWidget [
+	<category: 'testing'>
+	self withSessionDo: [
+	    c3 addDependentWidget: c2.
+	    c2 addDependentWidget: c1.
+
+	    self assert: (self session dirtyWidgets isEmpty).
+	    c3 markDirty.
+	    self assert: (self session dirtyWidgets includes: c3).
+	    self assert: (self session dirtyWidgets includes: c2).
+	    self assert: (self session dirtyWidgets includes: c1).
+	    self session clearDirtyWidgets.
+
+	    c3 removeDependentWidget: c2.
+	    c2 removeDependentWidget: c1.
+	    c3 markDirty.
+	    self assert: (self session dirtyWidgets size = 1).
+	    self assert: (self session dirtyWidgets includes: c3)]
+    ]
+
+    testReplace [
+	<category: 'testing'>
+	    self withSessionDo: [
+		c1 replace: c2 with: c3 onAnswer: [:ans |
+		    self assert: ans = nil].
+		c1 replace: c2 with: c4 onAnswer: [:ans |
+		    self assert: ans = 'foo'].
+		c2 answer: 'foo']
     ]
 
     testRetrieveControl [
@@ -87,6 +118,18 @@ TestCase subclass: WidgetTest [
 		c2 answer.
 		c1 build printHtmlOn: str.
 		self assert: (str contents matchRegex: '.*test widget 1.*')]
+    ]
+
+    session [
+	<category: 'private'>
+	^CurrentContext value session
+    ]
+
+    withSessionDo: aBlock [
+	<category: 'private'>
+	CurrentContext
+	    use: (Context new session: Session new)
+	    during: aBlock
     ]
 ]
 
