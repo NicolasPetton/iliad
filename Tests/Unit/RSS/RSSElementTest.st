@@ -70,6 +70,13 @@ ElementTest subclass: RSSElementTest [
 	self assert: description tag = 'description'
     ]
 
+    testEnclosure [
+	<category: 'testing'>
+	| enclosure |
+	enclosure := e enclosure.
+	self assert: (enclosure isKindOf: ILRSSEnclosureElement)
+    ]
+
     testGenerator [
 	<category: 'testing'>
 	| generator |
@@ -170,6 +177,13 @@ ElementTest subclass: RSSElementTest [
 	skipHours := e skipHours.
 	self assert: (skipHours isKindOf: RSSElement).
 	self assert: skipHours tag = 'skipHours'
+    ]
+
+    testSource [
+	<category: 'testing'>
+	| source |
+	source := e source.
+	self assert: (source isKindOf: RSSSourceElement)
     ]
 
     testTextInput [
