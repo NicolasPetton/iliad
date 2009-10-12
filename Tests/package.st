@@ -49,6 +49,7 @@ Eval [
     filein: 'Unit/Elements/SelectElementTest.st';
     filein: 'Unit/Elements/SpanElementTest.st';
     filein: 'Unit/Elements/TableBodyElementTest.st';
+    filein: 'Unit/Elements/HorizontalRuleElementTest.st';
     filein: 'Unit/Elements/TableCellElementTest.st';
     filein: 'Unit/Elements/TableDataElementTest.st';
     filein: 'Unit/Elements/TableElementElementTest.st';
