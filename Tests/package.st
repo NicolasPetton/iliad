@@ -61,6 +61,7 @@ Eval [
     filein: 'Unit/Elements/TextAreaElementTest.st';
     filein: 'Unit/Elements/TextElementTest.st';
     filein: 'Unit/Elements/TitleElementTest.st';
+    filein: 'Unit/Elements/BreakElementTest.st';
     filein: 'Unit/lib/JSON/JsonDummyTestObject.st';
     filein: 'Unit/lib/JSON/JsonTest.st';
     filein: 'Unit/Sessions/ActionRegistryTest.st';
