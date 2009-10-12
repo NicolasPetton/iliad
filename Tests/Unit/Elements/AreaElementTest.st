@@ -34,8 +34,8 @@ ElementTest subclass: AreaElementTest [
 
     testDefaultShape [
 	<category: 'testing'>
-	e polyShape.
-	self shouldHaveAttribute: 'shape' value: 'poly'
+	e defaultShape.
+	self shouldHaveAttribute: 'shape' value: 'default'
     ]
 
     testHref [
@@ -76,7 +76,7 @@ ElementTest subclass: AreaElementTest [
 
     testTag [
 	<category: 'testing'>
-	self assert: e tag = 'area'
+	self assert: (e tag = 'area')
     ]
 ]
 
