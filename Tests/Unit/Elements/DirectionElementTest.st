@@ -8,6 +8,12 @@ ElementTest subclass: DirectionElementTest [
 	e := DirectionElement new
     ]
 
+    testDir [
+	<category: 'testing'>
+	e dir: 'foo'.
+	self shouldHaveAttribute: 'dir' value: 'foo'
+    ]
+
     testTag [
 	<category: 'testing'>
 	self assert: e tag = 'bdo'

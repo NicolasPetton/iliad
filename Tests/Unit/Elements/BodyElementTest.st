@@ -9,15 +9,20 @@ ElementTest subclass: BodyElementTest [
     ]
 
     testOnLoad [
-	<category: 'tests'>
+	<category: 'testing'>
 	e onLoad: 'foo'.
 	self shouldHaveAttribute: 'onLoad' value: 'foo'
     ]
 
     testOnUnload [
-	<category: 'tests'>
+	<category: 'testing'>
 	e onUnload: 'foo'.
 	self shouldHaveAttribute: 'onUnload' value: 'foo'
+    ]
+
+    testTag [
+	<category: 'testing'>
+	self assert: (e tag = 'body')
     ]
 ]
 

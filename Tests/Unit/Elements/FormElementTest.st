@@ -55,6 +55,11 @@ ElementTest subclass: FormElementTest [
 	self assert: (e attributeAt: 'enctype') = 'multipart/form-data'
     ]
 
+    testTag [
+	<category: 'testing'>
+	self assert: e tag = 'form'
+    ]
+
     testUseGet [
 	<category: 'tests'>
 	e useGet.

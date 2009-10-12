@@ -8,6 +8,18 @@ ElementTest subclass: MetaElementTest [
 	e := MetaElement new
     ]
 
+    testAttributes [
+	<category: 'testing'>
+	e expires.
+	self shouldHaveAttribute: 'http-equiv' value: 'expires'.
+	e refresh.
+	self shouldHaveAttribute: 'http-equiv' value: 'refresh'.
+	e contentType.
+	self shouldHaveAttribute: 'http-equiv' value: 'content-type'.
+	e setCookie.
+	self shouldHaveAttribute: 'http-equiv' value: 'set-cookie'
+    ]
+
     testContent [
 	<category: 'testing'>
 	e content: 'foo'.

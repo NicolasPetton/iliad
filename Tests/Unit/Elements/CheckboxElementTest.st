@@ -14,6 +14,18 @@ ElementTest subclass: CheckboxElementTest [
 	self shouldHaveAttribute: 'accesskey' value: 'a'
     ]
 
+    testBeChecked [
+	<category: 'testing'>
+	e beChecked.
+	self shouldHaveAttribute: 'checked' value: 'checked'
+    ]
+
+    testBeforePrintHtml [
+	<category: 'testing'>
+	e beforePrintHtml.
+	self shouldHaveAttribute: 'type' value: 'checkbox'
+    ]
+
     testChecked [
 	<category: 'testing'>
 	e checked: true.

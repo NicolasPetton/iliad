@@ -32,6 +32,27 @@ ElementTest subclass: InputElementTest [
 	self shouldHaveAttribute: 'alt' value: 'foo'
     ]
 
+    testAttributes [
+	<category: 'testing'>
+	e beImage.
+	self shouldHaveAttribute: 'type' value: 'image'.
+	e beHidden.
+	self shouldHaveAttribute: 'type' value: 'hidden'.
+	e beText.
+	self shouldHaveAttribute: 'type' value: 'text'.
+	e bePassword.
+	self shouldHaveAttribute: 'type' value: 'password'
+    ]
+
+    testBeforePrintHtml [
+	<category: 'testing'>
+	e beforePrintHtml.
+	self shouldHaveAttribute: 'type' value: 'text'.
+	e type: 'foo'.
+	e beforePrintHtml.
+	self shouldHaveAttribute: 'type' value: 'foo'
+    ]
+
     testDisabled [
 	<category: 'testing'>
 	e disabled.

@@ -20,10 +20,22 @@ ElementTest subclass: AreaElementTest [
 	self shouldHaveAttribute: 'alt' value: 'foo'
     ]
 
+    testCircleShape [
+	<category: 'testing'>
+	e circleShape.
+	self shouldHaveAttribute: 'shape' value: 'circle'
+    ]
+
     testCoords [
 	<category: 'testing'>
 	e coords: 'foo'.
 	self shouldHaveAttribute: 'coords' value: 'foo'
+    ]
+
+    testDefaultShape [
+	<category: 'testing'>
+	e polyShape.
+	self shouldHaveAttribute: 'shape' value: 'poly'
     ]
 
     testHref [
@@ -42,6 +54,12 @@ ElementTest subclass: AreaElementTest [
 	<category: 'testing'>
 	e onFocus: 'foo'.
 	self shouldHaveAttribute: 'onfocus' value: 'foo'
+    ]
+
+    testRectShape [
+	<category: 'testing'>
+	e rectShape.
+	self shouldHaveAttribute: 'shape' value: 'rect'
     ]
 
     testShape [

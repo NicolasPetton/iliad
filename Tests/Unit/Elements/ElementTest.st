@@ -20,5 +20,10 @@ TestCase subclass: ElementTest [
 	e attributeAt: 'foo' put: 'bar'.
 	self shouldHaveAttribute: 'foo' value: 'bar'
     ]
+    
+    testTag [
+	<category: 'testing'>
+	self assert: e tag = nil
+    ]
 ]
 

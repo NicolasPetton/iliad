@@ -14,6 +14,18 @@ ElementTest subclass: TableCellElementTest [
 	self shouldHaveAttribute: 'abbr' value: 'foo'
     ]
 
+    testAttributes [
+	<category: 'testing'>
+	e colScope.
+	self shouldHaveAttribute: 'scope' value: 'col'.
+	e rowgroupScope.
+	self shouldHaveAttribute: 'scope' value: 'rowgroup'.
+	e colgroupScope.
+	self shouldHaveAttribute: 'scope' value: 'colgroup'.
+	e rowScope.
+	self shouldHaveAttribute: 'scope' value: 'row'
+    ]
+
     testAxis [
 	<category: 'testing'>
 	e axis: 'foo'.

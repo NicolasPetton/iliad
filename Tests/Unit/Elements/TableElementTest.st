@@ -8,6 +8,38 @@ ElementTest subclass: TableElementTest [
 	e := TableElement new
     ]
 
+    testAttributes [
+	<category: 'testing'>
+	e rhsFrame.
+	self shouldHaveAttribute: 'frame' value: 'rhs'.
+	e vsidesFrame.
+	self shouldHaveAttribute: 'frame' value: 'vsides'.
+	e aboveFrame.
+	self shouldHaveAttribute: 'frame' value: 'above'.
+	e groupRules.
+	self shouldHaveAttribute: 'rules' value: 'groups'.
+	e hsidesFrame.
+	self shouldHaveAttribute: 'frame' value: 'hsides'.
+	e colsRules.
+	self shouldHaveAttribute: 'rules' value: 'cols'.
+	e noRules.
+	self shouldHaveAttribute: 'rules' value: 'none'.
+	e boxFrame.
+	self shouldHaveAttribute: 'frame' value: 'box'.
+	e rowsRules.
+	self shouldHaveAttribute: 'rules' value: 'rows'.
+	e voidFrame.
+	self shouldHaveAttribute: 'frame' value: 'void'.
+	e allRules.
+	self shouldHaveAttribute: 'rules' value: 'all'.
+	e belowFrame.
+	self shouldHaveAttribute: 'frame' value: 'below'.
+	e lhsFrame.
+	self shouldHaveAttribute: 'frame' value: 'lhs'.
+	e borderFrame.
+	self shouldHaveAttribute: 'frame' value: 'border'
+    ]
+
     testBorder [
 	<category: 'testing'>
 	e border: 2.

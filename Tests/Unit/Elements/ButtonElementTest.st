@@ -14,6 +14,25 @@ ElementTest subclass: ButtonElementTest [
 	self shouldHaveAttribute: 'accesskey' value: 'a'
     ]
 
+    testAttributes [
+	<category: 'testing'>
+	e beButton.
+	self shouldHaveAttribute: 'type' value: 'button'.
+	e beReset.
+	self shouldHaveAttribute: 'type' value: 'reset'.
+	e beSubmit.
+	self shouldHaveAttribute: 'type' value: 'submit'
+    ]
+
+    testBeforePrintHtml [
+	<category: 'testing'>
+	e beforePrintHtml.
+	self shouldHaveAttribute: 'type' value: 'submit'.
+	e type: 'foo'.
+	e beforePrintHtml.
+	self shouldHaveAttribute: 'type' value: 'foo'
+    ]
+
     testTag [
 	<category: 'testing'>
 	self assert: e tag = 'button'

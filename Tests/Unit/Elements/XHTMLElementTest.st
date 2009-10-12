@@ -481,7 +481,8 @@ ElementTest subclass: XHTMLElementTest [
     testStyle [
 	<category: 'testing'>
 	e style: 'foo'.
-	self shouldHaveAttribute: 'style' value: 'foo'
+	self shouldHaveAttribute: 'style' value: 'foo'.
+	self assert: (e style = 'foo')
     ]
 
     testSubmit [
@@ -563,7 +564,8 @@ ElementTest subclass: XHTMLElementTest [
     testTitle [
 	<category: 'testing'>
 	e title: 'foo'.
-	self shouldHaveAttribute: 'title' value: 'foo'
+	self shouldHaveAttribute: 'title' value: 'foo'.
+	self assert: (e title = 'foo')
     ]
 
     testTr [

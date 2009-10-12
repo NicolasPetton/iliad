@@ -13,6 +13,16 @@ ElementTest subclass: ParameterElementTest [
 	self should: [e add: Element new] raise: ElementError
     ]
 
+    testAttributes [
+	<category: 'testing'>
+	e beObject.
+	self shouldHaveAttribute: 'valuetype' value: 'object'.
+	e beData.
+	self shouldHaveAttribute: 'valuetype' value: 'data'.
+	e beReference.
+	self shouldHaveAttribute: 'valuetype' value: 'ref'
+    ]
+
     testName [
 	<category: 'testing'>
 	e name: 'foo'.
