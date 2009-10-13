@@ -86,7 +86,7 @@ XHTMLElement subclass: TableElement [
 	self attributeAt: 'cellspacing' put: anInteger printString
     ]
 
-    cols [
+    colsRules [
 	<category: 'accessing attributes'>
 	self rules: 'cols'
     ]
@@ -96,12 +96,12 @@ XHTMLElement subclass: TableElement [
 	self attributeAt: 'frame' put: aString
     ]
 
-    groups [
+    groupRules [
 	<category: 'accessing attributes'>
 	self rules: 'groups'
     ]
 
-    hsides [
+    hsidesFrame [
 	<category: 'accessing attributes'>
 	self frame: 'hsides'
     ]

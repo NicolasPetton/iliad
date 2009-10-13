@@ -89,8 +89,8 @@ XHTMLElement subclass: HtmlElement [
     beforePrintHtml [
 	<category: 'printing'>
 	self attributeAt: 'xmlns' ifAbsentPut: [self class xmlns].
-	self attributeAt: 'lang' ifAbsentPut: [self session language printString].
-	self attributeAt: 'xml:lang' ifAbsentPut: [self session language printString]
+	self attributeAt: 'lang' ifAbsentPut: [self session language asString].
+	self attributeAt: 'xml:lang' ifAbsentPut: [self session language asString]
     ]
 
     printHtmlOn: aStream [

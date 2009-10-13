@@ -11,10 +11,10 @@ ElementTest subclass: HtmlElementTest [
     testBeforePrintHtml [
 	<category: 'testing'>
 	| session context |
-	session := ILSession new. session language: #fr.
-	context := ILContext new session: session.
-	ILCurrentContext 
-	    use: (context) 
+	session := Session new. session language: #fr.
+	context := Context new session: session.
+	CurrentContext 
+	    use: context
 	    during: [	
 		e beforePrintHtml.
 		self shouldHaveAttribute: 'xmlns' 
@@ -22,12 +22,12 @@ ElementTest subclass: HtmlElementTest [
 		self shouldHaveAttribute: 'lang' value: 'fr'.
 		self shouldHaveAttribute: 'xml:lang' value: 'fr'.
 			
-		e xmlns: 'foo'. e lang: 'foo'. e xmlLang: 'foo'.
+		e xmlns: 'foo'. e lang: 'bar'. e xmlLang: 'baz'.
 		e beforePrintHtml.
 		self shouldHaveAttribute: 'xmlns' value: 'foo'.
-		self shouldHaveAttribute: 'lang' value: 'foo'.
-		self shouldHaveAttribute: 'xml:lang' value: 'foo']
-    ]
+		self shouldHaveAttribute: 'lang' value: 'bar'.
+		self shouldHaveAttribute: 'xml:lang' value: 'baz']
+	]
 
     testDocType [
 	<category: 'testing'>

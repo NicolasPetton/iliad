@@ -104,7 +104,7 @@ XHTMLElement subclass: TableElementElement [
 
     topValign [
 	<category: 'accessing attributes-table'>
-	self verticalAlignment: 'top'
+	self valign: 'top'
     ]
 
     valign: aString [
