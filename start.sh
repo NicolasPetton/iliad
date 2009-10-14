@@ -33,7 +33,7 @@ echo "PackageLoader fileInPackage: 'Iliad'. ObjectMemory snapshot: 'iliad.im'" |
 echo "done!"
 
 echo "starting gst-remote server..."
-gst-remote --server -I iliad.im &
+gst-remote --server -I iliad.im 2>&1 | tee iliad.log &
 sleep 2
 echo "done!"
 
