@@ -2,7 +2,7 @@
 
 
 UIWidget subclass: Paginator [
-    | currentPage totalPages pagesToShow action |
+    | currentPage totalPages action |
     
     <comment: nil>
     <category: 'Iliad-More-UI'>
@@ -51,17 +51,6 @@ UIWidget subclass: Paginator [
     currentPage: anObject [
 	<category: 'accessing'>
 	currentPage := anObject.
-	self markDirty
-    ]
-
-    pagesToShow [
-	<category: 'accessing'>
-	^pagesToShow ifNil: [5]
-    ]
-
-    pagesToShow: anObject [
-	<category: 'accessing'>
-	pagesToShow := anObject.
 	self markDirty
     ]
 
