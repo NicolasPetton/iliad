@@ -82,7 +82,7 @@ Application subclass: CounterApplication [
     updatePage: aPage [
 	<category: 'as yet unclassified'>
 	super updatePage: aPage.
-	aPage head css href: '/stylesheets/iliad.css'
+	aPage head stylesheet href: '/stylesheets/iliad.css'
     ]
 ]
 

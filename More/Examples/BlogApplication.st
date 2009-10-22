@@ -128,7 +128,7 @@ Application subclass: BlogApplication [
     updatePage: aPage [
 	<category: 'building'>
 	super updatePage: aPage.
-	aPage head css href: '/stylesheets/iliad.css'
+	aPage head stylesheet href: '/stylesheets/iliad.css'
     ]
 ]
 

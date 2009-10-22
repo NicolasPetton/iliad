@@ -657,11 +657,16 @@ Element subclass: XHTMLElement [
 	    yourself
     ]
 
-    css [
+    stylesheet [
 	<category: 'adding-conveniance'>
 	^self link
 	    beStylesheet;
 	    yourself
+    ]
+
+    css [
+	<category: 'adding-conveniance'>
+	^self stylesheet
     ]
 
     submit [
