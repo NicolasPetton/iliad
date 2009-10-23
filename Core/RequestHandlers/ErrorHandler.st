@@ -77,7 +77,7 @@ RequestHandler subclass: ErrorHandler [
 
     produceDebugResponse [
 	<category: 'responding'>
-	self error pass
+	self error resignalAsUnhandled: self error messageText
     ]
 
     produceVerboseResponse [
