@@ -664,11 +664,6 @@ Element subclass: XHTMLElement [
 	    yourself
     ]
 
-    css [
-	<category: 'adding-conveniance'>
-	^self stylesheet
-    ]
-
     submit [
 	<category: 'adding-conveniance'>
 	^self input
@@ -771,5 +766,11 @@ Element subclass: XHTMLElement [
 	    contents: aString;
 	    yourself
     ]
+
+    css [
+	<category: 'deprecated'>
+	^self stylesheet
+    ]
+
 ]
 
