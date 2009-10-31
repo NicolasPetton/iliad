@@ -74,7 +74,7 @@ ElementTest subclass: RSSElementTest [
 	<category: 'testing'>
 	| enclosure |
 	enclosure := e enclosure.
-	self assert: (enclosure isKindOf: ILRSSEnclosureElement)
+	self assert: (enclosure isKindOf: RSSEnclosureElement)
     ]
 
     testGenerator [
