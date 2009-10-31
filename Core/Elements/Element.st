@@ -44,6 +44,18 @@ Composite subclass: Element [
 
 I know how to print myself in HTML format with the #printHtmlOn: method'>
 
+
+    = anObject [
+	<category: 'comparing'>
+	^super = anObject and: [
+	    self attributes = anObject attributes]
+    ]
+
+    hash [
+	<category: 'comparing'>
+	^super hash bitXor: self attributes hash
+    ]
+
     attributes [
 	<category: 'accessing'>
 	^attributes ifNil: [attributes := SmallDictionary new]
