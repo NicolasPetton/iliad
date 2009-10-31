@@ -299,8 +299,6 @@ ElementTest subclass: XHTMLElementTest [
 	e := e javascript.
 	self assert: (e isKindOf: ScriptElement).
 	self shouldHaveAttribute: 'type' value: 'text/javascript'.
-	e := e javascript: 'hello'.
-	self assert: (e contents = 'hello')
     ]
 
     testLabel [

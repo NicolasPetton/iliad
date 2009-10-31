@@ -472,14 +472,6 @@ Element subclass: XHTMLElement [
 	    yourself
     ]
 
-    javascript: aString [
-	<category: 'adding-conveniance'>
-	^self script
-	    beJavascript;
-	    contents: aString;
-	    yourself
-    ]
-
     label [
 	<category: 'adding-conveniance'>
 	^self add: LabelElement new

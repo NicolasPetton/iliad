@@ -198,7 +198,12 @@ var iliad = (function() {
 			return (window.location.href = json.redirect);
 		}
 		
-		/* else update dirty widgets */
+		/* update head */
+		for (var i in json.head) {
+			jQuery('head').append(json.head[i]);
+		}
+
+		/*  update dirty widgets */
 		var dirtyWidgets = json.widgets;
 		for(var i in dirtyWidgets) {
 			updateWidget(i, dirtyWidgets[i]);
