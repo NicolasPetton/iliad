@@ -43,7 +43,7 @@ DataGrid subclass: PagedDataGrid [
 	^[:tfoot | 
 	    tfoot td
 		colspan: self columnNames size;
-		build: ((ILPaginator new)
+		build: ((Paginator new)
 			totalPages: (self items size / self rowsPerPage) ceiling;
 			currentPage: self currentPage;
 			action: [:newPage | self currentPage: newPage])]
