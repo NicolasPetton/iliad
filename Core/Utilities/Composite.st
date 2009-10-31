@@ -40,6 +40,17 @@ IliadObject subclass: Composite [
     <comment: nil>
     <category: 'Iliad-Core-Utilities'>
 
+    = anObject [
+	<category: 'comparing'>
+	^self species = anObject species and: [
+	    self children = anObject children]
+    ]
+
+    hash [
+	<category: 'comparing'>
+	^self species hash bitXor: self children hash
+    ]
+
     next [
 	<category: 'accessing'>
 	^next
