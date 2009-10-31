@@ -56,6 +56,11 @@ Widget subclass: Counter [
 	    e a action: [self decrease]; text: '--']
     ]
 
+    styles [
+	<category: 'building'>
+	^#('/stylesheets/iliad.css')
+    ]
+
     decrease [
 	<category: 'actions'>
 	count := count - 1.

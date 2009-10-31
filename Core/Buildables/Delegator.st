@@ -65,6 +65,11 @@ Decorator subclass: Delegator [
 	^[:e | e build: self widget] 
     ]
 
+    updateHead: aHead [
+	<category: 'building'>
+	self widget updateHead: aHead
+    ]
+
     handleAnswer: anAnswer [
 	<category: 'decorations'>
 	self widget handleAnswer: anAnswer

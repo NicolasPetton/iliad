@@ -37,7 +37,7 @@
 
 
 RequestHandler subclass: JsonHandler [
-    | jsonContents widgetsToUpdate |
+    | jsonContents widgets scripts head widgetsToUpdate |
 
     <comment: nil>
     <category: 'Iliad-Core-RequestHandlers'>
@@ -45,7 +45,10 @@ RequestHandler subclass: JsonHandler [
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
-	jsonContents := Dictionary new
+	jsonContents := Dictionary new.
+	head := OrderedCollection new.
+	widgets := Dictionary new.
+	scripts := OrderedCollection new
     ]
 
     handleRequest [
@@ -59,21 +62,12 @@ RequestHandler subclass: JsonHandler [
 
     produceResponse [
 	<category: 'responding'>
-	self respond: [:response || widgets scripts |
+	self respond: [:response |
 	    self shouldRedirect ifTrue: [
 		jsonContents 
 		    at: 'redirect' 
 		    put: self session redirectUrl asString].
-		widgets := Dictionary new.
-		scripts := OrderedCollection new.
-	    widgetsToUpdate do: [:each || e |
-		e := each build.
-		widgets at: each id put: e.
-		e allChildrenDo: [:child |
-		    child tag = 'script' ifTrue: [
-			scripts add: child]]].
-	    jsonContents at: 'widgets' put: widgets.
-	    jsonContents at: 'scripts' put: scripts.
+	    self updateHead; updateWidgets.
 	    response nextPutAll: (String streamContents: [:stream |
 		jsonContents printJsonOn: stream]).
 	    self session clearRedirectUrl]
@@ -96,4 +90,28 @@ RequestHandler subclass: JsonHandler [
 	    contentType: 'application/json'; 
 	    yourself
     ]
+
+    updateHead [
+	<category: 'private'>
+	| headElement |
+	headElement := Element new.
+	widgetsToUpdate do: [:each | each buildHead: headElement].
+	headElement childrenDo: [:each |
+	    (self application page head children includes: each) ifFalse: [
+		head add: each]].
+	jsonContents at: 'head' put: head
+    ]
+
+    updateWidgets [
+	<category: 'private'>
+	widgetsToUpdate do: [:each || e |
+	    e := each build.
+	    widgets at: each id put: e.
+	    e allChildrenDo: [:child |
+		child tag = 'script' ifTrue: [
+		    scripts add: child]]].
+	jsonContents at: 'widgets' put: widgets.
+	jsonContents at: 'scripts' put: scripts
+    ]
+						
 ]

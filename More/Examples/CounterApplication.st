@@ -78,11 +78,5 @@ Application subclass: CounterApplication [
 			Counter new.
 			Counter new}]
     ]
-
-    updatePage: aPage [
-	<category: 'as yet unclassified'>
-	super updatePage: aPage.
-	aPage head stylesheet href: '/stylesheets/iliad.css'
-    ]
 ]
 

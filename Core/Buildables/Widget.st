@@ -114,7 +114,8 @@ added to the decoration chain with #decorateWith:.'>
     widgetFor: aBuildable [
 	"Convenience method. This is useful for building anonymous widgets.
 	ex: myWidget := self widgetFor: [:e | e h1: 'Hello world!']"
-	
+	<category: 'accessing'>
+
 	^PluggableWidget new 
 	    contentsBlock: aBuildable; 
 	    yourself
@@ -123,6 +124,8 @@ added to the decoration chain with #decorateWith:.'>
     buildContents [
 	"Do *not* override this method. Use #contents instead"
 	<category: 'building'>
+
+	self buildHead: self application page head.	
 	
 	^self newRootElement div 
 	    class: '_widget ', self id;
@@ -130,11 +133,33 @@ added to the decoration chain with #decorateWith:.'>
 	    yourself
     ]
 
+    buildHead: aHead [
+	<category: 'building'>
+
+	decorator updateHead: aHead
+    ]
+
     contents [
 	"Override this method to add contents to your widget"
 	<category: 'building'>
 
 	^[:e | ]
+    ]
+
+    scripts [
+	"Answer a collection of strings.
+	Override in subclasses to add scripts to load with the widget"
+	<category: 'building'>
+
+	^#()
+    ]
+
+    styles [
+	"Answer a collection of strings.
+	Override in subclasses to add styles to load with the widget"
+	<category: 'building'>
+
+	^#()
     ]
 
     decorateWith: aDecorator [
@@ -166,6 +191,12 @@ added to the decoration chain with #decorateWith:.'>
 	[dec ~= self] whileTrue: [
 	    aBlock value: dec.
 	    dec := dec decoratee]
+    ]
+
+    withDecoratorsDo: aBlock [
+	<category: 'decorators'>
+	aBlock value: self.
+	self decoratorsDo: aBlock
     ]
 
     removeDecorator: aDecorator [
@@ -324,6 +355,19 @@ added to the decoration chain with #decorateWith:.'>
     newRootElement [
 	<category: 'private'>
 	^self defaultRootElementClass new
+    ]
+
+    updateHead: aHead [
+	<category: 'private'>
+	self withDecoratorsDo: [:each |
+	    each scripts do: [:script || e |
+		e := self newRootElement javascript src: script.
+		(aHead children includes: e) ifFalse: [
+		    aHead add: e]].
+	    each styles do: [:script || e |
+		e := self newRootElement stylesheet href: script.
+		(aHead children includes: e) ifFalse: [
+		    aHead add: e]]]
     ]
 ]
 

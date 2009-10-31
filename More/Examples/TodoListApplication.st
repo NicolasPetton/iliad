@@ -81,9 +81,7 @@ Application subclass: TodoListApplication [
     updatePage: aPage [
 	<category: 'building'>
 	super updatePage: aPage.
-	aPage head stylesheet href: '/stylesheets/iliad.css'.
-	aPage head javascript src: '/javascripts/lightbox.js'.
-	aPage head stylesheet href: '/stylesheets/lightbox.css'.
+	aPage head stylesheet href: '/stylesheets/iliad.css'
     ]
 
     index [

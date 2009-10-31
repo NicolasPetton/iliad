@@ -101,7 +101,7 @@ RequestHandler subclass: ApplicationHandler [
 
     newResponse [
 	<category: 'private'>
-	 ^self context application asResponse
+	 ^self application asResponse
     ]
 
     getActionsFromRequest [

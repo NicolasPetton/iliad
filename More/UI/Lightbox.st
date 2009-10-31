@@ -49,6 +49,22 @@ Delegator subclass: Lightbox [
 	    div build: self widget]
     ]
 
+    updateHead: aHead [
+	<category: 'building'>
+	super updateHead: aHead.
+	self decoratee updateHead: aHead
+    ]
+
+    styles [
+	<category: 'building'>
+	^#('/stylesheets/lightbox.css')
+    ]
+
+    scripts [
+	<category: 'building'>
+	^#('/javascripts/lightbox.js')
+    ]
+
     lighter [
 	<category: 'scripts'>
 	^'jQuery(function() {updateLightbox();jQuery(window).resize(function(){updateLightbox();})})'

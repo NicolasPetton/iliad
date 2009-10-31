@@ -39,7 +39,7 @@
 
 
 Widget subclass: Application [
-    | model originalRoutePosition |
+    | model originalRoutePosition page |
 
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am the implementation of an application.
@@ -162,11 +162,6 @@ the application mode:
 	]
     ]
 
-    hashRoute [
-	<category: 'accessing'>
-	^self context hashRoute
-    ]
-
     model [
 	<category: 'accessing'>
 	^model
@@ -182,9 +177,19 @@ the application mode:
 	^self context route
     ]
 
+    hashRoute [
+	<category: 'accessing'>
+	^self context hashRoute
+    ]
+
     originalRoutePosition [
 	<category: 'accessing'>
 	^originalRoutePosition
+    ]
+
+    page [
+	<category: 'accessing'>
+	^page
     ]
 
     selectorFilter [
@@ -323,7 +328,6 @@ the application mode:
 
     respondOn: aResponse [
 	<category: 'converting'>
-	| page |
 	page := self defaultPageClass new.
 	self buildOn: page body.
 	self updatePage: page.

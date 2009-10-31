@@ -51,6 +51,15 @@ IliadObject subclass: Composite [
 	^self species hash bitXor: self children hash
     ]
 
+    children [
+	<category: 'accessing'>
+	| children |
+	children := OrderedCollection new.
+	self childrenDo: [:each |
+	    children add: each].
+	^children
+    ]
+
     next [
 	<category: 'accessing'>
 	^next

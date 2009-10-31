@@ -74,6 +74,21 @@ Subclasses can be used to modify the building process of a widget, or change its
 	^self decoratee contents
     ]
 
+    updateHead: aHead [
+	<category: 'building'>
+	self decoratee updateHead: aHead
+    ]
+
+    styles [
+	<category: 'building'>
+	^#()
+    ]
+
+    scripts [
+	<category: 'building'>
+	^#()
+    ]
+
     handleAnswer: anAnswer [
 	<category: 'decorations'>
 	^self decoratee handleAnswer: anAnswer
