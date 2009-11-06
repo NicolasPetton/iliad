@@ -20,7 +20,7 @@ do        case "$o" in
 done
 
 echo "building Iliad packages..."
-./make_packages.sh
+./scripts/make_packages
 echo "done!"
 
 echo "stopping gst-remote server..."

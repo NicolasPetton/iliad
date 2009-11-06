@@ -3,7 +3,7 @@
 GST_PACK="/usr/bin/env gst-package"
 GST="/usr/bin/env gst"
 CURR_DIR=`pwd`
-PACK_BUILDER=$CURR_DIR"/PackageBuilder.st"
+PACK_BUILDER=$CURR_DIR"/scripts/PackageBuilder.st"
 
 echo "Packaging in $CURR_DIR ..." > make_packages.log
 for i in `find . -name package.st`
