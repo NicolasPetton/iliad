@@ -1,0 +1,22 @@
+Iliad is a Smalltalk web application framework. It is designed to be simple 
+and make web development as effective as possible. 
+
+Iliad's features include:
+- reusable stateful widgets
+- REST applications
+- simple API
+- easy to setup and deploy (no complicated configuration step)
+- automatic AJAX: Thanks to its javascript layer, Iliad automagically 
+updates widgets using AJAX. If javascript is not enabled, the behaviour 
+remains the same by making normal requests, so you don't have to worry 
+about that.
+
+Iliad reuses pieces of code from other libraries. In particular, the 
+dispatch pattern is adapted from HttpView2, the composite element 
+hierarachy for building HTML from AIDA/Web, and the stateful Widgets from 
+Seaside, however without using continuations.
+
+Iliad is a young piece of code, but it is already very functional and can 
+support relatively heavy load without stability issues. Because it is 
+young, API changes are not guaranteed to be backward compatible until 1.0 
+release.
