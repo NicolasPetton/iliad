@@ -1,9 +1,7 @@
-
-
 ElementTest subclass: RSSCommentsElementTest [
     
     <comment: nil>
-    <category: 'Iliad-Tests-RSS'>
+    <category: 'Iliad-Tests-Unit-RSS'>
 
     testTag [
 	<category: 'testing'>

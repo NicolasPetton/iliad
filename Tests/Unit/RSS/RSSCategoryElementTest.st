@@ -1,18 +1,22 @@
-
-
-RSSElement subclass: RSSCategoryElement [
+ElementTest subclass: RSSCategoryElementTest [
     
     <comment: nil>
-    <category: 'Iliad-More-RSS'>
+    <category: 'Iliad-Tests-Unit-RSS'>
 
-    tag [
-	<category: 'accessing'>
-	^'category'
+    setUp [
+	<category: 'running'>
+	e := RSSCategoryElement new
     ]
 
-    domain: anUrl [
-	<category: 'accessing attributes'>
-	self attributeAt: 'domain' put: anUrl asString
+    testDomain [
+	<category: 'testing'>
+	e domain: 'foo'.
+	self shouldHaveAttribute: 'domain' value: 'foo'
+    ]
+
+    testTag [
+	<category: 'testing'>
+	self assert: e tag = 'category'
     ]
 ]
 

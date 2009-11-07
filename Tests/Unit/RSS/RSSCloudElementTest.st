@@ -1,9 +1,7 @@
-
-
 ElementTest subclass: RSSCloudElementTest [
     
     <comment: nil>
-    <category: 'Iliad-Tests-RSS'>
+    <category: 'Iliad-Tests-Unit-RSS'>
 
     setUp [
 	<category: 'running'>

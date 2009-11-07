@@ -2,7 +2,7 @@
 ElementTest subclass: XHTMLElementTest [
     
     <comment: nil>
-    <category: 'Iliad-Tests-Elements'>
+    <category: 'Iliad-Tests-Unit-Elements'>
 
     setUp [
 	<category: 'running'>

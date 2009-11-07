@@ -2,7 +2,7 @@ TestCase subclass: ApplicationTest [
     | application |
     
     <comment: nil>
-    <category: 'Iliad-Tests-Buildables'>
+    <category: 'Iliad-Tests-Unit-Buildables'>
 
     setUp [
 	<category: 'running'>
