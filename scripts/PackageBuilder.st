@@ -95,12 +95,12 @@ Object subclass: Indenter [
   wrap: aString around: contentString [ 
     <category: 'xml-printing'>
     <comment: 'Write opening and closing tags on the same line as the contentString.'>
-    self indentNl: [ :aStream |
-      self 
-        tag: aString; 
-        nextPutAll: contentString; 
-        tag: '/',aString
-    ]
+    contentString ifNotNil: [
+	self indentNl: [ :aStream |
+	self
+	    tag: aString; 
+	    nextPutAll: contentString; 
+	    tag: '/',aString]]
   ]
 
   wrap: aString aroundEachOf: aCollection [
@@ -195,15 +195,17 @@ Object subclass: TestBuilder [
 
 
 Object subclass: PackageBuilder [
-  |name namespace prereqs testBuilder fileins|
+  |name url namespace prereqs provides testBuilder start fileins resources|
 
   PackageBuilder class >> new [
     ^ self basicNew initialize
   ]
 
-  initialize [ 
+  initialize [
     prereqs := OrderedCollection new.
-    fileins := OrderedCollection new
+    provides := OrderedCollection new.
+    fileins := OrderedCollection new.
+    resources := OrderedCollection new.
   ]
 
   name [
@@ -213,6 +215,14 @@ Object subclass: PackageBuilder [
   name: aString [
     <category: 'accessing'>
     name := aString
+  ]
+  url [
+    <category: 'accessing'>
+    ^ url
+  ]
+  url: aString [
+    <category: 'accessing'>
+    url := aString
   ]
   namespace [
     <category: 'accessing'>
@@ -230,6 +240,22 @@ Object subclass: PackageBuilder [
     <category: 'accessing'>
     prereqs add: aString
   ]
+  provides [
+    <category: 'accessing'>
+    ^ provides
+  ]
+  provides: aString [
+    <category: 'accessing'>
+    provides add: aString
+  ]
+  start [
+    <category: 'accessing'>
+    ^ start
+  ]
+  start: aString [
+    <category: 'accessing'>
+    start := aString
+  ]
   fileins [
     <category: 'accessing'>
     ^ fileins
@@ -237,6 +263,11 @@ Object subclass: PackageBuilder [
   filein: aString [
     <category: 'accessing'>
     fileins add: aString
+  ]
+
+  resource: aString [
+    <category: 'accessing'>
+    resources add: aString
   ]
 
   testsBelow: aDirname matching: aPattern [ 
@@ -255,11 +286,15 @@ Object subclass: PackageBuilder [
     aStream wrap: 'package' do: [ 
       aStream 
         wrap: 'name' around: self name;
+        wrap: 'url' around: self url;
         wrap: 'namespace' around: self namespace.
       self prereqs do: [ :p | aStream wrap: 'prereq' around: p ].
+      self provides do: [ :p | aStream wrap: 'provides' around: p ].
       testBuilder ifNotNil: [ testBuilder renderXmlOn: aStream ].
       aStream wrap: 'filein' aroundEachOf: fileins.
       aStream wrap: 'file' aroundEachOf: fileins.
+      aStream wrap: 'file' aroundEachOf: resources.
+      aStream wrap: 'start' around: start.
     ]
   ]
 

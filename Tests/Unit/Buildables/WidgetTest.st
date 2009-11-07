@@ -127,8 +127,22 @@ TestCase subclass: WidgetTest [
 
     withSessionDo: aBlock [
 	<category: 'private'>
-	CurrentContext
-	    use: (Context new session: Session new)
+	"To build widget, we have to create a fake session,
+	with a context, aRequest and an application"
+		
+	| context app |
+	app := Application new.
+	context := Context new 
+	    application: app;
+	    request: (Request new 
+	    url: (Url absolute: '/'));
+	    session: Session new;
+	    yourself.
+    	CurrentContext 
+	    use: context
+	    during: [app respondOn: Response new].
+	CurrentContext 
+	    use: context
 	    during: aBlock
     ]
 ]
