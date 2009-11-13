@@ -333,7 +333,7 @@ Object subclass: MAColumnWidget [
 	result
 	    sortBlock: self sorter;
 	    addAll: aCollection.
-	^self isReversed ifFalse: [result] ifTrue: [result reversed]
+	^self isReversed ifFalse: [result] ifTrue: [result reverse]
     ]
 
     valueFor: aRow [
