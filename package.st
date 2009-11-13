@@ -5,6 +5,6 @@ Eval [
     prereq: 'Iliad-Core';
     prereq: 'Iliad-Swazoo';
     prereq: 'Iliad-More';
-    url: 'http://github.com/NicolasPetton/iliad/raw/master/package.xml';
+    url: 'git://github.com/NicolasPetton/iliad.git';
     buildXml
 ]
