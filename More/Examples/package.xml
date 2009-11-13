@@ -1,0 +1,27 @@
+<package>
+  <name>Iliad-More-Examples</name>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-Core</prereq>
+  <prereq>Iliad-More-UI</prereq>
+  <prereq>Iliad-More-Magritte</prereq>
+  <filein>Counter.st</filein>
+  <filein>CounterApplication.st</filein>
+  <filein>TodoListItem.st</filein>
+  <filein>TodoListItemRepository.st</filein>
+  <filein>TodoListGridWidget.st</filein>
+  <filein>TodoListItemEditor.st</filein>
+  <filein>TodoListApplication.st</filein>
+  <filein>BlogPost.st</filein>
+  <filein>BlogRepository.st</filein>
+  <filein>BlogApplication.st</filein>
+  <file>Counter.st</file>
+  <file>CounterApplication.st</file>
+  <file>TodoListItem.st</file>
+  <file>TodoListItemRepository.st</file>
+  <file>TodoListGridWidget.st</file>
+  <file>TodoListItemEditor.st</file>
+  <file>TodoListApplication.st</file>
+  <file>BlogPost.st</file>
+  <file>BlogRepository.st</file>
+  <file>BlogApplication.st</file>
+</package>

@@ -1,0 +1,8 @@
+<package>
+  <name>Iliad</name>
+  <url>http://github.com/NicolasPetton/iliad/raw/master/package.xml</url>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-Core</prereq>
+  <prereq>Iliad-Swazoo</prereq>
+  <prereq>Iliad-More</prereq>
+</package>

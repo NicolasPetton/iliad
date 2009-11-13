@@ -1,0 +1,21 @@
+<package>
+  <name>Iliad-More-RSS</name>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-Core</prereq>
+  <filein>RSSElement.st</filein>
+  <filein>RSSCategoryElement.st</filein>
+  <filein>RSSCloudElement.st</filein>
+  <filein>RSSCommentsElement.st</filein>
+  <filein>RSSEnclosureElement.st</filein>
+  <filein>RSSGuidElement.st</filein>
+  <filein>RSSRssElement.st</filein>
+  <filein>RSSSourceElement.st</filein>
+  <file>RSSElement.st</file>
+  <file>RSSCategoryElement.st</file>
+  <file>RSSCloudElement.st</file>
+  <file>RSSCommentsElement.st</file>
+  <file>RSSEnclosureElement.st</file>
+  <file>RSSGuidElement.st</file>
+  <file>RSSRssElement.st</file>
+  <file>RSSSourceElement.st</file>
+</package>

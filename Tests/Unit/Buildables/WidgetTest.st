@@ -135,7 +135,7 @@ TestCase subclass: WidgetTest [
 	context := Context new 
 	    application: app;
 	    request: (Request new 
-	    url: (Url absolute: '/'));
+		url: (Url absolute: '/'));
 	    session: Session new;
 	    yourself.
     	CurrentContext 

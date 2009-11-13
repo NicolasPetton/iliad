@@ -1,0 +1,33 @@
+<package>
+  <name>Iliad-More-UI</name>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-Core</prereq>
+  <filein>UIWidget.st</filein>
+  <filein>TimeSelector.st</filein>
+  <filein>DateSelector.st</filein>
+  <filein>Lightbox.st</filein>
+  <filein>Calendar.st</filein>
+  <filein>Extensions.st</filein>
+  <filein>WidgetTabs.st</filein>
+  <filein>ViewTabs.st</filein>
+  <filein>Paginator.st</filein>
+  <filein>DataGrid.st</filein>
+  <filein>PagedDataGrid.st</filein>
+  <filein>Tree.st</filein>
+  <filein>MessageDecorator.st</filein>
+  <filein>ApplicationBrowser.st</filein>
+  <file>UIWidget.st</file>
+  <file>TimeSelector.st</file>
+  <file>DateSelector.st</file>
+  <file>Lightbox.st</file>
+  <file>Calendar.st</file>
+  <file>Extensions.st</file>
+  <file>WidgetTabs.st</file>
+  <file>ViewTabs.st</file>
+  <file>Paginator.st</file>
+  <file>DataGrid.st</file>
+  <file>PagedDataGrid.st</file>
+  <file>Tree.st</file>
+  <file>MessageDecorator.st</file>
+  <file>ApplicationBrowser.st</file>
+</package>
