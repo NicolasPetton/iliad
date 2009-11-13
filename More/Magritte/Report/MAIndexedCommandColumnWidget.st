@@ -59,7 +59,7 @@ MACommandColumnWidget subclass: MAIndexedCommandColumnWidget [
 
     defaultFormat [
 	<category: 'accessing-defaults'>
-	^MessageSend receiver: self selector: #renderCellContent:on:index:
+	^DirectedMessage receiver: self selector: #renderCellContent:on:index:
     ]
 ]
 

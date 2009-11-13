@@ -227,7 +227,7 @@ Object subclass: MAColumnWidget [
 
     defaultFormat [
 	<category: 'accessing-defaults'>
-	^MessageSend receiver: self selector: #buildCellContent:
+	^DirectedMessage receiver: self selector: #buildCellContent:
     ]
 
     defaultSorter [
