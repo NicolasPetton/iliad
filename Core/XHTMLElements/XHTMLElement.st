@@ -442,7 +442,7 @@ Element subclass: XHTMLElement [
     img: aString [
 	<category: 'adding-conveniance'>
 	^self img
-	    source: aString;
+	    src: aString;
 	    yourself
     ]
 
