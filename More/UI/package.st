@@ -18,6 +18,14 @@ Eval [
     filein: 'Tree.st'; 
     filein: 'MessageDecorator.st'; 
     filein: 'ApplicationBrowser.st';
+
+    resource: 'Public/javascripts/lightbox.js';
+    resource: 'Public/stylesheets/lightbox.css';
+    resource: 'Public/stylesheets/iliad-ui.css';
+    resource: 'Public/images/arrow_down.png';
+    resource: 'Public/images/arrow_right.png';
+
+    filein: 'postLoad.st';
     
     buildXml
 ]

@@ -16,6 +16,7 @@
   <filein>Tree.st</filein>
   <filein>MessageDecorator.st</filein>
   <filein>ApplicationBrowser.st</filein>
+  <filein>postLoad.st</filein>
   <file>UIWidget.st</file>
   <file>TimeSelector.st</file>
   <file>DateSelector.st</file>
@@ -30,4 +31,10 @@
   <file>Tree.st</file>
   <file>MessageDecorator.st</file>
   <file>ApplicationBrowser.st</file>
+  <file>postLoad.st</file>
+  <file>Public/javascripts/lightbox.js</file>
+  <file>Public/stylesheets/lightbox.css</file>
+  <file>Public/stylesheets/iliad-ui.css</file>
+  <file>Public/images/arrow_down.png</file>
+  <file>Public/images/arrow_right.png</file>
 </package>

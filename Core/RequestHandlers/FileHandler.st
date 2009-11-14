@@ -478,7 +478,7 @@ RequestHandler subclass: FileHandler [
 
     FileHandler class >> baseDirectories [
 	<category: 'acccessing'>
-	^BaseDirectories ifNil: [BaseDirectoies := self defaultBaseDirectories]
+	^BaseDirectories ifNil: [BaseDirectories := self defaultBaseDirectories]
     ]    
 
     FileHandler class >> baseDirectories: aCollection [
