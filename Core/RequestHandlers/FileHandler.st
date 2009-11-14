@@ -43,7 +43,7 @@ RequestHandler subclass: FileHandler [
     <category: 'Iliad-Core-RequestHandlers'>
 
     MimeTypes := nil.
-    FilePath := nil.
+    BaseDirectories := nil.
 
     FileHandler class >> defaultMimeType [
 	<category: 'accessing'>
@@ -476,19 +476,29 @@ RequestHandler subclass: FileHandler [
 	^MimeTypes
     ]
 
-    FileHandler class >> filePath [
+    FileHandler class >> baseDirectories [
 	<category: 'acccessing'>
-	^FilePath ifNil: [FilePath := self defaultFilePath]
+	^BaseDirectories ifNil: [BaseDirectoies := self defaultBaseDirectories]
     ]    
 
-    FileHandler class >> filePath: aString [
+    FileHandler class >> baseDirectories: aCollection [
 	<category: 'accessing'>
-	FilePath := aString
+	BaseDirectoies := aCollection
     ]
 
-    FileHandler class >> defaultFilePath [
+    FileHandler class >> addBaseDirectory: aDirectory [
+	<category: 'accessing'>
+	self baseDirectories add: aDirectory
+    ]
+
+    FileHandler class >> defaultBaseDirectories [
 	<category: 'defaults'>
-	^'Public'
+	| directories |
+	directories := OrderedCollection new.
+	(Directory image / 'Public') exists ifTrue: [
+	    directories add: (Directory image / 'Public')].
+	directories add: (PackageLoader packageAt: 'Iliad') directory / 'Public'.
+	^directories
     ]
 
     FileHandler class >> initMimeTypes [
@@ -500,9 +510,9 @@ RequestHandler subclass: FileHandler [
 		put: (self defaultMimeTypes at: index + 1)]	
     ]
 
-    filePath [
+    baseDirectories [
 	<category: 'accessing'>
-	^self class filePath
+	^self class baseDirectories
     ]
 
     mimeTypeFor: aFilename [
@@ -518,8 +528,8 @@ RequestHandler subclass: FileHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	file := File name: (self adjustPath: self request url asString).
-	file isFile ifFalse: [
+	file := self fullPathOf: (self adjustPath: self request url asString).
+	file isNil ifTrue: [
 	    DispatchError signal].
 	super handleRequest
     ]
@@ -537,11 +547,18 @@ RequestHandler subclass: FileHandler [
 	    self addCacheHeaderTo: response]
     ]
 
-    adjustPath: aPath [
+    fullPathOf: aFileName [
+	"Try to find a file with <aFileName> in one of the base directories"
 	<category: 'private'>
-	^((aPath first = $/) 
-	    ifTrue: [self filePath, aPath]
-	    ifFalse: [self filePath, '/', aPath]) 
-		copyReplacingAllRegex: '/'  with: Directory pathSeparatorString 
+
+	self baseDirectories do: [:each || file |
+	    file := each / aFileName.
+	    (file notNil and: [file exists]) ifTrue: [^file]].
+	^nil
+    ]
+
+    adjustPath: aFileName [
+	<category: 'private'>
+	^aFileName copyReplacingRegex: '^\/' with: ''
     ]
 ]
