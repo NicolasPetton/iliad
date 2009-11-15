@@ -6,4 +6,7 @@
   <filein>SwazooIliad.st</filein>
   <file>Site.st</file>
   <file>SwazooIliad.st</file>
+  <start>Iliad.SwazooIliad startOn: (%1
+	ifNil: [Iliad.Site defaultPort]
+	ifNotNil: [:port | port asNumber])</start>
 </package>

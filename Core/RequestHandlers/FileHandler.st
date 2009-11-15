@@ -497,7 +497,7 @@ RequestHandler subclass: FileHandler [
 	directories := OrderedCollection new.
 	(Directory image / 'Public') exists ifTrue: [
 	    directories add: (Directory image / 'Public')].
-	directories add: (PackageLoader packageAt: 'Iliad') directory / 'Public'.
+	directories add: (PackageLoader packageAt: 'Iliad-Core') directory / 'Public'.
 	^directories
     ]
 
