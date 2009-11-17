@@ -75,15 +75,15 @@ Widget subclass: TodoListItemEditor [
 		text: self item deadline asString]
     ]
 
-    descriptionContents [
+    bodyContents [
 	<category: 'building'>
 	^[:e | 
 	    e td text: 'Decription'.
 	    e td textarea
-		text: self item description;
+		text: self item body;
 		cols: 40;
 		rows: 4;
-		action: [:val | self setItemDescription: val]]
+		action: [:val | self setItemBody: val]]
     ]
 
     editFormContents [
@@ -94,7 +94,7 @@ Widget subclass: TodoListItemEditor [
 	    tbody := form table tbody.
 	    tbody tr build: self deadlineContents.
 	    tbody tr build: self titleContents.
-	    tbody tr build: self descriptionContents.
+	    tbody tr build: self bodyContents.
 	    tbody tr build: self completedContents.
 	    (form button)
 		action: [self saveItem];
@@ -140,9 +140,9 @@ Widget subclass: TodoListItemEditor [
 		self item deadline: date]
     ]
 
-    setItemDescription: aString [
+    setItemBody: aString [
 	<category: 'actions'>
-	self item description: aString
+	self item body: aString
     ]
 
     setItemTitle: aString [

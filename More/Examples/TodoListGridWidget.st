@@ -55,7 +55,7 @@ Widget subclass: TodoListGridWidget [
 		beSubmitOnClick;
 		action: [:val | self setItem: anItem completed: val].
 	    row td text: anItem title.
-	    row td text: anItem description.
+	    row td text: anItem body.
 	    row td text: anItem deadline asString.
 	    row td a
 		action: [self editItem: anItem];
@@ -71,7 +71,7 @@ Widget subclass: TodoListGridWidget [
 	    head := e thead.
 	    head td text: ''.
 	    head td text: 'Title'.
-	    head td text: 'Description'.
+	    head td text: 'Body'.
 	    head td text: 'Deadline']
     ]
 

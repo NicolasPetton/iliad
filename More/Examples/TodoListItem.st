@@ -36,7 +36,7 @@
 
 
 Object subclass: TodoListItem [
-    | deadline title description completed |
+    | deadline title body completed |
     
     <category: 'Iliad-Core-Examples'>
     <comment: nil>
@@ -61,14 +61,14 @@ Object subclass: TodoListItem [
 	deadline := aDeadline
     ]
 
-    description [
+    body [
 	<category: 'accessing'>
-	^description ifNil: ['']
+	^body ifNil: ['']
     ]
 
-    description: aString [
+    body: aString [
 	<category: 'accessing'>
-	description := aString
+	body := aString
     ]
 
     title [
