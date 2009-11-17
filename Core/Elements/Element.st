@@ -123,9 +123,9 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	    nextPut: Character space;
 	    nextPutAll: anAttribute key;
 	    nextPut: $=;
-	    nextPut: $';
+	    nextPut: $";
 	    nextPutAll: (Encoder encodeForHTTP: anAttribute value asString);
-	    nextPut: $'
+	    nextPut: $"
     ]
 
     printCloseTagOn: aStream [
