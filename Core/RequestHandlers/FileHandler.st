@@ -483,7 +483,7 @@ RequestHandler subclass: FileHandler [
 
     FileHandler class >> baseDirectories: aCollection [
 	<category: 'accessing'>
-	BaseDirectoies := aCollection
+	BaseDirectories := aCollection
     ]
 
     FileHandler class >> addBaseDirectory: aDirectory [
