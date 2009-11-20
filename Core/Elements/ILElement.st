@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Element class definition
+|   Iliad.ILElement class definition
 |
  ======================================================================"
 
@@ -36,7 +36,7 @@
 
 
 
-Composite subclass: Element [
+ILComposite subclass: ILElement [
     | attributes |
     
     <category: 'Iliad-Core-Elements'>
@@ -124,7 +124,7 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	    nextPutAll: anAttribute key;
 	    nextPut: $=;
 	    nextPut: $";
-	    nextPutAll: (Encoder encodeForHTTP: anAttribute value asString);
+	    nextPutAll: (ILEncoder encodeForHTTP: anAttribute value asString);
 	    nextPut: $"
     ]
 
@@ -150,14 +150,14 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 
     text: aString [
 	<category: 'adding-conveniance'>
-	^self add: (TextElement new
+	^self add: (ILTextElement new
 	    contents: aString;
 	    yourself)
     ]
 
     attributeError: key [
 	<category: 'error handling'>
-	AttributeError signal: key
+	ILAttributeError signal: key
     ]
 
     doesNotUnderstandAttribute: aString [

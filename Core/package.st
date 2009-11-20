@@ -33,9 +33,9 @@ Eval [
 	filein: 'Sessions/Session.st'; 
 	filein: 'Sessions/SessionManager.st'; 
 
-	filein: 'Elements/Elements-Error.st'; 
-	filein: 'Elements/Element.st'; 
-	filein: 'Elements/TextElement.st'; 
+	filein: 'Elements/ILElements-Error.st'; 
+	filein: 'Elements/ILElement.st'; 
+	filein: 'Elements/ILTextElement.st'; 
 	filein: 'Elements/Extensions.st'; 
 
 	filein: 'XHTMLElements/XHTMLElement.st'; 

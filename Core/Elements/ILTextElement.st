@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.TextElement class definition
+|   Iliad.ILTextElement class definition
 |
  ======================================================================"
 
@@ -36,7 +36,7 @@
 
 
 
-Element subclass: TextElement [
+ILElement subclass: ILTextElement [
     | contents tag |
 
     <comment: nil>
@@ -44,7 +44,7 @@ Element subclass: TextElement [
 
     add: anElement [
 	<category: 'adding'>
-	ElementError signal: 'Can''t add an element to a ' , self class name
+	ILElementError signal: 'Can''t add an element to a ' , self class name
     ]
 
     text: aString [
@@ -75,7 +75,7 @@ Element subclass: TextElement [
     printHtmlOn: aStream [
 	<category: 'printing'>
 	self printOpenTagOn: aStream.
-	aStream nextPutAll: (Encoder encodeForHTTP: self contents).
+	aStream nextPutAll: (ILEncoder encodeForHTTP: self contents).
 	self printCloseTagOn: aStream
     ]
 ]

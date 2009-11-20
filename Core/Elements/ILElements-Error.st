@@ -1,4 +1,4 @@
-Error subclass: AttributeError [
+Error subclass: ILAttributeError [
     
     <category: 'Iliad-Core-Elements'>
     <comment: nil>
@@ -6,13 +6,13 @@ Error subclass: AttributeError [
 
 
 
-Error subclass: AttributeNotUnderstood [
+Error subclass: ILAttributeNotUnderstood [
     | element attribute |
     
     <category: 'Iliad-Core-Elements'>
     <comment: nil>
 
-    AttributeNotUnderstood class >> element: anElement attribute: aString [
+    ILAttributeNotUnderstood class >> element: anElement attribute: aString [
 	<category: 'instance creation'>
 	^(self new)
 	    element: anElement;
@@ -60,7 +60,7 @@ Error subclass: AttributeNotUnderstood [
 
 
 
-Error subclass: ElementError [
+Error subclass: ILElementError [
     
     <comment: nil>
     <category: 'Iliad-Core-Elements'>
