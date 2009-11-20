@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Json class definition
+|   Iliad.ILJson class definition
 |
  ======================================================================"
 
@@ -38,7 +38,7 @@
 
 
 
-IliadObject subclass: Json [
+ILObject subclass: ILJson [
     | stream ctorMap |
     
     <category: 'Iliad-Core-lib-JSON'>
@@ -49,61 +49,61 @@ It has been extended with syntax for invoking a prearranged list of constructors
 
     CharacterEscapeMap := nil.
 
-    Json class >> escapeForCharacter: c [
+    ILJson class >> escapeForCharacter: c [
 	^CharacterEscapeMap at: c ifAbsent: [nil]
     ]
 
-    Json class >> initialize [
-	"Json initialize."
+    ILJson class >> initialize [
+	"ILJson initialize."
 
 	CharacterEscapeMap := Dictionary new
-			at: $" put: $";
-			at: $\ put: $\;
-			at: Character backspace put: $b;
-			at: Character lf put: $n;
-			at: Character newPage put: $f;
-			at: Character cr put: $r;
-			at: Character tab put: $t;
-			yourself
+	    at: $" put: $";
+	    at: $\ put: $\;
+	    at: Character backspace put: $b;
+	    at: Character lf put: $n;
+	    at: Character newPage put: $f;
+	    at: Character cr put: $r;
+	    at: Character tab put: $t;
+	    yourself
     ]
 
-    Json class >> mimeType [
+    ILJson class >> mimeType [
 	^'application/json'
     ]
 
-    Json class >> newWithConstructors: aCollection [
+    ILJson class >> newWithConstructors: aCollection [
 	| m |
 	m := Dictionary new.
 	aCollection do: [:each | 
 	    (each isKindOf: Association) 
-		    ifTrue: [m add: each]
-		    ifFalse: [m at: each printString put: each]].
-	^(self new)
+		ifTrue: [m add: each]
+		ifFalse: [m at: each printString put: each]].
+	^self new
 	    ctorMap: m;
 	    yourself
     ]
 
-    Json class >> numbersMayContain: aChar [
+    ILJson class >> numbersMayContain: aChar [
 	^aChar isDigit or: [#($- $+ $. $e $E) includes: aChar]
     ]
 
-    Json class >> readFrom: aStream [
+    ILJson class >> readFrom: aStream [
 	^self new readFrom: aStream
     ]
 
-    Json class >> render: anObject [
+    ILJson class >> render: anObject [
 	| s |
 	s := WriteStream on: String new.
 	anObject printJsonOn: s.
 	^s contents
     ]
 
-    Json class >> render: anObject withConstructor: aConstructorName on: aStream [
+    ILJson class >> render: anObject withConstructor: aConstructorName on: aStream [
 	aStream nextPutAll: '@' , aConstructorName.
 	anObject printJsonOn: aStream
     ]
 
-    Json class >> renderInstanceVariables: aCollection of: anObject on: aStream [
+    ILJson class >> renderInstanceVariables: aCollection of: anObject on: aStream [
 	| map |
 	map := Dictionary new.
 	aCollection 
@@ -164,8 +164,8 @@ It has been extended with syntax for invoking a prearranged list of constructors
 	    ifTrue: [
 		self next.
 		^self readConstructor].
-	(Json numbersMayContain: c) ifTrue: [^self readNumber].
-	JsonSyntaxError signal: 'Unknown Json input'
+	(ILJson numbersMayContain: c) ifTrue: [^self readNumber].
+	ILJsonSyntaxError signal: 'Unknown Json input'
     ]
 
     readFrom: aStream [
@@ -178,7 +178,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
 	<category: 'private'>
 	aString do: [:c | 
 	    self next == c ifFalse: [
-		JsonSyntaxError signal: 'Expected ''' , aString , '''']].
+		ILJsonSyntaxError signal: 'Expected ''' , aString , '''']].
 	^anObject
     ]
 
@@ -217,7 +217,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
 		^a asArray].
 	needComma 
 	    ifTrue: [
-		self peek == $, ifFalse: [JsonSyntaxError signal: 'Missing comma'].
+		self peek == $, ifFalse: [ILJsonSyntaxError signal: 'Missing comma'].
 		self next]
 	    ifFalse: [needComma := true].
 	a add: self readAny] 
@@ -231,7 +231,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
 	
 	[c := self peek.
 	c ifNil: [
-	    JsonSyntaxError signal: 'Premature EOF reading constructor name'].
+	    ILJsonSyntaxError signal: 'Premature EOF reading constructor name'].
 	(c == $. or: [c isLetter]) 
 	    ifTrue: [
 		s nextPut: c.
@@ -240,7 +240,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
 		v := self readAny.
 		s := s contents.
 		ctor := ctorMap ifNotNil: [ctor := ctorMap at: s ifAbsent: [nil]].
-		ctor ifNil: [JsonSyntaxError signal: 'Unknown ctor ' , s].
+		ctor ifNil: [ILJsonSyntaxError signal: 'Unknown ctor ' , s].
 		^ctor constructFromJson: v]] 
 		repeat
     ]
@@ -256,15 +256,15 @@ It has been extended with syntax for invoking a prearranged list of constructors
 	    ifTrue: [self next. ^m].
 	needComma 
 	    ifTrue: [
-		self peek == $, ifFalse: [JsonSyntaxError signal: 'Missing comma'].
+		self peek == $, ifFalse: [ILJsonSyntaxError signal: 'Missing comma'].
 		self next.
 		self skipWhitespace]
 	    ifFalse: [needComma := true].
 	self next == $" 
-	    ifFalse: [JsonSyntaxError signal: 'Key in dictionary must be string'].
+	    ifFalse: [ILJsonSyntaxError signal: 'Key in dictionary must be string'].
 	k := self readString.
 	self skipWhitespace.
-	self peek == $: ifFalse: [JsonSyntaxError signal: 'Missing colon'].
+	self peek == $: ifFalse: [ILJsonSyntaxError signal: 'Missing colon'].
 	self next.
 	v := self readAny.
 	m at: k put: v] 
@@ -277,10 +277,10 @@ It has been extended with syntax for invoking a prearranged list of constructors
 	acc := WriteStream on: ''.
 	
 	[c := self peek.
-	(c isNil not and: [Json numbersMayContain: c]) 
+	(c isNil not and: [ILJson numbersMayContain: c]) 
 	    ifFalse: [[^acc contents asNumber] 
                 on: Error
-		do: [JsonSyntaxError signal: 'Invalid number']].
+		do: [ILJsonSyntaxError signal: 'Invalid number']].
 	acc nextPut: c.
 	self next] 
 	    repeat
@@ -312,7 +312,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
                         ifTrue: [
 			    self next.
 			    self skipCommentBody]
-			ifFalse: [JsonSyntaxError signal: 'Invalid comment syntax']]]
+			ifFalse: [ILJsonSyntaxError signal: 'Invalid comment syntax']]]
     ]
 
     skipCommentBody [
@@ -339,6 +339,6 @@ It has been extended with syntax for invoking a prearranged list of constructors
 ]
 
 Eval [
-    Json initialize
+    ILJson initialize
 ]
 

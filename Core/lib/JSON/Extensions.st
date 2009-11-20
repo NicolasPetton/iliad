@@ -54,11 +54,10 @@ Collection extend [
 	needComma := false.
 	aStream nextPut: $[.
 	self do: [:v |
-		needComma
-			ifTrue: [ aStream nextPutAll: ', ' ]
-			ifFalse: [ needComma := true ].
-		v printJsonOn: aStream.
-	].
+	    needComma
+		ifTrue: [ aStream nextPutAll: ', ' ]
+		ifFalse: [ needComma := true ].
+	    v printJsonOn: aStream].
 	aStream nextPut: $].
     ]
 ]
@@ -71,13 +70,12 @@ Dictionary extend [
 	needComma := false.
 	aStream nextPut: ${.
 	self keysAndValuesDo: [:k :v |
-		needComma
-			ifTrue: [ aStream nextPutAll: ', ' ]
-			ifFalse: [ needComma := true ].
-		k asString printJsonOn: aStream.
-		aStream nextPutAll: ': '.
-		v printJsonOn: aStream.
-	].
+	    needComma
+		ifTrue: [ aStream nextPutAll: ', ' ]
+		ifFalse: [ needComma := true ].
+	k asString printJsonOn: aStream.
+	aStream nextPutAll: ': '.
+	v printJsonOn: aStream].
 	aStream nextPut: $}.
     ]
 ]
@@ -91,7 +89,7 @@ String extend [
 	| replacement |
 	aStream nextPut: $".
 	self do: [:ch |
-	    replacement := Iliad.Json escapeForCharacter: ch.
+	    replacement := Iliad.ILJson escapeForCharacter: ch.
 	    replacement
 		ifNil: [ aStream nextPut: ch ]
 		ifNotNil: [ aStream nextPut: $\; nextPut: replacement ]].

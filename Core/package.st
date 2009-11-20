@@ -20,8 +20,8 @@ Eval [
 	filein: 'lib/HTTP/ILResponse.st';
 	filein: 'lib/HTTP/ILCookie.st'; 
 
-	filein: 'lib/JSON/JsonSyntaxError.st'; 
-	filein: 'lib/JSON/Json.st'; 
+	filein: 'lib/JSON/ILJsonSyntaxError.st'; 
+	filein: 'lib/JSON/ILJson.st'; 
 	filein: 'lib/JSON/Extensions.st'; 
 
 	filein: 'Sessions/UrlBuilder.st'; 

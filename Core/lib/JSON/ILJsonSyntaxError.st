@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.JsonObject class definition
+|   Iliad.ILJsonSyntaxError class definition
 |
  ======================================================================"
 
@@ -38,62 +38,9 @@
 
 
 
-IliadObject subclass: JsonObject [
-    | properties |
+Error subclass: ILJsonSyntaxError [
     
     <category: 'Iliad-Core-lib-JSON'>
-    <comment: nil>
-
-    initialize [
-	<category: 'initialize-release'>
-	super initialize.
-	properties := OrderedCollection new
-    ]
-
-    at: key [
-	<category: 'accessing'>
-	^self at: key ifAbsent: [nil]
-    ]
-
-    at: key ifAbsent: aBlock [
-	<category: 'accessing'>
-	^(properties 
-	    detect: [:ea | ea key = key] 
-	    ifNone: [^aBlock value]) value
-    ]
-
-    at: key put: value [
-	<category: 'accessing'>
-	properties add: key -> value
-    ]
-
-    properties [
-	<category: 'accessing'>
-	^properties
-    ]
-
-    doesNotUnderstand: aMessage [
-	<category: 'error handling'>
-	| key |
-	key := aMessage selector.
-	key isUnary 
-	    ifTrue: [^self at: key ifAbsent: [super doesNotUnderstand: aMessage]].
-	^(key isKeyword and: [(key occurrencesOf: $:) = 1]) 
-	    ifTrue: 
-		[key := key allButLast asSymbol.
-		self at: key put: aMessage arguments first]
-	    ifFalse: [super doesNotUnderstand: aMessage]
-    ]
-
-    printJsonOn: aStream [
-	aStream nextPut: ${.
-	properties do: 
-		[:ea | 
-		ea key printString jsonWriteOn: aStream.
-		aStream nextPutAll: ': '.
-		ea value printJsonOn: aStream]
-	    separatedBy: [aStream nextPutAll: ', '].
-	aStream nextPut: $}
-    ]
+    <comment: 'Class Json signals instances of me when an input stream contains invalid JSON input.'>
 ]
 
