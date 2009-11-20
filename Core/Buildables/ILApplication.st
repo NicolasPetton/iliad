@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Application class definition
+|   Iliad.ILApplication class definition
 |
  ======================================================================"
 
@@ -38,7 +38,7 @@
 
 
 
-Widget subclass: Application [
+ILWidget subclass: ILApplication [
     | model originalRoutePosition page |
 
     <category: 'Iliad-Core-Buildables'>
@@ -76,7 +76,7 @@ the application mode:
 - in verbose mode, it will also respond an error 500, but with error details;
 - in debug mode, a debugger window will open on the error;'>
     
-    Application class [
+    ILApplication class [
 	| selectorFilter mode |
 
 	path [
@@ -246,7 +246,7 @@ the application mode:
 	    ifFalse: [m := aMethod asSymbol].
 	(self allowedSelector: m) 
 	    ifTrue: [^self perform: m]
-	    ifFalse: [DispatchError signal]
+	    ifFalse: [ILDispatchError signal]
     ]
 
     dispatchOverride [
@@ -304,7 +304,7 @@ the application mode:
 	<category: 'redirecting'>
 
 	| response |
-	response := Response new.
+	response := ILResponse new.
 	aBlock value: response.
 	self returnResponse: response
     ]
@@ -336,7 +336,7 @@ the application mode:
 
     defaultPageClass [
 	<category: 'defaults'>
-	^XHTMLPage
+	^ILXHTMLPage
     ]
 
     isDebugMode [

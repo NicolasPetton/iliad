@@ -40,7 +40,7 @@ Object extend [
     asResponse [
 	<category: 'converting'>
 	| response |
-	response := Iliad.Response ok.
+	response := Iliad.ILResponse ok.
 	self respondOn: response.
 	^response
     ]

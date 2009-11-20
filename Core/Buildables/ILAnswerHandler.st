@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Buildable class definition
+|   Iliad.ILAnswerHandler class definition
 |
  ======================================================================"
 
@@ -39,73 +39,28 @@
 
 
 
-IliadObject subclass: Buildable [
-    | attributes |
+ILDecorator subclass: ILAnswerHandler [
+    | action |
     
-    <category: 'Iliad-Core-Buildables'>
-    <comment: 'I am an abstract buildable object. 
-My subclasses must override the #buildContents method, which should return an instance of a subclass of Iliad.Element.'>
+    <category: 'Iliad-Core-Builders'>
+    <comment: 'I am a special decorator for Widgets, used to handle widget answers. 
+See #handleAnswer: and ILWidget>>show:onAnswer:'>
 
-    attributeAt: aSymbol [
-	<category: 'accessing attributes'>
-	^self attributes at: aSymbol ifAbsent: [nil]
+    action [
+	<category: 'accessing'>
+	^action
     ]
 
-    attributeAt: aSymbol ifAbsentPut: aBlock [
-	<category: 'accessing attributes'>
-	^self attributes at: aSymbol ifAbsentPut: aBlock
+    action: anAction [
+	<category: 'accessing'>
+	action := anAction
     ]
 
-    attributeAt: aSymbol put: anObject [
-	<category: 'accessing attributes'>
-	^self attributes at: aSymbol put: anObject
-    ]
-
-    attributes [
-	<category: 'accessing attributes'>
-	^attributes ifNil: [attributes := Dictionary new]
-    ]
-
-    build [
-	<category: 'building'>
-	self withActionRegistry: [
-	    ^self buildContents]	
-    ]
-
-    buildContents [
-	"Override this method in subclasses.
-	It must answer an Element"
-	<category: 'building'>
-
-	self subclassResponsibility
-    ]
-
-    buildOn: anElement [
-	<category: 'building'>
-	anElement add: self build
-    ]
-
-    redirectTo: aString [
-	<category: 'redirecting'>
-	self application redirectTo: aString
-    ]
-
-    redirectToLocal: aString [
-	<category: 'redirecting'>
-	self application redirectToLocal: aString
-    ]
-
-    respondOn: aResponse [
-	<category: 'converting'>
-	self build respondOn: aResponse
-    ]
-
-    withActionRegistry: aBlock [
-	<category: 'private'>
-	CurrentActionRegistry 
-	    use: (self session actionRegistryFor: self)
-	    during: aBlock
+    handleAnswer: anAnswer [
+	<category: 'decorations'>
+	(self action)
+	    value: anAnswer;
+	    evaluate
     ]
 ]
-
 

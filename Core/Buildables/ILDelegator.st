@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.PluggableWidget class definition
+|   Iliad.ILDelegator class definition
 |
  ======================================================================"
 
@@ -9,6 +9,10 @@
 | Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
+|
+| Some parts of this file reuse code from the Seaside framework written 
+| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
+| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -33,26 +37,51 @@
 |
  ======================================================================"
 
+
 
-Widget subclass: PluggableWidget [
-    | contentsBlock |
-    
+ILDecorator subclass: ILDelegator [
+    | widget |
+
     <comment: nil>
     <category: 'Iliad-Core-Buildables'>
 
-    contentsBlock [
+    widget [
 	<category: 'accessing'>
-	^contentsBlock ifNil: [[:e | ]]
+	^widget
     ]
 
-    contentsBlock: aBlock [
+    widget: aWidget [
 	<category: 'accessing'>
-	contentsBlock := aBlock
+	widget := aWidget
+    ]
+
+    newRootElement [
+	<category: 'accessing'>
+	^self widget newRootElement
     ]
 
     contents [
 	<category: 'building'>
-	^self contentsBlock
+	^[:e | e build: self widget] 
+    ]
+
+    updateHead: aHead [
+	<category: 'building'>
+	self widget updateHead: aHead
+    ]
+
+    handleAnswer: anAnswer [
+	<category: 'decorations'>
+	self widget handleAnswer: anAnswer
+    ]
+
+    isDelegator [
+	<category: 'testing'>
+	^true
+    ]
+    
+    isGlobal [
+	<category: 'testing'>
+	^true
     ]
 ]
-

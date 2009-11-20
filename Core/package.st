@@ -88,16 +88,16 @@ Eval [
 	filein: 'XHTMLElements/TableFootElement.st'; 
 	filein: 'XHTMLElements/TableHeadElement.st'; 
 
-	filein: 'Buildables/Extensions.st';  
-	filein: 'Buildables/Buildable.st'; 
-	filein: 'Buildables/Decorator.st'; 
-	filein: 'Buildables/AnswerHandler.st'; 
-	filein: 'Buildables/Delegator.st'; 
-	filein: 'Buildables/Widget.st'; 
-	filein: 'Buildables/PluggableWidget.st';
-	filein: 'Buildables/Profiler.st'; 
-	filein: 'Buildables/Application.st'; 
-	filein: 'Buildables/XHTMLPage.st'; 
+	filein: 'Buildables/ILExtensions.st';  
+	filein: 'Buildables/ILBuildable.st'; 
+	filein: 'Buildables/ILDecorator.st'; 
+	filein: 'Buildables/ILAnswerHandler.st'; 
+	filein: 'Buildables/ILDelegator.st'; 
+	filein: 'Buildables/ILWidget.st'; 
+	filein: 'Buildables/ILPluggableWidget.st';
+	filein: 'Buildables/ILProfiler.st'; 
+	filein: 'Buildables/ILApplication.st'; 
+	filein: 'Buildables/ILXHTMLPage.st'; 
 
 	filein: 'Dispatching/DispatchError.st';
 	filein: 'Dispatching/Dispatcher.st'; 

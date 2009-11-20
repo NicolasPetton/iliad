@@ -1,18 +1,14 @@
 "======================================================================
 |
-|   Iliad.Delegator class definition
+|   Iliad.ILProfiler class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
-|
-| Some parts of this file reuse code from the Seaside framework written 
-| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
-| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -39,49 +35,51 @@
 
 
 
-Decorator subclass: Delegator [
-    | widget |
-
+ILDecorator subclass: ILProfiler [
+    
     <comment: nil>
     <category: 'Iliad-Core-Buildables'>
 
-    widget [
-	<category: 'accessing'>
-	^widget
-    ]
-
-    widget: aWidget [
-	<category: 'accessing'>
-	widget := aWidget
-    ]
-
-    newRootElement [
-	<category: 'accessing'>
-	^self widget newRootElement
-    ]
-
     contents [
 	<category: 'building'>
-	^[:e | e build: self widget] 
-    ]
-
-    updateHead: aHead [
-	<category: 'building'>
-	self widget updateHead: aHead
-    ]
-
-    handleAnswer: anAnswer [
-	<category: 'decorations'>
-	self widget handleAnswer: anAnswer
-    ]
-
-    isDelegator [
-	<category: 'testing'>
-	^true
-    ]
-    
-    isGlobal [
-	<category: 'testing'>
-	^true
+	^[:e |
+	    Transcript 
+		show: '-- Iliad Profiler on: ', self widget printString , ' --';
+		cr.
+	    [e build: self decoratee contents] profile do: [:each | 
+		Transcript show: each printString; cr].
+	]
     ]
 ]
+
+BlockClosure extend [
+    
+    profile [
+	<category: 'profiling'>
+	| results workProcess finished s profProcess |
+	s := Semaphore new.
+	results := IdentityBag new.
+	workProcess := Processor activeProcess.
+	finished := false.
+	profProcess := [
+	    [(Delay forMilliseconds: 5) wait.
+	    finished] whileFalse: [
+		results add: workProcess suspendedContext method].
+	    s signal] 
+		forkAt: Processor highIOPriority.
+	self ensure: [
+	    finished := true.
+	    s wait.
+	    ^results sortedByCount]	
+    ]
+]
+
+Bag subclass: IdentityBag [
+    <category: nil>
+    <comment: nil>
+
+    dictionaryClass [
+	^IdentityDictionary
+    ]
+]
+

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.XHTMLPage class definition
+|   Iliad.ILBuildable class definition
 |
  ======================================================================"
 
@@ -8,7 +8,11 @@
 |
 | Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
-| Sébastien Audier <sebastien.audier@gmail.com> 
+| Sébastien Audier <sebastien.audier@gmail.com>
+|
+| Some parts of this file reuse code from the Seaside framework written 
+| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
+| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -35,32 +39,73 @@
 
 
 
-Buildable subclass: XHTMLPage [
-
-    <comment: nil>
+ILObject subclass: ILBuildable [
+    | attributes |
+    
     <category: 'Iliad-Core-Buildables'>
+    <comment: 'I am an abstract buildable object. 
+My subclasses must override the #buildContents method, which should return an instance of a subclass of Iliad.Element.'>
 
-    body [
+    attributeAt: aSymbol [
 	<category: 'accessing attributes'>
-	^self attributeAt: #body ifAbsentPut: [BodyElement new]
+	^self attributes at: aSymbol ifAbsent: [nil]
     ]
 
-    head [
+    attributeAt: aSymbol ifAbsentPut: aBlock [
 	<category: 'accessing attributes'>
-	^self attributeAt: #head ifAbsentPut: [HeadElement new]
+	^self attributes at: aSymbol ifAbsentPut: aBlock
     ]
 
-    html [
+    attributeAt: aSymbol put: anObject [
 	<category: 'accessing attributes'>
-	^self attributeAt: #html ifAbsentPut: [HtmlElement new]
+	^self attributes at: aSymbol put: anObject
+    ]
+
+    attributes [
+	<category: 'accessing attributes'>
+	^attributes ifNil: [attributes := Dictionary new]
+    ]
+
+    build [
+	<category: 'building'>
+	self withActionRegistry: [
+	    ^self buildContents]	
     ]
 
     buildContents [
+	"Override this method in subclasses.
+	It must answer an Element"
 	<category: 'building'>
-	^self html
-	    add: self head;
-	    add: self body;
-	    yourself
+
+	self subclassResponsibility
+    ]
+
+    buildOn: anElement [
+	<category: 'building'>
+	anElement add: self build
+    ]
+
+    redirectTo: aString [
+	<category: 'redirecting'>
+	self application redirectTo: aString
+    ]
+
+    redirectToLocal: aString [
+	<category: 'redirecting'>
+	self application redirectToLocal: aString
+    ]
+
+    respondOn: aResponse [
+	<category: 'converting'>
+	self build respondOn: aResponse
+    ]
+
+    withActionRegistry: aBlock [
+	<category: 'private'>
+	ILCurrentActionRegistry 
+	    use: (self session actionRegistryFor: self)
+	    during: aBlock
     ]
 ]
+
 

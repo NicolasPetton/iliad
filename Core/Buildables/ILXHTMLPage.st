@@ -1,14 +1,14 @@
 "======================================================================
 |
-|   Iliad.Profiler class definition
+|   Iliad.ILXHTMLPage class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2009 
+| Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
-| Sébastien Audier <sebastien.audier@gmail.com>
+| Sébastien Audier <sebastien.audier@gmail.com> 
 |
 | This file is part of the Iliad framework.
 |
@@ -35,51 +35,32 @@
 
 
 
-Decorator subclass: Profiler [
-    
+ILBuildable subclass: ILXHTMLPage [
+
     <comment: nil>
     <category: 'Iliad-Core-Buildables'>
 
-    contents [
+    body [
+	<category: 'accessing attributes'>
+	^self attributeAt: #body ifAbsentPut: [ILBodyElement new]
+    ]
+
+    head [
+	<category: 'accessing attributes'>
+	^self attributeAt: #head ifAbsentPut: [ILHeadElement new]
+    ]
+
+    html [
+	<category: 'accessing attributes'>
+	^self attributeAt: #html ifAbsentPut: [ILHtmlElement new]
+    ]
+
+    buildContents [
 	<category: 'building'>
-	^[:e |
-	    Transcript 
-		show: '-- Iliad Profiler on: ', self widget printString , ' --';
-		cr.
-	    [e build: self decoratee contents] profile do: [:each | 
-		Transcript show: each printString; cr].
-	]
-    ]
-]
-
-BlockClosure extend [
-    
-    profile [
-	<category: 'profiling'>
-	| results workProcess finished s profProcess |
-	s := Semaphore new.
-	results := IdentityBag new.
-	workProcess := Processor activeProcess.
-	finished := false.
-	profProcess := [
-	    [(Delay forMilliseconds: 5) wait.
-	    finished] whileFalse: [
-		results add: workProcess suspendedContext method].
-	    s signal] 
-		forkAt: Processor highIOPriority.
-	self ensure: [
-	    finished := true.
-	    s wait.
-	    ^results sortedByCount]	
-    ]
-]
-
-Bag subclass: IdentityBag [
-    <category: nil>
-    <comment: nil>
-
-    dictionaryClass [
-	^IdentityDictionary
+	^self html
+	    add: self head;
+	    add: self body;
+	    yourself
     ]
 ]
 

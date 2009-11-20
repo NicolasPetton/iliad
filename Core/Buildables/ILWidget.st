@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Widget class definition
+|   Iliad.ILWidget class definition
 |
  ======================================================================"
 
@@ -39,7 +39,7 @@
 
 
 
-Buildable subclass: Widget [
+ILBuildable subclass: ILWidget [
     | id decorator owner dependentWidgets |
 
     <category: 'Iliad-Core-Buildables'>
@@ -59,7 +59,7 @@ contents
             action: [self doSomething]]
 
 
-See Iliad.Element hierarchy for more information about building HTML with elements.
+See Iliad.ILElement hierarchy for more information about building HTML with elements.
 
 #contents method should *never* be called from the outside. Use #build instead. 
 For instance, to build a sub-widget in a view block, you should write something like:
@@ -80,7 +80,7 @@ added to the decoration chain with #decorateWith:.'>
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
-	decorator := Decorator decoratee: self.
+	decorator := ILDecorator decoratee: self.
 	dependentWidgets := OrderedCollection new
     ]
 
@@ -91,7 +91,7 @@ added to the decoration chain with #decorateWith:.'>
 
     id [
 	<category: 'accessing'>
-	^id ifNil: [id := Id new]
+	^id ifNil: [id := ILId new]
     ]
  
     owner: aWidget [
@@ -116,7 +116,7 @@ added to the decoration chain with #decorateWith:.'>
 	ex: myWidget := self widgetFor: [:e | e h1: 'Hello world!']"
 	<category: 'accessing'>
 
-	^PluggableWidget new 
+	^ILPluggableWidget new 
 	    contentsBlock: aBuildable; 
 	    yourself
     ]
@@ -218,7 +218,7 @@ added to the decoration chain with #decorateWith:.'>
 
     defaultRootElementClass [
 	<category: 'defaults'>
-	^XHTMLElement
+	^ILXHTMLElement
     ]
     
     answer [
@@ -291,15 +291,15 @@ added to the decoration chain with #decorateWith:.'>
 	self
 	    show: aWidget
 	    onAnswer: aBlock
-	    delegator: (Delegator new widget: aWidget)
+	    delegator: (ILDelegator new widget: aWidget)
     ]
     
     show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
 	<category: 'show/answer'>
 	| answerHandler |
-	answerHandler := AnswerHandler new.
+	answerHandler := ILAnswerHandler new.
 	self decorateWith: aDelegator.
-	answerHandler action: (Action new block: [:value |
+	answerHandler action: (ILAction new block: [:value |
 	    aDelegator removeYourself.
 	    self markDirty.
 	    aWidget owner: nil.

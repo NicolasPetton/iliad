@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.AnswerHandler class definition
+|   Iliad.ILDecorator class definition
 |
  ======================================================================"
 
@@ -39,28 +39,79 @@
 
 
 
-Decorator subclass: AnswerHandler [
-    | action |
+ILBuildable subclass: ILDecorator [
+    | decoratee |
     
-    <category: 'Iliad-Core-Builders'>
-    <comment: 'I am a special decorator for Widgets, used to handle widget answers. 
-See #handleAnswer: and Widget>>show:onAnswer:'>
+    <category: 'Iliad-Core-Buildables'>
+    <comment: 'I am an abstract decorator for Widgets. I can be added to a widget by calling: #decorateWith: from a widget.
+Subclasses can be used to modify the building process of a widget, or change its behavior'>
 
-    action [
-	<category: 'accessing'>
-	^action
+    ILDecorator class >> decoratee: aDecoratee [
+	<category: 'instance creation'>
+	^self basicNew
+	    decoratee: aDecoratee;
+	    initialize;
+	    yourself
     ]
 
-    action: anAction [
+    decoratee [
 	<category: 'accessing'>
-	action := anAction
+	^decoratee
+    ]
+
+    decoratee: aDecoratee [
+	<category: 'accessing'>
+	decoratee := aDecoratee
+    ]
+
+    widget [
+	<category: 'accessing'>
+	^self decoratee widget
+    ]
+
+    contents [
+	<category: 'building'>
+	^self decoratee contents
+    ]
+
+    updateHead: aHead [
+	<category: 'building'>
+	self decoratee updateHead: aHead
+    ]
+
+    styles [
+	<category: 'building'>
+	^#()
+    ]
+
+    scripts [
+	<category: 'building'>
+	^#()
     ]
 
     handleAnswer: anAnswer [
 	<category: 'decorations'>
-	(self action)
-	    value: anAnswer;
-	    evaluate
+	^self decoratee handleAnswer: anAnswer
+    ]
+
+    removeDecorator: aDecorator [
+	<category: 'decorations'>
+	self decoratee removeDecorator: aDecorator
+    ]
+
+    removeYourself [
+	<category: 'decorations'>
+	self decoratee removeDecorator: self
+    ]
+
+    isDelegator [
+	<category: 'testing'>
+	^false
+    ]
+
+    isGlobal [
+	<category: 'testing'>
+	^false
     ]
 ]
 
