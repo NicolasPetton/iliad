@@ -103,14 +103,14 @@ Eval [
 	filein: 'Dispatching/ILDispatcher.st'; 
 	filein: 'Dispatching/ILRoute.st'; 
 
-	filein: 'RequestHandlers/ResponseNotification.st';
-	filein: 'RequestHandlers/RequestHandler.st';
-	filein: 'RequestHandlers/ErrorHandler.st';   
-	filein: 'RequestHandlers/FileHandler.st'; 
-	filein: 'RequestHandlers/NotFoundHandler.st'; 
-	filein: 'RequestHandlers/JsonHandler.st'; 
-	filein: 'RequestHandlers/ApplicationHandler.st'; 
-	filein: 'RequestHandlers/RedirectHandler.st';
+	filein: 'RequestHandlers/ILResponseNotification.st';
+	filein: 'RequestHandlers/ILRequestHandler.st';
+	filein: 'RequestHandlers/ILErrorHandler.st';   
+	filein: 'RequestHandlers/ILFileHandler.st'; 
+	filein: 'RequestHandlers/ILNotFoundHandler.st'; 
+	filein: 'RequestHandlers/ILJsonHandler.st'; 
+	filein: 'RequestHandlers/ILApplicationHandler.st'; 
+	filein: 'RequestHandlers/ILRedirectHandler.st';
 	yourself.
 
     pubDir := Directory working / 'Public'.
