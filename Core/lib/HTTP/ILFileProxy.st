@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.FileProxy class definition
+|   Iliad.ILFileProxy class definition
 |
  ======================================================================"
 
@@ -36,12 +36,12 @@
 
 
 
-Object subclass: FileProxy [
+Object subclass: ILFileProxy [
     | filename contentType contents timestamps |
     <category: 'Iliad-Core-lib-HTTP'>
     <comment: nil>
 
-    FileProxy class >> new [
+    ILFileProxy class >> new [
 	<category: 'instance creation'>
 	^self basicNew
 	    initialize;

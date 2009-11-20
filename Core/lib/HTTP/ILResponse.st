@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Response class definition
+|   Iliad.ILResponse class definition
 |
  ======================================================================"
 
@@ -40,36 +40,36 @@
 
 
 
-Object subclass: Response [
+Object subclass: ILResponse [
     | contentType headers cookies status stream |
-    <category: 'Iliad-Core--lib-HTTP'>
+    <category: 'Iliad-Core-lib-HTTP'>
     <comment: 'From Seaside 2.8
 
 I am a server independent http response object.'>
 
-    Response class >> new [
+    ILResponse class >> new [
 	<category: 'instance creation'>
 	^self basicNew 
 	    initialize;
 	    yourself
     ]
 
-    Response class >> forbidden [
+    ILResponse class >> forbidden [
 	<category: 'instance creation'>
 	^self new forbidden
     ]
 
-    Response class >> notFound [
+    ILResponse class >> notFound [
 	<category: 'instance creation'>
 	^self new notFound
     ]
 
-    Response class >> ok [
+    ILResponse class >> ok [
 	<category: 'instance creation'>
 	^self new ok
     ]
 
-    Response class >> redirect [
+    ILResponse class >> redirect [
 	<category: 'instance creation'>
 	^self new redirect
     ]
@@ -102,7 +102,7 @@ I am a server independent http response object.'>
 
     cookieAt: key put: value [
 	<category: 'accessing'>
-	^self addCookie: (Cookie key: key value: value)
+	^self addCookie: (ILCookie key: key value: value)
     ]
 
     cookies [

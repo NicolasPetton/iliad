@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Url class definition
+|   Iliad.ILUrl class definition
 |
  ======================================================================"
 
@@ -41,7 +41,7 @@
 
 
 
-Object subclass: Url [
+Object subclass: ILUrl [
     | scheme username password hostname port path parameters fragment |
     
     <category: 'Iliad-Core-lib-HTTP'>
@@ -60,14 +60,14 @@ path:			<OrderedCollection> or nil
 parameters:		<SmallDictionary>
 fragment:		<String> or nil'>
 
-    Url class >> absolute: aString [
+    ILUrl class >> absolute: aString [
 	"Parse aString as an absolute URL."
 
 	<category: 'parsing'>
 	^self basicNew initializeFromString: aString
     ]
 
-    Url class >> absolute: aString relative: aRelativeString [
+    ILUrl class >> absolute: aString relative: aRelativeString [
 	"Take absolute URL aString and combine it with a relative path aRelativeString."
 
 	<category: 'parsing'>
@@ -76,7 +76,7 @@ fragment:		<String> or nil'>
 	    yourself
     ]
 
-    Url class >> decodePercent: aString [
+    ILUrl class >> decodePercent: aString [
 	"percent decodes the given String"
 
 	<category: 'decoding'>
@@ -84,19 +84,18 @@ fragment:		<String> or nil'>
 	input := aString readStream.
 	output := WriteStream on: (String new: aString size).
 	[input atEnd] whileFalse: 
-		[char := input next.
-		output nextPut: (char = $+ 
-			    ifTrue: [Character space]
-			    ifFalse: 
-				[char = $% 
-				    ifTrue: 
-					[Character value: input next asUppercase digitValue * 16 
-						    + input next asUppercase digitValue]
-				    ifFalse: [char]])].
+	    [char := input next.
+	    output nextPut: (char = $+ 
+		ifTrue: [Character space]
+		ifFalse: [char = $% 
+		    ifTrue: [
+			Character value: input next asUppercase digitValue * 16 
+			    + input next asUppercase digitValue]
+		    ifFalse: [char]])].
 	^output contents
     ]
 
-    Url class >> new [
+    ILUrl class >> new [
 	<category: 'instance creation'>
 	^self basicNew initialize
     ]
@@ -180,17 +179,17 @@ fragment:		<String> or nil'>
 	<category: 'private'>
 	| httpHost |
 	hostname ifNil: 
-		[httpHost := aRequest headerAt: 'host' ifAbsent: [^self].
-		hostname := httpHost copyUpTo: $:.
-		(httpHost includes: $:) 
-		    ifTrue: [port := (httpHost copyAfter: $:) asNumber]]
+	    [httpHost := aRequest headerAt: 'host' ifAbsent: [^self].
+	    hostname := httpHost copyUpTo: $:.
+	    (httpHost includes: $:) 
+		ifTrue: [port := (httpHost copyAfter: $:) asNumber]]
     ]
 
     encodeFragmentOn: aStream [
 	<category: 'encoding'>
 	fragment ifNil: [^self].
 	aStream nextPut: $#.
-	aStream nextPutAll: (Encoder encode: fragment)
+	aStream nextPutAll: (ILEncoder encode: fragment)
     ]
 
     encodeOn: aStream [
@@ -211,24 +210,21 @@ fragment:		<String> or nil'>
 	| first |
 	first := true.
 	parameters ifNil: [^self].
-	parameters keysAndValuesDo: 
-		[:key :value | 
-		aStream nextPutAll: (first 
-			    ifTrue: 
-				[first := false.
-				'?']
-			    ifFalse: [aBoolean ifTrue: ['&amp;'] ifFalse: ['&']]).
-		aStream nextPutAll: (Encoder encodeUrl: key).
-		value ifNotNil: 
-			[aStream nextPut: $=.
-			aStream nextPutAll: (Encoder encodeUrl: value asString)]]
+	parameters keysAndValuesDo: [:key :value | 
+	    aStream nextPutAll: (first 
+		ifTrue: [first := false. '?']
+		ifFalse: [aBoolean ifTrue: ['&amp;'] ifFalse: ['&']]).
+	    aStream nextPutAll: (ILEncoder encodeUrl: key).
+	    value ifNotNil: 
+		[aStream nextPut: $=.
+		aStream nextPutAll: (ILEncoder encodeUrl: value asString)]]
     ]
 
     encodePathOn: aStream [
 	<category: 'encoding'>
 	path ifNil: [^self].
 	aStream nextPut: $/.
-	path do: [:each | aStream nextPutAll: (Encoder encodeUrl: each)]
+	path do: [:each | aStream nextPutAll: (ILEncoder encodeUrl: each)]
 	    separatedBy: [aStream nextPut: $/]
     ]
 
@@ -239,20 +235,20 @@ fragment:		<String> or nil'>
 	    nextPutAll: scheme;
 	    nextPutAll: '://'.
 	username notNil 
-	    ifTrue: 
-		[aStream nextPutAll: (Encoder encodeUrl: username).
+	    ifTrue: [
+		aStream nextPutAll: (ILEncoder encodeUrl: username).
 		password notNil 
-		    ifTrue: 
-			[aStream nextPut: $:.
-			aStream nextPutAll: (Encoder encodeUrl: password)].
+		    ifTrue: [
+			aStream nextPut: $:.
+			aStream nextPutAll: (ILEncoder encodeUrl: password)].
 		aStream nextPut: $@].
-	aStream nextPutAll: (Encoder encodeUrl: hostname).
+	aStream nextPutAll: (ILEncoder encodeUrl: hostname).
 	port notNil 
-	    ifTrue: 
-		[((scheme = 'http' and: [port = 80]) 
+	    ifTrue: [
+		((scheme = 'http' and: [port = 80]) 
 		    or: [scheme = 'https' and: [port = 443]]) 
-			ifFalse: 
-			    [aStream
+			ifFalse: [
+			    aStream
 				nextPut: $:;
 				print: port]]
     ]
@@ -363,26 +359,24 @@ fragment:		<String> or nil'>
 	string := aString.
 	index := string indexOf: $#.
 	index > 0 
-	    ifTrue: 
-		[self parseFragment: (string copyFrom: index + 1 to: string size).
+	    ifTrue: [
+		self parseFragment: (string copyFrom: index + 1 to: string size).
 		string := string copyFrom: 1 to: index - 1].
 	index := string indexOf: $?.
 	index > 0 
-	    ifTrue: 
-		[self parseParameters: (string copyFrom: index + 1 to: string size).
+	    ifTrue: [
+		self parseParameters: (string copyFrom: index + 1 to: string size).
 		string := string copyFrom: 1 to: index - 1].
 	index := string indexOfSubCollection: '://'.
 	index > 0 
-	    ifTrue: 
-		[self scheme: (string copyFrom: 1 to: index - 1).
+	    ifTrue: [
+		self scheme: (string copyFrom: 1 to: index - 1).
 		string := string copyFrom: index + 3 to: string size.
 		index := string indexOf: $/.
 		string := index > 0 
-			    ifFalse: 
-				[self parseHost: string.
-				'']
-			    ifTrue: 
-				[self parseHost: (string copyFrom: 1 to: index - 1).
+			    ifFalse: [self parseHost: string. '']
+			    ifTrue: [
+				self parseHost: (string copyFrom: 1 to: index - 1).
 				string copyFrom: index + 1 to: string size]].
 	self parsePath: string
     ]
@@ -406,17 +400,17 @@ fragment:		<String> or nil'>
 		index := temp indexOf: $:.
 		index > 0 
 		    ifFalse: [self username: (self decode: temp)]
-		    ifTrue: 
-			[self username: (self decode: (temp copyFrom: 1 to: index - 1)).
+		    ifTrue: [
+			self username: (self decode: (temp copyFrom: 1 to: index - 1)).
 			self password: (self decode: (temp copyFrom: index + 1 to: temp size))]].
 	index := string lastIndexOf: $:.
 	index > 0 
-	    ifTrue: 
-		[temp := string copyFrom: index + 1 to: string size.
+	    ifTrue: [
+		temp := string copyFrom: index + 1 to: string size.
 		string := string copyFrom: 1 to: index - 1.
 		self 
 		    port: ((temp notEmpty and: [temp allSatisfy: [:each | each isDigit]]) 
-			    ifTrue: [temp asInteger])].
+			ifTrue: [temp asInteger])].
 	self hostname: (self decode: string)
     ]
 
@@ -429,8 +423,8 @@ fragment:		<String> or nil'>
 		index := string indexOf: $=.
 		index > 0 
 		    ifFalse: [self addParameter: (self decode: string)]
-		    ifTrue: 
-			[self addParameter: (self decode: (string copyFrom: 1 to: index - 1))
+		    ifTrue: [
+			self addParameter: (self decode: (string copyFrom: 1 to: index - 1))
 			    value: (self decode: (string copyFrom: index + 1 to: string size))]]
     ]
 
@@ -439,13 +433,12 @@ fragment:		<String> or nil'>
 	| input part |
 	input := aString readStream.
 	input peek = $/ ifTrue: [path := nil].
-	[input atEnd] whileFalse: 
-		[part := input upTo: $/.
-		part isEmpty 
-		    ifFalse: 
-			[part = '..' 
-			    ifTrue: [self path isEmpty ifFalse: [self path removeLast]]
-			    ifFalse: [part = '.' ifFalse: [self path addLast: (self decode: part)]]]]
+	[input atEnd] whileFalse: [
+	    part := input upTo: $/.
+		part isEmpty ifFalse: [
+		    part = '..' 
+			ifTrue: [self path isEmpty ifFalse: [self path removeLast]]
+			ifFalse: [part = '.' ifFalse: [self path addLast: (self decode: part)]]]]
     ]
 
     postCopy [
@@ -463,28 +456,28 @@ fragment:		<String> or nil'>
 
     with: pathString [
 	<category: 'copying'>
-	^(self copy)
+	^self copy
 	    addToPath: pathString;
 	    yourself
     ]
 
     withParameter: aString [
 	<category: 'copying'>
-	^(self copy)
+	^self copy
 	    addParameter: aString;
 	    yourself
     ]
 
     withParameter: aString value: valueString [
 	<category: 'copying'>
-	^(self copy)
+	^self copy
 	    addParameter: aString value: valueString;
 	    yourself
     ]
 
     withoutParameters [
 	<category: 'copying'>
-	^(self copy)
+	^self copy
 	    removeParameters;
 	    yourself
     ]

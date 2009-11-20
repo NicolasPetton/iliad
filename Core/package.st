@@ -14,11 +14,11 @@ Eval [
 	filein: 'Utilities/GSTEncoder.st'; 
 	filein: 'Utilities/ModelProxy.st'; 
 
-	filein: 'lib/HTTP/Url.st'; 
-	filein: 'lib/HTTP/FileProxy.st'; 
-	filein: 'lib/HTTP/Request.st'; 
-	filein: 'lib/HTTP/Response.st';
-	filein: 'lib/HTTP/Cookie.st'; 
+	filein: 'lib/HTTP/ILUrl.st'; 
+	filein: 'lib/HTTP/ILFileProxy.st'; 
+	filein: 'lib/HTTP/ILRequest.st'; 
+	filein: 'lib/HTTP/ILResponse.st';
+	filein: 'lib/HTTP/ILCookie.st'; 
 
 	filein: 'lib/JSON/JsonSyntaxError.st'; 
 	filein: 'lib/JSON/Json.st'; 

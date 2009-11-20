@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Request class definition
+|   Iliad.ILRequest class definition
 |
  ======================================================================"
 
@@ -40,14 +40,14 @@
 
 
 
-Object subclass: Request [
+Object subclass: ILRequest [
     | url fields headers cookies method nativeRequest |
     <category: 'Iliad-Core-lib-HTTP'>
     <comment: 'From Seaside 2.8.
 
 I am a server independent http request object.'>
 
-    Request class >> new [
+    ILRequest class >> new [
 	<category: 'instance creation'>
 	^self basicNew
 	    initialize;
@@ -94,28 +94,28 @@ I am a server independent http request object.'>
     hashLocationField [
 	<category: 'accessing'>
 	^self
-	    at: UrlBuilder default hashKey
+	    at: ILUrlBuilder default hashKey
 	    ifAbsent: [nil]
     ]
 
     sessionField [
 	<category: 'accessing'>
 	^self 
-	    at: UrlBuilder default sessionKey
+	    at: ILUrlBuilder default sessionKey
 	    ifAbsent: [nil]
     ]
 
     tokenField [
 	<category: 'accessing'>
 	^self
-	    at: UrlBuilder default tokenKey
+	    at: ILUrlBuilder default tokenKey
 	    ifAbsent: [nil]
     ]
 
     actionField [
 	<category: 'accessing'>
 	^self 
-	    at: UrlBuilder default actionKey
+	    at: ILUrlBuilder default actionKey
 	    ifAbsent: [nil]
     ]
 
@@ -228,7 +228,7 @@ I am a server independent http request object.'>
 
     decodeAuthorization: aString [
 	<category: 'private'>
-	^Support base64Decode: (aString tokenize: ' ') last
+	^ILSupport base64Decode: (aString tokenize: ' ') last
     ]
 
     setMethod: methodString url: urlString headers: headDict fields: fieldDict cookies: cookieDict [

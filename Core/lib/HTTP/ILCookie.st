@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Cookie class definition
+|   Iliad.ILCookie class definition
 |
  ======================================================================"
 
@@ -40,7 +40,7 @@
 
 
 
-Object subclass: Cookie [
+Object subclass: ILCookie [
     | expiry key path value |
     
     <category: 'Iliad-Core-lib-HTTP'>
@@ -53,7 +53,7 @@ I model only a part of the full cookie specification.
 
 For more information see  RFC2965 (http://tools.ietf.org/html/rfc2965)'>
 
-    Cookie class >> key: keyString value: valueString [
+    ILCookie class >> key: keyString value: valueString [
 	<category: 'instance creation'>
 	^(self new)
 	    key: keyString;
@@ -64,7 +64,7 @@ For more information see  RFC2965 (http://tools.ietf.org/html/rfc2965)'>
     expiryString [
 	<category: 'private'>
 	self expiry ifNil: [^''].
-	^Support  rfc1123StringFor: (DateTime fromSeconds: self expiry)
+	^ILSupport  rfc1123StringFor: (DateTime fromSeconds: self expiry)
     ]
 
     writeOn: aStream [
