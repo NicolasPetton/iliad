@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Action class definition
+|   Iliad.ILAction class definition
 |
  ======================================================================"
 
@@ -35,7 +35,7 @@
 
 
 
-IliadObject subclass: Action [
+ILObject subclass: ILAction [
     | key block value |
     
     <category: 'Iliad-Core-Sessions'>

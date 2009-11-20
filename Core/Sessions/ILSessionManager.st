@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.SessionManager class definition
+|   Iliad.ILSessionManager class definition
 |
  ======================================================================"
 
@@ -36,8 +36,7 @@
 
 
 
-
-IliadObject subclass: SessionManager [
+ILObject subclass: ILSessionManager [
     | sessions preferences |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I am responsible for managing, creating and removing sessions.
@@ -48,23 +47,23 @@ Instead, you can change my preferences with methods in the
 <accessing preferences> protocol.
 
 In addition, do not try to access the current session from here, 
-use Context>>session instead.
+use ILContext>>session instead.
 
 -- maintenance --
 
 To remove all sessions, even not expired ones, call #removeAllSessions.
 To remove all expired sessions, call #removeExpiredSessions'>
     
-    SessionManager class [
+    ILSessionManager class [
 	| current |
     ]
 
-    SessionManager class >> current [
+    ILSessionManager class >> current [
 	<category: 'instance creation'>
 	^current ifNil: [current := super new]
     ]
 
-    SessionManager class >> new [
+    ILSessionManager class >> new [
 	<category: 'instance creation'>
 	self shouldNotImplement
     ]
@@ -106,7 +105,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 
     sessionClass [
 	<category: 'accessing preferences'>
-	^self preferenceAt: #sessionClass ifAbsentPut: [Session]
+	^self preferenceAt: #sessionClass ifAbsentPut: [ILSession]
     ]
 
     sessionClass: aSessionClass [
@@ -127,7 +126,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 
 	
 	self shouldRemoveExpiredSessions ifTrue: [
-		self removeExpiredSessions].
+	    self removeExpiredSessions].
 	^self findOrMakeSessionWithId: (self sessionIdFromRequest: aRequest)
     ]
 

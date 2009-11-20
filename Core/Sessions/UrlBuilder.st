@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.UrlBuilder class definition
+|   Iliad.ILUrlBuilder class definition
 |
  ======================================================================"
 
@@ -34,13 +34,13 @@
  ======================================================================"
 
 
-IliadObject subclass: UrlBuilder [
+ILObject subclass: ILUrlBuilder [
     | actionKey sessionKey tokenKey hashKey |
     
     <comment: nil>
     <category: 'Iliad-Core-Sessions'>
 
-    UrlBuilder class [
+    ILUrlBuilder class [
 	| default |
 	
 	default [
@@ -80,7 +80,7 @@ IliadObject subclass: UrlBuilder [
     baseUrl [
 	<category: 'generating'>
 	| url |
-	url := Url absolute: self context route pathString.
+	url := ILUrl absolute: self context route pathString.
 	self addDefaultParametersTo: url.
 	^url
     ]
@@ -101,7 +101,7 @@ IliadObject subclass: UrlBuilder [
     urlForRedirection: aString [
 	<category: 'generating'>
 	| url |
-	url := Url absolute: aString.
+	url := ILUrl absolute: aString.
 	self shouldUseSessionField ifTrue: [
 	    url addParameter: self sessionKey value: self session id asString].
 	^url

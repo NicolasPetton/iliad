@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad.CurrentContext class definition
+|   Iliad.ILCurrentActionRegistry class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -36,9 +36,7 @@
 
 
 
-
-
-DynamicVariable subclass: CurrentContext [
+DynamicVariable subclass: ILCurrentActionRegistry [
     <category: 'Iliad-Core-Sessions'>
     <comment: nil>
 ]

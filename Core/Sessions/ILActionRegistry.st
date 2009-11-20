@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad.CurrentActionRegistry class definition
+|   Iliad.ILActionRegistry class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2009 
+| Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -34,12 +34,72 @@
 |
  ======================================================================"
 
-
 
-
-
-DynamicVariable subclass: CurrentActionRegistry [
+ILObject subclass: ILActionRegistry [
+    | actions owner |
+    
     <category: 'Iliad-Core-Sessions'>
-    <comment: nil>
+    <comment: 'I implement a registry of actions.
+    
+    My <owner> is responsible for registering actions,
+    and unregister them when they are obsolete. 
+    
+    Action registries should always be stored in Iliad sessions.'>
+
+    ILActionRegistry class >> owner: aWidget [
+	<category: 'instance creation'>
+	^self basicNew
+	    owner: aWidget;
+	    initialize;
+	    yourself
+    ]
+
+    actionAt: aKey [
+	<category: 'accessing'>
+	^self actions 
+	    at: aKey 
+	    ifAbsent: [nil]
+    ]
+
+    actions [
+	<category: 'accessing'>
+	^actions ifNil: [actions := Dictionary new]
+    ]
+
+    owner [
+	<category: 'accessing'>
+	^owner
+    ]
+
+    owner: anObject [
+	<category: 'accessing'>
+	owner := anObject
+    ]
+
+    evaluateActionKey: aString [
+	<category: 'actions'>
+	| action |
+	action := self actionAt: aString.
+	^action
+	   ifNil: [nil] 
+	   ifNotNil: [action evaluate]
+    ]
+
+    register: anAction [
+	<category: 'actions'>
+	self actions at: anAction key put: anAction
+    ]
+
+    unregister: anAction [
+	<category: 'actions'>
+	self actions 
+	    removeKey: anAction key
+	    ifAbsent: [nil]
+    ]
+
+    unregisterAllActions [
+	<category: 'actions'>
+	actions := nil
+    ]
 ]
 

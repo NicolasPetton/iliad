@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Session class definition
+|   Iliad.ILSession class definition
 |
  ======================================================================"
 
@@ -36,7 +36,7 @@
 
 
 
-IliadObject subclass: Session [
+ILObject subclass: ILSession [
     | id preferences timestamps expired redirectUrl applications actionRegistries dirtyWidgets nextId token |
 
     <category: 'Iliad-Core-Sessions'>
@@ -121,12 +121,12 @@ IliadObject subclass: Session [
 
     sessionManager [
 	<category: 'accessing'>
-	^SessionManager current
+	^ILSessionManager current
     ]
 
     token [
 	<category: 'accessing'>
-	^token ifNil: [token := Id new: 8]
+	^token ifNil: [token := ILId new: 8]
     ]
 
     charset [
@@ -251,8 +251,8 @@ IliadObject subclass: Session [
 
     actionRegistries [
 	<category: 'actions'>
-	^actionRegistries ifNil: 
-	    [actionRegistries := OrderedCollection new]
+	^actionRegistries ifNil: [
+	    actionRegistries := OrderedCollection new]
     ]
 
     actionRegistryFor: aWidget [
@@ -264,7 +264,7 @@ IliadObject subclass: Session [
     
     addActionRegistryFor: aWidget [
 	<category: 'actions'>
-	^self actionRegistries add: (ActionRegistry owner: aWidget)
+	^self actionRegistries add: (ILActionRegistry owner: aWidget)
     ]
 
     actionAt: aKeyString [
@@ -279,7 +279,7 @@ IliadObject subclass: Session [
     registerActionFor: aBlock [
 	<category: 'actions'>
 	| action |
-	action := Action new
+	action := ILAction new
 	    key: self nextId;
 	    block: aBlock;
 	    yourself.
@@ -289,7 +289,7 @@ IliadObject subclass: Session [
 
     registerAction: anAction [
 	<category: 'actions'>
-	CurrentActionRegistry value register: anAction
+	ILCurrentActionRegistry value register: anAction
     ]
 
     evaluateActionKey: aString [
@@ -300,7 +300,7 @@ IliadObject subclass: Session [
 
     redirect [
 	<category: 'redirection'>
-	RedirectHandler new
+	ILRedirectHandler new
 	    produceResponse
     ]
     
@@ -360,7 +360,7 @@ IliadObject subclass: Session [
 
     setRandomId [
 	<category: 'private'>
-	^self id: Id new
+	^self id: ILId new
     ]
 ]
 

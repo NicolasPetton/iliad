@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ActionRegistry class definition
+|   Iliad.ILContext class definition
 |
  ======================================================================"
 
@@ -34,72 +34,84 @@
 |
  ======================================================================"
 
+
 
-IliadObject subclass: ActionRegistry [
-    | actions owner |
-    
+Object subclass: ILContext [
+
+    | request application route hashRoute session |
     <category: 'Iliad-Core-Sessions'>
-    <comment: 'I implement a registry of actions.
+    <comment: 'I store current request context objects:
+- the route
+- the session
+- the application
+- the request itself
+
+A can be accessed through ILObject>>context'>
+
+    ILContext class [
+
+	new [
+	    <category: 'instance creation'>
+	    ^self basicNew
+		initialize;
+		yourself
+	]
+    ]
+
+    initialize [
+	<category: 'initialize-release'>
+    ]
+
+    application [
+	<category: 'accessing'>
+	^application
+    ]
+
+    application: anApplication [
+	<category: 'accessing'>
+	application := anApplication
+    ]
+
+    baseUrl [
+	<category: 'accessing'>
+	^self urlBuilder baseUrl
+    ]
+
+    request [
+	<category: 'accessing'>
+	^request
+    ]
+
+    request: aRequest [
+	<category: 'accessing'>
+	request := aRequest
+    ]
+
+    session [
+	<category: 'accessing'>
+	^session
+    ]
+
+    session: aSession [
+	<category: 'accessing'>
+	session := aSession
+    ]
+
+    route [
+	<category: 'accessing'>
+	^route ifNil: [route := ILRoute path: self request url path]
+    ]
     
-    My <owner> is responsible for registering actions,
-    and unregister them when they are obsolete. 
-    
-    Action registries should always be stored in Iliad sessions.'>
-
-    ActionRegistry class >> owner: aWidget [
-	<category: 'instance creation'>
-	^self basicNew
-	    owner: aWidget;
-	    initialize;
-	    yourself
-    ]
-
-    actionAt: aKey [
+    hashRoute [
 	<category: 'accessing'>
-	^self actions 
-	    at: aKey 
-	    ifAbsent: [nil]
+	| hash |
+	hash := self request hashLocationField ifNil: [''].
+	^hashRoute ifNil: [hashRoute := ILRoute path: (hash tokenize: '/')]
     ]
-
-    actions [
+   
+    urlBuilder [
 	<category: 'accessing'>
-	^actions ifNil: [actions := Dictionary new]
-    ]
-
-    owner [
-	<category: 'accessing'>
-	^owner
-    ]
-
-    owner: anObject [
-	<category: 'accessing'>
-	owner := anObject
-    ]
-
-    evaluateActionKey: aString [
-	<category: 'actions'>
-	| action |
-	action := self actionAt: aString.
-	^action
-	   ifNil: [nil] 
-	   ifNotNil: [action evaluate]
-    ]
-
-    register: anAction [
-	<category: 'actions'>
-	self actions at: anAction key put: anAction
-    ]
-
-    unregister: anAction [
-	<category: 'actions'>
-	self actions 
-	    removeKey: anAction key
-	    ifAbsent: [nil]
-    ]
-
-    unregisterAllActions [
-	<category: 'actions'>
-	actions := nil
+	^ILUrlBuilder default
     ]
 ]
 

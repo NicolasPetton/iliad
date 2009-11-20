@@ -24,14 +24,14 @@ Eval [
 	filein: 'lib/JSON/ILJson.st'; 
 	filein: 'lib/JSON/Extensions.st'; 
 
-	filein: 'Sessions/UrlBuilder.st'; 
-	filein: 'Sessions/Context.st'; 
-	filein: 'Sessions/Action.st'; 
-	filein: 'Sessions/CurrentContext.st'; 
-	filein: 'Sessions/CurrentActionRegistry.st'; 
-	filein: 'Sessions/ActionRegistry.st'; 
-	filein: 'Sessions/Session.st'; 
-	filein: 'Sessions/SessionManager.st'; 
+	filein: 'Sessions/ILUrlBuilder.st'; 
+	filein: 'Sessions/ILContext.st'; 
+	filein: 'Sessions/ILAction.st'; 
+	filein: 'Sessions/ILCurrentContext.st'; 
+	filein: 'Sessions/ILCurrentActionRegistry.st'; 
+	filein: 'Sessions/ILActionRegistry.st'; 
+	filein: 'Sessions/ILSession.st'; 
+	filein: 'Sessions/ILSessionManager.st'; 
 
 	filein: 'Elements/ILElements-Error.st'; 
 	filein: 'Elements/ILElement.st'; 

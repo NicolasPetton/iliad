@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Context class definition
+|   Iliad.ILCurrentContext class definition
 |
  ======================================================================"
 
@@ -36,82 +36,8 @@
 
 
 
-Object subclass: Context [
-
-    | request application route hashRoute session |
+DynamicVariable subclass: ILCurrentContext [
     <category: 'Iliad-Core-Sessions'>
-    <comment: 'I store current request context objects:
-- the route
-- the session
-- the application
-- the request itself
-
-A can be accessed through IliadObject>>context'>
-
-    Context class [
-
-	new [
-	    <category: 'instance creation'>
-	    ^self basicNew
-		initialize;
-		yourself
-	]
-    ]
-
-    initialize [
-	<category: 'initialize-release'>
-    ]
-
-    application [
-	<category: 'accessing'>
-	^application
-    ]
-
-    application: anApplication [
-	<category: 'accessing'>
-	application := anApplication
-    ]
-
-    baseUrl [
-	<category: 'accessing'>
-	^self urlBuilder baseUrl
-    ]
-
-    request [
-	<category: 'accessing'>
-	^request
-    ]
-
-    request: aRequest [
-	<category: 'accessing'>
-	request := aRequest
-    ]
-
-    session [
-	<category: 'accessing'>
-	^session
-    ]
-
-    session: aSession [
-	<category: 'accessing'>
-	session := aSession
-    ]
-
-    route [
-	<category: 'accessing'>
-	^route ifNil: [route := Route path: self request url path]
-    ]
-    
-    hashRoute [
-	<category: 'accessing'>
-	| hash |
-	hash := self request hashLocationField ifNil: [''].
-	^hashRoute ifNil: [hashRoute := Route path: (hash tokenize: '/')]
-    ]
-   
-    urlBuilder [
-	<category: 'accessing'>
-	^UrlBuilder default
-    ]
+    <comment: nil>
 ]
 
