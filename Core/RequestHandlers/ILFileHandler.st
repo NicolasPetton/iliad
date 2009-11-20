@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.FileHandler class definition
+|   Iliad.ILFileHandler class definition
 |
  ======================================================================"
 
@@ -36,7 +36,7 @@
 
 
 
-RequestHandler subclass: FileHandler [
+ILRequestHandler subclass: ILFileHandler [
     | file |
 
     <comment: nil>
@@ -45,12 +45,12 @@ RequestHandler subclass: FileHandler [
     MimeTypes := nil.
     BaseDirectories := nil.
 
-    FileHandler class >> defaultMimeType [
+    ILFileHandler class >> defaultMimeType [
 	<category: 'accessing'>
 	^'application/octet-stream'
     ]
 
-    FileHandler class >> defaultMimeTypes [
+    ILFileHandler class >> defaultMimeTypes [
 	<category: 'accessing'>
 	^ #(
 		'%' 'application/x-trash'
@@ -465,33 +465,33 @@ RequestHandler subclass: FileHandler [
 	)
     ]
 
-    FileHandler class >> mimeTypeFor: aString [
+    ILFileHandler class >> mimeTypeFor: aString [
 	<category: 'accessing'>
 	^self mimeTypes at: aString ifAbsent: [self defaultMimeType]
     ]
 
-    FileHandler class >> mimeTypes [
+    ILFileHandler class >> mimeTypes [
 	<category: 'accessing'>
 	MimeTypes ifNil: [self initMimeTypes].
 	^MimeTypes
     ]
 
-    FileHandler class >> baseDirectories [
+    ILFileHandler class >> baseDirectories [
 	<category: 'acccessing'>
 	^BaseDirectories ifNil: [BaseDirectories := self defaultBaseDirectories]
     ]    
 
-    FileHandler class >> baseDirectories: aCollection [
+    ILFileHandler class >> baseDirectories: aCollection [
 	<category: 'accessing'>
 	BaseDirectories := aCollection
     ]
 
-    FileHandler class >> addBaseDirectory: aDirectory [
+    ILFileHandler class >> addBaseDirectory: aDirectory [
 	<category: 'accessing'>
 	self baseDirectories add: aDirectory
     ]
 
-    FileHandler class >> defaultBaseDirectories [
+    ILFileHandler class >> defaultBaseDirectories [
 	<category: 'defaults'>
 	| directories |
 	directories := OrderedCollection new.
@@ -501,7 +501,7 @@ RequestHandler subclass: FileHandler [
 	^directories
     ]
 
-    FileHandler class >> initMimeTypes [
+    ILFileHandler class >> initMimeTypes [
 	<category: 'defaults'>
 	MimeTypes :=Dictionary new.
 	1 to: self defaultMimeTypes size by: 2 do: [:index |
@@ -522,7 +522,7 @@ RequestHandler subclass: FileHandler [
 
     newResponse [
 	<category: 'accessing'>
-	^Response ok
+	^ILResponse ok
     ]
 
 
@@ -530,7 +530,7 @@ RequestHandler subclass: FileHandler [
 	<category: 'request handling'>
 	file := self fullPathOf: (self adjustPath: self request url asString).
 	file isNil ifTrue: [
-	    DispatchError signal].
+	    ILDispatchError signal].
 	super handleRequest
     ]
 

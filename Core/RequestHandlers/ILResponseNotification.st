@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ErrorHandler class definition
+|   Iliad.ILResponseNotification class definition
 |
  ======================================================================"
 
@@ -35,72 +35,20 @@
  ======================================================================"
 
 
-
-RequestHandler subclass: ErrorHandler [
-    | error |
-    
+
+Notification subclass: ILResponseNotification [
+    | response |
     <category: 'Iliad-Core-RequestHandlers'>
     <comment: nil>
 
-    error [
+    response [
 	<category: 'accessing'>
-	^error
+	^response
     ]
 
-    error: anError [
+    response: aResponse [
 	<category: 'accessing'>
-	error := anError
-    ]
-
-    newResponse [
-	<category: 'accessing'>
-	^Response new
-	    status: 500;
-	    yourself
-    ]
-
-    produceResponse [
-	<category: 'responding'>
-	self application isDebugMode ifTrue: [
-	    self produceDebugResponse].
-	self application isVerboseMode ifTrue: [
-	    self produceVerboseResponse].
-	self application isDeploymentMode ifTrue: [
-	    self produceDeploymentResponse]
-    ]
-
-    produceDeploymentResponse [
-	<category: 'responding'>
-	self respond: [:response | 
-		response nextPutAll: '<html><h1>Error 500: Internal server error</h1></html>']
-    ]
-
-    produceDebugResponse [
-	<category: 'responding'>
-	self error resignalAsUnhandled: self error messageText
-    ]
-
-    produceVerboseResponse [
-	<category: 'responding'>
-	| info |
-	info := WriteStream on: ''. 
-	self respond: [:response || page e |
-	    response nextPutAll: (String streamContents: [:stream |
-		page := XHTMLPage new.
-		page body h1: 'Internal Error';
-		    h2: self error description;
-		    h3: self error messageText.
-		self error examineOn: info.
-		info nextPut: Character cr.
-		self error resumeContext backtraceOn: info.
-		page body pre: info contents.
-		Transcript show: info contents; cr.
-		page build printHtmlOn: stream])]
+	response := aResponse
     ]
 ]
 
-Signal extend [
-    resumeContext [
-	^resumeBlock outerContext home
-    ]
-]

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RedirectHandler class definition
+|   Iliad.ILRequestHandler class definition
 |
  ======================================================================"
 
@@ -36,35 +36,69 @@
 
 
 
-RequestHandler subclass: RedirectHandler [
-    <comment: nil>
+ILObject subclass: ILRequestHandler [
     <category: 'Iliad-Core-RequestHandlers'>
+    <comment: 'I implement the basic behavior needed to handle requests.
+
+My sublcasses must override #newResponse to handle requests, and most likely #produceResponse.
+The current handled request is answered by the #request method inherited from ILObject'>
+
+    handleRequest [
+	<category: 'request handling'>
+	self produceResponse
+    ]
     
     produceResponse [
 	<category: 'responding'>
-	self setRedirectUrl.
-	self shouldRespondInJson ifTrue: [
-	    JsonHandler new handleRequest].
-	self respond: [:response | 
-		response redirectTo: self session redirectUrl asString.
-		self session clearRedirectUrl.
-		self addCookieHeaderTo: response]
+	self respond: [:response | ]
     ]
 
-    shouldRespondInJson [
-	<category: 'testing'>
-	^self request isTypeOfRequestForJson
-    ]
-
-    setRedirectUrl [
+    respond: aBlock [
 	<category: 'private'>
-	self session redirectUrl ifNil: [
-	    self session redirectUrl: self context baseUrl asString]
+	| response |
+	response := self newResponse.
+	aBlock value: response.
+	self returnResponse: response
+    ]
+
+    returnResponse: aResponse [
+	<category: 'private'>
+	ILResponseNotification new
+	    response: aResponse;
+	    signal
     ]
 
     newResponse [
 	<category: 'private'>
-	^Response redirect
+	self subclassResponsibility
+    ]
+
+    addCacheHeaderTo: aResponse [
+	<category: 'private'>
+	aResponse 
+	    headerAt: 'expires' 
+	    put: (ILSupport rfc1123StringFor: (DateTime fromSeconds: DateTime now asSeconds + (24*3600)))
+    ]
+
+    addAllowHeaderTo: aResponse [
+	<category: 'private'>
+	| methods |
+	methods := 'OPTIONS,GET,HEAD,POST,DELETE,TRACE,PROPFIND,PROPPATCH,MKCOL,PUT,COPY,MOVE,LOCK,UNLOCK'.
+	aResponse headerAt: 'Allow' put: methods
+    ]
+
+    addCookieHeaderTo: aResponse [
+	<category: 'private'>
+	aResponse 
+	    addCookie: (ILCookie new 
+		key: self session sessionManager cookieName; 
+		value: self session id; 
+		expireIn: (Duration days: 600);
+		yourself)
+    ]
+
+    addNoCacheHeaderTo: aResponse [
+	aResponse headerAt: 'expires' put: (ILSupport rfc1123StringFor: DateTime now).
+	aResponse headerAt: 'Cache-Control' put: 'no-store, no-cache, must-revalidate'
     ]
 ]
-

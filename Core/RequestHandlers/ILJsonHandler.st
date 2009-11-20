@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.JsonHandler class definition
+|   Iliad.ILJsonHandler class definition
 |
  ======================================================================"
 
@@ -36,7 +36,7 @@
 
 
 
-RequestHandler subclass: JsonHandler [
+ILRequestHandler subclass: ILJsonHandler [
     | jsonContents widgets scripts head widgetsToUpdate |
 
     <comment: nil>
@@ -86,7 +86,7 @@ RequestHandler subclass: JsonHandler [
 
     newResponse [
 	<category: 'private'>
-	^Response ok
+	^ILResponse ok
 	    contentType: 'application/json'; 
 	    yourself
     ]
@@ -94,7 +94,7 @@ RequestHandler subclass: JsonHandler [
     updateHead [
 	<category: 'private'>
 	| headElement |
-	headElement := Element new.
+	headElement := ILElement new.
 	widgetsToUpdate do: [:each | each buildHead: headElement].
 	headElement childrenDo: [:each |
 	    (self application page head children includes: each) ifFalse: [

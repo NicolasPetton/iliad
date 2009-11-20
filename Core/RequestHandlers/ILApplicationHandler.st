@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ApplicationHandler class definition
+|   Iliad.ILApplicationHandler class definition
 |
  ======================================================================"
 
@@ -36,7 +36,7 @@
 
 
 
-RequestHandler subclass: ApplicationHandler [
+ILRequestHandler subclass: ILApplicationHandler [
     | actions |
     <comment: nil>
     <category: 'Iliad-Core-RequestHandlers'>
@@ -65,13 +65,13 @@ RequestHandler subclass: ApplicationHandler [
 	<category: 'request handling'>
 	self isRequestValid 
 	    ifTrue: [self evaluateActions]
-	    ifFalse: [RedirectHandler new handleRequest].
+	    ifFalse: [ILRedirectHandler new handleRequest].
 	self shouldRespondInJson ifTrue: [
-	    JsonHandler new handleRequest].
+	    ILJsonHandler new handleRequest].
 	self request isAjaxRequest ifTrue: [self returnResponse: self lastAction asResponse].
 	self cleanUpSession.
 	self shouldRedirect
-	    ifTrue: [RedirectHandler new handleRequest]
+	    ifTrue: [ILRedirectHandler new handleRequest]
 	    ifFalse: [self produceResponse]
     ]
 

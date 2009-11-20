@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.NotFoundHandler class definition
+|   Iliad.ILErrorHandler class definition
 |
  ======================================================================"
 
@@ -36,22 +36,71 @@
 
 
 
-RequestHandler subclass: NotFoundHandler [
-    <comment: nil>
+ILRequestHandler subclass: ILErrorHandler [
+    | error |
+    
     <category: 'Iliad-Core-RequestHandlers'>
+    <comment: nil>
 
-    produceResponse [
-	<category: 'responding'>
-	self respond: [:response |
-	    response
-		nextPutAll: '<h1>404 Not Found: ';
-		nextPutAll: self request url asString;
-		nextPutAll: '</h1>']
+    error [
+	<category: 'accessing'>
+	^error
+    ]
+
+    error: anError [
+	<category: 'accessing'>
+	error := anError
     ]
 
     newResponse [
-	<category: 'private'>
-	^Response notFound
+	<category: 'accessing'>
+	^ILResponse new
+	    status: 500;
+	    yourself
+    ]
+
+    produceResponse [
+	<category: 'responding'>
+	self application isDebugMode ifTrue: [
+	    self produceDebugResponse].
+	self application isVerboseMode ifTrue: [
+	    self produceVerboseResponse].
+	self application isDeploymentMode ifTrue: [
+	    self produceDeploymentResponse]
+    ]
+
+    produceDeploymentResponse [
+	<category: 'responding'>
+	self respond: [:response | 
+	    response nextPutAll: '<html><h1>Error 500: Internal server error</h1></html>']
+    ]
+
+    produceDebugResponse [
+	<category: 'responding'>
+	self error resignalAsUnhandled: self error messageText
+    ]
+
+    produceVerboseResponse [
+	<category: 'responding'>
+	| info |
+	info := WriteStream on: ''. 
+	self respond: [:response || page e |
+	    response nextPutAll: (String streamContents: [:stream |
+		page := ILXHTMLPage new.
+		page body h1: 'Internal Error';
+		    h2: self error description;
+		    h3: self error messageText.
+		self error examineOn: info.
+		info nextPut: Character cr.
+		self error resumeContext backtraceOn: info.
+		page body pre: info contents.
+		Transcript show: info contents; cr.
+		page build printHtmlOn: stream])]
     ]
 ]
 
+Signal extend [
+    resumeContext [
+	^resumeBlock outerContext home
+    ]
+]

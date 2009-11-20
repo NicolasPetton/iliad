@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ResponseNotification class definition
+|   Iliad.ILRedirectHandler class definition
 |
  ======================================================================"
 
@@ -35,20 +35,36 @@
  ======================================================================"
 
 
-
-Notification subclass: ResponseNotification [
-    | response |
-    <category: 'Iliad-Core-RequestHandlers'>
+
+ILRequestHandler subclass: ILRedirectHandler [
     <comment: nil>
-
-    response [
-	<category: 'accessing'>
-	^response
+    <category: 'Iliad-Core-RequestHandlers'>
+    
+    produceResponse [
+	<category: 'responding'>
+	self setRedirectUrl.
+	self shouldRespondInJson ifTrue: [
+	    ILJsonHandler new handleRequest].
+	self respond: [:response | 
+	    response redirectTo: self session redirectUrl asString.
+		self session clearRedirectUrl.
+		self addCookieHeaderTo: response]
     ]
 
-    response: aResponse [
-	<category: 'accessing'>
-	response := aResponse
+    shouldRespondInJson [
+	<category: 'testing'>
+	^self request isTypeOfRequestForJson
+    ]
+
+    setRedirectUrl [
+	<category: 'private'>
+	self session redirectUrl ifNil: [
+	    self session redirectUrl: self context baseUrl asString]
+    ]
+
+    newResponse [
+	<category: 'private'>
+	^ILResponse redirect
     ]
 ]
 

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RequestHandler class definition
+|   Iliad.ILNotFoundHandler class definition
 |
  ======================================================================"
 
@@ -36,69 +36,22 @@
 
 
 
-IliadObject subclass: RequestHandler [
+ILRequestHandler subclass: ILNotFoundHandler [
+    <comment: nil>
     <category: 'Iliad-Core-RequestHandlers'>
-    <comment: 'I implement the basic behavior needed to handle requests.
 
-My sublcasses must override #newResponse to handle requests, and most likely #produceResponse.
-The current handled request is answered by the #request method inherited from IliadObject'>
-
-    handleRequest [
-	<category: 'request handling'>
-	self produceResponse
-    ]
-    
     produceResponse [
 	<category: 'responding'>
-	self respond: [:response | ]
-    ]
-
-    respond: aBlock [
-	<category: 'private'>
-	| response |
-	response := self newResponse.
-	aBlock value: response.
-	self returnResponse: response
-    ]
-
-    returnResponse: aResponse [
-	<category: 'private'>
-	ResponseNotification new
-	    response: aResponse;
-	    signal
+	self respond: [:response |
+	    response
+		nextPutAll: '<h1>404 Not Found: ';
+		nextPutAll: self request url asString;
+		nextPutAll: '</h1>']
     ]
 
     newResponse [
 	<category: 'private'>
-	self subclassResponsibility
-    ]
-
-    addCacheHeaderTo: aResponse [
-	<category: 'private'>
-	aResponse 
-	    headerAt: 'expires' 
-	    put: (Support rfc1123StringFor: (DateTime fromSeconds: DateTime now asSeconds + (24*3600)))
-    ]
-
-    addAllowHeaderTo: aResponse [
-	<category: 'private'>
-	| methods |
-	methods := 'OPTIONS,GET,HEAD,POST,DELETE,TRACE,PROPFIND,PROPPATCH,MKCOL,PUT,COPY,MOVE,LOCK,UNLOCK'.
-	aResponse headerAt: 'Allow' put: methods
-    ]
-
-    addCookieHeaderTo: aResponse [
-	<category: 'private'>
-	aResponse 
-	    addCookie: (Cookie new 
-		key: self session sessionManager cookieName; 
-		value: self session id; 
-		expireIn: (Duration days: 600);
-		yourself)
-    ]
-
-    addNoCacheHeaderTo: aResponse [
-	aResponse headerAt: 'expires' put: (Support rfc1123StringFor: DateTime now).
-	aResponse headerAt: 'Cache-Control' put: 'no-store, no-cache, must-revalidate'
+	^ILResponse notFound
     ]
 ]
+
