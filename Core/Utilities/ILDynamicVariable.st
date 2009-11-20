@@ -1,19 +1,17 @@
 "======================================================================
 |
-|   Iliad.SmallDictionary class definition
+|   Iliad.ILDynamicVariable class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
 |
 | This file is part of the Iliad framework.
-|
-| Iliad.SmallDictionary is adapted from WASmalltalkDictionary from Seaside.
 |
 | Permission is hereby granted, free of charge, to any person obtaining
 | a copy of this software and associated documentation files (the 
@@ -36,55 +34,30 @@
 |
  ======================================================================"
 
-LookupTable subclass: SmallDictionary [
-    
-    <shape: #pointer>
+
+
+Notification subclass: ILDynamicVariable [
     <category: 'Iliad-Core-Utilities'>
     <comment: nil>
 
-    SmallDictionary class >> new [
-	<category: 'instance creation'>
-	^self new: 2
+    ILDynamicVariable class >> defaultValue [
+	<category: 'defaults'>
+	^nil
     ]
 
-    SmallDictionary class >> new: anInteger [
-	<category: 'instance creation'>
-	^(self primNew: anInteger) initialize: anInteger
+    ILDynamicVariable class >> use: aContext during: aBlock [
+	<category: 'evaluating'>
+	^aBlock on: self do: [:notification | notification resume: aContext]
     ]
 
-    capacity [
-	<category: 'private'>
-	^super primSize
+    ILDynamicVariable class >> value [
+	<category: 'evaluating'>
+	^self signal
     ]
 
-    whileGrowingAt: key put: value [
-	<category: 'private'>
-	tally := tally + 1.
-	self primAt: self size put: key.
-	self valueAt: self size put: value
-    ]
-
-    incrementTally [
-	<category: 'private'>
-	tally := tally + 1.
-	^(tally > self primSize)
-	    ifTrue: [self grow];
-	    yourself
-    ]
-
-    findIndex: anObject [
-	"Tries to see if anObject exists as an indexed variable. As soon as nil
-	 or anObject is found, the index of that slot is answered"
-
-	<category: 'private'>
-	| element |
-	self beConsistent.
-	1 to: self size
-	    do: 
-		[:i | 
-		element := self primAt: i.
-		(element isNil or: [element = anObject]) ifTrue: [^i]].
-	tally = self primSize ifTrue: [self grow].
-	^self size + 1
+    defaultAction [
+	<category: 'defaults'>
+	^self class defaultValue
     ]
 ]
+

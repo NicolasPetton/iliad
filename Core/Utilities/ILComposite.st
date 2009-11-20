@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Composite class definition
+|   Iliad.ILComposite class definition
 |
  ======================================================================"
 
@@ -34,7 +34,7 @@
  ======================================================================"
 
 
-IliadObject subclass: Composite [
+ILObject subclass: ILComposite [
     | tail next |
     
     <comment: nil>

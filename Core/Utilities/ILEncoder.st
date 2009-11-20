@@ -1,10 +1,10 @@
-Object subclass: Encoder [
+Object subclass: ILEncoder [
 
     <shape: #byte>
     <category: 'Iliad-Core-Utilities'>
     <comment: nil>
 
-    Encoder class [
+    ILEncoder class [
     
 	encodeUrl: aString [
 	    <category: 'encoding'>

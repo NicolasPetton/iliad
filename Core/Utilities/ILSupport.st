@@ -1,26 +1,26 @@
-Object subclass: Support [
+Object subclass: ILSupport [
     
     <shape: #byte>
     <category: 'Iliad-Core-Support'>
     <comment: nil>
 
-    Support class >> critical: aBlock [
+    ILSupport class >> critical: aBlock [
 	<category: 'accessing'>
 	^self mutex critical: aBlock
     ]
 
-    Support class >> mutex [
+    ILSupport class >> mutex [
 	<category: 'accessing'>
 	^Semaphore forMutualExclusion
     ]
 
-    Support class >> rfc1123StringFor: aDateTime [
+    ILSupport class >> rfc1123StringFor: aDateTime [
 	<category: 'times'>
 	^String streamContents: [:stream |
 	    self rfc1123StringFor: aDateTime on: stream]
     ]
 
-    Support class >> rfc1123StringFor: aDateTime on: aStream [ 
+    ILSupport class >> rfc1123StringFor: aDateTime on: aStream [ 
 	"Code taken from Swazoo Timestamp extention with the following comment: FIXME: Assumes 
 	server's clock is GMT. Should convert server's clock to GMT if it is not. Besides that, 
 	this whole method is really ugly."

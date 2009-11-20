@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ModelProxy class definition
+|   Iliad.ILObject class definition
 |
  ======================================================================"
 
@@ -9,10 +9,6 @@
 | Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
-|
-| Some parts of this file reuse code from the Seaside framework written 
-| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
-| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -39,82 +35,39 @@
 
 
 
-Object subclass: ModelProxy [
-    | cache model |
-    
+Object subclass: ILObject [
+	
     <category: 'Iliad-Core-Utilities'>
-    <comment: nil>
-
-    ModelProxy class >> on: anObject [
+    <comment: 'ILObject is the base class for all Iliad classes. It guarantees that #initialize is send upon object creation. Additionally it provides convienience methods for accessing the current context, session and application.'>
+	    
+    ILObject class >> new [
 	<category: 'instance creation'>
-	^self new setModel: anObject
+	^self basicNew
+	    initialize;
+	    yourself
     ]
 
-    commit [
-	<category: 'forwarding'>
-	cache 
-	    keysAndValuesDo: [:key :value | self performRealWrite: key with: value].
-	cache := Dictionary new
+    initialize [
+	<category: 'initialize-release'>
     ]
 
-    doesNotUnderstand: aMessage [
-	<category: 'forwarding'>
-	^aMessage selector isUnary 
-	    ifTrue: [self performRead: aMessage selector]
-	    ifFalse: 
-		[(aMessage selector isKeyword and: [aMessage arguments size = 1]) 
-		    ifTrue: 
-			[self performWrite: aMessage selector allButLast with: aMessage argument]
-		    ifFalse: [super doesNotUnderstand: aMessage]]
-    ]
-
-    name [
-	<category: 'forwarding'>
-	^model name
-    ]
-
-    value [
-	<category: 'forwarding'>
-	^model value
-    ]
-
-    model [
+    application [
 	<category: 'accessing'>
-	^model
+	^self context application
     ]
 
-    performRead: aSymbol [
-	<category: 'private'>
-	^cache at: aSymbol asSymbol ifAbsent: [model perform: aSymbol]
+    context [
+	<category: 'accessing'>
+	^ILCurrentContext value
+    ]
+    
+    session [
+	<category: 'accessing'>
+	^self context session 
     ]
 
-    performRealWrite: aSymbol with: anObject [
-	<category: 'private'>
-	model perform: (aSymbol copyWith: $:) asSymbol with: anObject
-    ]
-
-    performWrite: aSymbol with: anObject [
-	<category: 'private'>
-	cache at: aSymbol asSymbol put: anObject
-    ]
-
-    setModel: anObject [
-	<category: 'initializing'>
-	model := anObject.
-	cache := Dictionary new
-    ]
-]
-
-
-Symbol extend [
-
-    isKeyword [
-	<category: 'testing'>
-	^self last = $:
-    ]
-
-    isUnary [
-	<category: 'testing'>
-	^self numArgs = 0
+    request [
+	<category: 'accessing'>
+	^self context request
     ]
 ]

@@ -4,15 +4,15 @@ Eval [
 	name: 'Iliad-Core';
 	namespace: 'Iliad';
 	prereq: 'Iconv';
-	filein: 'Utilities/IliadObject.st';
-	filein: 'Utilities/SmallDictionary.st';
-	filein: 'Utilities/Composite.st';
-	filein: 'Utilities/DynamicVariable.st';
-	filein: 'Utilities/Support.st'; 
-	filein: 'Utilities/Id.st'; 
-	filein: 'Utilities/Encoder.st'; 
-	filein: 'Utilities/GSTEncoder.st'; 
-	filein: 'Utilities/ModelProxy.st'; 
+	filein: 'Utilities/ILObject.st';
+	filein: 'Utilities/ILSmallDictionary.st';
+	filein: 'Utilities/ILComposite.st';
+	filein: 'Utilities/ILDynamicVariable.st';
+	filein: 'Utilities/ILSupport.st'; 
+	filein: 'Utilities/ILId.st'; 
+	filein: 'Utilities/ILEncoder.st'; 
+	filein: 'Utilities/ILGSTEncoder.st'; 
+	filein: 'Utilities/ILModelProxy.st'; 
 
 	filein: 'lib/HTTP/ILUrl.st'; 
 	filein: 'lib/HTTP/ILFileProxy.st'; 

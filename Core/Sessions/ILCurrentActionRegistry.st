@@ -36,7 +36,7 @@
 
 
 
-DynamicVariable subclass: ILCurrentActionRegistry [
+ILDynamicVariable subclass: ILCurrentActionRegistry [
     <category: 'Iliad-Core-Sessions'>
     <comment: nil>
 ]

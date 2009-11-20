@@ -1,20 +1,20 @@
-ByteArray subclass: Id [
+ByteArray subclass: ILId [
 
     <shape: #byte>
     <comment: nil>
     <category: 'Iliad-Core-Utilities'>
 
-    Id class >> defaultSize [
+    ILId class >> defaultSize [
 	<category: 'defaults'>
 	^32
     ]
 
-    Id class >> new [
+    ILId class >> new [
 	<category: 'instance creation'>
 	^self new: self defaultSize
     ]
 
-    Id class >> new: anInteger [
+    ILId class >> new: anInteger [
 	<category: 'instance creation'>
 	^(self basicNew: anInteger)
 	    initialize;
@@ -23,7 +23,7 @@ ByteArray subclass: Id [
 
     initialize [
 	<category: 'initialization'>
-	Support critical: [
+	ILSupport critical: [
 		self at: 1 put: ($a to: $z) atRandom asInteger.
 		2 to: self size do: [:each |
 		    self at: each put: self table atRandom asInteger]]

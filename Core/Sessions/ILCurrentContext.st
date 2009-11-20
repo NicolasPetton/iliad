@@ -36,7 +36,7 @@
 
 
 
-DynamicVariable subclass: ILCurrentContext [
+ILDynamicVariable subclass: ILCurrentContext [
     <category: 'Iliad-Core-Sessions'>
     <comment: nil>
 ]
