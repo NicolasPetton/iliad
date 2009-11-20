@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.HorizontalRuleElement class definition
+|   Iliad.ILDivElement class definition
 |
  ======================================================================"
 
@@ -36,19 +36,14 @@
 
 
 
-ClosingElement subclass: HorizontalRuleElement [
+ILXHTMLElement subclass: ILDivElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
     tag [
 	<category: 'accessing'>
-	^'hr'
-    ]
-    
-    onEvent: anEvent do: aString [
-	<category: 'accessing attributes-events'>
-	self doesNotUnderstandAttribute: 'on' , aString
+	^'div'
     ]
 ]
 

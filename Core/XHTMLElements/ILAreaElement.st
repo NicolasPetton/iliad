@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ButtonElement class definition
+|   Iliad.ILAreaElement class definition
 |
  ======================================================================"
 
@@ -34,58 +34,70 @@
 |
  ======================================================================"
 
-
 
-FormElementElement subclass: ButtonElement [
+ILClosingElement subclass: ILAreaElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
     tag [
 	<category: 'accessing'>
-	^'button'
+	^'area'
     ]
 
-    action: aBlock [
+    accesskey: aCharacter [
 	<category: 'accessing attributes'>
-	super action: aBlock.
-	self onClick: 'iliad.enableSubmitAction(this);'
+	self attributeAt: 'accesskey' put: aCharacter asString
     ]
 
-    action: aBlock hash: aString [
+    alt: aString [
 	<category: 'accessing attributes'>
-	self action: aBlock.
-	self onClick: 'iliad.enableSubmitAction(this, "', aString, '");'
+	self attributeAt: 'alt' put: aString
     ]
 
-    beButton [
+    href: aString [
 	<category: 'accessing attributes'>
-	self type: 'button'
+	self attributeAt: 'href' put: aString
     ]
 
-    beReset [
+    nohref [
 	<category: 'accessing attributes'>
-	self type: 'reset'
+	self attributeAt: 'nohref' put: 'nohref'
     ]
 
-    beSubmit [
+    tabindex: anInteger [
 	<category: 'accessing attributes'>
-	self type: 'submit'
+	self attributeAt: 'tabindex' put: anInteger printString
     ]
 
-    type: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'type' put: aString
+    circleShape [
+	<category: 'accessing attributes-imagemap'>
+	self shape: 'circle'
     ]
 
-    value: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'value' put: aString
+    coords: aString [
+	<category: 'accessing attributes-imagemap'>
+	self attributeAt: 'coords' put: aString
     ]
 
-    beforePrintHtml [
-	<category: 'printing'>
-	self attributeAt: 'type' ifAbsentPut: ['submit']
+    defaultShape [
+	<category: 'accessing attributes-imagemap'>
+	self shape: 'default'
+    ]
+
+    polyShape [
+	<category: 'accessing attributes-imagemap'>
+	self shape: 'poly'
+    ]
+
+    rectShape [
+	<category: 'accessing attributes-imagemap'>
+	self shape: 'rect'
+    ]
+
+    shape: aString [
+	<category: 'accessing attributes-imagemap'>
+	self attributeAt: 'shape' put: aString
     ]
 ]
 

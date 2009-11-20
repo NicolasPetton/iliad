@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.HtmlElement class definition
+|   Iliad.ILHorizontalRuleElement class definition
 |
  ======================================================================"
 
@@ -36,70 +36,19 @@
 
 
 
-XHTMLElement subclass: HtmlElement [
+ILClosingElement subclass: ILHorizontalRuleElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    HtmlElement class >> doctype [
-	<category: 'defaults'>
-	^'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'
-    ]
-
-    HtmlElement class >> xmlTag [
-	<category: 'defaults'>
-	^'<?xml version="1.0" encoding="UTF-8"?>'
-    ]
-
-    HtmlElement class >> xmlns [
-	<category: 'defaults'>
-	^'http://www.w3.org/1999/xhtml'
-    ]
-
-    doctype [
-	<category: 'accessing'>
-	^self class doctype
-    ]
-
     tag [
 	<category: 'accessing'>
-	^'html'
-    ]
-
-    xmlTag [
-	<category: 'accessing'>
-	^self class xmlTag
+	^'hr'
     ]
     
-    version: aNumber [
-	<category: 'accessing attributes'>
-	self attributeAt: 'version' put: aNumber printString
-    ]
-
-    xmlns: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'xmlns' put: aString
-    ]
-
-    onEvent: event do: aString [
+    onEvent: anEvent do: aString [
 	<category: 'accessing attributes-events'>
-	self doesNotUnderstandAttribute: 'on' , event
-    ]
-
-    beforePrintHtml [
-	<category: 'printing'>
-	self attributeAt: 'xmlns' ifAbsentPut: [self class xmlns].
-	self attributeAt: 'lang' ifAbsentPut: [self session language asString].
-	self attributeAt: 'xml:lang' ifAbsentPut: [self session language asString]
-    ]
-
-    printHtmlOn: aStream [
-	<category: 'printing'>
-	aStream nextPutAll: self xmlTag.
-	aStream nextPutAll: self doctype.
-	super printHtmlOn: aStream
+	self doesNotUnderstandAttribute: 'on' , aString
     ]
 ]
-
-
 

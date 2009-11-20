@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.HeadingElement class definition
+|   Iliad.ILCheckboxElement class definition
 |
  ======================================================================"
 
@@ -36,30 +36,51 @@
 
 
 
-XHTMLElement subclass: HeadingElement [
-    | level |
+ILFormElementElement subclass: ILCheckboxElement [
+    | value hiddenAction |
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    level [
-	<category: 'accessing'>
-	^level
-    ]
-
-    level: anInteger [
-	<category: 'accessing'>
-	level := anInteger printString
-    ]
-
     tag [
 	<category: 'accessing'>
-	^'h' , self level
+	^'input'
     ]
 
-    onEvent: event do: aString [
-	<category: 'accessing attributes-events'>
-	self doesNotUnderstandAttribute: 'on' , event
+    action: aBlock [
+	<category: 'accessing attributes'>
+	| action |
+	hiddenAction := aBlock.
+	value := false.
+	action := ILAction new
+		    block: [:val | value := true];
+		    key: self session nextId;
+		    yourself.
+	self session registerAction: action.
+	self name: action key.
+	self addHiddenInput
     ]
+
+    beChecked [
+	<category: 'accessing attributes'>
+	self checked: true
+    ]
+
+    checked: aBoolean [
+	<category: 'accessing attributes'>
+	aBoolean ifTrue: [self attributeAt: 'checked' put: 'checked']
+    ]
+
+    beforePrintHtml [
+	<category: 'printing'>
+	self attributeAt: 'type' put: 'checkbox'
+    ]
+
+    addHiddenInput [
+	<category: 'printing'>
+	self input
+	    beHidden;
+	    action: [:val | hiddenAction value: value. value := false]
+    ]    
 ]
 

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ClosingElement class definition
+|   Iliad.ILHeadElement class definition
 |
  ======================================================================"
 
@@ -36,17 +36,52 @@
 
 
 
-XHTMLElement subclass: ClosingElement [
+ILXHTMLElement subclass: ILHeadElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    printHtmlOn: aStream [
+    tag [
+	<category: 'accessing'>
+	^'head'
+    ]
+
+    profile: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: 'profile' put: aString
+    ]
+
+    profiles: aCollection [
+	<category: 'accessing attributes'>
+	| profiles |
+	profiles := WriteStream on: String new.
+	aCollection do: [:each | profiles nextPutAll: each]
+	    separatedBy: [profiles nextPutAll: ' '].
+	self attributeAt: 'profile' put: profiles contents
+    ]
+
+    title [
+	<category: 'accessing attributes'>
+	^self add: ILTitleElement new
+    ]
+
+    title: aString [
+	<category: 'accessing attributes'>
+	^self add: (ILTitleElement new
+	    text: aString;
+	    yourself)
+    ]
+
+    onEvent: event do: aString [
+	<category: 'accessing attributes-events'>
+	self doesNotUnderstandAttribute: 'on' , event
+    ]
+
+    beforePrintHtml [
 	<category: 'printing'>
-	aStream nextPutAll: '<' , self tag.
-	self attributes 
-	    associationsDo: [:each | self printAttribute: each on: aStream].
-	aStream nextPutAll: '/>'
+	(self meta)
+	    name: 'Content-Type';
+	    content: self contentType , '; charset=' , self session charset
     ]
 ]
 

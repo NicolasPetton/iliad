@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.FormElement class definition
+|   Iliad.ILFormElement class definition
 |
  ======================================================================"
 
@@ -36,17 +36,17 @@
 
 
 
-XHTMLElement subclass: FormElement [
+ILXHTMLElement subclass: ILFormElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    FormElement class >> encodingType [
+    ILFormElement class >> encodingType [
 	<category: 'defaults'>
 	^'application/x-www-form-urlencoded'
     ]
 
-    FormElement class >> multipartFormData [
+    ILFormElement class >> multipartFormData [
 	<category: 'defaults'>
 	^'multipart/form-data'
     ]
@@ -137,13 +137,13 @@ XHTMLElement subclass: FormElement [
 	self attributeAt: 'accept-charset' ifAbsentPut: [self session charset].
 	self isMultipart ifFalse: [
 	    self onSubmit: 'iliad.evaluateFormAction(this); return false;'].
-	self add: (InputElement new
+	self add: (ILInputElement new
 		beHidden;
 		name: self context urlBuilder tokenKey;
 		value: self session token;
 		yourself).
 	self session shouldUseSessionField ifTrue: [
-	    self add: (InputElement new
+	    self add: (ILInputElement new
 		beHidden;
 		name: self context urlBuilder sessionKey;
 		value: self session id;

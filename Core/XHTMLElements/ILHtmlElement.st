@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.DirectionElement class definition
+|   Iliad.ILHtmlElement class definition
 |
  ======================================================================"
 
@@ -36,24 +36,49 @@
 
 
 
-XHTMLElement subclass: DirectionElement [
+ILXHTMLElement subclass: ILHtmlElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
+    ILHtmlElement class >> doctype [
+	<category: 'defaults'>
+	^'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'
+    ]
+
+    ILHtmlElement class >> xmlTag [
+	<category: 'defaults'>
+	^'<?xml version="1.0" encoding="UTF-8"?>'
+    ]
+
+    ILHtmlElement class >> xmlns [
+	<category: 'defaults'>
+	^'http://www.w3.org/1999/xhtml'
+    ]
+
+    doctype [
+	<category: 'accessing'>
+	^self class doctype
+    ]
+
     tag [
 	<category: 'accessing'>
-	^'bdo'
+	^'html'
     ]
 
-    xmlLang: aString [
+    xmlTag [
 	<category: 'accessing'>
-	self doesNotUnderstandAttribute: 'xml:lang'
+	^self class xmlTag
+    ]
+    
+    version: aNumber [
+	<category: 'accessing attributes'>
+	self attributeAt: 'version' put: aNumber printString
     ]
 
-    dir: aString [
-	<category: 'acessing attributes'>
-	self attributeAt: 'dir' put: aString
+    xmlns: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: 'xmlns' put: aString
     ]
 
     onEvent: event do: aString [
@@ -63,7 +88,18 @@ XHTMLElement subclass: DirectionElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	self attributeAt: 'dir' ifAbsent: [self attributeError: '''dir'' not set']
+	self attributeAt: 'xmlns' ifAbsentPut: [self class xmlns].
+	self attributeAt: 'lang' ifAbsentPut: [self session language asString].
+	self attributeAt: 'xml:lang' ifAbsentPut: [self session language asString]
+    ]
+
+    printHtmlOn: aStream [
+	<category: 'printing'>
+	aStream nextPutAll: self xmlTag.
+	aStream nextPutAll: self doctype.
+	super printHtmlOn: aStream
     ]
 ]
+
+
 

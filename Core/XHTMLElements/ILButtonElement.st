@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.DivElement class definition
+|   Iliad.ILButtonElement class definition
 |
  ======================================================================"
 
@@ -36,14 +36,56 @@
 
 
 
-XHTMLElement subclass: DivElement [
+ILFormElementElement subclass: ILButtonElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
     tag [
 	<category: 'accessing'>
-	^'div'
+	^'button'
+    ]
+
+    action: aBlock [
+	<category: 'accessing attributes'>
+	super action: aBlock.
+	self onClick: 'iliad.enableSubmitAction(this);'
+    ]
+
+    action: aBlock hash: aString [
+	<category: 'accessing attributes'>
+	self action: aBlock.
+	self onClick: 'iliad.enableSubmitAction(this, "', aString, '");'
+    ]
+
+    beButton [
+	<category: 'accessing attributes'>
+	self type: 'button'
+    ]
+
+    beReset [
+	<category: 'accessing attributes'>
+	self type: 'reset'
+    ]
+
+    beSubmit [
+	<category: 'accessing attributes'>
+	self type: 'submit'
+    ]
+
+    type: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: 'type' put: aString
+    ]
+
+    value: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: 'value' put: aString
+    ]
+
+    beforePrintHtml [
+	<category: 'printing'>
+	self attributeAt: 'type' ifAbsentPut: ['submit']
     ]
 ]
 

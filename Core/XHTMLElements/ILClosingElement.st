@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.AreaElement class definition
+|   Iliad.ILClosingElement class definition
 |
  ======================================================================"
 
@@ -34,70 +34,19 @@
 |
  ======================================================================"
 
+
 
-ClosingElement subclass: AreaElement [
+ILXHTMLElement subclass: ILClosingElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    tag [
-	<category: 'accessing'>
-	^'area'
-    ]
-
-    accesskey: aCharacter [
-	<category: 'accessing attributes'>
-	self attributeAt: 'accesskey' put: aCharacter asString
-    ]
-
-    alt: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'alt' put: aString
-    ]
-
-    href: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'href' put: aString
-    ]
-
-    nohref [
-	<category: 'accessing attributes'>
-	self attributeAt: 'nohref' put: 'nohref'
-    ]
-
-    tabindex: anInteger [
-	<category: 'accessing attributes'>
-	self attributeAt: 'tabindex' put: anInteger printString
-    ]
-
-    circleShape [
-	<category: 'accessing attributes-imagemap'>
-	self shape: 'circle'
-    ]
-
-    coords: aString [
-	<category: 'accessing attributes-imagemap'>
-	self attributeAt: 'coords' put: aString
-    ]
-
-    defaultShape [
-	<category: 'accessing attributes-imagemap'>
-	self shape: 'default'
-    ]
-
-    polyShape [
-	<category: 'accessing attributes-imagemap'>
-	self shape: 'poly'
-    ]
-
-    rectShape [
-	<category: 'accessing attributes-imagemap'>
-	self shape: 'rect'
-    ]
-
-    shape: aString [
-	<category: 'accessing attributes-imagemap'>
-	self attributeAt: 'shape' put: aString
+    printHtmlOn: aStream [
+	<category: 'printing'>
+	aStream nextPutAll: '<' , self tag.
+	self attributes 
+	    associationsDo: [:each | self printAttribute: each on: aStream].
+	aStream nextPutAll: '/>'
     ]
 ]
 

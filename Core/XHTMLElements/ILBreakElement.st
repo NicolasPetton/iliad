@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.FieldsetElement class definition
+|   Iliad.ILBreakElement class definition
 |
  ======================================================================"
 
@@ -36,14 +36,18 @@
 
 
 
-XHTMLElement subclass: FieldsetElement [
+ILClosingElement subclass: ILBreakElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
     tag [
 	<category: 'accessing'>
-	^'fieldset'
+	^'br'
+    ]
+
+    onEvent: event do: aString [
+	<category: 'accessing attributes-events'>
+	self doesNotUnderstandAttribute: 'on' , event
     ]
 ]
-

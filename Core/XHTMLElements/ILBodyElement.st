@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.CheckboxElement class definition
+|   Iliad.ILBodyElement class definition
 |
  ======================================================================"
 
@@ -36,51 +36,24 @@
 
 
 
-FormElementElement subclass: CheckboxElement [
-    | value hiddenAction |
+ILXHTMLElement subclass: ILBodyElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
     tag [
 	<category: 'accessing'>
-	^'input'
+	^'body'
     ]
 
-    action: aBlock [
-	<category: 'accessing attributes'>
-	| action |
-	hiddenAction := aBlock.
-	value := false.
-	action := Action new
-		    block: [:val | value := true];
-		    key: self session nextId;
-		    yourself.
-	self session registerAction: action.
-	self name: action key.
-	self addHiddenInput
+    onLoad: aString [
+	<category: 'addessing attributes-events'>
+	self onEvent: 'Load' do: aString
     ]
 
-    beChecked [
-	<category: 'accessing attributes'>
-	self checked: true
+    onUnload: aString [
+	<category: 'addessing attributes-events'>
+	self onEvent: 'Unload' do: aString
     ]
-
-    checked: aBoolean [
-	<category: 'accessing attributes'>
-	aBoolean ifTrue: [self attributeAt: 'checked' put: 'checked']
-    ]
-
-    beforePrintHtml [
-	<category: 'printing'>
-	self attributeAt: 'type' put: 'checkbox'
-    ]
-
-    addHiddenInput [
-	<category: 'printing'>
-	self input
-	    beHidden;
-	    action: [:val | hiddenAction value: value. value := false]
-    ]    
 ]
 

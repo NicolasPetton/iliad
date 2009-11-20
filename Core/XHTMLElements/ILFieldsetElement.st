@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.AnchorElement class definition
+|   Iliad.ILFieldsetElement class definition
 |
  ======================================================================"
 
@@ -36,68 +36,14 @@
 
 
 
-LinkableElement subclass: AnchorElement [
+ILXHTMLElement subclass: ILFieldsetElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    action: aBlock [
-	<category: 'accessing'>
-	self action: aBlock hash: ''
-    ]
-
-    action: aBlock hash: aString [
-	<category: 'accessing'>
-	
-	| action |
-	action := self session registerActionFor: aBlock.
-	self href: (self context urlBuilder urlForAction: action).
-	self onClick: ('iliad.evaluateAnchorAction(this, "', aString, '"); return false;')
-    ]
-
     tag [
 	<category: 'accessing'>
-	^'a'
-    ]
-
-    accesskey: aCharacter [
-	<category: 'accessing attributes'>
-	self attributeAt: 'accesskey' put: aCharacter asString
-    ]
-
-    tabindex: anInteger [
-	<category: 'accessing attributes'>
-	self attributeAt: 'tabindex' put: anInteger printString
-    ]
-
-    circleShape [
-	<category: 'accessing attributes-imagemap'>
-	self shape: 'circle'
-    ]
-
-    coords: aString [
-	<category: 'accessing attributes-imagemap'>
-	self attributeAt: 'coords' put: aString
-    ]
-
-    defaultShape [
-	<category: 'accessing attributes-imagemap'>
-	self shape: 'default'
-    ]
-
-    polyShape [
-	<category: 'accessing attributes-imagemap'>
-	self shape: 'poly'
-    ]
-
-    rectShape [
-	<category: 'accessing attributes-imagemap'>
-	self shape: 'rect'
-    ]
-
-    shape: aString [
-	<category: 'accessing attributes-imagemap'>
-	self attributeAt: 'shape' put: aString
+	^'fieldset'
     ]
 ]
 

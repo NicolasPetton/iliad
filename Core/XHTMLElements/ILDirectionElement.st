@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.HeadElement class definition
+|   Iliad.ILDirectionElement class definition
 |
  ======================================================================"
 
@@ -36,40 +36,24 @@
 
 
 
-XHTMLElement subclass: HeadElement [
+ILXHTMLElement subclass: ILDirectionElement [
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
     tag [
 	<category: 'accessing'>
-	^'head'
+	^'bdo'
     ]
 
-    profile: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'profile' put: aString
+    xmlLang: aString [
+	<category: 'accessing'>
+	self doesNotUnderstandAttribute: 'xml:lang'
     ]
 
-    profiles: aCollection [
-	<category: 'accessing attributes'>
-	| profiles |
-	profiles := WriteStream on: String new.
-	aCollection do: [:each | profiles nextPutAll: each]
-	    separatedBy: [profiles nextPutAll: ' '].
-	self attributeAt: 'profile' put: profiles contents
-    ]
-
-    title [
-	<category: 'accessing attributes'>
-	^self add: TitleElement new
-    ]
-
-    title: aString [
-	<category: 'accessing attributes'>
-	^self add: (TitleElement new
-	    text: aString;
-	    yourself)
+    dir: aString [
+	<category: 'acessing attributes'>
+	self attributeAt: 'dir' put: aString
     ]
 
     onEvent: event do: aString [
@@ -79,9 +63,7 @@ XHTMLElement subclass: HeadElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	(self meta)
-	    name: 'Content-Type';
-	    content: self contentType , '; charset=' , self session charset
+	self attributeAt: 'dir' ifAbsent: [self attributeError: '''dir'' not set']
     ]
 ]
 

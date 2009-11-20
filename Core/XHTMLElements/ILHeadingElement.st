@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.FormElementElement class definition
+|   Iliad.ILHeadingElement class definition
 |
  ======================================================================"
 
@@ -36,67 +36,30 @@
 
 
 
-XHTMLElement subclass: FormElementElement [
+ILXHTMLElement subclass: ILHeadingElement [
+    | level |
 
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    accesskey: aCharacter [
+    level [
 	<category: 'accessing'>
-	self attributeAt: 'accesskey' put: aCharacter asString
+	^level
     ]
 
-    action: aBlock [
-	<category: 'accessing attributes'>
-	| action |
-	action := (Action new)
-		    block: aBlock;
-		    key: self session nextId;
-		    yourself.
-	self session registerAction: action.
-	self name: action key
+    level: anInteger [
+	<category: 'accessing'>
+	level := anInteger printString
     ]
 
-    name [
-	<category: 'accessing attributes'>
-	^self attributeAt: 'name'
+    tag [
+	<category: 'accessing'>
+	^'h' , self level
     ]
 
-    name: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'name' put: aString
-    ]
-
-    readonly: aBoolean [
-	<category: 'accessing attributes'>
-	self attributeAt: 'readonly' put: aBoolean printString
-    ]
-
-    beSubmitOnChange [
-	<category: 'accessing attributes'>
-	self beSubmitOnEvent: 'change'
-    ]
-
-    beSubmitOnClick [
-	<category: 'accessing attributes'>
-	self beSubmitOnEvent: 'click'
-    ]
-   
-    beSubmitOnEvent: aString [
-	<category: 'accessing attributes'>
-	self onEvent: aString do: 'iliad.evaluateFormElementAction(this)'
-    ]
-
-    disabled: aBoolean [
-	<category: 'accessing attributes'>
-	aBoolean ifTrue: [
-	self attributeAt: 'disabled' put: 'disabled']
-    ]
-    
-    disabled [
-	<category: 'accessing attributes'>
-	self disabled: true
+    onEvent: event do: aString [
+	<category: 'accessing attributes-events'>
+	self doesNotUnderstandAttribute: 'on' , event
     ]
 ]
-
 
