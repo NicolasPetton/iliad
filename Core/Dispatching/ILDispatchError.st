@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.DispatchError class definition
+|   Iliad.ILDispatchError class definition
 |
  ======================================================================"
 
@@ -39,7 +39,7 @@
 
 
 
-Error subclass: DispatchError [
+Error subclass: ILDispatchError [
 
     <category: 'Iliad-Core-Dispatching'>
     <comment: nil>

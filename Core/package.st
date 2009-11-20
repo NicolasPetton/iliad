@@ -99,9 +99,9 @@ Eval [
 	filein: 'Buildables/ILApplication.st'; 
 	filein: 'Buildables/ILXHTMLPage.st'; 
 
-	filein: 'Dispatching/DispatchError.st';
-	filein: 'Dispatching/Dispatcher.st'; 
-	filein: 'Dispatching/Route.st'; 
+	filein: 'Dispatching/ILDispatchError.st';
+	filein: 'Dispatching/ILDispatcher.st'; 
+	filein: 'Dispatching/ILRoute.st'; 
 
 	filein: 'RequestHandlers/ResponseNotification.st';
 	filein: 'RequestHandlers/RequestHandler.st';

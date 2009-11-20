@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Dispatcher class definition
+|   Iliad.ILDispatcher class definition
 |
  ======================================================================"
 
@@ -36,18 +36,18 @@
 
 
 
-IliadObject subclass: Dispatcher [
+ILObject subclass: ILDispatcher [
 
     <category: 'Iliad-Core-Dispatching'>
     <comment: 'I am the entry point of requests. 
-I dispatch them with the #dispatch: method to an ApplicationHandler or a 
-FileHandler.
+I dispatch them with the #dispatch: method to an ILApplicationHandler or a 
+ILFileHandler.
 
 Web server adapters should use the #dispatch: method on the current instance
-of Dispatcher - returned by Dispatcher class>>current - to handle requests, 
-and wait for a ResponseNotification to respond to them.'>
+of ILDispatcher - returned by ILDispatcher class>>current - to handle requests, 
+and wait for a ILResponseNotification to respond to them.'>
     
-    Dispatcher class [
+    ILDispatcher class [
 	| current |
 
 	current [
@@ -66,7 +66,7 @@ and wait for a ResponseNotification to respond to them.'>
 	<category: 'dispatching'>
 	
 	self withErrorHandling: [
-	    CurrentContext 
+	    ILCurrentContext 
 		use: (self createContextFor: aRequest)
 		during: [self 
 		    dispatch: aRequest 
@@ -77,16 +77,16 @@ and wait for a ResponseNotification to respond to them.'>
 	<category: 'dispatching'>
 	self withDispatchErrorHandling: [
 	    self shouldDoInitialRedirect ifTrue: [
-		RedirectHandler new handleRequest].
+		ILRedirectHandler new handleRequest].
 	    self context application: (self findApplicationFor: aRoute).
 	    self context application
-		ifNil: [FileHandler new handleRequest]
-		ifNotNil: [ApplicationHandler new handleRequest]]
+		ifNil: [ILFileHandler new handleRequest]
+		ifNotNil: [ILApplicationHandler new handleRequest]]
     ]
 
     createContextFor: aRequest [
 	<category: 'error handling'>
-	^Context new
+	^ILContext new
 	    request: aRequest;
 	    session: (self findSessionFor: aRequest);
 	    yourself
@@ -97,19 +97,19 @@ and wait for a ResponseNotification to respond to them.'>
 	<category: 'error-handling'>
 
 	aBlock 
-	    on: DispatchError
+	    on: ILDispatchError
 	    do: [:error | 
-		NotFoundHandler new handleRequest]
+		ILNotFoundHandler new handleRequest]
     ]
 
     withErrorHandling: aBlock [
-	"Catch errors and use an ErrorHandler to handle them"
+	"Catch errors and use an ILErrorHandler to handle them"
 	<category: 'error-handling'>
 	
 	aBlock 
 	    on: Error 
 	    do: [:error | 
-		ErrorHandler new 
+		ILErrorHandler new 
 		    error: error; 
 		    handleRequest]
     ]
@@ -127,12 +127,12 @@ and wait for a ResponseNotification to respond to them.'>
 	applicationClass := nil.
 	[aRoute atEnd not] whileTrue: [
 	    aRoute next.
-	    applicationClass := Application allSubclasses
+	    applicationClass := ILApplication allSubclasses
 		detect: [:each | 
 		    (self context urlBuilder absolutePathFor: each) = aRoute currentPath]
 		ifNone: [applicationClass]].
 	 applicationClass ifNotNil: [
-	    aRoute position: (Url absolute: applicationClass path) path size].
+	    aRoute position: (ILUrl absolute: applicationClass path) path size].
 	    ^applicationClass
     ]
     
@@ -149,6 +149,6 @@ and wait for a ResponseNotification to respond to them.'>
 
     findSessionFor: aRequest [
 	<category: 'private'>
-	^SessionManager current findOrMakeSessionFor: aRequest
+	^ILSessionManager current findOrMakeSessionFor: aRequest
     ]
 ]    

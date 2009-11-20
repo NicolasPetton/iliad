@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Route class definition
+|   Iliad.ILRoute class definition
 |
  ======================================================================"
 
@@ -36,7 +36,7 @@
 
 
 
-IliadObject subclass: Route [
+ILObject subclass: ILRoute [
     | path stream |
 
     <category: 'Iliad-Core-Dispatching'>
@@ -44,12 +44,12 @@ IliadObject subclass: Route [
 My path is a collection of string, representing each part of the path of an url,
 and can be streamed with methods in the <streaming> protocol.'>
 
-    Route class >> delimiters [
+    ILRoute class >> delimiters [
 	<category: 'accessing'>
 	^Array with: $/
     ]
 
-    Route class >> path: aCollection [
+    ILRoute class >> path: aCollection [
 	<category: 'instance creation'>
 	^self basicNew
 	    initializeWithPath: aCollection;
