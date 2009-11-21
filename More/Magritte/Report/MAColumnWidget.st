@@ -232,11 +232,10 @@ Object subclass: MAColumnWidget [
 
     defaultSorter [
 	<category: 'accessing-defaults'>
-	^
-	[:a :b | 
-	| x y |
-	(x := self valueFor: a) isNil 
-	    or: [(y := self valueFor: b) notNil and: [x <= y]]]
+	^[:a :b | | x y |
+	    (x := self valueFor: a) isNil 
+		or: [(y := self valueFor: b) notNil 
+		    and: [x <= y]]]
     ]
 
     defaultTitle [

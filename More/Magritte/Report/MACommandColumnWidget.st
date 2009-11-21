@@ -64,7 +64,7 @@ MAActionColumnWidget subclass: MACommandColumnWidget [
 
     addCommandOn: anObject selector: aSelector text: aString [
 	<category: 'actions'>
-	self addCommand: (DirectedMasssage receiver: anObject selector: aSelector)
+	self addCommand: (DirectedMesssage receiver: anObject selector: aSelector)
 	    text: aString
     ]
 

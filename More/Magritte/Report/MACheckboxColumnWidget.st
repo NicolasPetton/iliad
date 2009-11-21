@@ -45,11 +45,10 @@ MASelectionColumnWidget subclass: MACheckboxColumnWidget [
 
     buildCellFormContent: anObject [
 	<category: 'building'>
-	^
-	[:e | 
-	(e checkbox)
-	    checked: (self isSelected: anObject);
-	    action: [:value | self selectRow: anObject value: value]]
+	^[:e | 
+	    e checkbox
+		checked: (self isSelected: anObject);
+		action: [:value | self selectRow: anObject value: value]]
     ]
 
     defaultSelection [

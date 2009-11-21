@@ -46,11 +46,10 @@ MAColumnWidget subclass: MAActionColumnWidget [
 
     buildCellContent: anObject [
 	<category: 'building'>
-	^
-	[:e | 
-	self useLinks 
-	    ifTrue: [e build: (self buildCellLinkContent: anObject)]
-	    ifFalse: [e build: (self buildCellFormContent: anObject)]]
+	^[:e | 
+	    self useLinks 
+		ifTrue: [e build: (self buildCellLinkContent: anObject)]
+		ifFalse: [e build: (self buildCellFormContent: anObject)]]
     ]
 
     buildCellFormContent: anObject [

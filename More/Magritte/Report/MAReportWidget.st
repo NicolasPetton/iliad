@@ -732,16 +732,14 @@ MAWidget subclass: MAReportWidget [
 
     exportBodyOn: aStream [
 	<category: 'exporting'>
-	self cache withIndexDo: 
-		[:row :index | 
-		self visibleColumns do: 
-			[:column | 
-			column 
-			    exportContent: (column valueFor: row)
-			    index: index
-			    on: aStream]
-		    separatedBy: [aStream tab].
-		aStream cr]
+	self cache withIndexDo: [:row :index | 
+	    self visibleColumns do: [:column | 
+		column 
+		    exportContent: (column valueFor: row)
+		    index: index
+		    on: aStream]
+		separatedBy: [aStream tab].
+	    aStream cr]
     ]
 
     exportHeaderOn: aStream [
