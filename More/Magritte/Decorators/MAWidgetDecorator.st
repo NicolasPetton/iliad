@@ -38,7 +38,7 @@
 
 
 
-Iliad.Decorator subclass: MAWidgetDecorator [
+ILDecorator subclass: MAWidgetDecorator [
     
     <comment: nil>
     <category: 'Iliad-More-Magritte-Decorators'>
