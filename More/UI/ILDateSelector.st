@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.TimeSelector class definition
+|   Iliad.ILDateSelector class definition
 |
  ======================================================================"
 
@@ -9,7 +9,6 @@
 | Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
-|
 |
 | This file is part of the Iliad framework.
 |
@@ -34,17 +33,16 @@
 |
  ======================================================================"
 
-
 
-UIWidget subclass: TimeSelector [
-    | actionBlock selectedHours selectedMinutes showSeconds selectedSeconds |
+ILUIWidget subclass: ILDateSelector [
+    | actionBlock selectedMonth selectedDay selectedYear |
     
     <comment: nil>
     <category: 'Iliad-Core-UI'>
 
     cssClass [
 	<category: 'accessing'>
-	^super cssClass, ' time_selector'
+	^super cssClass, ' date_selector'
     ]
 
     actionBlock [
@@ -57,146 +55,141 @@ UIWidget subclass: TimeSelector [
 	actionBlock := aBlock
     ]
 
-    selectedHours [
+    months [
 	<category: 'accessing'>
-	^selectedHours
+	^(1 to: 12) collect: [:i | Date nameOfMonth: i]
     ]
 
-    selectedHours: anInteger [
+    selectedDate [
 	<category: 'accessing'>
-	selectedHours := anInteger
+	^Date 
+	    newDay: self selectedDay
+	    month: self selectedMonth
+	    year: self selectedYear
     ]
 
-    selectedMinutes [
+    selectedDate: aDate [
 	<category: 'accessing'>
-	^selectedMinutes
+	self selectedMonth: aDate monthName asString.
+	self selectedDay: aDate dayOfMonth.
+	self selectedYear: aDate year
     ]
 
-    selectedMinutes: anInteger [
+    selectedDay [
 	<category: 'accessing'>
-	selectedMinutes := anInteger
+	^selectedDay
     ]
 
-    selectedSeconds [
+    selectedDay: anInteger [
 	<category: 'accessing'>
-	^selectedSeconds
+	selectedDay := anInteger
     ]
 
-    selectedSeconds: anInteger [
+    selectedMonth [
 	<category: 'accessing'>
-	selectedSeconds := anInteger
+	^selectedMonth
     ]
 
-    selectedTime [
+    selectedMonth: aString [
 	<category: 'accessing'>
-	^Time 
-	    hour: self selectedHours
-	    minute: self selectedMinutes
-	    second: self selectedSeconds
+	selectedMonth := aString
     ]
 
-    selectedTime: aTime [
-	self selectedHours: aTime hour24.
-	self selectedMinutes: aTime minute.
-	self selectedSeconds: aTime second
+    selectedYear [
+	<category: 'accessing'>
+	^selectedYear
     ]
 
-    showSeconds [
+    selectedYear: anInteger [
 	<category: 'accessing'>
-	^showSeconds ifNil: [false]
-    ]
-
-    showSeconds: aBoolean [
-	<category: 'accessing'>
-	showSeconds := aBoolean
+	selectedYear := anInteger
     ]
 
     contents [
 	<category: 'building'>
 	^[:e || div form |
 	    div := e div class: self cssClass.
-	    self selectedTimeIsValid ifFalse: [
-		div div
-		    class: 'error';
-		    text: 'Invalid time'].
+	    self selectedDateIsValid 
+		ifFalse: [
+		    div div
+			class: 'error';
+			text: 'Invalid date'].
 	    form := div form.
 	    form
-		build: self hoursInputContents;
-		text: ':';
-		build: self minutesInputContents.
-	    self showSeconds ifTrue: [
-		form
-		    text: ':';
-		    build: self secondsInputContents].
-	    form space.
-	    form button
+		build: self monthSelectionContents;
+		build: self dayInputContents;
+		build: self yearInputContents;
+		space.
+	    (form button)
 		text: 'Select';
-		action: [self selectTime]]
+		action: [self selectDate]]
     ]
 
-    hoursInputContents [
+    dayInputContents [
 	<category: 'building'>
 	^[:e | 
 	    (e input)
 		size: 2;
-		value: self selectedHours;
-		action: [:val | self selectHours: val]]
+		value: self selectedDay;
+		action: [:val | self selectDay: val]]
     ]
 
-    minutesInputContents [
+    monthSelectionContents [
+	<category: 'building'>
+	^[:e | 
+	    | select |
+	    select := e select.
+	    self months do: 
+		[:each | 
+		| option |
+			option := (select option)
+			action: [self selectMonth: each];
+			text: each]]
+    ]
+
+    yearInputContents [
 	<category: 'building'>
 	^[:e | 
 	    (e input)
-		size: 2;
-		value: self selectedMinutes;
-		action: [:val | self selectMinutes: val]]
-    ]
-
-    secondsInputContents [
-	<category: 'building'>
-	^
-	[:e | 
-	    (e input)
-		size: 2;
-		value: self selectedSeconds;
-		action: [:val | self selectSeconds: val]]
+		size: 4;
+		value: self selectedYear;
+		action: [:val | self selectYear: val]]
     ]
 
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
 	actionBlock := [:val | self answer: val].
-	selectedHours := Time now hour24.
-	selectedMinutes := Time now minute.
-	selectedSeconds := Time now second
+	selectedMonth := Date today monthName asString.
+	selectedDay := Date today dayOfMonth.
+	selectedYear := Date today year
     ]
 
-    selectHours: aString [
+    selectDate [
 	<category: 'actions'>
-	self selectedHours: aString asInteger
+	self selectedDateIsValid ifFalse: [^self markDirty].
+	self actionBlock value: self selectedDate
     ]
 
-    selectMinutes: aString [
+    selectDay: aString [
 	<category: 'actions'>
-	self selectedMinutes: aString asInteger
+	self selectedDay: aString asInteger
     ]
 
-    selectSeconds: aString [
+    selectMonth: aString [
 	<category: 'actions'>
-	self selectedSeconds: aString asInteger
+	self selectedMonth: aString
     ]
 
-    selectTime [
+    selectYear: aString [
 	<category: 'actions'>
-	self selectedTimeIsValid ifFalse: [^self markDirty].
-	self actionBlock value: self selectedTime
+	self selectedYear: aString asInteger
     ]
 
-    selectedTimeIsValid [
+    selectedDateIsValid [
 	<category: 'testing'>
-	^(0 <= self selectedHours and: [self selectedHours <= 24]) 
-	    and: [0 <= self selectedMinutes and: [self selectedMinutes <= 60]]
-	    and: [0 <= self selectedSeconds and: [self selectedSeconds <= 60]]
+	[self selectedDate] on: Error do: [:err | ^false].
+	^true
     ]
 ]
 

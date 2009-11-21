@@ -1,18 +1,14 @@
 "======================================================================
 |
-|   Iliad.MessageDecorator class definition
+|   Iliad.ILUIWidget class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
-|
-| Some parts of this file reuse code from the Seaside framework written 
-| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
-| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -38,34 +34,15 @@
  ======================================================================"
 
 
-
 
-Decorator subclass: MessageDecorator [
-    | message |
+ILWidget subclass: ILUIWidget [
     
     <comment: nil>
-    <category: 'Iliad-Core-Buildables'>
+    <category: 'Iliad-More-UI'>
 
-    contents [
-	<category: 'building'>
-	^[:e | 
-	    e build: self message.
-	    e build: self decoratee contents]
-    ]
-
-    message [
+    cssClass [
 	<category: 'accessing'>
-	^message
-    ]
-
-    message: aBlock [
-	<category: 'accessing'>
-	message := aBlock
-    ]
-
-    isGlobal [
-	<category: 'testing'>
-	^true
+	^'_ui'
     ]
 ]
 

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Lightbox class definition
+|   Iliad.ILLightbox class definition
 |
  ======================================================================"
 
@@ -34,7 +34,7 @@
  ======================================================================"
 
 
-Delegator subclass: Lightbox [
+ILDelegator subclass: ILLightbox [
     
     <comment: nil>
     <category: 'Iliad-Core-UI'>

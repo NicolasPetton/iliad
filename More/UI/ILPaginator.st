@@ -1,7 +1,7 @@
 "Contributed by Eli Green"
 
 
-UIWidget subclass: Paginator [
+ILUIWidget subclass: ILPaginator [
     | currentPage totalPages action |
     
     <comment: nil>

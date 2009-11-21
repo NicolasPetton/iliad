@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.WidgetTabs class definition
+|   Iliad.ILWidgetTabs class definition
 |
  ======================================================================"
 
@@ -34,7 +34,7 @@
  ======================================================================"
 
 
-UIWidget subclass: WidgetTabs [
+ILUIWidget subclass: ILWidgetTabs [
     | contentsBlock labelBlock items selectedItem hashBlock |
     
     <comment: ''>

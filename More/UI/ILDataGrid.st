@@ -1,7 +1,7 @@
 "Contributed by Eli Green"
 
 
-UIWidget subclass: DataGrid [
+ILUIWidget subclass: ILDataGrid [
     | items columnNames builders |
     
     <comment: nil>

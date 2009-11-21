@@ -1,7 +1,7 @@
 "Contributes by Eli Green"
 
 
-DataGrid subclass: PagedDataGrid [
+ILDataGrid subclass: ILPagedDataGrid [
     | rowsPerPage currentPage |
     
     <comment: nil>
@@ -43,7 +43,7 @@ DataGrid subclass: PagedDataGrid [
 	^[:tfoot | 
 	    tfoot td
 		colspan: self columnNames size;
-		build: ((Paginator new)
+		build: ((ILPaginator new)
 			totalPages: (self items size / self rowsPerPage) ceiling;
 			currentPage: self currentPage;
 			action: [:newPage | self currentPage: newPage])]

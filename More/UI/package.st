@@ -5,21 +5,21 @@ Eval [
 	namespace: 'Iliad';
 	prereq: 'Iliad-Core';
 
-	filein: 'UIWidget.st'; 
-	filein: 'TimeSelector.st'; 
-	filein: 'DateSelector.st'; 
-	filein: 'Lightbox.st'; 
-	filein: 'Calendar.st'; 
+	filein: 'ILUIWidget.st'; 
+	filein: 'ILTimeSelector.st'; 
+	filein: 'ILDateSelector.st'; 
+	filein: 'ILLightbox.st'; 
+	filein: 'ILCalendar.st'; 
 	filein: 'Extensions.st'; 
-	filein: 'WidgetTabs.st'; 
-	filein: 'ViewTabs.st'; 
-	filein: 'Paginator.st'; 
-	filein: 'DataGrid.st'; 
-	filein: 'PagedDataGrid.st'; 
-	filein: 'Tree.st'; 
-	filein: 'MessageDecorator.st'; 
-	filein: 'ApplicationBrowser.st';
-	filein: 'postLoad.st';
+	filein: 'ILWidgetTabs.st'; 
+	filein: 'ILViewTabs.st'; 
+	filein: 'ILPaginator.st'; 
+	filein: 'ILDataGrid.st'; 
+	filein: 'ILPagedDataGrid.st'; 
+	filein: 'ILTree.st'; 
+	filein: 'ILMessageDecorator.st'; 
+	filein: 'ILApplicationBrowser.st';
+	filein: 'ILPostLoad.st';
 	yourself.
 
     pubDir := Directory working / 'Public'.

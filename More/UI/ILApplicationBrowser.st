@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ApplicationBrowser class definition
+|   Iliad.ILApplicationBrowser class definition
 |
  ======================================================================"
 
@@ -35,19 +35,19 @@
 
 
 
-Application subclass: ApplicationBrowser [
+ILApplication subclass: ILApplicationBrowser [
     
     <comment: nil>
     <category: 'Iliad-More-UI'>
 
-    ApplicationBrowser class >> path [
+    ILApplicationBrowser class >> path [
 	<category: 'accessing'>
 	^'browse'
     ]
 
     applications [
 	<category: 'accessing'>
-	^((Application allSubclasses select: [:each | each path notEmpty]) 
+	^((ILApplication allSubclasses select: [:each | each path notEmpty]) 
 	    reject: [:each | each = self class]) 
 		asSortedCollection: [:a :b | a name < b name]
     ]

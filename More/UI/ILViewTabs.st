@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.UIWidget class definition
+|   Iliad.ILViewTabs class definition
 |
  ======================================================================"
 
@@ -34,15 +34,70 @@
  ======================================================================"
 
 
+
 
-Widget subclass: UIWidget [
+ILUIWidget subclass: ILViewTabs [
+    | views labels selectedView |
     
     <comment: nil>
     <category: 'Iliad-More-UI'>
 
+    contents [
+	<category: 'building'>
+	^[:e || ul div |
+	    div := e div class: self cssClass.
+	    ul := div ul.
+	    self views do: [:each || li |
+		li := ul li.
+		li a
+		    text: (self labelFor: each);
+		    linkToLocal: each.
+		self selectedView = each ifTrue: [
+		    li class: 'selected']]]
+    ]
+
     cssClass [
 	<category: 'accessing'>
-	^'_ui'
+	^super cssClass, ' tabs'
+    ]
+
+    labelFor: aView [
+	<category: 'accessing'>
+	^self labels at: (self views indexOf: aView)
+    ]
+
+    labels [
+	<category: 'accessing'>
+	^labels
+    ]
+
+    labels: aCollection [
+	"aCollection of strings.
+	 aCollection must have the same size as widgets collection"
+
+	<category: 'accessing'>
+	labels := aCollection
+    ]
+
+    selectedView [
+	<category: 'accessing'>
+	| route |
+	route := self context route copy.
+	route position: self application originalRoutePosition.
+	^route next ifNil: [self views first]
+    ]
+
+    views [
+	<category: 'accessing'>
+	^views
+    ]
+
+    views: aCollection [
+	"aCollection of strings to be displayed in the tabs.
+	 Each view has an associated label, set with #labels: method"
+
+	<category: 'accessing'>
+	views := aCollection
     ]
 ]
 

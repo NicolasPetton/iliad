@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Calendar class definition
+|   Iliad.ILCalendar class definition
 |
  ======================================================================"
 
@@ -34,7 +34,7 @@
  ======================================================================"
 
 
-UIWidget subclass: Calendar [
+ILUIWidget subclass: ILCalendar [
     | month year actionBlock |
 
     <comment: nil>

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Tree class definition
+|   Iliad.ILTree class definition
 |
  ======================================================================"
 
@@ -35,7 +35,7 @@
 
 
 
-UIWidget subclass: Tree [
+ILUIWidget subclass: ILTree [
     | item expanded childrenBlock subTrees root contentsBlock |
     
     <category: 'Iliad-More-UI'>
@@ -43,7 +43,7 @@ UIWidget subclass: Tree [
 
 Usage example:
 
-Tree new
+ILTree new
     item: Object;
     childrenBlock: [:class | class subclasses];
     contentsBlock: [:e :class | e text: class name]'>

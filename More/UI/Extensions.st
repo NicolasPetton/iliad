@@ -35,7 +35,7 @@
 
 
 
-Widget extend [
+ILWidget extend [
 
     lightbox: aWidget [
 	"show <aWidget> inside a lightbox"
@@ -51,12 +51,12 @@ Widget extend [
 	self 
 		show: aWidget 
 		onAnswer: aBlock
-		delegator: (Lightbox new widget: aWidget; yourself)
+		delegator: (ILLightbox new widget: aWidget; yourself)
     ]
 
     addMessage: aBlock [
 	<category: '*Iliad-More-UI'>
-	self decorateWith: ((MessageDecorator decoratee: self) 
+	self decorateWith: ((ILMessageDecorator decoratee: self) 
 	    message: aBlock)
     ]
 ]

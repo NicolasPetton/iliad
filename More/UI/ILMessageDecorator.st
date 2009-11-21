@@ -1,14 +1,18 @@
 "======================================================================
 |
-|   Iliad.ViewTabs class definition
+|   Iliad.ILMessageDecorator class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2009 
+| Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
+|
+| Some parts of this file reuse code from the Seaside framework written 
+| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
+| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -36,68 +40,32 @@
 
 
 
-UIWidget subclass: ViewTabs [
-    | views labels selectedView |
+ILDecorator subclass: ILMessageDecorator [
+    | message |
     
     <comment: nil>
-    <category: 'Iliad-More-UI'>
+    <category: 'Iliad-Core-Buildables'>
 
     contents [
 	<category: 'building'>
-	^[:e || ul div |
-	    div := e div class: self cssClass.
-	    ul := div ul.
-	    self views do: [:each || li |
-		li := ul li.
-		li a
-		    text: (self labelFor: each);
-		    linkToLocal: each.
-		self selectedView = each ifTrue: [
-		    li class: 'selected']]]
+	^[:e | 
+	    e build: self message.
+	    e build: self decoratee contents]
     ]
 
-    cssClass [
+    message [
 	<category: 'accessing'>
-	^super cssClass, ' tabs'
+	^message
     ]
 
-    labelFor: aView [
+    message: aBlock [
 	<category: 'accessing'>
-	^self labels at: (self views indexOf: aView)
+	message := aBlock
     ]
 
-    labels [
-	<category: 'accessing'>
-	^labels
-    ]
-
-    labels: aCollection [
-	"aCollection of strings.
-	 aCollection must have the same size as widgets collection"
-
-	<category: 'accessing'>
-	labels := aCollection
-    ]
-
-    selectedView [
-	<category: 'accessing'>
-	| route |
-	route := self context route copy.
-	route position: self application originalRoutePosition.
-	^route next ifNil: [self views first]
-    ]
-
-    views [
-	<category: 'accessing'>
-	^views
-    ]
-
-    views: aCollection [
-	"aCollection of strings to be displayed in the tabs.
-	 Each view has an associated label, set with #labels: method"
-
-	<category: 'accessing'>
-	views := aCollection
+    isGlobal [
+	<category: 'testing'>
+	^true
     ]
 ]
 
