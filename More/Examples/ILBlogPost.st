@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.BlogRepository class definition
+|   Iliad.ILBlogPost class definition
 |
  ======================================================================"
 
@@ -35,20 +35,76 @@
 
 
 
-Object subclass: BlogRepository [
-    | posts |
+ILObject subclass: ILBlogPost [
+    | title body comments timestamp |
     
     <category: 'Iliad-More-Examples'>
     <comment: nil>
 
-    Default := nil.
-
-    BlogRepository class >> default [
-	^Default ifNil: [Default := self new]
+    ILBlogPost class >> descriptionBody [
+	^Magritte.MAMemoDescription new
+	    priority: 3;
+	    autoAccessor: #body;
+	    label: 'Body';
+	    beRequired;
+	    yourself
     ]
 
-    posts [
-	^posts ifNil: [posts := OrderedCollection new]
+    ILBlogPost class >> descriptionTimestamp [
+	^Magritte.MATimeStampDescription new
+	    priority: 2;
+	    autoAccessor: #timestamp;
+	    label: 'Publication date';
+	    beRequired;
+	    yourself
+    ]
+
+    ILBlogPost class >> descriptionTitle [
+	^Magritte.MAStringDescription new
+	    priority: 1;
+	    autoAccessor: #title;
+	    label: 'Title';
+	    beRequired;
+	    yourself
+    ]
+
+    body [
+	<category: 'accessing'>
+	^body
+    ]
+
+    body: aString [
+	<category: 'accessing'>
+	body := aString
+    ]
+
+    title [
+	<category: 'accessing'>
+	^title
+    ]
+
+    title: aString [
+	<category: 'accessing'>
+	title := aString
+    ]
+
+    initialize [
+	<category: 'initialization'>
+	super initialize.
+	title := ''.
+	body := ''.
+	comments := OrderedCollection new.
+	timestamp := DateTime now
+    ]
+
+    timestamp [
+	<category: 'accessing-generated'>
+	^timestamp
+    ]
+
+    timestamp: anObject [
+	<category: 'accessing-generated'>
+	timestamp := anObject
     ]
 ]
 

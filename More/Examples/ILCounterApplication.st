@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.Counter class definition
+|   Iliad.ILCounterApplication class definition
 |
  ======================================================================"
 
@@ -35,42 +35,48 @@
 
 
 
-Widget subclass: Counter [
-    | count |
+ILApplication subclass: ILCounterApplication [
+    | counters |
     
     <comment: nil>
     <category: 'Iliad-Core-Examples'>
 
-    initialize [
-	<category: 'initialize-release'>
-	super initialize.
-	count := 0
+    ILCounterApplication class >> path [
+	<category: 'accessing'>
+	^'examples/counters'
     ]
 
-    contents [
-	<category: 'building'>
+    index [
+	<category: 'controllers'>
+	^self counter
+    ]
+
+    counter [
+	<category: 'controllers'>
 	^[:e |
-	    e h2: count printString.
-	    e a action: [self increase]; text: '++'.
-	    e space.
-	    e a action: [self decrease]; text: '--']
+	    e a
+		text: 'Switch to multi counter example';
+		linkToLocal: 'multicounter'.
+	    e build: self counters first]
     ]
 
-    styles [
-	<category: 'building'>
-	^#('/stylesheets/iliad.css')
+    multicounter [
+	<category: 'controllers'>
+	^[:e | 
+	    e a
+		text: 'Switch to simple counter example';
+		linkToLocal: 'counter'.
+	    self counters do: [:each |
+		e build: each]]
     ]
 
-    decrease [
-	<category: 'actions'>
-	count := count - 1.
-	self markDirty
-    ]
-
-    increase [
-	<category: 'actions'>
-	count := count + 1.
-	self markDirty
+    counters [
+	<category: 'accessing'>
+	^counters ifNil: [
+	    counters := {ILCounter new.
+			ILCounter new.
+			ILCounter new.
+			ILCounter new}]
     ]
 ]
 

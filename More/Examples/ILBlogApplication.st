@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.BlogApplication class definition
+|   Iliad.ILBlogApplication class definition
 |
  ======================================================================"
 
@@ -35,20 +35,20 @@
 
 
 
-Application subclass: BlogApplication [
+ILApplication subclass: ILBlogApplication [
     |postsWidgets|
 
     <comment: nil>
     <category: 'Iliad-More-Examples'>
 
-    BlogApplication class >> path [
+    ILBlogApplication class >> path [
 	^'/examples/blog'
     ]
 
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
-	model := BlogRepository default
+	model := ILBlogRepository default
     ]
 
     postsWidgets [
@@ -97,7 +97,7 @@ Application subclass: BlogApplication [
     addPost [
 	<category: 'actions'>
 	self 
-	    show: (((BlogPost new asWidget)
+	    show: (((ILBlogPost new asWidget)
 		addValidatedForm;
 		yourself) addMessage: [:e | e h3:'Add new post'])
 	    onAnswer: [:ans | ans ifNotNil: [self model posts add: ans]]

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.BlogPost class definition
+|   Iliad.ILCounter class definition
 |
  ======================================================================"
 
@@ -35,76 +35,42 @@
 
 
 
-Object subclass: BlogPost [
-    | title body comments timestamp |
+ILWidget subclass: ILCounter [
+    | count |
     
-    <category: 'Iliad-More-Examples'>
     <comment: nil>
-
-    BlogPost class >> descriptionBody [
-	^Magritte.MAMemoDescription new
-	    priority: 3;
-	    autoAccessor: #body;
-	    label: 'Body';
-	    beRequired;
-	    yourself
-    ]
-
-    BlogPost class >> descriptionTimestamp [
-	^Magritte.MATimeStampDescription new
-	    priority: 2;
-	    autoAccessor: #timestamp;
-	    label: 'Publication date';
-	    beRequired;
-	    yourself
-    ]
-
-    BlogPost class >> descriptionTitle [
-	^Magritte.MAStringDescription new
-	    priority: 1;
-	    autoAccessor: #title;
-	    label: 'Title';
-	    beRequired;
-	    yourself
-    ]
-
-    body [
-	<category: 'accessing'>
-	^body
-    ]
-
-    body: aString [
-	<category: 'accessing'>
-	body := aString
-    ]
-
-    title [
-	<category: 'accessing'>
-	^title
-    ]
-
-    title: aString [
-	<category: 'accessing'>
-	title := aString
-    ]
+    <category: 'Iliad-Core-Examples'>
 
     initialize [
-	<category: 'initialization'>
+	<category: 'initialize-release'>
 	super initialize.
-	title := ''.
-	body := ''.
-	comments := OrderedCollection new.
-	timestamp := TimeStamp now
+	count := 0
     ]
 
-    timestamp [
-	<category: 'accessing-generated'>
-	^timestamp
+    contents [
+	<category: 'building'>
+	^[:e |
+	    e h2: count printString.
+	    e a action: [self increase]; text: '++'.
+	    e space.
+	    e a action: [self decrease]; text: '--']
     ]
 
-    timestamp: anObject [
-	<category: 'accessing-generated'>
-	timestamp := anObject
+    styles [
+	<category: 'building'>
+	^#('/stylesheets/iliad.css')
+    ]
+
+    decrease [
+	<category: 'actions'>
+	count := count - 1.
+	self markDirty
+    ]
+
+    increase [
+	<category: 'actions'>
+	count := count + 1.
+	self markDirty
     ]
 ]
 

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.TodoListApplication class definition
+|   Iliad.ILTodoListItemRepository class definition
 |
  ======================================================================"
 
@@ -35,82 +35,31 @@
 
 
 
-
-Application subclass: TodoListApplication [
-    | todoListGridWidget |
+Object subclass: ILTodoListItemRepository [
+    | items |
     
-    <comment: nil>
     <category: 'Iliad-Core-Examples'>
+    <comment: nil>
 
-    TodoListApplication class >> path [
-	<category: 'accessing'>
-	^'examples/todo'
+    ILTodoListItemRepository class [
+	| default |
+	
     ]
 
-    selectCompleted [
-	<category: 'accessing'>
-	self todoListGridWidget selectBlock: [:item | item completed].
-	self markDirty
+    ILTodoListItemRepository class >> default [
+	^default ifNil: [default := self new]
     ]
 
-    selectPending [
-	<category: 'accessing'>
-	self todoListGridWidget selectBlock: [:item | item completed not].
-	self markDirty
+    addItem: anItem [
+	self items add: anItem
     ]
 
-    todoListGridWidget [
-	<category: 'accessing'>
-	^todoListGridWidget ifNil: [todoListGridWidget := TodoListGridWidget new]
+    items [
+	^items ifNil: [items := OrderedCollection new]
     ]
 
-    initialize [
-	<category: 'initialize-release'>
-	super initialize.
-	self model: TodoListItemRepository default
-    ]
-
-    updateFromHash [
-	<category: 'building'>
-	| path |
-	path := self hashRoute next.
-	path = 'pending' ifTrue: [self selectPending].
-	path = 'completed' ifTrue: [self selectCompleted] 
-    ]
-
-    updatePage: aPage [
-	<category: 'building'>
-	super updatePage: aPage.
-	aPage head stylesheet href: '/stylesheets/iliad.css'
-    ]
-
-    index [
-	<category: 'controllers'>
-	self updateFromHash.
-	^self mainContents
-    ]
-
-    mainContents [
-	<category: 'building'>
-	^ [:e |
-	    e h1: 'Todo List'.
-	    e build: self actionLinksContents.
-	    e build: self todoListGridWidget]
-    ]
-
-    actionLinksContents [
-	<category: 'building'>
-	^[:e ||div|
-	    div := e div class: 'selection'; yourself.
-	    div a
-		action: [self selectPending]
-		hash: 'pending';
-		text: 'pending'.
-	    div space.
-	    div a
-		action: [self selectCompleted]
-		hash: 'completed';
-		text: 'completed'.
-	    e br]
+    removeItem: anItem [
+	self items remove: anItem
     ]
 ]
+

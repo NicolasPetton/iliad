@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.TodoListItem class definition
+|   Iliad.ILTodoListApplication class definition
 |
  ======================================================================"
 
@@ -35,50 +35,81 @@
 
 
 
-Object subclass: TodoListItem [
-    | deadline title body completed |
+ILApplication subclass: ILTodoListApplication [
+    | todoListGridWidget |
     
-    <category: 'Iliad-Core-Examples'>
     <comment: nil>
+    <category: 'Iliad-Core-Examples'>
 
-    completed [
+    ILTodoListApplication class >> path [
 	<category: 'accessing'>
-	^completed ifNil: [false]
+	^'examples/todo'
     ]
 
-    completed: aBoolean [
+    selectCompleted [
 	<category: 'accessing'>
-	completed := aBoolean
+	self todoListGridWidget selectBlock: [:item | item completed].
+	self markDirty
     ]
 
-    deadline [
+    selectPending [
 	<category: 'accessing'>
-	^deadline ifNil: [deadline := Date today]
+	self todoListGridWidget selectBlock: [:item | item completed not].
+	self markDirty
     ]
 
-    deadline: aDeadline [
+    todoListGridWidget [
 	<category: 'accessing'>
-	deadline := aDeadline
+	^todoListGridWidget ifNil: [todoListGridWidget := ILTodoListGridWidget new]
     ]
 
-    body [
-	<category: 'accessing'>
-	^body ifNil: ['']
+    initialize [
+	<category: 'initialize-release'>
+	super initialize.
+	self model: ILTodoListItemRepository default
     ]
 
-    body: aString [
-	<category: 'accessing'>
-	body := aString
+    updateFromHash [
+	<category: 'building'>
+	| path |
+	path := self hashRoute next.
+	path = 'pending' ifTrue: [self selectPending].
+	path = 'completed' ifTrue: [self selectCompleted] 
     ]
 
-    title [
-	<category: 'accessing'>
-	^title ifNil: ['']
+    updatePage: aPage [
+	<category: 'building'>
+	super updatePage: aPage.
+	aPage head stylesheet href: '/stylesheets/iliad.css'
     ]
 
-    title: aString [
-	<category: 'accessing'>
-	title := aString
+    index [
+	<category: 'controllers'>
+	self updateFromHash.
+	^self mainContents
+    ]
+
+    mainContents [
+	<category: 'building'>
+	^ [:e |
+	    e h1: 'Todo List'.
+	    e build: self actionLinksContents.
+	    e build: self todoListGridWidget]
+    ]
+
+    actionLinksContents [
+	<category: 'building'>
+	^[:e ||div|
+	    div := e div class: 'selection'; yourself.
+	    div a
+		action: [self selectPending]
+		hash: 'pending';
+		text: 'pending'.
+	    div space.
+	    div a
+		action: [self selectCompleted]
+		hash: 'completed';
+		text: 'completed'.
+	    e br]
     ]
 ]
-

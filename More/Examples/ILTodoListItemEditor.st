@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.TodoListItemEditor class definition
+|   Iliad.ILTodoListItemEditor class definition
 |
  ======================================================================"
 
@@ -35,7 +35,7 @@
 
 
 
-Widget subclass: TodoListItemEditor [
+ILWidget subclass: ILTodoListItemEditor [
     | item |
     
     <comment: nil>
@@ -136,7 +136,7 @@ Widget subclass: TodoListItemEditor [
 
     setItemDeadline [
 	<category: 'actions'>
-	self show: Calendar new onAnswer: [:date |
+	self show: ILCalendar new onAnswer: [:date |
 		self item deadline: date]
     ]
 

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.CounterApplication class definition
+|   Iliad.ILTodoListItem class definition
 |
  ======================================================================"
 
@@ -35,48 +35,50 @@
 
 
 
-Application subclass: CounterApplication [
-    | counters |
+Object subclass: ILTodoListItem [
+    | deadline title body completed |
     
-    <comment: nil>
     <category: 'Iliad-Core-Examples'>
+    <comment: nil>
 
-    CounterApplication class >> path [
+    completed [
 	<category: 'accessing'>
-	^'examples/counters'
+	^completed ifNil: [false]
     ]
 
-    index [
-	<category: 'controllers'>
-	^self counter
-    ]
-
-    counter [
-	<category: 'controllers'>
-	^[:e |
-	    e a
-		text: 'Switch to multi counter example';
-		linkToLocal: 'multicounter'.
-	    e build: self counters first]
-    ]
-
-    multicounter [
-	<category: 'controllers'>
-	^[:e | 
-	    e a
-		text: 'Switch to simple counter example';
-		linkToLocal: 'counter'.
-	    self counters do: [:each |
-		e build: each]]
-    ]
-
-    counters [
+    completed: aBoolean [
 	<category: 'accessing'>
-	^counters ifNil: [
-	    counters := {Counter new.
-			Counter new.
-			Counter new.
-			Counter new}]
+	completed := aBoolean
+    ]
+
+    deadline [
+	<category: 'accessing'>
+	^deadline ifNil: [deadline := Date today]
+    ]
+
+    deadline: aDeadline [
+	<category: 'accessing'>
+	deadline := aDeadline
+    ]
+
+    body [
+	<category: 'accessing'>
+	^body ifNil: ['']
+    ]
+
+    body: aString [
+	<category: 'accessing'>
+	body := aString
+    ]
+
+    title [
+	<category: 'accessing'>
+	^title ifNil: ['']
+    ]
+
+    title: aString [
+	<category: 'accessing'>
+	title := aString
     ]
 ]
 

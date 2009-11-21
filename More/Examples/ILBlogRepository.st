@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.TodoListItemRepository class definition
+|   Iliad.ILBlogRepository class definition
 |
  ======================================================================"
 
@@ -35,31 +35,20 @@
 
 
 
-Object subclass: TodoListItemRepository [
-    | items |
+Object subclass: ILBlogRepository [
+    | posts |
     
-    <category: 'Iliad-Core-Examples'>
+    <category: 'Iliad-More-Examples'>
     <comment: nil>
 
-    TodoListItemRepository class [
-	| default |
-	
+    Default := nil.
+
+    ILBlogRepository class >> default [
+	^Default ifNil: [Default := self new]
     ]
 
-    TodoListItemRepository class >> default [
-	^default ifNil: [default := self new]
-    ]
-
-    addItem: anItem [
-	self items add: anItem
-    ]
-
-    items [
-	^items ifNil: [items := OrderedCollection new]
-    ]
-
-    removeItem: anItem [
-	self items remove: anItem
+    posts [
+	^posts ifNil: [posts := OrderedCollection new]
     ]
 ]
 

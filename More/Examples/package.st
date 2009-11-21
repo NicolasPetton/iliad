@@ -6,16 +6,16 @@ Eval [
     prereq: 'Iliad-More-UI';
     prereq: 'Iliad-More-Magritte';
 
-    filein: 'Counter.st'; 
-    filein: 'CounterApplication.st'; 
-    filein: 'TodoListItem.st'; 
-    filein: 'TodoListItemRepository.st'; 
-    filein: 'TodoListGridWidget.st'; 
-    filein: 'TodoListItemEditor.st'; 
-    filein: 'TodoListApplication.st'; 
-    filein: 'BlogPost.st';
-    filein: 'BlogRepository.st';
-    filein: 'BlogApplication.st';
+    filein: 'ILCounter.st'; 
+    filein: 'ILCounterApplication.st'; 
+    filein: 'ILTodoListItem.st'; 
+    filein: 'ILTodoListItemRepository.st'; 
+    filein: 'ILTodoListGridWidget.st'; 
+    filein: 'ILTodoListItemEditor.st'; 
+    filein: 'ILTodoListApplication.st'; 
+    filein: 'ILBlogPost.st';
+    filein: 'ILBlogRepository.st';
+    filein: 'ILBlogApplication.st';
 
     buildXml
 ]
