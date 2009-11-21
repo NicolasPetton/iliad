@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RSSCommentsElement class definition
+|   Iliad.ILRSSCommentsElement class definition
 |
  ======================================================================"
 
@@ -35,7 +35,7 @@
  ======================================================================"
 
 
-RSSElement subclass: RSSCommentsElement [
+ILRSSElement subclass: ILRSSCommentsElement [
     
     <comment: nil>
     <category: 'Iliad-More-RSS'>

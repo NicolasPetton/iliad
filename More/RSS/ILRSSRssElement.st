@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RSSCloudElement class definition
+|   Iliad.ILRSSRssElement class definition
 |
  ======================================================================"
 
@@ -35,39 +35,50 @@
  ======================================================================"
 
 
-RSSElement subclass: RSSCloudElement [
+ILRSSElement subclass: ILRSSRssElement [
     
     <comment: nil>
     <category: 'Iliad-More-RSS'>
 
     tag [
 	<category: 'accessing'>
-	^'cloud'
+	^'rss'
     ]
 
-    domain: anUrl [
-	<category: 'accessing attributes'>
-	self attributeAt: 'domain' put: anUrl asString
+    xmlTag [
+	<category: 'accessing'>
+	^'<?xml version="1.0"?>'
     ]
 
-    path: aPath [
+    blogChannel: aString [
 	<category: 'accessing attributes'>
-	self attributeAt: 'path' put: aPath asString
+	self attributeAt: 'xmlns:blogChannel' put: aString
     ]
 
-    port: anInteger [
+    version [
 	<category: 'accessing attributes'>
-	self attributeAt: 'port' put: anInteger printString
+	^self attributeAt: 'version'
     ]
 
-    protocol: aProtocol [
+    version: aNumber [
 	<category: 'accessing attributes'>
-	self attributeAt: 'protocol' put: aProtocol asString
+	self attributeAt: 'version' put: aNumber printString
     ]
 
-    registerProcedure: aNamespace [
+    xmlns: aString [
 	<category: 'accessing attributes'>
-	self attributeAt: 'registerProcedure' put: aNamespace asString
+	self attributeAt: 'xmlns' put: aString
+    ]
+
+    beforePrintHtml [
+	<category: 'printing'>
+	self version ifNil: [self version: 2.0]
+    ]
+
+    printHtmlOn: aStream [
+	<category: 'printing'>
+	aStream nextPutAll: self xmlTag.
+	super printHtmlOn: aStream
     ]
 ]
 

@@ -4,14 +4,14 @@ Eval [
     namespace: 'Iliad';
     prereq: 'Iliad-Core';
 
-    filein: 'RSSElement.st'; 
-    filein: 'RSSCategoryElement.st'; 
-    filein: 'RSSCloudElement.st'; 
-    filein: 'RSSCommentsElement.st'; 
-    filein: 'RSSEnclosureElement.st'; 
-    filein: 'RSSGuidElement.st'; 
-    filein: 'RSSRssElement.st'; 
-    filein: 'RSSSourceElement.st'; 
+    filein: 'ILRSSElement.st'; 
+    filein: 'ILRSSCategoryElement.st'; 
+    filein: 'ILRSSCloudElement.st'; 
+    filein: 'ILRSSCommentsElement.st'; 
+    filein: 'ILRSSEnclosureElement.st'; 
+    filein: 'ILRSSGuidElement.st'; 
+    filein: 'ILRSSRssElement.st'; 
+    filein: 'ILRSSSourceElement.st'; 
     
     buildXml
 ]

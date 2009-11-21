@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RSSElement class definition
+|   Iliad.ILRSSElement class definition
 |
  ======================================================================"
 
@@ -35,7 +35,7 @@
  ======================================================================"
 
 
-Element subclass: RSSElement [
+ILElement subclass: ILRSSElement [
     | tag |
     
     <comment: nil>
@@ -48,17 +48,17 @@ Element subclass: RSSElement [
 
     enclosure [
 	<category: 'accessing'>
-	^self add: RSSEnclosureElement new
+	^self add: ILRSSEnclosureElement new
     ]
 
     source [
 	<category: 'accessing'>
-	^self add: RSSSourceElement new
+	^self add: ILRSSSourceElement new
     ]
 
     source: aString [
 	<category: 'accessing'>
-	^(self source)
+	^self source
 	    text: aString;
 	    yourself
     ]
@@ -75,113 +75,113 @@ Element subclass: RSSElement [
 
     author [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'author';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'author';
+	    yourself)
     ]
 
     author: aString [
 	<category: 'adding-conveniance'>
-	^(self author)
+	^self author
 	    text: aString;
 	    yourself
     ]
 
     category [
 	<category: 'adding-conveniance'>
-	^self add: RSSCategoryElement new
+	^self add: ILRSSCategoryElement new
     ]
 
     category: aString [
 	<category: 'adding-conveniance'>
-	^(self category)
+	^self category
 	    text: aString;
 	    yourself
     ]
 
     channel [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'channel';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'channel';
+	    yourself)
     ]
 
     cloud [
 	<category: 'adding-conveniance'>
-	^self add: RSSCloudElement new
+	^self add: ILRSSCloudElement new
     ]
 
     comment [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'wfw:comment';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'wfw:comment';
+	    yourself)
     ]
 
     comment: aString [
 	<category: 'adding-conveniance'>
-	^(self comment)
+	^self comment
 	    text: aString;
 	    yourself
     ]
 
     comments [
 	<category: 'adding-conveniance'>
-	^self add: RSSCommentsElement new
+	^self add: ILRSSCommentsElement new
     ]
 
     comments: anUrl [
 	<category: 'adding-conveniance'>
-	^(self comments)
+	^self comments
 	    text: anUrl;
 	    yourself
     ]
 
     copyright [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'copyright';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'copyright';
+	    yourself)
     ]
 
     copyright: aString [
 	<category: 'adding-conveniance'>
-	^(self copyright)
+	^self copyright
 	    text: aString;
 	    yourself
     ]
 
     description [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'description';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'description';
+	    yourself)
     ]
 
     description: aString [
 	<category: 'adding-conveniance'>
-	^(self description)
+	^self description
 	    text: aString;
 	    yourself
     ]
 
     generator [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'generator';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'generator';
+	    yourself)
     ]
 
     generator: aString [
 	<category: 'adding-conveniance'>
-	^(self generator)
+	^self generator
 	    text: aString;
 	    yourself
     ]
 
     guid [
 	<category: 'adding-conveniance'>
-	^self add: RSSGuidElement new
+	^self add: ILRSSGuidElement new
     ]
 
     guid: anUrl [
@@ -191,194 +191,194 @@ Element subclass: RSSElement [
 
     image [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'image';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'image';
+	    yourself)
     ]
 
     image: aString [
 	<category: 'adding-conveniance'>
-	^(self image)
+	^self image
 	    text: aString;
 	    yourself
     ]
 
     item [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'item';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'item';
+	    yourself)
     ]
 
     language [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'language';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'language';
+	    yourself)
     ]
 
     language: aString [
 	<category: 'adding-conveniance'>
-	^(self language)
+	^self language
 	    text: aString;
 	    yourself
     ]
 
     lastBuildDate [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'lastBuildDate';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'lastBuildDate';
+	    yourself)
     ]
 
     lastBuildDate: aDate [
 	<category: 'adding-conveniance'>
-	^(self lastBuildDate)
-	    text: (Support rfc1123StringFor: aDate asTimeStamp);
+	^self lastBuildDate
+	    text: (ILSupport rfc1123StringFor: aDate asTimeStamp);
 	    yourself
     ]
 
     link [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'link';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'link';
+	    yourself)
     ]
 
     link: aString [
 	<category: 'adding-conveniance'>
-	^(self link)
+	^self link
 	    text: aString;
 	    yourself
     ]
 
     managingEditor [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'managingEditor';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'managingEditor';
+	    yourself)
     ]
 
     managingEditor: aString [
 	<category: 'adding-conveniance'>
-	^(self managingEditor)
+	^self managingEditor
 	    text: aString;
 	    yourself
     ]
 
     pubDate [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'pubDate';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'pubDate';
+	    yourself)
     ]
 
     pubDate: aDate [
 	<category: 'adding-conveniance'>
-	^(self pubDate)
-	    text: (Support rfc1123StringFor: aDate asTimeStamp);
+	^self pubDate
+	    text: (ILSupport rfc1123StringFor: aDate asTimeStamp);
 	    yourself
     ]
 
     rating [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'rating';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'rating';
+	    yourself)
     ]
 
     rating: aString [
 	<category: 'adding-conveniance'>
-	^(self rating)
+	^self rating
 	    text: aString;
 	    yourself
     ]
 
     rss [
 	<category: 'adding-conveniance'>
-	^self add: RSSRssElement new
+	^self add: ILRSSRssElement new
     ]
 
     skipDays [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'skipDays';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'skipDays';
+	    yourself)
     ]
 
     skipDays: aString [
 	<category: 'adding-conveniance'>
-	^(self skipDays)
+	^self skipDays
 	    text: aString;
 	    yourself
     ]
 
     skipHours [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'skipHours';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'skipHours';
+	    yourself)
     ]
 
     skipHours: aString [
 	<category: 'adding-conveniance'>
-	^(self skipHours)
+	^self skipHours
 	    text: aString;
 	    yourself
     ]
 
     textInput [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'textInput';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'textInput';
+	    yourself)
     ]
 
     textInput: aString [
 	<category: 'adding-conveniance'>
-	^(self textInput)
+	^self textInput
 	    text: aString;
 	    yourself
     ]
 
     title [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'title';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'title';
+	    yourself)
     ]
 
     title: aString [
 	<category: 'adding-conveniance'>
-	^(self title)
+	^self title
 	    text: aString;
 	    yourself
     ]
 
     ttl [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'ttl';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'ttl';
+	    yourself)
     ]
 
     ttl: aString [
 	<category: 'adding-conveniance'>
-	^(self ttl)
+	^self ttl
 	    text: aString;
 	    yourself
     ]
 
     webMaster [
 	<category: 'adding-conveniance'>
-	^self add: ((RSSElement new)
-		    tag: 'webMaster';
-		    yourself)
+	^self add: (ILRSSElement new
+	    tag: 'webMaster';
+	    yourself)
     ]
 
     webMaster: aString [
 	<category: 'adding-conveniance'>
-	^(self webMaster)
+	^self webMaster
 	    text: aString;
 	    yourself
     ]

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RSSRssElement class definition
+|   Iliad.ILRSSGuidElement class definition
 |
  ======================================================================"
 
@@ -35,50 +35,19 @@
  ======================================================================"
 
 
-RSSElement subclass: RSSRssElement [
+ILRSSElement subclass: ILRSSGuidElement [
     
     <comment: nil>
     <category: 'Iliad-More-RSS'>
 
+    isPermaLink: aBoolean [
+	<category: 'accessing attributes'>
+	self attributeAt: 'isPermaLink' put: aBoolean asString
+    ]
+
     tag [
 	<category: 'accessing'>
-	^'rss'
-    ]
-
-    xmlTag [
-	<category: 'accessing'>
-	^'<?xml version="1.0"?>'
-    ]
-
-    blogChannel: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'xmlns:blogChannel' put: aString
-    ]
-
-    version [
-	<category: 'accessing attributes'>
-	^self attributeAt: 'version'
-    ]
-
-    version: aNumber [
-	<category: 'accessing attributes'>
-	self attributeAt: 'version' put: aNumber printString
-    ]
-
-    xmlns: aString [
-	<category: 'accessing attributes'>
-	self attributeAt: 'xmlns' put: aString
-    ]
-
-    beforePrintHtml [
-	<category: 'printing'>
-	self version ifNil: [self version: 2.0]
-    ]
-
-    printHtmlOn: aStream [
-	<category: 'printing'>
-	aStream nextPutAll: self xmlTag.
-	super printHtmlOn: aStream
+	^'guid'
     ]
 ]
 

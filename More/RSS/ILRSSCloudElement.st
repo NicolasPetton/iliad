@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RSSSourceElement class definition
+|   Iliad.ILRSSCloudElement class definition
 |
  ======================================================================"
 
@@ -35,19 +35,39 @@
  ======================================================================"
 
 
-RSSElement subclass: RSSSourceElement [
+ILRSSElement subclass: ILRSSCloudElement [
     
     <comment: nil>
     <category: 'Iliad-More-RSS'>
 
     tag [
 	<category: 'accessing'>
-	^'source'
+	^'cloud'
     ]
 
-    url: anUrl [
+    domain: anUrl [
 	<category: 'accessing attributes'>
-	self attributeAt: 'url' put: anUrl
+	self attributeAt: 'domain' put: anUrl asString
+    ]
+
+    path: aPath [
+	<category: 'accessing attributes'>
+	self attributeAt: 'path' put: aPath asString
+    ]
+
+    port: anInteger [
+	<category: 'accessing attributes'>
+	self attributeAt: 'port' put: anInteger printString
+    ]
+
+    protocol: aProtocol [
+	<category: 'accessing attributes'>
+	self attributeAt: 'protocol' put: aProtocol asString
+    ]
+
+    registerProcedure: aNamespace [
+	<category: 'accessing attributes'>
+	self attributeAt: 'registerProcedure' put: aNamespace asString
     ]
 ]
 

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RSSCategoryElement class definition
+|   Iliad.ILRSSSourceElement class definition
 |
  ======================================================================"
 
@@ -34,21 +34,20 @@
 |
  ======================================================================"
 
-
 
-RSSElement subclass: RSSCategoryElement [
+ILRSSElement subclass: ILRSSSourceElement [
     
     <comment: nil>
     <category: 'Iliad-More-RSS'>
 
     tag [
 	<category: 'accessing'>
-	^'category'
+	^'source'
     ]
 
-    domain: anUrl [
+    url: anUrl [
 	<category: 'accessing attributes'>
-	self attributeAt: 'domain' put: anUrl asString
+	self attributeAt: 'url' put: anUrl
     ]
 ]
 

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.RSSGuidElement class definition
+|   Iliad.ILRSSEnclosureElement class definition
 |
  ======================================================================"
 
@@ -35,19 +35,29 @@
  ======================================================================"
 
 
-RSSElement subclass: RSSGuidElement [
+ILRSSElement subclass: ILRSSEnclosureElement [
     
     <comment: nil>
     <category: 'Iliad-More-RSS'>
 
-    isPermaLink: aBoolean [
-	<category: 'accessing attributes'>
-	self attributeAt: 'isPermaLink' put: aBoolean asString
-    ]
-
     tag [
 	<category: 'accessing'>
-	^'guid'
+	^'enclosure'
+    ]
+
+    url: anUrl [
+	<category: 'accessing'>
+	self attributeAt: 'url' put: anUrl
+    ]
+
+    length: anInteger [
+	<category: 'accessing attributes'>
+	self attributeAt: 'length' put: anInteger printString
+    ]
+
+    type: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: 'type' put: aString
     ]
 ]
 
