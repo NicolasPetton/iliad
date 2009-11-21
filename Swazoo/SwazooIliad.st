@@ -5,13 +5,13 @@ Object subclass: SwazooIliad [
 
     SwazooIliad class >> startOn: aPort [
 	<category: 'start/stop'>
-	Site default port: aPort.
-	Swazoo.SwazooServer startSite: Site defaultName
+	ILSite default port: aPort.
+	Swazoo.SwazooServer startSite: ILSite defaultName
     ]
 
     SwazooIliad class >> stop [
 	<category: 'start/stop'>
-	Swazoo.SwazooServer stopSite: Site defaultName
+	Swazoo.SwazooServer stopSite: ILSite defaultName
     ]
 ]
 
