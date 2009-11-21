@@ -57,8 +57,8 @@ MAOptionWidget subclass: MAMultipleSelectionWidget [
     remove: anObject [
 	<category: 'actions'>
 	self value: (self isDistinct 
-		    ifTrue: [self value copyWithout: anObject]
-		    ifFalse: [self value copyWithoutFirst: anObject])
+	    ifTrue: [self value copyWithout: anObject]
+	    ifFalse: [self value copyWithoutFirst: anObject])
     ]
 
     availableList [
@@ -74,8 +74,8 @@ MAOptionWidget subclass: MAMultipleSelectionWidget [
     value [
 	<category: 'accessing'>
 	^super value ifNil: 
-		[self value: Array new.
-		super value]
+	    [self value: Array new.
+	    super value]
     ]
 
     hasLabelId [
@@ -91,7 +91,7 @@ MAOptionWidget subclass: MAMultipleSelectionWidget [
     isOrdered [
 	<category: 'testing'>
 	^self description isOrdered and: 
-		[(self value respondsTo: #moveUp:) and: [self value respondsTo: #moveDown:]]
+	    [(self value respondsTo: #moveUp:) and: [self value respondsTo: #moveDown:]]
     ]
 
     viewerContents [

@@ -38,7 +38,7 @@
 
 
 
-Iliad.Widget subclass: MAWidget [
+ILWidget subclass: MAWidget [
     
     <comment: nil>
     <category: 'Iliad-More-Magritte-Widgets'>
@@ -63,9 +63,8 @@ Iliad.Widget subclass: MAWidget [
 
     MAWidget class >> withAllConcreteClasses [
 	<category: 'reflection'>
-	^Array streamContents: 
-		[:stream | 
-		self withAllConcreteClassesDo: [:each | stream nextPut: each]]
+	^Array streamContents: [:stream | 
+	    self withAllConcreteClassesDo: [:each | stream nextPut: each]]
     ]
 
     MAWidget class >> withAllConcreteClassesDo: aBlock [

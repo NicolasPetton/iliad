@@ -46,7 +46,7 @@ MATextInputWidget subclass: MATimeStampSelectorWidget [
     buttonsContents [
 	<category: 'building'>
 	^[:e | 
-	    (e button)
+	    e button
 		text: 'now';
 		action: [self now]]
     ]

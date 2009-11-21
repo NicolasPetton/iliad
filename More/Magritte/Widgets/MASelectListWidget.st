@@ -51,11 +51,10 @@ MASingleSelectionWidget subclass: MASelectListWidget [
 
     editorContents [
 	<category: 'building'>
-	^
-	[:e | 
-	self description isGrouped 
-	    ifTrue: [e build: self editorForGroupedContents]
-	    ifFalse: [e build: self editorForUngroupedContents]]
+	^[:e | 
+	    self description isGrouped 
+		ifTrue: [e build: self editorForGroupedContents]
+		ifFalse: [e build: self editorForUngroupedContents]]
     ]
 
     editorForUngroupedContents [
@@ -108,14 +107,13 @@ MASingleSelectionWidget subclass: MASelectListWidget [
 
 	| groups group |
 	groups := OrderedCollection new.
-	self options do: 
-		[:option | 
-		option isNil 
-		    ifFalse: 
-			[group := self description groupBy read: option.
-			(groups detect: [:each | each key = group]
-			    ifNone: [groups addLast: group -> OrderedCollection new]) value 
-			    addLast: option]].
+	self options do: [:option | 
+	    option isNil 
+	    ifFalse: 
+		[group := self description groupBy read: option.
+		    (groups detect: [:each | each key = group]
+			ifNone: [groups addLast: group -> OrderedCollection new]) value 
+			addLast: option]].
 	^groups
     ]
 

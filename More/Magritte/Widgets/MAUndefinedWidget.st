@@ -51,7 +51,7 @@ MAElementWidget subclass: MAUndefinedWidget [
     contents [
 	<category: 'building'>
 	^[:e | 
-	    (e span)
+	    e span
 		id: self labelId;
 		style: 'color: red;';
 		text: 'Undefined Component']

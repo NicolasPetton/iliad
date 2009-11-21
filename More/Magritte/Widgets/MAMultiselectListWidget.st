@@ -61,9 +61,9 @@ MAMultipleSelectionWidget subclass: MAMultiselectListWidget [
 		[:each | 
 		| option |
 		option := (select option)
-			text: (self labelForOption: each);
-			action: [self add: each];
-			yourself.
+		    text: (self labelForOption: each);
+		    action: [self add: each];
+		    yourself.
 		option selected: (self selectedList includes: each)]]
     ]
 
