@@ -1,11 +1,12 @@
-ElementTest subclass: RSSCategoryElementTest [
+
+ILElementTest subclass: ILRSSCategoryElementTest [
     
     <comment: nil>
     <category: 'Iliad-Tests-Unit-RSS'>
 
     setUp [
 	<category: 'running'>
-	e := RSSCategoryElement new
+	e := ILRSSCategoryElement new
     ]
 
     testDomain [

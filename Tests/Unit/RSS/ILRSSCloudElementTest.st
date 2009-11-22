@@ -1,11 +1,12 @@
-ElementTest subclass: RSSCloudElementTest [
+
+ILElementTest subclass: ILRSSCloudElementTest [
     
     <comment: nil>
     <category: 'Iliad-Tests-Unit-RSS'>
 
     setUp [
 	<category: 'running'>
-	e := RSSCloudElement new
+	e := ILRSSCloudElement new
     ]
 
     testTag [

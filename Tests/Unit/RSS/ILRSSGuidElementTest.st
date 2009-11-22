@@ -1,11 +1,12 @@
-ElementTest subclass: RSSGuidElementTest [
+
+ILElementTest subclass: ILRSSGuidElementTest [
     
     <comment: nil>
     <category: 'Iliad-Tests-Unit-RSS'>
 
     setUp [
 	<category: 'running'>
-	e := RSSGuidElement new
+	e := ILRSSGuidElement new
     ]
 
     testIsPermaLink [

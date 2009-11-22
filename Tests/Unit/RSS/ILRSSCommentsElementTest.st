@@ -1,4 +1,5 @@
-ElementTest subclass: RSSCommentsElementTest [
+
+ILElementTest subclass: ILRSSCommentsElementTest [
     
     <comment: nil>
     <category: 'Iliad-Tests-Unit-RSS'>
@@ -10,7 +11,7 @@ ElementTest subclass: RSSCommentsElementTest [
 
     setUp [
 	<category: 'running'>
-	e := RSSCommentsElement new
+	e := ILRSSCommentsElement new
     ]
 ]
 

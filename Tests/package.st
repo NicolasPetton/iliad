@@ -82,13 +82,13 @@ Eval [
 
     filein: 'Unit/RequestHandlers/ILRequestHandlerTest.st'; 
 
-    filein: 'Unit/RSS/RSSElementTest.st';
-    filein: 'Unit/RSS/RSSRssElementTest.st';
-    filein: 'Unit/RSS/RSSCategoryElementTest.st';
-    filein: 'Unit/RSS/RSSCloudElementTest.st';   
-    filein: 'Unit/RSS/RSSCommentsElementTest.st'; 
-    filein: 'Unit/RSS/RSSEnclosureElementTest.st'; 
-    filein: 'Unit/RSS/RSSGuidElementTest.st'; 
-    filein: 'Unit/RSS/RSSSourceElementTest.st'; 
+    filein: 'Unit/RSS/ILRSSElementTest.st';
+    filein: 'Unit/RSS/ILRSSRssElementTest.st';
+    filein: 'Unit/RSS/ILRSSCategoryElementTest.st';
+    filein: 'Unit/RSS/ILRSSCloudElementTest.st';   
+    filein: 'Unit/RSS/ILRSSCommentsElementTest.st'; 
+    filein: 'Unit/RSS/ILRSSEnclosureElementTest.st'; 
+    filein: 'Unit/RSS/ILRSSGuidElementTest.st'; 
+    filein: 'Unit/RSS/ILRSSSourceElementTest.st'; 
     buildXml
 ]
