@@ -76,9 +76,9 @@ Eval [
     filein: 'Unit/Sessions/ILUrlBuilderTest.st';
     filein: 'Unit/Sessions/ILSessionTest.st';
 
-    filein: 'Unit/Utilities/IdTest.st';
-    filein: 'Unit/Utilities/ModelProxyTest.st'; 
-    filein: 'Unit/Utilities/CompositeTest.st';
+    filein: 'Unit/Utilities/ILIdTest.st';
+    filein: 'Unit/Utilities/ILModelProxyTest.st'; 
+    filein: 'Unit/Utilities/ILCompositeTest.st';
 
     filein: 'Unit/RequestHandlers/ILRequestHandlerTest.st'; 
 
