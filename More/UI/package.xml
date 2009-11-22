@@ -2,39 +2,39 @@
   <name>Iliad-More-UI</name>
   <namespace>Iliad</namespace>
   <prereq>Iliad-Core</prereq>
-  <filein>UIWidget.st</filein>
-  <filein>TimeSelector.st</filein>
-  <filein>DateSelector.st</filein>
-  <filein>Lightbox.st</filein>
-  <filein>Calendar.st</filein>
+  <filein>ILUIWidget.st</filein>
+  <filein>ILTimeSelector.st</filein>
+  <filein>ILDateSelector.st</filein>
+  <filein>ILLightbox.st</filein>
+  <filein>ILCalendar.st</filein>
   <filein>Extensions.st</filein>
-  <filein>WidgetTabs.st</filein>
-  <filein>ViewTabs.st</filein>
-  <filein>Paginator.st</filein>
-  <filein>DataGrid.st</filein>
-  <filein>PagedDataGrid.st</filein>
-  <filein>Tree.st</filein>
-  <filein>MessageDecorator.st</filein>
-  <filein>ApplicationBrowser.st</filein>
-  <filein>postLoad.st</filein>
-  <file>UIWidget.st</file>
-  <file>TimeSelector.st</file>
-  <file>DateSelector.st</file>
-  <file>Lightbox.st</file>
-  <file>Calendar.st</file>
+  <filein>ILWidgetTabs.st</filein>
+  <filein>ILViewTabs.st</filein>
+  <filein>ILPaginator.st</filein>
+  <filein>ILDataGrid.st</filein>
+  <filein>ILPagedDataGrid.st</filein>
+  <filein>ILTree.st</filein>
+  <filein>ILMessageDecorator.st</filein>
+  <filein>ILApplicationBrowser.st</filein>
+  <filein>ILPostLoad.st</filein>
+  <file>ILUIWidget.st</file>
+  <file>ILTimeSelector.st</file>
+  <file>ILDateSelector.st</file>
+  <file>ILLightbox.st</file>
+  <file>ILCalendar.st</file>
   <file>Extensions.st</file>
-  <file>WidgetTabs.st</file>
-  <file>ViewTabs.st</file>
-  <file>Paginator.st</file>
-  <file>DataGrid.st</file>
-  <file>PagedDataGrid.st</file>
-  <file>Tree.st</file>
-  <file>MessageDecorator.st</file>
-  <file>ApplicationBrowser.st</file>
-  <file>postLoad.st</file>
+  <file>ILWidgetTabs.st</file>
+  <file>ILViewTabs.st</file>
+  <file>ILPaginator.st</file>
+  <file>ILDataGrid.st</file>
+  <file>ILPagedDataGrid.st</file>
+  <file>ILTree.st</file>
+  <file>ILMessageDecorator.st</file>
+  <file>ILApplicationBrowser.st</file>
+  <file>ILPostLoad.st</file>
   <file>Public/javascripts/lightbox.js</file>
-  <file>Public/stylesheets/iliad-ui.css</file>
-  <file>Public/stylesheets/lightbox.css</file>
-  <file>Public/images/arrow_down.png</file>
   <file>Public/images/arrow_right.png</file>
+  <file>Public/images/arrow_down.png</file>
+  <file>Public/stylesheets/lightbox.css</file>
+  <file>Public/stylesheets/iliad-ui.css</file>
 </package>

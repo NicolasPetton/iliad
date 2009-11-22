@@ -3,7 +3,7 @@ Eval [
     name: 'Iliad-Swazoo';
     namespace: 'Iliad';
     prereq: 'Swazoo';
-    filein: 'Site.st';
+    filein: 'ILSite.st';
     filein: 'SwazooIliad.st';
 
     start: 'Iliad.SwazooIliad startOn: (%1

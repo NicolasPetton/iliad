@@ -44,7 +44,7 @@ ILObject subclass: ILBuildable [
     
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am an abstract buildable object. 
-My subclasses must override the #buildContents method, which should return an instance of a subclass of Iliad.Element.'>
+My subclasses must override the #buildContents method, which should return an instance of a subclass of Iliad.ILElement.'>
 
     attributeAt: aSymbol [
 	<category: 'accessing attributes'>

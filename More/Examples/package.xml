@@ -4,24 +4,24 @@
   <prereq>Iliad-Core</prereq>
   <prereq>Iliad-More-UI</prereq>
   <prereq>Iliad-More-Magritte</prereq>
-  <filein>Counter.st</filein>
-  <filein>CounterApplication.st</filein>
-  <filein>TodoListItem.st</filein>
-  <filein>TodoListItemRepository.st</filein>
-  <filein>TodoListGridWidget.st</filein>
-  <filein>TodoListItemEditor.st</filein>
-  <filein>TodoListApplication.st</filein>
-  <filein>BlogPost.st</filein>
-  <filein>BlogRepository.st</filein>
-  <filein>BlogApplication.st</filein>
-  <file>Counter.st</file>
-  <file>CounterApplication.st</file>
-  <file>TodoListItem.st</file>
-  <file>TodoListItemRepository.st</file>
-  <file>TodoListGridWidget.st</file>
-  <file>TodoListItemEditor.st</file>
-  <file>TodoListApplication.st</file>
-  <file>BlogPost.st</file>
-  <file>BlogRepository.st</file>
-  <file>BlogApplication.st</file>
+  <filein>ILCounter.st</filein>
+  <filein>ILCounterApplication.st</filein>
+  <filein>ILTodoListItem.st</filein>
+  <filein>ILTodoListItemRepository.st</filein>
+  <filein>ILTodoListGridWidget.st</filein>
+  <filein>ILTodoListItemEditor.st</filein>
+  <filein>ILTodoListApplication.st</filein>
+  <filein>ILBlogPost.st</filein>
+  <filein>ILBlogRepository.st</filein>
+  <filein>ILBlogApplication.st</filein>
+  <file>ILCounter.st</file>
+  <file>ILCounterApplication.st</file>
+  <file>ILTodoListItem.st</file>
+  <file>ILTodoListItemRepository.st</file>
+  <file>ILTodoListGridWidget.st</file>
+  <file>ILTodoListItemEditor.st</file>
+  <file>ILTodoListApplication.st</file>
+  <file>ILBlogPost.st</file>
+  <file>ILBlogRepository.st</file>
+  <file>ILBlogApplication.st</file>
 </package>

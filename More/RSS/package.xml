@@ -2,20 +2,20 @@
   <name>Iliad-More-RSS</name>
   <namespace>Iliad</namespace>
   <prereq>Iliad-Core</prereq>
-  <filein>RSSElement.st</filein>
-  <filein>RSSCategoryElement.st</filein>
-  <filein>RSSCloudElement.st</filein>
-  <filein>RSSCommentsElement.st</filein>
-  <filein>RSSEnclosureElement.st</filein>
-  <filein>RSSGuidElement.st</filein>
-  <filein>RSSRssElement.st</filein>
-  <filein>RSSSourceElement.st</filein>
-  <file>RSSElement.st</file>
-  <file>RSSCategoryElement.st</file>
-  <file>RSSCloudElement.st</file>
-  <file>RSSCommentsElement.st</file>
-  <file>RSSEnclosureElement.st</file>
-  <file>RSSGuidElement.st</file>
-  <file>RSSRssElement.st</file>
-  <file>RSSSourceElement.st</file>
+  <filein>ILRSSElement.st</filein>
+  <filein>ILRSSCategoryElement.st</filein>
+  <filein>ILRSSCloudElement.st</filein>
+  <filein>ILRSSCommentsElement.st</filein>
+  <filein>ILRSSEnclosureElement.st</filein>
+  <filein>ILRSSGuidElement.st</filein>
+  <filein>ILRSSRssElement.st</filein>
+  <filein>ILRSSSourceElement.st</filein>
+  <file>ILRSSElement.st</file>
+  <file>ILRSSCategoryElement.st</file>
+  <file>ILRSSCloudElement.st</file>
+  <file>ILRSSCommentsElement.st</file>
+  <file>ILRSSEnclosureElement.st</file>
+  <file>ILRSSGuidElement.st</file>
+  <file>ILRSSRssElement.st</file>
+  <file>ILRSSSourceElement.st</file>
 </package>
