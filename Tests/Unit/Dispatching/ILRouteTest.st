@@ -1,4 +1,5 @@
-TestCase subclass: RouteTest [
+
+TestCase subclass: ILRouteTest [
     | route |
 
     <comment: nil>
@@ -6,7 +7,7 @@ TestCase subclass: RouteTest [
 
     setUp [
 	<category: 'running'>
-	route := Route path: (Url absolute: 'hello/world/foo/bar') path
+	route := ILRoute path: (ILUrl absolute: 'hello/world/foo/bar') path
     ]
 
     testBasePath [

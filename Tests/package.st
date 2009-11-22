@@ -15,8 +15,8 @@ Eval [
     filein: 'Unit/Buildables/ILWidgetMock3.st';
     filein: 'Unit/Buildables/ILWidgetTest.st';
 
-    filein: 'Unit/Dispatching/DispatcherTest.st';
-    filein: 'Unit/Dispatching/RouteTest.st';
+    filein: 'Unit/Dispatching/ILDispatcherTest.st';
+    filein: 'Unit/Dispatching/ILRouteTest.st';
 
     filein: 'Unit/Elements/ElementTest.st';
     filein: 'Unit/Elements/XHTMLElementTest.st';
