@@ -60,7 +60,7 @@ Swazoo.SwazooSite subclass: ILSite [
 
     defaultEncoder [
 	<category: 'defaults'>
-	^GSTEncoder
+	^ILGSTEncoder
     ]
 
     answerTo: aRequest [

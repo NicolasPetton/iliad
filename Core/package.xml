@@ -80,7 +80,7 @@
   <filein>XHTMLElements/ILTableRowElement.st</filein>
   <filein>XHTMLElements/ILTableFootElement.st</filein>
   <filein>XHTMLElements/ILTableHeadElement.st</filein>
-  <filein>Buildables/ILExtensions.st</filein>
+  <filein>Buildables/Extensions.st</filein>
   <filein>Buildables/ILBuildable.st</filein>
   <filein>Buildables/ILDecorator.st</filein>
   <filein>Buildables/ILAnswerHandler.st</filein>
@@ -179,7 +179,7 @@
   <file>XHTMLElements/ILTableRowElement.st</file>
   <file>XHTMLElements/ILTableFootElement.st</file>
   <file>XHTMLElements/ILTableHeadElement.st</file>
-  <file>Buildables/ILExtensions.st</file>
+  <file>Buildables/Extensions.st</file>
   <file>Buildables/ILBuildable.st</file>
   <file>Buildables/ILDecorator.st</file>
   <file>Buildables/ILAnswerHandler.st</file>
@@ -200,11 +200,11 @@
   <file>RequestHandlers/ILJsonHandler.st</file>
   <file>RequestHandlers/ILApplicationHandler.st</file>
   <file>RequestHandlers/ILRedirectHandler.st</file>
-  <file>Public/javascripts/no_conflict.js</file>
   <file>Public/javascripts/iliad.js</file>
   <file>Public/javascripts/jquery132min.js</file>
-  <file>Public/stylesheets/iliad.css</file>
+  <file>Public/javascripts/no_conflict.js</file>
   <file>Public/images/ajax_loader.gif</file>
   <file>Public/images/iliad.png</file>
   <file>Public/iliad_ie_history.html</file>
+  <file>Public/stylesheets/iliad.css</file>
 </package>

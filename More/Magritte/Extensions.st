@@ -38,7 +38,7 @@
 
 
 
-Iliad.Widget extend [
+Iliad.ILWidget extend [
     
     isMagritteContainer [
 	<category: '*Iliad-More-Magritte'>

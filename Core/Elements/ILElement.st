@@ -58,7 +58,7 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 
     attributes [
 	<category: 'accessing'>
-	^attributes ifNil: [attributes := SmallDictionary new]
+	^attributes ifNil: [attributes := ILSmallDictionary new]
     ]
 
     attributeAt: akey [
@@ -76,9 +76,9 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	^self attributes at: akey ifAbsentPut: aBlock
     ]
 
-    attributeAt: akey put: aValue [
+    attributeAt: aKey put: aValue [
 	<category: 'accessing'>
-	^self attributes at: akey put: aValue
+	^self attributes at: aKey put: aValue
     ]
 
     contentType [

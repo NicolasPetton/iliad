@@ -88,7 +88,7 @@ Eval [
 	filein: 'XHTMLElements/ILTableFootElement.st'; 
 	filein: 'XHTMLElements/ILTableHeadElement.st'; 
 
-	filein: 'Buildables/ILExtensions.st';  
+	filein: 'Buildables/Extensions.st';  
 	filein: 'Buildables/ILBuildable.st'; 
 	filein: 'Buildables/ILDecorator.st'; 
 	filein: 'Buildables/ILAnswerHandler.st'; 

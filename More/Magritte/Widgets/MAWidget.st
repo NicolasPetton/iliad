@@ -38,7 +38,7 @@
 
 
 
-ILWidget subclass: MAWidget [
+Iliad.ILWidget subclass: MAWidget [
     
     <comment: nil>
     <category: 'Iliad-More-Magritte-Widgets'>

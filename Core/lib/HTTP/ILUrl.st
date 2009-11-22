@@ -57,7 +57,7 @@ password:		<String> or nil
 hostname:		<String> or nil
 port:			<Integer> or nil
 path:			<OrderedCollection> or nil
-parameters:		<SmallDictionary>
+parameters:		<ILSmallDictionary>
 fragment:		<String> or nil'>
 
     ILUrl class >> absolute: aString [
@@ -279,7 +279,7 @@ fragment:		<String> or nil'>
 
     parameters [
 	<category: 'accessing'>
-	^parameters ifNil: [parameters := SmallDictionary new]
+	^parameters ifNil: [parameters := ILSmallDictionary new]
     ]
 
     password [
