@@ -10,6 +10,7 @@ Eval [
     filein: 'Unit/Buildables/ILApplicationMock1.st';
     filein: 'Unit/Buildables/ILApplicationMock2.st';
     filein: 'Unit/Buildables/ILApplicationTest.st';
+    filein: 'Unit/Buildables/ILBuildableTest.st';
     filein: 'Unit/Buildables/ILWidgetMock1.st';
     filein: 'Unit/Buildables/ILWidgetMock2.st';
     filein: 'Unit/Buildables/ILWidgetMock3.st';
@@ -69,6 +70,8 @@ Eval [
 
     filein: 'Unit/lib/JSON/ILJsonDummyTestObject.st';
     filein: 'Unit/lib/JSON/ILJsonTest.st';
+    
+    filein: 'Unit/lib/HTTP/ILFileProxyTest.st';
 
     filein: 'Unit/Sessions/ILActionRegistryTest.st';
     filein: 'Unit/Sessions/ILActionTest.st';
