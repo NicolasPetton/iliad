@@ -1,11 +1,12 @@
-Widget subclass: WidgetMock2 [
+
+ILWidget subclass: ILWidgetMock1 [
 
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Buildables'>
 
     contents [
 	<category: 'building'>
-	^[:e | e text: 'test widget 2']
+	^[:e | e text: 'test widget 1']
     ]
 ]
 
