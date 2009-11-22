@@ -1,12 +1,13 @@
-TestCase subclass: RequestHandlerTest [
+
+TestCase subclass: ILRequestHandlerTest [
     | requestHandler response |
     
     <comment: nil>
     <category: 'Iliad-Tests-Unit-RequestHandlers'>
 
     setUp [
-	requestHandler := RequestHandler new.
-	response := Response new
+	requestHandler := ILRequestHandler new.
+	response := ILResponse new
     ]
 
     testAddAllowHeaderTo [
@@ -20,7 +21,7 @@ TestCase subclass: RequestHandlerTest [
     testAddCacheHeaderTo [
 	| timeStamp headers |
 	timeStamp := Support rfc1123StringFor: (DateTime 
-			    fromSeconds: DateTime now asSeconds + (24 * 3600)).
+	    fromSeconds: DateTime now asSeconds + (24 * 3600)).
 	requestHandler addCacheHeaderTo: response.
 	headers := response headers.
 	self assert: ((Dictionary from: headers) at: 'expires') = timeStamp

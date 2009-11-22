@@ -80,7 +80,7 @@ Eval [
     filein: 'Unit/Utilities/ModelProxyTest.st'; 
     filein: 'Unit/Utilities/CompositeTest.st';
 
-    filein: 'Unit/RequestHandlers/RequestHandlerTest.st'; 
+    filein: 'Unit/RequestHandlers/ILRequestHandlerTest.st'; 
 
     filein: 'Unit/RSS/RSSElementTest.st';
     filein: 'Unit/RSS/RSSRssElementTest.st';
