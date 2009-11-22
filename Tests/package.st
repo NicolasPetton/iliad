@@ -66,8 +66,8 @@ Eval [
     filein: 'Unit/Elements/ILTitleElementTest.st';
     filein: 'Unit/Elements/ILBreakElementTest.st';
 
-    filein: 'Unit/lib/JSON/JsonDummyTestObject.st';
-    filein: 'Unit/lib/JSON/JsonTest.st';
+    filein: 'Unit/lib/JSON/ILJsonDummyTestObject.st';
+    filein: 'Unit/lib/JSON/ILJsonTest.st';
 
     filein: 'Unit/Sessions/ActionRegistryTest.st';
     filein: 'Unit/Sessions/ActionTest.st';

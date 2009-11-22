@@ -1,4 +1,5 @@
-TestCase subclass: JsonTest [
+
+TestCase subclass: ILJsonTest [
 
     <category: 'Iliad-Core-lib-JSON'>
     <comment: 'I provide a number of test cases for class Json.'>
@@ -11,15 +12,15 @@ TestCase subclass: JsonTest [
 
     readFrom: aString [
 	<category: 'filein/out'>
-	^ (Json newWithConstructors: {JsonDummyTestObject.}) readFrom: aString readStream
+	^(ILJson newWithConstructors: {ILJsonDummyTestObject.}) readFrom: aString readStream
     ]
 
     render: anObject equals: aString [
-	self assert: (Json render: anObject) = aString
+	self assert: (ILJson render: anObject) = aString
     ]
 
     simpleDummyObject [
-	^ JsonDummyTestObject new a: 1; b: 2; c: 3; yourself
+	^ILJsonDummyTestObject new a: 1; b: 2; c: 3; yourself
     ]
 
     testArray [
@@ -76,7 +77,7 @@ TestCase subclass: JsonTest [
     testCtor [
 	<category: 'tests'>
 	self json: '@JsonDummyTestObject {"a": 1, "b": 2, "c": 3}' equals: self simpleDummyObject.
-	self json: (Json render: self simpleDummyObject) equals: self simpleDummyObject.
+	self json: (ILJson render: self simpleDummyObject) equals: self simpleDummyObject.
     ]
 
     
@@ -92,15 +93,15 @@ TestCase subclass: JsonTest [
 	<category: 'tests'>
 	self 
 		should: [self readFrom: '@Missing[]']
-		raise: JsonSyntaxError
+		raise: ILJsonSyntaxError
     ]
 
     
     testMissingCtorNoMap [
 	<category: 'tests'>
 	self 
-		should: [Json new readFrom: '@Missing[]' readStream]
-		raise: JsonSyntaxError
+		should: [ILJson new readFrom: '@Missing[]' readStream]
+		raise: ILJsonSyntaxError
     ]
 
     testWriteString [

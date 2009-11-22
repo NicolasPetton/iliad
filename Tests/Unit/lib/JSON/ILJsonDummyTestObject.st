@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.JsonDummyTestObject class definition
+|   Iliad.ILJsonDummyTestObject class definition
 |
  ======================================================================"
 
@@ -38,13 +38,13 @@
 
 
 
-Object subclass: JsonDummyTestObject [
+Object subclass: ILJsonDummyTestObject [
     | a b c |
     
     <category: 'Iliad-Core-lib-JSON'>
     <comment: nil>
 
-    JsonDummyTestObject class >> constructFromJson: j [
+    ILJsonDummyTestObject class >> constructFromJson: j [
 	^(self new)
 	    a: (j at: 'a');
 	    b: (j at: 'b');
@@ -102,7 +102,7 @@ Object subclass: JsonDummyTestObject [
     
     printJsonOn: s [
 	<category: 'Iliad-Core-lib-JSON-printing'>
-	Json 
+	ILJson 
 	    renderInstanceVariables: 
 		{#a.
 		#b.
