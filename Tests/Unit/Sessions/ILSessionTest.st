@@ -1,4 +1,5 @@
-TestCase subclass: SessionTest [
+
+TestCase subclass: ILSessionTest [
     | session |
 
     <comment: nil>
@@ -6,14 +7,14 @@ TestCase subclass: SessionTest [
 
     setUp [
 	<category: 'running'>
-	session := Session new
+	session := ILSession new
     ]
 
     testActionRegistries [
 	<category: 'tests'>
 	| widget1 widget2 actionRegistry1 actionRegistry2 |
-	widget1 := Widget new.
-	widget2 := Widget new.
+	widget1 := ILWidget new.
+	widget2 := ILWidget new.
 	actionRegistry1 := session addActionRegistryFor: widget1.
 	self assert: (session actionRegistryFor: widget1) == actionRegistry1.
 	actionRegistry2 := session addActionRegistryFor: widget2.
@@ -26,8 +27,8 @@ TestCase subclass: SessionTest [
     testDirtyWidgets [
 	<category: 'tests'>
 	| widget1 widget2 |
-	widget1 := Widget new.
-	widget2 := Widget new.
+	widget1 := ILWidget new.
+	widget2 := ILWidget new.
 	session addToDirtyWidgets: widget1.
 	self assert: (session dirtyWidgets includes: widget1).
 	session addToDirtyWidgets: widget2.
@@ -40,11 +41,11 @@ TestCase subclass: SessionTest [
     testExpire [
 	<category: 'tests'>
 	| s |
-	s := Session new.
+	s := ILSession new.
 	self deny: s isExpired.
 	s expire.
 	self assert: s isExpired.
-	s := Session new.
+	s := ILSession new.
 	s expirySeconds: 1.
 	self deny: s isExpired.
 	(Delay forSeconds: 2) wait.

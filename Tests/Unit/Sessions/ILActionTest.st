@@ -1,4 +1,5 @@
-TestCase subclass: ActionTest [
+
+TestCase subclass: ILActionTest [
     | action |
 
     <comment: nil>
@@ -6,7 +7,7 @@ TestCase subclass: ActionTest [
 
     setUp [
 	<category: 'running'>
-	action := Action new
+	action := ILAction new
     ]
 
     testBlock [

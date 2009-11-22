@@ -1,4 +1,5 @@
-TestCase subclass: ActionRegistryTest [
+
+TestCase subclass: ILActionRegistryTest [
     | registry |
     
     <comment: nil>
@@ -6,37 +7,37 @@ TestCase subclass: ActionRegistryTest [
 
     setUp [
 	<category: 'running'>
-	registry := ActionRegistry owner: Widget new
+	registry := ILActionRegistry owner: ILWidget new
     ]
 
     testEvaluating [
 	<category: 'testing'>
 	| action1 action2 |
-	action1 := (Action new)
-		    block: [#action1];
-		    key: Id new;
-		    yourself.
-	action2 := (Action new)
-		    block: [#action2];
-		    key: Id new;
-		    yourself.
+	action1 := ILAction new
+	    block: [#action1];
+	    key: ILId new;
+	    yourself.
+	action2 := ILAction new
+	    block: [#action2];
+	    key: ILId new;
+	    yourself.
 	registry
 	    register: action1;
 	    register: action2.
 	self assert: (registry evaluateActionKey: action1 key) = #action1.
 	self assert: (registry evaluateActionKey: action2 key) = #action2.
-	self assert: (registry evaluateActionKey: Id new) = nil
+	self assert: (registry evaluateActionKey: ILId new) = nil
     ]
 
     testRegistering [
 	<category: 'testing'>
 	| action1 action2 |
-	action1 := (Action new)
-		    key: Id new;
-		    yourself.
-	action2 := (Action new)
-		    key: Id new;
-		    yourself.
+	action1 := ILAction new
+	    key: ILId new;
+	    yourself.
+	action2 := ILAction new
+	    key: ILId new;
+	    yourself.
 	registry
 	    register: action1;
 	    register: action2.

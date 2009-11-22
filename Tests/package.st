@@ -69,12 +69,12 @@ Eval [
     filein: 'Unit/lib/JSON/ILJsonDummyTestObject.st';
     filein: 'Unit/lib/JSON/ILJsonTest.st';
 
-    filein: 'Unit/Sessions/ActionRegistryTest.st';
-    filein: 'Unit/Sessions/ActionTest.st';
-    filein: 'Unit/Sessions/CurrentContextTest.st';
-    filein: 'Unit/Sessions/SessionManagerTest.st';
-    filein: 'Unit/Sessions/UrlBuilderTest.st';
-    filein: 'Unit/Sessions/SessionTest.st';
+    filein: 'Unit/Sessions/ILActionRegistryTest.st';
+    filein: 'Unit/Sessions/ILActionTest.st';
+    filein: 'Unit/Sessions/ILCurrentContextTest.st';
+    filein: 'Unit/Sessions/ILSessionManagerTest.st';
+    filein: 'Unit/Sessions/ILUrlBuilderTest.st';
+    filein: 'Unit/Sessions/ILSessionTest.st';
 
     filein: 'Unit/Utilities/IdTest.st';
     filein: 'Unit/Utilities/ModelProxyTest.st'; 

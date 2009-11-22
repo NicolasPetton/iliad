@@ -1,11 +1,12 @@
-TestCase subclass: SessionManagerTest [
+
+TestCase subclass: ILSessionManagerTest [
     | manager |
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Sessions'>
 
     setUp [
 	<category: 'running'>
-	manager := SessionManager current
+	manager := ILSessionManager current
     ]
 
     tearDown [
@@ -16,8 +17,8 @@ TestCase subclass: SessionManagerTest [
     testAddRemove [
 	<category: 'testing'>
 	| session1 session2 |
-	session1 := Session new.
-	session2 := Session new.
+	session1 := ILSession new.
+	session2 := ILSession new.
 	manager addSession: session1.
 	self deny: (manager hasSession: session2).
 	self assert: (manager hasSession: session1).
@@ -33,7 +34,7 @@ TestCase subclass: SessionManagerTest [
     testExpiredSession [
 	<category: 'testing'>
 	| session |
-	session := Session new
+	session := ILSession new
 	    expirySeconds: -1;
 	    yourself.
 	manager addSession: session.
@@ -46,8 +47,8 @@ TestCase subclass: SessionManagerTest [
     testFindSession [
 	<category: 'testing'>
 	| session1 session2 |
-	session1 := Session new.
-	session2 := Session new.
+	session1 := ILSession new.
+	session2 := ILSession new.
 	manager addSession: session1.
 	manager addSession: session2.
 	self assert: (manager findOrMakeSessionWithId: session2 id asString) = session2.
