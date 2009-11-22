@@ -234,7 +234,7 @@ ILElement subclass: ILRSSElement [
     lastBuildDate: aDate [
 	<category: 'adding-conveniance'>
 	^self lastBuildDate
-	    text: (ILSupport rfc1123StringFor: aDate asTimeStamp);
+	    text: (ILSupport rfc1123StringFor: (DateTime fromDays: aDate days));
 	    yourself
     ]
 
@@ -276,7 +276,7 @@ ILElement subclass: ILRSSElement [
     pubDate: aDate [
 	<category: 'adding-conveniance'>
 	^self pubDate
-	    text: (ILSupport rfc1123StringFor: aDate asTimeStamp);
+	    text: (ILSupport rfc1123StringFor: (DateTime fromDays: aDate days));
 	    yourself
     ]
 
