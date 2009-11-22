@@ -84,9 +84,7 @@ TestCase subclass: ILWidgetTest [
 	<category: 'testing'>
 	| str |
 	str := WriteStream on: ''.
-	ILCurrentContext
-	    use: (ILContext new session: ILSession new)
-	    during: [
+	self withSessionDo: [
 		c1 show: c2.
 		c1 show: c3.
 		c1 build printHtmlOn: str.
@@ -101,9 +99,7 @@ TestCase subclass: ILWidgetTest [
 	<category: 'testing'>
 	| str |
 	str := WriteStream on: ''.
-	ILCurrentContext
-	    use: (ILContext new session: ILSession new; yourself)
-	    during: [
+	self withSessionDo: [
 		c1 show: c2.
 		c1 build printHtmlOn: str.
 		self assert: (str contents matchRegex: '.*test widget 2.*').
