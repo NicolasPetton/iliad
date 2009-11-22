@@ -13,7 +13,7 @@ about that.
 
 Iliad reuses pieces of code from other libraries. In particular, the 
 dispatch pattern is adapted from HttpView2, the composite element 
-hierarachy for building HTML from AIDA/Web, and the stateful Widgets from 
+hierarchy for building HTML from AIDA/Web, and the stateful Widgets from 
 Seaside, however without using continuations.
 
 Iliad is a young piece of code, but it is already very functional and can 
