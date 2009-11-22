@@ -1,4 +1,5 @@
-Widget subclass: WidgetMock3 [
+
+ILWidget subclass: ILWidgetMock3 [
 
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Buildables'>

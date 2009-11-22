@@ -1,9 +1,9 @@
-Application subclass: ApplicationMock1 [
+ILApplication subclass: ILApplicationMock1 [
     
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Dispatching'>
 
-    ApplicationMock1 class >> path [
+    ILApplicationMock1 class >> path [
 	^'/test'
     ]
 ]

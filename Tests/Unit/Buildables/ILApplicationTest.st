@@ -1,4 +1,4 @@
-TestCase subclass: ApplicationTest [
+TestCase subclass: ILApplicationTest [
     | application |
     
     <comment: nil>
@@ -6,7 +6,7 @@ TestCase subclass: ApplicationTest [
 
     setUp [
 	<category: 'running'>
-	application := ApplicationMock1 new
+	application := ILApplicationMock1 new
     ]
 
     testDefaultSelectorFilter [
@@ -18,7 +18,7 @@ TestCase subclass: ApplicationTest [
     testDispatch [
 	<category: 'tests'>
 	[application dispatchOn: #foo] on: Error
-	    do: [:e | self assert: (e isKindOf: DispatchError)]
+	    do: [:e | self assert: (e isKindOf: ILDispatchError)]
     ]
 
     testMode [
