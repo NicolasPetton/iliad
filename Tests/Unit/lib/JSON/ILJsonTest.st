@@ -76,7 +76,7 @@ TestCase subclass: ILJsonTest [
 
     testCtor [
 	<category: 'tests'>
-	self json: '@JsonDummyTestObject {"a": 1, "b": 2, "c": 3}' equals: self simpleDummyObject.
+	self json: '@ILJsonDummyTestObject {"a": 1, "b": 2, "c": 3}' equals: self simpleDummyObject.
 	self json: (ILJson render: self simpleDummyObject) equals: self simpleDummyObject.
     ]
 
