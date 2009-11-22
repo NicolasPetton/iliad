@@ -20,7 +20,7 @@ TestCase subclass: ILRequestHandlerTest [
 
     testAddCacheHeaderTo [
 	| timeStamp headers |
-	timeStamp := Support rfc1123StringFor: (DateTime 
+	timeStamp := ILSupport rfc1123StringFor: (DateTime 
 	    fromSeconds: DateTime now asSeconds + (24 * 3600)).
 	requestHandler addCacheHeaderTo: response.
 	headers := response headers.
@@ -29,7 +29,7 @@ TestCase subclass: ILRequestHandlerTest [
 
     testAddNoCacheHeaderTo [
 	| timeStamp headers |
-	timeStamp := Support rfc1123StringFor: DateTime now.
+	timeStamp := ILSupport rfc1123StringFor: DateTime now.
 	requestHandler addNoCacheHeaderTo: response.
 	headers := response headers.
 	self assert: ((Dictionary from: headers) at: 'expires') = timeStamp.
