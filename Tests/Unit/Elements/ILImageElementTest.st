@@ -39,6 +39,13 @@ ILElementTest subclass: ILImageElementTest [
 	self shouldHaveAttribute: 'src' value: 'foo'
     ]
 
+    testSrcAlt [
+	<category: 'testing'>
+	e src: 'http://www.google.com' alt: 'foo'.
+	self shouldHaveAttribute: 'src' value: 'http://www.google.com'.
+	self shouldHaveAttribute: 'alt' value: 'foo'
+    ]
+
     testTag [
 	<category: 'testing'>
 	self assert: e tag = 'img'
