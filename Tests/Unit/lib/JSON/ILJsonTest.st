@@ -1,7 +1,7 @@
 
 TestCase subclass: ILJsonTest [
 
-    <category: 'Iliad-Core-lib-JSON'>
+    <category: 'Iliad-Tests-Unit-lib-JSON'>
     <comment: 'I provide a number of test cases for class Json.'>
 
     json: aString equals: aValue [
@@ -24,7 +24,7 @@ TestCase subclass: ILJsonTest [
     ]
 
     testArray [
-	<category: 'tests'>
+	<category: 'testing'>
 	self json: '[]' equals: #().
 	self json: '[[]]' equals: #(#()).
 	self json: '[[], []]' equals: #(#() #()).
@@ -33,7 +33,7 @@ TestCase subclass: ILJsonTest [
     ]
 
     testAtomFalse [
-	<category: 'tests'>
+	<category: 'testing'>
 	self json: 'false' equals: false.
 	self json: '  false' equals: false.
 	self json: 'false  ' equals: false.
@@ -41,7 +41,7 @@ TestCase subclass: ILJsonTest [
     ]
 
     testAtomNull [
-	<category: 'tests'>
+	<category: 'testing'>
 	self json: 'null' equals: nil.
 	self json: '  null' equals: nil.
 	self json: 'null  ' equals: nil.
@@ -49,7 +49,7 @@ TestCase subclass: ILJsonTest [
     ]
 
     testAtomNumber [
-        <category: 'tests'>	
+        <category: 'testing'>	
 	self json: '1' equals: 1.
 	self json: '0123' equals: 123.
 	self json: '1.23e2' equals: 123.
@@ -59,7 +59,7 @@ TestCase subclass: ILJsonTest [
     ]
 
     testAtomString [
-	<category: 'tests'>
+	<category: 'testing'>
 	self json: '"hi"' equals: 'hi'.
 	self json: '"\""' equals: '"'.
 	self json: '"\\"' equals: '\'.
@@ -67,7 +67,7 @@ TestCase subclass: ILJsonTest [
     ]
 
     testAtomTrue [
-	<category: 'tests'>
+	<category: 'testing'>
 	self json: 'true' equals: true.
 	self json: '  true' equals: true.
 	self json: 'true  ' equals: true.
@@ -75,14 +75,14 @@ TestCase subclass: ILJsonTest [
     ]
 
     testCtor [
-	<category: 'tests'>
+	<category: 'testing'>
 	self json: '@ILJsonDummyTestObject {"a": 1, "b": 2, "c": 3}' equals: self simpleDummyObject.
 	self json: (ILJson render: self simpleDummyObject) equals: self simpleDummyObject.
     ]
 
     
     testDictionary [
-	<category: 'tests'>
+	<category: 'testing'>
 	self json: '{}' equals: (Dictionary new).
 	self json: '{"a": "a"}' equals: (Dictionary new at: 'a' put: 'a'; yourself).
 	self json: '{"a": [[]]}' equals: (Dictionary new at: 'a' put: #(#()); yourself).
@@ -90,22 +90,28 @@ TestCase subclass: ILJsonTest [
     ]
 
     testMissingCtor [
-	<category: 'tests'>
+	<category: 'testing'>
 	self 
 		should: [self readFrom: '@Missing[]']
 		raise: ILJsonSyntaxError
     ]
 
-    
+    testMimeType [
+	<category: 'testing'>
+	| json |
+	json := ILJson new.
+	self assert: (json class mimeType = 'application/json')
+    ]
+
     testMissingCtorNoMap [
-	<category: 'tests'>
+	<category: 'testing'>
 	self 
-		should: [ILJson new readFrom: '@Missing[]' readStream]
-		raise: ILJsonSyntaxError
+	    should: [ILJson new readFrom: '@Missing[]' readStream]
+	    raise: ILJsonSyntaxError
     ]
 
     testWriteString [
-	<category: 'tests'>
+	<category: 'testing'>
 	self render: '"' equals: '"\""'.
 	self render: '\' equals: '"\\"'.
 	self render: 'hi' equals: '"hi"'.

@@ -10,19 +10,19 @@ ILElementTest subclass: ILFormElementTest [
     ]
 
     testAccept [
-	<category: 'tests'>
+	<category: 'testing'>
 	e accept: 'foo'.
 	self assert: (e attributeAt: 'accept') = 'foo'
     ]
 
     testAcceptCharset [
-	<category: 'tests'>
+	<category: 'testing'>
 	e acceptCharset: 'utf-8'.
 	self assert: (e attributeAt: 'accept-charset') = 'utf-8'
     ]
 
     testAcceptCharsets [
-	<category: 'tests'>
+	<category: 'testing'>
 	| charsets |
 	charsets := #('utf-8' 'foo' 'bar').
 	e acceptCharsets: charsets.
@@ -30,7 +30,7 @@ ILElementTest subclass: ILFormElementTest [
     ]
 
     testAccepts [
-	<category: 'tests'>
+	<category: 'testing'>
 	| accepts |
 	accepts := #('foo' 'bar').
 	e accepts: accepts.
@@ -38,22 +38,35 @@ ILElementTest subclass: ILFormElementTest [
     ]
 
     testBeMultipart [
-	<category: 'tests'>
+	<category: 'testing'>
 	e beMultipart.
 	self assert: (e attributeAt: 'enctype') = 'multipart/form-data'.
 	self assert: e isMultipart
     ]
 
     testEncodingType [
-	<category: 'tests'>
+	<category: 'testing'>
 	e enctype: 'foo'.
-	self assert: (e attributeAt: 'enctype') = 'foo'
+	self assert: (e attributeAt: 'enctype') = 'foo'.
+	self assert: (e class encodingType = 'application/x-www-form-urlencoded')
     ]
 
     testMultipart [
-	<category: 'tests'>
+	<category: 'testing'>
 	e multipart: true.
 	self assert: (e attributeAt: 'enctype') = 'multipart/form-data'
+    ]
+
+    testReset [
+	<category: 'testing'>
+	e onResest: 'foo'.
+	self assert: (e attributeAt: 'onreset') = 'foo'
+    ]
+
+    testSubmit [
+	<category: 'testing'>
+	e onSubmit: 'foo'.
+	self assert: (e attributeAt: 'onsubmit') = 'foo'
     ]
 
     testTag [
@@ -62,13 +75,13 @@ ILElementTest subclass: ILFormElementTest [
     ]
 
     testUseGet [
-	<category: 'tests'>
+	<category: 'testing'>
 	e useGet.
 	self assert: (e attributeAt: 'method') = 'get'
     ]
 
     testUsePost [
-	<category: 'tests'>
+	<category: 'testing'>
 	e usePost.
 	self assert: (e attributeAt: 'method') = 'post'
     ]

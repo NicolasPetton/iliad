@@ -9,6 +9,12 @@ ILElementTest subclass: ILScriptElementTest [
 	e := ILScriptElement new
     ]
 
+    testBeJavascript [
+	<category: 'testing'>
+	e beforePrintHtml.
+	self shouldHaveAttribute: 'type' value: 'text/javascript'
+    ]
+
     testCharSet [
 	<category: 'testing'>
 	e charset: 'foo'.

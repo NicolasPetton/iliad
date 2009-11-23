@@ -371,6 +371,32 @@ ILElementTest subclass: ILXHTMLElementTest [
 	self assert: (e tag = 'ol')
     ]
 
+    testOnEvents [
+	<category: 'testing'>
+	e onEvent: 'foo' do: 'bar'.
+	self assert: (e attributeAt: 'onfoo') = 'bar'.
+	e onClick: 'foo'.
+	self assert: (e attributeAt: 'onclick') = 'foo'.
+	e onMouseOut: 'foo'.
+	self assert: (e attributeAt: 'onmouseout') = 'foo'.
+	e onMouseOver: 'foo'.
+	self assert: (e attributeAt: 'onmouseover') = 'foo'.
+	e onSelect: 'foo'.
+	self assert: (e attributeAt: 'onselect') = 'foo'.
+	e onKeyUp: 'foo'.
+	self assert: (e attributeAt: 'onkeyup') = 'foo'.
+	e onDoubleClick: 'foo'.
+	self assert: (e attributeAt: 'ondblclick') = 'foo'.
+	e onKeyPress: 'foo'.
+	self assert: (e attributeAt: 'onkeypress') = 'foo'.
+	e onKeyDown: 'foo'.
+	self assert: (e attributeAt: 'onkeydown') = 'foo'.
+	e onChange: 'foo'.
+	self assert: (e attributeAt: 'onchange') = 'foo'.
+	e onBlur: 'foo'.
+	self assert: (e attributeAt: 'onblur') = 'foo'
+    ]
+
     testOptGroup [
 	<category: 'testing'>
 	| optgroup |

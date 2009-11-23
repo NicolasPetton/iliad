@@ -3,7 +3,7 @@ TestCase subclass: ILFileProxyTest [
     | fileProxy |
     
     <comment: nil>
-    <category: 'Iliad-Tests-lib-HTTP'>
+    <category: 'Iliad-Tests-Unit-lib-HTTP'>
 
     setUp [
 	<category: 'running'>
