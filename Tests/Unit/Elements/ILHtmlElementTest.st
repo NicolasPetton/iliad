@@ -63,8 +63,11 @@ ILElementTest subclass: ILHtmlElementTest [
     testXmlTag [
 	<category: 'testing'>
 	| xmlTag |
-	xmlTag := e xmlTag.
-	self assert: (xmlTag = '<?xml version="1.0" encoding="UTF-8"?>')
+	ILCurrentContext 
+	    use: (ILContext new session: ILSession new)
+	    during: [
+		xmlTag := e xmlTag.
+		self assert: (xmlTag = '<?xml version="1.0" encoding="utf-8"?>')]
     ]
 ]
 

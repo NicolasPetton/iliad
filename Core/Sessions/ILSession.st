@@ -131,7 +131,7 @@ ILObject subclass: ILSession [
 
     charset [
 	<category: 'accessing preferences'>
-	^self preferenceAt: #charset ifAbsentPut: ['UTF-8']
+	^self preferenceAt: #charset ifAbsentPut: ['utf-8']
     ]
 
     charset: aString [

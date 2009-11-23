@@ -43,7 +43,7 @@ ILElement subclass: ILXHTMLElement [
 
     contentType [
 	<category: 'accessing'>
-	^'text/html'
+	^'text/html; charset=', self session charset
     ]
 
     title [

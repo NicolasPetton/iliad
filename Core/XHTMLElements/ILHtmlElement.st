@@ -46,11 +46,6 @@ ILXHTMLElement subclass: ILHtmlElement [
 	^'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'
     ]
 
-    ILHtmlElement class >> xmlTag [
-	<category: 'defaults'>
-	^'<?xml version="1.0" encoding="UTF-8"?>'
-    ]
-
     ILHtmlElement class >> xmlns [
 	<category: 'defaults'>
 	^'http://www.w3.org/1999/xhtml'
@@ -68,7 +63,7 @@ ILXHTMLElement subclass: ILHtmlElement [
 
     xmlTag [
 	<category: 'accessing'>
-	^self class xmlTag
+	^'<?xml version="1.0" encoding="', self session encoding, '"?>'
     ]
     
     version: aNumber [

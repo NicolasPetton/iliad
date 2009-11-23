@@ -14,4 +14,5 @@ function _centerLightbox(e) {
     x = x < 0 ? 0 : x; y = y < 0 ? 0 : y;
     e.css("left", x + "px");
     e.css("top", y + "px");
+    jQuery('html, body').animate({scrollTop: 0}, 0)
 }
