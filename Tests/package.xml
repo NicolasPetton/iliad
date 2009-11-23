@@ -27,6 +27,7 @@
     <filein>Unit/Elements/ILButtonElementTest.st</filein>
     <filein>Unit/Elements/ILParameterElementTest.st</filein>
     <filein>Unit/Elements/ILTextElementTest.st</filein>
+    <filein>Unit/Elements/ILFieldsetElementTest.st</filein>
     <filein>Unit/Elements/ILDirectionElementTest.st</filein>
     <filein>Unit/Elements/ILTableDataElementTest.st</filein>
     <filein>Unit/Elements/ILLinkElementTest.st</filein>
@@ -71,9 +72,12 @@
     <filein>Unit/Elements/ILTableRowElementTest.st</filein>
     <filein>Unit/Dispatching/ILDispatcherTest.st</filein>
     <filein>Unit/Dispatching/ILRouteTest.st</filein>
+    <filein>Unit/lib/HTTP/ILFileProxyTest.st</filein>
+    <filein>Unit/lib/HTTP/ILUrlTest.st</filein>
     <filein>Unit/lib/JSON/ILJsonDummyTestObject.st</filein>
     <filein>Unit/lib/JSON/ILJsonTest.st</filein>
     <filein>Unit/RequestHandlers/ILRequestHandlerTest.st</filein>
+    <filein>Unit/Buildables/ILBuildableTest.st</filein>
     <filein>Unit/Buildables/ILWidgetMock1.st</filein>
     <filein>Unit/Buildables/ILApplicationMock2.st</filein>
     <filein>Unit/Buildables/ILApplicationMock1.st</filein>
@@ -103,6 +107,7 @@
     <file>Unit/Elements/ILButtonElementTest.st</file>
     <file>Unit/Elements/ILParameterElementTest.st</file>
     <file>Unit/Elements/ILTextElementTest.st</file>
+    <file>Unit/Elements/ILFieldsetElementTest.st</file>
     <file>Unit/Elements/ILDirectionElementTest.st</file>
     <file>Unit/Elements/ILTableDataElementTest.st</file>
     <file>Unit/Elements/ILLinkElementTest.st</file>
@@ -147,9 +152,12 @@
     <file>Unit/Elements/ILTableRowElementTest.st</file>
     <file>Unit/Dispatching/ILDispatcherTest.st</file>
     <file>Unit/Dispatching/ILRouteTest.st</file>
+    <file>Unit/lib/HTTP/ILFileProxyTest.st</file>
+    <file>Unit/lib/HTTP/ILUrlTest.st</file>
     <file>Unit/lib/JSON/ILJsonDummyTestObject.st</file>
     <file>Unit/lib/JSON/ILJsonTest.st</file>
     <file>Unit/RequestHandlers/ILRequestHandlerTest.st</file>
+    <file>Unit/Buildables/ILBuildableTest.st</file>
     <file>Unit/Buildables/ILWidgetMock1.st</file>
     <file>Unit/Buildables/ILApplicationMock2.st</file>
     <file>Unit/Buildables/ILApplicationMock1.st</file>
@@ -180,6 +188,7 @@
       Iliad.ILButtonElementTest
       Iliad.ILParameterElementTest
       Iliad.ILTextElementTest
+      Iliad.ILFieldsetElementTest
       Iliad.ILDirectionElementTest
       Iliad.ILTableDataElementTest
       Iliad.ILLinkElementTest
@@ -224,9 +233,12 @@
       Iliad.ILTableRowElementTest
       Iliad.ILDispatcherTest
       Iliad.ILRouteTest
+      Iliad.ILFileProxyTest
+      Iliad.ILUrlTest
       Iliad.ILJsonDummyTest
       Iliad.ILJsonTest
       Iliad.ILRequestHandlerTest
+      Iliad.ILBuildableTest
       Iliad.ILApplicationTest
       Iliad.ILWidgetTest
     </sunit>
@@ -234,6 +246,7 @@
   <filein>Unit/Buildables/ILApplicationMock1.st</filein>
   <filein>Unit/Buildables/ILApplicationMock2.st</filein>
   <filein>Unit/Buildables/ILApplicationTest.st</filein>
+  <filein>Unit/Buildables/ILBuildableTest.st</filein>
   <filein>Unit/Buildables/ILWidgetMock1.st</filein>
   <filein>Unit/Buildables/ILWidgetMock2.st</filein>
   <filein>Unit/Buildables/ILWidgetMock3.st</filein>
@@ -248,6 +261,7 @@
   <filein>Unit/Elements/ILButtonElementTest.st</filein>
   <filein>Unit/Elements/ILCheckboxElementTest.st</filein>
   <filein>Unit/Elements/ILDirectionElementTest.st</filein>
+  <filein>Unit/Elements/ILFieldsetElementTest.st</filein>
   <filein>Unit/Elements/ILFormElementElementTest.st</filein>
   <filein>Unit/Elements/ILFormElementTest.st</filein>
   <filein>Unit/Elements/ILHeadElementTest.st</filein>
@@ -289,6 +303,8 @@
   <filein>Unit/Elements/ILBreakElementTest.st</filein>
   <filein>Unit/lib/JSON/ILJsonDummyTestObject.st</filein>
   <filein>Unit/lib/JSON/ILJsonTest.st</filein>
+  <filein>Unit/lib/HTTP/ILFileProxyTest.st</filein>
+  <filein>Unit/lib/HTTP/ILUrlTest.st</filein>
   <filein>Unit/Sessions/ILActionRegistryTest.st</filein>
   <filein>Unit/Sessions/ILActionTest.st</filein>
   <filein>Unit/Sessions/ILCurrentContextTest.st</filein>
@@ -310,6 +326,7 @@
   <file>Unit/Buildables/ILApplicationMock1.st</file>
   <file>Unit/Buildables/ILApplicationMock2.st</file>
   <file>Unit/Buildables/ILApplicationTest.st</file>
+  <file>Unit/Buildables/ILBuildableTest.st</file>
   <file>Unit/Buildables/ILWidgetMock1.st</file>
   <file>Unit/Buildables/ILWidgetMock2.st</file>
   <file>Unit/Buildables/ILWidgetMock3.st</file>
@@ -324,6 +341,7 @@
   <file>Unit/Elements/ILButtonElementTest.st</file>
   <file>Unit/Elements/ILCheckboxElementTest.st</file>
   <file>Unit/Elements/ILDirectionElementTest.st</file>
+  <file>Unit/Elements/ILFieldsetElementTest.st</file>
   <file>Unit/Elements/ILFormElementElementTest.st</file>
   <file>Unit/Elements/ILFormElementTest.st</file>
   <file>Unit/Elements/ILHeadElementTest.st</file>
@@ -365,6 +383,8 @@
   <file>Unit/Elements/ILBreakElementTest.st</file>
   <file>Unit/lib/JSON/ILJsonDummyTestObject.st</file>
   <file>Unit/lib/JSON/ILJsonTest.st</file>
+  <file>Unit/lib/HTTP/ILFileProxyTest.st</file>
+  <file>Unit/lib/HTTP/ILUrlTest.st</file>
   <file>Unit/Sessions/ILActionRegistryTest.st</file>
   <file>Unit/Sessions/ILActionTest.st</file>
   <file>Unit/Sessions/ILCurrentContextTest.st</file>

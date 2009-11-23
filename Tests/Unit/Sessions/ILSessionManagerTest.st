@@ -77,6 +77,7 @@ TestCase subclass: ILSessionManagerTest [
 
     testSessionClass [
 	<category: 'testing'>
+	| class |
 	class := ILSession.
 	manager sessionClass: class.
 	self assert: (manager preferences at: #sessionClass) = class
