@@ -56,7 +56,7 @@ ILElementTest subclass: ILXHTMLElementTest [
 	bold := e bold.
 	self assert: (bold isKindOf: ILTextElement).
 	self assert: bold tag = 'bold'.
-	bold := e big: 'coucou'.
+	bold := e bold: 'coucou'.
 	self assert: bold contents = 'coucou'
     ]
 
@@ -87,7 +87,7 @@ ILElementTest subclass: ILXHTMLElementTest [
 	cite := e cite.
 	self assert: (cite isKindOf: ILTextElement).
 	self assert: cite tag = 'cite'.
-	cite := e big: 'coucou'.
+	cite := e cite: 'coucou'.
 	self assert: cite contents = 'coucou'
     ]
 
@@ -103,7 +103,7 @@ ILElementTest subclass: ILXHTMLElementTest [
 	code := e code.
 	self assert: (code isKindOf: ILTextElement).
 	self assert: code tag = 'code'.
-	code := e big: 'coucou'.
+	code := e code: 'coucou'.
 	self assert: code contents = 'coucou'
     ]
 
