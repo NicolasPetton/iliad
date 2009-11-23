@@ -46,8 +46,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	blockquote := e blockquote.
 	self assert: (blockquote isKindOf: ILTextElement).
 	self assert: blockquote tag = 'blockquote'.
-	blockquote := e big: 'coucou'.
-	self assert: blockquote contents = 'coucou'
+	blockquote := e blockquote: 'foo'.
+	self assert: blockquote contents = 'foo'
     ]
 
     testBold [
@@ -277,7 +277,7 @@ ILElementTest subclass: ILXHTMLElementTest [
     testId [
 	<category: 'testing'>
 	e id: 'foo'.
-	self shouldHaveAttribute: 'id' value: 'foo'
+	self assert: (e id = 'foo')
     ]
 
     testImg [

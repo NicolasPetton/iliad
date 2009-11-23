@@ -18,5 +18,11 @@ ILElementTest subclass: ILTextElementTest [
 	<category: 'testing'>
 	self assert: e tag = nil
     ]
+
+    testText [
+	<category: 'testing'>
+	e text: 'foo'.
+	self assert: (e contents = 'foo')
+    ]
 ]
 

@@ -31,6 +31,12 @@ TestCase subclass: ILSessionManagerTest [
 	session1 := session2 := nil
     ]
 
+    testCookieName [
+	<category: 'testing'>
+	manager cookieName: 'foo'.
+	self assert: (manager preferences at: #cookieName) = 'foo'
+    ]
+
     testExpiredSession [
 	<category: 'testing'>
 	| session |
@@ -59,6 +65,21 @@ TestCase subclass: ILSessionManagerTest [
 	self deny: (manager findOrMakeSessionWithId: session1 id asString) = session1.
 	self deny: (manager findOrMakeSessionWithId: session2 id asString) = session2.
 	session1 := session2 := nil
+    ]
+
+    testPreferences [
+	<category: 'testing'>
+	| obj |
+	obj := 'bar'.
+	manager preferenceAt: #foo put: obj.
+	self assert: (manager preferences at: #foo) = obj
+    ]
+
+    testSessionClass [
+	<category: 'testing'>
+	class := ILSession.
+	manager sessionClass: class.
+	self assert: (manager preferences at: #sessionClass) = class
     ]
 ]
 
