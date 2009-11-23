@@ -21,16 +21,21 @@ ILElementTest subclass: ILSelectElementTest [
 	self shouldHaveAttribute: 'multiple' value: 'multiple'
     ]
 
+    testDisabled [
+	<category: 'testing'>
+	e disabled.
+	self shouldHaveAttribute: 'disabled' value: 'disabled'
+    ]
+
     testSize [
 	<category: 'testing'>
 	e size: 10.
 	self shouldHaveAttribute: 'size' value: '10'
     ]
 
-    testdisabled [
+    testTag [
 	<category: 'testing'>
-	e disabled.
-	self shouldHaveAttribute: 'disabled' value: 'disabled'
+	self assert: e tag = 'select'
     ]
 ]
 

@@ -72,6 +72,7 @@ Eval [
     filein: 'Unit/lib/JSON/ILJsonTest.st';
     
     filein: 'Unit/lib/HTTP/ILFileProxyTest.st';
+    filein: 'Unit/lib/HTTP/ILUrlTest.st';
 
     filein: 'Unit/Sessions/ILActionRegistryTest.st';
     filein: 'Unit/Sessions/ILActionTest.st';

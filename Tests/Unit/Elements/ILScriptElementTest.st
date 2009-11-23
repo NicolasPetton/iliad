@@ -15,6 +15,12 @@ ILElementTest subclass: ILScriptElementTest [
 	self shouldHaveAttribute: 'charset' value: 'foo'
     ]
 
+    testDeferred [
+	<category: 'testing'>
+	e deferred.
+	self shouldHaveAttribute: 'defer' value: 'defer'
+    ]
+
     testLanguage [
 	<category: 'testing'>
 	e language: 'foo'.

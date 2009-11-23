@@ -60,5 +60,13 @@ TestCase subclass: ILSessionManagerTest [
 	self deny: (manager findOrMakeSessionWithId: session2 id asString) = session2.
 	session1 := session2 := nil
     ]
+
+    testPreferences [
+	<category: 'testing'>
+	| obj |
+	obj := 'bar'.
+	manager preferenceAt: #foo put: obj.
+	self assert: (manager preferenceAt: #foo) = obj
+    ]
 ]
 
