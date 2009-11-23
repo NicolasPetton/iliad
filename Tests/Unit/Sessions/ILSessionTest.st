@@ -55,19 +55,19 @@ TestCase subclass: ILSessionTest [
     testCharset [
 	<category: 'testing'>
 	session charset: 'foo'.
-	self assert: (session preferences at: #charset) = 'foo'
+	self assert: (session charset = 'foo')
     ]
 
     testRefreshOnBacktrack [
 	<category: 'testing'>
 	session refreshOnBacktrack: true.
-	self assert: (session preferences at: #refreshOnBacktrack) = true
+	self assert: (session refreshOnBacktrack = true)
     ]
 
     testUseCookies [
 	<category: 'testing'>
 	session useCookies: true.
-	self assert: (session preferences at: #cookies) = true
+	self assert: (session useCookies = true)
     ]
 ]
 
