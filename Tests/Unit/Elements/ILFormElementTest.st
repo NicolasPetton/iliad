@@ -59,7 +59,7 @@ ILElementTest subclass: ILFormElementTest [
 
     testReset [
 	<category: 'testing'>
-	e onResest: 'foo'.
+	e onReset: 'foo'.
 	self assert: (e attributeAt: 'onreset') = 'foo'
     ]
 
