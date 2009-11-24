@@ -17,13 +17,5 @@ TestCase subclass: ILUrlTest [
 	url addParameter: 'foo' value: 'bar'.
 	self assert: (url parameters at: 'foo') = 'bar'
     ]
-    
-    testDefaultKeys [
-	<category: 'testing'>
-	| url |
-	url := ILUrlBuilder new.
-	self assert: (url defaultTokenKey = '_token').
-	self assert: (url defaultActionKey = '_action')
-    ]
 ]
 
