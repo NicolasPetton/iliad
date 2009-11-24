@@ -96,13 +96,6 @@ TestCase subclass: ILJsonTest [
 		raise: ILJsonSyntaxError
     ]
 
-    testMimeType [
-	<category: 'testing'>
-	| json |
-	json := ILJson new.
-	self assert: (json class mimeType = 'application/json')
-    ]
-
     testMissingCtorNoMap [
 	<category: 'testing'>
 	self 
