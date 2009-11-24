@@ -11,7 +11,7 @@ ILElementTest subclass: ILScriptElementTest [
 
     testBeJavascript [
 	<category: 'testing'>
-	e beforePrintHtml.
+	e beJavascript.
 	self shouldHaveAttribute: 'type' value: 'text/javascript'
     ]
 

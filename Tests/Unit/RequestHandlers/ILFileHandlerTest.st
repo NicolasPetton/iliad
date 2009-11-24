@@ -10,11 +10,6 @@ TestCase subclass: ILFileHandlerTest [
 	fileHandler := ILFileHandler new
     ]
 
-    testDefaultFilePath [
-	<category: 'testing'>
-	self assert: fileHandler class defaultFilePath = 'Public'
-    ]
-
     testMimeType [
 	<category: 'testing'>
 	self 
