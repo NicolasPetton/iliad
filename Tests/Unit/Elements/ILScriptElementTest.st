@@ -21,9 +21,9 @@ ILElementTest subclass: ILScriptElementTest [
 	self shouldHaveAttribute: 'charset' value: 'foo'
     ]
 
-    testDeferred [
+    testDefer [
 	<category: 'testing'>
-	e deferred.
+	e defer.
 	self shouldHaveAttribute: 'defer' value: 'defer'
     ]
 

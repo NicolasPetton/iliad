@@ -67,7 +67,7 @@ ILXHTMLElement subclass: ILScriptElement [
 	self attributeAt: 'charset' put: aString
     ]
 
-    deferred [
+    defer [
 	<category: 'accessing attributes'>
 	self attributeAt: 'defer' put: 'defer'
     ]
