@@ -22,7 +22,7 @@ TestCase subclass: ILWidgetTest [
 		c2 show: c3 onAnswer: [:ans | self assert: ans = 10].
 		c3 answer: 10.
 		c2 answer: 'hello'.
-		c1 show: c2 onAnswer: [:ans | self assert: ans = 'hello'].
+		c1 show: c2 onAnswer: [:ans | self assert: ans = nil].
 		c1 show: c3 onAnswer: [:ans | self assert: ans = 10].
 		c2 answer: 'hello'.
 		c3 answer: 10]
@@ -68,16 +68,6 @@ TestCase subclass: ILWidgetTest [
 	    c3 markDirty.
 	    self assert: (self session dirtyWidgets size = 1).
 	    self assert: (self session dirtyWidgets includes: c3)]
-    ]
-
-    testReplace [
-	<category: 'testing'>
-	    self withSessionDo: [
-		c1 replace: c2 with: c3 onAnswer: [:ans |
-		    self assert: ans = nil].
-		c1 replace: c2 with: c4 onAnswer: [:ans |
-		    self assert: ans = 'foo'].
-		c2 answer: 'foo']
     ]
 
     testRetrieveControl [

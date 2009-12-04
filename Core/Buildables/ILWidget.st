@@ -242,32 +242,8 @@ added to the decoration chain with #decorateWith:.'>
 	^nil
     ]
   
-    replace: aWidget with: anotherWidget [
-	"Similar to #show:* methods, except that several widgets can't be
-	stacked. If <aWidget> is already replaced with another one, force
-	the replacing widget to answer nil"
-	<category: 'control flow'>
-
-	self
-	    replace: aWidget
-	    with: anotherWidget
-	    onAnswer: [:ans | ]
-    ]
-
-    replace: aWidget with: anotherWidget onAnswer: aBlock [
-	"Similar to #show:* methods, except that several widgets can't be
-	stacked. If <aWidget> is already replaced with another one, force
-	the replacing widget to answer nil"
-	<category: 'control flow'>
-
-	aWidget
-	    retrieveControl;
-	    show: anotherWidget
-	    onAnswer: aBlock
-    ]
-
     retrieveControl [
-	"Get the control back from any showed widget, and make it answer nil"
+	"Get the control back to the receiver from any showed widget, and make it answer nil"
 	<category: 'control flow'>
 
 	self decoratorsDo: [:each |
@@ -276,7 +252,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
 
     show: aWidget [
-	"Show another widget instead of myself.
+	"Show another widget instead of the receiver.
 	I am also implicitely marked dirty"
 	<category: 'control flow'>
 
@@ -284,7 +260,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
 
     show: aWidget onAnswer: aBlock [
-	"Show another widget instead of myself and catch the answer in <aBlock>.
+	"Show another widget instead of the receiver and catch the answer in <aBlock>.
 	I am also implicitely marked dirty"
 	<category: 'control flow'>
 	
@@ -295,8 +271,9 @@ added to the decoration chain with #decorateWith:.'>
     ]
     
     show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
-	<category: 'show/answer'>
+	<category: 'control flow'>
 	| answerHandler |
+	self retrieveControl.
 	answerHandler := ILAnswerHandler new.
 	self decorateWith: aDelegator.
 	answerHandler action: (ILAction new block: [:value |
@@ -309,6 +286,40 @@ added to the decoration chain with #decorateWith:.'>
 	    owner: self;
 	    markDirty;
 	    decorateWith: answerHandler
+    ]
+
+    append: aWidget [
+	"Insert <aWidget> after the receiver"
+	<category: 'control flow'>
+
+	self append: aWidget onAnswer: [:ans |]
+    ] 
+
+    append: aWidget onAnswer: aBlock [
+	"Insert <aWidget> after the receiver"
+	<category: 'control flow'>
+
+	self 
+	    show: aWidget
+	    onAnswer: aBlock
+	    delegator: (ILAppendDelegator new widget: aWidget)
+    ]
+
+    prepend: aWidget [
+	"Insert <aWidget> before the receiver"
+	<category: 'control flow'>
+
+	self prepend: aWidget onAnswer: [:ans |]
+    ] 
+
+    prepend: aWidget onAnswer: aBlock [
+	"Insert <aWidget> before the receiver"
+	<category: 'control flow'>
+
+	self 
+	    show: aWidget
+	    onAnswer: aBlock
+	    delegator: (ILPrependDelegator new widget: aWidget)
     ]
 
     printJsonOn: aStream [
