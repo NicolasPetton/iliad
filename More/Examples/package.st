@@ -5,6 +5,7 @@ Eval [
     prereq: 'Iliad-Core';
     prereq: 'Iliad-More-UI';
     prereq: 'Iliad-More-Magritte';
+    prereq: 'Digest';
 
     filein: 'ILCounter.st'; 
     filein: 'ILCounterApplication.st'; 
