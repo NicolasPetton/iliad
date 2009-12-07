@@ -1,0 +1,12 @@
+<package>
+  <name>Iliad-Swazoo</name>
+  <namespace>Iliad</namespace>
+  <prereq>Swazoo</prereq>
+  <filein>ILSite.st</filein>
+  <filein>SwazooIliad.st</filein>
+  <file>ILSite.st</file>
+  <file>SwazooIliad.st</file>
+  <start>Iliad.SwazooIliad startOn: (%1
+	ifNil: [ILSite defaultPort]
+	ifNotNil: [:port | port asNumber])</start>
+</package>
