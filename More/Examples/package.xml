@@ -14,6 +14,7 @@
   <filein>ILBlogPost.st</filein>
   <filein>ILBlogRepository.st</filein>
   <filein>ILBlogApplication.st</filein>
+  <filein>ILGravatarWidget.st</filein>
   <file>ILCounter.st</file>
   <file>ILCounterApplication.st</file>
   <file>ILTodoListItem.st</file>
@@ -24,4 +25,5 @@
   <file>ILBlogPost.st</file>
   <file>ILBlogRepository.st</file>
   <file>ILBlogApplication.st</file>
+  <file>ILGravatarWidget.st</file>
 </package>

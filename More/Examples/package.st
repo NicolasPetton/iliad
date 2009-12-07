@@ -16,6 +16,7 @@ Eval [
     filein: 'ILBlogPost.st';
     filein: 'ILBlogRepository.st';
     filein: 'ILBlogApplication.st';
+    filein: 'ILGravatarWidget.st';
 
     buildXml
 ]
