@@ -1,0 +1,12 @@
+<package>
+  <name>Iliad-More-DevelopmentTools</name>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-More-UI</prereq>
+  <filein>ILDevelopmentTool.st</filein>
+  <filein>ILDevelopmentDecorator.st</filein>
+  <filein>ILWorkspace.st</filein>
+  <file>ILDevelopmentTool.st</file>
+  <file>ILDevelopmentDecorator.st</file>
+  <file>ILWorkspace.st</file>
+  <file>Public/stylesheets/iliad_dev.css</file>
+</package>
