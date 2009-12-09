@@ -62,7 +62,7 @@ ILDecorator subclass: ILDelegator [
 
     contents [
 	<category: 'building'>
-	^[:e | e build: self widget] 
+	^self widget
     ]
 
     updateHead: aHead [
