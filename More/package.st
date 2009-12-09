@@ -7,5 +7,6 @@ Eval [
 	prereq: 'Iliad-More-UI';
 	prereq: 'Iliad-More-Examples';
 	prereq: 'Iliad-More-RSS';
+	prereq: 'Iliad-More-DevelopmentTools';
 	buildXml
 ]
