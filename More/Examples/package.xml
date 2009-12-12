@@ -4,6 +4,7 @@
   <prereq>Iliad-Core</prereq>
   <prereq>Iliad-More-UI</prereq>
   <prereq>Iliad-More-Magritte</prereq>
+  <prereq>Digest</prereq>
   <filein>ILCounter.st</filein>
   <filein>ILCounterApplication.st</filein>
   <filein>ILTodoListItem.st</filein>
