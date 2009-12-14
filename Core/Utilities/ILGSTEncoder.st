@@ -9,14 +9,18 @@ ILEncoder subclass: ILGSTEncoder [
 
 	decode: aString [
 	    <category: 'encoding'>
-		^(I18N.EncodedStream on: aString readStream from: self outputEncoding
-		    to: self inputEncoding) contents asString
+	    ^self inputEncoding asLowercase = self outputEncoding asLowercase
+	        ifTrue: [aString]
+	        ifFalse: [(I18N.EncodedStream on: aString readStream from: self outputEncoding
+		    to: self inputEncoding) contents asString]
 	]
 
 	encode: aString [
 	    <category: 'encoding'>
-	    ^(I18N.EncodedStream on: aString readStream from: self inputEncoding
-		to: self outputEncoding) contents asString
+	    ^self inputEncoding asLowercase = self outputEncoding asLowercase
+		ifTrue: [aString]
+		ifFalse: [^(I18N.EncodedStream on: aString readStream from: self inputEncoding
+		    to: self outputEncoding) contents asString]
 	]
 
 	inputEncoding [
