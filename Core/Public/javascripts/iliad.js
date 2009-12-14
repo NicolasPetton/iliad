@@ -238,7 +238,7 @@ var iliad = (function() {
 	}
 
 	function showError(actionUrl){
-		jQuery("body").html("<h1>Error 500: Internal server error</h1>");
+		//jQuery("body").html("<h1>Error 500: Internal server error</h1>");
 	}
 
 	function removeAjaxLoader() {
