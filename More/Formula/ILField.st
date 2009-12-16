@@ -81,7 +81,7 @@ ILBuildable subclass: ILField [
 	<category: 'conditions'>
 	self addCondition: (ILCondition new
 	    conditionBlock: aBlock;
-	    labelContents: anotherBlock;
+	    labelBlock: anotherBlock;
 	    yourself)
     ]
 
