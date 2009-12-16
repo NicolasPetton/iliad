@@ -1,5 +1,5 @@
 ILBuildable subclass: ILField [
-    | conditions errors key labelBlock commentBlock value action |
+    | conditions errors key labelContents commentContents value action |
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -24,32 +24,32 @@ ILBuildable subclass: ILField [
 
     label: aString [
 	<category: 'accessing'>
-	self labelBlock: [:e | e text: aString]
+	self labelContents: [:e | e text: aString]
     ]
 
-    labelBlock: aBlock [
+    labelContents: aBlock [
 	<category: 'accessing'>
-	labelBlock := aBlock
+	labelContents := aBlock
     ]
 
-    labelBlock [
+    labelContents [
 	<category: 'accessing'>
-	^labelBlock
+	^labelContents
     ]
 
     comment: aString [
 	<category: 'accessing'>
-	self commentBlock: [:e | e text: aString]
+	self commentContents: [:e | e text: aString]
     ]
 
-    commentBlock: aBlock [
+    commentContents: aBlock [
 	<category: 'accessing'>
-	commentBlock := aBlock
+	commentContents := aBlock
     ]
 
-    commentBlock [
+    commentContents [
 	<category: 'accessing'>
-	^commentBlock ifNil: [
+	^commentContents ifNil: [
 	    [:e |]]
     ]
 
@@ -81,7 +81,7 @@ ILBuildable subclass: ILField [
 	<category: 'conditions'>
 	self addCondition: (Condition new
 	    conditionBlock: aBlock;
-	    labelBlock: anotherBlock;
+	    labelContents: anotherBlock;
 	    yourself)
     ]
 
@@ -112,26 +112,20 @@ ILBuildable subclass: ILField [
 		self isValid ifFalse: [
 		    tr class: 'error'].
 		tr td 
-		    build: self labelBlock.
+		    build: self labelContents.
 		tr td 
 		    build: self fieldContents].
-	    tbody build: self commentContents.
+	    tbody tr td.
+	    tbody tr td
+		class: 'comment';
+		build: self commentContents.
+	    tbody tr td.
 	    tbody build: self errorsContents]
     ]
 
     fieldContents [
 	<category: 'building'>
 	self subclassResponsibility
-    ]
-
-    commentContents [
-	<category: 'building'>
-	^[:tbody |
-	    tbody tr build: [:tr |
-		tr td.
-		tr td 
-		    class: 'comment';
-		    build: self commentBlock]]
     ]
 
     errorsContents [
@@ -154,7 +148,7 @@ ILBuildable subclass: ILField [
     on: aSelector of: anObject [
 	<category: 'private'>
 	key ifNil: [key := aSelector].
-	labelBlock ifNil: [self label: aSelector asString].
+	labelContents ifNil: [self label: aSelector asString].
 	value := anObject perform: aSelector.
 	action := [:val | 
 	    anObject perform: (aSelector, ':') asSymbol with: val]
