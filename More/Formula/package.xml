@@ -1,0 +1,23 @@
+<package>
+  <name>Iliad-More-Formula</name>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-Core</prereq>
+  <filein>ILCondition.st</filein>
+  <filein>ILField.st</filein>
+  <filein>ILInputField.st</filein>
+  <filein>ILTextareaField.st</filein>
+  <filein>ILPasswordField.st</filein>
+  <filein>ILCheckboxField.st</filein>
+  <filein>ILOptionField.st</filein>
+  <filein>ILSelectField.st</filein>
+  <filein>ILFormula.st</filein>
+  <file>ILCondition.st</file>
+  <file>ILField.st</file>
+  <file>ILInputField.st</file>
+  <file>ILTextareaField.st</file>
+  <file>ILPasswordField.st</file>
+  <file>ILCheckboxField.st</file>
+  <file>ILOptionField.st</file>
+  <file>ILSelectField.st</file>
+  <file>ILFormula.st</file>
+</package>
