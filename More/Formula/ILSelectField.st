@@ -23,7 +23,7 @@ ILOptionField subclass: ILSelectField [
 		self options do: [:each |
 		    select option 
 			selected: self value = each;
-			action: [self value: each;
-			text: (self optionLabelBlock value: each)]]]]
+			action: [self value: each];
+			text: (self optionLabelBlock value: each)]]]
     ]
 ]
