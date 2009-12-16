@@ -113,23 +113,22 @@ ILUIWidget subclass: ILTimeSelector [
 
     contents [
 	<category: 'building'>
-	^[:e || div form |
+	^[:e || div |
 	    div := e div class: self cssClass.
 	    self selectedTimeIsValid ifFalse: [
 		div div
 		    class: 'error';
 		    text: 'Invalid time'].
-	    form := div form.
-	    form
+	    div
 		build: self hoursInputContents;
 		text: ':';
 		build: self minutesInputContents.
 	    self showSeconds ifTrue: [
-		form
+		div
 		    text: ':';
 		    build: self secondsInputContents].
-	    form space.
-	    form button
+	    div space.
+	    div button
 		text: 'Select';
 		action: [self selectTime]]
     ]

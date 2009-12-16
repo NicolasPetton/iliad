@@ -46,18 +46,17 @@ ILWidget subclass: ILTodoListGridWidget [
 	<category: 'actions'>
 	| newItem |
 	newItem := ILTodoListItem new.
-	self lightbox: ((ILTodoListItemEditor new)
-		item: newItem;
-		yourself)
+	self lightbox: ((self formulaForItem: newItem)
+	    addMessage: [:e | e h2: 'Add item ', newItem title];
+	    yourself)
 	    onAnswer: [:item | item ifNotNil: [self application model addItem: item]]
     ]
 
     editItem: anItem [
 	<category: 'actions'>
-	self lightbox: ((ILTodoListItemEditor new)
-		item: (ILModelProxy on: anItem);
-		yourself)
-	    onAnswer: [:proxy | proxy ifNotNil:  [proxy commit]]
+	self lightbox: ((self formulaForItem: anItem)
+	    addMessage: [:e | e h2: 'Edit item ', anItem title];
+	    yourself)
     ]
 
     removeItem: anItem [
@@ -111,6 +110,27 @@ ILWidget subclass: ILTodoListGridWidget [
 	    head td text: 'Title'.
 	    head td text: 'Body'.
 	    head td text: 'Deadline']
+    ]
+
+    formulaForItem: anItem [
+	<category: 'accessing'>
+	| formula |
+	formula := ILFormula on: anItem.
+	(formula inputOn: #title)
+	    labelContents: [:e | e span class: 'required';text: 'Title'];
+	    addCondition: [:val | val notNil and: [val notEmpty]]
+	    labelled: [:val | 'This field is required'].
+	(formula textareaOn: #body)
+	    labelContents: [:e | e span class: 'required';text: 'Body'];
+	    size: 30@10;
+	    addCondition: [:val | val notNil and: [val notEmpty]]
+	    labelled: [:val | 'This field is required'].
+	(formula dateInputOn: #deadline)
+	    addCondition: [:val | val notNil]
+	    labelled: [:label | label, ' is required'].
+	(formula checkboxOn: #completed)
+	    labelContents: [:e | e text: 'Title'].
+	^formula
     ]
 
     items [

@@ -36,23 +36,25 @@
 
 
 ILWidget subclass: ILTodoListItemEditor [
-    | item |
+    | item formula |
     
     <comment: nil>
     <category: 'Iliad-Core-Examples'>
 
-    cancel [
-	<category: 'accessing'>
-	self answer: nil
-    ]
-    
-    completedContents [
-	<category: 'building'>
-	^[:e | 
-	    e td text: 'Completed'.
-	    (e td checkbox)
-		action: [:val | self setItemCompleted: val];
-		checked: self item completed]
+    initFormula [
+	<category: 'initialize-release'>
+	formula := ILFormula on: self item.
+	(formula inputOn: #title)
+	    addCondition: [:val | val notNil and: [val notEmpty]]
+	    labelled: [:label | label, ' is required'].
+	(formula textareaOn: #body)
+	    size: 40@30;
+	    addCondition: [:val | val notNil and: [val notEmpty]]
+	    labelled: [:label | label, ' is required'].
+	"(formula dateInputOn: #deadline)
+	    addCondition: [:val | val notNil]
+	    labelled: [:label | label, ' is required']."
+	formula checkboxOn: #completed
     ]
 
     contents [
@@ -63,55 +65,13 @@ ILWidget subclass: ILTodoListItemEditor [
 		class: 'edit';
 		yourself.
 	    div h2: 'Edit item'.
-	    div build: self editFormContents]
+	    div build: self formula]
     ]
 
-    deadlineContents [
-	<category: 'building'>
-	^[:e | 
-	    e td text: 'Deadline'.
-	    e td a
-		action: [self setItemDeadline];
-		text: self item deadline asString]
-    ]
-
-    bodyContents [
-	<category: 'building'>
-	^[:e | 
-	    e td text: 'Decription'.
-	    e td textarea
-		text: self item body;
-		cols: 40;
-		rows: 4;
-		action: [:val | self setItemBody: val]]
-    ]
-
-    editFormContents [
-	<category: 'building'>
-	^[:e | 
-	    | form tbody |
-	    form := e form.
-	    tbody := form table tbody.
-	    tbody tr build: self deadlineContents.
-	    tbody tr build: self titleContents.
-	    tbody tr build: self bodyContents.
-	    tbody tr build: self completedContents.
-	    (form button)
-		action: [self saveItem];
-		text: 'save'.
-	    form button
-		action: [self cancel];
-		text: 'cancel']
-    ]
-
-    titleContents [
-	<category: 'building'>
-	^[:e | 
-	    e td text: 'Title'.
-	    e td input
-		value: self item title;
-		size: 30;
-		action: [:val | self setItemTitle: val]]
+    formula [
+	<category: 'accessing'>
+	formula ifNil: [self initFormula].
+	^formula
     ]
 
     item [
@@ -129,25 +89,9 @@ ILWidget subclass: ILTodoListItemEditor [
 	self answer: self item
     ]
 
-    setItemCompleted: aBoolean [
+    cancel [
 	<category: 'actions'>
-	self item completed: aBoolean
-    ]
-
-    setItemDeadline [
-	<category: 'actions'>
-	self show: ILCalendar new onAnswer: [:date |
-		self item deadline: date]
-    ]
-
-    setItemBody: aString [
-	<category: 'actions'>
-	self item body: aString
-    ]
-
-    setItemTitle: aString [
-	<category: 'actions'>
-	self item title: aString
+	self answer: nil
     ]
 ]
 

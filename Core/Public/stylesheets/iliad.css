@@ -59,3 +59,23 @@ pre {
     background-color: #f5fff4;
     border: 1px solid #cef6c9 ;
 }
+
+input, textarea {
+    border: 1px solid #444;
+}
+
+.error, .errors {
+    color: #d51a2c;
+    font-weight: bold
+}
+
+.errors {margin-bottom: 10px}
+
+.error input, 
+.error textarea {
+    background-color: #f4e5e6; 
+    border: 1px solid #d51a2c}
+
+.required:after {content: ' *'; color: #d51a2c; font-weight: bold}
+
+

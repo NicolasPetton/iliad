@@ -107,20 +107,19 @@ ILUIWidget subclass: ILDateSelector [
 
     contents [
 	<category: 'building'>
-	^[:e || div form |
+	^[:e || div |
 	    div := e div class: self cssClass.
 	    self selectedDateIsValid 
 		ifFalse: [
 		    div div
 			class: 'error';
 			text: 'Invalid date'].
-	    form := div form.
-	    form
+	    div
 		build: self monthSelectionContents;
 		build: self dayInputContents;
 		build: self yearInputContents;
 		space.
-	    (form button)
+	    (div button)
 		text: 'Select';
 		action: [self selectDate]]
     ]
