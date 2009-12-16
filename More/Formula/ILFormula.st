@@ -33,27 +33,27 @@ ILWidget subclass: ILFormula [
 
     inputOn: aSelector [
 	<category: 'adding'>
-	^self addField: (InputField on: aSelector of: model)
+	^self addField: (ILInputField on: aSelector of: model)
     ]
 
     textareaOn: aSelector [
 	<category: 'adding'>
-	^self addField: (TextareaField on: aSelector of: model)
+	^self addField: (ILTextareaField on: aSelector of: model)
     ]
 
     checkboxOn: aSelector [
 	<category: 'adding'>
-	^self addField: (CheckboxField on: aSelector of: model)
+	^self addField: (ILCheckboxField on: aSelector of: model)
     ]
 
     passwordOn: aSelector [
 	<category: 'adding'>
-	^self addField: (PasswordField on: aSelector of: model)
+	^self addField: (ILPasswordField on: aSelector of: model)
     ]
 
     selectOn: aSelector [
 	<category: 'adding'>
-	^self addField: (SelectField on: aSelector of: model)
+	^self addField: (ILSelectField on: aSelector of: model)
     ]
 
     contents [
