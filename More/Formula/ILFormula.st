@@ -51,6 +51,11 @@ ILWidget subclass: ILFormula [
 	^self addField: (ILPasswordField on: aSelector of: model)
     ]
 
+    dateInputOn: aSelector [
+	<category: 'adding'>
+	^self addField: (ILDateInputField on: aSelector of: model)
+    ]
+
     selectOn: aSelector [
 	<category: 'adding'>
 	^self addField: (ILSelectField on: aSelector of: model)

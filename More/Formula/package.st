@@ -14,7 +14,7 @@ Eval [
 	filein: 'ILCheckboxField.st';
 	filein: 'ILOptionField.st';
 	filein: 'ILSelectField.st';
-	filein: 'ILDateField.st';
+	filein: 'ILDateInputField.st';
 	filein: 'ILFormula.st';
 
 	buildXml
