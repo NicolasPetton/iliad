@@ -7,7 +7,7 @@ ILField subclass: ILCheckboxField [
 	<category: 'building'>
 	^[:e | 
 	    e checkbox
-		checked: self value ifNil: [false];
+		checked: (self value ifNil: [false]);
 		action: [:boolean | self value: boolean]]
     ]
 ]
