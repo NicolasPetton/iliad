@@ -115,11 +115,11 @@ ILBuildable subclass: ILField [
 		    build: self labelContents.
 		tr td 
 		    build: self fieldContents].
-	    tbody tr td.
-	    tbody tr td
-		class: 'comment';
-		build: self commentContents.
-	    tbody tr td.
+	    tbody tr build: [:tr |
+		tr td.
+		tr td
+		    class: 'comment';
+		    build: self commentContents].
 	    tbody build: self errorsContents]
     ]
 

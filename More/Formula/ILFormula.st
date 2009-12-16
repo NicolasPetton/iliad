@@ -86,7 +86,7 @@ ILWidget subclass: ILFormula [
 	    validate;
 	    markDirty.
 	self isValid ifTrue: [
-	    self commit; answer: self model]
+	    self commit; answer: model]
     ]
 
     cancel [
