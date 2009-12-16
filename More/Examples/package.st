@@ -5,6 +5,7 @@ Eval [
     prereq: 'Iliad-Core';
     prereq: 'Iliad-More-UI';
     prereq: 'Iliad-More-Magritte';
+    prereq: 'Iliad-More-Formula';
     prereq: 'Digest';
 
     filein: 'ILCounter.st'; 
@@ -12,7 +13,6 @@ Eval [
     filein: 'ILTodoListItem.st'; 
     filein: 'ILTodoListItemRepository.st'; 
     filein: 'ILTodoListGridWidget.st'; 
-    filein: 'ILTodoListItemEditor.st'; 
     filein: 'ILTodoListApplication.st'; 
     filein: 'ILBlogPost.st';
     filein: 'ILBlogRepository.st';

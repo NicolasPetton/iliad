@@ -4,13 +4,13 @@
   <prereq>Iliad-Core</prereq>
   <prereq>Iliad-More-UI</prereq>
   <prereq>Iliad-More-Magritte</prereq>
+  <prereq>Iliad-More-Formula</prereq>
   <prereq>Digest</prereq>
   <filein>ILCounter.st</filein>
   <filein>ILCounterApplication.st</filein>
   <filein>ILTodoListItem.st</filein>
   <filein>ILTodoListItemRepository.st</filein>
   <filein>ILTodoListGridWidget.st</filein>
-  <filein>ILTodoListItemEditor.st</filein>
   <filein>ILTodoListApplication.st</filein>
   <filein>ILBlogPost.st</filein>
   <filein>ILBlogRepository.st</filein>
@@ -21,7 +21,6 @@
   <file>ILTodoListItem.st</file>
   <file>ILTodoListItemRepository.st</file>
   <file>ILTodoListGridWidget.st</file>
-  <file>ILTodoListItemEditor.st</file>
   <file>ILTodoListApplication.st</file>
   <file>ILBlogPost.st</file>
   <file>ILBlogRepository.st</file>

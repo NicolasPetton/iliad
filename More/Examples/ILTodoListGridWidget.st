@@ -116,6 +116,8 @@ ILWidget subclass: ILTodoListGridWidget [
 	<category: 'accessing'>
 	| formula |
 	formula := ILFormula on: anItem.
+	(formula dateInputOn: #deadline)
+	    label: 'Deadline'.
 	(formula inputOn: #title)
 	    labelContents: [:e | e span class: 'required';text: 'Title'];
 	    addCondition: [:val | val notNil and: [val notEmpty]]
@@ -125,11 +127,8 @@ ILWidget subclass: ILTodoListGridWidget [
 	    size: 30@10;
 	    addCondition: [:val | val notNil and: [val notEmpty]]
 	    labelled: [:val | 'This field is required'].
-	(formula dateInputOn: #deadline)
-	    addCondition: [:val | val notNil]
-	    labelled: [:label | label, ' is required'].
 	(formula checkboxOn: #completed)
-	    labelContents: [:e | e text: 'Title'].
+	    label: 'Completed'.
 	^formula
     ]
 
