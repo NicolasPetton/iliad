@@ -23,7 +23,7 @@ ILWidget subclass: ILFormula [
 
     defaultButtons [
 	<category: 'defaults'>
-	^{'save' -> [self save]}
+	^{'Save' -> [self save]. 'Cancel' -> [self cancel]}
     ]
 
     addField: aField [
