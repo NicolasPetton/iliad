@@ -4,6 +4,7 @@
   <prereq>Iliad-Core</prereq>
   <prereq>Iliad-More-Magritte</prereq>
   <prereq>Iliad-More-UI</prereq>
+  <prereq>Iliad-More-Formula</prereq>
   <prereq>Iliad-More-Examples</prereq>
   <prereq>Iliad-More-RSS</prereq>
 </package>

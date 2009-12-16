@@ -4,7 +4,7 @@ ILWidget subclass: ILFormula [
     <category: 'Iliad-More-Formula'>
     <comment: nil>
 
-    Formula class >> on: anObject [
+    ILFormula class >> on: anObject [
 	<category: 'instance creation'>
 	^self new
 	    setModel: anObject;

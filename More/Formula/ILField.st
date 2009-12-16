@@ -4,7 +4,7 @@ ILBuildable subclass: ILField [
     <category: 'Iliad-More-Formula'>
     <comment: nil>
 
-    Field class >> on: aSelector of: anObject [
+    ILField class >> on: aSelector of: anObject [
 	<category: 'instance creation'>
 	^self new
 	    on: aSelector

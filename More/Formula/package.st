@@ -1,6 +1,7 @@
 Eval [
     PackageBuilder new
 	name: 'Iliad-More-Formula';
+	namespace: 'Iliad';
 	prereq: 'Iliad-Core';
 	filein: 'ILCondition.st';
 	filein: 'ILField.st';

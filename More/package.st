@@ -5,6 +5,7 @@ Eval [
 	prereq: 'Iliad-Core';
 	prereq: 'Iliad-More-Magritte';
 	prereq: 'Iliad-More-UI';
+	prereq: 'Iliad-More-Formula';
 	prereq: 'Iliad-More-Examples';
 	prereq: 'Iliad-More-RSS';
 	buildXml
