@@ -39,7 +39,7 @@ ILApplication subclass: ILCounterApplication [
     | counters |
     
     <comment: nil>
-    <category: 'Iliad-Core-Examples'>
+    <category: 'Iliad-More-Examples'>
 
     ILCounterApplication class >> path [
 	<category: 'accessing'>

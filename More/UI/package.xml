@@ -33,10 +33,10 @@
   <file>ILApplicationBrowser.st</file>
   <file>ILPostLoad.st</file>
   <file>Public/javascripts/lightbox.js</file>
-  <file>Public/images/arrow_up.png</file>
-  <file>Public/images/arrow_right.png</file>
-  <file>Public/images/arrow_down.png</file>
-  <file>Public/images/arrow_left.png</file>
-  <file>Public/stylesheets/lightbox.css</file>
   <file>Public/stylesheets/iliad-ui.css</file>
+  <file>Public/stylesheets/lightbox.css</file>
+  <file>Public/images/arrow_up.png</file>
+  <file>Public/images/arrow_down.png</file>
+  <file>Public/images/arrow_right.png</file>
+  <file>Public/images/arrow_left.png</file>
 </package>

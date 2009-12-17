@@ -204,12 +204,11 @@
   <file>RequestHandlers/ILJsonHandler.st</file>
   <file>RequestHandlers/ILApplicationHandler.st</file>
   <file>RequestHandlers/ILRedirectHandler.st</file>
+  <file>Public/javascripts/no_conflict.js</file>
   <file>Public/javascripts/iliad.js</file>
   <file>Public/javascripts/jquery132min.js</file>
-  <file>Public/javascripts/no_conflict.js</file>
+  <file>Public/stylesheets/iliad.css</file>
   <file>Public/images/ajax_loader.gif</file>
   <file>Public/images/iliad.png</file>
   <file>Public/iliad_ie_history.html</file>
-  <file>Public/stylesheets/iliad.css~</file>
-  <file>Public/stylesheets/iliad.css</file>
 </package>

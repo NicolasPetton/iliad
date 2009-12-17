@@ -19,7 +19,7 @@ Eval [
 	filein: 'ILTree.st'; 
 	filein: 'ILMessageDecorator.st'; 
 	filein: 'ILApplicationBrowser.st';
-	filein: 'ILPostLoad.st';
+	filein: 'postLoad.st';
 	yourself.
 
     pubDir := Directory working / 'Public'.

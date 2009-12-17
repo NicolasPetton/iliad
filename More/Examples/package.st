@@ -6,6 +6,7 @@ Eval [
     prereq: 'Iliad-More-UI';
     prereq: 'Iliad-More-Magritte';
     prereq: 'Iliad-More-Formula';
+    prereq: 'Iliad-More-Charts';
     prereq: 'Digest';
 
     filein: 'ILCounter.st'; 
@@ -18,6 +19,7 @@ Eval [
     filein: 'ILBlogRepository.st';
     filein: 'ILBlogApplication.st';
     filein: 'ILGravatarWidget.st';
+    filein: 'ILChartApplication.st';
 
     buildXml
 ]

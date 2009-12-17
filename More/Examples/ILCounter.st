@@ -39,7 +39,7 @@ ILWidget subclass: ILCounter [
     | count |
     
     <comment: nil>
-    <category: 'Iliad-Core-Examples'>
+    <category: 'Iliad-More-Examples'>
 
     initialize [
 	<category: 'initialize-release'>

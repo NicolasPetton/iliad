@@ -5,6 +5,7 @@
   <prereq>Iliad-More-UI</prereq>
   <prereq>Iliad-More-Magritte</prereq>
   <prereq>Iliad-More-Formula</prereq>
+  <prereq>Iliad-More-Charts</prereq>
   <prereq>Digest</prereq>
   <filein>ILCounter.st</filein>
   <filein>ILCounterApplication.st</filein>
@@ -16,6 +17,7 @@
   <filein>ILBlogRepository.st</filein>
   <filein>ILBlogApplication.st</filein>
   <filein>ILGravatarWidget.st</filein>
+  <filein>ILChartApplication.st</filein>
   <file>ILCounter.st</file>
   <file>ILCounterApplication.st</file>
   <file>ILTodoListItem.st</file>
@@ -26,4 +28,5 @@
   <file>ILBlogRepository.st</file>
   <file>ILBlogApplication.st</file>
   <file>ILGravatarWidget.st</file>
+  <file>ILChartApplication.st</file>
 </package>

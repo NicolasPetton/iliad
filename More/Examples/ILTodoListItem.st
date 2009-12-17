@@ -38,7 +38,7 @@
 Object subclass: ILTodoListItem [
     | deadline title body completed |
     
-    <category: 'Iliad-Core-Examples'>
+    <category: 'Iliad-More-Examples'>
     <comment: nil>
 
     completed [
