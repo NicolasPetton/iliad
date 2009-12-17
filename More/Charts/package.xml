@@ -1,0 +1,29 @@
+<package>
+  <name>Iliad-More-Charts</name>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-Core</prereq>
+  <filein>ILChart.st</filein>
+  <filein>postLoad.st</filein>
+  <file>ILChart.st</file>
+  <file>postLoad.st</file>
+  <file>Public/javascripts/flot/jquery.flot.navigate.js</file>
+  <file>Public/javascripts/flot/jquery.flot.image.min.js</file>
+  <file>Public/javascripts/flot/jquery.js</file>
+  <file>Public/javascripts/flot/jquery.flot.stack.js</file>
+  <file>Public/javascripts/flot/excanvas.min.js</file>
+  <file>Public/javascripts/flot/jquery.flot.threshold.min.js</file>
+  <file>Public/javascripts/flot/jquery.flot.selection.min.js</file>
+  <file>Public/javascripts/flot/jquery.flot.threshold.js</file>
+  <file>Public/javascripts/flot/jquery.flot.stack.min.js</file>
+  <file>Public/javascripts/flot/excanvas.js</file>
+  <file>Public/javascripts/flot/jquery.flot.navigate.min.js</file>
+  <file>Public/javascripts/flot/jquery.flot.crosshair.min.js</file>
+  <file>Public/javascripts/flot/jquery.colorhelpers.min.js</file>
+  <file>Public/javascripts/flot/jquery.colorhelpers.js</file>
+  <file>Public/javascripts/flot/jquery.flot.image.js</file>
+  <file>Public/javascripts/flot/jquery.flot.min.js</file>
+  <file>Public/javascripts/flot/jquery.flot.crosshair.js</file>
+  <file>Public/javascripts/flot/jquery.flot.selection.js</file>
+  <file>Public/javascripts/flot/jquery.flot.js</file>
+  <file>Public/javascripts/flot/jquery.min.js</file>
+</package>
