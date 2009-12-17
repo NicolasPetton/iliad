@@ -48,7 +48,10 @@ ILWidget subclass: ILChart [
 	<category: 'building'>
 	| stream |
 	stream := WriteStream on: ''.
-	self datas printJsonOn: stream.
+	(self datas collect: [:each |
+	    each collect: [:data | 
+		{data x. data y}]])
+		    printJsonOn: stream.
 	^stream contents
     ]
 ]

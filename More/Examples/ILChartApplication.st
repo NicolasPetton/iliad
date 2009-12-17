@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2009-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -49,7 +49,8 @@ ILApplication subclass: ILChartApplication [
 	<category: 'accessing'>
 	^chart ifNil: [
 	    chart := ILChart new 
-		addData: #(#(1 2) #(3 4));
+		addData: {1@2. 2@4. 3@6. 4@8};
+		addData: {1@1. 2@2. 3@3. 4@4};
 		yourself]
     ]
 
@@ -58,4 +59,3 @@ ILApplication subclass: ILChartApplication [
 	^self chart
     ]
 ]
-
