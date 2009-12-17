@@ -19,7 +19,6 @@ Eval [
     filein: 'ILBlogRepository.st';
     filein: 'ILBlogApplication.st';
     filein: 'ILGravatarWidget.st';
-    filein: 'ILChartApplication.st';
 
     buildXml
 ]
