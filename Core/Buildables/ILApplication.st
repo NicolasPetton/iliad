@@ -329,8 +329,8 @@ the application mode:
     respondOn: aResponse [
 	<category: 'converting'>
 	page := self defaultPageClass new.
-	self buildOn: page body.
 	self updatePage: page.
+	page body build: self.
 	page respondOn: aResponse
     ]
 

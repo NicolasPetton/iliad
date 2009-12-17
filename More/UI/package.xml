@@ -16,7 +16,7 @@
   <filein>ILTree.st</filein>
   <filein>ILMessageDecorator.st</filein>
   <filein>ILApplicationBrowser.st</filein>
-  <filein>ILPostLoad.st</filein>
+  <filein>postLoad.st</filein>
   <file>ILUIWidget.st</file>
   <file>ILTimeSelector.st</file>
   <file>ILDateSelector.st</file>
@@ -31,7 +31,7 @@
   <file>ILTree.st</file>
   <file>ILMessageDecorator.st</file>
   <file>ILApplicationBrowser.st</file>
-  <file>ILPostLoad.st</file>
+  <file>postLoad.st</file>
   <file>Public/javascripts/lightbox.js</file>
   <file>Public/stylesheets/iliad-ui.css</file>
   <file>Public/stylesheets/lightbox.css</file>
