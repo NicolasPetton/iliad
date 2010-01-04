@@ -11,11 +11,13 @@ ILField subclass: ILDateInputField [
     ]
 
     yearsInterval [
+	<category: 'accessing'>
 	^yearsInterval ifNil: [
 	    (Date today year - 20) to: (Date today year + 20)]
     ]
 
     yearsInterval: anInterval [
+	<category: 'accessing'>
 	yearsInterval := anInterval
     ]
 
