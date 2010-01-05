@@ -15,6 +15,7 @@ Eval [
 	filein: 'ILOptionField.st';
 	filein: 'ILSelectField.st';
 	filein: 'ILDateInputField.st';
+	filein: 'ILTimeInputField.st';
 	filein: 'ILFormula.st';
 
 	buildXml

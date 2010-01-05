@@ -12,6 +12,7 @@
   <filein>ILOptionField.st</filein>
   <filein>ILSelectField.st</filein>
   <filein>ILDateInputField.st</filein>
+  <filein>ILTimeInputField.st</filein>
   <filein>ILFormula.st</filein>
   <file>ILCondition.st</file>
   <file>ILField.st</file>
@@ -22,5 +23,6 @@
   <file>ILOptionField.st</file>
   <file>ILSelectField.st</file>
   <file>ILDateInputField.st</file>
+  <file>ILTimeInputField.st</file>
   <file>ILFormula.st</file>
 </package>
