@@ -302,7 +302,7 @@ added to the decoration chain with #decorateWith:.'>
 	self 
 	    show: aWidget
 	    onAnswer: aBlock
-	    delegator: (ILAppendDelegator new widget: aWidget)
+	    delegator: (ILAppendDecorator new widget: aWidget)
     ]
 
     prepend: aWidget [
@@ -319,7 +319,7 @@ added to the decoration chain with #decorateWith:.'>
 	self 
 	    show: aWidget
 	    onAnswer: aBlock
-	    delegator: (ILPrependDelegator new widget: aWidget)
+	    delegator: (ILPrependDecorator new widget: aWidget)
     ]
 
     printJsonOn: aStream [

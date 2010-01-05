@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2010
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -35,15 +35,26 @@
 
 
 
-ILDelegator subclass: ILAppendDelegator [
+ILDecorator subclass: ILAppendDelegator [
+    | widget |
 
     <comment: nil>
     <category: 'Iliad-Core-Buildables'>
 
+    widget [
+	<category: 'accessing'>
+	^widget
+    ]
+
+    widget: aWidget [
+	<category: 'accessing'>
+	widget := aWidget
+    ]
+
     contents [
 	<category: 'building'>
 	^[:e | e 
-	    build: self decoratee; 
-	    build: super contents]
+	    build: super contents; 
+	    build: self widget]
     ]
 ]
