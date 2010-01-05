@@ -43,9 +43,9 @@ ILField subclass: ILTimeInputField [
     time [
 	<category: 'accessing'>
 	^Time 
-	    hours: self hours 
-	    minutes: self minutes 
-	    seconds: self seconds
+	    hour: self hours 
+	    minute: self minutes 
+	    second: self seconds
     ]
 
     time: aTime [
