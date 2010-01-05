@@ -5,14 +5,15 @@ Eval [
 	namespace: 'Iliad';
 	prereq: 'Iconv';
 	filein: 'Utilities/ILObject.st';
-	filein: 'Utilities/ILSmallDictionary.st';
 	filein: 'Utilities/ILComposite.st';
 	filein: 'Utilities/ILDynamicVariable.st';
-	filein: 'Utilities/ILSupport.st'; 
 	filein: 'Utilities/ILId.st'; 
 	filein: 'Utilities/ILEncoder.st'; 
-	filein: 'Utilities/ILGSTEncoder.st'; 
 	filein: 'Utilities/ILModelProxy.st'; 
+
+	filein: 'GST/ILSupport.st'; 
+	filein: 'GST/ILSmallDictionary.st';
+	filein: 'GST/ILGSTEncoder.st'; 
 
 	filein: 'lib/HTTP/ILUrl.st'; 
 	filein: 'lib/HTTP/ILFileProxy.st'; 

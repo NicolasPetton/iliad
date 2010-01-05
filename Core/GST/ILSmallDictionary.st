@@ -40,7 +40,7 @@
 LookupTable subclass: ILSmallDictionary [
     
     <shape: #pointer>
-    <category: 'Iliad-Core-Utilities'>
+    <category: 'Iliad-Core-GST'>
     <comment: nil>
 
     ILSmallDictionary class >> new [

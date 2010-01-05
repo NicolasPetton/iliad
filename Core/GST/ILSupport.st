@@ -1,7 +1,7 @@
 Object subclass: ILSupport [
     
     <shape: #byte>
-    <category: 'Iliad-Core-Support'>
+    <category: 'Iliad-Core-GST'>
     <comment: nil>
 
     ILSupport class >> critical: aBlock [

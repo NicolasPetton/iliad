@@ -3,14 +3,14 @@
   <namespace>Iliad</namespace>
   <prereq>Iconv</prereq>
   <filein>Utilities/ILObject.st</filein>
-  <filein>Utilities/ILSmallDictionary.st</filein>
   <filein>Utilities/ILComposite.st</filein>
   <filein>Utilities/ILDynamicVariable.st</filein>
-  <filein>Utilities/ILSupport.st</filein>
   <filein>Utilities/ILId.st</filein>
   <filein>Utilities/ILEncoder.st</filein>
-  <filein>Utilities/ILGSTEncoder.st</filein>
   <filein>Utilities/ILModelProxy.st</filein>
+  <filein>GST/ILSupport.st</filein>
+  <filein>GST/ILSmallDictionary.st</filein>
+  <filein>GST/ILGSTEncoder.st</filein>
   <filein>lib/HTTP/ILUrl.st</filein>
   <filein>lib/HTTP/ILFileProxy.st</filein>
   <filein>lib/HTTP/ILRequest.st</filein>
@@ -104,14 +104,14 @@
   <filein>RequestHandlers/ILApplicationHandler.st</filein>
   <filein>RequestHandlers/ILRedirectHandler.st</filein>
   <file>Utilities/ILObject.st</file>
-  <file>Utilities/ILSmallDictionary.st</file>
   <file>Utilities/ILComposite.st</file>
   <file>Utilities/ILDynamicVariable.st</file>
-  <file>Utilities/ILSupport.st</file>
   <file>Utilities/ILId.st</file>
   <file>Utilities/ILEncoder.st</file>
-  <file>Utilities/ILGSTEncoder.st</file>
   <file>Utilities/ILModelProxy.st</file>
+  <file>GST/ILSupport.st</file>
+  <file>GST/ILSmallDictionary.st</file>
+  <file>GST/ILGSTEncoder.st</file>
   <file>lib/HTTP/ILUrl.st</file>
   <file>lib/HTTP/ILFileProxy.st</file>
   <file>lib/HTTP/ILRequest.st</file>

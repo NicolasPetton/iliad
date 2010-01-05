@@ -2,7 +2,7 @@ ILEncoder subclass: ILGSTEncoder [
 
     <shape: #byte>
     <comment: nil>
-    <category: 'Iliad-Core-Utilities'>
+    <category: 'Iliad-Core-GST'>
 
     ILGSTEncoder class [ 
 	| inputEncoding |
@@ -10,8 +10,8 @@ ILEncoder subclass: ILGSTEncoder [
 	decode: aString [
 	    <category: 'encoding'>
 	    ^self inputEncoding asLowercase = self outputEncoding asLowercase
-	        ifTrue: [aString]
-	        ifFalse: [(I18N.EncodedStream on: aString readStream from: self outputEncoding
+		ifTrue: [aString]
+		ifFalse: [(I18N.EncodedStream on: aString readStream from: self outputEncoding
 		    to: self inputEncoding) contents asString]
 	]
 
