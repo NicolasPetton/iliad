@@ -35,7 +35,7 @@
 
 
 
-ILDecorator subclass: ILPrependDelegator [
+ILDecorator subclass: ILPrependDecorator [
     | widget |
 
     <comment: nil>
