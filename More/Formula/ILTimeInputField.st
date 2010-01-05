@@ -1,6 +1,9 @@
 ILField subclass: ILTimeInputField [
     | hours minutes seconds |
 
+    <category: 'Iliad-More-Formula'>
+    <comment: nil>
+    
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
