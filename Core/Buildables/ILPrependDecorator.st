@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ILAppendDelegator class definition
+|   Iliad.ILPrependDecorator class definition
 |
  ======================================================================"
 
@@ -35,26 +35,27 @@
 
 
 
-ILDecorator subclass: ILPrependDecorator [
-    | widget |
+ILDelegator subclass: ILPrependDecorator [
 
     <comment: nil>
     <category: 'Iliad-Core-Buildables'>
 
-    widget [
-	<category: 'accessing'>
-	^widget
-    ]
-
-    widget: aWidget [
-	<category: 'accessing'>
-	widget := aWidget
-    ]
-
     contents [
 	<category: 'building'>
 	^[:e | e 
-	    build: self widget; 
-	    build: super contents]
+	    build: super contents; 
+	    build: self decoratee contents]
     ]
+
+    updateHead: aHead [
+	<category: 'building'>
+	super updateHead: aHead.
+	self decoratee updateHead: aHead
+    ]
+
+    handleAnswer: anAnswer [
+	<category: 'decorations'>
+	self decoratee handleAnswer: anAnswer
+    ]
+
 ]
