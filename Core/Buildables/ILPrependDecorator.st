@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad.ILPrependDelegator class definition
+|   Iliad.ILAppendDelegator class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2010
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -35,15 +35,26 @@
 
 
 
-ILDelegator subclass: ILPrependDelegator [
+ILDecorator subclass: ILPrependDelegator [
+    | widget |
 
     <comment: nil>
     <category: 'Iliad-Core-Buildables'>
 
+    widget [
+	<category: 'accessing'>
+	^widget
+    ]
+
+    widget: aWidget [
+	<category: 'accessing'>
+	widget := aWidget
+    ]
+
     contents [
 	<category: 'building'>
 	^[:e | e 
-	    build: super contents;
-	    build: self decoratee] 
+	    build: self widget; 
+	    build: super contents]
     ]
 ]
