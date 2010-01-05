@@ -44,7 +44,7 @@ ILObject subclass: ILBlogPost [
     ILBlogPost class >> descriptionBody [
 	^Magritte.MAMemoDescription new
 	    priority: 3;
-	    autoAccessor: #body;
+	    accessor: #body;
 	    label: 'Body';
 	    beRequired;
 	    yourself
@@ -53,7 +53,7 @@ ILObject subclass: ILBlogPost [
     ILBlogPost class >> descriptionTimestamp [
 	^Magritte.MATimeStampDescription new
 	    priority: 2;
-	    autoAccessor: #timestamp;
+	    accessor: #timestamp;
 	    label: 'Publication date';
 	    beRequired;
 	    yourself
@@ -62,7 +62,7 @@ ILObject subclass: ILBlogPost [
     ILBlogPost class >> descriptionTitle [
 	^Magritte.MAStringDescription new
 	    priority: 1;
-	    autoAccessor: #title;
+	    accessor: #title;
 	    label: 'Title';
 	    beRequired;
 	    yourself
@@ -98,12 +98,12 @@ ILObject subclass: ILBlogPost [
     ]
 
     timestamp [
-	<category: 'accessing-generated'>
+	<category: 'accessing'>
 	^timestamp
     ]
 
     timestamp: anObject [
-	<category: 'accessing-generated'>
+	<category: 'accessing'>
 	timestamp := anObject
     ]
 ]

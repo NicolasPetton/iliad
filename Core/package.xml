@@ -85,8 +85,8 @@
   <filein>Buildables/ILDecorator.st</filein>
   <filein>Buildables/ILAnswerHandler.st</filein>
   <filein>Buildables/ILDelegator.st</filein>
-  <filein>Buildables/ILAppendDelegator.st</filein>
-  <filein>Buildables/ILPrependDelegator.st</filein>
+  <filein>Buildables/ILAppendDecorator.st</filein>
+  <filein>Buildables/ILPrependDecorator.st</filein>
   <filein>Buildables/ILWidget.st</filein>
   <filein>Buildables/ILPluggableWidget.st</filein>
   <filein>Buildables/ILProfiler.st</filein>
@@ -186,8 +186,8 @@
   <file>Buildables/ILDecorator.st</file>
   <file>Buildables/ILAnswerHandler.st</file>
   <file>Buildables/ILDelegator.st</file>
-  <file>Buildables/ILAppendDelegator.st</file>
-  <file>Buildables/ILPrependDelegator.st</file>
+  <file>Buildables/ILAppendDecorator.st</file>
+  <file>Buildables/ILPrependDecorator.st</file>
   <file>Buildables/ILWidget.st</file>
   <file>Buildables/ILPluggableWidget.st</file>
   <file>Buildables/ILProfiler.st</file>
