@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -38,7 +38,7 @@
 
 
 
-ILWidget subclass: ILApplication [
+ILBuildable subclass: ILApplication [
     | model originalRoutePosition page |
 
     <category: 'Iliad-Core-Buildables'>
@@ -50,11 +50,11 @@ will handle session and application instances.
 In concrete subclasses, the class method #path should return the base path 
 (string) for the application.
 
-Like other widgets, I have state, and can have decorators.
-Unlike other widgets I know how to dispatch a request with #dispatch : 
+Like widgets, I am stateful.
+Unlike widgets I know how to dispatch a request with #dispatch : 
 the controller method corresponding to the url will be called.
 
-View methods must:
+Controller methods must:
  - answer a buildable.
  - be in the ''controllers'' method protocol (with the default selector filter)
 
@@ -197,12 +197,18 @@ the application mode:
 	^self class selectorFilter
     ]
 
-    contents [
+    newRootElement [
+	<category: 'private'>
+	^self defaultRootElementClass new
+    ]
+
+    buildContents [
 	"Call #dispatch. A buildable is expected from #dispatch"
 	<category: 'building'>
 	
-	^[:e |
-	     e build: self dispatch]
+	^self newRootElement 
+	    build: self dispatch;
+	    yourself
     ]
 
     updatePage: aPage [
@@ -339,6 +345,11 @@ the application mode:
 	^ILXHTMLPage
     ]
 
+    defaultRootElementClass [
+	<category: 'defaults'>
+	^ILXHTMLElement
+    ]
+ 
     isDebugMode [
 	<category: 'testing'>
 	^self class isDebugMode
