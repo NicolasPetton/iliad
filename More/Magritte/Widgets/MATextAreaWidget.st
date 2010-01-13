@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| copyright (c) 2008-2009 
+| copyright (c) 2008-2010 
 | nicolas petton <petton.nicolas@gmail.com>,
 | sébastien audier <sebastien.audier@gmail.com>
 |

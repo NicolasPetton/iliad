@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -96,11 +96,7 @@ ILApplication subclass: ILBlogApplication [
 
     addPost [
 	<category: 'actions'>
-	self 
-	    show: (((ILBlogPost new asWidget)
-		addValidatedForm;
-		yourself) addMessage: [:e | e h3:'Add new post'])
-	    onAnswer: [:ans | ans ifNotNil: [self model posts add: ans]]
+	self redirectToLocal: #add.
     ]
 
     index [
@@ -125,6 +121,14 @@ ILApplication subclass: ILBlogApplication [
 	^self postsContents
     ]
 
+    add [
+	<category: 'controllers'>
+	^(ILBlogPost new asWidget
+	    addValidatedForm;
+	    yourself) addMessage: [:e | e h3:'Add new post']
+	    "onAnswer: [:ans | ans ifNotNil: [self model posts add: ans]]"
+    ]
+    
     updatePage: aPage [
 	<category: 'building'>
 	super updatePage: aPage.
