@@ -197,9 +197,14 @@ the application mode:
 	^self class selectorFilter
     ]
 
-    newRootElement [
-	<category: 'private'>
-	^self defaultRootElementClass new
+    widgetFor: aBuildable [
+	"Convenience method. This is useful for building anonymous widgets.
+	ex: myWidget := self widgetFor: [:e | e h1: 'Hello world!']"
+	<category: 'accessing'>
+
+	^ILPluggableWidget new 
+	    contentsBlock: aBuildable; 
+	    yourself
     ]
 
     buildContents [
@@ -363,6 +368,11 @@ the application mode:
     isDeploymentMode [
 	<category: 'testing'>
 	^self class isDeploymentMode
+    ]
+
+    newRootElement [
+	<category: 'private'>
+	^self defaultRootElementClass new
     ]
 
     originalUrl [
