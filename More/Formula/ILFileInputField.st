@@ -13,6 +13,6 @@ ILField subclass: ILFileInputField [
 
     isMultipart [
 	<category: 'testing'>
-	^false
+	^true
     ]
 ]
