@@ -36,8 +36,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	big := e big.
 	self assert: (big isKindOf: ILTextElement).
 	self assert: big tag = 'big'.
-	big := e big: 'coucou'.
-	self assert: big contents = 'coucou'
+	big := e big: 'foo'.
+	self assert: big contents = 'foo'
     ]
 
     testBlockquote [
@@ -50,14 +50,14 @@ ILElementTest subclass: ILXHTMLElementTest [
 	self assert: blockquote contents = 'foo'
     ]
 
-    testBold [
+    testB [
 	<category: 'testing'>
-	| bold |
-	bold := e bold.
-	self assert: (bold isKindOf: ILTextElement).
-	self assert: bold tag = 'bold'.
-	bold := e bold: 'coucou'.
-	self assert: bold contents = 'coucou'
+	| b |
+	b := e b.
+	self assert: (b isKindOf: ILTextElement).
+	self assert: b tag = 'b'.
+	b := e b: 'foo'.
+	self assert: b contents = 'foo'
     ]
 
     testBr [
@@ -87,8 +87,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	cite := e cite.
 	self assert: (cite isKindOf: ILTextElement).
 	self assert: cite tag = 'cite'.
-	cite := e cite: 'coucou'.
-	self assert: cite contents = 'coucou'
+	cite := e cite: 'foo'.
+	self assert: cite contents = 'foo'
     ]
 
     testClass [
@@ -103,8 +103,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	code := e code.
 	self assert: (code isKindOf: ILTextElement).
 	self assert: code tag = 'code'.
-	code := e code: 'coucou'.
-	self assert: code contents = 'coucou'
+	code := e code: 'foo'.
+	self assert: code contents = 'foo'
     ]
 
     testCss [
@@ -160,8 +160,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	em := e em.
 	self assert: (em isKindOf: ILTextElement).
 	self assert: em tag = 'em'.
-	em := e em: 'coucou'.
-	self assert: em contents = 'coucou'
+	em := e em: 'foo'.
+	self assert: em contents = 'foo'
     ]
 
     testFavicon [
@@ -169,8 +169,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	e := e favicon.
 	self assert: (e isKindOf: ILLinkElement).
 	self shouldHaveAttribute: 'rel' value: 'shortcut icon'.
-	e := e favicon: 'hello'.
-	self shouldHaveAttribute: 'href' value: 'hello'
+	e := e favicon: 'foo'.
+	self shouldHaveAttribute: 'href' value: 'foo'
     ]
 
     testFieldset [
@@ -259,9 +259,9 @@ ILElementTest subclass: ILXHTMLElementTest [
     testHtml [
 	<category: 'testing'>
 	| html |
-	html := e html: 'coucou'.
+	html := e html: 'foo'.
 	self assert: (html isKindOf: ILRawHtmlElement).
-	self assert: html contents = 'coucou'
+	self assert: html contents = 'foo'
     ]
 
     testI [
@@ -270,8 +270,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	i := e i.
 	self assert: (i isKindOf: ILTextElement).
 	self assert: i tag = 'i'.
-	i := e i: 'coucou'.
-	self assert: i contents = 'coucou'
+	i := e i: 'foo'.
+	self assert: i contents = 'foo'
     ]
 
     testId [
@@ -431,8 +431,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	pre := e pre.
 	self assert: (pre isKindOf: ILTextElement).
 	self assert: pre tag = 'pre'.
-	pre := e pre: 'coucou'.
-	self assert: pre contents = 'coucou'
+	pre := e pre: 'foo'.
+	self assert: pre contents = 'foo'
     ]
 
     testQuote [
@@ -441,8 +441,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	quote := e quote.
 	self assert: (quote isKindOf: ILTextElement).
 	self assert: quote tag = 'quote'.
-	quote := e quote: 'coucou'.
-	self assert: quote contents = 'coucou'
+	quote := e quote: 'foo'.
+	self assert: quote contents = 'foo'
     ]
 
     testRadio [
@@ -464,8 +464,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	| script |
 	script := e script.
 	self assert: (script isKindOf: ILScriptElement).
-	script := e script: 'coucou'.
-	self assert: script contents = 'coucou'
+	script := e script: 'foo'.
+	self assert: script contents = 'foo'
     ]
 
     testSmall [
@@ -474,8 +474,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	small := e small.
 	self assert: (small isKindOf: ILTextElement).
 	self assert: small tag = 'small'.
-	small := e small: 'coucou'.
-	self assert: small contents = 'coucou'
+	small := e small: 'foo'.
+	self assert: small contents = 'foo'
     ]
 
     testSpace [
@@ -498,8 +498,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	strong := e strong.
 	self assert: (strong isKindOf: ILTextElement).
 	self assert: strong tag = 'strong'.
-	strong := e strong: 'coucou'.
-	self assert: strong contents = 'coucou'
+	strong := e strong: 'foo'.
+	self assert: strong contents = 'foo'
     ]
 
     testStyle [
@@ -522,8 +522,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	sub := e subscript.
 	self assert: (sub isKindOf: ILTextElement).
 	self assert: (sub tag = 'subscript').
-	sub := e subscript: 'hello'.
-	self assert: (sub contents = 'hello')
+	sub := e subscript: 'foo'.
+	self assert: (sub contents = 'foo')
     ]
 
     testSuperscript [
@@ -532,8 +532,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	superscript := e superscript.
 	self assert: (superscript isKindOf: ILTextElement).
 	self assert: (superscript tag = 'superscript').
-	superscript := e superscript: 'hello'.
-	self assert: (superscript contents = 'hello')
+	superscript := e superscript: 'foo'.
+	self assert: (superscript contents = 'foo')
     ]
 
     testTable [
@@ -623,8 +623,8 @@ ILElementTest subclass: ILXHTMLElementTest [
 	
 	"This test makes gst crash...."
 	self assert: false.
-	"var := e var: 'hello'.
-	self assert: (var contents = 'hello')"
+	"var := e var: 'foo'.
+	self assert: (var contents = 'foo')"
     ]
 
     testXmlLang [
