@@ -124,6 +124,7 @@ ILWidget subclass: ILFormula [
 	^[:e |
 	    (e div class: 'formula')
 		form build: [:form |
+		    form multipart: self isMultipart.
 		    form table tbody build: self tableContents.
 		    form div 
 			class: 'buttons';
@@ -176,6 +177,11 @@ ILWidget subclass: ILFormula [
 	self fields do: [:each |
 	    each isValid ifFalse: [^false]].
 	^true
+    ]
+
+    isMultipart [
+	<category: 'testing'>
+	^(self part select: [:each | each isMultipart]) notEmpty
     ]
 
     setModel: anObject [

@@ -6,8 +6,13 @@ ILField subclass: ILFileInputField [
     fieldContents [
 	<category: 'building'>
 	^[:e | 
-	    e file 
-		value: (self value ifNil: ['']);
-		action: [:val | self value: val]]
+	    e file action: [:val | self value: val].
+	    e button text: 'upload']
+    ]
+
+
+    isMultipart [
+	<category: 'testing'>
+	^false
     ]
 ]

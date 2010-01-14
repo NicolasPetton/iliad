@@ -151,6 +151,11 @@ ILBuildable subclass: ILField [
 	^self errors isEmpty
     ]
 
+    isMultipart [
+	<category: 'testing'>
+	^false
+    ]
+
     on: aSelector of: anObject [
 	<category: 'private'>
 	key ifNil: [key := aSelector].
