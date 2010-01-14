@@ -181,7 +181,7 @@ ILWidget subclass: ILFormula [
 
     isMultipart [
 	<category: 'testing'>
-	^(self part select: [:each | each isMultipart]) notEmpty
+	^(self parts select: [:each | each isMultipart]) notEmpty
     ]
 
     setModel: anObject [
