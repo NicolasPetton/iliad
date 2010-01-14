@@ -6,7 +6,24 @@ ILField subclass: ILFileInputField [
     fieldContents [
 	<category: 'building'>
 	^[:e | 
-	    e file action: [:val | self value: val]]
+	    self value isNil
+		ifTrue: [
+		    e build: self uploadContents]
+		ifFalse: [
+		    e build: self fileContents]]
+	]
+
+    uploadContents [
+	<category: 'building'>
+	^[:e |
+	    e file action: [:val | self value: val].
+	    e button text: 'upload']
+    ]
+
+    fileContents [
+	<category: 'building'>
+	^[:e |
+	    e text: self value filename]
     ]
 
 
