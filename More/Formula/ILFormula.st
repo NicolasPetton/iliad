@@ -112,9 +112,10 @@ ILWidget subclass: ILFormula [
     contents [
 	<category: 'building'>
 	^[:e |
-	    e form build: [:form |
-		form table tbody build: self tableContents.
-		form build: self buttonsContents]]
+	    (e div class: 'formula')
+		form build: [:form |
+		    form table tbody build: self tableContents.
+		    form build: self buttonsContents]]
     ]
 
     tableContents [

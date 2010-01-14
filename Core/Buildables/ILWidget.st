@@ -84,6 +84,13 @@ added to the decoration chain with #decorateWith:.'>
 	dependentWidgets := OrderedCollection new
     ]
 
+    postCopy [
+	<category: 'copying'>
+	super postCopy.
+	decorator := ILDecorator decoratee: self.
+	dependentWidgets := OrderedCollection new
+    ]
+
     id: aString [
 	<category: 'accessing'>
 	id := aString
