@@ -25,6 +25,11 @@ ILWidget subclass: ILFormula [
 	<category: 'accessing'>
 	^buttons ifNil: [self defaultButtons]
     ]
+    
+    buttons: aCollection [
+	<category: 'accessing'>
+	buttons := aCollection
+    ]
 
     defaultButtons [
 	<category: 'defaults'>
