@@ -64,12 +64,18 @@ ILBuildable subclass: ILField [
     ]
 
     errors [
+	<category: 'accessing'>
 	^errors ifNil: [{}]
     ]
 
     conditions [
 	<category: 'accessing'>
 	^conditions ifNil: [conditions := OrderedCollection new]
+    ]
+
+    setAction: aBlock [
+	<category: 'accessing'>
+	action := aBlock
     ]
 
     addCondition: aCondition [
