@@ -197,16 +197,16 @@ ILElement subclass: ILXHTMLElement [
 	    yourself
     ]
 
-    bold [
+    b [
 	<category: 'adding-conveniance'>
 	^self add: (ILTextElement new 
-	    tag: 'bold';
+	    tag: 'b';
 	    yourself)
     ]
 
-    bold: aString [
+    b: aString [
 	<category: 'adding-conveniance'>
-	^self bold
+	^self b
 	    contents: aString;
 	    yourself
     ]
