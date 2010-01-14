@@ -16,6 +16,11 @@ ILWidget subclass: ILFormula [
 	^fields ifNil: [fields := OrderedCollection new]
     ]
 
+    setFields: aCollection [
+	<category: 'accessing'>
+	fields := aCollection
+    ]
+
     buttons [
 	<category: 'accessing'>
 	^buttons ifNil: [self defaultButtons]
@@ -64,6 +69,34 @@ ILWidget subclass: ILFormula [
     autocompleteInputOn: aSelector [
 	<category: 'adding'>
 	^self addField: (ILAutocompleteInputField on: aSelector of: model)
+    ]
+
+    do: aBlock [
+	<category: 'enumerating'>
+	^self fields do: aBlock
+    
+    ]
+
+    collect: aBlock [
+	<category: 'enumerating'>
+	^self copy
+	    setFields: (self fields collect: aBlock);
+	    yourself
+    ]
+
+    select: aBlock [
+	<category: 'enumerating'>
+	^self copy
+	    setFields: (self fields select: aBlock);
+	    yourself
+    ]
+
+    reject: aBlock [
+	<category: 'enumerating'>
+	^self copy
+	    setFields: (self fields reject: aBlock);
+	    yourself
+    
     ]
 
     scripts [
