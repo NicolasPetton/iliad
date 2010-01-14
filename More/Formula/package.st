@@ -1,5 +1,6 @@
 Eval [
-    PackageBuilder new
+    | builder pubDir |  
+    builder := PackageBuilder new
 	name: 'Iliad-More-Formula';
 	namespace: 'Iliad';
 
@@ -9,6 +10,7 @@ Eval [
 	filein: 'ILCondition.st';
 	filein: 'ILField.st';
 	filein: 'ILInputField.st';
+	filein: 'ILAutocompleteInputField.st';
 	filein: 'ILTextareaField.st';
 	filein: 'ILPasswordField.st';
 	filein: 'ILCheckboxField.st';
@@ -18,5 +20,13 @@ Eval [
 	filein: 'ILTimeInputField.st';
 	filein: 'ILFormula.st';
 
-	buildXml
-    ]
+	filein: 'postLoad.st';
+	yourself.
+
+    pubDir := Directory working / 'Public'.
+    pubDir all do: [:each |
+	each isFile ifTrue: [
+	    builder resource: (each pathFrom: Directory working)]].
+
+    builder buildXml
+]

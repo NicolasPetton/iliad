@@ -61,6 +61,21 @@ ILWidget subclass: ILFormula [
 	^self addField: (ILSelectField on: aSelector of: model)
     ]
 
+    autocompleteInputOn: aSelector [
+	<category: 'adding'>
+	^self addField: (ILAutocompleteInputField on: aSelector of: model)
+    ]
+
+    scripts [
+	<category: 'building'>
+	^{'/javascripts/jquery.autocomplete.js'}
+    ]
+
+    styles [
+	<category: 'building'>
+	^{'/stylesheets/jquery.autocomplete.css'}
+    ]
+
     contents [
 	<category: 'building'>
 	^[:e |

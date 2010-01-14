@@ -106,6 +106,11 @@ added to the decoration chain with #decorateWith:.'>
 	^owner
     ]
 
+    dependentWidgets [
+	<category: 'accessing'>
+	^dependentWidgets copy
+    ]
+    
     widget [
 	<category: 'accessing'>
 	^self
