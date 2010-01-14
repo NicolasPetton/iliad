@@ -33,7 +33,7 @@ ILWidget subclass: ILFormula [
 
     defaultButtons [
 	<category: 'defaults'>
-	^{'Save' -> [self save]. 'Cancel' -> [self cancel]}
+	^{'Save' -> #save. 'Cancel' -> #cancel}
     ]
 
     addField: aField [
@@ -138,7 +138,7 @@ ILWidget subclass: ILFormula [
 	    self buttons do: [:each |
 		form button
 		    text: each key;
-		    action: each value]]
+		    action: [self perform: each value]]]
     ]
 
     save [
