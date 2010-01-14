@@ -71,6 +71,11 @@ ILWidget subclass: ILFormula [
 	^self addField: (ILSelectField on: aSelector of: model)
     ]
 
+    fileInputOn: aSelector [
+	<category: 'adding'>
+	^self addField: (ILFileInputField on: aSelector of: model)
+    ]
+
     autocompleteInputOn: aSelector [
 	<category: 'adding'>
 	^self addField: (ILAutocompleteInputField on: aSelector of: model)

@@ -49,8 +49,7 @@ ILBuildable subclass: ILField [
 
     commentContents [
 	<category: 'accessing'>
-	^commentContents ifNil: [
-	    [:e |]]
+	^commentContents 
     ]
 
     value [
@@ -123,9 +122,10 @@ ILBuildable subclass: ILField [
 		    build: self fieldContents].
 	    tbody tr build: [:tr |
 		tr td.
-		tr td
-		    class: 'comment';
-		    build: self commentContents].
+		self commentContents ifNotNil: [
+		    tr td
+			class: 'comment';
+			build: self commentContents]].
 	    tbody build: self errorsContents]
     ]
 

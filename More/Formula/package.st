@@ -18,6 +18,7 @@ Eval [
 	filein: 'ILSelectField.st';
 	filein: 'ILDateInputField.st';
 	filein: 'ILTimeInputField.st';
+	filein: 'ILFileInputField.st';
 	filein: 'ILFormula.st';
 
 	filein: 'postLoad.st';
