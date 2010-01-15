@@ -6,7 +6,7 @@ ILField subclass: ILFileInputField [
     fieldContents [
 	<category: 'building'>
 	^[:e | 
-	    self value isNil
+	    (self value isNil or: [self value isString])
 		ifTrue: [
 		    e build: self uploadContents]
 		ifFalse: [

@@ -174,7 +174,7 @@ ILWidget subclass: ILFormula [
 
     isEmpty [
 	<category: 'testing'>
-	^self parts isEmpty
+	^self fields isEmpty
     ]
 
     isValid [
