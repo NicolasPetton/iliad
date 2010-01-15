@@ -172,6 +172,11 @@ ILWidget subclass: ILFormula [
 	self fields do: [:each | each validate]
     ]
 
+    isEmpty [
+	<category: 'testing'>
+	^self parts isEmpty
+    ]
+
     isValid [
 	<category: 'testing'>
 	self fields do: [:each |
