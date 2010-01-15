@@ -6,6 +6,7 @@ ILField subclass: ILAutocompleteInputField [
 
     initialize [
 	<category: 'initialize-release'>
+	super initialize.
 	fieldId := ILId new
     ]
 
