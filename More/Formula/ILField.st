@@ -116,7 +116,7 @@ ILBuildable subclass: ILField [
 	    tbody tr build: [:tr |
 		self isValid ifFalse: [
 		    tr class: 'error'].
-		tr td 
+		tr th 
 		    build: self labelContents.
 		tr td 
 		    build: self fieldContents].
