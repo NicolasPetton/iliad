@@ -84,14 +84,6 @@ and wait for a ILResponseNotification to respond to them.'>
 		ifNotNil: [ILApplicationHandler new handleRequest]]
     ]
 
-    createContextFor: aRequest [
-	<category: 'error handling'>
-	^ILContext new
-	    request: aRequest;
-	    session: (self findSessionFor: aRequest);
-	    yourself
-    ]
-
     withDispatchErrorHandling: aBlock [
 	"Catch dispatch errors"
 	<category: 'error-handling'>
@@ -119,6 +111,14 @@ and wait for a ILResponseNotification to respond to them.'>
 	^(self request sessionField isNil and: [
 	    self request hasCookies not]) or: [
 		self request sessionField notNil and: [self request hasCookies]]
+    ]
+
+    createContextFor: aRequest [
+	<category: 'private'>
+	^ILContext new
+	    request: aRequest;
+	    session: (self findSessionFor: aRequest);
+	    yourself
     ]
 
     applicationClassFor: aRoute [
