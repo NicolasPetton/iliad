@@ -57,9 +57,19 @@ ILElement subclass: ILXHTMLElement [
     ]
 
 
-    class: aString [
+    cssClass: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'class' put: aString
+    ]
+
+    cssClass [
+	<category: 'accessing attributes'>
+	^self attributeAt: 'class'
+    ]
+
+    class: aString [
+	<category: 'accessing'>
+	^self cssClass
     ]
 
     id [
