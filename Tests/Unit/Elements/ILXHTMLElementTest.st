@@ -97,6 +97,13 @@ ILElementTest subclass: ILXHTMLElementTest [
 	self shouldHaveAttribute: 'class' value: 'foo'
     ]
 
+    testClass [
+	<category: 'testing'>
+	e cssClass: 'foo'.
+	self shouldHaveAttribute: 'class' value: 'foo'.
+	self assert: e cssClass = 'foo'
+    ]
+
     testCode [
 	<category: 'testing'>
 	| code |
@@ -107,9 +114,9 @@ ILElementTest subclass: ILXHTMLElementTest [
 	self assert: code contents = 'foo'
     ]
 
-    testCss [
+    testStylesheet [
 	<category: 'testing'>
-	e := e css.
+	e := e stylesheet.
 	self assert: (e isKindOf: ILLinkElement).
 	self shouldHaveAttribute: 'rel' value: 'Stylesheet'.
 	self shouldHaveAttribute: 'type' value: 'text/css'
