@@ -69,7 +69,7 @@ ILElement subclass: ILXHTMLElement [
 
     class: aString [
 	<category: 'accessing'>
-	^self cssClass
+	self cssClass: aString
     ]
 
     id [
