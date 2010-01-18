@@ -443,6 +443,11 @@ ILElement subclass: ILXHTMLElement [
 	    yourself)
     ]
 
+    if [
+	<category: 'accessing'>
+	^self add: (ILConditionalElement new)
+    ]
+
     img [
 	<category: 'adding-conveniance'>
 	^self add: ILImageElement new
@@ -767,11 +772,5 @@ ILElement subclass: ILXHTMLElement [
 	    contents: aString;
 	    yourself
     ]
-
-    css [
-	<category: 'deprecated'>
-	^self stylesheet
-    ]
-
 ]
 
