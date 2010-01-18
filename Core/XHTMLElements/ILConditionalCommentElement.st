@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ILConditionalElement class definition
+|   Iliad.ILConditionalCommentElement class definition
 |
  ======================================================================"
 
@@ -36,21 +36,23 @@
 
 
 
-ILXHTMLElement subclass: ILConditionalElement [
+ILXHTMLElement subclass: ILConditionalCommentElement [
     | conditions |
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    tag [
-	<category: 'accessing'>
-	| stream |
-	stream := WriteStream on: ''.
-	stream nextPutAll: '!--[if '.
+    printOpenTagOn: aStream [
+	<category: 'printing'>
+	aStream nextPutAll: '<!--[if '.
 	self conditions 
-	    do: [:each | stream nextPutAll: each]
-	    separatedBy: [stream nextPut: Character space].
-	stream nextPut: $].
-	^stream contents
+	    do: [:each | aStream nextPutAll: each]
+	    separatedBy: [aStream nextPut: Character space].
+	aStream nextPutAll: ']>'
+    ]
+
+    printCloseTagOn: aStream [
+	<category: 'printing'>
+	aStream nextPutAll: '<![endif]-->'
     ]
 
     conditions [
@@ -107,7 +109,7 @@ ILXHTMLElement subclass: ILConditionalElement [
 	self conditions add: 'lt'
     ]
 
-    ! [
+    not [
 	"Not"
 	<category: 'conditions'>
 

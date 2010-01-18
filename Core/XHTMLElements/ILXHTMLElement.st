@@ -445,7 +445,7 @@ ILElement subclass: ILXHTMLElement [
 
     if [
 	<category: 'accessing'>
-	^self add: (ILConditionalElement new)
+	^self add: (ILConditionalCommentElement new)
     ]
 
     img [
