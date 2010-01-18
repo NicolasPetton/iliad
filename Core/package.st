@@ -88,7 +88,7 @@ Eval [
 	filein: 'XHTMLElements/ILTableRowElement.st'; 
 	filein: 'XHTMLElements/ILTableFootElement.st'; 
 	filein: 'XHTMLElements/ILTableHeadElement.st'; 
-	filein: 'XHTMLElements/ILConditionalElement.st'; 
+	filein: 'XHTMLElements/ILConditionalCommentElement.st'; 
 
 	filein: 'Buildables/Extensions.st';  
 	filein: 'Buildables/ILBuildable.st'; 

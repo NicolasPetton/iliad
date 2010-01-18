@@ -80,6 +80,7 @@
   <filein>XHTMLElements/ILTableRowElement.st</filein>
   <filein>XHTMLElements/ILTableFootElement.st</filein>
   <filein>XHTMLElements/ILTableHeadElement.st</filein>
+  <filein>XHTMLElements/ILConditionalCommentElement.st</filein>
   <filein>Buildables/Extensions.st</filein>
   <filein>Buildables/ILBuildable.st</filein>
   <filein>Buildables/ILDecorator.st</filein>
@@ -181,6 +182,7 @@
   <file>XHTMLElements/ILTableRowElement.st</file>
   <file>XHTMLElements/ILTableFootElement.st</file>
   <file>XHTMLElements/ILTableHeadElement.st</file>
+  <file>XHTMLElements/ILConditionalCommentElement.st</file>
   <file>Buildables/Extensions.st</file>
   <file>Buildables/ILBuildable.st</file>
   <file>Buildables/ILDecorator.st</file>

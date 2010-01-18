@@ -69,7 +69,7 @@ ILElement subclass: ILXHTMLElement [
 
     class: aString [
 	<category: 'accessing'>
-	^self cssClass
+	self cssClass: aString
     ]
 
     id [
@@ -445,7 +445,7 @@ ILElement subclass: ILXHTMLElement [
 
     if [
 	<category: 'accessing'>
-	^self add: (ILConditionalElement new)
+	^self add: (ILConditionalCommentElement new)
     ]
 
     img [
