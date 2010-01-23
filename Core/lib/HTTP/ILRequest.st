@@ -179,6 +179,11 @@ I am a server independent http request object.'>
 	^self authorization ifNotNilDo: [:auth | auth copyUpTo: $:]
     ]
 
+    userAgent [
+	<category: 'accessing'>
+	^self headerAt: 'user-agent'
+    ]
+
     hasCookies [
 	<category: 'testing'>
 	^self cookies notNil and: [self cookies notEmpty]
