@@ -159,12 +159,12 @@ ILBuildable subclass: ILField [
 		    build: self labelContents.
 		tr td 
 		    build: self fieldContents].
-	    tbody tr build: [:tr |
-		tr td.
-		self commentContents ifNotNil: [
-		    tr td
-			class: 'comment';
-			build: self commentContents]].
+	    self commentContents ifNotNil: [
+		tbody tr build: [:tr |
+		    tr td.
+			tr td
+			    class: 'comment';
+			    build: self commentContents]].
 	    tbody build: self errorsContents]
     ]
 
