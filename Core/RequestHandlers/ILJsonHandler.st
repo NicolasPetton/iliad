@@ -53,9 +53,7 @@ ILRequestHandler subclass: ILJsonHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	self shouldUpdateApplication 
-	    ifTrue: [widgetsToUpdate := {self application}]
-	    ifFalse: [widgetsToUpdate := self session dirtyWidgets copy].
+	widgetsToUpdate := self session dirtyWidgets copy.
 	self session clearDirtyWidgets.
 	super handleRequest
     ]
@@ -67,7 +65,12 @@ ILRequestHandler subclass: ILJsonHandler [
 		jsonContents 
 		    at: 'redirect' 
 		    put: self session redirectUrl asString].
-	    self updateHead; updateWidgets.
+	    self shouldUpdateApplication 
+		ifFalse: [
+		    self updateHead.
+		    self updateWidgets]
+		ifTrue: [
+		    self updateApplication].
 	    response nextPutAll: (String streamContents: [:stream |
 		jsonContents printJsonOn: stream]).
 	    self session clearRedirectUrl]
@@ -113,5 +116,11 @@ ILRequestHandler subclass: ILJsonHandler [
 	jsonContents at: 'widgets' put: widgets.
 	jsonContents at: 'scripts' put: scripts
     ]
-						
+
+    updateApplication [
+	<category: 'private'>
+	jsonContents 
+	    at: 'application' 
+	    put: self application build
+    ]
 ]

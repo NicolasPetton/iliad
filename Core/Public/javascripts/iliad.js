@@ -203,6 +203,11 @@ var iliad = (function() {
 			jQuery('head').append(json.head[i]);
 		}
 
+		/*  update application */
+		if(json.application) {
+			jQuery('body').html(json.application)
+		}
+
 		/*  update dirty widgets */
 		var dirtyWidgets = json.widgets;
 		for(var i in dirtyWidgets) {

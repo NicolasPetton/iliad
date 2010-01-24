@@ -10,27 +10,28 @@ ILUIWidget subclass: ILPaginator [
     contents [
 	<category: 'building'>
 	^[:e | 
-	    self currentPage = 1 
-		ifTrue: [e text: '<< ']
-		ifFalse: [
-		    e a
-			text: '<<';
-			action: [self selectPage: self currentPage - 1].
-		e space].
-	    1 to: self totalPages do: [:eachPageNumber | 
-		self currentPage = eachPageNumber 
-		    ifTrue: [e text: eachPageNumber printString]
+	    self totalPages > 1 ifTrue: [
+		self currentPage = 1 
+		    ifTrue: [e text: '<< ']
 		    ifFalse: [
 			e a
-			    text: eachPageNumber printString;
-			    action: [self selectPage: eachPageNumber]].
-		e space].
-	(self currentPage = totalPages or: [totalPages = 0]) 
-	    ifTrue: [e text: '>>']
-	    ifFalse: [
-		e a
-		    text: '>>';
-		    action: [self selectPage: self currentPage + 1]]]
+			    text: '<<';
+			    action: [self selectPage: self currentPage - 1].
+		    e space].
+		(1 to: self totalPages) do: [:each | 
+		    self currentPage = each 
+			ifTrue: [e text: each printString]
+			ifFalse: [
+			    e a
+				text: each printString;
+				action: [self selectPage: each]].
+		    e space].
+	    self currentPage = totalPages 
+		ifTrue: [e text: '>>']
+		ifFalse: [
+		    e a
+			text: '>>';
+			action: [self selectPage: self currentPage + 1]]]]
     ]
 
     action [
@@ -59,15 +60,15 @@ ILUIWidget subclass: ILPaginator [
 	^totalPages
     ]
 
-    totalPages: anObject [
+    totalPages: anInteger [
 	<category: 'accessing'>
-	totalPages := anObject.
+	totalPages := anInteger.
 	self markDirty
     ]
 
-    selectPage: aPage [
+    selectPage: anInteger [
 	<category: 'actions'>
-	self action value: aPage
+	self action value: anInteger
     ]
 ]
 

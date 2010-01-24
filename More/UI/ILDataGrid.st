@@ -7,12 +7,6 @@ ILUIWidget subclass: ILDataGrid [
     <comment: nil>
     <category: 'Iliad-More-UI'>
 
-    body [
-	<category: 'building'>
-	^[:tbody | self visibleItemsDo: [:item | 
-	    tbody tr build: (self rowForItem: item)]]
-    ]
-
     contents [
 	<category: 'building'>
 	^[:e | 
@@ -22,16 +16,22 @@ ILUIWidget subclass: ILDataGrid [
 		table tfoot build: self footer]]
     ]
 
-    footer [
-	<category: 'building'>
-	^[:tfoot | ]
-    ]
-
     header [
 	<category: 'building'>
 	^[:thead | 
 	    self columnNames do: [:each | 
-		thead th html: each]]
+		thead th text: each]]
+    ]
+
+    body [
+	<category: 'building'>
+	^[:tbody | self visibleItemsDo: [:item | 
+	    tbody tr build: (self rowForItem: item)]]
+    ]
+
+    footer [
+	<category: 'building'>
+	^[:tfoot | ]
     ]
 
     rowForItem: anItem [
@@ -52,11 +52,11 @@ ILUIWidget subclass: ILDataGrid [
 	^builders
     ]
 
-    column: aColumn buildContents: aBlock [
+    column: anInteger buildContents: aBlock [
 	<category: 'accessing'>
-	[self builders size < aColumn] 
+	[self builders size < anInteger] 
 	    whileTrue: [self builders addLast: [:e :item | ]].
-	self builders at: aColumn put: aBlock.
+	self builders at: anInteger put: aBlock.
 	self markDirty
     ]
 

@@ -7,26 +7,36 @@ ILDataGrid subclass: ILPagedDataGrid [
     <comment: nil>
     <category: 'Iliad-More-UI'>
 
-    currentPage [
-	<category: 'accessing'>
-	^currentPage ifNil: [1]
+    defaultRowsPerPage [
+	<category: 'defaults'>
+	^10
     ]
 
-    currentPage: anObject [
+    currentPage [
 	<category: 'accessing'>
-	currentPage := anObject.
+	^(currentPage ifNil: [1]) min: self totalPages
+    ]
+
+    currentPage: anInteger [
+	<category: 'accessing'>
+	currentPage := anInteger.
 	self markDirty
     ]
 
     rowsPerPage [
 	<category: 'accessing'>
-	^rowsPerPage
+	^rowsPerPage ifNil: [self defaultRowsPerPage]
     ]
 
-    rowsPerPage: anObject [
+    rowsPerPage: anInteger [
 	<category: 'accessing'>
-	rowsPerPage = anObject ifFalse: [self markDirty].
-	rowsPerPage := anObject
+	rowsPerPage = anInteger ifFalse: [self markDirty].
+	rowsPerPage := anInteger
+    ]
+
+    totalPages [
+	<category: 'accessing'>
+	^(self items size / self rowsPerPage) ceiling max: 1
     ]
 
     visibleItemsDo: aBlock [
@@ -35,7 +45,7 @@ ILDataGrid subclass: ILPagedDataGrid [
 	fromIndex := (self currentPage - 1) * self rowsPerPage + 1.
 	toIndex := fromIndex + self rowsPerPage - 1 min: self items size.
 	fromIndex to: toIndex
-	    do: [:eachIndex | aBlock value: (self items at: eachIndex)]
+	    do: [:each | aBlock value: (self items at: each)]
     ]
 
     footer [
@@ -44,9 +54,9 @@ ILDataGrid subclass: ILPagedDataGrid [
 	    tfoot td
 		colspan: self columnNames size;
 		build: ((ILPaginator new)
-			totalPages: (self items size / self rowsPerPage) ceiling;
+			totalPages: self totalPages;
 			currentPage: self currentPage;
-			action: [:newPage | self currentPage: newPage])]
+			action: [:val | self currentPage: val])]
     ]
 ]
 

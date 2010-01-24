@@ -49,13 +49,13 @@ ILApplication subclass: ILTodoListApplication [
     selectCompleted [
 	<category: 'accessing'>
 	self todoListGridWidget selectBlock: [:item | item completed].
-	self markDirty
+	self todoListGridWidget markDirty
     ]
 
     selectPending [
 	<category: 'accessing'>
 	self todoListGridWidget selectBlock: [:item | item completed not].
-	self markDirty
+	self todoListGridWidget markDirty
     ]
 
     todoListGridWidget [
