@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ILOptionField class definition
+|   Iliad.ILMultipleCheckboxField class definition
 |
  ======================================================================"
 
@@ -36,64 +36,23 @@
 
 
 
-ILField subclass: ILOptionField [
-    | options optionLabelBlock |
+ILOptionField subclass: ILMultipleCheckboxField [
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
 
-    optionLabelBlock [
-	<category: 'accessing'>
-	^optionLabelBlock ifNil: [self defaultOptionLabelBlock]
-    ]
-
-    optionLabelBlock: aBlock [
-	<category: 'accessing'>
-	optionLabelBlock := aBlock
-    ]
-
-    defaultOptionLabelBlock [
-	<category: 'defaults'>
-	^[:option | option printString]
-    ]
-
-    options [
-	<category: 'accessing'>
-	^options ifNil: [{}]
-    ]
-
-    options: aCollection [
-	<category: 'accessing'>
-	options := aCollection
-    ]
-
-    options: aCollection labels: aBlock [
-	<category: 'accessing'>
-	self options: aCollection.
-	self optionLabelBlock: aBlock
-    ]
-
-    value [
-	<category: 'accessing'>
-	(value isNil and: [self isMultiple]) ifTrue: [
-	    value := OrderedCollection new].
-	^value
-    ]
-
-    add: anObject [
-	<category: 'accessing'>
-	(self value includes: anObject)
-	    ifFalse: [self value add: anObject]
-    ]
-
-    remove: anObject [
-	<category: 'accessing'>
-	(self value includes: anObject)
-	    ifTrue: [self value remove: anObject]
-    ]
-
-    isMultiple [
-	<category: 'testing'>
-	^true
+    fieldContents [
+	<category: 'building'>
+	^[:e | 
+	    self options 
+		do: [:each |
+		    e checkbox
+			checked: (self value includes: each);
+			action: [:boolean | boolean 
+			    ifTrue: [self add: each]
+			    ifFalse: [self remove: each]].
+		    e space.
+		    e label text: (self optionLabelBlock value: each)]
+		separatedBy: [e br]]
     ]
 ]

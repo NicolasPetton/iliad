@@ -16,6 +16,7 @@ Eval [
 	filein: 'ILCheckboxField.st';
 	filein: 'ILOptionField.st';
 	filein: 'ILSelectField.st';
+	filein: 'ILMultipleCheckboxField.st';
 	filein: 'ILDateInputField.st';
 	filein: 'ILTimeInputField.st';
 	filein: 'ILFileInputField.st';

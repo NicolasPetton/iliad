@@ -53,16 +53,25 @@ ILOptionField subclass: ILSelectField [
 	multiple := aBoolean
     ]
 
+    isMultiple [
+	<category: 'testing'>
+	^self multiple
+    ]
+
     fieldContents [
 	<category: 'building'>
 	^[:e | 
 	    e select build: [:select |
-		self multiple ifTrue: [
+		self isMultiple ifTrue: [
 		    select beMultiple].
 		self options do: [:each |
 		    select option 
-			selected: self value = each;
-			action: [self value: each];
-			text: (self optionLabelBlock value: each)]]]
+			selected: (self isMultiple
+			    ifTrue: [self value includes: each]
+			    ifFalse: [self value = each]);
+			text: (self optionLabelBlock value: each);
+			action: [self isMultiple
+			    ifFalse: [self value: each]
+			    ifTrue: [self add: each]]]]]
     ]
 ]

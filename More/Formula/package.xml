@@ -12,6 +12,7 @@
   <filein>ILCheckboxField.st</filein>
   <filein>ILOptionField.st</filein>
   <filein>ILSelectField.st</filein>
+  <filein>ILMultipleCheckboxField.st</filein>
   <filein>ILDateInputField.st</filein>
   <filein>ILTimeInputField.st</filein>
   <filein>ILFileInputField.st</filein>
@@ -26,6 +27,7 @@
   <file>ILCheckboxField.st</file>
   <file>ILOptionField.st</file>
   <file>ILSelectField.st</file>
+  <file>ILMultipleCheckboxField.st</file>
   <file>ILDateInputField.st</file>
   <file>ILTimeInputField.st</file>
   <file>ILFileInputField.st</file>

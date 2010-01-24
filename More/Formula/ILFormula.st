@@ -110,6 +110,11 @@ ILWidget subclass: ILFormula [
 	^self addField: (ILSelectField on: aSelector of: model)
     ]
 
+    multipleCheckboxOn: aSelector [
+	<category: 'adding'>
+	^self addField: (ILMultipleCheckboxField on: aSelector of: model)
+    ]
+
     fileInputOn: aSelector [
 	<category: 'adding'>
 	^self addField: (ILFileInputField on: aSelector of: model)
