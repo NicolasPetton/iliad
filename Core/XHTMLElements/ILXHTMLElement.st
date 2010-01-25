@@ -226,7 +226,7 @@ ILElement subclass: ILXHTMLElement [
 	    (self session registerActionFor: aBlock)) asString.
 	self 
 	    onEvent: aString 
-	    do: ('iliad.evaluateAction("', actionUrl, '")')
+	    add: ('iliad.evaluateAction("', actionUrl, '")')
     ]
 
     a [
