@@ -104,64 +104,129 @@ ILElement subclass: ILXHTMLElement [
 
     onBlur: aString [
 	<category: 'accessing attributes-events'>
-	self onEvent: 'blur' do: aString
+	self onEvent: 'blur' add: aString
     ]
 
     onChange: aString [
 	<category: 'accessing  attributes-events'>
-	self onEvent: 'change' do: aString
+	self onEvent: 'change' add: aString
     ]
 
     onClick: aString [
 	<category: 'accessing attributes-events'>
-	self onEvent: 'click' do: aString
+	self onEvent: 'click' add: aString
     ]
 
     onDoubleClick: aString [
 	<category: 'accessing attributes-events'>
-	self onEvent: 'dblclick' do: aString
+	self onEvent: 'dblclick' add: aString
     ]
 
-    onEvent: aString do: anotherString [
+    onFocus: aString [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'focus' add: aString
+    ]
+
+    onKeyDown: aString [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'keyaddwn' add: aString
+    ]
+
+    onKeyPress: aString [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'keypress' add: aString
+    ]
+
+    onKeyUp: aString [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'keyup' add: aString
+    ]
+
+    onMouseOut: aString [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'mouseout' add: aString
+    ]
+
+    onMouseOver: aString [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'mouseover' add: aString
+    ]
+
+    onSelect: aString [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'select' add: aString
+    ]
+
+    onBlurDo: aBlock [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'blur' do: aBlock
+    ]
+
+    onChangeDo: aBlock [
+	<category: 'accessing  attributes-events'>
+	self onEvent: 'change' do: aBlock
+    ]
+
+    onClickDo: aBlock [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'click' do: aBlock
+    ]
+
+    onDoubleClickDo: aBlock [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'dblclick' do: aBlock
+    ]
+
+    onFocusDo: aBlock [
+	<categoryDo: 'accessing attributes-events'>
+	self onEvent: 'focus' do: aBlock
+    ]
+
+    onKeyDownDo: aBlock [
+	<categoryDo: 'accessing attributes-events'>
+	self onEvent: 'keydown' do: aBlock
+    ]
+
+    onKeyPressDo: aBlock [
+	<categoryDo: 'accessing attributes-events'>
+	self onEvent: 'keypress' do: aBlock
+    ]
+
+    onKeyUpDo: aBlock [
+	<categoryDo: 'accessing attributes-events'>
+	self onEvent: 'keyup' do: aBlock
+    ]
+
+    onMouseOutDo: aBlock [
+	<categoryDo: 'accessing attributes-events'>
+	self onEvent: 'mouseout' do: aBlock
+    ]
+
+    onMouseOverDo: aBlock [
+	<categoryDo: 'accessing attributes-events'>
+	self onEvent: 'mouseover' do: aBlock
+    ]
+
+    onSelectDo: aBlock [
+	<categoryDo: 'accessing attributes-events'>
+	self onEvent: 'select' do: aBlock
+    ]
+
+    onEvent: aString add: anotherString [
 	<category: 'accessing attributes-events'>
 	| oldString |
 	oldString := (self attributeAt: 'on', aString) ifNil: [''].
 	self attributeAt: 'on', aString put: (oldString, anotherString)
     ]
 
-    onFocus: aString [
+    onEvent: aString do: aBlock [
 	<category: 'accessing attributes-events'>
-	self onEvent: 'focus' do: aString
-    ]
-
-    onKeyDown: aString [
-	<category: 'accessing attributes-events'>
-	self onEvent: 'keydown' do: aString
-    ]
-
-    onKeyPress: aString [
-	<category: 'accessing attributes-events'>
-	self onEvent: 'keypress' do: aString
-    ]
-
-    onKeyUp: aString [
-	<category: 'accessing attributes-events'>
-	self onEvent: 'keyup' do: aString
-    ]
-
-    onMouseOut: aString [
-	<category: 'accessing attributes-events'>
-	self onEvent: 'mouseout' do: aString
-    ]
-
-    onMouseOver: aString [
-	<category: 'accessing attributes-events'>
-	self onEvent: 'mouseover' do: aString
-    ]
-
-    onSelect: aString [
-	<category: 'accessing attributes-events'>
-	self onEvent: 'select' do: aString
+	| actionUrl |
+	actionUrl := (self context urlBuilder urlForAction: 
+	    (self session registerActionFor: aBlock)) asString.
+	self 
+	    onEvent: aString 
+	    do: ('iliad.evaluateAction("', actionUrl, '")')
     ]
 
     a [
