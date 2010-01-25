@@ -129,7 +129,7 @@ ILElement subclass: ILXHTMLElement [
 
     onKeyDown: aString [
 	<category: 'accessing attributes-events'>
-	self onEvent: 'keyaddwn' add: aString
+	self onEvent: 'keydown' add: aString
     ]
 
     onKeyPress: aString [
