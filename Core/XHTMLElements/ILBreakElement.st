@@ -46,7 +46,7 @@ ILClosingElement subclass: ILBreakElement [
 	^'br'
     ]
 
-    onEvent: event do: aString [
+    onEvent: event add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , event
     ]

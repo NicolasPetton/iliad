@@ -76,7 +76,7 @@ ILXHTMLElement subclass: ILHtmlElement [
 	self attributeAt: 'xmlns' put: aString
     ]
 
-    onEvent: event do: aString [
+    onEvent: event add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , event
     ]

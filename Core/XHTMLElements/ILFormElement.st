@@ -122,12 +122,22 @@ ILXHTMLElement subclass: ILFormElement [
 
     onReset: aString [
 	<category: 'accessing attributes-events'>
-	self onEvent: 'reset' do: aString
+	self onEvent: 'reset' add: aString
     ]
 
     onSubmit: aString [
 	<category: 'accessing attributes-events'>
-	self onEvent: 'submit' do: aString
+	self onEvent: 'submit' add: aString
+    ]
+
+    onResetDo: aBlock [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'reset' do: aBlock
+    ]
+
+    onSubmitDo: aBlock [
+	<category: 'accessing attributes-events'>
+	self onEvent: 'submit' do: aBlock
     ]
 
     beforePrintHtml [

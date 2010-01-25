@@ -48,7 +48,7 @@ ILXHTMLElement subclass: ILBodyElement [
 
     onLoad: aString [
 	<category: 'addessing attributes-events'>
-	self onEvent: 'Load' do: aString
+	self onEvent: 'Load' add: aString
     ]
 
     onUnload: aString [

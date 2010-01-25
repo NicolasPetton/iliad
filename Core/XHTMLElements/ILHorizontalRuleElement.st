@@ -46,7 +46,7 @@ ILClosingElement subclass: ILHorizontalRuleElement [
 	^'hr'
     ]
     
-    onEvent: anEvent do: aString [
+    onEvent: anEvent add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , aString
     ]

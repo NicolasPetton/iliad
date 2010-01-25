@@ -101,7 +101,7 @@ ILClosingElement subclass: ILMetaElement [
 	self doesNotUnderstandAttribute: 'title'
     ]
 
-    onEvent: event do: aString [
+    onEvent: event add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , event
     ]

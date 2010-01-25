@@ -57,7 +57,7 @@ ILXHTMLElement subclass: ILHeadingElement [
 	^'h' , self level
     ]
 
-    onEvent: event do: aString [
+    onEvent: event add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , event
     ]

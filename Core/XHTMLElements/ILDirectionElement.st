@@ -56,7 +56,7 @@ ILXHTMLElement subclass: ILDirectionElement [
 	self attributeAt: 'dir' put: aString
     ]
 
-    onEvent: event do: aString [
+    onEvent: event add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , event
     ]

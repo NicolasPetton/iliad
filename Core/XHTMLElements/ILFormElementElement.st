@@ -84,7 +84,7 @@ ILXHTMLElement subclass: ILFormElementElement [
    
     beSubmitOnEvent: aString [
 	<category: 'accessing attributes'>
-	self onEvent: aString do: 'iliad.evaluateFormElementAction(this)'
+	self onEvent: aString add: 'iliad.evaluateFormElementAction(this)'
     ]
 
     disabled: aBoolean [

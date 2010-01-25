@@ -46,7 +46,7 @@ ILXHTMLElement subclass: ILTitleElement [
 	^'title'
     ]
     
-    onEvent: anEvent do: aString [
+    onEvent: anEvent add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , anEvent
     ]
