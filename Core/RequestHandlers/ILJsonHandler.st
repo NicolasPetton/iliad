@@ -112,7 +112,7 @@ ILRequestHandler subclass: ILJsonHandler [
 	    widgets at: each id put: e.
 	    e allChildrenDo: [:child |
 		child tag = 'script' ifTrue: [
-		    scripts add: child]]].
+		    scripts add: child printHtmlString]]].
 	jsonContents at: 'widgets' put: widgets.
 	jsonContents at: 'scripts' put: scripts
     ]
