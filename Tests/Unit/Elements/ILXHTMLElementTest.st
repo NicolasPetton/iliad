@@ -380,7 +380,7 @@ ILElementTest subclass: ILXHTMLElementTest [
 
     testOnEvents [
 	<category: 'testing'>
-	e onEvent: 'foo' do: 'bar'.
+	e onEvent: 'foo' add: 'bar'.
 	self assert: (e attributeAt: 'onfoo') = 'bar'.
 	e onClick: 'foo'.
 	self assert: (e attributeAt: 'onclick') = 'foo'.
