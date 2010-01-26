@@ -153,8 +153,9 @@ ILBuildable subclass: ILField [
 	<category: 'building'>
 	^[:tbody|
 	    tbody tr build: [:tr |
+		tr cssClass: 'field'.
 		self isValid ifFalse: [
-		    tr class: 'error'].
+		    tr cssClass: tr cssClass, ' error'].
 		tr th 
 		    build: self labelContents.
 		tr td 
@@ -163,7 +164,7 @@ ILBuildable subclass: ILField [
 		tbody tr build: [:tr |
 		    tr td.
 			tr td
-			    class: 'comment';
+			    cssClass: 'comment';
 			    build: self commentContents]].
 	    tbody build: self errorsContents]
     ]
