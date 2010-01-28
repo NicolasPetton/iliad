@@ -403,7 +403,7 @@ fragment:		<String> or nil'>
 		    ifTrue: [
 			self username: (self decode: (temp copyFrom: 1 to: index - 1)).
 			self password: (self decode: (temp copyFrom: index + 1 to: temp size))]].
-	index := string lastIndexOf: $:.
+	index := string indexOf: $:.
 	index > 0 
 	    ifTrue: [
 		temp := string copyFrom: index + 1 to: string size.
