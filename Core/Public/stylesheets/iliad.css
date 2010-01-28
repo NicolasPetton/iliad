@@ -6,6 +6,10 @@ body {
     text-align: center;
 }
 
+img {
+    border: 0 none
+}
+
 .wrapper {
     margin: 0 auto;
     text-align: left;
@@ -37,12 +41,12 @@ h3 {
 
 a, a:visited {
     color: #660e7b;
+    font-weight: bold;
     text-decoration: none;
 }
 
 a:hover {
-    color: #ffffff;
-    background-color: #660e7b;
+    color: #111;
 }
 
 table {

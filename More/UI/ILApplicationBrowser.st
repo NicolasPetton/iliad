@@ -63,9 +63,11 @@ ILApplication subclass: ILApplicationBrowser [
 	    e div 
 		class: 'wrapper';
 		build: [:div |
-		    div img
-			class: 'logo';
-			src: '/images/iliad.png' alt: 'Iliad'.
+		    div a build: [:a | 
+			a href: 'http://www.iliadproject.org'.
+			a img
+			    class: 'logo';
+			    src: '/images/iliad.png' alt: 'Iliad'].
 		    div h1: 'Application Browser'.
 		    div build: self pathListContents]]
     ]
