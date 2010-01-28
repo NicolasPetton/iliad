@@ -1,17 +1,23 @@
 Eval [
-    | builder pubDir |  
-    builder := PackageBuilder new
+    PackageBuilder new
 	name: 'Iliad-More-Charts';
 	namespace: 'Iliad';
+
 	prereq: 'Iliad-Core';
-	filein: 'ILChart.st';
-	filein: 'postLoad.st';
-	yourself.
 
-    pubDir := Directory working / 'Public'.
-    pubDir all do: [:each |
-	each isFile ifTrue: [
-	    builder resource: (each pathFrom: Directory working)]].
+	filein: 'Core/ILChart.st';
+	filein: 'Core/ILChartData.st';
+	
+	filein: 'Options/ILChartOption.st';
+	filein: 'Options/ILChartColorOption.st';
+	filein: 'Options/ILChartGridOption.st';
+	filein: 'Options/ILChartLegendOption.st';
+	filein: 'Options/ILChartLinesOption.st';
+	filein: 'Options/ILChartBarsOption.st';
+	filein: 'Options/ILChartPointsOption.st';
+	filein: 'Options/ILChartSelectionOption.st';
+	filein: 'Options/ILChartXaxisOption.st';
+	filein: 'Options/ILChartYaxisOption.st';
 
-    builder buildXml
-]
+	buildXml
+    ]

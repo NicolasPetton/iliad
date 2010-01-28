@@ -1,6 +1,7 @@
 ILWidget subclass: ILChart [
     | chartId datas size |
-    <category: 'Iliad-More-Charts'>
+    
+    <category: 'Iliad-More-Charts-Core'>
     <comment: nil>
 
     size [
