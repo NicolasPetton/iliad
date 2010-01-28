@@ -300,40 +300,6 @@ added to the decoration chain with #decorateWith:.'>
 	    decorateWith: answerHandler
     ]
 
-    append: aWidget [
-	"Insert <aWidget> after the receiver"
-	<category: 'control flow'>
-
-	self append: aWidget onAnswer: [:ans |]
-    ] 
-
-    append: aWidget onAnswer: aBlock [
-	"Insert <aWidget> after the receiver"
-	<category: 'control flow'>
-
-	self 
-	    show: aWidget
-	    onAnswer: aBlock
-	    delegator: (ILAppendDecorator new widget: aWidget)
-    ]
-
-    prepend: aWidget [
-	"Insert <aWidget> before the receiver"
-	<category: 'control flow'>
-
-	self prepend: aWidget onAnswer: [:ans |]
-    ] 
-
-    prepend: aWidget onAnswer: aBlock [
-	"Insert <aWidget> before the receiver"
-	<category: 'control flow'>
-
-	self 
-	    show: aWidget
-	    onAnswer: aBlock
-	    delegator: (ILPrependDecorator new widget: aWidget)
-    ]
-
     printJsonOn: aStream [
 	<category:'printing'>
 	self build printJsonOn: aStream
