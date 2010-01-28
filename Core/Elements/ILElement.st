@@ -109,14 +109,6 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	self afterPrintHtml
     ]
 
-    printHtmlString [
-	<category: 'printing'>
-	| stream |
-	stream := WriteStream on: ''.
-	self printHtmlOn: stream.
-	^stream contents
-    ]
-
     afterPrintHtml [
 	<category: 'printing'>
     ]

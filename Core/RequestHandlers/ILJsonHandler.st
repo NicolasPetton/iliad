@@ -47,8 +47,7 @@ ILRequestHandler subclass: ILJsonHandler [
 	super initialize.
 	jsonContents := Dictionary new.
 	head := OrderedCollection new.
-	widgets := Dictionary new.
-	scripts := OrderedCollection new
+	widgets := Dictionary new
     ]
 
     handleRequest [
@@ -109,12 +108,8 @@ ILRequestHandler subclass: ILJsonHandler [
 	<category: 'private'>
 	widgetsToUpdate do: [:each || e |
 	    e := each build.
-	    widgets at: each id put: e.
-	    e allChildrenDo: [:child |
-		child tag = 'script' ifTrue: [
-		    scripts add: child printHtmlString]]].
-	jsonContents at: 'widgets' put: widgets.
-	jsonContents at: 'scripts' put: scripts
+	    widgets at: each id put: e].
+	jsonContents at: 'widgets' put: widgets
     ]
 
     updateApplication [

@@ -192,7 +192,9 @@ var iliad = (function() {
 	 * -------------------------------------------------------------- */
 
 	function processUpdates(json) {
-		
+		var script_extractor= /<script(.|\s)*?\/script>/ig;
+		var scripts = [];
+
 		/* handle redirect if any */
 		if(json.redirect) {
 			return (window.location.href = json.redirect);
@@ -211,11 +213,17 @@ var iliad = (function() {
 		/*  update dirty widgets */
 		var dirtyWidgets = json.widgets;
 		for(var i in dirtyWidgets) {
-			updateWidget(i, dirtyWidgets[i]);
+			var script = dirtyWidgets[i].match(script_extractor);
+			if(script) {
+				for(var j in script) {
+					scripts.push(script[j]);
+				}
+			}
+			updateWidget(i, dirtyWidgets[i].replace(script_extractor, ''));
 		}
 
 		/* evaluate scripts */
-		var scripts = json.scripts;
+		//var scripts = json.scripts;
 		for(var i in scripts) {
 			evalScript(scripts[i]);
 		}

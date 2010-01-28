@@ -92,11 +92,6 @@ ILXHTMLElement subclass: ILScriptElement [
 	self attributeAt: 'type' ifAbsent: [self beJavascript]
     ]
 
-    printJsonOn: aStream [
-	<category: 'printing'>
-	"just do nothing"
-    ]
-
     printHtmlOn: aStream [
 	"do not encode contents!!"
 	<category: 'printing'>
