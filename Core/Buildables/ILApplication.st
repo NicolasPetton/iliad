@@ -320,14 +320,13 @@ the application mode:
 	self returnResponse: response
     ]
 
-    respond: aBlock [
+    returnResponse: aResponse [
 	"Abort all other request handling"
 	<category: 'redirecting'>
-
-	| response |
-	response := ILResponse new.
-	aBlock value: response.
-	self returnResponse: response
+	
+	ILResponseNotification new
+	    response: aResponse;
+	    signal
     ]
 
     index [
