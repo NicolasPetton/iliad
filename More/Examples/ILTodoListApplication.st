@@ -91,10 +91,13 @@ ILApplication subclass: ILTodoListApplication [
 
     mainContents [
 	<category: 'building'>
-	^ [:e |
-	    e h1: 'Todo List'.
-	    e build: self actionLinksContents.
-	    e build: self todoListGridWidget]
+	^[:e |
+	    e div 
+		class: 'wrapper';
+		build: [:div |
+		    div h1: 'Todo List'.
+		    div build: self actionLinksContents.
+		    div build: self todoListGridWidget]]
     ]
 
     actionLinksContents [

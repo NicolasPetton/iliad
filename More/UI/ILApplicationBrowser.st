@@ -60,9 +60,14 @@ ILApplication subclass: ILApplicationBrowser [
     mainContents [
 	<category: 'building'>
 	^[:e | 
-	    e img src: '/images/iliad.png' alt: 'Iliad'.
-	    e h3: 'Application Browser'.
-	    e build: self pathListContents]
+	    e div 
+		class: 'wrapper';
+		build: [:div |
+		    div img
+			class: 'logo';
+			src: '/images/iliad.png' alt: 'Iliad'.
+		    div h1: 'Application Browser'.
+		    div build: self pathListContents]]
     ]
 
     pathListContents [
