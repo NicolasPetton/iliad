@@ -146,6 +146,12 @@ ILXHTMLElement subclass: ILLinkableElement [
 	self rel: 'Prev'
     ]
 
+    beRss [
+	<category: 'accessing attributes-relationships'>
+	self rel: 'alternate'.
+	self type: 'application/rss+xml'
+    ]
+
     beSection [
 	<category: 'accessing attributes-relationships'>
 	self rel: 'Section'
