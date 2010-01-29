@@ -215,7 +215,7 @@ var iliad = (function() {
 		for(var i in dirtyWidgets) {
 			var script = dirtyWidgets[i].match(script_extractor);
 			if(script) {
-				for(var j in script) {
+				for(var j = 0; j < script.length; j++) {
 					scripts.push(script[j]);
 				}
 			}
