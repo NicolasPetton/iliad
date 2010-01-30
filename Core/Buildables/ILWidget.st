@@ -98,7 +98,7 @@ added to the decoration chain with #decorateWith:.'>
 
     id [
 	<category: 'accessing'>
-	^id ifNil: [id := ILId new]
+	^id ifNil: [id := ILId new: 8]
     ]
  
     owner: aWidget [
@@ -140,7 +140,7 @@ added to the decoration chain with #decorateWith:.'>
 	self buildHead: self application page head.	
 	
 	^self newRootElement div 
-	    class: '_widget ', self id;
+	    class: self id;
 	    build: decorator contents;
 	    yourself
     ]

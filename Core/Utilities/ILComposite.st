@@ -99,4 +99,3 @@ ILObject subclass: ILComposite [
 	aBlock value: tail
     ]
 ]
-

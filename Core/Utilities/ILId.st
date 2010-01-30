@@ -6,7 +6,7 @@ ByteArray subclass: ILId [
 
     ILId class >> defaultSize [
 	<category: 'defaults'>
-	^32
+	^12
     ]
 
     ILId class >> new [
@@ -31,7 +31,7 @@ ByteArray subclass: ILId [
 
     table [
 	<category: 'accessing'>
-	^($a to: $z) , ($0 to: $9) , (Array with: $_ with: $-)
+	^($a to: $z), ($A to: $Z), ($0 to: $9), (Array with: $_ with: $-)
     ]
 
     printOn: aStream [
