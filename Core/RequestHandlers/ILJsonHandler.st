@@ -72,7 +72,8 @@ ILRequestHandler subclass: ILJsonHandler [
 		    self updateApplication].
 	    response nextPutAll: (String streamContents: [:stream |
 		jsonContents printJsonOn: stream]).
-	    self session clearRedirectUrl]
+	    self session clearRedirectUrl.
+	    self addNoCacheHeaderTo: response]
     ]
 
     shouldRedirect [
