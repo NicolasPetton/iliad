@@ -35,7 +35,7 @@
 
 
 ILObject subclass: ILUrlBuilder [
-    | actionKey sessionKey tokenKey hashKey |
+    | actionKey sessionKey tokenKey hashKey rewriteRule |
     
     <comment: nil>
     <category: 'Iliad-Core-Sessions'>
@@ -69,6 +69,18 @@ ILObject subclass: ILUrlBuilder [
 	^tokenKey ifNil: [tokenKey := self defaultTokenKey]
     ]
 
+    rewriteRule [
+	"Rewrite rules are used to replace patterns in the baseUrl"
+	<category: 'accessing'>
+
+	^rewriteRule
+    ]
+
+    rewriteRule: anAssociation [
+	<category: 'accessing'>
+	rewriteRule := anAssociation
+    ]
+
     addDefaultParametersTo: anUrl [
 	<category: 'generating'>
 	self shouldUseSessionField ifTrue: [
@@ -82,7 +94,7 @@ ILObject subclass: ILUrlBuilder [
 	| url |
 	url := ILUrl absolute: self context route pathString.
 	self addDefaultParametersTo: url.
-	^url
+	^self applyRewriteRuleTo: url
     ]
 
     urlForAction: anAction [
@@ -112,6 +124,16 @@ ILObject subclass: ILUrlBuilder [
 	(anApplicationClass path startsWith: '/')
 	    ifTrue: [^anApplicationClass path]
 	    ifFalse: [^'/', anApplicationClass path]
+    ]
+
+    applyRewriteRuleTo: anUrl [
+	<category: 'generating'>
+	^self rewriteRule 
+	    ifNil: [anUrl]
+	    ifNotNil: [:assoc | ILUrl absolute: 
+		(anUrl asString
+		    copyReplacingAllRegex: assoc key 
+		    with: assoc value)]
     ]
 
     defaultActionKey [
