@@ -58,7 +58,7 @@ ILXHTMLElement subclass: ILFormElement [
 
     url [
 	<category: 'accessing'>
-	^self session route pathString
+	^self context baseUrl asString
     ]
 
     accept: aString [
