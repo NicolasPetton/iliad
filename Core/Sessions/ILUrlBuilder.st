@@ -162,9 +162,11 @@ ILObject subclass: ILUrlBuilder [
 
     absolutePathFor: anApplicationClass [
 	<category: 'generating'>
-	(anApplicationClass path startsWith: '/')
-	    ifTrue: [^anApplicationClass path]
-	    ifFalse: [^'/', anApplicationClass path]
+	| path |
+	path := (anApplicationClass path startsWith: '/')
+	    ifTrue: [anApplicationClass path]
+	    ifFalse: ['/', anApplicationClass path].
+	^(self applyRewriteRuleTo: (ILUrl absolute: path)) asString
     ]
 
     applyRewriteRuleTo: anUrl [

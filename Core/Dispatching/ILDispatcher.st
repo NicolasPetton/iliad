@@ -129,13 +129,21 @@ and wait for a ILResponseNotification to respond to them.'>
 	    aRoute next.
 	    applicationClass := ILApplication allSubclasses
 		detect: [:each | 
-		    (self context urlBuilder absolutePathFor: each) = aRoute currentPath]
+		    (self absolutePathFor: each) = aRoute currentPath]
 		ifNone: [applicationClass]].
 	 applicationClass ifNotNil: [
 	    aRoute position: (ILUrl absolute: applicationClass path) path size].
 	    ^applicationClass
     ]
     
+    absolutePathFor: anApplicationClass [
+	<category: 'private'>
+	^(anApplicationClass path startsWith: '/')
+	    ifTrue: [anApplicationClass path]
+	    ifFalse: ['/', anApplicationClass path]
+
+    ]
+
     findApplicationFor: aRoute [
 	<category: 'private'>
 	| applicationClass |

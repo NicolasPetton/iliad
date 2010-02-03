@@ -63,7 +63,7 @@ ILXHTMLElement subclass: ILLinkableElement [
 
     linkToLocal: aString [
 	<category: 'accessing attributes'>
-	self href: (self application originalUrl, '/', aString)
+	self linkToApplication: self application class controller: aString
     ]
 
     linkToApplication: anApplicationClass [
