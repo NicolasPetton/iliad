@@ -64,7 +64,7 @@ and wait for a ILResponseNotification to respond to them.'>
     dispatch: aRequest [
 	"Entry point of requests"
 	<category: 'dispatching'>
-	
+
 	self withErrorHandling: [
 	    ILCurrentContext 
 		use: (self createContextFor: aRequest)

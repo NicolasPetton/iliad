@@ -38,7 +38,7 @@
 
 Object subclass: ILContext [
 
-    | request application route hashRoute session |
+    | request application route hashRoute session urlBuilder |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I store current request context objects:
 - the route
@@ -70,6 +70,11 @@ A can be accessed through ILObject>>context'>
     application: anApplication [
 	<category: 'accessing'>
 	application := anApplication
+    ]
+
+    urlBuilder [
+	<category: 'accessing'>
+	^urlBuilder ifNil: [urlBuilder := ILUrlBuilder new]
     ]
 
     baseUrl [
@@ -107,11 +112,6 @@ A can be accessed through ILObject>>context'>
 	| hash |
 	hash := self request hashLocationField ifNil: [''].
 	^hashRoute ifNil: [hashRoute := ILRoute path: (hash tokenize: '/')]
-    ]
-   
-    urlBuilder [
-	<category: 'accessing'>
-	^ILUrlBuilder default
     ]
 ]
 

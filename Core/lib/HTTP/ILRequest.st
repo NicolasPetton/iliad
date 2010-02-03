@@ -94,28 +94,28 @@ I am a server independent http request object.'>
     hashLocationField [
 	<category: 'accessing'>
 	^self
-	    at: ILUrlBuilder default hashKey
+	    at: ILUrlBuilder hashKey
 	    ifAbsent: [nil]
     ]
 
     sessionField [
 	<category: 'accessing'>
 	^self 
-	    at: ILUrlBuilder default sessionKey
+	    at: ILUrlBuilder sessionKey
 	    ifAbsent: [nil]
     ]
 
     tokenField [
 	<category: 'accessing'>
 	^self
-	    at: ILUrlBuilder default tokenKey
+	    at: ILUrlBuilder tokenKey
 	    ifAbsent: [nil]
     ]
 
     actionField [
 	<category: 'accessing'>
 	^self 
-	    at: ILUrlBuilder default actionKey
+	    at: ILUrlBuilder actionKey
 	    ifAbsent: [nil]
     ]
 

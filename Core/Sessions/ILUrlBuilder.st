@@ -35,50 +35,90 @@
 
 
 ILObject subclass: ILUrlBuilder [
-    | actionKey sessionKey tokenKey hashKey rewriteRule |
+    | baseUrl |
     
     <comment: nil>
     <category: 'Iliad-Core-Sessions'>
 
     ILUrlBuilder class [
-	| default |
-	
-	default [
-	    <category: 'instance creation'>
-	    ^default ifNil: [default := self new]
+	| actionKey tokenKey hashKey sessionKey rewriteRule |
+
+	rewriteRule [
+	    "Rewrite rules are used to replace patterns in the baseUrl"
+	    <category: 'accessing'>
+
+	    ^rewriteRule
+	]
+
+	rewriteRule: anAssociation [
+	    <category: 'accessing'>
+	    rewriteRule := anAssociation
+	]
+
+	actionKey [
+	    <category: 'accessing'>
+	    ^actionKey ifNil: [actionKey := self defaultActionKey]
+	]
+
+	hashKey [
+	    <category: 'accessing'>
+	    ^hashKey ifNil: [hashKey := self defaultHashKey]
+	]
+
+	sessionKey [
+	    <category: 'accessing'>
+	    ^sessionKey ifNil: [sessionKey := self defaultSessionKey]
+	]
+
+	tokenKey [
+	    <category: 'accessing'>
+	    ^tokenKey ifNil: [tokenKey := self defaultTokenKey]
+	]
+
+	defaultActionKey [
+	    <category: 'defaults'>
+	    ^'_action'
+	]
+
+	defaultHashKey [
+	    <category: 'defaults'>
+	    ^'_hash'
+	]
+
+	defaultSessionKey [
+	    <category: 'defaults'>
+	    ^'_session'
+	]
+
+	defaultTokenKey [
+	    <category: 'defaults'>
+	    ^'_token'
 	]
     ]
 
     actionKey [
 	<category: 'accessing'>
-	^actionKey ifNil: [actionKey := self defaultActionKey]
+	^self class actionKey
     ]
 
     hashKey [
 	<category: 'accessing'>
-	^hashKey ifNil: [hashKey := self defaultHashKey]
+	^self class hashKey
     ]
 
     sessionKey [
 	<category: 'accessing'>
-	^sessionKey ifNil: [sessionKey := self defaultSessionKey]
+	^self class sessionKey
     ]
 
     tokenKey [
 	<category: 'accessing'>
-	^tokenKey ifNil: [tokenKey := self defaultTokenKey]
+	^self class tokenKey
     ]
 
     rewriteRule [
-	"Rewrite rules are used to replace patterns in the baseUrl"
 	<category: 'accessing'>
-
-	^rewriteRule
-    ]
-
-    rewriteRule: anAssociation [
-	<category: 'accessing'>
-	rewriteRule := anAssociation
+	^self class rewriteRule
     ]
 
     addDefaultParametersTo: anUrl [
@@ -91,10 +131,11 @@ ILObject subclass: ILUrlBuilder [
 
     baseUrl [
 	<category: 'generating'>
-	| url |
-	url := ILUrl absolute: self context route pathString.
-	self addDefaultParametersTo: url.
-	^self applyRewriteRuleTo: url
+	baseUrl ifNil: [| url |
+	    url := ILUrl absolute: self context route pathString.
+	    self addDefaultParametersTo: url.
+	    baseUrl := self applyRewriteRuleTo: url].
+	^baseUrl copy
     ]
 
     urlForAction: anAction [
@@ -134,26 +175,6 @@ ILObject subclass: ILUrlBuilder [
 		(anUrl asString
 		    copyReplacingAllRegex: assoc key 
 		    with: assoc value)]
-    ]
-
-    defaultActionKey [
-	<category: 'defaults'>
-	^'_action'
-    ]
-
-    defaultHashKey [
-	<category: 'defaults'>
-	^'_hash'
-    ]
-
-    defaultSessionKey [
-	<category: 'defaults'>
-	^'_session'
-    ]
-
-    defaultTokenKey [
-	<category: 'defaults'>
-	^'_token'
     ]
 
     shouldUseSessionField [
