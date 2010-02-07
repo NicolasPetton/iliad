@@ -20,6 +20,7 @@ Eval [
     filein: 'ILBlogApplication.st';
     filein: 'ILGravatarWidget.st';
     filein: 'ILChartApplication.st';
+    filein: 'ILChartDemo.st';
 
     buildXml
 ]
