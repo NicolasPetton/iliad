@@ -99,6 +99,43 @@ var iliad = (function() {
 		}
 	}
 
+	function enableUploadAction(form) {
+		if(!actionsLocked) {
+			lockActions();
+			var hidden = "<input type='hidden' name='_ajax_upload'></input>";
+			var upload_target = jQuery('#_upload_target');
+			if(upload_target.size() == 0) {
+				upload_target = jQuery(
+					"<iframe id='_upload_target' name='_upload_target' " +
+					"src='#' style='display:none'></iframe>");
+				upload_target.appendTo('body');
+				upload_target.bind('load', function(e) {
+					unlockActions();
+					evaluateAction();
+				});
+			}
+			jQuery(form).append(hidden);
+			jQuery(form).attr('target', '_upload_target');
+			startUpload(form);
+		}
+		else {return false}
+	}
+
+	function startUpload(form){
+		var fileInputs = jQuery(form).find('input:file');
+		jQuery.each(fileInputs, function(){
+			if(jQuery(this).val()) {
+				jQuery(this).after(
+					'<div class="ajax_upload">loading...<br/>' +
+					'<img src="/images/ajax_loader.gif"/></div>');
+			}
+		})
+	}
+
+	function triggerUploadSuccess(form) {
+		evaluateAction(window.location)
+	}
+
 	function evaluateAction(actionUrl, method, data, lock) {
 		if(!actionsLocked) {
 			if(!method) method = 'get';
@@ -255,7 +292,7 @@ var iliad = (function() {
 	}
 
 	function removeAjaxLoader() {
-		jQuery(".ajax_loader").replaceWith("");
+		jQuery(".ajax_loader, .ajax_upload").replaceWith("");
 	}
 
 	function sizeOf(obj) {
@@ -278,6 +315,7 @@ var iliad = (function() {
 		evaluateFormElementAction: evaluateFormElementAction,
 		evaluateAction: evaluateAction,
 		enableSubmitAction: enableSubmitAction,
+		enableUploadAction: enableUploadAction,
 		checkHashChange: checkHashChange,
 		initialize: initialize
 	};

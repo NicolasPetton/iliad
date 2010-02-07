@@ -132,7 +132,7 @@ ILFormElementElement subclass: ILInputElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	self attributeAt: 'type' ifAbsentPut: ['text']
+	self attributeAt: 'type' ifAbsentPut: ['text'].
     ]
 
     printHtmlOn: aStream [

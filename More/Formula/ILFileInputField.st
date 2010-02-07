@@ -55,8 +55,7 @@ ILField subclass: ILFileInputField [
     uploadContents [
 	<category: 'building'>
 	^[:e |
-	    e file action: [:val | self value: val].
-	    e button text: 'upload']
+	    e file action: [:val | self value: val]].
     ]
 
     fileContents [

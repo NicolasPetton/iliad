@@ -66,6 +66,8 @@ ILRequestHandler subclass: ILApplicationHandler [
 	self isRequestValid 
 	    ifTrue: [self evaluateActions]
 	    ifFalse: [ILRedirectHandler new handleRequest].
+	self shouldReturnEmptyResponse ifTrue: [
+	    self returnResponse: ILResponse ok].
 	self shouldRespondInJson ifTrue: [
 	    ILJsonHandler new handleRequest].
 	self request isAjaxRequest ifTrue: [self returnResponse: self lastAction asResponse].
@@ -97,6 +99,11 @@ ILRequestHandler subclass: ILApplicationHandler [
     shouldRespondInJson [
 	<category: 'testing'>
 	^self request isTypeOfRequestForJson
+    ]
+
+    shouldReturnEmptyResponse [
+	<category: 'testing'>
+	^self request ajaxUploadField notNil
     ]
 
     newResponse [

@@ -119,6 +119,20 @@ I am a server independent http request object.'>
 	    ifAbsent: [nil]
     ]
 
+    ajaxUploadField [
+	<category: 'accessing'>
+	^self 
+	    at: ILUrlBuilder ajaxUploadKey
+	    ifAbsent: [nil]
+    ]
+
+    jsonField [
+	<category: 'accessing'>
+	^self 
+	    at: ILUrlBuilder jsonKey
+	    ifAbsent: [nil]
+    ]
+
     headerAt: aKey [
 	<category: 'accessing'>
 	^self headerAt: aKey ifAbsent: []
