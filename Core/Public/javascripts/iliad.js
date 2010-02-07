@@ -78,12 +78,6 @@ var iliad = (function() {
 		if(hashString) setHash(hashString);
 	}
 
-	function evaluateFormAction(form) {
-		var actionUrl = getFormActionUrl(form);
-		var data = jQuery(form).serialize();
-		this.evaluateAction(actionUrl, "post", data);
-	}
-
 	function evaluateFormElementAction(formElement) {
 		var form = jQuery(formElement).closest("form");
 		this.evaluateFormAction(form);
@@ -99,7 +93,13 @@ var iliad = (function() {
 		}
 	}
 
-	function enableUploadAction(form) {
+	function evaluateFormAction(form) {
+		var actionUrl = getFormActionUrl(form);
+		var data = jQuery(form).serialize();
+		this.evaluateAction(actionUrl, "post", data);
+	}
+
+	function evaluateMultipartFormAction(form) {
 		if(!actionsLocked) {
 			lockActions();
 			var hidden = "<input type='hidden' name='_ajax_upload'></input>";
@@ -121,20 +121,6 @@ var iliad = (function() {
 		else {return false}
 	}
 
-	function startUpload(form){
-		var fileInputs = jQuery(form).find('input:file');
-		jQuery.each(fileInputs, function(){
-			if(jQuery(this).val()) {
-				jQuery(this).after(
-					'<div class="ajax_upload">loading...<br/>' +
-					'<img src="/images/ajax_loader.gif"/></div>');
-			}
-		})
-	}
-
-	function triggerUploadSuccess(form) {
-		evaluateAction(window.location)
-	}
 
 	function evaluateAction(actionUrl, method, data, lock) {
 		if(!actionsLocked) {
@@ -304,6 +290,17 @@ var iliad = (function() {
 		return size;
 	}
 
+	function startUpload(form){
+		var fileInputs = jQuery(form).find('input:file');
+		jQuery.each(fileInputs, function(){
+			if(jQuery(this).val()) {
+				jQuery(this).after(
+					'<div class="ajax_upload">loading...<br/>' +
+					'<img src="/images/ajax_loader.gif"/></div>');
+			}
+		})
+	}
+
 
 	/* ---
 	 * Public API
@@ -312,10 +309,10 @@ var iliad = (function() {
 	return {
 		evaluateAnchorAction: evaluateAnchorAction,
 		evaluateFormAction: evaluateFormAction,
+		evaluateMultipartFormAction: evaluateMultipartFormAction,
 		evaluateFormElementAction: evaluateFormElementAction,
 		evaluateAction: evaluateAction,
 		enableSubmitAction: enableSubmitAction,
-		enableUploadAction: enableUploadAction,
 		checkHashChange: checkHashChange,
 		initialize: initialize
 	};

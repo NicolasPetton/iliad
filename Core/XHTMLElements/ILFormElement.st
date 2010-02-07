@@ -146,7 +146,7 @@ ILXHTMLElement subclass: ILFormElement [
 	self attributeAt: 'method' ifAbsent: [self usePost].
 	self attributeAt: 'accept-charset' ifAbsentPut: [self session charset].
 	self isMultipart 
-	    ifTrue: [self onSubmit: 'iliad.enableUploadAction(this);']
+	    ifTrue: [self onSubmit: 'iliad.evaluateMultipartFormAction(this);']
 	    ifFalse: [self onSubmit: 'iliad.evaluateFormAction(this); return false;'].
 	self add: (ILInputElement new
 		beHidden;
