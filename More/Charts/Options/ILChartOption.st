@@ -23,4 +23,15 @@ ILObject subclass: ILChartOption [
 	<category: 'accessing'>
 	self subclassResponsability
     ]
+
+    printJsonOn: aStream [
+	<category: 'building'>
+	aStream nextPutAll: self optionName, ': '.
+	aStream nextPut: ${.
+	self attributes associations do: [:each |
+	    aStream nextPutAll: each key, ': '.
+	    aStream nextPutAll: each value]
+	separatedBy: [aStream nextPut: $,].
+	aStream nextPut: $}
+    ]
 ]

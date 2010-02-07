@@ -9,7 +9,7 @@ Eval [
 	filein: 'Core/ILChartData.st';
 	
 	filein: 'Options/ILChartOption.st';
-	filein: 'Options/ILChartColorOption.st';
+	filein: 'Options/ILChartColorsOption.st';
 	filein: 'Options/ILChartGridOption.st';
 	filein: 'Options/ILChartLegendOption.st';
 	filein: 'Options/ILChartLinesOption.st';

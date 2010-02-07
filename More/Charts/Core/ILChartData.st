@@ -77,5 +77,13 @@ ILObject subclass >> ILChartData [
 	<category: 'options'>
 	^self optionsAt: #points ifAbsentPut: ILChartPointsOption new
     ]
+
+    printOptionsOn: aStream [
+	<category: 'building'>
+	self options notEmpty ifTrue: [aStream nextPut: $,].
+	self options values do: [:each |
+	    each printJsonOn: aStream]
+	separatedBy: [aStream nextPut: $,]
+    ]
 ]
 
