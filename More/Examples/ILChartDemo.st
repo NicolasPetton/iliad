@@ -1,4 +1,4 @@
-Objet subclass: ILChartDemo [
+ILChart subclass: ILChartDemo [
 
     <category: 'More-Examples'>
     <comment: nil>
