@@ -47,6 +47,11 @@ ILElement subclass: ILXmlElement [
 	^'text/xml; charset=', self session charset
     ]
 
+    xmlTag [
+	<category: 'accessing'>
+	^'<?xml version="1.0" encoding="', self session encoding, '"?>'
+    ]
+
     tag [
 	<category: 'accessing'>
 	^tag
@@ -55,6 +60,12 @@ ILElement subclass: ILXmlElement [
     tag: aString [
 	<category: 'accessing'>
 	tag := aString
+    ]
+
+    respondOn: aResponse [
+	<category: 'converting'>
+	aResponse nextPutAll: self xmlTag.
+	super respondOn: aResponse
     ]
 ]
 
