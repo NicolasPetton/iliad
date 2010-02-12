@@ -37,6 +37,7 @@ Eval [
 	filein: 'Elements/ILElements-Error.st'; 
 	filein: 'Elements/ILElement.st'; 
 	filein: 'Elements/ILTextElement.st'; 
+	filein: 'Elements/ILXmlElement.st'; 
 	filein: 'Elements/Extensions.st'; 
 
 	filein: 'XHTMLElements/ILXHTMLElement.st'; 

@@ -155,6 +155,11 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	    yourself)
     ]
 
+    xml [
+	<category: 'adding-conveniance'>
+	^self add: ILXmlElement new
+    ]
+
     attributeError: key [
 	<category: 'error handling'>
 	ILAttributeError signal: key
