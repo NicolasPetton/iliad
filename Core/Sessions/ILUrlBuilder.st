@@ -41,18 +41,18 @@ ILObject subclass: ILUrlBuilder [
     <category: 'Iliad-Core-Sessions'>
 
     ILUrlBuilder class [
-	| actionKey tokenKey hashKey sessionKey ajaxUploadKey rewriteRule |
+	| actionKey tokenKey hashKey sessionKey ajaxUploadKey rewriteRules |
 
-	rewriteRule [
+	rewriteRules [
 	    "Rewrite rules are used to replace patterns in the baseUrl"
 	    <category: 'accessing'>
 
-	    ^rewriteRule
+	    ^rewriteRules ifNil: [rewriteRules := OrderedCollection new]
 	]
 
-	rewriteRule: anAssociation [
+	addRewriteRule: anAssociation [
 	    <category: 'accessing'>
-	    rewriteRule := anAssociation
+	    rewriteRules add: anAssociation
 	]
 
 	actionKey [
@@ -144,8 +144,13 @@ ILObject subclass: ILUrlBuilder [
 	baseUrl ifNil: [| url |
 	    url := ILUrl absolute: self context route pathString.
 	    self addDefaultParametersTo: url.
-	    baseUrl := self applyRewriteRuleTo: url].
+	    baseUrl := self applyRewriteRulesTo: url].
 	^baseUrl copy
+    ]
+
+    urlFor: aString [
+	<category: 'generating'>
+	^self applyRewriteRulesTo: (ILUrl absolute: aString)
     ]
 
     urlForAction: anAction [
@@ -176,17 +181,19 @@ ILObject subclass: ILUrlBuilder [
 	path := (anApplicationClass path startsWith: '/')
 	    ifTrue: [anApplicationClass path]
 	    ifFalse: ['/', anApplicationClass path].
-	^(self applyRewriteRuleTo: (ILUrl absolute: path)) asString
+	^(self applyRewriteRulesTo: (ILUrl absolute: path)) asString
     ]
 
-    applyRewriteRuleTo: anUrl [
+    applyRewriteRulesTo: anUrl [
 	<category: 'generating'>
-	^self rewriteRule 
-	    ifNil: [anUrl]
-	    ifNotNil: [:assoc | ILUrl absolute: 
-		(anUrl asString
-		    copyReplacingAllRegex: assoc key 
-		    with: assoc value)]
+	| tempUrl |
+	tempUrl := anUrl.
+	self rewriteRules do: [:each |
+	    tempUrl := ILUrl absolute: 
+		(tempUrl asString
+		    copyReplacingAllRegex: each key 
+		    with: each value)].
+	^tempUrl
     ]
 
     shouldUseSessionField [
