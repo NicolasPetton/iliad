@@ -110,6 +110,11 @@ fragment:		<String> or nil'>
 	^self hostname hash bitXor: self path hash
     ]
 
+    , aString [
+	<category: 'basic'>
+	^self asString, aString asString
+    ]
+
     addAllToPath: aCollectionOfStrings [
 	"convenice method to add a collection of strings to the path"
 

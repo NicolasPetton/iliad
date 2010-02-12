@@ -60,7 +60,12 @@ Object subclass: ILObject [
 	<category: 'accessing'>
 	^ILCurrentContext value
     ]
-    
+   
+    urlBuilder [
+	<category: 'accessing'>
+	^self context urlBuilder
+    ]
+
     session [
 	<category: 'accessing'>
 	^self context session 
