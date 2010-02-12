@@ -52,7 +52,7 @@ ILObject subclass: ILUrlBuilder [
 
 	addRewriteRule: anAssociation [
 	    <category: 'accessing'>
-	    rewriteRules add: anAssociation
+	    self rewriteRules add: anAssociation
 	]
 
 	actionKey [
