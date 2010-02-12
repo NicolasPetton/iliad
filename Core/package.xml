@@ -30,6 +30,7 @@
   <filein>Elements/ILElements-Error.st</filein>
   <filein>Elements/ILElement.st</filein>
   <filein>Elements/ILTextElement.st</filein>
+  <filein>Elements/ILXmlElement.st</filein>
   <filein>Elements/Extensions.st</filein>
   <filein>XHTMLElements/ILXHTMLElement.st</filein>
   <filein>XHTMLElements/ILTitleElement.st</filein>
@@ -130,6 +131,7 @@
   <file>Elements/ILElements-Error.st</file>
   <file>Elements/ILElement.st</file>
   <file>Elements/ILTextElement.st</file>
+  <file>Elements/ILXmlElement.st</file>
   <file>Elements/Extensions.st</file>
   <file>XHTMLElements/ILXHTMLElement.st</file>
   <file>XHTMLElements/ILTitleElement.st</file>

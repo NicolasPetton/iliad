@@ -42,6 +42,11 @@ ILElement subclass: ILXmlElement [
     <comment: nil>
     <category: 'Iliad-Core-Elements'>
 
+    contentType [
+	<category: 'accessing'>
+	^'text/xml; charset=', self session charset
+    ]
+
     tag [
 	<category: 'accessing'>
 	^tag
