@@ -126,9 +126,9 @@ ILObject subclass: ILUrlBuilder [
 	^self class tokenKey
     ]
 
-    rewriteRule [
+    rewriteRules [
 	<category: 'accessing'>
-	^self class rewriteRule
+	^self class rewriteRules
     ]
 
     addDefaultParametersTo: anUrl [
