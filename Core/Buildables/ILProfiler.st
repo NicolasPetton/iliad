@@ -62,7 +62,7 @@ BlockClosure extend [
 	workProcess := Processor activeProcess.
 	finished := false.
 	profProcess := [
-	    [(Delay forMilliseconds: 5) wait.
+	    [(Delay forMilliseconds: 2) wait.
 	    finished] whileFalse: [
 		results add: workProcess suspendedContext method].
 	    s signal] 
