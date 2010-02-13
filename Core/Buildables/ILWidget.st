@@ -234,7 +234,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
     
     answer [
-	"Give the control back to the owner, i.e, the widget which showed me.
+	"Give the control back to the owner, i.e, the widget which showed the receiver.
 	 Answer self"
 	<category: 'control flow'>
 	
@@ -242,7 +242,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
     
     answer: anAnswer [
-	"Give the control back to the owner, i.e, the widget which showed me.
+	"Give the control back to the owner, i.e, the widget which showed the receiver.
 	Answer <anAnswer>"
 	<category: 'control flow'>
 
@@ -255,7 +255,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
   
     retrieveControl [
-	"Get the control back to the receiver from any showed widget, and make it answer nil"
+	"Give the control back to the receiver, and make any showed widget answer nil"
 	<category: 'control flow'>
 
 	self decoratorsDo: [:each |
@@ -265,7 +265,7 @@ added to the decoration chain with #decorateWith:.'>
 
     show: aWidget [
 	"Show another widget instead of the receiver.
-	I am also implicitely marked dirty"
+	The receiver is also implicitely marked dirty"
 	<category: 'control flow'>
 
 	self show: aWidget onAnswer: [:ans | ]
@@ -273,7 +273,7 @@ added to the decoration chain with #decorateWith:.'>
 
     show: aWidget onAnswer: aBlock [
 	"Show another widget instead of the receiver and catch the answer in <aBlock>.
-	I am also implicitely marked dirty"
+	The receiver is also implicitely marked dirty"
 	<category: 'control flow'>
 	
 	self
@@ -300,16 +300,27 @@ added to the decoration chain with #decorateWith:.'>
 	    decorateWith: answerHandler
     ]
 
-    printJsonOn: aStream [
-	<category:'printing'>
-	self build printJsonOn: aStream
+    addDependentWidget: aWidget [
+	"Add <aWidget> to my dependent widgets.
+	Each dependent widget will be rebuilt on AJAX requests whenever
+	I am rebuilt"
+	<category: 'control flow'>
+
+	(dependentWidgets includes: aWidget) ifFalse: [
+	    dependentWidgets add: aWidget]
+    ]
+
+    removeDependentWidget: aWidget [
+	<category: 'control flow'>
+	(dependentWidgets includes: aWidget) ifTrue: [
+	    dependentWidgets remove: aWidget]
     ]
 
     markDirty [
-	"Mark the widget as 'dirty', ie, 
-	 The widget will be rebuilt on Ajax requests.
-	 You do not need to mark subwidgets as dirty. 
-	 They will be automatically rebuilt too"
+	"Mark the receiver as 'dirty', 
+	 so the widget will be rebuilt on Ajax requests.
+	 You do not need to mark subwidgets as dirty, 
+	 they will be rebuilt together with the receiver"
 	<category: 'states'>
 	
 	self owner
@@ -325,20 +336,9 @@ added to the decoration chain with #decorateWith:.'>
 	^self session addToDirtyWidgets: self
     ]
 
-    addDependentWidget: aWidget [
-	"Add <aWidget> to my dependent widgets.
-	Each dependent widget will be rebuilt on AJAX requests whenever
-	I am rebuilt"
-	<category: 'control flow'>
-
-	(dependentWidgets includes: aWidget) ifFalse: [
-	    dependentWidgets add: aWidget]
-    ]
-
-    removeDependentWidget: aWidget [
-	<category: 'control flow'>
-	(dependentWidgets includes: aWidget) ifTrue: [
-	    dependentWidgets remove: aWidget]
+    printJsonOn: aStream [
+	<category:'printing'>
+	self build printJsonOn: aStream
     ]
 
     newRootElement [
@@ -359,4 +359,3 @@ added to the decoration chain with #decorateWith:.'>
 		    aHead add: e]]]
     ]
 ]
-
