@@ -45,6 +45,11 @@ ILBuildable subclass: ILWidget [
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am a stateful graphical component. 
 
+
+""""""""""""""""""""""""""""""
+" Building HTML with widgets "
+""""""""""""""""""""""""""""""
+
 To build HTML override the #contents method, which should always 
 return a view block, ie, a block which takes an element as parameter.
 
@@ -59,7 +64,8 @@ contents
             action: [self doSomething]]
 
 
-See Iliad.ILElement hierarchy for more information about building HTML with elements.
+See Iliad.ILElement hierarchy (Especially Iliad.ILXHTMLElement ) for more information 
+about building HTML with elements.
 
 #contents method should *never* be called from the outside. Use #build instead. 
 For instance, to build a sub-widget in a view block, you should write something like:
@@ -68,11 +74,24 @@ contents [
     ^[:e | e build: mySubWidget]
 ]
 
+
+""""""""""""""""
+" Control flow "
+""""""""""""""""
+
 I can show (display instead of me) other widgets with #show* methods or answer 
 to widgets that called me with #answer. 
 
 When using the javascript layer, call #markDirty whenever my state change,
 so I will be updated on AJAX requests.
+
+Widgets which states depend on me can be automatically rebuilt whenever I am
+marked as dirty (see #addDependentWidget:).
+
+
+""""""""""""""
+" Decorators "
+""""""""""""""
 
 I can also have decorators that may modify my behavior. A decorator can be 
 added to the decoration chain with #decorateWith:.'>

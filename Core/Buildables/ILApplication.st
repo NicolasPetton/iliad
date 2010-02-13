@@ -42,30 +42,50 @@ ILBuildable subclass: ILApplication [
     | model originalRoutePosition page |
 
     <category: 'Iliad-Core-Buildables'>
-    <comment: 'I am the implementation of an application.
- 
-The first thing to do to develop web applications with Iliad is to subclass me.
+    <comment: 'I am the Iliad implementation of an application.
+
+I am is the root object of a buildable object tree. Applications have a
+set of controllers, methods used to dispatch requests to the corresponding 
+sub-tree of buildable objects (oftenly a composition of stateful widgets).
+
 You don''t have to bother about instantiating applications, the framework 
 will handle session and application instances. 
+
 In concrete subclasses, the class method #path should return the base path 
 (string) for the application.
+
+
+""""""""""""""""""""""
+" Controller methods "
+""""""""""""""""""""""
 
 Like widgets, I am stateful.
 Unlike widgets I know how to dispatch a request with #dispatch : 
 the controller method corresponding to the url will be called.
 
 Controller methods must:
- - answer a buildable.
+ - answer a buildable object (a block closure or an instance of ILWidget for example).
  - be in the ''controllers'' method protocol (with the default selector filter)
 
 The default controller method is #index.
 
+
+""""""""""""""""""
+" selectorFilter "
+""""""""""""""""""
+
 The class inst var <selectorFilter> is used to filter controller methods. 
-By default it allows all methods in the ''controllers'' protocol,
-but you can override the class method #defaultSelectorFilter to supply 
+By default it allows all methods in the ''controllers'' protocol.
+
+Alternatively, ou can override the class method #defaultSelectorFilter to supply 
 your own selectorFilter or plug it in using the class method #selectorFilter:
 
-Applications can be in one the following modes: deployment, verbose or 
+
+"""""""""""""""""""""
+" Application modes "
+"""""""""""""""""""""
+
+Applications can be in one of the following modes: deployment, verbose or 
 debug. The default mode is verbose.
 You can switch between modes with class methods in the <accessing-modes> 
 protocol.
@@ -74,13 +94,14 @@ When errors occur, the framework with handle them differently depending on
 the application mode:
 - in deployment mode, it will respond an error 500;
 - in verbose mode, it will also respond an error 500, but with error details;
-- in debug mode, a debugger window will open on the error;'>
+- in debug mode, a debugger window will be opened on the error;'>
     
     ILApplication class [
 	| selectorFilter mode |
 
 	path [
-	    "Override this method in concrete subclasses. 
+	    "Base path of the application.
+	     Override this method in concrete subclasses. 
 	     It should return a string"
 	    <category: 'accessing'>
 	    
@@ -135,7 +156,7 @@ the application mode:
 	]
 
 	categoryOfElement: aSelector inClassOrSuperclass: aClass [
-	    "Find first category of <aSelector> up the superclass chain."
+	    "Find the first category of <aSelector> up the superclass chain."
 	    <category: 'private'>
 	    
 	    ^aClass ifNotNil: [
