@@ -1,4 +1,5 @@
 TestCase subclass: ILJsonObjectTest [
+    | jo |
 
     <category: 'Iliad-Tests-Unit-lib-JSON'>
     <comment: nil>

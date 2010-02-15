@@ -76,6 +76,7 @@
     <filein>Unit/lib/HTTP/ILFileProxyTest.st</filein>
     <filein>Unit/lib/HTTP/ILUrlTest.st</filein>
     <filein>Unit/lib/HTTP/ILResponseTest.st</filein>
+    <filein>Unit/lib/JSON/ILJsonObjectTest.st</filein>
     <filein>Unit/lib/JSON/ILJsonDummyTestObject.st</filein>
     <filein>Unit/lib/JSON/ILJsonTest.st</filein>
     <filein>Unit/RequestHandlers/ILRequestHandlerTest.st</filein>
@@ -159,6 +160,7 @@
     <file>Unit/lib/HTTP/ILFileProxyTest.st</file>
     <file>Unit/lib/HTTP/ILUrlTest.st</file>
     <file>Unit/lib/HTTP/ILResponseTest.st</file>
+    <file>Unit/lib/JSON/ILJsonObjectTest.st</file>
     <file>Unit/lib/JSON/ILJsonDummyTestObject.st</file>
     <file>Unit/lib/JSON/ILJsonTest.st</file>
     <file>Unit/RequestHandlers/ILRequestHandlerTest.st</file>
@@ -243,6 +245,7 @@
       Iliad.ILFileProxyTest
       Iliad.ILUrlTest
       Iliad.ILResponseTest
+      Iliad.ILJsonObjectTest
       Iliad.ILJsonDummyTest
       Iliad.ILJsonTest
       Iliad.ILRequestHandlerTest
@@ -312,6 +315,7 @@
   <filein>Unit/Elements/ILBreakElementTest.st</filein>
   <filein>Unit/lib/JSON/ILJsonDummyTestObject.st</filein>
   <filein>Unit/lib/JSON/ILJsonTest.st</filein>
+  <filein>Unit/lib/JSON/ILJsonObjectTest.st</filein>
   <filein>Unit/lib/HTTP/ILFileProxyTest.st</filein>
   <filein>Unit/lib/HTTP/ILUrlTest.st</filein>
   <filein>Unit/lib/HTTP/ILResponseTest.st</filein>
@@ -394,6 +398,7 @@
   <file>Unit/Elements/ILBreakElementTest.st</file>
   <file>Unit/lib/JSON/ILJsonDummyTestObject.st</file>
   <file>Unit/lib/JSON/ILJsonTest.st</file>
+  <file>Unit/lib/JSON/ILJsonObjectTest.st</file>
   <file>Unit/lib/HTTP/ILFileProxyTest.st</file>
   <file>Unit/lib/HTTP/ILUrlTest.st</file>
   <file>Unit/lib/HTTP/ILResponseTest.st</file>
