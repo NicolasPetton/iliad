@@ -18,6 +18,7 @@
   <filein>lib/HTTP/ILCookie.st</filein>
   <filein>lib/JSON/ILJsonSyntaxError.st</filein>
   <filein>lib/JSON/ILJson.st</filein>
+  <filein>lib/JSON/ILJsonObject.st</filein>
   <filein>lib/JSON/Extensions.st</filein>
   <filein>Sessions/ILUrlBuilder.st</filein>
   <filein>Sessions/ILContext.st</filein>
@@ -119,6 +120,7 @@
   <file>lib/HTTP/ILCookie.st</file>
   <file>lib/JSON/ILJsonSyntaxError.st</file>
   <file>lib/JSON/ILJson.st</file>
+  <file>lib/JSON/ILJsonObject.st</file>
   <file>lib/JSON/Extensions.st</file>
   <file>Sessions/ILUrlBuilder.st</file>
   <file>Sessions/ILContext.st</file>
@@ -204,16 +206,16 @@
   <file>RequestHandlers/ILJsonHandler.st</file>
   <file>RequestHandlers/ILApplicationHandler.st</file>
   <file>RequestHandlers/ILRedirectHandler.st</file>
-  <file>Public/javascripts/no_conflict.js</file>
   <file>Public/javascripts/iliad.js</file>
   <file>Public/javascripts/jquery132min.js</file>
-  <file>Public/stylesheets/iliad.css</file>
-  <file>Public/images/iliad_tiny.png</file>
-  <file>Public/images/iliad_bleached.png</file>
+  <file>Public/javascripts/no_conflict.js</file>
   <file>Public/images/iliad_huge.png</file>
+  <file>Public/images/iliad_bleached.png</file>
+  <file>Public/images/iliad_big.png</file>
+  <file>Public/images/iliad_tiny.png</file>
+  <file>Public/images/iliad_small.png</file>
   <file>Public/images/ajax_loader.gif</file>
   <file>Public/images/iliad.png</file>
-  <file>Public/images/iliad_big.png</file>
-  <file>Public/images/iliad_small.png</file>
   <file>Public/iliad_ie_history.html</file>
+  <file>Public/stylesheets/iliad.css</file>
 </package>

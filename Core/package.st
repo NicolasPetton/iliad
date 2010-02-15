@@ -23,6 +23,7 @@ Eval [
 
 	filein: 'lib/JSON/ILJsonSyntaxError.st'; 
 	filein: 'lib/JSON/ILJson.st'; 
+	filein: 'lib/JSON/ILJsonObject.st'; 
 	filein: 'lib/JSON/Extensions.st'; 
 
 	filein: 'Sessions/ILUrlBuilder.st'; 
