@@ -77,7 +77,7 @@ The current handled request is answered by the #request method inherited from IL
 	<category: 'private'>
 	aResponse 
 	    headerAt: 'expires' 
-	    put: (ILSupport rfc1123StringFor: (DateTime fromSeconds: DateTime now asSeconds + (24*3600)))
+	    put: (ILSupport rfc1123StringFor: (DateTime fromSeconds: DateTime now asSeconds + (24*3600*365)))
     ]
 
     addAllowHeaderTo: aResponse [
