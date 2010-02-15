@@ -70,6 +70,7 @@ Eval [
 
     filein: 'Unit/lib/JSON/ILJsonDummyTestObject.st';
     filein: 'Unit/lib/JSON/ILJsonTest.st';
+    filein: 'Unit/lib/JSON/ILJsonObjectTest.st';
     
     filein: 'Unit/lib/HTTP/ILFileProxyTest.st';
     filein: 'Unit/lib/HTTP/ILUrlTest.st';

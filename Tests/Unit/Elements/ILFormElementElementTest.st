@@ -23,7 +23,7 @@ ILElementTest subclass: ILFormElementElementTest [
     testName [
 	<category: 'testing'>
 	e name: 'foo'.
-	self shouldHaveAttribute: 'name' value: 'foo'
+	self assert: (e name = 'foo')
     ]
 
     testReadonly [
