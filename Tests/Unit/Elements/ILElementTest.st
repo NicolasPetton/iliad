@@ -1,4 +1,3 @@
-
 TestCase subclass: ILElementTest [
     | e |
 

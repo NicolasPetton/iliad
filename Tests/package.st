@@ -26,6 +26,7 @@ Eval [
     filein: 'Unit/Elements/ILBodyElementTest.st';
     filein: 'Unit/Elements/ILButtonElementTest.st';
     filein: 'Unit/Elements/ILCheckboxElementTest.st';
+    filein: 'Unit/Elements/ILConditionalCommentElementTest.st';
     filein: 'Unit/Elements/ILDirectionElementTest.st';
     filein: 'Unit/Elements/ILFieldsetElementTest.st';
     filein: 'Unit/Elements/ILFormElementElementTest.st';
