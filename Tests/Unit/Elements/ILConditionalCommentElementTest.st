@@ -65,6 +65,6 @@ ILElementTest subclass: ILConditionalCommentElementTest [
     testNot [
 	<category: 'testing'>
 	e not.
-	self assert: (e condtions includes: '!')
+	self assert: (e conditions includes: '!')
     ]
 ]

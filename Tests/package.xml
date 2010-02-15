@@ -69,6 +69,7 @@
     <filein>Unit/Elements/ILSpanElementTest.st</filein>
     <filein>Unit/Elements/ILTableFootElementTest.st</filein>
     <filein>Unit/Elements/ILLabelElementTest.st</filein>
+    <filein>Unit/Elements/ILConditionalCommentElementTest.st</filein>
     <filein>Unit/Elements/ILTableRowElementTest.st</filein>
     <filein>Unit/Dispatching/ILDispatcherTest.st</filein>
     <filein>Unit/Dispatching/ILRouteTest.st</filein>
@@ -151,6 +152,7 @@
     <file>Unit/Elements/ILSpanElementTest.st</file>
     <file>Unit/Elements/ILTableFootElementTest.st</file>
     <file>Unit/Elements/ILLabelElementTest.st</file>
+    <file>Unit/Elements/ILConditionalCommentElementTest.st</file>
     <file>Unit/Elements/ILTableRowElementTest.st</file>
     <file>Unit/Dispatching/ILDispatcherTest.st</file>
     <file>Unit/Dispatching/ILRouteTest.st</file>
@@ -234,6 +236,7 @@
       Iliad.ILSpanElementTest
       Iliad.ILTableFootElementTest
       Iliad.ILLabelElementTest
+      Iliad.ILConditionalCommentElementTest
       Iliad.ILTableRowElementTest
       Iliad.ILDispatcherTest
       Iliad.ILRouteTest
