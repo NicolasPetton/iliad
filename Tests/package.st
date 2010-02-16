@@ -76,6 +76,7 @@ Eval [
     filein: 'Unit/lib/HTTP/ILFileProxyTest.st';
     filein: 'Unit/lib/HTTP/ILUrlTest.st';
     filein: 'Unit/lib/HTTP/ILResponseTest.st';
+    filein: 'Unit/lib/HTTP/ILRequestTest.st';
 
     filein: 'Unit/Sessions/ILActionRegistryTest.st';
     filein: 'Unit/Sessions/ILActionTest.st';
