@@ -72,7 +72,10 @@ ILElementTest subclass: ILLinkableElementTest [
 	e beContents.
 	self shouldHaveAttribute: 'rel' value: 'Contents'.
 	e fromGlossary.
-	self shouldHaveAttribute: 'rev' value: 'Glossary'
+	self shouldHaveAttribute: 'rev' value: 'Glossary'.
+	e beRss.
+	self shouldHaveAttribute: 'rel' value: 'alternate'.
+	self shouldHaveAttribute: 'type' value: 'application/rss+xml'
     ]
 
     testCharset [
