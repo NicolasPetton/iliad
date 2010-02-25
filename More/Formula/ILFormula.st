@@ -38,7 +38,7 @@
 
 
 ILWidget subclass: ILFormula [
-    | model fields buttons |
+    | model fields buttons saveAction cancelAction |
 	
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -70,9 +70,39 @@ ILWidget subclass: ILFormula [
 	buttons := aCollection
     ]
 
+    saveAction [
+	<category: 'accessing'>
+	^saveAction ifNil: [self defaultSaveAction]
+    ]
+
+    saveAction: aBlock [
+	<category: 'accessing'>
+	saveAction := aBlock
+    ]
+ 
+    cancelAction [
+	<category: 'accessing'>
+	^cancelAction ifNil: [self defaultCancelAction]
+    ]
+
+    cancelAction: aBlock [
+	<category: 'accessing'>
+	cancelAction := aBlock
+    ]
+
     defaultButtons [
 	<category: 'defaults'>
 	^{'Save' -> #save. 'Cancel' -> #cancel}
+    ]
+
+    defaultSaveAction [
+	<category: 'defaults'>
+	^[:model | self answer: model]
+    ]
+
+    defaultCancelAction [
+	<category: 'defaults'>
+	^[:model | self answer: nil]
     ]
 
     addField: aField [
@@ -197,12 +227,13 @@ ILWidget subclass: ILFormula [
 	    validate;
 	    markDirty.
 	self isValid ifTrue: [
-	    self commit; answer: model]
+	    self commit.
+	    self saveAction cull: model]
     ]
 
     cancel [
 	<category: 'actions'>
-	self answer: nil
+	self cancelAction cull: model
     ]
 
     commit [
