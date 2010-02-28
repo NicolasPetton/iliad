@@ -54,7 +54,10 @@ ILField subclass: ILOptionField [
 
     defaultOptionLabelBlock [
 	<category: 'defaults'>
-	^[:option | option printString]
+	^[:option | 
+	    option isString
+		ifTrue: [option]
+		ifFalse: [option printString]]
     ]
 
     options [
