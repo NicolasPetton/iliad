@@ -281,11 +281,11 @@ var iliad = (function() {
 	}
 
 	function appendWidget(id, contents) {
-		jQuery("."+id+':last').append(contents);
+		jQuery("."+id).append(contents);
 	}
 
 	function prependWidget(id, contents) {
-		jQuery("."+id+':first').prepend(contents);
+		jQuery("."+id).prepend(contents);
 	}
 
 	function evalScript(script) {

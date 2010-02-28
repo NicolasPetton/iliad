@@ -49,9 +49,10 @@ ILWidget extend [
 	<category: '*Iliad-More-UI'>
 	
 	self 
-		show: aWidget 
-		onAnswer: aBlock
-		delegator: (ILLightbox new widget: aWidget; yourself)
+	    show: aWidget 
+	    onAnswer: aBlock
+	    delegator: (ILLightbox new widget: aWidget; yourself).
+	aWidget markDirty
     ]
 
     addMessage: aBlock [
