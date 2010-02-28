@@ -294,13 +294,50 @@ added to the decoration chain with #decorateWith:.'>
 	"Show another widget instead of the receiver and catch the answer in <aBlock>.
 	The receiver is also implicitely marked dirty"
 	<category: 'control flow'>
-	
+
 	self
 	    show: aWidget
 	    onAnswer: aBlock
-	    delegator: (ILDelegator new widget: aWidget)
+	    delegator: (ILDelegator new widget: aWidget).
+	aWidget markDirty
     ]
     
+    append: aWidget [
+	"Insert <aWidget> after the receiver"
+	<category: 'control flow'>
+
+	self append: aWidget onAnswer: [:ans |]
+    ] 
+
+    append: aWidget onAnswer: aBlock [
+	"Insert <aWidget> after the receiver"
+	<category: 'control flow'>
+
+	self 
+	    show: aWidget
+	    onAnswer: aBlock
+	    delegator: (ILAppendDelegator new widget: aWidget).
+	aWidget setToAppend
+    ]
+
+    prepend: aWidget [
+	"Insert <aWidget> before the receiver"
+	<category: 'control flow'>
+
+	self prepend: aWidget onAnswer: [:ans |]
+    ] 
+
+    prepend: aWidget onAnswer: aBlock [
+	"Insert <aWidget> before the receiver"
+	<category: 'control flow'>
+
+	self 
+	    show: aWidget
+	    onAnswer: aBlock
+	    delegator: (ILPrependDelegator new widget: aWidget).
+	aWidget setToPrepend
+    ]
+
     show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
 	<category: 'control flow'>
 	| answerHandler |
@@ -314,7 +351,6 @@ added to the decoration chain with #decorateWith:.'>
 	    aBlock value: value]).
 	aWidget
 	    owner: self;
-	    markDirty;
 	    decorateWith: answerHandler
     ]
 
@@ -351,7 +387,21 @@ added to the decoration chain with #decorateWith:.'>
 	"You shouldn't call this method directly unless you know what you are doing."
 	<category: 'states'>
 	
-	^self session addToDirtyWidgets: self
+	^self session addDirtyWidget: self
+    ]
+  
+    setToAppend [
+	"You shouldn't call this method directly."
+	<category: 'states'>
+	
+	^self session addWidgetToAppend: self
+    ]
+
+    setToPrepend [
+	"You shouldn't call this method directly."
+	<category: 'states'>
+	
+	^self session addWidgetToPrepend: self
     ]
 
     printJsonOn: aStream [

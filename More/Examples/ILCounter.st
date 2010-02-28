@@ -51,6 +51,7 @@ ILWidget subclass: ILCounter [
 	<category: 'building'>
 	^[:e |
 	    e h1: count printString.
+	    e a text: 'append'; action: [self append: ILCounter new].
 	    e a action: [self increase]; text: '++'.
 	    e space.
 	    e a action: [self decrease]; text: '--']

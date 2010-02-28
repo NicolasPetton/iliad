@@ -37,7 +37,7 @@
 
 
 ILRequestHandler subclass: ILJsonHandler [
-    | jsonContents widgets scripts head widgetsToUpdate |
+    | jsonContents widgets append prepend scripts head dirtyWidgets widgetsToAppend widgetsToPrepend |
 
     <comment: nil>
     <category: 'Iliad-Core-RequestHandlers'>
@@ -47,13 +47,17 @@ ILRequestHandler subclass: ILJsonHandler [
 	super initialize.
 	jsonContents := Dictionary new.
 	head := OrderedCollection new.
-	widgets := Dictionary new
+	widgets := Dictionary new.
+	append := Dictionary new.
+	prepend := Dictionary new
     ]
 
     handleRequest [
 	<category: 'request handling'>
-	widgetsToUpdate := self session dirtyWidgets copy.
-	self session clearDirtyWidgets.
+	dirtyWidgets := self session dirtyWidgets copy.
+	widgetsToAppend := self session widgetsToAppend copy.
+	widgetsToPrepend := self session widgetsToPrepend copy.
+	self session clearWidgets.
 	super handleRequest
     ]
 
@@ -98,7 +102,7 @@ ILRequestHandler subclass: ILJsonHandler [
 	<category: 'private'>
 	| headElement |
 	headElement := ILElement new.
-	widgetsToUpdate do: [:each | each buildHead: headElement].
+	dirtyWidgets do: [:each | each buildHead: headElement].
 	headElement childrenDo: [:each |
 	    (self application page head children includes: each) ifFalse: [
 		head add: each]].
@@ -107,10 +111,19 @@ ILRequestHandler subclass: ILJsonHandler [
 
     updateWidgets [
 	<category: 'private'>
-	widgetsToUpdate do: [:each || e |
+	dirtyWidgets do: [:each || e |
 	    e := each build.
 	    widgets at: each id put: e].
-	jsonContents at: 'widgets' put: widgets
+	widgetsToAppend do: [:each || e |
+	    e := each build.
+	    append at: each owner id put: e].
+	widgetsToPrepend do: [:each || e |
+	    e := each build.
+	    prepend at: each owner id put: e].
+	jsonContents 
+	    at: 'widgets' put: widgets;
+	    at: 'append' put: append;
+	    at: 'prepend' put: prepend
     ]
 
     updateApplication [
