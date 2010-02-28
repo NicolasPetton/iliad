@@ -304,7 +304,6 @@ added to the decoration chain with #decorateWith:.'>
     show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
 	<category: 'control flow'>
 	| answerHandler |
-	self retrieveControl.
 	answerHandler := ILAnswerHandler new.
 	self decorateWith: aDelegator.
 	answerHandler action: (ILAction new block: [:value |
