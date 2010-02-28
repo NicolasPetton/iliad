@@ -91,6 +91,9 @@
   <filein>Buildables/ILAppendDelegator.st</filein>
   <filein>Buildables/ILPrependDelegator.st</filein>
   <filein>Buildables/ILWidget.st</filein>
+  <filein>Buildables/ILSequence.st</filein>
+  <filein>Buildables/ILInformationWidget.st</filein>
+  <filein>Buildables/ILConfirmationWidget.st</filein>
   <filein>Buildables/ILPluggableWidget.st</filein>
   <filein>Buildables/ILProfiler.st</filein>
   <filein>Buildables/ILApplication.st</filein>
@@ -195,6 +198,9 @@
   <file>Buildables/ILAppendDelegator.st</file>
   <file>Buildables/ILPrependDelegator.st</file>
   <file>Buildables/ILWidget.st</file>
+  <file>Buildables/ILSequence.st</file>
+  <file>Buildables/ILInformationWidget.st</file>
+  <file>Buildables/ILConfirmationWidget.st</file>
   <file>Buildables/ILPluggableWidget.st</file>
   <file>Buildables/ILProfiler.st</file>
   <file>Buildables/ILApplication.st</file>

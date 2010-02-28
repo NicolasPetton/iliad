@@ -354,6 +354,31 @@ added to the decoration chain with #decorateWith:.'>
 	    decorateWith: answerHandler
     ]
 
+    inform: aString [
+	<category: 'control flow'>
+	self show: (ILInformationWidget new
+	    informationString: aString;
+	    yourself)
+    ]
+
+    confirm: aString ifTrue: aBlock [
+	<category: 'control flow'>
+	self 
+	    confirm: aString 
+	    ifTrue: aBlock 
+	    ifFalse: []
+    ]
+
+    confirm: aString ifTrue: aBlock ifFalse: anotherBlock [
+	<category: 'control flow'>
+	self
+	    show: (ILConfirmationWidget new
+		confirmationString: aString;
+		yourself)
+	    onAnswer: [:boolean |
+		boolean ifTrue: aBlock ifFalse: anotherBlock]
+    ]
+
     addDependentWidget: aWidget [
 	"Add <aWidget> to my dependent widgets.
 	Each dependent widget will be rebuilt on AJAX requests whenever
