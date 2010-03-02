@@ -370,7 +370,7 @@ the application mode:
 	^ILXHTMLPage
     ]
 
-    defaultRootElementClass [
+    rootElementClass [
 	<category: 'defaults'>
 	^ILXHTMLElement
     ]
@@ -392,7 +392,7 @@ the application mode:
 
     newRootElement [
 	<category: 'private'>
-	^self defaultRootElementClass new
+	^self rootElementClass new
     ]
 
     originalUrl [

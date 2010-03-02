@@ -158,7 +158,7 @@ added to the decoration chain with #decorateWith:.'>
 
 	self buildHead: self application page head.	
 	
-	^self newRootElement div 
+	^self newRootElement
 	    class: self id;
 	    build: decorator contents;
 	    yourself
@@ -247,9 +247,9 @@ added to the decoration chain with #decorateWith:.'>
 		dec2 decoratee: dec1 decoratee]
     ]
 
-    defaultRootElementClass [
+    rootElementClass [
 	<category: 'defaults'>
-	^ILXHTMLElement
+	^ILDivElement
     ]
     
     answer [
@@ -411,7 +411,7 @@ added to the decoration chain with #decorateWith:.'>
 
     newRootElement [
 	<category: 'private'>
-	^self defaultRootElementClass new
+	^self rootElementClass new
     ]
 
     updateHead: aHead [
