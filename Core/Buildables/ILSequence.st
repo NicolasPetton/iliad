@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad-More-UI classes extensions
+|   Iliad.ILSequence class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2010 
+| Copyright (c) 2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -35,29 +35,37 @@
 
 
 
-ILWidget extend [
 
-    lightbox: aWidget [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
+ILWidget subclass: ILSequence [
+    
+    <category: 'Iliad-Core-Buildables'>
+    <comment: nil>
 
-	self lightbox: aWidget onAnswer: [:ans | ]
+    buildContents [
+	<category: 'building'>
+	self shouldStart ifTrue: [self start].
+	^super buildContents
     ]
 
-    lightbox: aWidget onAnswer: aBlock [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-	
+    contents [
+	<category: 'building'>
+	self shouldNotImplement
+    ]
+
+    start [
+	<category: 'control flow'>
+	"Override this method in subclasses"
+    ]
+
+    restart [
+	<category: 'control flow'>
 	self 
-	    show: aWidget 
-	    onAnswer: aBlock
-	    delegator: (ILLightbox new widget: aWidget; yourself).
-	aWidget markDirty
+	    retrieveControl;
+	    markDirty
     ]
 
-    addMessage: aBlock [
-	<category: '*Iliad-More-UI'>
-	self decorateWith: ((ILMessageDecorator decoratee: self) 
-	    message: aBlock)
+    shouldStart [
+	<category: 'testing'>
+	^decorator decoratee = self
     ]
 ]

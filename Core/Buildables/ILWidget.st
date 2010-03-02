@@ -158,7 +158,7 @@ added to the decoration chain with #decorateWith:.'>
 
 	self buildHead: self application page head.	
 	
-	^self newRootElement div 
+	^self newRootElement
 	    class: self id;
 	    build: decorator contents;
 	    yourself
@@ -247,9 +247,9 @@ added to the decoration chain with #decorateWith:.'>
 		dec2 decoratee: dec1 decoratee]
     ]
 
-    defaultRootElementClass [
+    rootElementClass [
 	<category: 'defaults'>
-	^ILXHTMLElement
+	^ILDivElement
     ]
     
     answer [
@@ -294,17 +294,53 @@ added to the decoration chain with #decorateWith:.'>
 	"Show another widget instead of the receiver and catch the answer in <aBlock>.
 	The receiver is also implicitely marked dirty"
 	<category: 'control flow'>
-	
+
 	self
 	    show: aWidget
 	    onAnswer: aBlock
-	    delegator: (ILDelegator new widget: aWidget)
+	    delegator: (ILDelegator new widget: aWidget).
+	aWidget markDirty
     ]
     
+    append: aWidget [
+	"Insert <aWidget> after the receiver"
+	<category: 'control flow'>
+
+	self append: aWidget onAnswer: [:ans |]
+    ] 
+
+    append: aWidget onAnswer: aBlock [
+	"Insert <aWidget> after the receiver"
+	<category: 'control flow'>
+
+	self 
+	    show: aWidget
+	    onAnswer: aBlock
+	    delegator: (ILAppendDelegator new widget: aWidget).
+	aWidget setToAppend
+    ]
+
+    prepend: aWidget [
+	"Insert <aWidget> before the receiver"
+	<category: 'control flow'>
+
+	self prepend: aWidget onAnswer: [:ans |]
+    ] 
+
+    prepend: aWidget onAnswer: aBlock [
+	"Insert <aWidget> before the receiver"
+	<category: 'control flow'>
+
+	self 
+	    show: aWidget
+	    onAnswer: aBlock
+	    delegator: (ILPrependDelegator new widget: aWidget).
+	aWidget setToPrepend
+    ]
+
     show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
 	<category: 'control flow'>
 	| answerHandler |
-	self retrieveControl.
 	answerHandler := ILAnswerHandler new.
 	self decorateWith: aDelegator.
 	answerHandler action: (ILAction new block: [:value |
@@ -315,8 +351,32 @@ added to the decoration chain with #decorateWith:.'>
 	    aBlock value: value]).
 	aWidget
 	    owner: self;
-	    markDirty;
 	    decorateWith: answerHandler
+    ]
+
+    inform: aString [
+	<category: 'control flow'>
+	self show: (ILInformationWidget new
+	    informationString: aString;
+	    yourself)
+    ]
+
+    confirm: aString ifTrue: aBlock [
+	<category: 'control flow'>
+	self 
+	    confirm: aString 
+	    ifTrue: aBlock 
+	    ifFalse: []
+    ]
+
+    confirm: aString ifTrue: aBlock ifFalse: anotherBlock [
+	<category: 'control flow'>
+	self
+	    show: (ILConfirmationWidget new
+		confirmationString: aString;
+		yourself)
+	    onAnswer: [:boolean |
+		boolean ifTrue: aBlock ifFalse: anotherBlock]
     ]
 
     addDependentWidget: aWidget [
@@ -352,7 +412,21 @@ added to the decoration chain with #decorateWith:.'>
 	"You shouldn't call this method directly unless you know what you are doing."
 	<category: 'states'>
 	
-	^self session addToDirtyWidgets: self
+	^self session addDirtyWidget: self
+    ]
+  
+    setToAppend [
+	"You shouldn't call this method directly."
+	<category: 'states'>
+	
+	^self session addWidgetToAppend: self
+    ]
+
+    setToPrepend [
+	"You shouldn't call this method directly."
+	<category: 'states'>
+	
+	^self session addWidgetToPrepend: self
     ]
 
     printJsonOn: aStream [
@@ -362,7 +436,7 @@ added to the decoration chain with #decorateWith:.'>
 
     newRootElement [
 	<category: 'private'>
-	^self defaultRootElementClass new
+	^self rootElementClass new
     ]
 
     updateHead: aHead [

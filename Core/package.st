@@ -97,7 +97,12 @@ Eval [
 	filein: 'Buildables/ILDecorator.st'; 
 	filein: 'Buildables/ILAnswerHandler.st'; 
 	filein: 'Buildables/ILDelegator.st'; 
+	filein: 'Buildables/ILAppendDelegator.st'; 
+	filein: 'Buildables/ILPrependDelegator.st'; 
 	filein: 'Buildables/ILWidget.st'; 
+	filein: 'Buildables/ILSequence.st'; 
+	filein: 'Buildables/ILInformationWidget.st'; 
+	filein: 'Buildables/ILConfirmationWidget.st'; 
 	filein: 'Buildables/ILPluggableWidget.st';
 	filein: 'Buildables/ILProfiler.st'; 
 	filein: 'Buildables/ILApplication.st'; 

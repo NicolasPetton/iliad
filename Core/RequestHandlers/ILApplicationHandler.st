@@ -134,6 +134,6 @@ ILRequestHandler subclass: ILApplicationHandler [
 	    clearNextId;
 	    clearToken;
 	    clearActionRegistries;
-	    clearDirtyWidgets
+	    clearWidgets
     ]
 ]

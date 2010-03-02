@@ -1,12 +1,12 @@
 "======================================================================
 |
-|   Iliad-More-UI classes extensions
+|   Iliad.ILConfirmationWidget class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2010 
+| Copyright (c) 2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -35,29 +35,33 @@
 
 
 
-ILWidget extend [
 
-    lightbox: aWidget [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
+ILWidget subclass: ILConfirmationWidget [
+    | confirmationString |
 
-	self lightbox: aWidget onAnswer: [:ans | ]
+    <category: 'Iliad-Core-Buildables'>
+    <comment: nil>
+
+    confirmationString [
+	<category: 'accessing'>
+	^confirmationString
     ]
 
-    lightbox: aWidget onAnswer: aBlock [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-	
-	self 
-	    show: aWidget 
-	    onAnswer: aBlock
-	    delegator: (ILLightbox new widget: aWidget; yourself).
-	aWidget markDirty
+    confirmationString: aString [
+	<category: 'accessing'>
+	confirmationString := aString
     ]
 
-    addMessage: aBlock [
-	<category: '*Iliad-More-UI'>
-	self decorateWith: ((ILMessageDecorator decoratee: self) 
-	    message: aBlock)
+    contents [
+	<category: 'building'>
+	^[:e |
+	    e text: self confirmationString.
+	    e form build: [:form |
+		form button
+		    action: [self answer: true];
+		   text: 'Yes'.
+		form button
+		    action: [self answer: false];
+		    text: 'No']]
     ]
 ]

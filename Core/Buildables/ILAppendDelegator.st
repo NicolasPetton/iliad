@@ -1,14 +1,18 @@
 "======================================================================
 |
-|   Iliad-More-UI classes extensions
+|   Iliad.ILAppendDelegator class definition
 |
  ======================================================================"
 
 "======================================================================
 |
-| Copyright (c) 2008-2010 
+| Copyright (c) 2008-2009 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
+|
+| Some parts of this file reuse code from the Seaside framework written 
+| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
+| Marschall and Seaside contributors http://www.seaside.st 
 |
 | This file is part of the Iliad framework.
 |
@@ -35,29 +39,15 @@
 
 
 
-ILWidget extend [
+ILDelegator subclass: ILAppendDelegator [
 
-    lightbox: aWidget [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
+    <comment: nil>
+    <category: 'Iliad-Core-Buildables'>
 
-	self lightbox: aWidget onAnswer: [:ans | ]
-    ]
-
-    lightbox: aWidget onAnswer: aBlock [
-	"show <aWidget> inside a lightbox"
-	<category: '*Iliad-More-UI'>
-	
-	self 
-	    show: aWidget 
-	    onAnswer: aBlock
-	    delegator: (ILLightbox new widget: aWidget; yourself).
-	aWidget markDirty
-    ]
-
-    addMessage: aBlock [
-	<category: '*Iliad-More-UI'>
-	self decorateWith: ((ILMessageDecorator decoratee: self) 
-	    message: aBlock)
+    contents [
+	<category: 'building'>
+	^[:e | e 
+	    build: self decoratee contents; 
+	    build: super contents]
     ]
 ]
