@@ -443,11 +443,11 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'private'>
 	self withDecoratorsDo: [:each |
 	    each scripts do: [:script || e |
-		e := self newRootElement javascript src: script.
+		e := ILXHTMLElement new javascript src: script.
 		(aHead children includes: e) ifFalse: [
 		    aHead add: e]].
 	    each styles do: [:script || e |
-		e := self newRootElement stylesheet href: script.
+		e := ILXHTMLElement new stylesheet href: script.
 		(aHead children includes: e) ifFalse: [
 		    aHead add: e]]]
     ]
