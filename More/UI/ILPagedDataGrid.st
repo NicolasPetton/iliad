@@ -1,11 +1,31 @@
 "Contributes by Eli Green"
 
 
+ILDataGridFooter subclass: ILPagedDataGridFooter [
+    <comment: nil>
+
+    contents [
+        <category: 'building'>
+        ^[:tr |
+            tr td 
+                colspan: self grid columnNames size;
+                build: (ILPaginator new
+                  totalPages: self grid totalPages;
+                  currentPage: self grid currentPage;
+                  action: [:val | self grid currentPage: val])
+        ]
+    ]
+]
+
 ILDataGrid subclass: ILPagedDataGrid [
     | rowsPerPage currentPage |
-    
+
     <comment: nil>
     <category: 'Iliad-More-UI'>
+
+    ILPagedDataGrid class >> defaultFooterClass [
+        ^ILPagedDataGridFooter
+    ]
 
     defaultRowsPerPage [
 	<category: 'defaults'>
@@ -46,17 +66,6 @@ ILDataGrid subclass: ILPagedDataGrid [
 	toIndex := fromIndex + self rowsPerPage - 1 min: self items size.
 	fromIndex to: toIndex
 	    do: [:each | aBlock value: (self items at: each)]
-    ]
-
-    footer [
-	<category: 'building'>
-	^[:tfoot | 
-	    tfoot td
-		colspan: self columnNames size;
-		build: ((ILPaginator new)
-			totalPages: self totalPages;
-			currentPage: self currentPage;
-			action: [:val | self currentPage: val])]
     ]
 ]
 
