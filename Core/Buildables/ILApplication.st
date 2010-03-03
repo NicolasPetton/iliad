@@ -78,26 +78,10 @@ The class inst var <selectorFilter> is used to filter controller methods.
 By default it allows all methods in the ''controllers'' protocol.
 
 Alternatively, ou can override the class method #defaultSelectorFilter to supply 
-your own selectorFilter or plug it in using the class method #selectorFilter:
-
-
-"""""""""""""""""""""
-" Application modes "
-"""""""""""""""""""""
-
-Applications can be in one of the following modes: deployment, verbose or 
-debug. The default mode is verbose.
-You can switch between modes with class methods in the <accessing-modes> 
-protocol.
-
-When errors occur, the framework with handle them differently depending on 
-the application mode:
-- in deployment mode, it will respond an error 500;
-- in verbose mode, it will also respond an error 500, but with error details;
-- in debug mode, a debugger window will be opened on the error;'>
+your own selectorFilter or plug it in using the class method #selectorFilter:'>
     
     ILApplication class [
-	| selectorFilter mode |
+	| selectorFilter |
 
 	path [
 	    "Base path of the application.
@@ -117,32 +101,7 @@ the application mode:
 	    <category: 'accessing'>
 	    selectorFilter := aBlock
 	]
-    
-	mode [
-	    <category: 'accessing'>
-	    ^mode ifNil: [mode := #verbose]
-	]
-    
-	mode: aSymbol [
-	    <category: 'accessing'>
-	    mode := aSymbol
-	] 
-    
-	verboseMode [
-	    <category: 'accessing-modes'>
-	    self mode: #verbose
-	]
-    
-	debugMode [
-	    <category: 'accessing-modes'>
-	    self mode: #debug
-	]
-
-	deploymentMode [
-	    <category: 'accessing-modes'>
-	    self mode: #deployment
-	]
-
+   
 	defaultSelectorFilter [
 	    "Override this method to supply your own selectorFilter
 	     or plug it in using #selectorFilter:"
@@ -164,22 +123,6 @@ the application mode:
 		    self 
 			categoryOfElement: aSelector 
 			inClassOrSuperclass: aClass superclass]]
-	]
-
-	isDebugMode [
-	    <category: 'testing'>
-	    ^self mode = #debug
-	]
-    
-	isVerboseMode [
-	    <category: 'testing'>
-	    ^self mode = #verbose
-	]
-
-	isDeploymentMode [
-	    <category: 'testing'>
-	    ^self isDebugMode not and: [
-		self isVerboseMode not]
 	]
     ]
 
