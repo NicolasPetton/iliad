@@ -61,6 +61,11 @@ ILXHTMLElement subclass: ILLinkableElement [
 	self attributeAt: 'hreflang' put: aString
     ]
 
+    target: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: 'target' put: aString
+    ]
+
     linkToLocal: aString [
 	<category: 'accessing attributes'>
 	self linkToApplication: self application class controller: aString
