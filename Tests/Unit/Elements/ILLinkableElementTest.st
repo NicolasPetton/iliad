@@ -102,6 +102,12 @@ ILElementTest subclass: ILLinkableElementTest [
 	self shouldHaveAttribute: 'hreflang' value: 'foo'
     ]
 
+    testTarget [
+	<category: 'testing'>
+	e target: 'foo'.
+	self shouldHaveAttribute: 'target' value: 'foo'
+    ]
+
     testRel [
 	<category: 'testing'>
 	e rel: 'foo'.
