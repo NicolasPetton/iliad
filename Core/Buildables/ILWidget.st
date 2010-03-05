@@ -430,7 +430,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
 
     printJsonOn: aStream [
-	<category:'printing'>
+	<category: 'printing'>
 	self build printJsonOn: aStream
     ]
 

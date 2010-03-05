@@ -22,7 +22,7 @@ TestCase subclass: ILWidgetTest [
 		c2 show: c3 onAnswer: [:ans | self assert: ans = 10].
 		c3 answer: 10.
 		c2 answer: 'hello'.
-		c1 show: c2 onAnswer: [:ans | self assert: ans = nil].
+		c1 show: c2 onAnswer: [:ans | self assert: ans = 'hello'].
 		c1 show: c3 onAnswer: [:ans | self assert: ans = 10].
 		c2 answer: 'hello'.
 		c3 answer: 10]
@@ -61,7 +61,7 @@ TestCase subclass: ILWidgetTest [
 	    self assert: (self session dirtyWidgets includes: c3).
 	    self assert: (self session dirtyWidgets includes: c2).
 	    self assert: (self session dirtyWidgets includes: c1).
-	    self session clearDirtyWidgets.
+	    self session clearWidgets.
 
 	    c3 removeDependentWidget: c2.
 	    c2 removeDependentWidget: c1.

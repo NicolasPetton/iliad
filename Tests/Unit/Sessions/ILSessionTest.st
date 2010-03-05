@@ -29,12 +29,12 @@ TestCase subclass: ILSessionTest [
 	| widget1 widget2 |
 	widget1 := ILWidget new.
 	widget2 := ILWidget new.
-	session addToDirtyWidgets: widget1.
+	session addDirtyWidget: widget1.
 	self assert: (session dirtyWidgets includes: widget1).
-	session addToDirtyWidgets: widget2.
+	session addDirtyWidget: widget2.
 	self assert: (session dirtyWidgets includes: widget2).
 	self assert: session dirtyWidgets size = 2.
-	session clearDirtyWidgets.
+	session clearWidgets.
 	self assert: session dirtyWidgets size = 0
     ]
 

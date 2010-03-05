@@ -20,17 +20,5 @@ TestCase subclass: ILApplicationTest [
 	[application dispatchOn: #foo] on: Error
 	    do: [:e | self assert: (e isKindOf: ILDispatchError)]
     ]
-
-    testMode [
-	<category: 'tests'>
-	application class verboseMode.
-	self assert: application isVerboseMode.
-	self deny: application isDeploymentMode.
-	self deny: application isDebugMode.
-	application class mode: #deployment.
-	self assert: application isDeploymentMode.
-	application class mode: #debug.
-	self assert: application isDebugMode
-    ]
 ]
 
