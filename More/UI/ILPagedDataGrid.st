@@ -12,10 +12,9 @@ ILDataGridFooter subclass: ILPagedDataGridFooter [
                 build: (ILPaginator new
                   totalPages: self grid totalPages;
                   currentPage: self grid currentPage;
-                  action: [:val | self grid currentPage: val])
-        ]
-    ]
+                  action: [:val | self grid currentPage: val])]]
 ]
+
 
 ILDataGrid subclass: ILPagedDataGrid [
     | rowsPerPage currentPage |
@@ -68,4 +67,3 @@ ILDataGrid subclass: ILPagedDataGrid [
 	    do: [:each | aBlock value: (self items at: each)]
     ]
 ]
-
