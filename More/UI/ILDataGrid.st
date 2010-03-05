@@ -37,6 +37,7 @@ ILUIWidget subclass: ILDataGridRow [
     <category: 'Iliad-More-UI'>
 
     rootElementClass [
+	<category: 'accessing'>
 	^ILTableRowElement
     ]
 
@@ -103,60 +104,39 @@ ILUIWidget subclass: ILDataGrid [
     <category: 'Iliad-More-UI'>
 
     ILDataGrid class >> defaultHeaderClass [
+	<category: 'defaults'>
 	^ILDataGridHeader
     ]
 
     ILDataGrid class >> defaultFooterClass [
+	<category: 'defaults'>
 	^ILDataGridFooter
     ]
 
     ILDataGrid class >> defaultRowClass [
+	<category: 'defaults'>
 	^ILDataGridRow
     ]
 
     headerClass [
+	<category: 'accessing'>
 	headerClass isNil ifTrue:
 	    [headerClass := self class defaultHeaderClass].
 	^headerClass
     ]
 
     footerClass [
+	<category: 'accessing'>
 	footerClass isNil ifTrue:
 	    [footerClass := self class defaultFooterClass].
 	^footerClass
     ]
 
     rowClass [
+	<category: 'accessing'>
 	rowClass isNil ifTrue:
 	    [rowClass := self class defaultRowClass].
 	^rowClass
-    ]
-
-    contents [
-	<category: 'building'>
-	^[:e | 
-	    e table build: [:table | 
-		table thead build: (self headerClass new grid: self).
-		table tbody build: self body.
-		table tfoot build: (self footerClass new grid: self)]]
-    ]
-
-    body [
-	<category: 'building'>
-	^[:tbody |
-	    self visibleItemsDo: [:item | 
-		tbody build: (self rowForItem: item)]]
-    ]
-
-    rowForItem: anItem [
-	<category: 'building'>
-	^[:tbody |
-	    tbody build: (self rowClass new grid: self; item: anItem)]
-    ]
-
-    visibleItemsDo: aBlock [
-	<category: 'building'>
-	self items do: aBlock
     ]
 
     builders [
@@ -198,6 +178,36 @@ ILUIWidget subclass: ILDataGrid [
 	<category: 'accessing'>
 	items := anObject.
 	self markDirty
+    ]
+
+    contents [
+	<category: 'building'>
+	^[:e | 
+	    e div 
+		class: self cssClass;
+		build: [:div |
+		    div table build: [:table | 
+			table thead build: (self headerClass new grid: self).
+			table tbody build: self body.
+			table tfoot build: (self footerClass new grid: self)]]]
+    ]
+
+    body [
+	<category: 'building'>
+	^[:tbody |
+	    self visibleItemsDo: [:item | 
+		tbody build: (self rowForItem: item)]]
+    ]
+
+    rowForItem: anItem [
+	<category: 'building'>
+	^[:tbody |
+	    tbody build: (self rowClass new grid: self; item: anItem)]
+    ]
+
+    visibleItemsDo: aBlock [
+	<category: 'building'>
+	self items do: aBlock
     ]
 ]
 
