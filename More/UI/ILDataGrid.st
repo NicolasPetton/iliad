@@ -19,7 +19,7 @@ ILUIWidget subclass: ILDataGridHeader [
     ]
 
     grid [
-    	<category: 'accessing'>
+	<category: 'accessing'>
 	^grid
     ]
 
@@ -28,6 +28,7 @@ ILUIWidget subclass: ILDataGridHeader [
 	grid := anObject.
     ]
 ]
+
 
 ILUIWidget subclass: ILDataGridRow [
     | grid item |
@@ -43,13 +44,11 @@ ILUIWidget subclass: ILDataGridRow [
 	<category: 'building'>
 	^[:tr |
 	    self grid builders do: [:builder |
-                (builder argumentCount = 3)
-                    ifTrue: [builder value: tr td value: item value: self]
-                    ifFalse: [builder value: tr td value: item]]]
+		builder cull: tr td cull: item cull: self]]
     ]
 
     item [
-    	<category: 'accessing'>
+	<category: 'accessing'>
 	^item
     ]
 
@@ -59,7 +58,7 @@ ILUIWidget subclass: ILDataGridRow [
     ]
 
     grid [
-    	<category: 'accessing'>
+	<category: 'accessing'>
 	^grid
     ]
 
@@ -87,7 +86,7 @@ ILUIWidget subclass: ILDataGridFooter [
     ]
 
     grid [
-    	<category: 'accessing'>
+	<category: 'accessing'>
 	^grid
     ]
 
