@@ -66,8 +66,6 @@ ILObject subclass: ILSession [
 
     clearWidgets [
 	<category: 'cleaning'>
-	self dirtyWidgets do: [:each |
-	    (self actionRegistryFor: each) unregisterAllActions].
 	widgets := nil
     ]
 
@@ -385,6 +383,8 @@ ILObject subclass: ILSession [
 
     expire [
 	<category: 'private'>
+	self actionRegistries do: [:each | 
+	    each unregisterAllActions].
 	expired := true
     ]
 
