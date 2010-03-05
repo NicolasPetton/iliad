@@ -166,7 +166,7 @@ the application mode:
     ]
 ]
 
-Signal extend [
+Exception extend [
     resumeContext [
 	^resumeBlock outerContext home
     ]
