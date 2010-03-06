@@ -66,6 +66,8 @@ ILObject subclass: ILSession [
 
     clearWidgets [
 	<category: 'cleaning'>
+	self dirtyWidgets do: [:each |
+	    (self actionRegistryFor: each) unregisterAllActions].
 	widgets := nil
     ]
 

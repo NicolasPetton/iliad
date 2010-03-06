@@ -132,6 +132,8 @@ ILRequestHandler subclass: ILApplicationHandler [
 	<category: 'private'>
 	self session
 	    clearNextId;
+	    clearToken;
+	    clearActionRegistries;
 	    clearWidgets
     ]
 ]
