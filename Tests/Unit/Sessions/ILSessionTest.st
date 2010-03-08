@@ -34,8 +34,6 @@ TestCase subclass: ILSessionTest [
 	session addDirtyWidget: widget2.
 	self assert: (session dirtyWidgets includes: widget2).
 	self assert: session dirtyWidgets size = 2.
-	session clearWidgets.
-	self assert: session dirtyWidgets size = 0
     ]
 
     testExpire [

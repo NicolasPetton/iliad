@@ -311,8 +311,7 @@ added to the decoration chain with #decorateWith:.'>
 	self
 	    show: aWidget
 	    onAnswer: aBlock
-	    delegator: (ILDelegator new widget: aWidget).
-	aWidget markDirty
+	    delegator: (ILDelegator new widget: aWidget)
     ]
     
     append: aWidget [
@@ -330,7 +329,6 @@ added to the decoration chain with #decorateWith:.'>
 	    show: aWidget
 	    onAnswer: aBlock
 	    delegator: (ILAppendDelegator new widget: aWidget).
-	aWidget setAppended
     ]
 
     prepend: aWidget [
@@ -348,14 +346,15 @@ added to the decoration chain with #decorateWith:.'>
 	    show: aWidget
 	    onAnswer: aBlock
 	    delegator: (ILPrependDelegator new widget: aWidget).
-	aWidget setPrepended
     ]
 
     show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
 	<category: 'control flow'>
 	| answerHandler |
 	answerHandler := ILAnswerHandler new.
-	self decorateWith: aDelegator.
+	self 
+	    decorateWith: aDelegator;
+	    markDirty.
 	answerHandler action: (ILAction new block: [:value |
 	    aDelegator removeYourself.
 	    self markDirty.

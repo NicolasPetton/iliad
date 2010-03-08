@@ -37,7 +37,7 @@
 
 
 ILRequestHandler subclass: ILJsonHandler [
-    | jsonContents widgets append prepend scripts head widgetsToAppend widgetsToPrepend |
+    | jsonContents widgets scripts head |
 
     <comment: nil>
     <category: 'Iliad-Core-RequestHandlers'>
@@ -47,17 +47,7 @@ ILRequestHandler subclass: ILJsonHandler [
 	super initialize.
 	jsonContents := Dictionary new.
 	head := OrderedCollection new.
-	widgets := Dictionary new.
-	append := Dictionary new.
-	prepend := Dictionary new
-    ]
-
-    handleRequest [
-	<category: 'request handling'>
-	widgetsToAppend := self session widgetsToAppend copy.
-	widgetsToPrepend := self session widgetsToPrepend copy.
-	self session clearWidgets.
-	super handleRequest
+	widgets := Dictionary new
     ]
 
     produceResponse [
@@ -113,16 +103,8 @@ ILRequestHandler subclass: ILJsonHandler [
 	self session dirtyWidgets do: [:each || e |
 	    e := each build.
 	    widgets at: each id put: e].
-	widgetsToAppend do: [:each || e |
-	    e := each build.
-	    append at: each owner id put: e].
-	widgetsToPrepend do: [:each || e |
-	    e := each build.
-	    prepend at: each owner id put: e].
 	jsonContents 
-	    at: 'widgets' put: widgets;
-	    at: 'append' put: append;
-	    at: 'prepend' put: prepend
+	    at: 'widgets' put: widgets
     ]
 
     updateApplication [
