@@ -1,9 +1,21 @@
 #!/bin/bash
 
+USAGE=" $0 [-f Force]"
 GST_PACK="/usr/bin/env gst-package"
 GST="/usr/bin/env gst"
 CURR_DIR=`pwd`
 PACK_BUILDER=$CURR_DIR"/scripts/PackageBuilder.st"
+FORCE=0
+
+while getopts :fh o
+do        case "$o" in
+        f) 	  FORCE=1;;
+        h)    echo "Usage:"
+              echo $USAGE
+                exit 1;;
+        esac
+done
+
 
 echo "Packaging in $CURR_DIR ..." > make_packages.log
 for i in `find . -name package.st`
@@ -21,7 +33,7 @@ do
 		fi
 	done
 
-	if [ $REGEN -eq 1 ]
+	if [ $REGEN -eq 1 ]||[ $FORCE -eq 1 ]
 	then
 		echo "  building package.xml"
 		$GST $PACK_BUILDER -a package.st > package.xml
@@ -29,7 +41,7 @@ do
 
 	cd $CURR_DIR
 
-    if [ $REGEN -eq 1 ]
+    if [ $REGEN -eq 1 ]||[ $FORCE -eq 1 ]
     then
 	echo "  packaging..."
 	$GST_PACK -t ~/.st $DIR/package.xml >> make_packages.log
