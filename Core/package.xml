@@ -26,6 +26,7 @@
   <filein>Sessions/ILCurrentContext.st</filein>
   <filein>Sessions/ILCurrentActionRegistry.st</filein>
   <filein>Sessions/ILActionRegistry.st</filein>
+  <filein>Sessions/ILStateRegistry.st</filein>
   <filein>Sessions/ILSession.st</filein>
   <filein>Sessions/ILSessionManager.st</filein>
   <filein>Elements/ILElements-Error.st</filein>
@@ -133,6 +134,7 @@
   <file>Sessions/ILCurrentContext.st</file>
   <file>Sessions/ILCurrentActionRegistry.st</file>
   <file>Sessions/ILActionRegistry.st</file>
+  <file>Sessions/ILStateRegistry.st</file>
   <file>Sessions/ILSession.st</file>
   <file>Sessions/ILSessionManager.st</file>
   <file>Elements/ILElements-Error.st</file>

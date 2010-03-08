@@ -37,7 +37,7 @@
 
 
 ILRequestHandler subclass: ILJsonHandler [
-    | jsonContents widgets append prepend scripts head dirtyWidgets widgetsToAppend widgetsToPrepend |
+    | jsonContents widgets append prepend scripts head widgetsToAppend widgetsToPrepend |
 
     <comment: nil>
     <category: 'Iliad-Core-RequestHandlers'>
@@ -54,7 +54,6 @@ ILRequestHandler subclass: ILJsonHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	dirtyWidgets := self session dirtyWidgets copy.
 	widgetsToAppend := self session widgetsToAppend copy.
 	widgetsToPrepend := self session widgetsToPrepend copy.
 	self session clearWidgets.
@@ -102,7 +101,7 @@ ILRequestHandler subclass: ILJsonHandler [
 	<category: 'private'>
 	| headElement |
 	headElement := ILElement new.
-	dirtyWidgets do: [:each | each buildHead: headElement].
+	self session dirtyWidgets do: [:each | each buildHead: headElement].
 	headElement childrenDo: [:each |
 	    (self application page head children includes: each) ifFalse: [
 		head add: each]].
@@ -111,7 +110,7 @@ ILRequestHandler subclass: ILJsonHandler [
 
     updateWidgets [
 	<category: 'private'>
-	dirtyWidgets do: [:each || e |
+	self session dirtyWidgets do: [:each || e |
 	    e := each build.
 	    widgets at: each id put: e].
 	widgetsToAppend do: [:each || e |
