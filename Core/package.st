@@ -32,6 +32,7 @@ Eval [
 	filein: 'Sessions/ILCurrentContext.st'; 
 	filein: 'Sessions/ILCurrentActionRegistry.st'; 
 	filein: 'Sessions/ILActionRegistry.st'; 
+	filein: 'Sessions/ILStateRegistry.st'; 
 	filein: 'Sessions/ILSession.st'; 
 	filein: 'Sessions/ILSessionManager.st'; 
 

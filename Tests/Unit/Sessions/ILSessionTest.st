@@ -15,9 +15,9 @@ TestCase subclass: ILSessionTest [
 	| widget1 widget2 actionRegistry1 actionRegistry2 |
 	widget1 := ILWidget new.
 	widget2 := ILWidget new.
-	actionRegistry1 := session addActionRegistryFor: widget1.
+	actionRegistry1 := session newActionRegistryFor: widget1.
 	self assert: (session actionRegistryFor: widget1) == actionRegistry1.
-	actionRegistry2 := session addActionRegistryFor: widget2.
+	actionRegistry2 := session newActionRegistryFor: widget2.
 	self assert: (session actionRegistryFor: widget2) == actionRegistry2.
 	self assert: session actionRegistries size = 2.
 	session clearActionRegistries.

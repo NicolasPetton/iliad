@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILSession [
-    | id preferences others timestamps expired redirectUrl applications actionRegistries widgets nextId token |
+    | id preferences timestamps expired redirectUrl applications actionRegistries stateRegistries widgets nextId |
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
@@ -54,20 +54,8 @@ ILObject subclass: ILSession [
 	    setRandomId
     ]
 
-    clearToken [
-	<category: 'cleaning'>
-	token := nil
-    ]
-
-    clearNextId [ 
-	<category: 'cleaning'>
-	nextId := nil
-    ]
-
     clearWidgets [
 	<category: 'cleaning'>
-	self dirtyWidgets do: [:each |
-	    (self actionRegistryFor: each) unregisterAllActions].
 	widgets := nil
     ]
 
@@ -79,6 +67,11 @@ ILObject subclass: ILSession [
     clearActionRegistries [
 	<category: 'cleaning'>
 	actionRegistries := nil
+    ]
+
+    clearStateRegistries [
+	<category: 'cleaning'>
+	stateRegistries := nil
     ]
 
     id [
@@ -110,9 +103,9 @@ ILObject subclass: ILSession [
 
     dirtyWidgets [
 	<category: 'accessing'>
-	^self widgets 
-	    at: #dirty
-	    ifAbsentPut: [IdentitySet new]
+	^self previousStateRegistry 
+	    ifNil: [#()]
+	    ifNotNil: [self previousStateRegistry dirtyWidgets]
     ]
 
     widgetsToAppend [
@@ -139,14 +132,19 @@ ILObject subclass: ILSession [
 	^self context route
     ]
 
+    stateRegistry [
+	<category: 'accessing'>
+	^self context stateRegistry
+    ]
+
+    previousStateRegistry [
+	<category: 'accessing'>
+	^self context previousStateRegistry
+    ]
+
     sessionManager [
 	<category: 'accessing'>
 	^ILSessionManager current
-    ]
-
-    token [
-	<category: 'accessing'>
-	^token ifNil: [token := ILId new: 8]
     ]
 
     charset [
@@ -281,12 +279,34 @@ ILObject subclass: ILSession [
 
     defaultExpirySeconds [
 	<category: 'defaults'>
-	^3600
+	^1800
     ]
 
     defaultLanguage [
 	<category: 'defaults'>
 	^'en'
+    ]
+
+    stateRegistries [
+	<category: 'states'>
+	^stateRegistries ifNil: [stateRegistries := OrderedCollection new]
+    ]
+
+    stateRegistryAt: aString [
+	<category: 'states'>
+	^self stateRegistries 
+	    detect: [:each | each key = aString]
+	    ifNone: [nil]
+    ]
+
+    newStateRegistry [
+	<category: 'states'>
+	| registry |
+	registry := self stateRegistries isEmpty
+	    ifTrue: [ILStateRegistry new]
+	    ifFalse: [ILStateRegistry fromRegistry: self stateRegistries last].
+	self stateRegistries add: registry.
+	^registry
     ]
 
     actionRegistries [
@@ -299,10 +319,10 @@ ILObject subclass: ILSession [
 	<category: 'actions'>
 	^self actionRegistries 
 	    detect: [:each | each owner = aWidget]
-	    ifNone: [self addActionRegistryFor: aWidget]
+	    ifNone: [self newActionRegistryFor: aWidget]
     ]
     
-    addActionRegistryFor: aWidget [
+    newActionRegistryFor: aWidget [
 	<category: 'actions'>
 	^self actionRegistries add: (ILActionRegistry owner: aWidget)
     ]

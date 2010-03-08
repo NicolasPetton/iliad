@@ -71,7 +71,6 @@ ILRequestHandler subclass: ILApplicationHandler [
 	self shouldRespondInJson ifTrue: [
 	    ILJsonHandler new handleRequest].
 	self request isAjaxRequest ifTrue: [self returnResponse: self lastAction asResponse].
-	self cleanUpSession.
 	self shouldRedirect
 	    ifTrue: [ILRedirectHandler new handleRequest]
 	    ifFalse: [self produceResponse]
@@ -87,8 +86,8 @@ ILRequestHandler subclass: ILApplicationHandler [
 
     isRequestValid [
 	<category: 'testing'>
-	^(self request tokenField = self session token asString) or: [
-	    self request actionField isNil and: [self request isGet]]
+	^self context previousStateRegistry notNil 
+	    or: [self request actionField isNil and: [self request isGet]]
     ]
 
     shouldRedirect [
@@ -126,14 +125,5 @@ ILRequestHandler subclass: ILApplicationHandler [
 		    action := self session actionAt: asso key.
 		    action ifNotNil: [action value: asso value]].
 		action ifNotNil: [actions add: action]]]
-    ]
-
-    cleanUpSession [
-	<category: 'private'>
-	self session
-	    clearNextId;
-	    clearToken;
-	    clearActionRegistries;
-	    clearWidgets
     ]
 ]
