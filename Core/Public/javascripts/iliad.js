@@ -247,30 +247,6 @@ var iliad = (function() {
 			updateWidget(i, dirtyWidgets[i].replace(script_extractor, ''));
 		}
 
-		/*  append widgets */
-		var append = json.append;
-		for(var i in append) {
-			var script = append[i].match(script_extractor);
-			if(script) {
-				for(var j = 0; j < script.length; j++) {
-					scripts.push(script[j]);
-				}
-			}
-			appendWidget(i, append[i].replace(script_extractor, ''));
-		}
-
-		/*  prepend widgets */
-		var prepend = json.prepend;
-		for(var i in prepend) {
-			var script = prepend[i].match(script_extractor);
-			if(script) {
-				for(var j = 0; j < script.length; j++) {
-					scripts.push(script[j]);
-				}
-			}
-			prependWidget(i, prepend[i].replace(script_extractor, ''));
-		}
-
 		/* evaluate scripts */
 		//var scripts = json.scripts;
 		for(var i in scripts) {
@@ -280,14 +256,6 @@ var iliad = (function() {
 
 	function updateWidget(id, contents) {
 		jQuery("."+id).replaceWith(contents);
-	}
-
-	function appendWidget(id, contents) {
-		jQuery("."+id).append(contents);
-	}
-
-	function prependWidget(id, contents) {
-		jQuery("."+id).prepend(contents);
 	}
 
 	function evalScript(script) {

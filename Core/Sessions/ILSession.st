@@ -37,8 +37,7 @@
 
 
 ILObject subclass: ILSession [
-    | id preferences others timestamps expired redirectUrl applications actionRegistries statesRegistries widgets nextId token |
->>>>>>> First implementation of state registry:Core/Sessions/ILSession.st
+    | id preferences others timestamps expired redirectUrl applications actionRegistries stateRegistries nextId |
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
@@ -53,11 +52,6 @@ ILObject subclass: ILSession [
 	expired := false.
 	self setCreatedTimestamp; 
 	    setRandomId
-    ]
-
-    clearWidgets [
-	<category: 'cleaning'>
-	widgets := nil
     ]
 
     clearRedirectUrl [
@@ -97,30 +91,11 @@ ILObject subclass: ILSession [
 	^applications ifNil: [applications := IdentityDictionary new]
     ]
 
-    widgets [
-	<category: 'accessing'>
-	^widgets ifNil: [widgets := Dictionary new]
-    ]
-
     dirtyWidgets [
 	<category: 'accessing'>
 	^self previousStateRegistry 
 	    ifNil: [#()]
 	    ifNotNil: [self previousStateRegistry dirtyWidgets]
-    ]
-
-    widgetsToAppend [
-	<category: 'accessing'>
-	^self widgets
-	    at: #append
-	    ifAbsentPut: [IdentitySet new]
-    ]
-
-    widgetsToPrepend [
-	<category: 'accessing'>
-	^self widgets
-	    at: #prepend
-	    ifAbsentPut: [IdentitySet new]
     ]
 
     encoding [
@@ -404,21 +379,6 @@ ILObject subclass: ILSession [
 		includesKey: self sessionManager cookieName) not
     ]
 
-    addDirtyWidget: aWidget [
-	<category: 'states'>
-	self dirtyWidgets add: aWidget
-    ]
-
-    addWidgetToAppend: aWidget [
-	<category: 'states'>
-	self widgetsToAppend add: aWidget
-    ]
-
-    addWidgetToPrepend: aWidget [
-	<category: 'states'>
-	self widgetsToPrepend add: aWidget
-    ]
-
     expire [
 	<category: 'private'>
 	self actionRegistries do: [:each | 
@@ -431,4 +391,3 @@ ILObject subclass: ILSession [
 	^self id: ILId new
     ]
 ]
-
