@@ -109,11 +109,11 @@ var iliad = (function() {
 					"<iframe id='_upload_target' name='_upload_target' " +
 					"src='#' style='display:none'></iframe>");
 				upload_target.appendTo('body');
-				upload_target.bind('load', function(e) {
-					unlockActions();
-					evaluateAction();
-				});
 			}
+			upload_target.one('load', function(e) {
+				unlockActions();
+				evaluateAction('?_state='+jQuery(form).find('input[name=_state]').val());
+			});
 			jQuery(form).append(hidden);
 			jQuery(form).attr('target', '_upload_target');
 			startUpload(form);
