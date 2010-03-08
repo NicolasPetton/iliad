@@ -51,8 +51,7 @@ ILWidget extend [
 	self 
 	    show: aWidget 
 	    onAnswer: aBlock
-	    delegator: (ILLightbox new widget: aWidget; yourself).
-	aWidget markDirty
+	    delegator: (ILLightbox new widget: aWidget; yourself)
     ]
 
     addMessage: aBlock [
