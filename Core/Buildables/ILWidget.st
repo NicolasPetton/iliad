@@ -40,7 +40,7 @@
 
 
 ILBuildable subclass: ILWidget [
-    | id decorator owner dependentWidgets |
+    | id state decorator owner dependentWidgets |
 
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am a stateful graphical component. 
@@ -100,14 +100,22 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'initialization'>
 	super initialize.
 	decorator := ILDecorator decoratee: self.
-	dependentWidgets := OrderedCollection new
+	dependentWidgets := OrderedCollection new.
+	state := ILId new
     ]
 
     postCopy [
 	<category: 'copying'>
 	super postCopy.
 	decorator := ILDecorator decoratee: self.
-	dependentWidgets := OrderedCollection new
+	dependentWidgets := OrderedCollection new.
+	state := ILId new.
+	id := nil
+    ]
+
+    state [
+	<category: 'accessing'>
+	^state copy
     ]
 
     id: aString [
@@ -152,10 +160,15 @@ added to the decoration chain with #decorateWith:.'>
 	    yourself
     ]
 
+    stateRegistry [
+	<category: 'accessing'>
+	^self context stateRegistry
+    ]
+
     buildContents [
 	"Do *not* override this method. Use #contents instead"
 	<category: 'building'>
-
+	self registerState.
 	self buildHead: self application page head.	
 	
 	^self newRootElement
@@ -394,6 +407,11 @@ added to the decoration chain with #decorateWith:.'>
 	(dependentWidgets includes: aWidget) ifTrue: [
 	    dependentWidgets remove: aWidget]
     ]
+ 
+    registerState [
+	<category: 'states'>
+	self stateRegistry register: self
+    ]
 
     markDirty [
 	"Mark the receiver as 'dirty', 
@@ -407,12 +425,12 @@ added to the decoration chain with #decorateWith:.'>
 	    ifNotNil: [self owner markDirty].
 	dependentWidgets do: [:each | each markDirty]
     ]
- 
+
     setDirty [
 	"You shouldn't call this method directly unless you know what you are doing."
 	<category: 'states'>
 	
-	^self session addDirtyWidget: self
+	state := ILId new
     ]
   
     setAppended [
