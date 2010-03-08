@@ -37,7 +37,6 @@
 
 
 ILRequestHandler subclass: ILJsonHandler [
-<<<<<<< HEAD:Core/RequestHandlers/ILJsonHandler.st
     | jsonContents widgets scripts head |
 
     <comment: nil>

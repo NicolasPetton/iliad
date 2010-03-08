@@ -37,11 +37,7 @@
 
 
 ILObject subclass: ILSession [
-<<<<<<< HEAD:Core/Sessions/ILSession.st
     | id preferences others timestamps expired redirectUrl applications actionRegistries stateRegistries nextId |
-=======
-    | id preferences timestamps expired redirectUrl applications actionRegistries stateRegistries widgets nextId |
->>>>>>> First implementation of state registry:Core/Sessions/ILSession.st
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
@@ -58,14 +54,6 @@ ILObject subclass: ILSession [
 	    setRandomId
     ]
 
-<<<<<<< HEAD:Core/Sessions/ILSession.st
-=======
-    clearWidgets [
-	<category: 'cleaning'>
-	widgets := nil
-    ]
-
->>>>>>> First implementation of state registry:Core/Sessions/ILSession.st
     clearRedirectUrl [
 	<category: 'cleaning'>
 	redirectUrl := nil
@@ -140,14 +128,11 @@ ILObject subclass: ILSession [
 	^self context previousStateRegistry
     ]
 
-<<<<<<< HEAD:Core/Sessions/ILSession.st
-=======
     sessionManager [
 	<category: 'accessing'>
 	^ILSessionManager current
     ]
 
->>>>>>> First implementation of state registry:Core/Sessions/ILSession.st
     charset [
 	<category: 'accessing preferences'>
 	^self preferenceAt: #charset ifAbsentPut: ['utf-8']
