@@ -317,7 +317,7 @@ added to the decoration chain with #decorateWith:.'>
 	    show: aWidget
 	    onAnswer: aBlock
 	    delegator: (ILAppendDelegator new widget: aWidget).
-	aWidget setToAppend
+	aWidget setAppended
     ]
 
     prepend: aWidget [
@@ -335,7 +335,7 @@ added to the decoration chain with #decorateWith:.'>
 	    show: aWidget
 	    onAnswer: aBlock
 	    delegator: (ILPrependDelegator new widget: aWidget).
-	aWidget setToPrepend
+	aWidget setPrepended
     ]
 
     show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
@@ -415,14 +415,14 @@ added to the decoration chain with #decorateWith:.'>
 	^self session addDirtyWidget: self
     ]
   
-    setToAppend [
+    setAppended [
 	"You shouldn't call this method directly."
 	<category: 'states'>
 	
 	^self session addWidgetToAppend: self
     ]
 
-    setToPrepend [
+    setPrepended [
 	"You shouldn't call this method directly."
 	<category: 'states'>
 	

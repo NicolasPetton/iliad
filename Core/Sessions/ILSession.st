@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILSession [
-    | id preferences timestamps expired redirectUrl applications actionRegistries widgets nextId token |
+    | id preferences others timestamps expired redirectUrl applications actionRegistries widgets nextId token |
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
@@ -179,26 +179,6 @@ ILObject subclass: ILSession [
 	^self preferences at: #language put: aSymbol
     ]
 
-    preferenceAt: aSymbol [
-	<category: 'accessing preferences'>
-	^self preferences at: aSymbol ifAbsent: [nil]
-    ]
-
-    preferenceAt: aSymbol ifAbsentPut: aBlock [
-	<category: 'accessing preferences'>
-	^self preferences at: aSymbol ifAbsentPut: aBlock
-    ]
-
-    preferenceAt: aSymbol put: anObject [
-	<category: 'accessing preferences'>
-	^self preferences at: aSymbol put: anObject
-    ]
-
-    preferences [
-	<category: 'accessing preferences'>
-	^preferences ifNil: [preferences := Dictionary new]
-    ]
-
     refreshOnBacktrack [
 	<category: 'accessing preferences'>
 	^self preferenceAt: #refreshOnBacktrack ifAbsentPut: [true]
@@ -217,6 +197,26 @@ ILObject subclass: ILSession [
     useCookies: aBoolean [
 	<category: 'accessing preferences'>
 	^self preferenceAt: #cookies put: aBoolean
+    ]
+
+    preferenceAt: aSymbol [
+	<category: 'accessing preferences'>
+	^self preferences at: aSymbol ifAbsent: [nil]
+    ]
+
+    preferenceAt: aSymbol ifAbsentPut: aBlock [
+	<category: 'accessing preferences'>
+	^self preferences at: aSymbol ifAbsentPut: aBlock
+    ]
+
+    preferenceAt: aSymbol put: anObject [
+	<category: 'accessing preferences'>
+	^self preferences at: aSymbol put: anObject
+    ]
+
+    preferences [
+	<category: 'accessing preferences'>
+	^preferences ifNil: [preferences := Dictionary new]
     ]
 
     createdTimestamp [
@@ -257,6 +257,26 @@ ILObject subclass: ILSession [
     timestamps [
 	<category: 'accessing timestamps'>
 	^timestamps ifNil: [timestamps := Dictionary new]
+    ]
+
+    others [
+	<category: 'accessing others'>
+	^others ifNil: [others := Dictionary new]
+    ]
+
+    otherAt: aKey [
+	<category: 'accessing others'>
+	^self others at: aKey ifAbsent: [nil]
+    ]
+
+    otherAt: aKey put: anObject [
+	<category: 'accessing others'>
+	self others at: aKey put: anObject
+    ]
+
+    otherAt: aKey ifAbsentPut: aBlock [
+	<category: 'accessing others'>
+	self others at: aKey ifAbsentPut: aBlock
     ]
 
     defaultExpirySeconds [
