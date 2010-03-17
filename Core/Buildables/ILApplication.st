@@ -77,7 +77,7 @@ The default controller method is #index.
 The class inst var <selectorFilter> is used to filter controller methods. 
 By default it allows all methods in the ''controllers'' protocol.
 
-Alternatively, ou can override the class method #defaultSelectorFilter to supply 
+Alternatively, you can override the class method #defaultSelectorFilter to supply 
 your own selectorFilter or plug it in using the class method #selectorFilter:'>
     
     ILApplication class [
