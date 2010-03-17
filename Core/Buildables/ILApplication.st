@@ -266,12 +266,19 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	self redirectToApplication: aClass controller: ''
     ]
 
-    redirectToApplication: anApplicationClass controller: aString [
+    redirectToApplication: aClass controller: aString [
 	"Abort all other request handling.
 	Redirect to the controller named <aString> of <aClass>"
 	<category: 'redirecting'>
 
 	self redirectTo: (self context urlBuilder absolutePathFor: anApplicationClass), '/', aString
+    ]
+
+    redirectToLastController [
+	"Abort all other request handling.
+	Redirect to the last controller method, most of the time the current controller"
+	<category: 'redirecting'>
+	self redirectTo: self route pathString
     ]
 
     respond: aBlock [
