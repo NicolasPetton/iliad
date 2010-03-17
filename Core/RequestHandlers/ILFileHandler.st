@@ -550,7 +550,7 @@ ILRequestHandler subclass: ILFileHandler [
     fullPathOf: aFileName [
 	"Try to find a file with <aFileName> in one of the base directories"
 	<category: 'private'>
-
+	aFileName isEmpty ifTrue: [^nil].
 	self baseDirectories do: [:each || file |
 	    file := each / aFileName.
 	    (file notNil and: [file exists]) ifTrue: [^file]].
