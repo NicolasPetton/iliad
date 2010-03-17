@@ -274,9 +274,9 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	self redirectTo: (self context urlBuilder absolutePathFor: anApplicationClass), '/', aString
     ]
 
-    redirectToLastController [
+    redirectToCurrentController [
 	"Abort all other request handling.
-	Redirect to the last controller method, most of the time the current controller"
+	Redirect to the current controller method"
 	<category: 'redirecting'>
 	self redirectTo: self route pathString
     ]
