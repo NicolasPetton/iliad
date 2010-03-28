@@ -104,6 +104,9 @@
   <filein>RequestHandlers/ILResponseNotification.st</filein>
   <filein>RequestHandlers/ILRequestHandler.st</filein>
   <filein>RequestHandlers/ILErrorHandler.st</filein>
+  <filein>RequestHandlers/ILDirectory.st</filein>
+  <filein>RequestHandlers/ILDiskDirectory.st</filein>
+  <filein>RequestHandlers/ILMemoryDirectory.st</filein>
   <filein>RequestHandlers/ILFileHandler.st</filein>
   <filein>RequestHandlers/ILNotFoundHandler.st</filein>
   <filein>RequestHandlers/ILJsonHandler.st</filein>
@@ -211,21 +214,25 @@
   <file>RequestHandlers/ILResponseNotification.st</file>
   <file>RequestHandlers/ILRequestHandler.st</file>
   <file>RequestHandlers/ILErrorHandler.st</file>
+  <file>RequestHandlers/ILDirectory.st</file>
+  <file>RequestHandlers/ILDiskDirectory.st</file>
+  <file>RequestHandlers/ILMemoryDirectory.st</file>
   <file>RequestHandlers/ILFileHandler.st</file>
   <file>RequestHandlers/ILNotFoundHandler.st</file>
   <file>RequestHandlers/ILJsonHandler.st</file>
   <file>RequestHandlers/ILApplicationHandler.st</file>
   <file>RequestHandlers/ILRedirectHandler.st</file>
-  <file>Public/javascripts/no_conflict.js</file>
   <file>Public/javascripts/iliad.js</file>
   <file>Public/javascripts/jquery132min.js</file>
-  <file>Public/stylesheets/iliad.css</file>
-  <file>Public/images/iliad_tiny.png</file>
-  <file>Public/images/iliad_bleached.png</file>
+  <file>Public/javascripts/no_conflict.js</file>
+  <file>Public/javascripts/jquery-ui-1.7.2.custom.min.js</file>
   <file>Public/images/iliad_huge.png</file>
+  <file>Public/images/iliad_bleached.png</file>
+  <file>Public/images/iliad_big.png</file>
+  <file>Public/images/iliad_tiny.png</file>
+  <file>Public/images/iliad_small.png</file>
   <file>Public/images/ajax_loader.gif</file>
   <file>Public/images/iliad.png</file>
-  <file>Public/images/iliad_big.png</file>
-  <file>Public/images/iliad_small.png</file>
   <file>Public/iliad_ie_history.html</file>
+  <file>Public/stylesheets/iliad.css</file>
 </package>

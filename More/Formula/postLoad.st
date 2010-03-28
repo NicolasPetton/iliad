@@ -1,4 +1,6 @@
 Eval [
-    ILFileHandler addBaseDirectory: 
-	(PackageLoader packageAt: 'Iliad-More-Formula') directory / 'Public'
+    ILFileHandler addDirectory: 
+	(ILDiskDirectory new
+	    directory: (PackageLoader packageAt: 'Iliad-More-Formula') directory / 'Public';
+	    yourself)
 ]

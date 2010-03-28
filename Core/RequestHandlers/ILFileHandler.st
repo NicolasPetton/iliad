@@ -43,7 +43,7 @@ ILRequestHandler subclass: ILFileHandler [
     <category: 'Iliad-Core-RequestHandlers'>
 
     MimeTypes := nil.
-    BaseDirectories := nil.
+    Directories := nil.
 
     ILFileHandler class >> defaultMimeType [
 	<category: 'accessing'>
@@ -476,28 +476,34 @@ ILRequestHandler subclass: ILFileHandler [
 	^MimeTypes
     ]
 
-    ILFileHandler class >> baseDirectories [
+    ILFileHandler class >> directories [
 	<category: 'acccessing'>
-	^BaseDirectories ifNil: [BaseDirectories := self defaultBaseDirectories]
+	^Directories ifNil: [Directories := self defaultDirectories]
     ]    
 
-    ILFileHandler class >> baseDirectories: aCollection [
+    ILFileHandler class >> directories: aCollection [
 	<category: 'accessing'>
-	BaseDirectories := aCollection
+	Directories := aCollection
     ]
 
-    ILFileHandler class >> addBaseDirectory: aDirectory [
+    ILFileHandler class >> addDirectory: aDirectory [
 	<category: 'accessing'>
-	self baseDirectories add: aDirectory
+	self directories add: aDirectory
     ]
 
-    ILFileHandler class >> defaultBaseDirectories [
+    ILFileHandler class >> defaultDirectories [
 	<category: 'defaults'>
 	| directories |
 	directories := OrderedCollection new.
 	(Directory image / 'Public') exists ifTrue: [
-	    directories add: (Directory image / 'Public')].
-	directories add: (PackageLoader packageAt: 'Iliad-Core') directory / 'Public'.
+	    directories add: 
+		(ILDiskDirectory new 
+		    directory: (Directory image / 'Public');
+		    yourself)].
+	directories add: 
+	    (ILDiskDirectory new
+		directory: (PackageLoader packageAt: 'Iliad-Core') directory / 'Public';
+		yourself).
 	^directories
     ]
 
@@ -510,9 +516,9 @@ ILRequestHandler subclass: ILFileHandler [
 		put: (self defaultMimeTypes at: index + 1)]	
     ]
 
-    baseDirectories [
+    directories [
 	<category: 'accessing'>
-	^self class baseDirectories
+	^self class directories
     ]
 
     mimeTypeFor: aFilename [
@@ -528,7 +534,7 @@ ILRequestHandler subclass: ILFileHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	file := self fullPathOf: (self adjustPath: self request url asString).
+	file := self fileContentsFor: self request url asString.
 	file isNil ifTrue: [
 	    ILDispatchError signal].
 	super handleRequest
@@ -540,25 +546,18 @@ ILRequestHandler subclass: ILFileHandler [
 	    stream := file readStream.
 	    [response nextPutAll: stream contents]
 		ensure: [stream close].
-	    response contentType: (self mimeTypeFor: file name).
+	    response contentType: (self mimeTypeFor: self request url asString).
 	    self addAllowHeaderTo: response.
-	    self session useCookies ifTrue: [
-		self addCookieHeaderTo: response].
 	    self addCacheHeaderTo: response]
     ]
 
-    fullPathOf: aFileName [
-	"Try to find a file with <aFileName> in one of the base directories"
+    fileContentsFor: aFileName [
+	"Try to find a file with <aFileName> in one of the directories"
 	<category: 'private'>
 	aFileName isEmpty ifTrue: [^nil].
-	self baseDirectories do: [:each || file |
-	    file := each / aFileName.
-	    (file notNil and: [file exists]) ifTrue: [^file]].
+	self directories do: [:each || fileContents |
+	    fileContents := (each fileContentsFor: aFileName).
+	    (fileContents notNil) ifTrue: [^fileContents]].
 	^nil
-    ]
-
-    adjustPath: aFileName [
-	<category: 'private'>
-	^aFileName copyReplacingRegex: '^\/' with: ''
     ]
 ]
