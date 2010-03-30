@@ -162,7 +162,7 @@ ILUIWidget subclass: ILTimeSelector [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	actionBlock := [:val | self answer: val].
 	selectedHours := Time now hour24.

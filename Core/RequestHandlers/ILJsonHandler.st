@@ -43,7 +43,7 @@ ILRequestHandler subclass: ILJsonHandler [
     <category: 'Iliad-Core-RequestHandlers'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	jsonContents := Dictionary new.
 	head := OrderedCollection new.

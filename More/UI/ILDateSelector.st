@@ -156,7 +156,7 @@ ILUIWidget subclass: ILDateSelector [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	actionBlock := [:val | self answer: val].
 	selectedMonth := Date today monthName asString.

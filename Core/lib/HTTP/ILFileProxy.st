@@ -49,12 +49,12 @@ Object subclass: ILFileProxy [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self setCreatedTimestamp
     ]
 
     setCreatedTimestamp [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self timestampsAt: #created put: DateTime now
     ]
 

@@ -42,7 +42,7 @@ ILRequestHandler subclass: ILApplicationHandler [
     <category: 'Iliad-Core-RequestHandlers'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	actions := OrderedCollection new
     ]

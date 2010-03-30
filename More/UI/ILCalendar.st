@@ -41,7 +41,7 @@ ILUIWidget subclass: ILCalendar [
     <category: 'Iliad-Core-UI'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	self date: Date today.
 	self actionBlock: [:val | self answer: val]

@@ -45,7 +45,7 @@ ILObject subclass: ILJsonObject [
     <comment: nil>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	properties := OrderedCollection new
     ]

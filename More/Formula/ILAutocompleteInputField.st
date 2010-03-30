@@ -43,7 +43,7 @@ ILField subclass: ILAutocompleteInputField [
     <category: 'Iliad-More-Formula'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	fieldId := ILId new
     ]

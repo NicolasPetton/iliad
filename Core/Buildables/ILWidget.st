@@ -97,7 +97,7 @@ I can also have decorators that may modify my behavior. A decorator can be
 added to the decoration chain with #decorateWith:.'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	decorator := ILDecorator decoratee: self.
 	dependentWidgets := OrderedCollection new

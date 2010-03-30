@@ -55,7 +55,7 @@ I am a server independent http request object.'>
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	headers := Dictionary new.
 	fields := Dictionary new.
 	cookies := Dictionary new

@@ -42,7 +42,7 @@ ILWidget subclass: ILCounter [
     <category: 'Iliad-More-Examples'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	count := 0
     ]

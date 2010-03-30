@@ -44,7 +44,7 @@ ILField subclass: ILTimeInputField [
     <comment: nil>
     
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	self value: Time now
     ]

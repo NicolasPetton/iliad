@@ -177,7 +177,7 @@ SwazooBuffer is a subclass of ReadWriteStream, with additional #clear to empty b
     initPreamble [
 	"make room for possible chunk 'preamble' = length line"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	ptr := self class preambleSize
     ]
 
@@ -196,7 +196,7 @@ SwazooBuffer is a subclass of ReadWriteStream, with additional #clear to empty b
     readClear [
 	"reset as you'd make another one, just don't replace content array"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	ptr := 1.
 	endPtr := self class defaultBufferSize
     ]
@@ -266,7 +266,7 @@ SwazooBuffer is a subclass of ReadWriteStream, with additional #clear to empty b
     writeClear [
 	"reset as you'd make another one, just don't replace content array"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self reset.
 	endPtr := 0.
 	self initPreamble
@@ -1015,7 +1015,7 @@ Object subclass: SwazooStream [
     close [
 	"close TCP socket and relase buffers"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self socket close.
 	self nilWriteBuffer.
 	self nilReadBuffer	"to GC buffers"
@@ -1026,7 +1026,7 @@ Object subclass: SwazooStream [
 
 	"do a bit cleanup after response is sent"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self flush.
 	self isChunked 
 	    ifTrue: 
@@ -1060,7 +1060,7 @@ Object subclass: SwazooStream [
     flush [
 	"actually write to the tcp socket and clear write buffer"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self socket isNil ifTrue: [^nil].	"for simulations and tests"
 	self isChunked 
 	    ifTrue: [self writeBuffer flushChunkTo: self socket]
@@ -1070,14 +1070,14 @@ Object subclass: SwazooStream [
     initReadBuffer [
 	"temporary read buffer"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	readBuffer := SwazooBuffer newRead
     ]
 
     initWriteBuffer [
 	"temporary write buffer. flush it to socket ocassionaly!!"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	writeBuffer := SwazooBuffer newWrite
     ]
 
@@ -1174,14 +1174,14 @@ Object subclass: SwazooStream [
     nilReadBuffer [
 	"to release memory"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	readBuffer := nil
     ]
 
     nilWriteBuffer [
 	"to release memory"
 
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	writeBuffer := nil
     ]
 
@@ -1316,7 +1316,7 @@ Object subclass: SwazooURI [
     ]
 
     fromStream: sourceStream [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self readProtocolFrom: sourceStream.
 	self readHostFrom: sourceStream.
 	self readPortFrom: sourceStream.
@@ -1326,7 +1326,7 @@ Object subclass: SwazooURI [
     ]
 
     fromString: aString [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	| sourceStream |
 	sourceStream := ReadStream on: (HTTPString decodedHTTPFrom: aString).
 	self fromStream: sourceStream.
@@ -1711,7 +1711,7 @@ URIIdentifier subclass: SiteIdentifier [
     ]
 
     newServer [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	^(HTTPServer new)
 	    ip: self ip;
 	    port: self port
@@ -1764,7 +1764,7 @@ URIIdentifier subclass: SiteIdentifier [
     ]
 
     setIp: anIP port: aPort host: hostName [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self ip: anIP.
 	self port: aPort.
 	self host: hostName

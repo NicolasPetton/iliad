@@ -59,7 +59,7 @@ A can be accessed through ILObject>>context'>
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
     ]
 
     application [

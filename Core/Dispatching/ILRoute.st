@@ -78,7 +78,7 @@ and can be streamed with methods in the <streaming> protocol.'>
     ]
 
     initializeWithPath: aCollection [
-	<category:'initialize-release'>
+	<category:'initialization'>
 	path := aCollection.
 	stream := ReadStream on: path
     ]

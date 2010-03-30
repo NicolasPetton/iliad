@@ -46,7 +46,7 @@ ILApplication subclass: ILBlogApplication [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	model := ILBlogRepository default
     ]

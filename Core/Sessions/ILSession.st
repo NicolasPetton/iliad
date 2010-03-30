@@ -47,7 +47,7 @@ ILObject subclass: ILSession [
     I also store actions and applications'> 
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	expired := false.
 	self setCreatedTimestamp; 

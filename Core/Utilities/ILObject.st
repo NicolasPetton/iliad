@@ -48,7 +48,7 @@ Object subclass: ILObject [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
     ]
 
     application [

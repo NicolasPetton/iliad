@@ -126,12 +126,12 @@ MAVisitor subclass: MAWidgetBuilder [
     ]
 
     setElement: anElement [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	element := anElement
     ]
 
     setWidget: aWidget [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	widget := aWidget
     ]
 

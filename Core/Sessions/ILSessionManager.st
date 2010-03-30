@@ -136,7 +136,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	sessions := Dictionary new
     ]

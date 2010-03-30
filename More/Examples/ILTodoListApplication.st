@@ -64,7 +64,7 @@ ILApplication subclass: ILTodoListApplication [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	self model: ILTodoListItemRepository default
     ]

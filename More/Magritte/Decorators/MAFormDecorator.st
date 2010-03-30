@@ -80,7 +80,7 @@ MAContainerDecorator subclass: MAFormDecorator [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	self buttons: OrderedCollection new
     ]

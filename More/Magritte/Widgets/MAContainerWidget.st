@@ -200,18 +200,18 @@ MADescriptionWidget subclass: MAContainerWidget [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	errors := OrderedCollection new
     ]
 
     setChildren: aDictionary [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	children := aDictionary
     ]
 
     setDescription: aDescription [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super setDescription: aDescription.
 	self setChildren: self buildChildren
     ]

@@ -120,17 +120,17 @@ MAWidget subclass: MADescriptionWidget [
     ]
 
     setDescription: aDescription [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	description := aDescription
     ]
 
     setMemento: aMemento [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	memento := aMemento
     ]
 
     setParent: aComponent [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	parent := aComponent
     ]
 ]
