@@ -58,10 +58,6 @@ A can be accessed through ILObject>>context'>
 	]
     ]
 
-    initialize [
-	<category: 'initialization'>
-    ]
-
     application [
 	<category: 'accessing'>
 	^application
