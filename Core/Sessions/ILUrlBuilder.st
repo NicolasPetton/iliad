@@ -50,9 +50,9 @@ ILObject subclass: ILUrlBuilder [
 	    ^rewriteRules ifNil: [rewriteRules := OrderedCollection new]
 	]
 
-	addRewriteRule: anAssociation [
+	addRewriteRule: aBlock [
 	    <category: 'accessing'>
-	    self rewriteRules add: anAssociation
+	    self rewriteRules add: aBlock
 	]
 
 	actionKey [
@@ -189,10 +189,7 @@ ILObject subclass: ILUrlBuilder [
 	| tempUrl |
 	tempUrl := anUrl.
 	self rewriteRules do: [:each |
-	    tempUrl := ILUrl absolute: 
-		(tempUrl asString
-		    copyReplacingAllRegex: each key 
-		    with: each value)].
+	    tempUrl := ILUrl absolute: (each value: tempUrl asString)].
 	^tempUrl
     ]
 
