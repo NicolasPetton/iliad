@@ -36,7 +36,7 @@
 
 
 
-Object subclass: ILContext [
+ILObject subclass: ILContext [
 
     | request application route hashRoute session urlBuilder |
     <category: 'Iliad-Core-Sessions'>
@@ -47,16 +47,6 @@ Object subclass: ILContext [
 - the request itself
 
 A can be accessed through ILObject>>context'>
-
-    ILContext class [
-
-	new [
-	    <category: 'instance creation'>
-	    ^self basicNew
-		initialize;
-		yourself
-	]
-    ]
 
     application [
 	<category: 'accessing'>
