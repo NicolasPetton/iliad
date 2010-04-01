@@ -7,7 +7,7 @@ ILDirectory subclass: ILDiskDirectory [
     fileContentsFor: aString [
 	<category: 'accessing'>
 	| file |
-	file := self fullPathOf: (self adjustPath: aString).
+	file := self fileNamed: (self adjustPath: aString).
 	^file isNil 
 	    ifTrue: [nil]
 	    ifFalse: [file readStream contents]
@@ -23,19 +23,19 @@ ILDirectory subclass: ILDiskDirectory [
 	directory := aDirectory
     ]
 
-    fullPathOf: aFileName [
-	"Try to find a file with <aFileName> in the directory"
+    fileNamed: aFilename [
+	"Try to find a file named <aFileName> in the directory"
 	<category: 'private'>
 
 	| file |
-	aFileName isEmpty ifTrue: [^nil].
-	file := self directory / aFileName.
+	aFilename isEmpty ifTrue: [^nil].
+	file := self directory / aFilename.
 	(file notNil and: [file exists]) ifTrue: [^file].
 	^nil
     ]
 
-    adjustPath: aFileName [
+    adjustPath: aFilename [
 	<category: 'private'>
-	^aFileName copyReplacingRegex: '^\/' with: ''
+	^aFilename copyReplacingRegex: '^\/' with: ''
     ]
 ]
