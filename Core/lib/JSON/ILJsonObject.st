@@ -88,7 +88,7 @@ ILObject subclass: ILJsonObject [
     printJsonOn: aStream [
 	aStream nextPut: ${.
 	properties do: [:ea | 
-	    ea key printString jsonWriteOn: aStream.
+	    ea key greaseString jsonWriteOn: aStream.
 	    aStream nextPutAll: ': '.
 	    ea value printJsonOn: aStream]
 	separatedBy: [aStream nextPutAll: ', '].

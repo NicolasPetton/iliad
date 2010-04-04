@@ -106,19 +106,19 @@ ILField subclass: ILTimeInputField [
 	    e select build: [:select |
 		(1 to: 24) do: [:each |
 		    select option 
-			text: each printString;
+			text: each greaseString;
 			action: [self hours: each];
 			selected: (self hours = each)]].
 	    e select build: [:select |
 		(1 to: 60) do: [:each |
 		    select option
-			text: each printString;
+			text: each greaseString;
 			action: [self minutes: each];
 			selected: (self minutes = each)]].
 	    e select build: [:select |
 		(1 to: 60) do: [:each |
 		    select option
-			text: each printString;
+			text: each greaseString;
 			action: [self seconds: each];
 			selected: (self seconds = each)]].
 	    e input beHidden

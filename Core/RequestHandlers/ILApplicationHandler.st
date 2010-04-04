@@ -87,7 +87,7 @@ ILRequestHandler subclass: ILApplicationHandler [
 
     isRequestValid [
 	<category: 'testing'>
-	^(self request tokenField = self session token asString) or: [
+	^(self request tokenField = self session token greaseString) or: [
 	    self request actionField isNil and: [self request isGet]]
     ]
 

@@ -67,7 +67,7 @@ ILXHTMLElement subclass: ILTableElementElement [
 	alignment := self attributeAt: 'align' ifAbsent: ['left'].
 	alignment = 'char' 
 	    ifFalse: [self attributeError: 'Alignment must be "char"'].
-	self attributeAt: 'char' put: aCharacter printString
+	self attributeAt: 'char' put: aCharacter greaseString
     ]
 
     characterAlign [
@@ -79,7 +79,7 @@ ILXHTMLElement subclass: ILTableElementElement [
 	<category: 'accessing attributes-table'>
 	self attributeAt: 'char'
 	    ifAbsent: [self attributeError: 'Must specify alignment character'].
-	self attributeAt: 'charoff' put: anInteger printString
+	self attributeAt: 'charoff' put: anInteger greaseString
     ]
 
     justifyAlign [

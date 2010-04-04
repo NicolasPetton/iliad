@@ -35,22 +35,11 @@
 
 
 
-Object subclass: ILObject [
+Grease.GRObject subclass: ILObject [
 	
     <category: 'Iliad-Core-Utilities'>
     <comment: 'ILObject is the base class for all Iliad classes. It guarantees that #initialize is send upon object creation. Additionally it provides convienience methods for accessing the current context, session and application.'>
 	    
-    ILObject class >> new [
-	<category: 'instance creation'>
-	^self basicNew
-	    initialize;
-	    yourself
-    ]
-
-    initialize [
-	<category: 'initialization'>
-    ]
-
     application [
 	<category: 'accessing'>
 	^self context application

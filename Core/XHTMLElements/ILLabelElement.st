@@ -48,7 +48,7 @@ ILXHTMLElement subclass: ILLabelElement [
 
     accesskey: aCharacter [
 	<category: 'accessing attributes'>
-	self attributeAt: 'accesskey' put: aCharacter asString
+	self attributeAt: 'accesskey' put: aCharacter greaseString
     ]
 
     for: aString [

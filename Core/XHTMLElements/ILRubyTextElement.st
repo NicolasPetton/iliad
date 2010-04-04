@@ -48,7 +48,7 @@ ILXHTMLElement subclass: ILRubyTextElement [
     
     rbspan: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'rbspan' put: anInteger printString
+	self attributeAt: 'rbspan' put: anInteger greaseString
     ]
 ]
 

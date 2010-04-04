@@ -116,7 +116,7 @@ SwazooBuffer is a subclass of ReadWriteStream, with additional #clear to empty b
 	<category: 'writing-chunked'>
 	| length |
 	self size > 65535 ifTrue: [self error: 'chunk too long!'].	"preamble has no room for bigger"
-	length := self size printStringRadix: 16.
+	length := self size greaseStringRadix: 16.
 	SpEnvironment isSqueak 
 	    ifTrue: [length := length copyFrom: 4 to: length size].	"trim 16r"
 	1 to: length size
@@ -789,7 +789,7 @@ Object subclass: HTTPString [
 
     HTTPString class >> stringFromBytes: aByteArray [
 	"^a String
-	 In GemStone ['Hello, World' asByteArray asString] returns the string 'aByteArray' !!
+	 In GemStone ['Hello, World' asByteArray greaseString] returns the string 'aByteArray' !!
 	 This is the boring long way of getting a string from a ByteArray - but it does work
 	 in GemStone."
 
@@ -1100,7 +1100,7 @@ Object subclass: SwazooStream [
 
     next: anInteger [
 	<category: 'accessing-reading'>
-	^(self nextBytes: anInteger) asString
+	^(self nextBytes: anInteger) greaseString
     ]
 
     nextByte [
@@ -1277,7 +1277,7 @@ Object subclass: SwazooStream [
 
     writeNextLineTo: aStream [
 	<category: 'accessing-reading'>
-	aStream nextPutAll: (self upTo: Character cr asInteger) asString.
+	aStream nextPutAll: (self upTo: Character cr asInteger) greaseString.
 	^self peekByte = Character lf asInteger 
 	    ifTrue: [self nextByte	"skip remaining linefeed"]
 	    ifFalse: [SwazooHTTPParseError raiseSignal: 'CR without LF']
@@ -1302,7 +1302,7 @@ Object subclass: SwazooURI [
 	^self new value: aString
     ]
 
-    asString [
+    greaseString [
 	<category: 'printing'>
 	| targetStream |
 	targetStream := WriteStream on: String new.
@@ -1435,7 +1435,7 @@ Object subclass: SwazooURI [
 	    ifTrue: 
 		[targetStream
 		    nextPut: $:;
-		    nextPutAll: self port printString].
+		    nextPutAll: self port greaseString].
 	self identifier notNil ifTrue: [targetStream nextPutAll: self identifier].
 	self printQueriesOn: targetStream.
 	^self
@@ -1594,10 +1594,10 @@ Object subclass: SwazooURI [
     ]
 
     value [
-	"1 halt: 'Use >>asString or >>printOn: instead'."
+	"1 halt: 'Use >>greaseString or >>printOn: instead'."
 
 	<category: 'accessing'>
-	^self asString
+	^self greaseString
     ]
 ]
 
@@ -1743,10 +1743,10 @@ URIIdentifier subclass: SiteIdentifier [
 	    ifFalse: 
 		[stream
 		    nextPut: $:;
-		    nextPutAll: self port printString]
+		    nextPutAll: self port greaseString]
     ]
 
-    printString [
+    greaseString [
 	<category: 'private'>
 	^'a Swazoo.SiteIndentifier
 	host: ' 
@@ -1754,7 +1754,7 @@ URIIdentifier subclass: SiteIdentifier [
 	ip: ' 
 	    , (self ip isNil ifTrue: [''] ifFalse: [self ip]) , '
 	port: ' 
-	    , self port printString
+	    , self port greaseString
     ]
 
     printUrlOn: aWriteStream [

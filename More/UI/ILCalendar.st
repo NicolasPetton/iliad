@@ -63,7 +63,7 @@ ILUIWidget subclass: ILCalendar [
 	    self months do: [:each || option |
 		option := select option.
 		option 
-		    text: each asString;
+		    text: each greaseString;
 		    action: [self selectMonth: (Date indexOfMonth: each)].
 		(Date indexOfMonth: each) = self month ifTrue: [
 		    option selected]].
@@ -87,7 +87,7 @@ ILUIWidget subclass: ILCalendar [
 		date dayOfWeek - 1 \\ 7 = 0 ifTrue: [row := table tr].
 		row td a
 		    action: [self selectDate: selectedDate];
-		    text: selectedDate dayOfMonth asString.
+		    text: selectedDate dayOfMonth greaseString.
 		date := date addDays: 1]]
     ]
 

@@ -534,7 +534,7 @@ ILRequestHandler subclass: ILFileHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	file := self fileContentsFor: self request url asString.
+	file := self fileContentsFor: self request url greaseString.
 	file isNil ifTrue: [
 	    ILDispatchError signal].
 	super handleRequest
@@ -546,7 +546,7 @@ ILRequestHandler subclass: ILFileHandler [
 	    stream := file readStream.
 	    [response nextPutAll: stream contents]
 		ensure: [stream close].
-	    response contentType: (self mimeTypeFor: self request url asString).
+	    response contentType: (self mimeTypeFor: self request url greaseString).
 	    self addAllowHeaderTo: response.
 	    self addCacheHeaderTo: response]
     ]

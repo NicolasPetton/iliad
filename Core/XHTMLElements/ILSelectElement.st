@@ -66,7 +66,7 @@ ILFormElementElement subclass: ILSelectElement [
 
     size: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'size' put: anInteger printString
+	self attributeAt: 'size' put: anInteger greaseString
     ]
 ]
 

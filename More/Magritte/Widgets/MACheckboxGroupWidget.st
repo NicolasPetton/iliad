@@ -83,7 +83,7 @@ MAMultipleSelectionWidget subclass: MACheckboxGroupWidget [
 
     optionId: anInteger [
 	<category: 'private'>
-	^self id: 'option' , anInteger printString
+	^self id: 'option' , anInteger greaseString
     ]
 
     optionsWithIndexDo: elementAndIndexBlock separatedBy: separatorBlock [

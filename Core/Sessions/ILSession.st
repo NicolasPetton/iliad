@@ -95,7 +95,7 @@ ILObject subclass: ILSession [
 	<category: 'accessing'>
 	nextId ifNil: [nextId := (Random new next * 100000) asInteger].
 	nextId := nextId + 1.
-	^nextId printString
+	^nextId greaseString
     ]
 
     applications [

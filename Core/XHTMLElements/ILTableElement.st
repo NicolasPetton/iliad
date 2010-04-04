@@ -63,7 +63,7 @@ ILXHTMLElement subclass: ILTableElement [
 
     border: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'border' put: anInteger printString
+	self attributeAt: 'border' put: anInteger greaseString
     ]
 
     borderFrame [
@@ -78,12 +78,12 @@ ILXHTMLElement subclass: ILTableElement [
 
     cellpadding: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'cellpadding' put: anInteger printString
+	self attributeAt: 'cellpadding' put: anInteger greaseString
     ]
 
     cellspacing: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'cellspacing' put: anInteger printString
+	self attributeAt: 'cellspacing' put: anInteger greaseString
     ]
 
     colsRules [
@@ -148,7 +148,7 @@ ILXHTMLElement subclass: ILTableElement [
 
     width: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'width' put: anInteger printString
+	self attributeAt: 'width' put: anInteger greaseString
     ]
 ]
 

@@ -44,10 +44,10 @@ ILDecorator subclass: ILProfiler [
 	<category: 'building'>
 	^[:e |
 	    Transcript 
-		show: '-- Iliad Profiler on: ', self widget printString , ' --';
+		show: '-- Iliad Profiler on: ', self widget greaseString , ' --';
 		cr.
 	    [e build: self decoratee contents] profile do: [:each | 
-		Transcript show: each printString; cr].
+		Transcript show: each greaseString; cr].
 	]
     ]
 ]

@@ -4,6 +4,7 @@ Eval [
 	name: 'Iliad-Core';
 	namespace: 'Iliad';
 	prereq: 'Iconv';
+	prereq: 'Grease';
 	filein: 'Utilities/ILObject.st';
 	filein: 'Utilities/ILComposite.st';
 	filein: 'Utilities/ILDynamicVariable.st';

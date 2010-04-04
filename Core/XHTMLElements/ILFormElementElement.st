@@ -43,7 +43,7 @@ ILXHTMLElement subclass: ILFormElementElement [
 
     accesskey: aCharacter [
 	<category: 'accessing'>
-	self attributeAt: 'accesskey' put: aCharacter asString
+	self attributeAt: 'accesskey' put: aCharacter greaseString
     ]
 
     action: aBlock [
@@ -69,7 +69,7 @@ ILXHTMLElement subclass: ILFormElementElement [
 
     readonly: aBoolean [
 	<category: 'accessing attributes'>
-	self attributeAt: 'readonly' put: aBoolean printString
+	self attributeAt: 'readonly' put: aBoolean greaseString
     ]
 
     beSubmitOnChange [

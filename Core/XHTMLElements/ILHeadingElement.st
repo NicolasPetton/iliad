@@ -49,7 +49,7 @@ ILXHTMLElement subclass: ILHeadingElement [
 
     level: anInteger [
 	<category: 'accessing'>
-	level := anInteger printString
+	level := anInteger greaseString
     ]
 
     tag [

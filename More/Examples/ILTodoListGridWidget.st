@@ -120,7 +120,7 @@ ILWidget subclass: ILTodoListGridWidget [
 		    action: [:val | self setItem: item completed: val]];
 		column: 2 buildContents: [:e :item | e text: item title];
 		column: 3 buildContents: [:e :item | e text: item body];
-		column: 4 buildContents: [:e :item | e text: item deadline printString];
+		column: 4 buildContents: [:e :item | e text: item deadline greaseString];
 		column: 5 buildContents: [:e :item | e a text: 'Edit'; action: [self editItem: item]];
 		column: 6 buildContents: [:e :item | e a text: 'Remove'; action: [self removeItem: item]];
 		rowsPerPage: 3;

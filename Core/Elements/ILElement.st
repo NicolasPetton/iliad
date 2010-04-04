@@ -124,7 +124,7 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	    nextPutAll: anAttribute key;
 	    nextPut: $=;
 	    nextPut: $";
-	    nextPutAll: (ILEncoder encodeForHTTP: anAttribute value asString);
+	    nextPutAll: (ILEncoder encodeForHTTP: anAttribute value greaseString);
 	    nextPut: $"
     ]
 

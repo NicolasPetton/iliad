@@ -62,7 +62,7 @@ ILRSSElement subclass: ILRSSRssElement [
 
     version: aNumber [
 	<category: 'accessing attributes'>
-	self attributeAt: 'version' put: aNumber printString
+	self attributeAt: 'version' put: aNumber greaseString
     ]
 
     xmlns: aString [

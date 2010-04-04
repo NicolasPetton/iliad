@@ -81,7 +81,7 @@ ILApplication subclass: ILBlogApplication [
 	^[:e | 
 	    e h2 a
 		text: aPost title;
-		action: [self redirectToLocal: 'post/', aPost title, aPost hash printString].
+		action: [self redirectToLocal: 'post/', aPost title, aPost hash greaseString].
 	    e build: (self postWidgetFor: aPost)]
     ]
 
@@ -111,7 +111,7 @@ ILApplication subclass: ILBlogApplication [
 	| post path |
 	path := self route next.
 	post := self model posts 
-	    detect: [:each | (each title , each hash printString) = path]
+	    detect: [:each | (each title , each hash greaseString) = path]
 	    ifNone: [self redirectToIndex].
 	^self postContentsFor: post
     ]

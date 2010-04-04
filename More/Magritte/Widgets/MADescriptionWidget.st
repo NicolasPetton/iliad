@@ -95,7 +95,7 @@ MAWidget subclass: MADescriptionWidget [
 
     id [
 	<category: 'accessing-dynamic'>
-	^self class name asLowercase , self hash asString
+	^self class name asLowercase , self hash greaseString
     ]
 
     model [

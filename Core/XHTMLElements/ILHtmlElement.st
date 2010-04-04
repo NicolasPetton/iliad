@@ -68,7 +68,7 @@ ILXHTMLElement subclass: ILHtmlElement [
     
     version: aNumber [
 	<category: 'accessing attributes'>
-	self attributeAt: 'version' put: aNumber printString
+	self attributeAt: 'version' put: aNumber greaseString
     ]
 
     xmlns: aString [
@@ -84,8 +84,8 @@ ILXHTMLElement subclass: ILHtmlElement [
     beforePrintHtml [
 	<category: 'printing'>
 	self attributeAt: 'xmlns' ifAbsentPut: [self class xmlns].
-	self attributeAt: 'lang' ifAbsentPut: [self session language asString].
-	self attributeAt: 'xml:lang' ifAbsentPut: [self session language asString]
+	self attributeAt: 'lang' ifAbsentPut: [self session language greaseString].
+	self attributeAt: 'xml:lang' ifAbsentPut: [self session language greaseString]
     ]
 
     printHtmlOn: aStream [

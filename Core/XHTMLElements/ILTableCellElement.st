@@ -63,7 +63,7 @@ ILTableElementElement subclass: ILTableCellElement [
 
     colspan: anInteger [
 	<category: 'accessing attributes-table'>
-	self attributeAt: 'colspan' put: anInteger printString
+	self attributeAt: 'colspan' put: anInteger greaseString
     ]
 
     headers: aCollection [
@@ -87,7 +87,7 @@ ILTableElementElement subclass: ILTableCellElement [
 
     rowspan: anInteger [
 	<category: 'accessing attributes-table'>
-	self attributeAt: 'rowspan' put: anInteger printString
+	self attributeAt: 'rowspan' put: anInteger greaseString
     ]
 
     scope: aString [

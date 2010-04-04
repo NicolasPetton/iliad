@@ -20,10 +20,10 @@ ILUIWidget subclass: ILPaginator [
 		    e space].
 		(1 to: self totalPages) do: [:each | 
 		    self currentPage = each 
-			ifTrue: [e text: each printString]
+			ifTrue: [e text: each greaseString]
 			ifFalse: [
 			    e a
-				text: each printString;
+				text: each greaseString;
 				action: [self selectPage: each]].
 		    e space].
 	    self currentPage = totalPages 

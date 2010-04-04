@@ -219,7 +219,7 @@ I am a server independent http response object.'>
     printOn: aStream [
 	<category: 'printing'>
 	super printOn: aStream.
-	aStream space; nextPutAll: self status printString
+	aStream space; nextPutAll: self status greaseString
     ]
 ]
 

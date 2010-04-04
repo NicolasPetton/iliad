@@ -51,13 +51,13 @@ TestCase subclass: ILSessionManagerTest [
 	session2 := ILSession new.
 	manager addSession: session1.
 	manager addSession: session2.
-	self assert: (manager findOrMakeSessionWithId: session2 id asString) = session2.
-	self assert: (manager findOrMakeSessionWithId: session1 id asString) = session1.
+	self assert: (manager findOrMakeSessionWithId: session2 id greaseString) = session2.
+	self assert: (manager findOrMakeSessionWithId: session1 id greaseString) = session1.
 	manager
 	    removeSession: session2;
 	    removeSession: session1.
-	self deny: (manager findOrMakeSessionWithId: session1 id asString) = session1.
-	self deny: (manager findOrMakeSessionWithId: session2 id asString) = session2.
+	self deny: (manager findOrMakeSessionWithId: session1 id greaseString) = session1.
+	self deny: (manager findOrMakeSessionWithId: session2 id greaseString) = session2.
 	session1 := session2 := nil
     ]
 

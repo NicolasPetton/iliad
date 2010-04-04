@@ -102,7 +102,7 @@ fragment:		<String> or nil'>
 
     = anUrl [
 	<category: 'comparing'>
-	^self class = anUrl class and: [self printString = anUrl printString]
+	^self class = anUrl class and: [self greaseString = anUrl greaseString]
     ]
 
     hash [
@@ -112,7 +112,7 @@ fragment:		<String> or nil'>
 
     , aString [
 	<category: 'basic'>
-	^self asString, aString asString
+	^self greaseString, aString greaseString
     ]
 
     addAllToPath: aCollectionOfStrings [
@@ -137,9 +137,9 @@ fragment:		<String> or nil'>
 	self path addAll: (aString findTokens: '/')
     ]
 
-    asString [
+    greaseString [
 	<category: 'converting'>
-	^self printString
+	^self greaseString
     ]
 
     pathString [
@@ -222,7 +222,7 @@ fragment:		<String> or nil'>
 	    aStream nextPutAll: (ILEncoder encodeUrl: key).
 	    value ifNotNil: 
 		[aStream nextPut: $=.
-		aStream nextPutAll: (ILEncoder encodeUrl: value asString)]]
+		aStream nextPutAll: (ILEncoder encodeUrl: value greaseString)]]
     ]
 
     encodePathOn: aStream [
@@ -334,10 +334,10 @@ fragment:		<String> or nil'>
 
     scheme: aString [
 	"we really expect a String here, Old versions (2.7) expected a Symbol you can still pass a Symbol and get away with it but don't expect this behavior to be supported in future versions.
-	 #asString is the 'correct' way to convert a Symbol to a String since #displayString will add a hash on VW"
+	 #greaseString is the 'correct' way to convert a Symbol to a String since #displayString will add a hash on VW"
 
 	<category: 'accessing'>
-	scheme := aString asString
+	scheme := aString greaseString
     ]
 
     username [

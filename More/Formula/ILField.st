@@ -199,7 +199,7 @@ ILBuildable subclass: ILField [
     on: aSelector of: anObject [
 	<category: 'private'>
 	key ifNil: [key := aSelector].
-	labelContents ifNil: [self label: aSelector asString].
+	labelContents ifNil: [self label: aSelector greaseString].
 	value := anObject perform: aSelector.
 	action := [:val | 
 	    anObject perform: (aSelector, ':') asSymbol with: val]

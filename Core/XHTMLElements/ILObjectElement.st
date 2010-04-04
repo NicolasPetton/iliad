@@ -92,7 +92,7 @@ ILXHTMLElement subclass: ILObjectElement [
 
     height: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'height' put: anInteger printString
+	self attributeAt: 'height' put: anInteger greaseString
     ]
 
     name: aString [
@@ -107,7 +107,7 @@ ILXHTMLElement subclass: ILObjectElement [
 
     tabindex: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'tabindex' put: anInteger printString
+	self attributeAt: 'tabindex' put: anInteger greaseString
     ]
 
     type: aString [
@@ -122,7 +122,7 @@ ILXHTMLElement subclass: ILObjectElement [
 
     width: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'width' put: anInteger printString
+	self attributeAt: 'width' put: anInteger greaseString
     ]
 ]
 

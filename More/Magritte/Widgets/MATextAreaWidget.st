@@ -61,7 +61,7 @@ MAElementWidget subclass: MATextAreaWidget [
     viewerContents [
 	<category: 'buidling'>
 	^[:e | 
-	    (self string tokenize: Character cr asString)
+	    (self string tokenize: Character cr greaseString)
 		do: [:each | e text: each]
 		separatedBy: [e br]]
     ]

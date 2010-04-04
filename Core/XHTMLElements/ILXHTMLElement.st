@@ -223,7 +223,7 @@ ILElement subclass: ILXHTMLElement [
 	<category: 'accessing attributes-events'>
 	| actionUrl |
 	actionUrl := (self context urlBuilder urlForAction: 
-	    (self session registerActionFor: aBlock)) asString.
+	    (self session registerActionFor: aBlock)) greaseString.
 	self 
 	    onEvent: aString 
 	    add: 'iliad.evaluateAction("', actionUrl, '");'

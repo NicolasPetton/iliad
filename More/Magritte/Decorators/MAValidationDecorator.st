@@ -64,7 +64,7 @@ MAWidgetDecorator subclass: MAValidationDecorator [
 		class: 'errors';
 		yourself.
 	self errors do: [:each |
-	    list li text: each printString]]
+	    list li text: each greaseString]]
     ]
 ]
 

@@ -76,7 +76,7 @@ ILField subclass: ILDateInputField [
 
     date: aDate [
 	<category: 'accessing'>
-	self month: aDate monthName asString.
+	self month: aDate monthName greaseString.
 	self day: aDate dayOfMonth.
 	self year: aDate year
     ]
@@ -113,7 +113,7 @@ ILField subclass: ILDateInputField [
 
     months [
 	<category: 'accessing'>
-	^(1 to: 12) collect: [:each | (Date nameOfMonth: each) asString]
+	^(1 to: 12) collect: [:each | (Date nameOfMonth: each) greaseString]
     ]
 
     days [
@@ -138,13 +138,13 @@ ILField subclass: ILDateInputField [
 	    e select build: [:select |
 		self days do: [:each |
 		    select option
-			text: each printString;
+			text: each greaseString;
 			action: [self day: each];
 			selected: (self day = each)]].
 	    e select build: [:select |
 		self years do: [:each |
 		    select option
-			text: each printString;
+			text: each greaseString;
 			action: [self year: each];
 			selected: (self year = each)]].
 	    e input beHidden

@@ -42,7 +42,7 @@ Number extend [
     
     printJsonOn: aStream [
 	<category: 'printing'>
-	aStream nextPutAll: self printString
+	aStream nextPutAll: self greaseString
     ]
 ]
 
@@ -73,7 +73,7 @@ Dictionary extend [
 	    needComma
 		ifTrue: [ aStream nextPutAll: ', ' ]
 		ifFalse: [ needComma := true ].
-	k asString printJsonOn: aStream.
+	k greaseString printJsonOn: aStream.
 	aStream nextPutAll: ': '.
 	v printJsonOn: aStream].
 	aStream nextPut: $}.

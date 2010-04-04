@@ -58,7 +58,7 @@ ILXHTMLElement subclass: ILFormElement [
 
     url [
 	<category: 'accessing'>
-	^self context baseUrl asString
+	^self context baseUrl greaseString
     ]
 
     accept: aString [
@@ -142,7 +142,7 @@ ILXHTMLElement subclass: ILFormElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	self attributeAt: 'action' ifAbsentPut: [self url asString].
+	self attributeAt: 'action' ifAbsentPut: [self url greaseString].
 	self attributeAt: 'method' ifAbsent: [self usePost].
 	self attributeAt: 'accept-charset' ifAbsentPut: [self session charset].
 	self isMultipart 

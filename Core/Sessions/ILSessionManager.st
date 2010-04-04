@@ -115,7 +115,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 
     addSession: aSession [
 	<category: 'adding-removing'>
-	sessions at: aSession id asString put: aSession
+	sessions at: aSession id greaseString put: aSession
     ]
 
     findOrMakeSessionFor: aRequest [
@@ -180,7 +180,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
     removeSession: aSession [
 	<category: 'adding-removing'>
 	sessions 
-	    removeKey: aSession id asString
+	    removeKey: aSession id greaseString
 	    ifAbsent: []
     ]
 

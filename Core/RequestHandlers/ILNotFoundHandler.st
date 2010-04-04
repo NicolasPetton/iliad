@@ -45,7 +45,7 @@ ILRequestHandler subclass: ILNotFoundHandler [
 	self respond: [:response |
 	    response
 		nextPutAll: '<h1>404 Not Found: ';
-		nextPutAll: self request url asString;
+		nextPutAll: self request url greaseString;
 		nextPutAll: '</h1>']
     ]
 

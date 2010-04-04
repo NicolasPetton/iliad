@@ -146,6 +146,6 @@ TestCase subclass: ILJsonTest [
 	self render: '"' equals: '"\""'.
 	self render: '\' equals: '"\\"'.
 	self render: 'hi' equals: '"hi"'.
-	self render: ({$a. Character lf. $b} asString) equals: '"a\nb"'.
+	self render: ({$a. Character lf. $b} greaseString) equals: '"a\nb"'.
     ]
 ]

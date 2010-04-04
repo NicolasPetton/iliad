@@ -129,7 +129,7 @@ Swazoo.SwazooSite subclass: ILSite [
 	swazooResponse entity: ((self isBinaryResponse: aResponse)
 	    ifTrue: [aResponse contents]
 	    ifFalse: [self encode: aResponse contents]).
-	swazooResponse contentType: aResponse contentType asString.
+	swazooResponse contentType: aResponse contentType greaseString.
 	aResponse release.
 	^swazooResponse
     ]

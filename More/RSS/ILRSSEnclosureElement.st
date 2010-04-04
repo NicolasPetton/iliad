@@ -52,7 +52,7 @@ ILRSSElement subclass: ILRSSEnclosureElement [
 
     length: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'length' put: anInteger printString
+	self attributeAt: 'length' put: anInteger greaseString
     ]
 
     type: aString [

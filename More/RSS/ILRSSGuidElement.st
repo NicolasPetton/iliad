@@ -42,7 +42,7 @@ ILRSSElement subclass: ILRSSGuidElement [
 
     isPermaLink: aBoolean [
 	<category: 'accessing attributes'>
-	self attributeAt: 'isPermaLink' put: aBoolean asString
+	self attributeAt: 'isPermaLink' put: aBoolean greaseString
     ]
 
     tag [

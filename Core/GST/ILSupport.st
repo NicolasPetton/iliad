@@ -27,10 +27,10 @@ Object subclass: ILSupport [
 	<category: 'times'>
 	
 	aStream 
-	    nextPutAll: (aDateTime dayOfWeekAbbreviation asString);
+	    nextPutAll: (aDateTime dayOfWeekAbbreviation greaseString);
 	    nextPutAll: ', '.
 	aDateTime day < 10 ifTrue: [aStream nextPut: $0].
-	{aDateTime day printString. aDateTime monthAbbreviation asString. aDateTime year printString} 
+	{aDateTime day greaseString. aDateTime monthAbbreviation greaseString. aDateTime year greaseString} 
 	    do: [:each | aStream nextPutAll: each]
 	    separatedBy: [aStream nextPut: Character space].
 	aStream space.

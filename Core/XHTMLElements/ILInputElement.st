@@ -72,12 +72,12 @@ ILFormElementElement subclass: ILInputElement [
 
     maxlength: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'maxlength' put: anInteger printString
+	self attributeAt: 'maxlength' put: anInteger greaseString
     ]
 
     size: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'size' put: anInteger printString
+	self attributeAt: 'size' put: anInteger greaseString
     ]
 
     usemap: aString [

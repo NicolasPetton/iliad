@@ -57,7 +57,7 @@ ILField subclass: ILOptionField [
 	^[:option | 
 	    option isString
 		ifTrue: [option]
-		ifFalse: [option printString]]
+		ifFalse: [option greaseString]]
     ]
 
     options [

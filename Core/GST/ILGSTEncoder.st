@@ -12,7 +12,7 @@ ILEncoder subclass: ILGSTEncoder [
 	    ^self inputEncoding asLowercase = self outputEncoding asLowercase
 		ifTrue: [aString]
 		ifFalse: [(I18N.EncodedStream on: aString readStream from: self outputEncoding
-		    to: self inputEncoding) contents asString]
+		    to: self inputEncoding) contents greaseString]
 	]
 
 	encode: aString [
@@ -20,7 +20,7 @@ ILEncoder subclass: ILGSTEncoder [
 	    ^self inputEncoding asLowercase = self outputEncoding asLowercase
 		ifTrue: [aString]
 		ifFalse: [^(I18N.EncodedStream on: aString readStream from: self inputEncoding
-		    to: self outputEncoding) contents asString]
+		    to: self outputEncoding) contents greaseString]
 	]
 
 	inputEncoding [

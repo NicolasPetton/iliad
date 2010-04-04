@@ -136,7 +136,7 @@ ILObject subclass: ILUrlBuilder [
 	self shouldUseSessionField ifTrue: [
 	    anUrl 
 		addParameter: self sessionKey 
-		value: self session id asString]
+		value: self session id greaseString]
     ]
 
     baseUrl [
@@ -171,7 +171,7 @@ ILObject subclass: ILUrlBuilder [
 	| url |
 	url := ILUrl absolute: aString.
 	self shouldUseSessionField ifTrue: [
-	    url addParameter: self sessionKey value: self session id asString].
+	    url addParameter: self sessionKey value: self session id greaseString].
 	^url
     ]
 
@@ -181,7 +181,7 @@ ILObject subclass: ILUrlBuilder [
 	path := (anApplicationClass path startsWith: '/')
 	    ifTrue: [anApplicationClass path]
 	    ifFalse: ['/', anApplicationClass path].
-	^(self applyRewriteRulesTo: (ILUrl absolute: path)) asString
+	^(self applyRewriteRulesTo: (ILUrl absolute: path)) greaseString
     ]
 
     applyRewriteRulesTo: anUrl [
@@ -189,7 +189,7 @@ ILObject subclass: ILUrlBuilder [
 	| tempUrl |
 	tempUrl := anUrl.
 	self rewriteRules do: [:each |
-	    tempUrl := ILUrl absolute: (each value: tempUrl asString)].
+	    tempUrl := ILUrl absolute: (each value: tempUrl greaseString)].
 	^tempUrl
     ]
 

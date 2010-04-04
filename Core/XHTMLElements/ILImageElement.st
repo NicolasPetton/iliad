@@ -53,7 +53,7 @@ ILClosingElement subclass: ILImageElement [
 
     height: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'height' put: anInteger printString
+	self attributeAt: 'height' put: anInteger greaseString
     ]
 
     ismap [
@@ -85,7 +85,7 @@ ILClosingElement subclass: ILImageElement [
 
     width: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'width' put: anInteger printString
+	self attributeAt: 'width' put: anInteger greaseString
     ]
 
     beforePrintHtml [

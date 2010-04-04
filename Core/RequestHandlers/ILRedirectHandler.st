@@ -46,7 +46,7 @@ ILRequestHandler subclass: ILRedirectHandler [
 	self shouldRespondInJson ifTrue: [
 	    ILJsonHandler new handleRequest].
 	self respond: [:response | 
-	    response redirectTo: self session redirectUrl asString.
+	    response redirectTo: self session redirectUrl greaseString.
 		self session clearRedirectUrl.
 		self addCookieHeaderTo: response]
     ]
@@ -59,7 +59,7 @@ ILRequestHandler subclass: ILRedirectHandler [
     setRedirectUrl [
 	<category: 'private'>
 	self session redirectUrl ifNil: [
-	    self session redirectUrl: self context baseUrl asString]
+	    self session redirectUrl: self context baseUrl greaseString]
     ]
 
     newResponse [

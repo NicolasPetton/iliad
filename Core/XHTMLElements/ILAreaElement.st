@@ -47,7 +47,7 @@ ILClosingElement subclass: ILAreaElement [
 
     accesskey: aCharacter [
 	<category: 'accessing attributes'>
-	self attributeAt: 'accesskey' put: aCharacter asString
+	self attributeAt: 'accesskey' put: aCharacter greaseString
     ]
 
     alt: aString [
@@ -67,7 +67,7 @@ ILClosingElement subclass: ILAreaElement [
 
     tabindex: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'tabindex' put: anInteger printString
+	self attributeAt: 'tabindex' put: anInteger greaseString
     ]
 
     circleShape [

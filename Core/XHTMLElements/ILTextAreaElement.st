@@ -48,17 +48,17 @@ ILFormElementElement subclass: ILTextAreaElement [
 
     cols: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'cols' put: anInteger printString
+	self attributeAt: 'cols' put: anInteger greaseString
     ]
 
     rows: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'rows' put: anInteger printString
+	self attributeAt: 'rows' put: anInteger greaseString
     ]
 
     tabindex: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'tabindex' put: anInteger printString
+	self attributeAt: 'tabindex' put: anInteger greaseString
     ]
 ]
 

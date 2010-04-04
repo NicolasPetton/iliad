@@ -67,7 +67,7 @@ ILRequestHandler subclass: ILJsonHandler [
 	    self shouldRedirect ifTrue: [
 		jsonContents 
 		    at: 'redirect' 
-		    put: self session redirectUrl asString].
+		    put: self session redirectUrl greaseString].
 	    self shouldUpdateApplication 
 		ifFalse: [
 		    self updateHead.

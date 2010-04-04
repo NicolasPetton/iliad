@@ -48,7 +48,7 @@ ILRSSElement subclass: ILRSSCategoryElement [
 
     domain: anUrl [
 	<category: 'accessing attributes'>
-	self attributeAt: 'domain' put: anUrl asString
+	self attributeAt: 'domain' put: anUrl greaseString
     ]
 ]
 

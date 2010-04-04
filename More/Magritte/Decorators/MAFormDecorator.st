@@ -53,7 +53,7 @@ MAContainerDecorator subclass: MAFormDecorator [
 
     addButton: aSymbol [
 	<category: 'actions'>
-	self addButton: aSymbol label: aSymbol asString
+	self addButton: aSymbol label: aSymbol greaseString
     ]
 
     addButton: aSymbolOrOneArgumentBlock label: aString [

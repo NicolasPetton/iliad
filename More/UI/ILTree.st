@@ -112,7 +112,7 @@ ILTree new
 
     contentsBlock: aViewBlock [
 	"aViewBlock takes two arguments.
-	Example: [:e :item | e text: item printString]"		
+	Example: [:e :item | e text: item greaseString]"		
 	<category: 'accessing'>
 
 	contentsBlock := aViewBlock

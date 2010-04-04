@@ -68,7 +68,7 @@ ILWidget subclass: ILGravatarWidget [
 
     size: anInteger [
 	<category: 'accessing options'>
-	self options at: #size put: anInteger printString
+	self options at: #size put: anInteger greaseString
     ]
 
     rating [
