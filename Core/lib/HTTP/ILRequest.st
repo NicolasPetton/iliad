@@ -247,7 +247,7 @@ I am a server independent http request object.'>
 
     decodeAuthorization: aString [
 	<category: 'private'>
-	^ILSupport base64Decode: (aString tokenize: ' ') last
+	^Grease.GRPlatform current base64Decode: (aString tokenize: ' ') last
     ]
 
     setMethod: methodString url: urlString headers: headDict fields: fieldDict cookies: cookieDict [

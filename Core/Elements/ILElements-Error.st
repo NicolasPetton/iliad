@@ -1,4 +1,4 @@
-Error subclass: ILAttributeError [
+Grease.GRError subclass: ILAttributeError [
     
     <category: 'Iliad-Core-Elements'>
     <comment: nil>
@@ -6,7 +6,7 @@ Error subclass: ILAttributeError [
 
 
 
-Error subclass: ILAttributeNotUnderstood [
+Grease.GRError subclass: ILAttributeNotUnderstood [
     | element attribute |
     
     <category: 'Iliad-Core-Elements'>
@@ -60,7 +60,7 @@ Error subclass: ILAttributeNotUnderstood [
 
 
 
-Error subclass: ILElementError [
+Grease.GRError subclass: ILElementError [
     
     <comment: nil>
     <category: 'Iliad-Core-Elements'>

@@ -36,7 +36,7 @@
 
 
 
-Notification subclass: ILDynamicVariable [
+Grease.GRNotification subclass: ILDynamicVariable [
     <category: 'Iliad-Core-Utilities'>
     <comment: nil>
 

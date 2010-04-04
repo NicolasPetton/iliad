@@ -93,7 +93,7 @@ ILObject subclass: ILSession [
 
     nextId [
 	<category: 'accessing'>
-	nextId ifNil: [nextId := (Random new next * 100000) asInteger].
+	nextId ifNil: [nextId := Grease.GRPlatform current newRandom nextInt: 100000].
 	nextId := nextId + 1.
 	^nextId greaseString
     ]

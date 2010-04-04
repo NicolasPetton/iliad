@@ -77,7 +77,8 @@ The current handled request is answered by the #request method inherited from IL
 	<category: 'private'>
 	aResponse 
 	    headerAt: 'expires' 
-	    put: (ILSupport rfc1123StringFor: (DateTime fromSeconds: DateTime now asSeconds + (24*3600*365)))
+	    put: ((Grease.GRPrinter rfc822WithTimeZone: 'GMT') 
+		print: (DateTime fromSeconds: DateTime now asSeconds + (24*3600*365)))
     ]
 
     addAllowHeaderTo: aResponse [
@@ -98,7 +99,9 @@ The current handled request is answered by the #request method inherited from IL
     ]
 
     addNoCacheHeaderTo: aResponse [
-	aResponse headerAt: 'expires' put: (ILSupport rfc1123StringFor: DateTime now).
+	aResponse 
+	    headerAt: 'expires' 
+	    put: ((Grease.GRPrinter rfc822WithTimeZone: 'GMT') print: DateTime now).
 	aResponse headerAt: 'Cache-Control' put: 'no-store, no-cache, must-revalidate'
     ]
 ]

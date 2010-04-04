@@ -12,10 +12,6 @@ Eval [
 	filein: 'Utilities/ILEncoder.st'; 
 	filein: 'Utilities/ILModelProxy.st'; 
 
-	filein: 'GST/ILSupport.st'; 
-	filein: 'GST/ILSmallDictionary.st';
-	filein: 'GST/ILGSTEncoder.st'; 
-
 	filein: 'lib/HTTP/ILUrl.st'; 
 	filein: 'lib/HTTP/ILFileProxy.st'; 
 	filein: 'lib/HTTP/ILRequest.st'; 

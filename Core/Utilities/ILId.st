@@ -23,7 +23,7 @@ ByteArray subclass: ILId [
 
     initialize [
 	<category: 'initialization'>
-	ILSupport critical: [
+	Grease.GRPlatform current semaphoreClass forMutualExclusion critical: [
 		self at: 1 put: ($a to: $z) atRandom asInteger.
 		2 to: self size do: [:each |
 		    self at: each put: self table atRandom asInteger]]

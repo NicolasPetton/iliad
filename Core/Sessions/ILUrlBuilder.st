@@ -177,11 +177,8 @@ ILObject subclass: ILUrlBuilder [
 
     absolutePathFor: anApplicationClass [
 	<category: 'generating'>
-	| path |
-	path := (anApplicationClass path startsWith: '/')
-	    ifTrue: [anApplicationClass path]
-	    ifFalse: ['/', anApplicationClass path].
-	^(self applyRewriteRulesTo: (ILUrl absolute: path)) greaseString
+	^(self applyRewriteRulesTo: 
+	    (ILUrl absolute: anApplicationClass path)) greaseString
     ]
 
     applyRewriteRulesTo: anUrl [

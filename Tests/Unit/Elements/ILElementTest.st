@@ -11,7 +11,7 @@ TestCase subclass: ILElementTest [
 
     shouldHaveAttribute: aKey value: aValue [
 	<category: 'conveniance'>
-	self assert: (e attributes includesAssociation: aKey -> aValue)
+	self assert: (e attributes associations includes: aKey -> aValue)
     ]
 
     testAttributes [

@@ -58,7 +58,7 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 
     attributes [
 	<category: 'accessing'>
-	^attributes ifNil: [attributes := ILSmallDictionary new]
+	^attributes ifNil: [attributes := Grease.GRSmallDictionary new]
     ]
 
     attributeAt: akey [

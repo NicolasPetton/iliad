@@ -39,7 +39,7 @@
 
 
 
-Error subclass: ILDispatchError [
+Grease.GRError subclass: ILDispatchError [
 
     <category: 'Iliad-Core-Dispatching'>
     <comment: nil>

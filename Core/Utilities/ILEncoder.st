@@ -40,16 +40,6 @@ Object subclass: ILEncoder [
 	    aCharacter = $> ifTrue: [^aStream nextPutAll: '&gt;'].
 	    aStream nextPut: aCharacter
 	]	
-
-	encode: aString [
-	    <category: 'encoding'>
-	    ^aString 
-	]
-	
-	decode: aString [
-	    <category: 'encoding'>
-	    ^aString 
-	]
     ]
 ]
 

@@ -57,7 +57,7 @@ password:		<String> or nil
 hostname:		<String> or nil
 port:			<Integer> or nil
 path:			<OrderedCollection> or nil
-parameters:		<ILSmallDictionary>
+parameters:		<Grease.GRSmallDictionary>
 fragment:		<String> or nil'>
 
     ILUrl class >> absolute: aString [
@@ -139,7 +139,7 @@ fragment:		<String> or nil'>
 
     greaseString [
 	<category: 'converting'>
-	^self greaseString
+	^self asString
     ]
 
     pathString [
@@ -284,7 +284,7 @@ fragment:		<String> or nil'>
 
     parameters [
 	<category: 'accessing'>
-	^parameters ifNil: [parameters := ILSmallDictionary new]
+	^parameters ifNil: [parameters := Grease.GRSmallDictionary new]
     ]
 
     password [

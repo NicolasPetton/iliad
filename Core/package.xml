@@ -2,15 +2,13 @@
   <name>Iliad-Core</name>
   <namespace>Iliad</namespace>
   <prereq>Iconv</prereq>
+  <prereq>Grease</prereq>
   <filein>Utilities/ILObject.st</filein>
   <filein>Utilities/ILComposite.st</filein>
   <filein>Utilities/ILDynamicVariable.st</filein>
   <filein>Utilities/ILId.st</filein>
   <filein>Utilities/ILEncoder.st</filein>
   <filein>Utilities/ILModelProxy.st</filein>
-  <filein>GST/ILSupport.st</filein>
-  <filein>GST/ILSmallDictionary.st</filein>
-  <filein>GST/ILGSTEncoder.st</filein>
   <filein>lib/HTTP/ILUrl.st</filein>
   <filein>lib/HTTP/ILFileProxy.st</filein>
   <filein>lib/HTTP/ILRequest.st</filein>
@@ -118,9 +116,6 @@
   <file>Utilities/ILId.st</file>
   <file>Utilities/ILEncoder.st</file>
   <file>Utilities/ILModelProxy.st</file>
-  <file>GST/ILSupport.st</file>
-  <file>GST/ILSmallDictionary.st</file>
-  <file>GST/ILGSTEncoder.st</file>
   <file>lib/HTTP/ILUrl.st</file>
   <file>lib/HTTP/ILFileProxy.st</file>
   <file>lib/HTTP/ILRequest.st</file>
@@ -222,16 +217,16 @@
   <file>RequestHandlers/ILJsonHandler.st</file>
   <file>RequestHandlers/ILApplicationHandler.st</file>
   <file>RequestHandlers/ILRedirectHandler.st</file>
-  <file>Public/javascripts/no_conflict.js</file>
+  <file>Public/images/iliad_tiny.png</file>
+  <file>Public/images/iliad.png</file>
+  <file>Public/images/iliad_small.png</file>
+  <file>Public/images/ajax_loader.gif</file>
+  <file>Public/images/iliad_huge.png</file>
+  <file>Public/images/iliad_bleached.png</file>
+  <file>Public/images/iliad_big.png</file>
+  <file>Public/stylesheets/iliad.css</file>
   <file>Public/javascripts/iliad.js</file>
   <file>Public/javascripts/jquery132min.js</file>
-  <file>Public/stylesheets/iliad.css</file>
-  <file>Public/images/iliad_tiny.png</file>
-  <file>Public/images/iliad_bleached.png</file>
-  <file>Public/images/iliad_huge.png</file>
-  <file>Public/images/ajax_loader.gif</file>
-  <file>Public/images/iliad.png</file>
-  <file>Public/images/iliad_big.png</file>
-  <file>Public/images/iliad_small.png</file>
+  <file>Public/javascripts/no_conflict.js</file>
   <file>Public/iliad_ie_history.html</file>
 </package>

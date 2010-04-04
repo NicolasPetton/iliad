@@ -64,7 +64,7 @@ For more information see  RFC2965 (http://tools.ietf.org/html/rfc2965)'>
     expiryString [
 	<category: 'private'>
 	self expiry ifNil: [^''].
-	^ILSupport  rfc1123StringFor: (DateTime fromSeconds: self expiry)
+	^(Grease.GRPrinter rfc822WithTimeZone: 'GMT') print: (DateTime fromSeconds: self expiry)
     ]
 
     writeOn: aStream [

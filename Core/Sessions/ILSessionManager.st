@@ -145,7 +145,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	"Do not remove all expired sessions for each request"
 	<category: 'testing'>
 
-	^(Random new next * 10) asInteger = 0
+	^(Grease.GRPlatform current newRandom nextInt: 10) = 0
     ]
 
     hasSession: aSession [
