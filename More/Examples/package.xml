@@ -12,9 +12,6 @@
   <filein>ILTodoListItemRepository.st</filein>
   <filein>ILTodoListGridWidget.st</filein>
   <filein>ILTodoListApplication.st</filein>
-  <filein>ILBlogPost.st</filein>
-  <filein>ILBlogRepository.st</filein>
-  <filein>ILBlogApplication.st</filein>
   <filein>ILGravatarWidget.st</filein>
   <file>ILCounter.st</file>
   <file>ILCounterApplication.st</file>
@@ -22,8 +19,5 @@
   <file>ILTodoListItemRepository.st</file>
   <file>ILTodoListGridWidget.st</file>
   <file>ILTodoListApplication.st</file>
-  <file>ILBlogPost.st</file>
-  <file>ILBlogRepository.st</file>
-  <file>ILBlogApplication.st</file>
   <file>ILGravatarWidget.st</file>
 </package>

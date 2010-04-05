@@ -8,7 +8,7 @@ ILDirectory subclass: ILMemoryDirectory [
 	addAllFilesIn: aPathString [
 	    <category: 'maintenance'>
 	    "adds all files in the directory specified by aPathString to the current file library"
-	    (Greease.GRPlatform current filesIn: aPathString) do: [:each | self addFileAt: each]
+	    (Grease.GRPlatform current filesIn: aPathString) do: [:each | self addFileAt: each]
 	]
 
 	addFileAt: aPath [
