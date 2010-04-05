@@ -3,6 +3,72 @@ ILDirectory subclass: ILMemoryDirectory [
     <category: 'Iliad-Core-RequestHandlers'>
     <comment: nil>
 
+    ILMemoryDirectory class [
+	
+	addAllFilesIn: aPathString [
+	    <category: 'maintenance'>
+	    "adds all files in the directory specified by aPathString to the current file library"
+	    (GRPlatform current filesIn: aPathString) do: [:each | self addFileAt: each]
+	]
+
+	addFileAt: aPath [
+	    <category: 'maintenance'>
+	    "adds the file specified by aFilename to the current file library"
+	    self 
+		addFileAt: aPath
+		contents: (GRPlatform current 
+		   contentsOfFile: aPath
+		   binary: (ILFileHandler isBinary: aPath))
+	]
+
+	addFileAt: aPath contents: aByteArrayOrString [
+	    <category: 'private'>
+	    self 
+		addFileNamed: (GRPlatform current localNameOf: aPath)
+		contents: aByteArrayOrString
+	]
+
+	addFileNamed: aFilename contents: aByteArrayOrString [
+	    <category: 'private'>
+	| selector |
+	selector := self convertToSelector: aFilename.
+	(ILFileHandler isBinary: aFilename)
+	    ifTrue: [self compileBinary: aByteArrayOrString selector: selector]
+	    ifFalse: [self compileText: aByteArrayOrString selector: selector]
+	]
+
+	compileText: aByteArrayOrString selector: aSymbol [
+	    "Compiles aByteArrayOrString into a method named aSymbol that returns aByteArrayOrString as a string literal."
+	    <category: 'private'>
+
+	    Grease.GRPlatform current 
+		compile: (Grease.GRPlatform current asMethodReturningString: aByteArrayOrString named: aSymbol)
+		into: self
+		classified: self methodCategory
+	]
+
+	compileBinary: aByteArrayOrString selector: aSymbol [
+	    "Compiles aByteArrayOrString into a method named aSymbol that returns aByteArrayOrString as a string literal."
+	    <category: 'private'>
+
+	    Grease.GRPlatform current 
+		compile: (Grease.GRPlatform current asMethodReturningByteArray: aByteArrayOrString named: aSymbol)
+		into: self
+		classified: 'files'
+	]
+
+	convertToSelector: aString [
+	    <category: 'private'>
+	    | mainPart extension |
+	    mainPart := (aString copyUpToLast: $.)
+		reject: [:each | each isAlphaNumeric not].
+	    [mainPart first isDigit]
+		whileTrue: [mainPart := mainPart allButFirst].
+	    extension := (aString copyAfterLast: $.) asLowercase capitalized.
+	    ^(mainPart , extension) asSymbol
+	]
+    ]
+
     fileContentsFor: aString [
 	<category: 'accessing'>
 	| fileSelector |
@@ -38,25 +104,26 @@ ILDirectory subclass: ILMemoryDirectory [
 
     convertToSelector: aString [
 	<category: 'private'>
-	| mainPart extension |
-	mainPart := (aString copyUpToLast: $.)
-	    reject: [:each | each isAlphaNumeric not].
-	[mainPart first isDigit]
-	    whileTrue: [mainPart := mainPart allButFirst].
-	extension := (aString copyAfterLast: $.) asLowercase capitalized.
-	^(mainPart , extension) asSymbol
+	^self class convertToSelector: aString
     ]
-]
 
-String extend [
-    
-    capitalized [
-	"Return a copy with the first letter capitalized"
-	<category: '*Iliad-Core'>
-	| cap |
-	self isEmpty ifTrue: [^self copy].
-	cap := self copy.
-	cap at: 1 put: (cap at: 1) asUppercase.
-	^cap
+    removeFile: aFilename [
+	<category: 'maintenence'>
+	GRPlatform current 
+		removeSelector: (self asSelector: aFilename)
+		from: self class
+    ]
+
+    deployFiles [
+	"Write to disk the files that the receiver use to serve as methods.
+	The files are stored in a subfolder named like the classname of the receiver in a subfolder of Smalltalk image folder."
+
+	<category: 'maintenence'>
+	GRPlatform current ensureExistenceOfFolder: self path.
+	self fileSelectors do: [:each | 
+	    GRPlatform current 
+		write: (self perform: each)
+		toFile: (self asFilename: each)
+		inFolder: self path]
     ]
 ]

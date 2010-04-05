@@ -478,7 +478,7 @@ ILRequestHandler subclass: ILFileHandler [
 
     ILFileHandler class >> directories [
 	<category: 'acccessing'>
-	^Directories ifNil: [Directories := self defaultDirectories]
+	^Directories ifNil: [Directories := OrderedCollection new]
     ]    
 
     ILFileHandler class >> directories: aCollection [
@@ -491,29 +491,25 @@ ILRequestHandler subclass: ILFileHandler [
 	self directories add: aDirectory
     ]
 
-    ILFileHandler class >> defaultDirectories [
-	<category: 'defaults'>
-	| directories |
-	directories := OrderedCollection new.
-	(Directory image / 'Public') exists ifTrue: [
-	    directories add: 
-		(ILDiskDirectory new 
-		    directory: (Directory image / 'Public');
-		    yourself)].
-	directories add: 
-	    (ILDiskDirectory new
-		directory: (PackageLoader packageAt: 'Iliad-Core') directory / 'Public';
-		yourself).
-	^directories
-    ]
-
     ILFileHandler class >> initMimeTypes [
 	<category: 'defaults'>
-	MimeTypes :=Dictionary new.
+	MimeTypes := Dictionary new.
 	1 to: self defaultMimeTypes size by: 2 do: [:index |
 	    MimeTypes
 		at: (self defaultMimeTypes at: index)
 		put: (self defaultMimeTypes at: index + 1)]	
+    ]
+
+    ILFileHandler class >> isBinary: aFilename [
+	<category: 'testing'>
+	| tokens type |
+	tokens := (ILFileHandler mimeTypeFor: (aFilename copyAfterLast: $.)) subStrings: '/'.
+	type := tokens first.
+	type = 'text' ifTrue: [^false].
+	type = 'application' ifFalse: [^true].
+	tokens size = 1 ifTrue: [^true].
+	^(tokens second subStrings: '+') noneSatisfy: [:each |
+	    #('x-javascript' 'xml') includes: each]
     ]
 
     directories [

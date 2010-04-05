@@ -1,16 +1,24 @@
 ILDirectory subclass: ILDiskDirectory [
     | directory |
 
-    <category: 'Iliad-Core-RequestHandlers'>
-    <comment: nil>
+    <category: 'Iliad-Core-GST'>
+    <comment: 'An ILDiskDirectory allows files to be served by Iliad directly from directories of even archives like .star files.
+    I shouldn''t be used in production.
+
+    Usage example: 
+    
+    Iliad.ILFileHandler addDirectory: 
+	(Iliad.ILDiskDirectory new 
+	    directory: (PackageLoader packageAt: ''SomePackage'') directory / ''Public'';
+    '>
 
     fileContentsFor: aString [
 	<category: 'accessing'>
-	| file |
+	| file stream |
 	file := self fileNamed: (self adjustPath: aString).
-	^file isNil 
-	    ifTrue: [nil]
-	    ifFalse: [file readStream contents]
+	file isNil ifTrue: [^nil].
+	stream := file readStream.
+	^[stream contents] ensure: [stream close]
     ]
 
     directory [

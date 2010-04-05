@@ -113,13 +113,18 @@ Eval [
 	filein: 'RequestHandlers/ILRequestHandler.st';
 	filein: 'RequestHandlers/ILErrorHandler.st';   
 	filein: 'RequestHandlers/ILDirectory.st'; 
-	filein: 'RequestHandlers/ILDiskDirectory.st'; 
 	filein: 'RequestHandlers/ILMemoryDirectory.st'; 
 	filein: 'RequestHandlers/ILFileHandler.st'; 
 	filein: 'RequestHandlers/ILNotFoundHandler.st'; 
 	filein: 'RequestHandlers/ILJsonHandler.st'; 
 	filein: 'RequestHandlers/ILApplicationHandler.st'; 
 	filein: 'RequestHandlers/ILRedirectHandler.st';
+
+	filein: 'GST/ILDiskDirectory.st';
+	filein: 'GST/Extensions.st';
+
+	filein: 'postLoad.st';
+
 	yourself.
 
     pubDir := Directory working / 'Public'.
