@@ -60,12 +60,12 @@ ILUIWidget subclass: ILCalendar [
 	^[:e || form select |
 	    form := e form class: 'month_selection'; yourself.
 	    select := form select.
-	    self months do: [:each || option |
+	    (1 to: 12) do: [:each || option |
 		option := select option.
 		option 
-		    text: each greaseString;
-		    action: [self selectMonth: (Date indexOfMonth: each)].
-		(Date indexOfMonth: each) = self month ifTrue: [
+		    text: (self months at: each);
+		    action: [self selectMonth: each].
+		each = self month ifTrue: [
 		    option selected]].
 	    form input 
 		maxlength: 4; 
