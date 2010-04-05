@@ -60,11 +60,6 @@ ILLinkableElement subclass: ILAnchorElement [
 	^'a'
     ]
 
-    accesskey: aCharacter [
-	<category: 'accessing attributes'>
-	self attributeAt: 'accesskey' put: aCharacter greaseString
-    ]
-
     tabindex: anInteger [
 	<category: 'accessing attributes'>
 	self attributeAt: 'tabindex' put: anInteger greaseString

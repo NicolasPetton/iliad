@@ -8,7 +8,7 @@ ILDirectory subclass: ILMemoryDirectory [
 	addAllFilesIn: aPathString [
 	    <category: 'maintenance'>
 	    "adds all files in the directory specified by aPathString to the current file library"
-	    (GRPlatform current filesIn: aPathString) do: [:each | self addFileAt: each]
+	    (Greease.GRPlatform current filesIn: aPathString) do: [:each | self addFileAt: each]
 	]
 
 	addFileAt: aPath [
@@ -16,7 +16,7 @@ ILDirectory subclass: ILMemoryDirectory [
 	    "adds the file specified by aFilename to the current file library"
 	    self 
 		addFileAt: aPath
-		contents: (GRPlatform current 
+		contents: (Grease.GRPlatform current 
 		   contentsOfFile: aPath
 		   binary: (ILFileHandler isBinary: aPath))
 	]
@@ -24,7 +24,7 @@ ILDirectory subclass: ILMemoryDirectory [
 	addFileAt: aPath contents: aByteArrayOrString [
 	    <category: 'private'>
 	    self 
-		addFileNamed: (GRPlatform current localNameOf: aPath)
+		addFileNamed: (Grease.GRPlatform current localNameOf: aPath)
 		contents: aByteArrayOrString
 	]
 
@@ -109,7 +109,7 @@ ILDirectory subclass: ILMemoryDirectory [
 
     removeFile: aFilename [
 	<category: 'maintenence'>
-	GRPlatform current 
+	Grease.GRPlatform current 
 		removeSelector: (self asSelector: aFilename)
 		from: self class
     ]
@@ -119,9 +119,9 @@ ILDirectory subclass: ILMemoryDirectory [
 	The files are stored in a subfolder named like the classname of the receiver in a subfolder of Smalltalk image folder."
 
 	<category: 'maintenence'>
-	GRPlatform current ensureExistenceOfFolder: self path.
+	Grease.GRPlatform current ensureExistenceOfFolder: self path.
 	self fileSelectors do: [:each | 
-	    GRPlatform current 
+	    Grease.GRPlatform current 
 		write: (self perform: each)
 		toFile: (self asFilename: each)
 		inFolder: self path]

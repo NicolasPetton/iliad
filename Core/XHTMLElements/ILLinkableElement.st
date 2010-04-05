@@ -41,6 +41,11 @@ ILXHTMLElement subclass: ILLinkableElement [
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
+    accesskey: aCharacter [
+	<category: 'accessing attributes'>
+	self attributeAt: 'accesskey' put: aCharacter greaseString
+    ]
+
     charset: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'charset' put: aString
