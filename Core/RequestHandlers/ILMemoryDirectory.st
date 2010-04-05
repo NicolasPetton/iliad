@@ -62,8 +62,9 @@ ILDirectory subclass: ILMemoryDirectory [
 	    | mainPart extension |
 	    mainPart := (aString copyUpToLast: $.)
 		reject: [:each | each isAlphaNumeric not].
-	    [mainPart first isDigit]
-		whileTrue: [mainPart := mainPart allButFirst].
+	    mainPart isEmpty not ifTrue: [
+		[mainPart first isDigit]
+		    whileTrue: [mainPart := mainPart allButFirst]].
 	    extension := (aString copyAfterLast: $.) asLowercase capitalized.
 	    ^(mainPart , extension) asSymbol
 	]
