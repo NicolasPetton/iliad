@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILSession [
-    | id preferences timestamps expired redirectUrl applications actionRegistries stateRegistries nextId |
+    | id preferences others timestamps expired redirectUrl applications actionRegistries stateRegistries nextId |
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
