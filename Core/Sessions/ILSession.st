@@ -191,7 +191,7 @@ ILObject subclass: ILSession [
 
     useCookies [
 	<category: 'accessing preferences'>
-	^self preferences at: #cookies ifAbsent: [^true]
+	^self preferenceAt: #cookies ifAbsentPut: [^true]
     ]
 
     useCookies: aBoolean [
