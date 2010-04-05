@@ -14,9 +14,6 @@ Eval [
     filein: 'ILTodoListItemRepository.st'; 
     filein: 'ILTodoListGridWidget.st'; 
     filein: 'ILTodoListApplication.st'; 
-    filein: 'ILBlogPost.st';
-    filein: 'ILBlogRepository.st';
-    filein: 'ILBlogApplication.st';
     filein: 'ILGravatarWidget.st';
 
     buildXml
