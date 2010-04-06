@@ -60,7 +60,7 @@ Swazoo.SwazooSite subclass: ILSite [
 
     defaultCodec [
 	<category: 'defaults'>
-	^Grease.GRCodec forEncoding: 'UTF-8'
+	^Grease.GRNullCodec new
     ]
 
     answerTo: aRequest [
