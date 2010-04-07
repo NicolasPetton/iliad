@@ -74,13 +74,13 @@ var iliad = (function() {
 
 	 function evaluateAnchorAction(anchor, hashString) {
 		var actionUrl = jQuery(anchor).attr('href');
-		this.evaluateAction(actionUrl);
+		evaluateAction(actionUrl);
 		if(hashString) setHash(hashString);
 	}
 
 	function evaluateFormElementAction(formElement) {
 		var form = jQuery(formElement).closest("form");
-		this.evaluateFormAction(form);
+		evaluateFormAction(form);
 	}
 
 	function enableSubmitAction(button) {
@@ -96,7 +96,7 @@ var iliad = (function() {
 	function evaluateFormAction(form) {
 		var actionUrl = getFormActionUrl(form);
 		var data = jQuery(form).serialize();
-		this.evaluateAction(actionUrl, "post", data);
+		evaluateAction(actionUrl, "post", data);
 	}
 
 	function evaluateMultipartFormAction(form) {
