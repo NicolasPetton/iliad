@@ -74,7 +74,7 @@ ILObject subclass: ILAction [
     evaluate [
 	<category: 'evaluating'>
 	self block ifNil: [^nil].
-	^self block cull: self value
+	^self block valueWithPossibleArguments: (Array with: self value)
     ]
 
     respondOn: aResponse [

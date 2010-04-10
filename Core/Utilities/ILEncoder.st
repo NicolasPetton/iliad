@@ -25,11 +25,9 @@ Object subclass: ILEncoder [
 
 	encodeForHTTP: aString [
 	    <category: 'encoding'>
-	    | stream |
-	    stream := WriteStream on: String new.
-	    aString do: [:char |
-		self encodeForHTTP: char on: stream].
-	    ^stream contents
+	    ^String streamContents: [:stream |
+		aString do: [:char |
+		    self encodeForHTTP: char on: stream]]
 	]
 
 	encodeForHTTP: aCharacter on: aStream [
