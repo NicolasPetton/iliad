@@ -325,21 +325,6 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	^ILXHTMLElement
     ]
  
-    isDebugMode [
-	<category: 'testing'>
-	^self class isDebugMode
-    ]
-
-    isVerboseMode [
-	<category: 'testing'>
-	^self class isVerboseMode
-    ]
-
-    isDeploymentMode [
-	<category: 'testing'>
-	^self class isDeploymentMode
-    ]
-
     newRootElement [
 	<category: 'private'>
 	^self rootElementClass new
