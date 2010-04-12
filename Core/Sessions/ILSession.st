@@ -276,7 +276,7 @@ ILObject subclass: ILSession [
 
     otherAt: aKey ifAbsentPut: aBlock [
 	<category: 'accessing others'>
-	self others at: aKey ifAbsentPut: aBlock
+	^self others at: aKey ifAbsentPut: aBlock
     ]
 
     defaultExpirySeconds [
