@@ -44,6 +44,7 @@ var iliad = (function() {
 	var hash           = "";
 	var actionsLocked  = false;
 	var ie67           = false;
+	var showAjaxLoader = false;
 	
 
 	/* ---
@@ -134,10 +135,10 @@ var iliad = (function() {
 				dataType: 'json',
 				data: data,
 				beforeSend: function(xhr) {
-					insertAjaxLoader();},
+					if(showAjaxLoader) insertAjaxLoader();},
 				success: function(json) {
 					processUpdates(json);
-					removeAjaxLoader();
+					if(showAjaxLoader) removeAjaxLoader();
 					unlockActions();
 				},
 				error: function(err) {
@@ -297,12 +298,16 @@ var iliad = (function() {
 	 * Various
 	 * -------------------------------------------------------------- */
 
+	function showAjaxLoader(bool) {
+		showAjaxLoader = bool
+	}
+
 	function insertAjaxLoader() {
-	jQuery('body').append(
-		"<div class='ajax_loader'" +
-		"style='position: fixed; _position: absolute;" +
-		"top: 10px; right: 10px; z-index: 9999'>" +
-		"<img src='/images/ajax_loader.gif'/></div>");
+		jQuery('body').append(
+			"<div class='ajax_loader'" +
+			"style='position: fixed; _position: absolute;" +
+			"top: 10px; right: 10px; z-index: 9999'>" +
+			"<img src='/images/ajax_loader.gif'/></div>");
 	}
 
 	function showError(actionUrl){
@@ -346,6 +351,7 @@ var iliad = (function() {
 		evaluateAction: evaluateAction,
 		enableSubmitAction: enableSubmitAction,
 		checkHashChange: checkHashChange,
+		showAjaxLoader: showAjaxLoader,
 		initialize: initialize
 	};
 })();
