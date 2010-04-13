@@ -123,10 +123,11 @@ var iliad = (function() {
 	}
 
 
-	function evaluateAction(actionUrl, method, data, lock) {
+	function evaluateAction(actionUrl, method, data, lock, showLoader) {
 		if(!actionsLocked) {
 			if(!method) method = 'get';
 			if(lock === null) lock = true;
+			if(showLoader === null) showLoader = true;
 			if(lock) lockActions();
 			jQuery.ajax({
 				url: actionUrl,

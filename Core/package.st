@@ -26,6 +26,7 @@ Eval [
 	filein: 'Sessions/ILUrlBuilder.st'; 
 	filein: 'Sessions/ILContext.st'; 
 	filein: 'Sessions/ILAction.st'; 
+	filein: 'Sessions/ILPusher.st'; 
 	filein: 'Sessions/ILCurrentContext.st'; 
 	filein: 'Sessions/ILCurrentActionRegistry.st'; 
 	filein: 'Sessions/ILActionRegistry.st'; 
@@ -96,6 +97,7 @@ Eval [
 	filein: 'Buildables/ILDelegator.st'; 
 	filein: 'Buildables/ILAppendDelegator.st'; 
 	filein: 'Buildables/ILPrependDelegator.st'; 
+	filein: 'Buildables/ILCometDecorator.st'; 
 	filein: 'Buildables/ILWidget.st'; 
 	filein: 'Buildables/ILSequence.st'; 
 	filein: 'Buildables/ILInformationWidget.st'; 

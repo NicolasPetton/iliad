@@ -21,6 +21,7 @@
   <filein>Sessions/ILUrlBuilder.st</filein>
   <filein>Sessions/ILContext.st</filein>
   <filein>Sessions/ILAction.st</filein>
+  <filein>Sessions/ILPusher.st</filein>
   <filein>Sessions/ILCurrentContext.st</filein>
   <filein>Sessions/ILCurrentActionRegistry.st</filein>
   <filein>Sessions/ILActionRegistry.st</filein>
@@ -88,6 +89,7 @@
   <filein>Buildables/ILDelegator.st</filein>
   <filein>Buildables/ILAppendDelegator.st</filein>
   <filein>Buildables/ILPrependDelegator.st</filein>
+  <filein>Buildables/ILCometDecorator.st</filein>
   <filein>Buildables/ILWidget.st</filein>
   <filein>Buildables/ILSequence.st</filein>
   <filein>Buildables/ILInformationWidget.st</filein>
@@ -130,6 +132,7 @@
   <file>Sessions/ILUrlBuilder.st</file>
   <file>Sessions/ILContext.st</file>
   <file>Sessions/ILAction.st</file>
+  <file>Sessions/ILPusher.st</file>
   <file>Sessions/ILCurrentContext.st</file>
   <file>Sessions/ILCurrentActionRegistry.st</file>
   <file>Sessions/ILActionRegistry.st</file>
@@ -197,6 +200,7 @@
   <file>Buildables/ILDelegator.st</file>
   <file>Buildables/ILAppendDelegator.st</file>
   <file>Buildables/ILPrependDelegator.st</file>
+  <file>Buildables/ILCometDecorator.st</file>
   <file>Buildables/ILWidget.st</file>
   <file>Buildables/ILSequence.st</file>
   <file>Buildables/ILInformationWidget.st</file>
@@ -232,5 +236,5 @@
   <file>Public/javascripts/iliad.js</file>
   <file>Public/javascripts/jquery132min.js</file>
   <file>Public/javascripts/no_conflict.js</file>
-  <file>Public/iliad_ie_history.html</file>
+  <file>Public/javascripts/iliad_ie_history.html</file>
 </package>

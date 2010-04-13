@@ -68,6 +68,11 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	self shouldNotImplement
     ]
 
+    sessions [
+	<category: 'accessing'>
+	^sessions values
+    ]
+
     expiredSessions [
 	<category: 'accessing'>
 	^sessions values select: [:each | each isExpired]

@@ -15,6 +15,7 @@ Eval [
     filein: 'ILTodoListGridWidget.st'; 
     filein: 'ILTodoListApplication.st'; 
     filein: 'ILGravatarWidget.st';
+    filein: 'ILCometCounter.st';
 
     buildXml
 ]
