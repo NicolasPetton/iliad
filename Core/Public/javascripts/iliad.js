@@ -44,7 +44,7 @@ var iliad = (function() {
 	var hash           = "";
 	var actionsLocked  = false;
 	var ie67           = false;
-	var showAjaxLoader = false;
+	var ajaxLoader = false;
 	
 
 	/* ---
@@ -135,10 +135,10 @@ var iliad = (function() {
 				dataType: 'json',
 				data: data,
 				beforeSend: function(xhr) {
-					if(showAjaxLoader) insertAjaxLoader();},
+					if(ajaxLoader) insertAjaxLoader();},
 				success: function(json) {
 					processUpdates(json);
-					if(showAjaxLoader) removeAjaxLoader();
+					if(ajaxLoader) removeAjaxLoader();
 					unlockActions();
 				},
 				error: function(err) {
@@ -299,7 +299,7 @@ var iliad = (function() {
 	 * -------------------------------------------------------------- */
 
 	function showAjaxLoader(bool) {
-		showAjaxLoader = bool
+		ajaxLoader = bool
 	}
 
 	function insertAjaxLoader() {
