@@ -33,7 +33,7 @@ ILDecorator subclass: ILCometDecorator [
 	^[:e || action |
 	    action := self session registerActionFor: [self pushLoop value].
 	    e script: 
-		'iliad.evaluateAction("', (self context urlBuilder urlForAction: action) greaseString, '"']
+		'iliad.evaluateAction("', (self context urlBuilder urlForAction: action) greaseString, '")']
     ]
 
     pushLoop [
