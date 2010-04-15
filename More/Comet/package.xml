@@ -1,0 +1,15 @@
+<package>
+  <name>Iliad-More-Comet</name>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-Core</prereq>
+  <filein>ILCometHandler.st</filein>
+  <filein>ILCometEvent.st</filein>
+  <filein>ILCometSubscription.st</filein>
+  <filein>ILCometConnectionWidget.st</filein>
+  <filein>Extensions.st</filein>
+  <file>ILCometHandler.st</file>
+  <file>ILCometEvent.st</file>
+  <file>ILCometSubscription.st</file>
+  <file>ILCometConnectionWidget.st</file>
+  <file>Extensions.st</file>
+</package>

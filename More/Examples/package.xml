@@ -5,6 +5,7 @@
   <prereq>Iliad-More-UI</prereq>
   <prereq>Iliad-More-Magritte</prereq>
   <prereq>Iliad-More-Formula</prereq>
+  <prereq>Iliad-More-Comet</prereq>
   <prereq>Digest</prereq>
   <filein>ILCounter.st</filein>
   <filein>ILCounterApplication.st</filein>

@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ILPusher class definition
+|   Iliad.ILCometHandler class definition
 |
  ======================================================================"
 
@@ -36,40 +36,95 @@
 
 
 
-ILObject subclass: ILPusher [
-    | buildables |
+ILObject subclass: ILCometHandler [
+    | session subscriptions semaphore pingProcess |
 
-    <category: 'Iliad-Core-Sessions'>
+    <category: 'Iliad-More-Comet'>
     <comment: nil>
+
+    ILCometHandler class [
+	
+	on: aSession [
+	    <category: 'instance creation'>
+	    ^self new
+		session: aSession;
+		yourself
+	]
+    ]
+
+    initialize [
+	<category: 'initialization'>
+	super initialize.
+	semaphore := Semaphore new.
+	subscriptions := OrderedCollection new
+    ]
+
+    session [
+	<category: 'accessing'>
+	^session
+    ]
+
+    session: aSession [
+	<category: 'accessing'>
+	session := aSession
+    ]
 
     sessionManager [
 	<category: 'accessing'>
 	^ILSessionManager current
     ]
 
-    buildables [
+    allHandlers [
 	<category: 'accessing'>
-	^buildables ifNil: [buildables := Dictionary new]
+	^self sessionManager sessions collect: [:each | each cometHandler]
     ]
 
-    register: aBuildable forEvent: aSymbol [
+    cometConnexion [
 	<category: 'accessing'>
-	(self buildablesAt: aSymbol) add: aBuildable
+	^self application cometConnexion
     ]
 
-    buildablesAt: aSymbol [
+    subscribe: aWidget to: anEventClass condition: aBlock [
 	<category: 'accessing'>
-	^self buildables at: aSymbol ifAbsentPut: [OrderedCollection new]
+	subscriptions add: (ILCometSubscription new
+	    handler: self;
+	    widget: aWidget;
+	    eventClass: anEventClass;
+	    condition: aBlock)
     ]
 
-    push: aSymbol [
+    triggerEvent: anEvent [
 	<category: 'actions'>
-	self sessionManager sessions do: [:each | 
-	    each pusher doPush: aSymbol]
+	self allHandlers do: [:each |
+	    each handleEvent: anEvent]
     ]
 
-    doPush: aSymbol [
+    handleEvent: anEvent [
 	<category: 'actions'>
-	(self buildablesAt: aSymbol) do: [:each | each push]
+	(subscriptions 
+	    select: [:each | anEvent isKindOf: each eventClass])
+	    do: [:each | 
+		(each condition value: anEvent) ifTrue: [each push]].
+    ]
+
+    waitForEvent [
+	<category: 'actions'>
+	self push.
+	semaphore := Semaphore new.
+	self startPingProcess.
+	semaphore wait
+	    
+    ]
+
+    push [
+	<category: 'actions'>
+	semaphore signal.
+	pingProcess ifNotNil: [pingProcess terminate]
+    ]
+
+    startPingProcess [
+	<category: 'private'>
+	pingProcess := [(Delay forSeconds: 3 * 60) wait. semaphore signal] fork
     ]
 ]
+

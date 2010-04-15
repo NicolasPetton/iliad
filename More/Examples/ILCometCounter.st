@@ -10,7 +10,10 @@ ILApplication subclass: ILCometCounterApplication [
 
     index [
 	<category: 'controllers'>
-	^counter
+	^[:e |
+	    e 
+		build: self cometConnexion; 
+		build: counter]
     ]
 ]
 
@@ -46,6 +49,7 @@ ILObject subclass: ILCounterModel [
     ]
 ]
 
+ILCometEvent subclass: CounterChangedEvent []
 
 
 Iliad.ILWidget subclass: ILCometCounter [
@@ -54,7 +58,7 @@ Iliad.ILWidget subclass: ILCometCounter [
     initialize [
 	super initialize.
 	counter := ILCounterModel instance.
-	self pushOnEvent: #countChanged
+	self pushOnCometEvent: CountChangedEvent
     ]
 
     contents [
@@ -66,11 +70,11 @@ Iliad.ILWidget subclass: ILCometCounter [
 
     increase [
 	counter increase.
-	self push: #countChanged
+	self triggerCometEvent: CounterChangedEvent new
     ]
 
     decrease [
 	counter decrease.
-	self push: #countChanged
+	self triggerCometEvent: CounterChangedEvent new
     ]
 ]

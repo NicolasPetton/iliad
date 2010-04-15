@@ -21,7 +21,6 @@
   <filein>Sessions/ILUrlBuilder.st</filein>
   <filein>Sessions/ILContext.st</filein>
   <filein>Sessions/ILAction.st</filein>
-  <filein>Sessions/ILPusher.st</filein>
   <filein>Sessions/ILCurrentContext.st</filein>
   <filein>Sessions/ILCurrentActionRegistry.st</filein>
   <filein>Sessions/ILActionRegistry.st</filein>
@@ -132,7 +131,6 @@
   <file>Sessions/ILUrlBuilder.st</file>
   <file>Sessions/ILContext.st</file>
   <file>Sessions/ILAction.st</file>
-  <file>Sessions/ILPusher.st</file>
   <file>Sessions/ILCurrentContext.st</file>
   <file>Sessions/ILCurrentActionRegistry.st</file>
   <file>Sessions/ILActionRegistry.st</file>

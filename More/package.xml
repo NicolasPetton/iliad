@@ -7,4 +7,5 @@
   <prereq>Iliad-More-Formula</prereq>
   <prereq>Iliad-More-Examples</prereq>
   <prereq>Iliad-More-RSS</prereq>
+  <prereq>Iliad-More-Comet</prereq>
 </package>

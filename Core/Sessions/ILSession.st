@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILSession [
-    | id preferences others timestamps expired redirectUrl applications actionRegistries widgets pusher nextId token |
+    | id preferences others timestamps expired redirectUrl applications actionRegistries widgets nextId token |
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
@@ -137,11 +137,6 @@ ILObject subclass: ILSession [
     route [
 	<category: 'accessing'>
 	^self context route
-    ]
-
-    pusher [
-	<category: 'accessing'>
-	^pusher ifNil: [pusher := ILPusher new]
     ]
 
     sessionManager [

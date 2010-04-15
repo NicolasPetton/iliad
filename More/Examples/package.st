@@ -6,6 +6,7 @@ Eval [
     prereq: 'Iliad-More-UI';
     prereq: 'Iliad-More-Magritte';
     prereq: 'Iliad-More-Formula';
+    prereq: 'Iliad-More-Comet';
     prereq: 'Digest';
 
     filein: 'ILCounter.st'; 

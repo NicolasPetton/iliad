@@ -273,21 +273,6 @@ added to the decoration chain with #decorateWith:.'>
 	^nil
     ]
 
-    pushOnEvent: aSymbol [
-	"Register the receiver to push its contents to the client when the event <aSymbol> occurs ie."
-	<category: 'control flow'>
-
-	self decorateWith: (ILCometDecorator new 
-	    registerForEvent: aSymbol; 
-	    yourself)
-    ]
-
-    push: aSymbol [
-	"Update all widgets which registered to the event <aSymbol>"
-	<category: 'control flow'>
-	self session pusher push: aSymbol
-    ]
-
     retrieveControl [
 	"Give the control back to the receiver, and make any showed widget answer nil"
 	<category: 'control flow'>
