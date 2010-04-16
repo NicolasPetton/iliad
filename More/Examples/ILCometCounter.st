@@ -49,7 +49,7 @@ ILObject subclass: ILCounterModel [
     ]
 ]
 
-ILCometEvent subclass: CounterChangedEvent []
+ILCometEvent subclass: ILCounterChangedEvent []
 
 
 Iliad.ILWidget subclass: ILCometCounter [
@@ -58,7 +58,7 @@ Iliad.ILWidget subclass: ILCometCounter [
     initialize [
 	super initialize.
 	counter := ILCounterModel instance.
-	self pushOnCometEvent: CountChangedEvent
+	self pushOnCometEvent: ILCounterChangedEvent
     ]
 
     contents [
@@ -70,11 +70,11 @@ Iliad.ILWidget subclass: ILCometCounter [
 
     increase [
 	counter increase.
-	self triggerCometEvent: CounterChangedEvent new
+	self triggerCometEvent: ILCounterChangedEvent new
     ]
 
     decrease [
 	counter decrease.
-	self triggerCometEvent: CounterChangedEvent new
+	self triggerCometEvent: ILCounterChangedEvent new
     ]
 ]
