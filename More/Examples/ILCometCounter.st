@@ -12,7 +12,7 @@ ILApplication subclass: ILCometCounterApplication [
 	<category: 'controllers'>
 	^[:e |
 	    e 
-		build: self cometConnexion; 
+		build: self cometConnection; 
 		build: counter]
     ]
 ]

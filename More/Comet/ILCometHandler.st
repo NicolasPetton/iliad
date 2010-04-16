@@ -79,11 +79,6 @@ ILObject subclass: ILCometHandler [
 	^self sessionManager sessions collect: [:each | each cometHandler]
     ]
 
-    cometConnexion [
-	<category: 'accessing'>
-	^self application cometConnexion
-    ]
-
     subscribe: aWidget to: anEventClass condition: aBlock [
 	<category: 'accessing'>
 	subscriptions add: (ILCometSubscription new
