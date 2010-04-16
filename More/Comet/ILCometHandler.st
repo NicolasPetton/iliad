@@ -37,19 +37,54 @@
 
 
 ILObject subclass: ILCometHandler [
-    | session subscriptions semaphore pingProcess |
+    | session subscriptions semaphore |
 
     <category: 'Iliad-More-Comet'>
     <comment: nil>
 
     ILCometHandler class [
-	
+	| pingProcess |
+
 	on: aSession [
 	    <category: 'instance creation'>
 	    ^self new
 		session: aSession;
 		yourself
 	]
+
+	initialize [
+	    <category: 'initialization'>
+	    Grease.GRPlatform current addToStartUpList: self.
+	    Grease.GRPlatform current addToShutDownList: self.
+	    self startUp: true.
+	]
+    
+	sessionManager [
+	    <category: 'accessing'>
+	    ^ILSessionManager current
+	]
+
+	startUp: isStarting [
+	    <category: 'startup'>
+	    isStarting ifTrue: [
+		self shutDown: true.
+		pingProcess := [[self pingClients] repeat] fork]
+	]
+
+	shutDown: isDown [
+	    <category: 'startup'>
+	    isDown ifTrue: [
+		pingProcess ifNotNil: [
+		    pingProcess terminate.
+		    pingProcess := nil]]
+	]
+
+	pingClients [
+	    <category: 'private'>
+	    (Delay forSeconds: 3 * 60) wait.
+	    self sessionManager sessions do: [:each | each cometHandler push]
+	]
+	
     ]
 
     initialize [
@@ -106,20 +141,14 @@ ILObject subclass: ILCometHandler [
 	<category: 'actions'>
 	self push.
 	semaphore := Semaphore new.
-	self startPingProcess.
 	semaphore wait
 	    
     ]
 
     push [
 	<category: 'actions'>
-	semaphore signal.
-	pingProcess ifNotNil: [pingProcess terminate]
-    ]
-
-    startPingProcess [
-	<category: 'private'>
-	pingProcess := [(Delay forSeconds: 3 * 60) wait. semaphore signal] fork
+	semaphore signal
     ]
 ]
 
+Eval [ILCometHandler initialize]
