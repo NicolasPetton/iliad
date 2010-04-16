@@ -106,7 +106,7 @@ ILObject subclass: ILCometHandler [
 
     sessionManager [
 	<category: 'accessing'>
-	^ILSessionManager current
+	^self class sessionManager
     ]
 
     allHandlers [
