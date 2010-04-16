@@ -26,10 +26,10 @@ ILWidget extend [
 
 ILApplication extend [
     
-   cometConnexion [
+   cometConnection [
 	<category: '*Iliad-More-Comet'>
 	^self 
-	    attributeAt: #cometConnexion
+	    attributeAt: #cometConnection
 	    ifAbsentPut: [ILCometConnectionWidget new]
    ] 
 ]
