@@ -377,11 +377,6 @@ ILObject subclass: ILSession [
 	^expired
     ]
 
-    isNew [
-	<category: 'testing'>
-	^self createdTimestamp = self modifiedTimestamp
-    ]
-
     shouldUseSessionField [
 	<category: 'testing'>
 	    ^(self request cookies 

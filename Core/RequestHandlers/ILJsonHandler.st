@@ -82,7 +82,7 @@ ILRequestHandler subclass: ILJsonHandler [
 
     shouldRedirect [
 	<category: 'testing'>
-	^self session redirectUrl notNil or: [self session isNew]
+	^self session redirectUrl notNil
     ]
 
     shouldUpdateApplication [
