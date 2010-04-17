@@ -355,12 +355,16 @@ added to the decoration chain with #decorateWith:.'>
 	self 
 	    decorateWith: aDelegator;
 	    markDirty.
-	answerHandler action: (ILAction new block: [:value |
-	    aDelegator removeYourself.
-	    self markDirty.
-	    aWidget owner: nil.
-	    answerHandler removeYourself.
-	    aBlock value: value]).
+	answerHandler action: (ILAction new 
+	    block: [:value |
+		aDelegator removeYourself.
+		self markDirty.
+		aWidget owner: nil.
+		answerHandler removeYourself.
+		aBlock value: value];
+	    key: self session nextId;
+	    stateRegistry: self session stateRegistry;
+	    yourself).
 	aWidget
 	    owner: self;
 	    decorateWith: answerHandler
