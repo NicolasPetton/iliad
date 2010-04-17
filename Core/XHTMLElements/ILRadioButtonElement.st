@@ -49,11 +49,7 @@ ILFormElementElement subclass: ILRadioButtonElement [
     action: aBlock [
 	<category: 'accessing attributes'>
 	| action |
-	action := ILAction new
-	    block: aBlock;
-	    key: self session nextId;
-	    yourself.
-	self session registerAction: action.
+	action := self session registerActionFor: aBlock.
 	self value: action key
     ]
 

@@ -52,11 +52,7 @@ ILFormElementElement subclass: ILCheckboxElement [
 	| action |
 	hiddenAction := aBlock.
 	value := false.
-	action := ILAction new
-		    block: [:val | value := true];
-		    key: self session nextId;
-		    yourself.
-	self session registerAction: action.
+	action := self session registerActionFor: aBlock.
 	self name: action key.
 	self addHiddenInput
     ]
