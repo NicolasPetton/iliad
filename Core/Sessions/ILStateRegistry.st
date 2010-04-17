@@ -88,7 +88,7 @@ ILObject subclass: ILStateRegistry [
 
     unregister: aWidget [
 	<category: 'states'>
-	self widgets
+	self states
 	    removeKey: aWidget
 	    ifAbsent: [nil]
     ]
