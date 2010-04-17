@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILCometHandler [
-    | session subscriptions semaphore |
+    | session subscriptions semaphores |
 
     <category: 'Iliad-More-Comet'>
     <comment: nil>
@@ -82,7 +82,8 @@ ILObject subclass: ILCometHandler [
 	pingClients [
 	    <category: 'private'>
 	    (Delay forSeconds: 3 * 60) wait.
-	    self sessionManager sessions do: [:each | each cometHandler push]
+	    self sessionManager sessions do: [:each | 
+		each comeHandler push]
 	]
 	
     ]
@@ -90,7 +91,7 @@ ILObject subclass: ILCometHandler [
     initialize [
 	<category: 'initialization'>
 	super initialize.
-	semaphore := Semaphore new.
+	semaphores := OrderedCollection new.
 	subscriptions := OrderedCollection new
     ]
 
@@ -112,8 +113,8 @@ ILObject subclass: ILCometHandler [
     otherHandlers [
 	<category: 'accessing'>
 	^(self sessionManager sessions 
-	    collect: [:each | each cometHandler])
-	    reject: [:each | each = self]
+	    copyWithout: self session) collect: [:each |
+		each cometHandler]
     ]
 
     subscribe: aWidget to: anEventClass condition: aBlock [
@@ -141,15 +142,16 @@ ILObject subclass: ILCometHandler [
 
     waitForEvent [
 	<category: 'actions'>
-	self push.
-	semaphore := Semaphore new.
-	semaphore wait
-	    
+	| s |
+	s := Semaphore new.
+	semaphores add: s.
+	s wait
     ]
 
     push [
 	<category: 'actions'>
-	semaphore signal
+	semaphores do: [:each | each signal].
+	semaphores := OrderedCollection new
     ]
 ]
 

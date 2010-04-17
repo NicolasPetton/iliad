@@ -98,13 +98,6 @@ I am a server independent http request object.'>
 	    ifAbsent: [nil]
     ]
 
-    stateField [
-	<category: 'accessing'>
-	^self 
-	    at: ILUrlBuilder stateKey
-	    ifAbsent: [nil]
-    ]
-
     sessionField [
 	<category: 'accessing'>
 	^self 

@@ -38,7 +38,7 @@
 
 ILObject subclass: ILContext [
 
-    | request application route hashRoute session urlBuilder stateRegistry |
+    | request application route hashRoute session urlBuilder previousStateRegistry stateRegistry |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I store current request context objects:
 - the route
@@ -107,7 +107,12 @@ A can be accessed through ILObject>>context'>
 
     previousStateRegistry [
 	<category: 'accessing'>
-	^self session stateRegistryAt: self request stateField
+	^previousStateRegistry
+    ]
+
+    previousStateRegistry: aStateRegistry [
+	<category: 'accessing'>
+	previousStateRegistry := aStateRegistry
     ]
 ]
 

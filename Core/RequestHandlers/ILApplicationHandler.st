@@ -68,7 +68,6 @@ ILRequestHandler subclass: ILApplicationHandler [
 	    self returnResponse: ILResponse ok].
 	self shouldRespondInJson ifTrue: [
 	    ILJsonHandler new handleRequest].
-	self request isAjaxRequest ifTrue: [self returnResponse: self lastAction asResponse].
 	self shouldRedirect
 	    ifTrue: [ILRedirectHandler new handleRequest]
 	    ifFalse: [self produceResponse]
@@ -116,6 +115,8 @@ ILRequestHandler subclass: ILApplicationHandler [
 		(action := self session actionAt: asso value) ifNil: [
 		    action := self session actionAt: asso key.
 		    action ifNotNil: [action value: asso value]].
-		action ifNotNil: [actions add: action]]]
+		action ifNotNil: [actions add: action]]].
+	actions notEmpty ifTrue: [
+	    self context previousStateRegistry: actions first stateRegistry]
     ]
 ]

@@ -36,11 +36,23 @@
 
 
 ILObject subclass: ILAction [
-    | key block value |
+    | key block value stateRegistry |
     
     <category: 'Iliad-Core-Sessions'>
     <comment: nil>
     
+    initialize [
+	<category: 'initialization'>
+	super initialize.
+	stateRegistry := self session stateRegistry.
+	key := (ILId new: 6) greaseString
+    ]
+
+    stateRegistry [
+	<category: 'accessing'>
+	^stateRegistry
+    ]
+
     block [
 	<category: 'accessing'>
 	^block
