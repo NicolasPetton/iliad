@@ -41,12 +41,6 @@ ILObject subclass: ILAction [
     <category: 'Iliad-Core-Sessions'>
     <comment: nil>
     
-    initialize [
-	<category: 'initialization'>
-	super initialize.
-	key := (ILId new: 6) greaseString
-    ]
-
     stateRegistry [
 	<category: 'accessing'>
 	^stateRegistry

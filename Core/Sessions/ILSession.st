@@ -327,6 +327,7 @@ ILObject subclass: ILSession [
 	| action |
 	action := ILAction new
 	    block: aBlock;
+	    key: self nextId;
 	    stateRegistry: self stateRegistry;
 	    yourself.
 	self registerAction: action.
