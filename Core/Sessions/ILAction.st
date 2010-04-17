@@ -44,13 +44,17 @@ ILObject subclass: ILAction [
     initialize [
 	<category: 'initialization'>
 	super initialize.
-	stateRegistry := self session stateRegistry.
 	key := (ILId new: 6) greaseString
     ]
 
     stateRegistry [
 	<category: 'accessing'>
 	^stateRegistry
+    ]
+
+    stateRegistry: aStateRegistry [
+	<category: 'accessing'>
+	stateRegistry := aStateRegistry
     ]
 
     block [

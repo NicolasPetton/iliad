@@ -60,14 +60,7 @@ TestCase subclass: ILWidgetTest [
 	    c3 markDirty.
 	    self assert: (self session dirtyWidgets includes: c3).
 	    self assert: (self session dirtyWidgets includes: c2).
-	    self assert: (self session dirtyWidgets includes: c1).
-	    self session clearWidgets.
-
-	    c3 removeDependentWidget: c2.
-	    c2 removeDependentWidget: c1.
-	    c3 markDirty.
-	    self assert: (self session dirtyWidgets size = 1).
-	    self assert: (self session dirtyWidgets includes: c3)]
+	    self assert: (self session dirtyWidgets includes: c1)]
     ]
 
     testRetrieveControl [
@@ -117,14 +110,24 @@ TestCase subclass: ILWidgetTest [
 	"To build widget, we have to create a fake session,
 	with a context, aRequest and an application"
 		
-	| context app |
+	| context app stateRegistry |
+	stateRegistry := ILStateRegistry new.
+	stateRegistry 
+	    register: c1;
+	    register: c2;
+	    register: c3.
 	app := ILApplication new.
 	context := ILContext new 
 	    application: app;
 	    request: (ILRequest new 
 		url: (ILUrl absolute: '/'));
 	    session: ILSession new;
+	    previousStateRegistry: stateRegistry;
 	    yourself.
+	context stateRegistry 
+	    register: c1; 
+	    register: c2; 
+	    register: c3.
 	ILCurrentContext 
 	    use: context
 	    during: [app respondOn: ILResponse new].

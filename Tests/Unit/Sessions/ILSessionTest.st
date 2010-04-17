@@ -24,18 +24,6 @@ TestCase subclass: ILSessionTest [
 	self assert: session actionRegistries size = 0
     ]
 
-    testDirtyWidgets [
-	<category: 'testing'>
-	| widget1 widget2 |
-	widget1 := ILWidget new.
-	widget2 := ILWidget new.
-	session addDirtyWidget: widget1.
-	self assert: (session dirtyWidgets includes: widget1).
-	session addDirtyWidget: widget2.
-	self assert: (session dirtyWidgets includes: widget2).
-	self assert: session dirtyWidgets size = 2.
-    ]
-
     testExpire [
 	<category: 'testing'>
 	| s |
