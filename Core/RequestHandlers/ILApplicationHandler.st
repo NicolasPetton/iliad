@@ -47,13 +47,6 @@ ILRequestHandler subclass: ILApplicationHandler [
 	actions := OrderedCollection new
     ]
 
-    lastAction [
-	<category: 'accessing'>
-	actions notEmpty
-	    ifTrue: [^actions last]
-	    ifFalse: [^nil]
-    ]
-
     evaluateActions [
 	<category: 'request handling'>
 	self getActionsFromRequest.
