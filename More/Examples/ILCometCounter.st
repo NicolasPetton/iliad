@@ -70,11 +70,13 @@ Iliad.ILWidget subclass: ILCometCounter [
 
     increase [
 	counter increase.
+	self markDirty.
 	self triggerCometEvent: ILCounterChangedEvent new
     ]
 
     decrease [
 	counter decrease.
+	self markDirty.
 	self triggerCometEvent: ILCounterChangedEvent new
     ]
 ]

@@ -50,7 +50,7 @@ ILObject subclass: ILCometSubscription [
 
     push [
 	<category: 'accessing'>
-	self session addDirtyWidget: self widget.
+	self widget markDirty.
 	self handler push
     ]
 ]

@@ -63,9 +63,7 @@ ILRequestHandler subclass: ILApplicationHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	self isRequestValid 
-	    ifTrue: [self evaluateActions]
-	    ifFalse: [ILRedirectHandler new handleRequest].
+	self evaluateActions.
 	self shouldReturnEmptyResponse ifTrue: [
 	    self returnResponse: ILResponse ok].
 	self shouldRespondInJson ifTrue: [
@@ -82,12 +80,6 @@ ILRequestHandler subclass: ILApplicationHandler [
 	self addAllowHeaderTo: response.
 	self session useCookies ifTrue: [self addCookieHeaderTo: response].
 	self session refreshOnBacktrack ifTrue: [self addNoCacheHeaderTo: response]]
-    ]
-
-    isRequestValid [
-	<category: 'testing'>
-	^self context previousStateRegistry notNil 
-	    or: [self request actionField isNil and: [self request isGet]]
     ]
 
     shouldRedirect [

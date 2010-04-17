@@ -109,9 +109,11 @@ ILObject subclass: ILCometHandler [
 	^self class sessionManager
     ]
 
-    allHandlers [
+    otherHandlers [
 	<category: 'accessing'>
-	^self sessionManager sessions collect: [:each | each cometHandler]
+	^(self sessionManager sessions 
+	    collect: [:each | each cometHandler])
+	    reject: [:each | each = self]
     ]
 
     subscribe: aWidget to: anEventClass condition: aBlock [
@@ -125,7 +127,7 @@ ILObject subclass: ILCometHandler [
 
     triggerEvent: anEvent [
 	<category: 'actions'>
-	self allHandlers do: [:each |
+	self otherHandlers do: [:each |
 	    each handleEvent: anEvent]
     ]
 
