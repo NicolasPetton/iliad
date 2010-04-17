@@ -83,7 +83,7 @@ ILObject subclass: ILCometHandler [
 	    <category: 'private'>
 	    (Delay forSeconds: 3 * 60) wait.
 	    self sessionManager sessions do: [:each | 
-		each comeHandler push]
+		each cometHandler push]
 	]
 	
     ]
