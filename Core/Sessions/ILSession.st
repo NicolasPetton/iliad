@@ -322,14 +322,19 @@ ILObject subclass: ILSession [
 	^nil
     ]
 
-    registerActionFor: aBlock [
+    actionFor: aBlock [
 	<category: 'actions'>
-	| action |
-	action := ILAction new
+	^ILAction new
 	    block: aBlock;
 	    key: self nextId;
 	    stateRegistry: self stateRegistry;
-	    yourself.
+	    yourself
+    ]
+
+    registerActionFor: aBlock [
+	<category: 'actions'>
+	| action |
+	action := self actionFor: aBlock.
 	self registerAction: action.
 	^action
     ]
