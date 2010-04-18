@@ -48,10 +48,12 @@ ILObject subclass: ILCometSubscription [
 	condition := aBlock
     ]
 
-    push [
-	<category: 'accessing'>
-	self widget markDirty.
-	self handler push
+    handleEvent: anEvent [
+	<category: 'actions'>
+	((anEvent isKindOf: self eventClass) and: [
+	    self condition value: anEvent]) ifTrue: [
+		self widget markDirty.
+		self handler shouldPush]
     ]
 ]
 

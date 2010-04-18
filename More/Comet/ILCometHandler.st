@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILCometHandler [
-    | session subscriptions semaphores |
+    | session subscriptions semaphores shouldPush|
 
     <category: 'Iliad-More-Comet'>
     <comment: nil>
@@ -91,6 +91,7 @@ ILObject subclass: ILCometHandler [
     initialize [
 	<category: 'initialization'>
 	super initialize.
+	shouldPush := false.
 	semaphores := OrderedCollection new.
 	subscriptions := OrderedCollection new
     ]
@@ -134,10 +135,8 @@ ILObject subclass: ILCometHandler [
 
     handleEvent: anEvent [
 	<category: 'actions'>
-	(subscriptions 
-	    select: [:each | anEvent isKindOf: each eventClass])
-	    do: [:each | 
-		(each condition value: anEvent) ifTrue: [each push]].
+	subscriptions do: [:each | each handleEvent: anEvent].
+	shouldPush ifTrue: [self push]
     ]
 
     waitForEvent [
@@ -151,7 +150,13 @@ ILObject subclass: ILCometHandler [
     push [
 	<category: 'actions'>
 	semaphores do: [:each | each signal].
-	semaphores := OrderedCollection new
+	semaphores := OrderedCollection new.
+	shouldPush := false
+    ]
+
+    shouldPush [
+	<category: 'actions'>
+	shouldPush := true
     ]
 ]
 
