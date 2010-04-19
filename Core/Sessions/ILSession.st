@@ -288,9 +288,7 @@ ILObject subclass: ILSession [
     newStateRegistry [
 	<category: 'states'>
 	| registry |
-	registry := self stateRegistries isEmpty
-	    ifTrue: [ILStateRegistry new]
-	    ifFalse: [ILStateRegistry fromRegistry: self stateRegistries last].
+	registry := ILStateRegistry new.
 	self stateRegistries add: registry.
 	^registry
     ]

@@ -104,7 +104,7 @@ ILObject subclass: ILStateRegistry [
 
 	| dirtyWidgets |
 	dirtyWidgets := OrderedCollection new.
-	self  widgets do: [:each |
+	self widgets do: [:each |
 	    (self stateAt: each) = each state ifFalse: [
 		dirtyWidgets add: each]].
 	^dirtyWidgets
