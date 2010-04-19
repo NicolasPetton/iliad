@@ -148,6 +148,11 @@ ILXHTMLElement subclass: ILFormElement [
 	self isMultipart 
 	    ifTrue: [self onSubmit: 'iliad.evaluateMultipartFormAction(this);']
 	    ifFalse: [self onSubmit: 'iliad.evaluateFormAction(this); return false;'].
+	self add: (ILInputElement new
+	    beHidden;
+	    name: self context urlBuilder stateKey;
+	    value: self session stateRegistry key;
+	    yourself).
 	self session shouldUseSessionField ifTrue: [
 	    self add: (ILInputElement new
 		beHidden;

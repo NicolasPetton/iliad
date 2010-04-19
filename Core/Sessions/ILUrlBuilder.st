@@ -41,7 +41,7 @@ ILObject subclass: ILUrlBuilder [
     <category: 'Iliad-Core-Sessions'>
 
     ILUrlBuilder class [
-	| actionKey hashKey sessionKey ajaxUploadKey rewriteRules |
+	| actionKey hashKey sessionKey ajaxUploadKey stateKey rewriteRules |
 
 	rewriteRules [
 	    "Rewrite rules are used to replace patterns in the baseUrl"
@@ -75,6 +75,11 @@ ILObject subclass: ILUrlBuilder [
 	    ^ajaxUploadKey ifNil: [ajaxUploadKey := self defaultAjaxUploadKey]
 	]
 
+	stateKey [
+	    <category: 'accessing'>
+	    ^stateKey ifNil: [stateKey := self defaultStateKey]
+	]
+
 	defaultActionKey [
 	    <category: 'defaults'>
 	    ^'_action'
@@ -94,6 +99,11 @@ ILObject subclass: ILUrlBuilder [
 	    <category: 'defaults'>
 	    ^'_ajax_upload'
 	]
+
+	defaultStateKey [
+	    <category: 'defaults'>
+	    ^'_state'
+	]
     ]
 
     actionKey [
@@ -109,6 +119,11 @@ ILObject subclass: ILUrlBuilder [
     sessionKey [
 	<category: 'accessing'>
 	^self class sessionKey
+    ]
+
+    stateKey [
+	<category: 'accessing'>
+	^self class stateKey
     ]
 
     rewriteRules [
@@ -147,6 +162,7 @@ ILObject subclass: ILUrlBuilder [
 	<category: 'generating'>
 	^self baseUrl
 	    addParameter: self actionKey value: aKey;
+	    addParameter: self stateKey value: self session stateRegistry key;
 	    yourself
     ]
 

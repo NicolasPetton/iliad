@@ -102,17 +102,15 @@ A can be accessed through ILObject>>context'>
 
     stateRegistry [
 	<category: 'accessing'>
-	^stateRegistry ifNil: [stateRegistry := self session newStateRegistry]
+	^stateRegistry ifNil: [
+	    stateRegistry := (self session stateRegistryAt: self request stateField) 
+		ifNil: [self session newStateRegistry]]
     ]
 
     previousStateRegistry [
 	<category: 'accessing'>
-	^previousStateRegistry
-    ]
-
-    previousStateRegistry: aStateRegistry [
-	<category: 'accessing'>
-	previousStateRegistry := aStateRegistry
+	^previousStateRegistry ifNil: [
+	    previousStateRegistry := (self session stateRegistryAt: self request stateField) copy]
     ]
 ]
 

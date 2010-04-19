@@ -36,21 +36,11 @@
 
 
 ILObject subclass: ILAction [
-    | key block value stateRegistry |
+    | key block value |
     
     <category: 'Iliad-Core-Sessions'>
     <comment: nil>
     
-    stateRegistry [
-	<category: 'accessing'>
-	^stateRegistry
-    ]
-
-    stateRegistry: aStateRegistry [
-	<category: 'accessing'>
-	stateRegistry := aStateRegistry
-    ]
-
     block [
 	<category: 'accessing'>
 	^block

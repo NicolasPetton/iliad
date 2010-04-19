@@ -99,12 +99,12 @@ ILObject subclass: ILStateRegistry [
     ]
 
     dirtyWidgets [
-	"Answer all widgets which state has changed compared to the current state registry"
+	"Answer all widgets which state has changed"
 	<category: 'states'>
 
 	| dirtyWidgets |
 	dirtyWidgets := OrderedCollection new.
-	self context stateRegistry widgets do: [:each |
+	self  widgets do: [:each |
 	    (self stateAt: each) = each state ifFalse: [
 		dirtyWidgets add: each]].
 	^dirtyWidgets
