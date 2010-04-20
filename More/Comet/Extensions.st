@@ -1,26 +1,23 @@
 ILWidget extend [
 
-    pushOnCometEvent: anEventClass condition: aBlock [
+    subscribeToCometEvent: anEventClass [
 	"Register the receiver to push its contents to the client when the event <anEvent> occurs."
 	<category: '*Iliad-More-Comet'>
 
 	self session cometHandler
 	    subscribe: self
 	    to: anEventClass
-	    condition: aBlock
-    ]
-
-    pushOnCometEvent: anEventClass [
-	"Register the receiver to push its contents to the client when the event <anEvent> occurs."
-	<category: '*Iliad-More-Comet'>
-	
-	self pushOnCometEvent: anEventClass condition: [:event | true]
     ]
 
     triggerCometEvent: anEvent [
 	"Update all widgets which registered to the event <anEvent>"
 	<category: '*Iliad-More-Comet'>
 	self session cometHandler triggerEvent: anEvent
+    ]
+
+    handleCometEvent: anEvent [
+	<category: '*Iliad-More-Comet'>
+	self markDirty
     ]
 ]
 

@@ -58,7 +58,7 @@ Iliad.ILWidget subclass: ILCometCounter [
     initialize [
 	super initialize.
 	counter := ILCounterModel instance.
-	self pushOnCometEvent: ILCounterChangedEvent
+	self subscribeToCometEvent: ILCounterChangedEvent
     ]
 
     contents [

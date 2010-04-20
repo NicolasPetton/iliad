@@ -1,5 +1,5 @@
 ILObject subclass: ILCometSubscription [
-    | handler widget eventClass condition |
+    | handler widget eventClass |
 
     <category: 'Iliad-More-Comet'>
 
@@ -38,22 +38,11 @@ ILObject subclass: ILCometSubscription [
 	eventClass := aClass
     ]
 
-    condition [
-	<category: 'accessing'>
-	^condition
-    ]
-
-    condition: aBlock [
-	<category: 'accessing'>
-	condition := aBlock
-    ]
-
     handleEvent: anEvent [
 	<category: 'actions'>
-	((anEvent isKindOf: self eventClass) and: [
-	    self condition value: anEvent]) ifTrue: [
-		self widget markDirty.
-		self handler shouldPush]
+	(anEvent isKindOf: self eventClass) ifTrue: [
+	    self widget handleCometEvent: anEvent.
+	    self handler shouldPush]
     ]
 ]
 
