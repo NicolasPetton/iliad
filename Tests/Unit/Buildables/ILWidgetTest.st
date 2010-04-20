@@ -100,6 +100,18 @@ TestCase subclass: ILWidgetTest [
 		self assert: (str contents matchRegex: '.*test widget 1.*')]
     ]
 
+    testDirtyWidget [
+	<category: 'testing'>
+	self withSessionDo: [
+		self assert: (self session dirtyWidgets isEmpty).
+		c1 markDirty.
+		self assert: (self session dirtyWidgets includes: c1).
+		self deny: (self session dirtyWidgets includes: c2).
+		c2 markDirty.
+		self assert: (self session dirtyWidgets includes: c1).
+		self assert: (self session dirtyWidgets includes: c2).]
+    ]
+
     session [
 	<category: 'private'>
 	^ILCurrentContext value session
@@ -107,33 +119,28 @@ TestCase subclass: ILWidgetTest [
 
     withSessionDo: aBlock [
 	<category: 'private'>
-	"To build widget, we have to create a fake session,
+	"To build widgets, we have to create a fake session,
 	with a context, aRequest and an application"
-		
-	| context app stateRegistry |
-	stateRegistry := ILStateRegistry new.
-	stateRegistry 
-	    register: c1;
-	    register: c2;
-	    register: c3.
+	
+	| context app request |
+	request := ILRequest new.
 	app := ILApplication new.
 	context := ILContext new 
-	    application: app;
-	    request: (ILRequest new 
-		url: (ILUrl absolute: '/'));
-	    session: ILSession new;
-	    previousStateRegistry: stateRegistry;
-	    yourself.
-	context stateRegistry 
-	    register: c1; 
-	    register: c2; 
-	    register: c3.
+		application: app;
+		session: ILSession new;
+		request: request;
+		yourself.
+	context request url: (ILUrl absolute: '/').
+	context request fields: (Dictionary with: ('_state' -> context stateRegistry key)).	
 	ILCurrentContext 
-	    use: context
-	    during: [app respondOn: ILResponse new].
-	ILCurrentContext 
-	    use: context
-	    during: aBlock
+		use: context
+		during: [
+			context stateRegistry 
+				register: c1;
+				register: c2;
+				register: c3.
+			app respondOn: ILResponse new.
+			aBlock value.]
     ]
 ]
 
