@@ -142,6 +142,11 @@ fragment:		<String> or nil'>
 	^self asString
     ]
 
+    asString [
+	<category: 'converting'>
+	^self printString
+    ]
+
     pathString [
 	"Answer the path converted to a string."
 
