@@ -11,6 +11,7 @@
   <filein>ILWidgetTabs.st</filein>
   <filein>ILViewTabs.st</filein>
   <filein>ILPaginator.st</filein>
+  <filein>ILWidgetsPaginator.st</filein>
   <filein>ILDataGrid.st</filein>
   <filein>ILPagedDataGrid.st</filein>
   <filein>ILTree.st</filein>
@@ -26,6 +27,7 @@
   <file>ILWidgetTabs.st</file>
   <file>ILViewTabs.st</file>
   <file>ILPaginator.st</file>
+  <file>ILWidgetsPaginator.st</file>
   <file>ILDataGrid.st</file>
   <file>ILPagedDataGrid.st</file>
   <file>ILTree.st</file>
