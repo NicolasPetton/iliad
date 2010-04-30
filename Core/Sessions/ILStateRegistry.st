@@ -51,7 +51,7 @@ ILObject subclass: ILStateRegistry [
     initialize [
 	<category: 'initialize-release'>
 	super initialize.
-	key := (ILId new: 8) asString
+	key := self session nextId
     ]
 
     key [

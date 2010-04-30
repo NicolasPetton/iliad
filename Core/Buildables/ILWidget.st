@@ -101,7 +101,6 @@ added to the decoration chain with #decorateWith:.'>
 	super initialize.
 	decorator := ILDecorator decoratee: self.
 	dependentWidgets := OrderedCollection new.
-	state := ILId new
     ]
 
     postCopy [
@@ -109,7 +108,7 @@ added to the decoration chain with #decorateWith:.'>
 	super postCopy.
 	decorator := ILDecorator decoratee: self.
 	dependentWidgets := OrderedCollection new.
-	state := ILId new.
+	state := nil.
 	id := nil
     ]
 
@@ -125,7 +124,7 @@ added to the decoration chain with #decorateWith:.'>
 
     id [
 	<category: 'accessing'>
-	^id ifNil: [id := ILId new: 8]
+	^id ifNil: [id := self session nextId]
     ]
  
     owner: aWidget [
@@ -429,7 +428,7 @@ added to the decoration chain with #decorateWith:.'>
 	"You shouldn't call this method directly unless you know what you are doing."
 	<category: 'states'>
 	
-	state := ILId new
+	state := self session nextId
     ]
   
     setAppended [
