@@ -118,13 +118,12 @@ ILObject subclass: ILCometHandler [
 		each cometHandler]
     ]
 
-    subscribe: aWidget to: anEventClass condition: aBlock [
+    subscribe: aWidget to: anEventClass [
 	<category: 'accessing'>
 	subscriptions add: (ILCometSubscription new
 	    handler: self;
 	    widget: aWidget;
-	    eventClass: anEventClass;
-	    condition: aBlock)
+	    eventClass: anEventClass)
     ]
 
     triggerEvent: anEvent [
