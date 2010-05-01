@@ -78,5 +78,11 @@ ILApplication subclass: ILCounterApplication [
 			ILCounter new.
 			ILCounter new}]
     ]
+
+    updatePage: aPage [
+	<category: 'building'>
+	super updatePage: aPage.
+	aPage head stylesheet href: '/stylesheets/iliad.css'
+    ]
 ]
 
