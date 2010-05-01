@@ -68,8 +68,7 @@ My subclasses must override #buildContents method, which should return an instan
 
     build [
 	<category: 'building'>
-	self withActionRegistry: [
-	    ^self buildContents]	
+	^self buildContents
     ]
 
     buildContents [
@@ -99,13 +98,4 @@ My subclasses must override #buildContents method, which should return an instan
 	<category: 'converting'>
 	self build respondOn: aResponse
     ]
-
-    withActionRegistry: aBlock [
-	<category: 'private'>
-	ILCurrentActionRegistry 
-	    use: (self session actionRegistryFor: self)
-	    during: aBlock
-    ]
 ]
-
-

@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILSession [
-    | id preferences others timestamps expired redirectUrl applications actionRegistries stateRegistries nextId |
+    | id preferences others timestamps expired redirectUrl applications actionRegistry stateRegistries nextId |
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
@@ -59,9 +59,9 @@ ILObject subclass: ILSession [
 	redirectUrl := nil
     ]
 
-    clearActionRegistries [
+    clearActionRegistry [
 	<category: 'cleaning'>
-	actionRegistries := nil
+	actionRegistry := nil
     ]
 
     clearStateRegistries [
@@ -293,31 +293,15 @@ ILObject subclass: ILSession [
 	^registry
     ]
 
-    actionRegistries [
+    actionRegistry [
 	<category: 'actions'>
-	^actionRegistries ifNil: [
-	    actionRegistries := OrderedCollection new]
-    ]
-
-    actionRegistryFor: aWidget [
-	<category: 'actions'>
-	^self actionRegistries 
-	    detect: [:each | each owner = aWidget]
-	    ifNone: [self newActionRegistryFor: aWidget]
-    ]
-    
-    newActionRegistryFor: aWidget [
-	<category: 'actions'>
-	^self actionRegistries add: (ILActionRegistry owner: aWidget)
+	^actionRegistry ifNil: [
+	    actionRegistry := ILActionRegistry new]
     ]
 
     actionAt: aKeyString [
 	<category: 'actions'>
-	| action |
-	self actionRegistries do: [:each |
-	    action := each actionAt: aKeyString.
-	    action ifNotNil: [^action]].
-	^nil
+	^self actionRegistry actionAt: aKeyString
     ]
 
     actionFor: aBlock [
@@ -338,13 +322,12 @@ ILObject subclass: ILSession [
 
     registerAction: anAction [
 	<category: 'actions'>
-	ILCurrentActionRegistry value register: anAction
+	self actionRegistry register: anAction
     ]
 
     evaluateActionKey: aString [
 	<category: 'actions'>
-	self actionRegistries do: [:each |
-	    each evaluateActionKey: aString]
+	self actionRegistry evaluateActionKey: aString
     ]
 
     redirect [
@@ -394,8 +377,7 @@ ILObject subclass: ILSession [
 
     expire [
 	<category: 'private'>
-	self actionRegistries do: [:each | 
-	    each unregisterAllActions].
+	self actionRegistry unregisterAllActions.
 	expired := true
     ]
 
