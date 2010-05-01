@@ -44,7 +44,7 @@ ILObject subclass: ILBuildable [
     
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am an abstract buildable object. 
-My subclasses must override #buildContents method, which should return an instance of a subclass of Iliad.ILElement.'>
+My subclasses must override #build method, which should return an instance of a subclass of Iliad.ILElement.'>
 
     attributeAt: aSymbol [
 	<category: 'accessing attributes'>
@@ -67,11 +67,6 @@ My subclasses must override #buildContents method, which should return an instan
     ]
 
     build [
-	<category: 'building'>
-	^self buildContents
-    ]
-
-    buildContents [
 	"Override this method in subclasses.
 	It must answer an Element"
 	<category: 'building'>

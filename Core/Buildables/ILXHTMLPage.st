@@ -55,7 +55,7 @@ ILBuildable subclass: ILXHTMLPage [
 	^self attributeAt: #html ifAbsentPut: [ILHtmlElement new]
     ]
 
-    buildContents [
+    build [
 	<category: 'building'>
 	^self html
 	    add: self head;

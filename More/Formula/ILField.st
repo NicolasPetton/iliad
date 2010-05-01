@@ -142,7 +142,7 @@ ILBuildable subclass: ILField [
 	action value: self value
     ]
 
-    buildContents [
+    build [
 	<category: 'building'>
 	^Iliad.ILXHTMLElement new 
 	    build: self tableRowContents;

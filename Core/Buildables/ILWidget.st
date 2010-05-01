@@ -164,9 +164,10 @@ added to the decoration chain with #decorateWith:.'>
 	^self context stateRegistry
     ]
 
-    buildContents [
+    build [
 	"Do *not* override this method. Use #contents instead"
 	<category: 'building'>
+
 	self registerState.
 	self buildHead: self application page head.	
 	
@@ -178,7 +179,6 @@ added to the decoration chain with #decorateWith:.'>
 
     buildHead: aHead [
 	<category: 'building'>
-
 	decorator updateHead: aHead
     ]
 

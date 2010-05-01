@@ -39,10 +39,8 @@ ILObject subclass: ILActionRegistry [
     | actions |
     
     <category: 'Iliad-Core-Sessions'>
-    <comment: 'I implement a registry of actions.
+    <comment: 'I implement a registry of actions.'>
     
-    Action registries should always be stored in Iliad sessions.'>
-
     actionAt: aKey [
 	<category: 'accessing'>
 	^self actions 

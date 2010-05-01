@@ -171,7 +171,7 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	    yourself
     ]
 
-    buildContents [
+    build [
 	"Call #dispatch. A buildable is expected from #dispatch"
 	<category: 'building'>
 	
