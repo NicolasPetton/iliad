@@ -203,7 +203,7 @@ var iliad = (function() {
 	}
 
 	function isMultipart(form) {
-		return jQuery(form).attr('name') == "multipart/form-data";
+		return jQuery(form).attr('enctype') == "multipart/form-data";
 	}
 
 	function getFormActionUrl(form) {
