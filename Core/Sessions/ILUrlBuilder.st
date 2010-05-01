@@ -155,15 +155,24 @@ ILObject subclass: ILUrlBuilder [
 
     urlForAction: anAction [
 	<category: 'generating'>
-	^self urlForActionKey: anAction key
+	^self urlForAction: anAction hash: ''
     ]
 
-    urlForActionKey: aKey [
+    urlForAction: anAction hash: aHashString [
 	<category: 'generating'>
-	^self baseUrl
-	    addParameter: self actionKey value: aKey;
-	    addParameter: self stateKey value: self session stateRegistry key;
-	    yourself
+	^self urlForActionKey: anAction key hash: aHashString
+    ]
+
+    urlForActionKey: aKeyString hash: aHashString [
+	<category: 'generating'>
+	| url |
+	url := self baseUrl.
+	url
+	    addParameter: self actionKey value: aKeyString;
+	    addParameter: self stateKey value: self session stateRegistry key.
+	aHashString notEmpty ifTrue: [
+	    url addParameter: self hashKey value: aHashString].
+	^url
     ]
 
     urlForRedirection: aString [

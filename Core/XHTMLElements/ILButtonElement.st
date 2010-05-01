@@ -46,18 +46,6 @@ ILFormElementElement subclass: ILButtonElement [
 	^'button'
     ]
 
-    action: aBlock [
-	<category: 'accessing attributes'>
-	super action: aBlock.
-	self onClick: 'iliad.enableSubmitAction(this);'
-    ]
-
-    action: aBlock hash: aString [
-	<category: 'accessing attributes'>
-	self action: aBlock.
-	self onClick: 'iliad.enableSubmitAction(this, "', aString, '");'
-    ]
-
     beButton [
 	<category: 'accessing attributes'>
 	self type: 'button'

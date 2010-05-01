@@ -44,7 +44,7 @@ var iliad = (function() {
 	var hash           = "";
 	var actionsLocked  = false;
 	var ie67           = false;
-	var ajaxLoader = false;
+	var ajaxLoader     = false;
 	
 
 	/* ---
@@ -66,22 +66,50 @@ var iliad = (function() {
 			iframe.location.title = window.title;
 		}
 		checkHashChange();
+		enableAjaxActions()
 	}
 
+	function enableAjaxActions() {
+		jQuery(document).click(function(e) {
+			var anchor = jQuery(e.target).closest("a");
+			if(anchor.length == 1) {
+				if(hasActionUrl(anchor)) {
+					evaluateAnchorAction(anchor);
+					e.preventDefault()
+				}
+			}
+			var button = jQuery(e.target).closest("button");
+			if(button.length == 1) {
+				enableSubmitAction(button);
+				evaluateFormElementAction(button);
+				e.preventDefault()
+			}
+
+		})
+	}
+	
 
 	/* ---
 	 * Action evaluation
 	 * -------------------------------------------------------------- */
 
-	 function evaluateAnchorAction(anchor, hashString) {
-		var actionUrl = jQuery(anchor).attr('href');
-		evaluateAction(actionUrl);
-		if(hashString) setHash(hashString);
+	 function evaluateAnchorAction(anchor) {
+		if(hasActionUrl(anchor)) {
+			var actionUrl = jQuery(anchor).attr('href');
+			evaluateAction(actionUrl);
+			if(hasHashUrl(anchor)) {
+				setHash(hashUrl(anchor));
+			}
+		}
 	}
 
 	function evaluateFormElementAction(formElement) {
 		var form = jQuery(formElement).closest("form");
-		evaluateFormAction(form);
+		if(isMultipart(form)) {
+			evaluateMultipartFormAction(form);
+		} else {
+			evaluateFormAction(form);
+		}
 	}
 
 	function enableSubmitAction(button) {
@@ -162,6 +190,20 @@ var iliad = (function() {
 		if(anchor && jQuery(anchor).attr('href')) {
 			return (/_action?=(.*)$/).test(jQuery(anchor).attr('href'));
 		}
+	}
+
+	function hasHashUrl(anchor) {
+		if(anchor && jQuery(anchor).attr('href')) {
+			return (/_hash?=(.*)$/).test(jQuery(anchor).attr('href'));
+		}
+	}
+
+	function hashUrl(anchor) {
+		return /_hash=([^\#|\&]+)/.exec(anchor.attr('href'))[1]
+	}
+
+	function isMultipart(form) {
+		return jQuery(form).attr('name') == "multipart/form-data";
 	}
 
 	function getFormActionUrl(form) {

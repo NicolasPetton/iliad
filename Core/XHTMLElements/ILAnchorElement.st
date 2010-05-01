@@ -51,8 +51,9 @@ ILLinkableElement subclass: ILAnchorElement [
 	
 	| action |
 	action := self session registerActionFor: aBlock.
-	self href: (self context urlBuilder urlForAction: action).
-	self onClick: ('iliad.evaluateAnchorAction(this, "', aString, '"); return false;')
+	self href: (self context urlBuilder 
+	    urlForAction: action 
+	    hash: aString)
     ]
 
     tag [
