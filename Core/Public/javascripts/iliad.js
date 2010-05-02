@@ -70,19 +70,17 @@ var iliad = (function() {
 	}
 
 	function enableAjaxActions() {
-		jQuery(document).click(function(e) {
-			var anchor = jQuery(e.target).closest("a");
+		jQuery(document).click(function(event) {
+			var anchor = jQuery(event.target).closest("a");
 			if(anchor.length == 1) {
 				if(hasActionUrl(anchor)) {
-					evaluateAnchorAction(anchor);
-					e.preventDefault()
+					evaluateAnchorAction(anchor, event);
 				}
 			}
-			var button = jQuery(e.target).closest("button");
+			var button = jQuery(event.target).closest("button");
 			if(button.length == 1) {
 				enableSubmitAction(button);
-				evaluateFormElementAction(button);
-				e.preventDefault()
+				evaluateFormElementAction(button, event);
 			}
 
 		})
@@ -93,22 +91,24 @@ var iliad = (function() {
 	 * Action evaluation
 	 * -------------------------------------------------------------- */
 
-	 function evaluateAnchorAction(anchor) {
+	 function evaluateAnchorAction(anchor, event) {
 		if(hasActionUrl(anchor)) {
 			var actionUrl = jQuery(anchor).attr('href');
 			evaluateAction(actionUrl);
 			if(hasHashUrl(anchor)) {
 				setHash(hashUrl(anchor));
-			}
+			};
+			event.preventDefault();
 		}
 	}
 
-	function evaluateFormElementAction(formElement) {
+	function evaluateFormElementAction(formElement, event) {
 		var form = jQuery(formElement).closest("form");
 		if(isMultipart(form)) {
 			evaluateMultipartFormAction(form);
 		} else {
 			evaluateFormAction(form);
+			event.preventDefault();
 		}
 	}
 
@@ -130,7 +130,6 @@ var iliad = (function() {
 
 	function evaluateMultipartFormAction(form) {
 		if(!actionsLocked) {
-			lockActions();
 			var hidden = "<input type='hidden' name='_ajax_upload'></input>";
 			var upload_target = jQuery('#_upload_target');
 			if(upload_target.size() == 0) {
@@ -140,7 +139,6 @@ var iliad = (function() {
 				upload_target.appendTo('body');
 			}
 			upload_target.one('load', function(e) {
-				unlockActions();
 				evaluateAction('?_state='+jQuery(form).find('input[name=_state]').val());
 			});
 			jQuery(form).append(hidden);
@@ -151,11 +149,10 @@ var iliad = (function() {
 	}
 
 
-	function evaluateAction(actionUrl, method, data, lock, showLoader) {
+	function evaluateAction(actionUrl, method, data, lock) {
 		if(!actionsLocked) {
 			if(!method) method = 'get';
-			if(lock === null) lock = true;
-			if(showLoader === null) showLoader = true;
+			if(lock == null) lock = true;
 			if(lock) lockActions();
 			jQuery.ajax({
 				url: actionUrl,
@@ -180,10 +177,12 @@ var iliad = (function() {
 
 	function lockActions() {
 		actionsLocked = true;
+		jQuery('button[type=submit]').attr({'disabled': 'true'});
 	}
 
 	function unlockActions() {
 		actionsLocked = false;
+		jQuery('button[type=submit]').attr({'disabled': ''});
 	}
 
 	function hasActionUrl(anchor) {
