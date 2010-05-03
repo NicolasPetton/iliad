@@ -1,4 +1,3 @@
-
 TestCase subclass: ILDispatcherTest [
     | dispatcher app1 app2 request1 request2 |
     
@@ -13,7 +12,15 @@ TestCase subclass: ILDispatcherTest [
 	request1 := ILRequest new 
 	    url: (ILUrl absolute: '/test/foo').
 	request2 := ILRequest new
-	    url: (ILUrl absolute: '/test')
+	    url: (ILUrl absolute: '/test').
+	ILApplicationMock1 path: 'test'.
+	ILApplicationMock2 path: 'test/foo'
+    ]
+
+    tearDown [
+	<category: 'running'>
+	ILApplicationMock1 path: nil.
+	ILApplicationMock2 path: nil
     ]
 
     testApplicationClass [

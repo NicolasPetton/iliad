@@ -48,15 +48,9 @@ ILObject subclass: ILStateRegistry [
 	    yourself
     ]
 
-    initialize [
-	<category: 'initialize-release'>
-	super initialize.
-	key := self session nextId
-    ]
-
     key [
-	<category: 'initialize-release'>
-	^key copy
+	<category: 'accessing'>
+	^key ifNil: [key := self session nextId]
     ]
 
     stateAt: aWidget [

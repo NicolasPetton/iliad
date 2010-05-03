@@ -3,6 +3,18 @@ TestCase subclass: ILUrlBuilderTest [
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Sessions'>
 
+    setUp [
+	<category: 'running'>
+	ILApplicationMock1 path: 'test'.
+	ILApplicationMock2 path: 'test/foo'
+    ]
+
+    tearDown [
+	<category: 'running'>
+	ILApplicationMock1 path: nil.
+	ILApplicationMock2 path: nil
+    ]
+
     testAbsolutePath [
 	<category: 'testing'>
 	| app1 app2 |

@@ -1,4 +1,3 @@
-
 TestCase subclass: ILWidgetTest [
     | c1 c2 c3 c4 |
 
@@ -130,17 +129,17 @@ TestCase subclass: ILWidgetTest [
 		session: ILSession new;
 		request: request;
 		yourself.
-	context request url: (ILUrl absolute: '/').
-	context request fields: (Dictionary with: ('_state' -> context stateRegistry key)).	
 	ILCurrentContext 
 		use: context
 		during: [
-			context stateRegistry 
-				register: c1;
-				register: c2;
-				register: c3.
-			app respondOn: ILResponse new.
-			aBlock value.]
+		    context request url: (ILUrl absolute: '/').
+		    context request fields: (Dictionary with: ('_state' -> context stateRegistry key)).	
+		    context stateRegistry 
+			register: c1;
+			register: c2;
+			register: c3.
+		    app respondOn: ILResponse new.
+		    aBlock value]
     ]
 ]
 
