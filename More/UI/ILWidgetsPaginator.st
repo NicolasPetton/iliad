@@ -4,11 +4,6 @@ ILUIWidget subclass: ILWidgetsPaginator [
     <category: 'Iliad-More-UI'>
     <comment: nil>
 
-    cssClass [
-	<category: 'accessing'>
-	^super cssClass, ' widgets_paginator'
-    ]
-
     paginator [
 	<category: 'accessing'>
 	^ILPaginator new

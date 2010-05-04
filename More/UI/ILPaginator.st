@@ -7,6 +7,11 @@ ILUIWidget subclass: ILPaginator [
     <comment: nil>
     <category: 'Iliad-More-UI'>
 
+    cssClass [
+	<category: 'accessing'>
+	^super cssClass, ' paginator'
+    ]
+
     contents [
 	<category: 'building'>
 	^[:e | 
