@@ -26,7 +26,7 @@ ILUIWidget subclass: ILPaginator [
 				    text: '<<';
 				    action: [self selectPage: self currentPage - 1].
 			    div space].
-			(1 to: self totalPages) do: [:each | 
+			self range do: [:each | 
 			    self currentPage = each 
 				ifTrue: [div span class: 'selected'; text: each greaseString]
 				ifFalse: [
@@ -61,6 +61,21 @@ ILUIWidget subclass: ILPaginator [
 	<category: 'accessing'>
 	currentPage := anObject.
 	self markDirty
+    ]
+
+    range [
+	<category: 'accessing'>
+	^self rangeStart to: self rangeEnd
+    ]
+
+    rangeStart [
+	<category: 'accessing'>
+	^1 max: self currentPage - 5
+    ]
+
+    rangeEnd [
+	<category: 'accessing'>
+	^self totalPages min: self currentPage + 5
     ]
 
     totalPages [
