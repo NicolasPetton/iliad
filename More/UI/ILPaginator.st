@@ -20,7 +20,7 @@ ILUIWidget subclass: ILPaginator [
 		build: [:div |
 		    self totalPages > 1 ifTrue: [
 			self currentPage = 1 
-			    ifTrue: [div text: '<< ']
+			    ifTrue: [div span text: '<< ']
 			    ifFalse: [
 				div a
 				    text: '<<';
@@ -28,14 +28,14 @@ ILUIWidget subclass: ILPaginator [
 			    div space].
 			(1 to: self totalPages) do: [:each | 
 			    self currentPage = each 
-				ifTrue: [div text: each greaseString]
+				ifTrue: [div span class: 'selected'; text: each greaseString]
 				ifFalse: [
 				    div a
 					text: each greaseString;
 					action: [self selectPage: each]].
 			    div space].
 		    self currentPage = totalPages 
-			ifTrue: [div text: '>>']
+			ifTrue: [div span text: '>>']
 			ifFalse: [
 			    div a
 				text: '>>';
