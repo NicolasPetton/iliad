@@ -20,7 +20,7 @@ ILUIWidget subclass: ILPaginator [
 		build: [:div |
 		    self totalPages > 1 ifTrue: [
 			self currentPage = 1 
-			    ifTrue: [e text: '<< ']
+			    ifTrue: [div text: '<< ']
 			    ifFalse: [
 				div a
 				    text: '<<';
