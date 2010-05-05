@@ -75,7 +75,7 @@ ILElement subclass: ILTextElement [
     printHtmlOn: aStream [
 	<category: 'printing'>
 	self printOpenTagOn: aStream.
-	aStream nextPutAll: (ILEncoder encodeForHTTP: self contents).
+	ILEncoder encodeForHTTP: self contents on: aStream.
 	self printCloseTagOn: aStream
     ]
 ]

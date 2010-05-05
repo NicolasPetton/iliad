@@ -224,17 +224,19 @@ fragment:		<String> or nil'>
 	    aStream nextPutAll: (first 
 		ifTrue: [first := false. '?']
 		ifFalse: [aBoolean ifTrue: ['&amp;'] ifFalse: ['&']]).
-	    aStream nextPutAll: (ILEncoder encodeUrl: key).
-	    value ifNotNil: 
-		[aStream nextPut: $=.
-		aStream nextPutAll: (ILEncoder encodeUrl: value greaseString)]]
+	    ILEncoder encodeUrl: key on: aStream.
+	    value ifNotNil: [
+		aStream nextPut: $=.
+		ILEncoder encodeUrl: value greaseString on: aStream]]
     ]
 
     encodePathOn: aStream [
 	<category: 'encoding'>
 	path ifNil: [^self].
 	aStream nextPut: $/.
-	path do: [:each | aStream nextPutAll: (ILEncoder encodeUrl: each)]
+	path 
+	    do: [:each | 
+		ILEncoder encodeUrl: each on: aStream]
 	    separatedBy: [aStream nextPut: $/]
     ]
 
@@ -244,23 +246,20 @@ fragment:		<String> or nil'>
 	aStream
 	    nextPutAll: scheme;
 	    nextPutAll: '://'.
-	username notNil 
-	    ifTrue: [
-		aStream nextPutAll: (ILEncoder encodeUrl: username).
-		password notNil 
-		    ifTrue: [
-			aStream nextPut: $:.
-			aStream nextPutAll: (ILEncoder encodeUrl: password)].
-		aStream nextPut: $@].
-	aStream nextPutAll: (ILEncoder encodeUrl: hostname).
-	port notNil 
-	    ifTrue: [
-		((scheme = 'http' and: [port = 80]) 
-		    or: [scheme = 'https' and: [port = 443]]) 
-			ifFalse: [
-			    aStream
-				nextPut: $:;
-				print: port]]
+	username notNil ifTrue: [
+	    ILEncoder encodeUrl: username on: aStream.
+	    password notNil ifTrue: [
+		aStream nextPut: $:.
+		ILEncoder encodeUrl: password on: aStream].
+	    aStream nextPut: $@].
+	ILEncoder encodeUrl: hostname on: aStream.
+	port notNil ifTrue: [
+	    ((scheme = 'http' and: [port = 80]) 
+		or: [scheme = 'https' and: [port = 443]]) 
+		    ifFalse: [
+			aStream
+			    nextPut: $:;
+			    print: port]]
     ]
 
     fragment [

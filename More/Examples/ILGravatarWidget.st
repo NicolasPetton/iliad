@@ -51,8 +51,8 @@ ILWidget subclass: ILGravatarWidget [
 	    stream 
 		nextPut: $?;
 		nextPutAll: key;
-		nextPut: $=;
-		nextPutAll: (ILEncoder encodeUrl: value)].
+		nextPut: $=.
+	    ILEncoder encodeUrl: value on: stream].
 	^stream contents
     ]
 
