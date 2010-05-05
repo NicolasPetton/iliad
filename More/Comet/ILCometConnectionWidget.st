@@ -15,7 +15,7 @@ ILWidget subclass: ILCometConnectionWidget [
 	<category: 'building'>
 	^[:e || action | 
 	    action := self session registerActionFor: [self push].
-	    e script: 'jQuery(document).ready(function() {iliad.evaluateAction("', (self context urlBuilder urlForAction: action) greaseString, '")})']
+	    e script: 'jQuery(document).ready(function() {iliad.evaluateAction("', (self context urlBuilder urlForAction: action) greaseString, '", "get", "", false)})']
     ]
 ]
 
