@@ -177,12 +177,10 @@ var iliad = (function() {
 
 	function lockActions() {
 		actionsLocked = true;
-		jQuery('button[type=submit]').attr({'disabled': 'true'});
 	}
 
 	function unlockActions() {
 		actionsLocked = false;
-		jQuery('button[type=submit]').attr({'disabled': ''});
 	}
 
 	function hasActionUrl(anchor) {
