@@ -44,7 +44,7 @@ ILWidget subclass: ILSequence [
     build [
 	<category: 'building'>
 	self shouldStart ifTrue: [self start].
-	^super buildContents
+	^super build
     ]
 
     contents [
