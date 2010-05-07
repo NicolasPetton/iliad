@@ -41,7 +41,7 @@ ILWidget subclass: ILSequence [
     <category: 'Iliad-Core-Buildables'>
     <comment: nil>
 
-    buildContents [
+    build [
 	<category: 'building'>
 	self shouldStart ifTrue: [self start].
 	^super buildContents
