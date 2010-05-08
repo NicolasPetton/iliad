@@ -78,9 +78,9 @@ ILField subclass: ILOptionField [
 
     value [
 	<category: 'accessing'>
-	(value isNil and: [self isMultiple]) ifTrue: [
-	    value := OrderedCollection new].
-	^value
+	(super value isNil and: [self isMultiple]) ifTrue: [
+	    ^OrderedCollection new].
+	^super value
     ]
 
     add: anObject [

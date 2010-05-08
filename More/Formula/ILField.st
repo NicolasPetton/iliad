@@ -38,27 +38,37 @@
 
 
 ILBuildable subclass: ILField [
-    | conditions errors key labelContents commentContents value action |
+    | conditions errors reader writer labelContents commentContents formula |
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
 
-    ILField class >> on: aSelector of: anObject [
+    ILField class >> on: aFormula selector: aSelector [
 	<category: 'instance creation'>
 	^self new
-	    on: aSelector
-	    of: anObject;
+	    on: aFormula
+	    selector: aSelector;
 	    yourself
     ]
 
-    key [
+    reader [
 	<category: 'accessing'>
-	^key
+	^reader
     ]
 
-    key: aSymbol [
+    reader: aSymbol [
 	<category: 'accessing'>
-	key := aSymbol
+	reader := aSymbol
+    ]
+
+    writer [
+	<category: 'accessing'>
+	^writer
+    ]
+
+    writer: aSymbol [
+	<category: 'accessing'>
+	writer := aSymbol
     ]
 
     label: aString [
@@ -93,12 +103,14 @@ ILBuildable subclass: ILField [
 
     value [
 	<category: 'accessing'>
-	^value
+	^formula proxy perform: self reader
     ]
 
     value: anObject [
 	<category: 'accessing'>
-	value := anObject
+	formula proxy 
+	    perform: self writer
+	    with: anObject
     ]
 
     errors [
@@ -109,11 +121,6 @@ ILBuildable subclass: ILField [
     conditions [
 	<category: 'accessing'>
 	^conditions ifNil: [conditions := OrderedCollection new]
-    ]
-
-    setAction: aBlock [
-	<category: 'accessing'>
-	action := aBlock
     ]
 
     addCondition: aCondition [
@@ -135,11 +142,6 @@ ILBuildable subclass: ILField [
 	self conditions do: [:each |
 	    (each validate: self value) ifFalse: [
 		self errors add: (each labelFor: self value)]].
-    ]
-
-    commit [
-	<category: 'actions'>
-	action value: self value
     ]
 
     build [
@@ -196,12 +198,11 @@ ILBuildable subclass: ILField [
 	^false
     ]
 
-    on: aSelector of: anObject [
+    on: aFormula selector: aSelector [
 	<category: 'private'>
-	key ifNil: [key := aSelector].
+	reader ifNil: [reader := aSelector].
+	writer ifNil: [writer := (aSelector, ':') asSymbol].
 	labelContents ifNil: [self label: aSelector greaseString].
-	value := anObject perform: aSelector.
-	action := [:val | 
-	    anObject perform: (aSelector, ':') asSymbol with: val]
+	formula := aFormula
     ]
 ]

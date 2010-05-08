@@ -43,12 +43,6 @@ ILField subclass: ILDateInputField [
     <category: 'Iliad-More-Formula'>
     <comment: nil>
 
-    initialize [
-	<category: 'initialization'>
-	super initialize.
-	self value: Date today
-    ]
-
     yearsInterval [
 	<category: 'accessing'>
 	^yearsInterval ifNil: [
@@ -58,6 +52,11 @@ ILField subclass: ILDateInputField [
     yearsInterval: anInterval [
 	<category: 'accessing'>
 	yearsInterval := anInterval
+    ]
+
+    value [
+	<category: 'accessing'>
+	^super value ifNil: [Date today]
     ]
 
     value: aDate [

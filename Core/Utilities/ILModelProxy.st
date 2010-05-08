@@ -68,16 +68,6 @@ Object subclass: ILModelProxy [
 		    ifFalse: [super doesNotUnderstand: aMessage]]
     ]
 
-    name [
-	<category: 'forwarding'>
-	^model name
-    ]
-
-    value [
-	<category: 'forwarding'>
-	^model value
-    ]
-
     model [
 	<category: 'accessing'>
 	^model

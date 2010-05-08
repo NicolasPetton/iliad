@@ -38,7 +38,7 @@
 
 
 ILWidget subclass: ILFormula [
-    | model fields buttons saveAction cancelAction |
+    | proxy conditions fields buttons saveAction cancelAction errors |
 	
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -48,6 +48,39 @@ ILWidget subclass: ILFormula [
 	^self new
 	    setModel: anObject;
 	    yourself
+    ]
+
+    model [
+	<category: 'accessing'>
+	^proxy model
+    ]
+
+    proxy [
+	<category: 'accessing'>
+	^proxy
+    ]
+
+    conditions [
+	<category: 'accessing'>
+	^conditions ifNil: [conditions := OrderedCollection new]
+    ]
+
+    errors [
+	<category: 'accessing'>
+	^errors ifNil: [errors := OrderedCollection new]
+    ]
+
+    addCondition: aCondition [
+	<category: 'accessing'>
+	self conditions add: aCondition
+    ]
+
+    addCondition: aBlock labelled: anotherBlock [
+	<category: 'conditions'>
+	self addCondition: (ILCondition new
+	    conditionBlock: aBlock;
+	    labelBlock: anotherBlock;
+	    yourself)
     ]
 
     fields [
@@ -97,7 +130,7 @@ ILWidget subclass: ILFormula [
 
     defaultSaveAction [
 	<category: 'defaults'>
-	^[:model | self answer: model]
+	^[:model | self answer: self model]
     ]
 
     defaultCancelAction [
@@ -112,47 +145,47 @@ ILWidget subclass: ILFormula [
 
     inputOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILInputField on: aSelector of: model)
+	^self addField: (ILInputField on: self selector: aSelector)
     ]
 
     textareaOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILTextareaField on: aSelector of: model)
+	^self addField: (ILTextareaField on: self selector: aSelector)
     ]
 
     checkboxOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILCheckboxField on: aSelector of: model)
+	^self addField: (ILCheckboxField on: self selector: aSelector)
     ]
 
     passwordOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILPasswordField on: aSelector of: model)
+	^self addField: (ILPasswordField on: self selector: aSelector)
     ]
 
     dateInputOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILDateInputField on: aSelector of: model)
+	^self addField: (ILDateInputField on: self selector: aSelector)
     ]
 
     selectOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILSelectField on: aSelector of: model)
+	^self addField: (ILSelectField on: self selector: aSelector)
     ]
 
     multipleCheckboxOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILMultipleCheckboxField on: aSelector of: model)
+	^self addField: (ILMultipleCheckboxField on: self selector: aSelector)
     ]
 
     fileInputOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILFileInputField on: aSelector of: model)
+	^self addField: (ILFileInputField on: self selector: aSelector)
     ]
 
     autocompleteInputOn: aSelector [
 	<category: 'adding'>
-	^self addField: (ILAutocompleteInputField on: aSelector of: model)
+	^self addField: (ILAutocompleteInputField on: self selector: aSelector)
     ]
 
     do: aBlock [
@@ -196,13 +229,16 @@ ILWidget subclass: ILFormula [
     contents [
 	<category: 'building'>
 	^[:e |
-	    (e div class: 'formula')
-		form build: [:form |
-		    form multipart: self isMultipart.
-		    form table tbody build: self tableContents.
-		    form div 
-			class: 'buttons';
-			build: self buttonsContents]]
+	    e div 
+		class: 'formula';
+		build: self errorsContents;
+		build: [:div |
+		    div form build: [:form |
+			form multipart: self isMultipart.
+			form table tbody build: self tableContents.
+			form div 
+			    class: 'buttons';
+			    build: self buttonsContents]]]
     ]
 
     tableContents [
@@ -221,6 +257,17 @@ ILWidget subclass: ILFormula [
 		    action: [self perform: each value]]]
     ]
 
+    errorsContents [
+	<category: 'building'>
+	^[:e |
+	    self errors notEmpty ifTrue: [
+		e ul
+		    class: 'errors';
+		    build: [:ul |
+			self errors do: [:each |
+			    ul li text: each]]]]
+	]
+
     save [
 	<category: 'actions'>
 	self 
@@ -228,23 +275,27 @@ ILWidget subclass: ILFormula [
 	    markDirty.
 	self isValid ifTrue: [
 	    self commit.
-	    self saveAction cull: model]
+	    self saveAction cull: self model]
     ]
 
     cancel [
 	<category: 'actions'>
-	self cancelAction cull: model
+	self cancelAction cull: self model
     ]
 
     commit [
 	<category: 'actions'>
-	self fields do: [:each |
-	    each commit]
+	proxy commit
     ]
 
     validate [
 	<category: 'actions'>
-	self fields do: [:each | each validate]
+	errors := OrderedCollection new.
+	self fields do: [:each | each validate].
+	self isValid ifTrue: [
+	    self conditions do: [:each |
+		(each validate: self proxy) ifFalse: [
+		    self errors add: (each labelFor: self proxy)]]]
     ]
 
     isEmpty [
@@ -256,7 +307,7 @@ ILWidget subclass: ILFormula [
 	<category: 'testing'>
 	self fields do: [:each |
 	    each isValid ifFalse: [^false]].
-	^true
+	^self errors isEmpty
     ]
 
     isMultipart [
@@ -266,6 +317,6 @@ ILWidget subclass: ILFormula [
 
     setModel: anObject [
 	<category: 'private'>
-	model := anObject
+	proxy := ILModelProxy on: anObject
     ]
 ]
