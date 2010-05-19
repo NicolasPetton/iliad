@@ -157,6 +157,6 @@ and wait for a ILResponseNotification to respond to them.'>
 
     findSessionFor: aRequest [
 	<category: 'private'>
-	^ILSessionManager current findOrMakeSessionFor: aRequest
+	^ILSessionManager current sessionFor: aRequest
     ]
 ]    
