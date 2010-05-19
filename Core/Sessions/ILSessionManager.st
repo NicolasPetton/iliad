@@ -123,7 +123,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	sessions at: aSession id greaseString put: aSession
     ]
 
-    findOrMakeSessionFor: aRequest [
+    sessionFor: aRequest [
 	"Answer the according session for <aRequest>.
 	the session id may be found from <aRequest> cookies or <aRequest> fields.
 	If no session is found, create and return a new one"
@@ -132,7 +132,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	
 	self shouldRemoveExpiredSessions ifTrue: [
 	    self removeExpiredSessions].
-	^self findOrMakeSessionWithId: (self sessionIdFromRequest: aRequest)
+	^self findOrMakeSessionFor: aRequest 
     ]
 
     sessionsDo: aBlock [
@@ -158,19 +158,21 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^sessions values includes: aSession
     ]
 
-    findOrMakeSessionWithId: anId [
-	"find and answer  a not expired session with id <anId>.
-	Create a new session is no session found"
+    findOrMakeSessionFor: aRequest [
+	"Answer a valid session for <aRequest>.
+	Create a new session if no session is found"
 	<category: 'private'>
 
-	| session |
-	session := sessions at: anId ifAbsent: [^self newSession].
+	| session id |
+	id := self sessionIdFromRequest: aRequest.
+	session := sessions at: id ifAbsent: [^self newSession].
 	session isExpired
 	    ifFalse: [
 		session setModifiedTimestamp.
 		^session]
 	    ifTrue: [
 		self removeSession: session.
+		session handleExpired: aRequest.
 		^self newSession]
     ]
 

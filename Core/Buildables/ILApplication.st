@@ -48,11 +48,19 @@ I am is the root object of a buildable object tree. Applications have a
 set of controllers, methods used to dispatch requests to the corresponding 
 sub-tree of buildable objects (oftenly a composition of stateful widgets).
 
-You don''t have to bother about instantiating applications, the framework 
-will handle session and application instances. 
-
 In concrete subclasses, the class method #path should return the base path 
 (string) for the application.
+
+
+"""""""""""""""""""""""""""
+" Applications & UI state "
+"""""""""""""""""""""""""""
+
+You don''t have to bother about instantiating applications, the framework 
+will handle session and application instances. Application instances are stored 
+in sessions. Each session stores one instance of the same application class.
+
+Root widgets should be stored in applications to keep their state across requests.
 
 
 """"""""""""""""""""""

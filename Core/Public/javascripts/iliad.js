@@ -168,7 +168,7 @@ var iliad = (function() {
 					unlockActions();
 				},
 				error: function(err) {
-					showError(actionUrl);
+					showError(err, actionUrl);
 					unlockActions();
 				}
 			});
@@ -318,7 +318,7 @@ var iliad = (function() {
 			"<img src='/images/ajax_loader.gif'/></div>");
 	}
 
-	function showError(actionUrl){
+	function showError(error, actionUrl){
 		//jQuery("body").html("<h1>Error 500: Internal server error</h1>");
 	}
 

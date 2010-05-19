@@ -273,6 +273,10 @@ ILObject subclass: ILSession [
 	^'en'
     ]
 
+    handleExpired: aRequest [
+	<category: 'events'>
+    ]
+
     stateRegistries [
 	<category: 'states'>
 	^stateRegistries ifNil: [stateRegistries := OrderedCollection new]

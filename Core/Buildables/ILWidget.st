@@ -431,20 +431,6 @@ added to the decoration chain with #decorateWith:.'>
 	state := self session nextId
     ]
   
-    setAppended [
-	"You shouldn't call this method directly."
-	<category: 'states'>
-	
-	^self session addWidgetToAppend: self
-    ]
-
-    setPrepended [
-	"You shouldn't call this method directly."
-	<category: 'states'>
-	
-	^self session addWidgetToPrepend: self
-    ]
-
     printJsonOn: aStream [
 	<category: 'printing'>
 	self build printJsonOn: aStream
