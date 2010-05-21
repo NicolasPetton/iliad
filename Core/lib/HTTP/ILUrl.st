@@ -151,7 +151,7 @@ fragment:		<String> or nil'>
 	"Answer the path converted to a string."
 
 	<category: 'converting'>
-	^String streamContents: [:stream | self encodePathOn: stream]
+	^String streamContents: [:stream | self printPathOn: stream encoded: false]
     ]
 
     relativeTo: anUrl [
@@ -195,27 +195,15 @@ fragment:		<String> or nil'>
 		ifTrue: [port := (httpHost copyAfter: $:) asNumber]]
     ]
 
-    encodeFragmentOn: aStream [
+    printOn: aStream encoded: aBoolean usingHtmlEntities: anotherBoolean [
 	<category: 'encoding'>
-	fragment ifNil: [^self].
-	aStream nextPut: $#.
-	aStream nextPutAll: (ILEncoder encode: fragment)
+	self printServerOn: aStream encoded: aBoolean.
+	self printPathOn: aStream encoded: aBoolean.
+	self printParametersOn: aStream encoded: aBoolean usingHtmlEntities: anotherBoolean.
+	self printFragmentOn: aStream encoded: aBoolean
     ]
 
-    encodeOn: aStream [
-	<category: 'encoding'>
-	self encodeOn: aStream usingHtmlEntities: true
-    ]
-
-    encodeOn: aStream usingHtmlEntities: aBoolean [
-	<category: 'encoding'>
-	self encodeServerOn: aStream.
-	self encodePathOn: aStream.
-	self encodeParametersOn: aStream usingHtmlEntities: aBoolean.
-	self encodeFragmentOn: aStream
-    ]
-
-    encodeParametersOn: aStream usingHtmlEntities: aBoolean [
+    printParametersOn: aStream encoded: aBoolean usingHtmlEntities: anotherBoolean [
 	<category: 'encoding'>
 	| first |
 	first := true.
@@ -223,36 +211,36 @@ fragment:		<String> or nil'>
 	parameters keysAndValuesDo: [:key :value | 
 	    aStream nextPutAll: (first 
 		ifTrue: [first := false. '?']
-		ifFalse: [aBoolean ifTrue: ['&amp;'] ifFalse: ['&']]).
-	    ILEncoder encodeUrl: key on: aStream.
+		ifFalse: [anotherBoolean ifTrue: ['&amp;'] ifFalse: ['&']]).
+	    ILEncoder printUrl: key encoded: aBoolean on: aStream.
 	    value ifNotNil: [
 		aStream nextPut: $=.
-		ILEncoder encodeUrl: value greaseString on: aStream]]
+		ILEncoder printUrl: value greaseString encoded: aBoolean on: aStream]]
     ]
 
-    encodePathOn: aStream [
+    printPathOn: aStream encoded: aBoolean [
 	<category: 'encoding'>
 	path ifNil: [^self].
 	aStream nextPut: $/.
 	path 
 	    do: [:each | 
-		ILEncoder encodeUrl: each on: aStream]
+		ILEncoder printUrl: each encoded: aBoolean on: aStream]
 	    separatedBy: [aStream nextPut: $/]
     ]
 
-    encodeServerOn: aStream [
+    printServerOn: aStream encoded: aBoolean [
 	<category: 'encoding'>
 	hostname ifNil: [^self].
 	aStream
 	    nextPutAll: scheme;
 	    nextPutAll: '://'.
 	username notNil ifTrue: [
-	    ILEncoder encodeUrl: username on: aStream.
+	    ILEncoder printUrl: username encoded: aBoolean on: aStream.
 	    password notNil ifTrue: [
 		aStream nextPut: $:.
-		ILEncoder encodeUrl: password on: aStream].
+		ILEncoder printUrl: password encoded: aBoolean on: aStream].
 	    aStream nextPut: $@].
-	ILEncoder encodeUrl: hostname on: aStream.
+	ILEncoder printUrl: hostname encoded: aBoolean on: aStream.
 	port notNil ifTrue: [
 	    ((scheme = 'http' and: [port = 80]) 
 		or: [scheme = 'https' and: [port = 443]]) 
@@ -260,6 +248,13 @@ fragment:		<String> or nil'>
 			aStream
 			    nextPut: $:;
 			    print: port]]
+    ]
+
+    printFragmentOn: aStream encoded: aBoolean [
+	<category: 'encoding'>
+	fragment ifNil: [^self].
+	aStream nextPut: $#.
+	ILEncoder printUrl: fragment encoded: aBoolean on: aStream
     ]
 
     fragment [
@@ -491,9 +486,19 @@ fragment:		<String> or nil'>
 	    yourself
     ]
 
+    printOn: aStream encoded: aBoolean [
+	<category: 'printing'>
+	self printOn: aStream encoded: aBoolean usingHtmlEntities: false
+    ]
+
     printOn: aStream [
 	<category: 'printing'>
-	self encodeOn: aStream usingHtmlEntities: false
+	self printOn: aStream encoded: true
+    ]
+
+    printEncodedOn: aStream [
+	<category: 'printing'>
+	self printOn: aStream encoded: false usingHtmlEntities: true
     ]
 ]
 

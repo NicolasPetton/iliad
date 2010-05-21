@@ -123,7 +123,7 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	    nextPut: Character space;
 	    nextPutAll: anAttribute key;
 	    nextPutAll: '="'.
-	ILEncoder encodeForHTTP: anAttribute value greaseString on: aStream.
+	anAttribute value printEncodedOn: aStream.
 	aStream nextPut: $"
     ]
 

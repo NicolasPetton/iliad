@@ -4,7 +4,14 @@ Object subclass: ILEncoder [
     <comment: nil>
 
     ILEncoder class [
-    
+
+	printUrl: aString encoded: aBoolean on: aStream [
+	    <category: 'encoding'>
+	    aBoolean 
+		ifTrue: [self encodeUrl: aString on: aStream]
+		ifFalse: [aStream nextPutAll: aString]
+	]
+
 	encodeUrl: aString on: aStream[
 	    <category: 'encoding'>
 	    aString do: [:char |

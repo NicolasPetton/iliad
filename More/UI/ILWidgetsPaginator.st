@@ -1,4 +1,4 @@
-ILUIWidget subclass: ILWidgetsPaginator [
+ILWidget subclass: ILWidgetsPaginator [
     | widgets currentPage widgetsPerPage |
 
     <category: 'Iliad-More-UI'>
@@ -64,11 +64,8 @@ ILUIWidget subclass: ILWidgetsPaginator [
     contents [
 	<category: 'building'>
 	^[:e |
-	    e div 
-		class: self cssClass;
-		build: [:div |
-		    self visibleWidgets do: [:each |
-			div build: each]];
-		build: self paginator]
+	    self visibleWidgets do: [:each |
+		e build: each].
+	    e build: self paginator]
     ]
 ]
