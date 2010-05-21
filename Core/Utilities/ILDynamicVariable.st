@@ -36,28 +36,40 @@
 
 
 
-Grease.GRNotification subclass: ILDynamicVariable [
+Object subclass: ILDynamicVariable [
     <category: 'Iliad-Core-Utilities'>
     <comment: nil>
 
-    ILDynamicVariable class >> defaultValue [
-	<category: 'defaults'>
-	^nil
-    ]
+    ILDynamicVariable class [
+	| processVariable |
 
-    ILDynamicVariable class >> use: aContext during: aBlock [
-	<category: 'evaluating'>
-	^aBlock on: self do: [:notification | notification resume: aContext]
-    ]
+	defaultValue [
+	    <category: 'defaults'>
+	    ^nil
+	]
 
-    ILDynamicVariable class >> value [
-	<category: 'evaluating'>
-	^self signal
-    ]
+	use: anObject during: aBlock [
+	    <category: 'evaluating'>
+	    ^self processVariable use: anObject during: aBlock
+	]
 
-    defaultAction [
-	<category: 'defaults'>
-	^self class defaultValue
+	value [
+	    <category: 'evaluating'>
+	    ^self processVariable value
+	]
+	
+	processVariable [ 
+	    ^processVariable ifNil: [ 
+		processVariable := ProcessEnvironment uniqueInstance associationAt: self]
+	]
     ]
 ]
 
+ProcessVariable extend [
+    use: anObject during: aBlock [
+	| oldValue |
+	oldValue := self value.
+	self value: anObject.
+	^aBlock ensure: [self value: oldValue]
+    ]
+]
