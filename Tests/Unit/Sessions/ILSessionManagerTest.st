@@ -46,18 +46,28 @@ TestCase subclass: ILSessionManagerTest [
 
     testFindSession [
 	<category: 'testing'>
-	| session1 session2 |
+	| session1 session2 request1 request2 |
 	session1 := ILSession new.
+	request1 := ILRequest new
+	    fields: (Dictionary new
+		at: '_session' put: session1 id;
+		yourself);
+	    yourself.
 	session2 := ILSession new.
+	request2 := ILRequest new
+	    fields: (Dictionary new
+		at: '_session' put: session2 id;
+		yourself);
+	    yourself.
 	manager addSession: session1.
 	manager addSession: session2.
-	self assert: (manager findOrMakeSessionWithId: session2 id greaseString) = session2.
-	self assert: (manager findOrMakeSessionWithId: session1 id greaseString) = session1.
+	self assert: (manager findOrMakeSessionFor: request1) = session1.
+	self assert: (manager findOrMakeSessionFor: request2) = session2.
 	manager
 	    removeSession: session2;
 	    removeSession: session1.
-	self deny: (manager findOrMakeSessionWithId: session1 id greaseString) = session1.
-	self deny: (manager findOrMakeSessionWithId: session2 id greaseString) = session2.
+	self deny: (manager findOrMakeSessionFor: request1) = session1.
+	self deny: (manager findOrMakeSessionFor: request2) = session2.
 	session1 := session2 := nil
     ]
 
