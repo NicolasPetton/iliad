@@ -1,4 +1,3 @@
-
 TestCase subclass: ILSessionManagerTest [
     | manager |
     <comment: nil>
@@ -50,13 +49,13 @@ TestCase subclass: ILSessionManagerTest [
 	session1 := ILSession new.
 	request1 := ILRequest new
 	    fields: (Dictionary new
-		at: '_session' put: session1 id;
+		at: '_session' put: session1 id greaseString;
 		yourself);
 	    yourself.
 	session2 := ILSession new.
 	request2 := ILRequest new
 	    fields: (Dictionary new
-		at: '_session' put: session2 id;
+		at: '_session' put: session2 id greaseString;
 		yourself);
 	    yourself.
 	manager addSession: session1.
