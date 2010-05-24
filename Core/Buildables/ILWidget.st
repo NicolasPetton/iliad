@@ -419,12 +419,12 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'states'>
 	
 	self owner
-	    ifNil: [self setDirty]
+	    ifNil: [self beDirty]
 	    ifNotNil: [self owner markDirty].
 	dependentWidgets do: [:each | each markDirty]
     ]
 
-    setDirty [
+    beDirty [
 	"You shouldn't call this method directly unless you know what you are doing."
 	<category: 'states'>
 	
