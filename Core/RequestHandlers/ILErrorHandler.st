@@ -136,7 +136,7 @@ the application mode:
 	info := WriteStream on: ''. 
 	self respond: [:response || page e |
 	    response nextPutAll: (String streamContents: [:stream |
-		page := ILXHTMLPage new.
+		page := ILHTMLPage new.
 		page body h1: 'Internal Error';
 		    h2: self error description;
 		    h3: self error messageText.
@@ -162,7 +162,7 @@ the application mode:
     isDeploymentMode [
         <category: 'testing'>
         ^self isDebugMode not and: [
-    	self isVerboseMode not]
+	self isVerboseMode not]
     ]
 ]
 

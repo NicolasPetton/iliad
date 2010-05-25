@@ -64,7 +64,7 @@ contents
             action: [self doSomething]]
 
 
-See Iliad.ILElement hierarchy (Especially Iliad.ILXHTMLElement ) for more information 
+See Iliad.ILElement hierarchy (Especially Iliad.ILHTMLBuilderElement ) for more information 
 about building HTML with elements.
 
 #contents method should *never* be called from the outside. Use #build instead. 
@@ -445,11 +445,11 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'private'>
 	self withDecoratorsDo: [:each |
 	    each scripts do: [:script || e |
-		e := ILXHTMLElement new javascript src: script.
+		e := ILHTMLBuilderElement new javascript src: script.
 		(aHead children includes: e) ifFalse: [
 		    aHead add: e]].
 	    each styles do: [:script || e |
-		e := ILXHTMLElement new stylesheet href: script.
+		e := ILHTMLBuilderElement new stylesheet href: script.
 		(aHead children includes: e) ifFalse: [
 		    aHead add: e]]]
     ]

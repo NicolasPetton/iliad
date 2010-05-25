@@ -330,7 +330,7 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 
     rootElementClass [
 	<category: 'defaults'>
-	^ILXHTMLElement
+	^ILHTMLBuilderElement
     ]
  
     newRootElement [
