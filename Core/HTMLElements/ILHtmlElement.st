@@ -125,7 +125,7 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 
     printHtmlOn: aStream [
 	<category: 'printing'>
-	super printHtmlOn: aStream
+	super printHtmlOn: aStream.
 	self hasXmlTag ifTrue: [
 	    aStream nextPutAll: self xmlTag].
 	aStream nextPutAll: self doctype
