@@ -42,7 +42,7 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    ILHtmlElement class >> xmlns [
+    xmlns [
 	<category: 'defaults'>
 	^'http://www.w3.org/1999/xhtml'
     ]
@@ -117,7 +117,7 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	self attributeAt: 'xmlns' ifAbsentPut: [self class xmlns].
+	self attributeAt: 'xmlns' ifAbsentPut: [self xmlns].
 	self attributeAt: 'lang' ifAbsentPut: [self session language greaseString].
 	self attributeAt: 'xml:lang' ifAbsentPut: [self session language greaseString]
     ]
