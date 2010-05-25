@@ -42,7 +42,7 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
     <comment: nil>
     <category: 'Iliad-Core-XHTMLElements'>
 
-    xmlns [
+    defaultXmlns [
 	<category: 'defaults'>
 	^'http://www.w3.org/1999/xhtml'
     ]
@@ -110,6 +110,11 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 	self attributeAt: 'xmlns' put: aString
     ]
 
+    xmlns [
+	<category: 'accessing attributes'>
+	^self attributeAt: 'xmlns'
+    ]
+
     onEvent: event add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , event
@@ -117,8 +122,9 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	self attributeAt: 'xmlns' ifAbsentPut: [self xmlns].
 	self attributeAt: 'lang' ifAbsentPut: [self session language greaseString].
+	self hasXmlTag ifFalse: [^self].
+	self attributeAt: 'xmlns' ifAbsentPut: [self defaultXmlns].
 	self attributeAt: 'xml:lang' ifAbsentPut: [self session language greaseString]
     ]
 
@@ -136,6 +142,3 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 	^self xmlTag notNil
     ]
 ]
-
-
-
