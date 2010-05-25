@@ -92,7 +92,7 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 
     setXmlTag [
 	<category: 'accessing'>
-	self xmlTag: '<?xml version="1.0" encoding="', self session encoding, '"?>'
+	self xmlTag: ('<?xml version="1.0" encoding="', self session encoding, '"?>')
     ]
 
     tag [
@@ -125,10 +125,10 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 
     printHtmlOn: aStream [
 	<category: 'printing'>
+	super printHtmlOn: aStream
 	self hasXmlTag ifTrue: [
 	    aStream nextPutAll: self xmlTag].
-	aStream nextPutAll: self doctype.
-	super printHtmlOn: aStream
+	aStream nextPutAll: self doctype
     ]
 
     hasXmlTag [
