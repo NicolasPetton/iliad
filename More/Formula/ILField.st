@@ -146,7 +146,7 @@ ILBuildable subclass: ILField [
 
     build [
 	<category: 'building'>
-	^Iliad.ILXHTMLElement new 
+	^Iliad.ILHTMLBuilderElement new 
 	    build: self tableRowContents;
 	    yourself
     ]
