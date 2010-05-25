@@ -117,7 +117,6 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	self doctype ifNil: [self beXhtml10Strict].
 	self attributeAt: 'xmlns' ifAbsentPut: [self class xmlns].
 	self attributeAt: 'lang' ifAbsentPut: [self session language greaseString].
 	self attributeAt: 'xml:lang' ifAbsentPut: [self session language greaseString]
@@ -125,10 +124,11 @@ ILHTMLBuilderElement subclass: ILHtmlElement [
 
     printHtmlOn: aStream [
 	<category: 'printing'>
-	super printHtmlOn: aStream.
+	self doctype ifNil: [self beXhtml10Strict].
 	self hasXmlTag ifTrue: [
 	    aStream nextPutAll: self xmlTag].
-	aStream nextPutAll: self doctype
+	aStream nextPutAll: self doctype.
+	super printHtmlOn: aStream
     ]
 
     hasXmlTag [
