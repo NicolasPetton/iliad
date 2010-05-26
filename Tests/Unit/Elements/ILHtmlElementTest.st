@@ -18,21 +18,18 @@ ILElementTest subclass: ILHtmlElementTest [
 	    use: context
 	    during: [	
 		e beforePrintHtml.
-		self shouldHaveAttribute: 'xmlns' 
-		    value: 'http://www.w3.org/1999/xhtml'.
 		self shouldHaveAttribute: 'lang' value: 'fr'.
-		self shouldHaveAttribute: 'xml:lang' value: 'fr'.
 			
 		e xmlns: 'foo'. e lang: 'bar'. e xmlLang: 'baz'.
 		e beforePrintHtml.
 		self shouldHaveAttribute: 'xmlns' value: 'foo'.
-		self shouldHaveAttribute: 'lang' value: 'bar'.
-		self shouldHaveAttribute: 'xml:lang' value: 'baz']
+		self shouldHaveAttribute: 'lang' value: 'bar']
 	]
 
     testDocType [
 	<category: 'testing'>
 	| doctype |
+	self withContextDo: [e printHtmlOn: '' writeStream].
 	doctype := e doctype.
 	self assert: (doctype = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">')
     ]
@@ -63,11 +60,9 @@ ILElementTest subclass: ILHtmlElementTest [
     testXmlTag [
 	<category: 'testing'>
 	| xmlTag |
-	ILCurrentContext 
-	    use: (ILContext new session: ILSession new)
-	    during: [
-		xmlTag := e xmlTag.
-		self assert: (xmlTag = '<?xml version="1.0" encoding="utf-8"?>')]
+	self withContextDo: [
+	    e printHtmlOn: '' writeStream.
+	    self assert: (e xmlTag = '<?xml version="1.0" encoding="utf-8"?>')]
     ]
 ]
 
