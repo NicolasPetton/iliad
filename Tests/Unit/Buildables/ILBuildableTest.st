@@ -18,7 +18,7 @@ TestCase subclass: ILBuildableTest [
 	e := ILElement new.
 	buildable := ILBuildableMock new.
 	e build: buildable.
-	self assert: (e children size = 1)
+	self assert: (e children size = 1).
 	self assert: (e children first == buildable rootElement)
     ] 
 
