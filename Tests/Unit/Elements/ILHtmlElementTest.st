@@ -1,4 +1,3 @@
-
 ILElementTest subclass: ILHtmlElementTest [
 
     <comment: nil>

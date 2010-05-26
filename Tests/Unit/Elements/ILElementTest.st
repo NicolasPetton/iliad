@@ -14,6 +14,13 @@ TestCase subclass: ILElementTest [
 	self assert: (e attributes associations includes: aKey -> aValue)
     ]
 
+    withContextDo: aBlock [
+	<category: 'conveniance'>
+	ILCurrentContext 
+	    use: (ILContext new session: ILSession new)
+	    during: aBlock
+    ]
+
     testAttributes [
 	<category: 'testing'>
 	self assert: e attributes isEmpty.
