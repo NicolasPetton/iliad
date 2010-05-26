@@ -89,6 +89,7 @@
     <filein>Unit/Buildables/ILWidgetMock2.st</filein>
     <filein>Unit/Buildables/ILWidgetMock3.st</filein>
     <filein>Unit/Buildables/ILApplicationTest.st</filein>
+    <filein>Unit/Buildables/ILBuilableMock.st</filein>
     <filein>Unit/Buildables/ILWidgetTest.st</filein>
     <file>Unit/RSS/ILRSSRssElementTest.st</file>
     <file>Unit/RSS/ILRSSCategoryElementTest.st</file>
@@ -174,6 +175,7 @@
     <file>Unit/Buildables/ILWidgetMock2.st</file>
     <file>Unit/Buildables/ILWidgetMock3.st</file>
     <file>Unit/Buildables/ILApplicationTest.st</file>
+    <file>Unit/Buildables/ILBuilableMock.st</file>
     <file>Unit/Buildables/ILWidgetTest.st</file>
     <sunit>
       Iliad.ILRSSRssElementTest
@@ -261,6 +263,7 @@
   <filein>Unit/Buildables/ILApplicationMock1.st</filein>
   <filein>Unit/Buildables/ILApplicationMock2.st</filein>
   <filein>Unit/Buildables/ILApplicationTest.st</filein>
+  <filein>Unit/Buildables/ILBuildableMock.st</filein>
   <filein>Unit/Buildables/ILBuildableTest.st</filein>
   <filein>Unit/Buildables/ILWidgetMock1.st</filein>
   <filein>Unit/Buildables/ILWidgetMock2.st</filein>
@@ -346,6 +349,7 @@
   <file>Unit/Buildables/ILApplicationMock1.st</file>
   <file>Unit/Buildables/ILApplicationMock2.st</file>
   <file>Unit/Buildables/ILApplicationTest.st</file>
+  <file>Unit/Buildables/ILBuildableMock.st</file>
   <file>Unit/Buildables/ILBuildableTest.st</file>
   <file>Unit/Buildables/ILWidgetMock1.st</file>
   <file>Unit/Buildables/ILWidgetMock2.st</file>
