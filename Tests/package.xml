@@ -32,6 +32,7 @@
     <filein>Unit/Elements/ILTableDataElementTest.st</filein>
     <filein>Unit/Elements/ILLinkElementTest.st</filein>
     <filein>Unit/Elements/ILFormElementTest.st</filein>
+    <filein>Unit/Elements/ILHTMLBuilderElementTest.st</filein>
     <filein>Unit/Elements/ILHtmlElementTest.st</filein>
     <filein>Unit/Elements/ILHeadingElementTest.st</filein>
     <filein>Unit/Elements/ILMetaElementTest.st</filein>
@@ -65,7 +66,6 @@
     <filein>Unit/Elements/ILAnchorElementTest.st</filein>
     <filein>Unit/Elements/ILElementTest.st</filein>
     <filein>Unit/Elements/ILAreaElementTest.st</filein>
-    <filein>Unit/Elements/ILXHTMLElementTest.st</filein>
     <filein>Unit/Elements/ILSpanElementTest.st</filein>
     <filein>Unit/Elements/ILTableFootElementTest.st</filein>
     <filein>Unit/Elements/ILLabelElementTest.st</filein>
@@ -118,6 +118,7 @@
     <file>Unit/Elements/ILTableDataElementTest.st</file>
     <file>Unit/Elements/ILLinkElementTest.st</file>
     <file>Unit/Elements/ILFormElementTest.st</file>
+    <file>Unit/Elements/ILHTMLBuilderElementTest.st</file>
     <file>Unit/Elements/ILHtmlElementTest.st</file>
     <file>Unit/Elements/ILHeadingElementTest.st</file>
     <file>Unit/Elements/ILMetaElementTest.st</file>
@@ -151,7 +152,6 @@
     <file>Unit/Elements/ILAnchorElementTest.st</file>
     <file>Unit/Elements/ILElementTest.st</file>
     <file>Unit/Elements/ILAreaElementTest.st</file>
-    <file>Unit/Elements/ILXHTMLElementTest.st</file>
     <file>Unit/Elements/ILSpanElementTest.st</file>
     <file>Unit/Elements/ILTableFootElementTest.st</file>
     <file>Unit/Elements/ILLabelElementTest.st</file>
@@ -205,6 +205,7 @@
       Iliad.ILTableDataElementTest
       Iliad.ILLinkElementTest
       Iliad.ILFormElementTest
+      Iliad.ILHTMLBuilderElementTest
       Iliad.ILHtmlElementTest
       Iliad.ILHeadingElementTest
       Iliad.ILMetaElementTest
@@ -238,7 +239,6 @@
       Iliad.ILAnchorElementTest
       Iliad.ILElementTest
       Iliad.ILAreaElementTest
-      Iliad.ILXHTMLElementTest
       Iliad.ILSpanElementTest
       Iliad.ILTableFootElementTest
       Iliad.ILLabelElementTest
@@ -272,7 +272,7 @@
   <filein>Unit/Dispatching/ILDispatcherTest.st</filein>
   <filein>Unit/Dispatching/ILRouteTest.st</filein>
   <filein>Unit/Elements/ILElementTest.st</filein>
-  <filein>Unit/Elements/ILXHTMLElementTest.st</filein>
+  <filein>Unit/Elements/ILHTMLBuilderElementTest.st</filein>
   <filein>Unit/Elements/ILAnchorElementTest.st</filein>
   <filein>Unit/Elements/ILAreaElementTest.st</filein>
   <filein>Unit/Elements/ILBodyElementTest.st</filein>
@@ -358,7 +358,7 @@
   <file>Unit/Dispatching/ILDispatcherTest.st</file>
   <file>Unit/Dispatching/ILRouteTest.st</file>
   <file>Unit/Elements/ILElementTest.st</file>
-  <file>Unit/Elements/ILXHTMLElementTest.st</file>
+  <file>Unit/Elements/ILHTMLBuilderElementTest.st</file>
   <file>Unit/Elements/ILAnchorElementTest.st</file>
   <file>Unit/Elements/ILAreaElementTest.st</file>
   <file>Unit/Elements/ILBodyElementTest.st</file>

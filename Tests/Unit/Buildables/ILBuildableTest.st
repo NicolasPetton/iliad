@@ -6,6 +6,8 @@ TestCase subclass: ILBuildableTest [
 
     testAttributes [
 	<category: 'testing'>
+	| buildable |
+	buildable := ILBuildable new.
 	buildable attributeAt: #foo put: 'bar'.
 	self assert: (buildable attributes at: #foo) = 'bar'
     ]

@@ -21,7 +21,7 @@ Eval [
     filein: 'Unit/Dispatching/ILRouteTest.st';
 
     filein: 'Unit/Elements/ILElementTest.st';
-    filein: 'Unit/Elements/ILXHTMLElementTest.st';
+    filein: 'Unit/Elements/ILHTMLBuilderElementTest.st';
     filein: 'Unit/Elements/ILAnchorElementTest.st';
     filein: 'Unit/Elements/ILAreaElementTest.st';
     filein: 'Unit/Elements/ILBodyElementTest.st';
