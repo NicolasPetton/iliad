@@ -10,6 +10,7 @@ Eval [
     filein: 'Unit/Buildables/ILApplicationMock1.st';
     filein: 'Unit/Buildables/ILApplicationMock2.st';
     filein: 'Unit/Buildables/ILApplicationTest.st';
+    filein: 'Unit/Buildables/ILBuildableMock.st';
     filein: 'Unit/Buildables/ILBuildableTest.st';
     filein: 'Unit/Buildables/ILWidgetMock1.st';
     filein: 'Unit/Buildables/ILWidgetMock2.st';
