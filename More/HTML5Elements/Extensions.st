@@ -1,6 +1,6 @@
 "======================================================================
 |
-|    Smalltalk Classes extensions
+|    HTML5 extensions
 |
  ======================================================================"
 
@@ -34,6 +34,7 @@
  ======================================================================"
 
 
+
 ILHTMLBuilderElement extend [
 
     video [
@@ -66,7 +67,7 @@ ILHTMLBuilderElement extend [
 	^self add: ILDetailsElement new
     ]
 
-    event-source [
+    eventSource [
 	<category: '*Iliad-More-HTML5'>
 	^self add: ILEventSourceElement new
     ]
@@ -91,8 +92,130 @@ ILHTMLBuilderElement extend [
 	^self add: ILSourceElement new
     ]
 
+    search [
+	<category: '*Iliad-More-HTML5'>
+	^self add: ILSearchElement new
+    ]
+
     time [
 	<category: '*Iliad-More-HTML5'>
 	^self add: ILTimeElement new
+    ]
+
+    date [
+	<category: '*Iliad-More-HTML5'>
+	^self input
+	    beDate;
+	    yourself
+    ]
+
+    datetime [
+	<category: '*Iliad-More-HTML5'>
+	^self input
+	    beDatetime;
+	    yourself
+    ]
+
+    datetimeLocal [
+	<category: '*Iliad-More-HTML5'>
+	^self input
+	    beDatetimeLocal;
+	    yourself
+    ]
+
+    timeInput [
+	<category: '*Iliad-More-HTML5'>
+	^self input
+	    beTime;
+	    yourself
+    ]
+
+    range [
+	<category: '*Iliad-More-HTML5'>
+	^self input
+	    beRange;
+	    yourself
+    ]
+
+    number [
+	<category: '*Iliad-More-HTML5'>
+	^self input
+	    beNumber;
+	    yourself
+    ]
+
+    color [
+	<category: '*Iliad-More-HTML5'>
+	^self input
+	    beColor;
+	    yourself
+    ]
+
+    email [
+	<category: '*Iliad-More-HTML5'>
+	^self input
+	    beEmail;
+	    yourself
+    ]
+
+]
+
+
+
+ILInputElement extend [
+
+    step: anInteger [
+	<category: '*Iliad-More-HTML5'>
+	self attributeAt: 'step' put: anInteger greaseString
+    ]
+
+    min: anInteger [
+	<category: '*Iliad-More-HTML5'>
+	self attributeAt: 'min' put: anInteger greaseString
+    ]
+
+    max: anInteger [
+	<category: '*Iliad-More-HTML5'>
+	self attributeAt: 'max' put: anInteger greaseString
+    ]
+
+    beDate [
+	<category: '*ILiad-More-HTML5'>
+	self type: 'date'
+    ]
+
+    beDatetime [
+	<category: '*ILiad-More-HTML5'>
+	self type: 'datetime'
+    ]
+
+    beDatetimeLocal [
+	<category: '*ILiad-More-HTML5'>
+	self type: 'datetime-local'
+    ]
+
+    beTime [
+	<category: '*ILiad-More-HTML5'>
+	self type: 'time'
+    ]
+
+    beRange [
+	<category: '*ILiad-More-HTML5'>
+	self type: 'range'
+    ]
+    
+    beNumber [
+	<category: '*ILiad-More-HTML5'>
+	self type: 'number'
+    ]
+ 
+    beColor [
+	<category: '*ILiad-More-HTML5'>
+	self type: 'color'
+    ]
+ 
+    beEmail [
+	<category: '*ILiad-More-HTML5'>
+	self type: 'email'
     ]
 ]
