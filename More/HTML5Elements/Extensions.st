@@ -87,9 +87,9 @@ ILHTMLBuilderElement extend [
 	^self add: ILSourceElement new
     ]
 
-    search [
+    searchInput [
 	<category: '*Iliad-More-HTML5'>
-	^self add: ILSearchElement new
+	^self add: ILSearchInputElement new
     ]
 
     time [
