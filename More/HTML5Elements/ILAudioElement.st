@@ -31,11 +31,12 @@
 
 
 ILHTMLBuilderElement subclass: ILAudioElement [
-    <category: 'Iliad-Core-XHTMLElements'>
+    <category: 'Iliad-More-HTML5Elements'>
     <comment: 'version 0.6.0.
-This class implements an HTML5 .ogv audio streaming tag. This is
-EXPERIMENTAL code, and it is currently expected to work ONLY on FF 3.5 or higher.
-Specs at http://www.w3.org/TR/html5/video.html' >
+    This class implements an HTML5 .ogv audio streaming tag. This is
+    EXPERIMENTAL code, and it is currently expected to work ONLY on FF 3.5 or higher.
+    Specs at http://www.w3.org/TR/html5/video.html.
+    An audio element represents an audio stream' >
 
     tag [
 	<category: 'accessing'>

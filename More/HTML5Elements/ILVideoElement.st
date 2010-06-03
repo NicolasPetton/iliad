@@ -33,9 +33,10 @@
 ILHTMLBuilderElement subclass: ILVideoElement [
     <category: 'Iliad-Core-XHTMLElements'>
     <comment: 'version 0.6.0.
-This class implements an HTML5 .ogv video streaming tag. This is
-EXPERIMENTAL code, and it is currently expected to work ONLY on FF 3.5 or higher.
-Specs at http://www.w3.org/TR/html5/video.html ' >
+    This class implements an HTML5 .ogv video streaming tag. This is
+    EXPERIMENTAL code, and it is currently expected to work ONLY on FF 3.5 or higher.
+    Specs at http://www.w3.org/TR/html5/video.html.
+    The video element represents a video or movie'>
 
     tag [
 	<category: 'accessing'>

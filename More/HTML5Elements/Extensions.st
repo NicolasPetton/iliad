@@ -67,11 +67,6 @@ ILHTMLBuilderElement extend [
 	^self add: ILDetailsElement new
     ]
 
-    eventSource [
-	<category: '*Iliad-More-HTML5'>
-	^self add: ILEventSourceElement new
-    ]
-
     menu [
 	<category: '*Iliad-More-HTML5'>
 	^self add: ILMenuElement new
