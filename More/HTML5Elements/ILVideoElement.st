@@ -58,9 +58,10 @@ ILHTMLBuilderElement subclass: ILVideoElement [
 	self attributeAt: 'src' put: aString
     ]
 
-    controls [
+    controls: aBoolean [
 	<category: 'accessing attributes'>
-	self attributeAt: 'controls' put: 'controls'
+	aBoolean ifTrue: [
+	    self attributeAt: 'controls' put: 'controls']
     ]
 
     poster: aString [
@@ -83,13 +84,15 @@ ILHTMLBuilderElement subclass: ILVideoElement [
 	self attributeAt: 'preload' put: 'auto'
     ]
 
-    autoplay [
+    autoplay: aBoolean [
 	<category: 'accessing attributes'>
-	self attributeAt: 'autoplay' put: 'autoplay'
+	aBoolean ifTrue: [
+	    self attributeAt: 'autoplay' put: 'autoplay']
     ]
 
-    loop [
+    loop: aBoolean [
 	<category: 'accessing attributes'>
-	self attributeAt: 'loop' put: 'loop'
+	aBoolean ifTrue: [
+	    self attributeAt: 'loop' put: 'loop']
     ]
 ]
