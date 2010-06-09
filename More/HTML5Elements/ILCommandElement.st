@@ -99,9 +99,10 @@ ILHTMLBuilderElement subclass: ILCommandElement [
 	self type: 'radio'
     ]
 
-    hidden [
+    hidden: aBoolean [
 	<category: 'accessing-attributes'>
-	self attributeAt: 'hidden' put: aBoolean
+	aBoolean ifTrue: [
+	    self attributeAt: 'hidden' put: aBoolean]
     ]
 
     icon: aString [

@@ -15,6 +15,7 @@
   <filein>ILTodoListApplication.st</filein>
   <filein>ILGravatarWidget.st</filein>
   <filein>ILCometCounter.st</filein>
+  <filein>HTML5ApplicationExample.st</filein>
   <file>ILCounter.st</file>
   <file>ILCounterApplication.st</file>
   <file>ILTodoListItem.st</file>
@@ -23,4 +24,5 @@
   <file>ILTodoListApplication.st</file>
   <file>ILGravatarWidget.st</file>
   <file>ILCometCounter.st</file>
+  <file>HTML5ApplicationExample.st</file>
 </package>

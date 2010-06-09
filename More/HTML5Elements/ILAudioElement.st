@@ -54,6 +54,11 @@ ILHTMLBuilderElement subclass: ILAudioElement [
 	    self attributeAt: 'controls' put: 'controls']
     ]
 
+    controls [
+	<category: 'accessing'>
+	self controls: true
+    ]
+
     preloadNone [
 	<category: 'accessing attributes'>
 	self attributeAt: 'preload' put: 'none'
@@ -69,10 +74,20 @@ ILHTMLBuilderElement subclass: ILAudioElement [
 	self attributeAt: 'preload' put: 'auto'
     ]
 
+    preload [
+	<category: 'accessing'>
+	self preloadAuto
+    ]
+
     autoplay: aBoolean [
 	<category: 'accessing attributes'>
 	aBoolean ifTrue: [
 	    self attributeAt: 'autoplay' put: 'autoplay']
+    ]
+
+    autoplay [
+	<category: 'accessing'>
+	self autoplay: true
     ]
 
     loop: aBoolean [
