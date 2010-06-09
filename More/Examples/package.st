@@ -17,8 +17,6 @@ Eval [
     filein: 'ILTodoListApplication.st'; 
     filein: 'ILGravatarWidget.st';
     filein: 'ILCometCounter.st';
-    filein: 'HTML5ApplicationExample.st';
-
 
     buildXml
 ]
