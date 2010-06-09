@@ -81,7 +81,7 @@ ILHTMLBuilderElement subclass: ILHeadElement [
 	<category: 'printing'>
 	(self meta)
 	    name: 'Content-Type';
-	    content: self contentType , '; charset=' , self session charset
+	    content: self contentType
     ]
 ]
 
