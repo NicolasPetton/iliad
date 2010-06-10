@@ -1,0 +1,29 @@
+<package>
+  <name>Iliad-More-HTML5Elements</name>
+  <namespace>Iliad</namespace>
+  <prereq>Iliad-Core</prereq>
+  <filein>ILAudioElement.st</filein>
+  <filein>ILCanvasElement.st</filein>
+  <filein>ILCommandElement.st</filein>
+  <filein>ILDetailsElement.st</filein>
+  <filein>ILMenuElement.st</filein>
+  <filein>ILMeterElement.st</filein>
+  <filein>ILProgressElement.st</filein>
+  <filein>ILSearchInputElement.st</filein>
+  <filein>ILSourceElement.st</filein>
+  <filein>ILTimeElement.st</filein>
+  <filein>ILVideoElement.st</filein>
+  <filein>Extensions.st</filein>
+  <file>ILAudioElement.st</file>
+  <file>ILCanvasElement.st</file>
+  <file>ILCommandElement.st</file>
+  <file>ILDetailsElement.st</file>
+  <file>ILMenuElement.st</file>
+  <file>ILMeterElement.st</file>
+  <file>ILProgressElement.st</file>
+  <file>ILSearchInputElement.st</file>
+  <file>ILSourceElement.st</file>
+  <file>ILTimeElement.st</file>
+  <file>ILVideoElement.st</file>
+  <file>Extensions.st</file>
+</package>
