@@ -51,13 +51,13 @@ ILHTMLBuilderElement subclass: ILCanvasElement [
 	"The height of the canvas, in CSS pixels"
 	
 	<category: 'accessing-attributes'>
-	self attributeAt: 'height' put: anInteger
+	self attributeAt: 'height' put: anInteger greaseString
     ]
 
     width: anInteger [
 	"The width of the canvas, in CSS pixels"
 	
 	<category: 'accessing-attributes'>
-	self attributeAt: 'width' put: anInteger
+	self attributeAt: 'width' put: anInteger greaseString
     ]
 ]

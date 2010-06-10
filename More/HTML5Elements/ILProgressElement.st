@@ -51,7 +51,7 @@ ILHTMLBuilderElement subclass: ILProgressElement [
 	arbitrary and not specified"
 
 	<category: 'accessing-attributes'>
-	self attributeAt: 'max' put: anInteger
+	self attributeAt: 'max' put: anInteger greaseString
     ]
 
     value: anInteger [
@@ -59,7 +59,7 @@ ILHTMLBuilderElement subclass: ILProgressElement [
 	arbitrary and not specified"
     
 	<category: 'accessing-attributes'>
-	self attributeAt: 'value' put: anInteger
+	self attributeAt: 'value' put: anInteger greaseString
     ]
 ]
 

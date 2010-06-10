@@ -42,6 +42,26 @@ ILHTMLBuilderElement subclass: ILVideoElement [
 	<category: 'accessing'>
 	^'video'
     ]
+    
+    controls [
+	<category: 'accessing'>
+	self controls: true
+    ]
+
+    preload [
+	<category: 'accessing'>
+	self preloadAuto
+    ]
+
+    autoplay [
+	<category: 'accessing'>
+	self autoplay: true
+    ]
+
+    loop [
+	<category: 'accessing'>
+	self loop: true
+    ]
 
     height: anInteger [
 	<category: 'accessing attributes'>
@@ -63,20 +83,10 @@ ILHTMLBuilderElement subclass: ILVideoElement [
 	aBoolean ifTrue: [
 	    self attributeAt: 'controls' put: 'controls']
     ]
-    
-    controls [
-	<category: 'accessing'>
-	self controls: true
-    ]
 
     poster: aString [
 	<category: 'accessing attributes'>
 	self attributeAt: 'poster' put: aString
-    ]
-
-    preload [
-	<category: 'accessing'>
-	self preloadAuto
     ]
 
     preloadNone [
@@ -100,19 +110,9 @@ ILHTMLBuilderElement subclass: ILVideoElement [
 	    self attributeAt: 'autoplay' put: 'autoplay']
     ]
 
-    autoplay [
-	<category: 'accessing'>
-	self autoplay: true
-    ]
-
     loop: aBoolean [
 	<category: 'accessing attributes'>
 	aBoolean ifTrue: [
 	    self attributeAt: 'loop' put: 'loop']
-    ]
-
-    loop [
-	<category: 'accessing'>
-	self loop: true
     ]
 ]

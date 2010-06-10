@@ -51,41 +51,41 @@ ILHTMLBuilderElement subclass: ILMeterElement [
 	"The point that marks the lower boundary of the high segment of the meter"
 
 	<category: 'accessing-attributes'>
-	self attributeAt: 'high' put: anInteger
+	self attributeAt: 'high' put: anInteger greaseString
     ]
 
     low: anInteger [
 	"The point that marks the upper boundary of the low segment of the meter"
 
 	<category: 'accessing-attributes'>
-	self attributeAt: 'low' put: anInteger
+	self attributeAt: 'low' put: anInteger greaseString
     ]
 
     max: anInteger [
 	"The upper bound of the range for the meter"	
 
 	<category: 'accessing-attributes'>
-	self attributeAt: 'max' put: anInteger
+	self attributeAt: 'max' put: anInteger greaseString
     ]
 
     min: anInteger [
 	"The lower bound of the range for the meter"
 
 	<category: 'accessing-attributes'>
-	self attributeAt: 'max' put: anInteger
+	self attributeAt: 'max' put: anInteger greaseString
     ]
 
     optimum: anInteger [
 	"The point that marks the optimum position for the meter"
 
 	<category: 'accessing-attributes'>
-	self attributeAt: 'optimum' put: anInteger
+	self attributeAt: 'optimum' put: anInteger greaseString
     ]
 
     value: anInteger [
 	"The measured value shown by meter"
 
 	<category: 'accessing-attributes'>
-	self attributeAt: 'value' put: anInteger
+	self attributeAt: 'value' put: anInteger greaseString
     ]
 ]
