@@ -49,7 +49,7 @@ ILHTMLBuilderElement subclass: ILTimeElement [
     datetime: aTime [
 	"Specifies the date or time that the element represents"
 	
-	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	self attributeAt: 'datetime' put: aTime
     ]
 
@@ -59,7 +59,7 @@ ILHTMLBuilderElement subclass: ILTimeElement [
 	if the element has no ancestor article element, of the document as a
 	whole"
 	
-	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	aBoolean ifTrue: [
 	    self attributeAt: 'pubdate' put: 'pubdate']
     ]

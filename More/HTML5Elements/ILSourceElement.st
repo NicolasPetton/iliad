@@ -51,7 +51,7 @@ ILHTMLBuilderElement subclass: ILSourceElement [
 	"The intended media type of the media source (used for helping the UA
 	determine, before fetching this media source, if it useful to the user)."
 
-	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	self attributeAt: 'media' put: aString
     ]
 
@@ -59,14 +59,14 @@ ILHTMLBuilderElement subclass: ILSourceElement [
 	"The type of the media source (used for helping the UA determine, before
 	fetching this media source, if it can play it)"
 
-	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	self attributeAt: 'type' put: aString
     ]
 
     src: aString [
 	"The adress of the media source"
 
-	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	self attributeAt: 'src' put: aString
     ]
 ]

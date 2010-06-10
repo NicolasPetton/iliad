@@ -50,7 +50,7 @@ ILHTMLBuilderElement subclass: ILProgressElement [
 	"Specifies how much work the task requires in total. The units are 
 	arbitrary and not specified"
 
-	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	self attributeAt: 'max' put: anInteger greaseString
     ]
 
@@ -58,7 +58,7 @@ ILHTMLBuilderElement subclass: ILProgressElement [
 	"Specifies how much of the task has been completed. The units are 
 	arbitrary and not specified"
     
-	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	self attributeAt: 'value' put: anInteger greaseString
     ]
 ]
