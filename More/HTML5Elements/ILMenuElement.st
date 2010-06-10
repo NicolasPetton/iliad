@@ -46,29 +46,29 @@ ILHTMLBuilderElement subclass: ILMenuElement [
 	^'menu'
     ]
 
+    beToolbar [
+	<category: 'accessing'>
+	self type: 'toolbar'
+    ]
+
+    beContext [
+	<category: 'accessing'>
+	self type: 'context'
+    ]
+
     type: aString [
 	"The kind of menu being declared.
 	    - toolbar: indicates that the element represents a tool bar.
 	    - context: indicates that the element represents a context menu.
 	    - If the attribute is omitted, the element represents a list of 
 	    commands that is neither a context menu or a toolbar"
-    	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	self attributeAt: 'type' put: aString	
     ]
     
     label: aString [
 	"The label of the menu"
-	<category: 'accessing-attributes'>
+	<category: 'accessing attributes'>
 	self attributeAt: 'label' put: aString
-    ]
-
-    beToolbar [
-	<category: 'accessing-attributes'>
-	self type: 'toolbar'
-    ]
-
-    beContext [
-	<category: 'accessing-attributes'>
-	self type: 'context'
     ]
 ]

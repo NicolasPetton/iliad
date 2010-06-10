@@ -50,7 +50,7 @@ ILHTMLBuilderElement subclass: ILDetailsElement [
     open: aBoolean [
 	"Specifies that the contents of the details element should be shown to the user"
 	
-	<category: 'accessing'>
+	<category: 'accessing attributes'>
 	aBoolean ifTrue: [
 	    self attributeAt: 'open' put: 'open']
     ]
