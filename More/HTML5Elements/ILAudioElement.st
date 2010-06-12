@@ -59,7 +59,7 @@ ILHTMLBuilderElement subclass: ILAudioElement [
     ]
 
     loop [
-	<category: 'accessing'
+	<category: 'accessing'>
 	self loop: true
     ]
 
