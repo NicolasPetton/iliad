@@ -38,8 +38,6 @@
 
 ILHTMLBuilderElement subclass: ILCommandElement [
 
-
-
     <category: 'Iliad-More-HTML5Elements'>
     <comment: 'A command element with no type attribute specified represents 
     the same thing as a command element with its type attribute set to command'>
@@ -50,25 +48,37 @@ ILHTMLBuilderElement subclass: ILCommandElement [
     ]
 
     beCheckbox [
-	<category: 'accessing-attributes'>
+	<category: 'accessing'>
 	self type: 'checkbox'
     ]
     
     beChecked [
-	<category: 'accessing-attributes'>
+	<category: 'accessing'>
 	self checked: true
     ]
 
     beCommand [
 	"Specifies that its command element is a command with an associated action"
 	
-	<category: 'accessing-attributes'>
+	<category: 'accessing'>
 	self type: 'command'
     ]
 
     beDisabled [
-	<category: 'accessing-attributes'>
-	self disabled: 'disabled'
+	<category: 'accessing'>
+	self disabled: true
+    ]
+
+    beHidden [
+	<category: 'accessing'>
+	self hidden: true
+    ]
+    
+    beRadio [
+	"Specifies that its command element represents a selection of one item from a list of items"
+	
+	<category: 'accessing'>
+	self type: 'radio'
     ]
 
     checked: aBoolean [
@@ -85,18 +95,6 @@ ILHTMLBuilderElement subclass: ILCommandElement [
 	<category: 'accessing-attributes'>
 	aBoolean ifTrue: [
 	    self attributeAt: 'disabled' put: 'disabled']
-    ]
-
-    beHidden [
-	<category: 'accessing-attributes'>
-	self hidden: true
-    ]
-    
-    beRadio [
-	"Specifies that its command element represents a selection of one item from a list of items"
-	
-	<category: 'accessing-attributes'>
-	self type: 'radio'
     ]
 
     hidden: aBoolean [
