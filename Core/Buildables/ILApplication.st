@@ -318,8 +318,8 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
     respondOn: aResponse [
 	<category: 'converting'>
 	page := self defaultPageClass new.
-	self updatePage: page.
 	page body build: self.
+	self updatePage: page.
 	page respondOn: aResponse
     ]
 
