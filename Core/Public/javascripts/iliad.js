@@ -98,7 +98,7 @@ var iliad = (function() {
 			if(hasHashUrl(anchor)) {
 				setHash(hashUrl(anchor));
 			};
-			event.preventDefault();
+			if(event) event.preventDefault();
 		}
 	}
 
@@ -108,7 +108,7 @@ var iliad = (function() {
 			evaluateMultipartFormAction(form);
 		} else {
 			evaluateFormAction(form);
-			event.preventDefault();
+			if(event) event.preventDefault();
 		}
 	}
 
