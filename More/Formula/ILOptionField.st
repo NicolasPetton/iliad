@@ -78,21 +78,25 @@ ILField subclass: ILOptionField [
 
     value [
 	<category: 'accessing'>
-	(super value isNil and: [self isMultiple]) ifTrue: [
-	    ^OrderedCollection new].
-	^super value
+	^(super value isNil and: [self isMultiple]) 
+	    ifTrue: [OrderedCollection new]
+	    ifFalse: [super value]
     ]
 
     add: anObject [
 	<category: 'accessing'>
-	(self value includes: anObject)
-	    ifFalse: [self value add: anObject]
+	(self value includes: anObject) ifTrue: [^self].
+	self value: (self value 
+	    add: anObject; 
+	    yourself)
     ]
 
     remove: anObject [
 	<category: 'accessing'>
-	(self value includes: anObject)
-	    ifTrue: [self value remove: anObject]
+	(self value includes: anObject) ifFalse: [^self].
+	self value: (self value 
+	    remove: anObject; 
+	    yourself)
     ]
 
     isMultiple [
