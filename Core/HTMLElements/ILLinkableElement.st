@@ -83,7 +83,7 @@ ILHTMLBuilderElement subclass: ILLinkableElement [
 
     linkToApplication: anApplicationClass controller: aString [
 	<category: 'accessing attributes'>
-	self href: (self context urlBuilder absolutePathFor: anApplicationClass) addToPath: aString
+	self href: ((self context urlBuilder absolutePathFor: anApplicationClass) addToPath: aString)
     ]
 
     type: aString [
