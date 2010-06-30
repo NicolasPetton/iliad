@@ -177,17 +177,17 @@ ILObject subclass: ILUrlBuilder [
 
     urlForRedirection: aString [
 	<category: 'generating'>
-	| url |
-	url := ILUrl absolute: aString.
-	self shouldUseSessionField ifTrue: [
-	    url addParameter: self sessionKey value: self session id greaseString].
-	^url
+	^ILUrl absolute: aString
     ]
 
     urlForApplicationClass: anApplicationClass [
 	<category: 'generating'>
-	^(self applyRewriteRulesTo: 
-	    (self urlForRedirection: anApplicationClass path))
+	| url |
+	url := (self applyRewriteRulesTo: 
+	    (self urlForRedirection: anApplicationClass path)).
+	self shouldUseSessionField ifTrue: [
+	    url addParameter: self sessionKey value: self session id greaseString].
+	^url
     ]
 
     applyRewriteRulesTo: anUrl [
