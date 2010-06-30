@@ -184,10 +184,10 @@ ILObject subclass: ILUrlBuilder [
 	^url
     ]
 
-    absolutePathFor: anApplicationClass [
+    urlForApplicationClass: anApplicationClass [
 	<category: 'generating'>
 	^(self applyRewriteRulesTo: 
-	    (self urlForRedirection: anApplicationClass path)) greaseString
+	    (self urlForRedirection: anApplicationClass path))
     ]
 
     applyRewriteRulesTo: anUrl [

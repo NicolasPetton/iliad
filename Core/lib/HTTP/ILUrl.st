@@ -134,7 +134,7 @@ fragment:		<String> or nil'>
 
     addToPath: aString [
 	<category: 'adding'>
-	self path addAll: (aString findTokens: '/')
+	self path addAll: (aString tokenize: '/')
     ]
 
     greaseString [

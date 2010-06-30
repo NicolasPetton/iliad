@@ -15,13 +15,13 @@ TestCase subclass: ILUrlBuilderTest [
 	ILApplicationMock2 path: nil
     ]
 
-    testAbsolutePath [
+    testUrlForApplicationClass [
 	<category: 'testing'>
 	| app1 app2 |
 	app1 := ILApplicationMock1 new.
 	app2 := ILApplicationMock2 new.
-	self assert: (ILUrlBuilder new absolutePathFor: app1 class) = '/test'.
-	self assert: (ILUrlBuilder new absolutePathFor: app2 class) = '/test/foo'.
+	self assert: (ILUrlBuilder new urlForApplicationClass: app1 class) asString = '/test'.
+	self assert: (ILUrlBuilder new urlForApplicationClass: app2 class) asString = '/test/foo'.
     ]
 ]
 

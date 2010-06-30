@@ -357,7 +357,7 @@ ILObject subclass: ILSession [
 
     redirectUrl: aString [
 	<category: 'redirection'>
-	redirectUrl := self context urlBuilder urlForRedirection: aString
+	redirectUrl := (self context urlBuilder urlForRedirection: aString) asString
     ]
 
     redirectToIndex [
