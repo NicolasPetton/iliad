@@ -187,7 +187,7 @@ ILObject subclass: ILUrlBuilder [
     absolutePathFor: anApplicationClass [
 	<category: 'generating'>
 	^(self applyRewriteRulesTo: 
-	    (ILUrl absolute: anApplicationClass path)) greaseString
+	    (self urlForRedirection: anApplicationClass path)) greaseString
     ]
 
     applyRewriteRulesTo: anUrl [
