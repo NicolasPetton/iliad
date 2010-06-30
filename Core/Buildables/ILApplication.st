@@ -279,7 +279,10 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	Redirect to the controller named <aString> of <aClass>"
 	<category: 'redirecting'>
 
-	self redirectTo: ((self context urlBuilder urlForApplicationClass: aClass) addToPath: aString)
+	self redirectTo: 
+	    ((self context urlBuilder urlForApplicationClass: aClass) 
+		addToPath: aString) 
+		    greaseString
     ]
 
     redirectToCurrentController [
