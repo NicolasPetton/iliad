@@ -76,8 +76,6 @@ and wait for a ILResponseNotification to respond to them.'>
     dispatch: aRequest using: aRoute [
 	<category: 'dispatching'>
 	self withDispatchErrorHandling: [
-	    self shouldDoInitialRedirect ifTrue: [
-		ILRedirectHandler new handleRequest].
 	    self context application: (self findApplicationFor: aRoute).
 	    self context application
 		ifNil: [ILFileHandler new handleRequest]
@@ -104,13 +102,6 @@ and wait for a ILResponseNotification to respond to them.'>
 		ILErrorHandler new 
 		    error: error; 
 		    handleRequest]
-    ]
-
-    shouldDoInitialRedirect [
-	<category: 'testing'>
-	^(self request sessionField isNil and: [
-	    self request hasCookies not]) or: [
-		self request sessionField notNil and: [self request hasCookies]]
     ]
 
     createContextFor: aRequest [
