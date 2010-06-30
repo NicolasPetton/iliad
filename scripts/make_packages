@@ -24,7 +24,7 @@ do
 	DIR=`dirname $i`
 	cd $DIR
 	REGEN=0
-	for FILE in "package.st" `grep filein: package.st | sed -E -e "s/^[ 	]*filein:[ 	]*'(.*)';/\1/"`
+	for FILE in "package.st" `grep filein: package.st | sed -r -e "s/^[ 	]*filein:[ 	]*'(.*)';/\1/"`
 	do
 		if [ $FILE -nt package.xml ]
 		then
