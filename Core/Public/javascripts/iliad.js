@@ -70,11 +70,11 @@ var iliad = (function() {
 	}
 
 	function enableAjaxActions() {
-		jQuery(document).click(function(event) {
+		jQuery('body').click(function(event) {
 			var anchor = jQuery(event.target).closest("a");
 			if(anchor.length == 1) {
 				if(hasActionUrl(anchor)) {
-					evaluateAnchorAction(anchor, event);
+				evaluateAnchorAction(anchor, event);
 				}
 			}
 			var button = jQuery(event.target).closest("button");
@@ -82,7 +82,6 @@ var iliad = (function() {
 				enableSubmitAction(button);
 				evaluateFormElementAction(button, event);
 			}
-
 		})
 	}
 	
