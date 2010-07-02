@@ -346,11 +346,8 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	 original position within the url of the request."
 	<category: 'private'>
 	
-	| curPos result |
-	curPos := self route position.
 	self route position: originalRoutePosition.
-	result := self route currentPath.
-	^result
+	^self route currentPath.
     ]
 
     setRoutePosition [
