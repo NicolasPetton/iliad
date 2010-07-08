@@ -46,7 +46,12 @@ ILDelegator subclass: ILLightbox [
 	    e div class: 'overlay'.
 	    div := e div class: 'lightbox'; yourself.
 	    div script: self lighter.
-	    div build: self widget]
+	    div build: self lightboxContents]
+    ]
+
+    lightboxContents [
+	<category: 'building'>
+	^self widget
     ]
 
     updateHead: aHead [
