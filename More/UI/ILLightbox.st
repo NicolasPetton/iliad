@@ -43,7 +43,9 @@ ILDelegator subclass: ILLightbox [
 	<category: 'building'>
 	^[:e || div |
 	    e build: self decoratee contents.
-	    e div class: 'overlay'.
+	    e div 
+		class: 'overlay';
+		onClickDo: [self widget answer: nil].
 	    div := e div class: 'lightbox'; yourself.
 	    div script: self lighter.
 	    div build: self lightboxContents]
