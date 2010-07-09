@@ -43,6 +43,7 @@ var iliad = (function() {
 	
 	var hash           = "";
 	var actionsLocked  = false;
+	var ajax_enabled   = true;
 	var ie67           = false;
 	var ajaxLoader     = false;
 	
@@ -91,7 +92,7 @@ var iliad = (function() {
 	 * -------------------------------------------------------------- */
 
 	 function evaluateAnchorAction(anchor, event) {
-		if(hasActionUrl(anchor)) {
+		if(hasActionUrl(anchor) && ajax_enabled) {
 			var actionUrl = jQuery(anchor).attr('href');
 			evaluateAction(actionUrl);
 			if(hasHashUrl(anchor)) {
@@ -103,11 +104,13 @@ var iliad = (function() {
 
 	function evaluateFormElementAction(formElement, event) {
 		var form = jQuery(formElement).closest("form");
-		if(isMultipart(form)) {
-			evaluateMultipartFormAction(form);
-		} else {
-			evaluateFormAction(form);
-			if(event) event.preventDefault();
+		if(ajax_enabled) {
+			if(isMultipart(form)) {
+				evaluateMultipartFormAction(form);
+			} else {
+				evaluateFormAction(form);
+				if(event) event.preventDefault();
+			}
 		}
 	}
 
@@ -180,6 +183,14 @@ var iliad = (function() {
 
 	function unlockActions() {
 		actionsLocked = false;
+	}
+
+	function disableAjax() {
+		ajax_enabled = false
+	}
+
+	function enableAjax() {
+		ajax_enabled = true
 	}
 
 	function hasActionUrl(anchor) {
@@ -351,15 +362,17 @@ var iliad = (function() {
 	 * -------------------------------------------------------------- */
 
 	return {
-		evaluateAnchorAction: evaluateAnchorAction,
-		evaluateFormAction: evaluateFormAction,
-		evaluateMultipartFormAction: evaluateMultipartFormAction,
-		evaluateFormElementAction: evaluateFormElementAction,
-		evaluateAction: evaluateAction,
-		enableSubmitAction: enableSubmitAction,
-		checkHashChange: checkHashChange,
-		showAjaxLoader: showAjaxLoader,
-		initialize: initialize
+		evaluateAnchorAction:          evaluateAnchorAction,
+		evaluateFormAction:            evaluateFormAction,
+		evaluateMultipartFormAction:   evaluateMultipartFormAction,
+		evaluateFormElementAction:     evaluateFormElementAction,
+		evaluateAction:                evaluateAction,
+		enableSubmitAction:            enableSubmitAction,
+		checkHashChange:               checkHashChange,
+		showAjaxLoader:                showAjaxLoader,
+		disableAjax:                   disableAjax,
+		enableAjax:                    enableAjax,
+		initialize:                    initialize
 	};
 })();
 
