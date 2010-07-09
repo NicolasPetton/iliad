@@ -169,7 +169,7 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'building'>
 
 	self registerState.
-	self buildHead: self application page head.	
+	self context addBuiltWidget: self.
 	
 	^self newRootElement
 	    class: self id;

@@ -245,7 +245,11 @@ ILWidget subclass: ILFormula [
 		build: [:div |
 		    div form build: [:form |
 			form multipart: self isMultipart.
-			form table tbody build: self tableContents.
+			form 
+			    div
+				class: 'fields';
+				build: [:fields |
+				    fields table tbody build: self tableContents].
 			form div 
 			    class: 'buttons';
 			    build: self buttonsContents]]]

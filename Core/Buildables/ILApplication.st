@@ -323,6 +323,7 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	page := self defaultPageClass new.
 	page body build: self.
 	self updatePage: page.
+	self context builtWidgets do: [:each | each buildHead: page head].
 	page respondOn: aResponse
     ]
 
