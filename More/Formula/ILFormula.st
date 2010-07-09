@@ -38,7 +38,7 @@
 
 
 ILWidget subclass: ILFormula [
-    | proxy conditions fields buttons saveAction cancelAction errors |
+    | proxy conditions fields buttons saveAction cancelAction errors multipart |
 	
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -121,6 +121,16 @@ ILWidget subclass: ILFormula [
     cancelAction: aBlock [
 	<category: 'accessing'>
 	cancelAction := aBlock
+    ]
+
+    beMultipart [
+	<category: 'accessing'>
+	multipart := true
+    ]
+
+    multipart [
+	<category: 'accessing'>
+	^multipart ifNil: [false]
     ]
 
     defaultButtons [
@@ -312,7 +322,8 @@ ILWidget subclass: ILFormula [
 
     isMultipart [
 	<category: 'testing'>
-	^(self fields select: [:each | each isMultipart]) notEmpty
+	^self multipart or: [
+	    (self fields select: [:each | each isMultipart]) notEmpty]
     ]
 
     setModel: anObject [
