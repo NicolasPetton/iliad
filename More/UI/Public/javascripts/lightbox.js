@@ -1,6 +1,5 @@
 function updateLightbox() {
     _centerLightbox();
-    _setFocus();
 }
 
 
@@ -16,8 +15,4 @@ function _centerLightbox() {
     x = x < 0 ? 0 : x; y = y < 0 ? 0 : y;
     e.css("left", x + "px");
     e.css("top", y + "px");
-}
-
-function _setFocus() {
-    jQuery('.lightbox form :input:visible:enabled:first').focus()
 }
