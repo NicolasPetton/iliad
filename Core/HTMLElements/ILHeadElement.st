@@ -72,6 +72,21 @@ ILHTMLBuilderElement subclass: ILHeadElement [
 	    yourself)
     ]
 
+    style [
+	<category: 'adding-convenience'>
+	^self add: (ILTextElement new
+	    tag: 'style';
+	    attributeAt: 'type' put: 'text/css';
+	    yourself)
+    ]
+
+    style: aString [
+	<category: 'adding-convenience'>
+	^self style
+	    contents: aString;
+	    yourself
+    ]
+
     onEvent: event add: aString [
 	<category: 'accessing attributes-events'>
 	self doesNotUnderstandAttribute: 'on' , event
@@ -84,4 +99,3 @@ ILHTMLBuilderElement subclass: ILHeadElement [
 	    content: self contentType
     ]
 ]
-
