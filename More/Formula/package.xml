@@ -33,7 +33,6 @@
   <file>ILFileInputField.st</file>
   <file>ILFormula.st</file>
   <file>postLoad.st</file>
-  <file>Public/stylesheets/jquery.autocomplete.css</file>
   <file>Public/javascripts/jquery.autocomplete.js</file>
-  <file>Public/javascripts/.jquery.autocomplete.js.swp</file>
+  <file>Public/stylesheets/jquery.autocomplete.css</file>
 </package>
