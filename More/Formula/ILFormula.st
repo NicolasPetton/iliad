@@ -248,8 +248,8 @@ ILWidget subclass: ILFormula [
 			form 
 			    div
 				class: 'fields';
-				build: [:fields |
-				    fields table tbody build: self tableContents].
+				build: [:div2 |
+				    div2 table tbody build: self tableContents].
 			form div 
 			    class: 'buttons';
 			    build: self buttonsContents]]]
