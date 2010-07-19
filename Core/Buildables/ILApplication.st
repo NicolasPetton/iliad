@@ -240,58 +240,6 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	^nil
     ]
 
-    redirectTo: anUrlString [
-	"Abort all other request handling.
-	 Redirect to anUrlString"
-	<category: 'redirecting'>
-
-	self session
-	    redirectUrl: anUrlString;
-	    redirect
-    ]
-
-    redirectToIndex [
-	"Abort all other request handling.
-	 Redirect to the index method of this class"
-	<category: 'redirecting'>
-
-	self redirectToLocal: 'index'
-    ]
-
-    redirectToLocal: aString [
-	"Abort all other request handling.
-	 Make a redirection to another controller method in this application"
-	<category: 'redirecting'>
-
-	self redirectTo: self originalUrl , '/' , aString
-    ]
-
-    redirectToApplication: aClass [
-	"Abort all other request handling.
-	Redirect to the index method of <aClass>"
-	<category: 'redirecting'>
-
-	self redirectToApplication: aClass controller: ''
-    ]
-
-    redirectToApplication: aClass controller: aString [
-	"Abort all other request handling.
-	Redirect to the controller named <aString> of <aClass>"
-	<category: 'redirecting'>
-
-	self redirectTo: 
-	    ((self context urlBuilder urlForApplicationClass: aClass) 
-		addToPath: aString) 
-		    greaseString
-    ]
-
-    redirectToCurrentController [
-	"Abort all other request handling.
-	Redirect to the current controller method"
-	<category: 'redirecting'>
-	self redirectTo: self route pathString
-    ]
-
     respond: aBlock [
 	"Abort all other request handling"
 	<category: 'redirecting'>

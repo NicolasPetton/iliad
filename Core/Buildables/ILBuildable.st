@@ -79,14 +79,58 @@ My subclasses must override #build method, which should return an instance of a 
 	anElement add: self build
     ]
 
-    redirectTo: aString [
+    redirectTo: anUrlString [
+	"Abort all other request handling.
+	 Redirect to anUrlString"
 	<category: 'redirecting'>
-	self application redirectTo: aString
+
+	self session
+	    redirectUrl: anUrlString;
+	    redirect
+    ]
+
+    redirectToIndex [
+	"Abort all other request handling.
+	 Redirect to the index method of this class"
+	<category: 'redirecting'>
+
+	self redirectToLocal: 'index'
     ]
 
     redirectToLocal: aString [
+	"Abort all other request handling.
+	 Make a redirection to another controller method in this application"
 	<category: 'redirecting'>
-	self application redirectToLocal: aString
+
+	self 
+	    redirectToApplication: self application class 
+	    controller: aString
+    ]
+
+    redirectToApplication: aClass [
+	"Abort all other request handling.
+	Redirect to the index method of <aClass>"
+	<category: 'redirecting'>
+
+	self redirectToApplication: aClass controller: ''
+    ]
+
+    redirectToApplication: aClass controller: aString [
+	"Abort all other request handling.
+	Redirect to the controller named <aString> of <aClass>"
+	<category: 'redirecting'>
+
+	self redirectTo: 
+	    ((self context urlBuilder urlForApplicationClass: aClass) 
+		addToPath: aString) 
+		    greaseString
+    ]
+
+    redirectToCurrentController [
+	"Abort all other request handling.
+	Redirect to the current controller method"
+	<category: 'redirecting'>
+	self redirectTo: self application route pathString
     ]
 
     respondOn: aResponse [
