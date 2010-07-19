@@ -31,14 +31,20 @@ TestCase subclass: ILUrlBuilderTest [
 		during: aBlock
     ]
 
-    testUrlForApplicationClass [
+    testUrlForApplication [
 	<category: 'testing'>
 	| app1 app2 |
 	app1 := ILApplicationMock1 new.
 	app2 := ILApplicationMock2 new.
 	self withContextDo: [
-	    self assert: (ILUrlBuilder new urlForApplicationClass: app1 class) asString = '/test'.
-	    self assert: (ILUrlBuilder new urlForApplicationClass: app2 class) asString = '/test/foo']
+	    self assert: (ILUrlBuilder new urlFor: app1 class path) asString = '/test'.
+	    self assert: (ILUrlBuilder new urlFor: app2 class path) asString = '/test/foo']
+    ]
+
+    testParametersInUrls [
+	<category: 'testing'>
+	self withContextDo: [
+	    self assert: (ILUrlBuilder new urlFor: '/foo?bar=baz') asString = '/foo?bar=baz']
     ]
 ]
 

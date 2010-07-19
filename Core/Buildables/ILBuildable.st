@@ -121,9 +121,8 @@ My subclasses must override #build method, which should return an instance of a 
 	<category: 'redirecting'>
 
 	self redirectTo: 
-	    ((self context urlBuilder urlForApplicationClass: aClass) 
-		addToPath: aString) 
-		    greaseString
+	    (self context urlBuilder urlFor: aClass path, '/', aString) 
+		greaseString
     ]
 
     redirectToCurrentController [
