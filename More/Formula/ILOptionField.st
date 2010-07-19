@@ -86,7 +86,7 @@ ILField subclass: ILOptionField [
     add: anObject [
 	<category: 'accessing'>
 	(self value includes: anObject) ifTrue: [^self].
-	self value: (self value 
+	self value: ((OrderedCollection withAll: self value)
 	    add: anObject; 
 	    yourself)
     ]
