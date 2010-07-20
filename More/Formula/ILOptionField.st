@@ -94,7 +94,7 @@ ILField subclass: ILOptionField [
     remove: anObject [
 	<category: 'accessing'>
 	(self value includes: anObject) ifFalse: [^self].
-	self value: (OrderedCollection withAll: self value)
+	self value: ((OrderedCollection withAll: self value)
 	    remove: anObject; 
 	    yourself)
     ]
