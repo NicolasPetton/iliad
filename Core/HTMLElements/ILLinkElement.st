@@ -100,5 +100,13 @@ ILLinkableElement subclass: ILLinkElement [
 	<category: 'accessing attributes'>
 	self attributeAt: 'type' put: aString
     ]
+
+    printHtmlOn: aStream [
+	<category: 'printing'>
+	aStream nextPutAll: '<' , self tag.
+	self attributes 
+	    associationsDo: [:each | self printAttribute: each on: aStream].
+	aStream nextPutAll: '/>'
+    ]
 ]
 
