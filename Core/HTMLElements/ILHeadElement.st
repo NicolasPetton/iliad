@@ -95,7 +95,7 @@ ILHTMLBuilderElement subclass: ILHeadElement [
     beforePrintHtml [
 	<category: 'printing'>
 	(self meta)
-	    name: 'Content-Type';
+	    httpEquiv: 'Content-Type';
 	    content: self contentType
     ]
 ]
