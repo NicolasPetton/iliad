@@ -4,7 +4,6 @@ Eval [
     namespace: 'Iliad';
     prereq: 'Iliad-Core';
     prereq: 'Iliad-More-UI';
-    prereq: 'Iliad-More-Magritte';
     prereq: 'Iliad-More-Formula';
     prereq: 'Iliad-More-Comet';
     prereq: 'Digest';
