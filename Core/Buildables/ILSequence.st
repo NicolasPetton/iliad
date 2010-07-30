@@ -49,6 +49,7 @@ ILWidget subclass: ILSequence [
 
     contents [
 	<category: 'building'>
+	"Do not override. The purpose of a sequence is to display other buildables"
 	self shouldNotImplement
     ]
 
@@ -66,6 +67,6 @@ ILWidget subclass: ILSequence [
 
     shouldStart [
 	<category: 'testing'>
-	^decorator decoratee = self
+	^decorator widget = self
     ]
 ]
