@@ -140,7 +140,7 @@ ILWidget subclass: ILFormula [
 
     defaultSaveAction [
 	<category: 'defaults'>
-	^[:model | self answer: self model]
+	^[:model | self commit. self answer: self model]
     ]
 
     defaultCancelAction [
@@ -288,7 +288,6 @@ ILWidget subclass: ILFormula [
 	    validate;
 	    markDirty.
 	self isValid ifTrue: [
-	    self commit.
 	    self saveAction cull: self model]
     ]
 
