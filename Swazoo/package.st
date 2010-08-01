@@ -3,6 +3,7 @@ Eval [
     name: 'Iliad-Swazoo';
     namespace: 'Iliad';
     prereq: 'Swazoo';
+    prereq: 'Iliad-Core';
     filein: 'ILSite.st';
     filein: 'SwazooIliad.st';
 
