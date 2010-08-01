@@ -72,6 +72,8 @@ var iliad = (function() {
 
 	function enableAjaxActions() {
 		jQuery('body').click(function(event) {
+			if (e.metaKey)
+				return;
 			var anchor = jQuery(event.target).closest("a");
 			if(anchor.length == 1) {
 				if(hasActionUrl(anchor)) {
