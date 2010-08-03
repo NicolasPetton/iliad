@@ -627,10 +627,8 @@ ILElementTest subclass: ILHTMLBuilderElementTest [
 	self assert: (var isKindOf: ILTextElement).
 	self assert: (var tag = 'var').
 	
-	"This test makes gst crash...."
-	self assert: false.
-	"var := e var: 'foo'.
-	self assert: (var contents = 'foo')"
+	var := e var: 'foo'.
+	self assert: (var contents = 'foo')
     ]
 
     testXmlLang [
