@@ -128,14 +128,12 @@ TestCase subclass: ILWidgetTest [
 		    w2 markDirty. 
 		    w1 show: w2].
 
-	    self session dirtyWidgets inspect.
 	    self assert: (self session dirtyWidgets includes: w1).
 	    self deny: (self session dirtyWidgets includes: w2).
 
 	    self session stateRegistry register: w1; register: w2.
 	    w2 answer.
 
-	    self session dirtyWidgets inspect.
 	    self assert: (self session dirtyWidgets includes: w1).
 	    self deny: (self session dirtyWidgets includes: w2)]
     ]
