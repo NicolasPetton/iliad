@@ -96,11 +96,13 @@ ILObject subclass: ILStateRegistry [
 	"Answer all widgets which state has changed"
 	<category: 'states'>
 
-	| dirtyWidgets |
-	dirtyWidgets := OrderedCollection new.
-	self widgets do: [:each |
-	    (self stateAt: each) = each state ifFalse: [
-		dirtyWidgets add: each]].
-	^dirtyWidgets
+	^self widgets select: [:each |
+	    self isWidgetDirty: each]
+    ]
+
+    isWidgetDirty: aWidget [
+	<category: 'testing'>
+	(aWidget owner notNil and: [self isWidgetDirty: aWidget owner]) ifTrue: [^false].
+	^(self stateAt: aWidget) ~= aWidget state
     ]
 ]

@@ -133,7 +133,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
 
     owner [
-	"Return the widget which show me. if any"
+	"Return the widget which shows me. if any"
 	<category: 'accessing'>
 
 	^owner
@@ -418,19 +418,16 @@ added to the decoration chain with #decorateWith:.'>
 	 they will be rebuilt together with the receiver"
 	<category: 'states'>
 	
-	self owner
-	    ifNil: [self beDirty]
-	    ifNotNil: [self owner markDirty].
+	self beDirty.
 	dependentWidgets do: [:each | each markDirty]
     ]
 
-    beDirty [
-	"You shouldn't call this method directly unless you know what you are doing."
-	<category: 'states'>
-	
-	state := self session nextId
+    isDirty [
+	<category: 'testing'>
+	(self owner notNil and: [self owner isDirty]) ifTrue: [^false].
+	^(self stateRegistry stateAt: self) ~= state
     ]
-  
+
     printJsonOn: aStream [
 	<category: 'printing'>
 	self build printJsonOn: aStream
@@ -452,5 +449,11 @@ added to the decoration chain with #decorateWith:.'>
 		e := ILHTMLBuilderElement new stylesheet href: script.
 		(aHead children includes: e) ifFalse: [
 		    aHead add: e]]]
+    ]
+
+    beDirty [
+	<category: 'private'>
+	
+	state := self session nextId
     ]
 ]
