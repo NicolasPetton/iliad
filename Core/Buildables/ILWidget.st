@@ -422,12 +422,6 @@ added to the decoration chain with #decorateWith:.'>
 	dependentWidgets do: [:each | each markDirty]
     ]
 
-    isDirty [
-	<category: 'testing'>
-	(self owner notNil and: [self owner isDirty]) ifTrue: [^false].
-	^(self stateRegistry stateAt: self) ~= state
-    ]
-
     printJsonOn: aStream [
 	<category: 'printing'>
 	self build printJsonOn: aStream
