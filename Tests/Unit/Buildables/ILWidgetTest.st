@@ -108,7 +108,36 @@ TestCase subclass: ILWidgetTest [
 		self deny: (self session dirtyWidgets includes: c2).
 		c2 markDirty.
 		self assert: (self session dirtyWidgets includes: c1).
-		self assert: (self session dirtyWidgets includes: c2).]
+		self assert: (self session dirtyWidgets includes: c2)]
+    ]
+
+    testDirtyWidget2 [
+	"The purpose of this test is to check if subwidgets are built twice
+	when the owner and the widget are marked dirty"
+	<category: 'testing'>
+
+	| w1 w2 |
+	w1 := ILWidgetMock1 new.
+	w2 := ILWidgetMock1 new.
+	self withSessionDo: [
+	    self session stateRegistry register: w1; register: w2.
+
+	    w1 
+		show: w2 
+		onAnswer: [:ans | 
+		    w2 markDirty. 
+		    w1 show: w2].
+
+	    self session dirtyWidgets inspect.
+	    self assert: (self session dirtyWidgets includes: w1).
+	    self deny: (self session dirtyWidgets includes: w2).
+
+	    self session stateRegistry register: w1; register: w2.
+	    w2 answer.
+
+	    self session dirtyWidgets inspect.
+	    self assert: (self session dirtyWidgets includes: w1).
+	    self deny: (self session dirtyWidgets includes: w2)]
     ]
 
     session [
