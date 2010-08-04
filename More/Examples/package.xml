@@ -3,7 +3,6 @@
   <namespace>Iliad</namespace>
   <prereq>Iliad-Core</prereq>
   <prereq>Iliad-More-UI</prereq>
-  <prereq>Iliad-More-Magritte</prereq>
   <prereq>Iliad-More-Formula</prereq>
   <prereq>Iliad-More-Comet</prereq>
   <prereq>Digest</prereq>

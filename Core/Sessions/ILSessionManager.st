@@ -172,8 +172,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 		^session]
 	    ifTrue: [
 		self removeSession: session.
-		session handleExpired: aRequest.
-		^self newSession]
+		^session]
     ]
 
     newSession [

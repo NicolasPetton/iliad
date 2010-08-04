@@ -129,7 +129,9 @@ My subclasses must override #build method, which should return an instance of a 
 	"Abort all other request handling.
 	Redirect to the current controller method"
 	<category: 'redirecting'>
-	self redirectTo: self application route pathString
+	self redirectTo: 
+	    (self context urlBuilder urlFor: self application route pathString)
+		greaseString
     ]
 
     respondOn: aResponse [

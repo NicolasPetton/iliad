@@ -56,6 +56,7 @@ ILRequestHandler subclass: ILApplicationHandler [
 
     handleRequest [
 	<category: 'request handling'>
+	self session isExpired ifTrue: [self session onExpire].
 	self isRequestValid 
 	    ifTrue: [self evaluateActions]
 	    ifFalse: [ILRedirectHandler new handleRequest].

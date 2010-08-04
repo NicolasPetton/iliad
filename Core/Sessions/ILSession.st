@@ -273,8 +273,9 @@ ILObject subclass: ILSession [
 	^'en'
     ]
 
-    handleExpired: aRequest [
+    onExpire [
 	<category: 'events'>
+	self redirect
     ]
 
     stateRegistries [
