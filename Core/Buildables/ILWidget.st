@@ -173,8 +173,14 @@ added to the decoration chain with #decorateWith:.'>
 	
 	^self newRootElement
 	    class: self id;
-	    build: decorator contents;
+	    build: self fullContents;
 	    yourself
+    ]
+
+    fullContents [
+	"Do *not* override this method. Use #contents instead"
+	<category: 'building'>
+	^decorator contents
     ]
 
     buildHead: aHead [
