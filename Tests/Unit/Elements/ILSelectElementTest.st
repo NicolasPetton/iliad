@@ -10,9 +10,7 @@ ILElementTest subclass: ILSelectElementTest [
 	
 	ILCurrentContext
 	    use: (ILContext new session: ILSession new)
-	    during: [ILCurrentActionRegistry
-		use: ILActionRegistry new
-		during: [e := ILSelectElement new]]
+	    during: [e := ILSelectElement new]
     ]
 
     testBeMultiple [
