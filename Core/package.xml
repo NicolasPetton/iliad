@@ -22,7 +22,6 @@
   <filein>Sessions/ILContext.st</filein>
   <filein>Sessions/ILAction.st</filein>
   <filein>Sessions/ILCurrentContext.st</filein>
-  <filein>Sessions/ILCurrentActionRegistry.st</filein>
   <filein>Sessions/ILActionRegistry.st</filein>
   <filein>Sessions/ILStateRegistry.st</filein>
   <filein>Sessions/ILSession.st</filein>
@@ -97,6 +96,7 @@
   <filein>Buildables/ILProfiler.st</filein>
   <filein>Buildables/ILApplication.st</filein>
   <filein>Buildables/ILHTMLPage.st</filein>
+  <filein>Buildables/ILCurrentBuildable.st</filein>
   <filein>Dispatching/ILDispatchError.st</filein>
   <filein>Dispatching/ILDispatcher.st</filein>
   <filein>Dispatching/ILRoute.st</filein>
@@ -132,7 +132,6 @@
   <file>Sessions/ILContext.st</file>
   <file>Sessions/ILAction.st</file>
   <file>Sessions/ILCurrentContext.st</file>
-  <file>Sessions/ILCurrentActionRegistry.st</file>
   <file>Sessions/ILActionRegistry.st</file>
   <file>Sessions/ILStateRegistry.st</file>
   <file>Sessions/ILSession.st</file>
@@ -207,6 +206,7 @@
   <file>Buildables/ILProfiler.st</file>
   <file>Buildables/ILApplication.st</file>
   <file>Buildables/ILHTMLPage.st</file>
+  <file>Buildables/ILCurrentBuildable.st</file>
   <file>Dispatching/ILDispatchError.st</file>
   <file>Dispatching/ILDispatcher.st</file>
   <file>Dispatching/ILRoute.st</file>

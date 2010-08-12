@@ -133,7 +133,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
 
     owner [
-	"Return the widget which shows me. if any"
+	"Answer the widget which shows me. if any"
 	<category: 'accessing'>
 
 	^owner
@@ -164,13 +164,13 @@ added to the decoration chain with #decorateWith:.'>
 	^self context stateRegistry
     ]
 
-    build [
+    buildContents [
 	"Do *not* override this method. Use #contents instead"
 	<category: 'building'>
 
 	self registerState.
 	self context addBuiltWidget: self.
-	
+
 	^self newRootElement
 	    class: self id;
 	    build: self fullContents;
@@ -424,7 +424,9 @@ added to the decoration chain with #decorateWith:.'>
 	 they will be rebuilt together with the receiver"
 	<category: 'states'>
 	
-	self beDirty.
+	self owner
+	    ifNil: [self beDirty]
+	    ifNotNil: [self owner markDirty].
 	dependentWidgets do: [:each | each markDirty]
     ]
 
@@ -453,7 +455,6 @@ added to the decoration chain with #decorateWith:.'>
 
     beDirty [
 	<category: 'private'>
-	
 	state := self session nextId
     ]
 ]

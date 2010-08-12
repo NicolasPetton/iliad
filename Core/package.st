@@ -27,7 +27,6 @@ Eval [
 	filein: 'Sessions/ILContext.st'; 
 	filein: 'Sessions/ILAction.st'; 
 	filein: 'Sessions/ILCurrentContext.st'; 
-	filein: 'Sessions/ILCurrentActionRegistry.st'; 
 	filein: 'Sessions/ILActionRegistry.st'; 
 	filein: 'Sessions/ILStateRegistry.st'; 
 	filein: 'Sessions/ILSession.st'; 
@@ -105,6 +104,7 @@ Eval [
 	filein: 'Buildables/ILProfiler.st'; 
 	filein: 'Buildables/ILApplication.st'; 
 	filein: 'Buildables/ILHTMLPage.st'; 
+	filein: 'Buildables/ILCurrentBuildable.st'; 
 
 	filein: 'Dispatching/ILDispatchError.st';
 	filein: 'Dispatching/ILDispatcher.st'; 

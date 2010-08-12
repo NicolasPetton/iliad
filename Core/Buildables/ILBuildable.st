@@ -40,11 +40,16 @@
 
 
 ILObject subclass: ILBuildable [
-    | attributes |
+    | attributes children |
     
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am an abstract buildable object. 
 My subclasses must override #build method, which should return an instance of a subclass of Iliad.ILElement.'>
+
+    children [
+	<category: 'accessing'>
+	^children
+    ]
 
     attributeAt: aSymbol [
 	<category: 'accessing attributes'>
@@ -67,6 +72,13 @@ My subclasses must override #build method, which should return an instance of a 
     ]
 
     build [
+	<category: 'building'>
+	self withChildrenRegistrationDo: [
+	    ^self buildContents
+	]
+    ]
+
+    buildContents [
 	"Override this method in subclasses.
 	It must answer an Element"
 	<category: 'building'>
@@ -77,6 +89,11 @@ My subclasses must override #build method, which should return an instance of a 
     buildOn: anElement [
 	<category: 'building'>
 	anElement add: self build
+    ]
+
+    registerChild: aBuildable [
+	<category: 'building'>
+	self children add: aBuildable
     ]
 
     redirectTo: anUrlString [
@@ -137,5 +154,13 @@ My subclasses must override #build method, which should return an instance of a 
     respondOn: aResponse [
 	<category: 'converting'>
 	self build respondOn: aResponse
+    ]
+
+    withChildrenRegistrationDo: aBlock [
+	<category: 'private'>
+	children := OrderedCollection new.
+	ILCurrentBuildable value ifNotNil: [:parent |
+	    parent registerChild: self].
+	ILCurrentBuildable use: self during: aBlock
     ]
 ]
