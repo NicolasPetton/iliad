@@ -6,6 +6,7 @@
   <filein>ILCondition.st</filein>
   <filein>ILField.st</filein>
   <filein>ILInputField.st</filein>
+  <filein>ILNumberInputField.st</filein>
   <filein>ILAutocompleteInputField.st</filein>
   <filein>ILTextareaField.st</filein>
   <filein>ILPasswordField.st</filein>
@@ -21,6 +22,7 @@
   <file>ILCondition.st</file>
   <file>ILField.st</file>
   <file>ILInputField.st</file>
+  <file>ILNumberInputField.st</file>
   <file>ILAutocompleteInputField.st</file>
   <file>ILTextareaField.st</file>
   <file>ILPasswordField.st</file>

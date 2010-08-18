@@ -10,6 +10,7 @@ Eval [
 	filein: 'ILCondition.st';
 	filein: 'ILField.st';
 	filein: 'ILInputField.st';
+	filein: 'ILNumberInputField.st';
 	filein: 'ILAutocompleteInputField.st';
 	filein: 'ILTextareaField.st';
 	filein: 'ILPasswordField.st';

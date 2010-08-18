@@ -178,6 +178,11 @@ ILWidget subclass: ILFormula [
 	^self addField: (ILDateInputField on: self selector: aSelector)
     ]
 
+    numberInputOn: aSelector [
+	<category: 'adding'>
+	^self addField: (ILNumberInputField on: self selector: aSelector)
+    ]
+
     selectOn: aSelector [
 	<category: 'adding'>
 	^self addField: (ILSelectField on: self selector: aSelector)
