@@ -53,16 +53,17 @@ ILRequestHandler subclass: ILJsonHandler [
     produceResponse [
 	<category: 'responding'>
 	self respond: [:response |
-	    self shouldRedirect ifTrue: [
-		jsonContents 
-		    at: 'redirect' 
-		    put: self session redirectUrl greaseString].
-	    self shouldUpdateApplication 
-		ifFalse: [
-		    self updateHead.
-		    self updateWidgets]
+	    self shouldRedirect 
 		ifTrue: [
-		    self updateApplication].
+		    jsonContents 
+			at: 'redirect' 
+			put: self session redirectUrl greaseString]
+		ifFalse: [
+		    self shouldUpdateApplication 
+			ifFalse: [
+			    self updateHead.
+			    self updateWidgets]
+			ifTrue: [self updateApplication]].
 	    response nextPutAll: (String streamContents: [:stream |
 		jsonContents printJsonOn: stream]).
 	    self session clearRedirectUrl.

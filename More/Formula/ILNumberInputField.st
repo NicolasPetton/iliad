@@ -45,7 +45,7 @@ ILInputField subclass: ILNumberInputField [
 	<category: 'building'>
 	^[:e | 
 	    e input
-		value: (self value ifNil: ['0'] ifNotNil: [self value greaseString]);
+		value: (self value ifNil: [''] ifNotNil: [self value greaseString]);
 		action: [:val | self value: val asNumber]]
     ]
 ]
