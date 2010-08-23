@@ -38,7 +38,7 @@
 
 
 ILField subclass: ILDateInputField [
-    | month day year yearsInterval |
+    |  yearsInterval |
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -59,60 +59,48 @@ ILField subclass: ILDateInputField [
 	^super value ifNil: [Date today]
     ]
 
-    value: aDate [
-	<category: 'accessing'>
-	super value: aDate.
-	self date: aDate
-    ]
-
-    date [
-	<category: 'accessing'>
-	^Date 
-	    newDay: self day
-	    month: self month
-	    year: self year
-    ]
-
-    date: aDate [
-	<category: 'accessing'>
-	self month: aDate monthName greaseString.
-	self day: aDate dayOfMonth.
-	self year: aDate year
-    ]
-
     month [
 	<category: 'accessing'>
-	^month
+	^self value monthIndex
     ]
 
-    month: aString [
+    month: anInteger [
 	<category: 'accessing'>
-	month := aString
+	self value: (Date 
+	    newDay: self day 
+	    monthIndex: anInteger
+	    year: self year)
     ]
 
     day [
 	<category: 'accessing'>
-	^day
+	^self value day
     ]
 
     day: anInteger [
 	<category: 'accessing'>
-	day := anInteger
+	self value: (Date
+	    newDay: anInteger
+	    monthIndex: self month
+	    year: self year)
     ]
 
     year [
 	<category: 'accessing'>
-	^year
+	^self value year
     ]
 
     year: anInteger [
 	<category: 'accessing'>
-	year := anInteger
+	self value: (Date
+	    newDay: self day
+	    monthIndex: self month
+	    year: anInteger)
     ]
 
     months [
 	<category: 'accessing'>
-	^(1 to: 12) collect: [:each | (Date nameOfMonth: each) greaseString]
+	^1 to: 12
     ]
 
     days [
@@ -131,7 +119,7 @@ ILField subclass: ILDateInputField [
 	    e select build: [:select |
 		self months do: [:each |
 		    select option 
-			text: each;
+			text: (Date nameOfMonth: each) greaseString;
 			action: [self month: each];
 			selected: (self month = each)]].
 	    e select build: [:select |
@@ -145,8 +133,6 @@ ILField subclass: ILDateInputField [
 		    select option
 			text: each greaseString;
 			action: [self year: each];
-			selected: (self year = each)]].
-	    e input beHidden
-		action: [:val | self value: self date]]
+			selected: (self year = each)]]]
     ]
 ]
