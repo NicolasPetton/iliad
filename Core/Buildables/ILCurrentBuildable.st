@@ -37,7 +37,7 @@
 
 
 ILDynamicVariable subclass: ILCurrentBuildable [
-    <category: 'Iliad-Core-Buildable'>
+    <category: 'Iliad-Core-Buildables'>
     <comment: nil>
 ]
 

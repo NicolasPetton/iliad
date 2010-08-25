@@ -31,7 +31,7 @@ ILUIWidget subclass: ILDataGridHeader [
 
 
 ILUIWidget subclass: ILDataGridRow [
-    | grid item |
+    | grid item even |
 
     <comment: nil>
     <category: 'Iliad-More-UI'>
@@ -44,6 +44,7 @@ ILUIWidget subclass: ILDataGridRow [
     contents [
 	<category: 'building'>
 	^[:tr |
+	    self even ifTrue: [tr cssClass: tr cssClass, ' even'].
 	    self grid builders do: [:builder |
 		builder cull: tr td cull: item cull: self]]
     ]
@@ -67,7 +68,18 @@ ILUIWidget subclass: ILDataGridRow [
 	<category: 'accessing'>
 	grid := anObject.
     ]
+
+    even [
+	<category: 'accessing'>
+	^even ifNil: [false]
+    ]
+
+    even: aBoolean [
+	<category: 'accessing'>
+	even := aBoolean
+    ]
 ]
+
 
 ILUIWidget subclass: ILDataGridFooter [
     | grid |
@@ -194,15 +206,20 @@ ILUIWidget subclass: ILDataGrid [
 
     body [
 	<category: 'building'>
-	^[:tbody |
-	    self visibleItemsDo: [:item | 
-		tbody build: (self rowForItem: item)]]
+	^[:tbody || index |
+	    index := 1.
+	    self visibleItemsDo: [:item |
+		tbody build: (self rowForItem: item even: index even).
+		index := index + 1]]
     ]
 
-    rowForItem: anItem [
+    rowForItem: anItem even: aBoolean [
 	<category: 'building'>
 	^[:tbody |
-	    tbody build: (self rowClass new grid: self; item: anItem)]
+	    tbody build: (self rowClass new 
+		grid: self; 
+		even: aBoolean;
+		item: anItem)]
     ]
 
     visibleItemsDo: aBlock [
