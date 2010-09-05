@@ -71,6 +71,24 @@ My subclasses must override #build method, which should return an instance of a 
 	^attributes ifNil: [attributes := Dictionary new]
     ]
 
+    send: aSymbol [
+	<category: 'actions'>
+	^self send: aSymbol to: self
+    ]
+
+    send: aSymbol to: anObject [
+	<category: 'actions'>
+	^self send: aSymbol to: anObject arguments: #()
+    ]
+
+    send: aSymbol to: anObject arguments: anArray [
+	<category: 'actions'>
+	^GRDelayedSend 
+	    receiver: anObject 
+	    selector: aSymbol 
+	    arguments: anArray
+    ]
+
     build [
 	<category: 'building'>
 	self withChildrenRegistrationDo: [
