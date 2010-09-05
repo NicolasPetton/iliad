@@ -83,7 +83,7 @@ My subclasses must override #build method, which should return an instance of a 
 
     send: aSymbol to: anObject arguments: anArray [
 	<category: 'actions'>
-	^GRDelayedSend 
+	^Grease.GRDelayedSend 
 	    receiver: anObject 
 	    selector: aSymbol 
 	    arguments: anArray
