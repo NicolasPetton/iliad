@@ -1,15 +1,12 @@
 TestCase subclass: ILWidgetTest [
-    | c1 c2 c3 c4 |
+    | app |
 
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Buildables'>
 
     setUp [
 	<category: 'running'>
-	c1 := ILWidgetMock1 new.
-	c2 := ILWidgetMock2 new.
-	c3 := ILWidgetMock3 new.
-	c4 := ILWidgetMock3 new
+	app := ILApplicationMock new.
     ]
 
     testAnswer [
@@ -17,14 +14,14 @@ TestCase subclass: ILWidgetTest [
 	ILCurrentContext
 	    use: (ILContext new session: ILSession new; yourself)
 	    during: [
-		c1 show: c2 onAnswer: [:ans | self assert: ans = 'hello'].
-		c2 show: c3 onAnswer: [:ans | self assert: ans = 10].
-		c3 answer: 10.
-		c2 answer: 'hello'.
-		c1 show: c2 onAnswer: [:ans | self assert: ans = 'hello'].
-		c1 show: c3 onAnswer: [:ans | self assert: ans = 10].
-		c2 answer: 'hello'.
-		c3 answer: 10]
+		app w1 show: app w2 onAnswer: [:ans | self assert: ans = 'hello'].
+		app w2 show: app w3 onAnswer: [:ans | self assert: ans = 10].
+		app w3 answer: 10.
+		app w2 answer: 'hello'.
+		app w1 show: app w2 onAnswer: [:ans | self assert: ans = 'hello'].
+		app w1 show: app w3 onAnswer: [:ans | self assert: ans = 10].
+		app w2 answer: 'hello'.
+		app w3 answer: 10]
     ]
 
     testDecorators [
@@ -33,33 +30,34 @@ TestCase subclass: ILWidgetTest [
 	d1 := ILDecorator new.
 	d2 := ILDecorator new.
 	d3 := ILDecorator new.
-	c1 decorateWith: d1.
-	self assert: d1 decoratee = c1.
-	c1 decorateWith: d2.
+	app w1 decorateWith: d1.
+	self assert: d1 decoratee = app w1.
+	app w1 decorateWith: d2.
 	self assert: d1 decoratee = d2.
-	self assert: d1 decoratee decoratee = c1.
-	c1 decorateWith: d3.
+	self assert: d1 decoratee decoratee = app w1.
+	app w1 decorateWith: d3.
 	self assert: d1 decoratee = d2.
 	self assert: d1 decoratee decoratee = d3.
-	self assert: d1 decoratee decoratee decoratee = c1.
+	self assert: d1 decoratee decoratee decoratee = app w1.
 	d2 removeYourself.
 	self assert: d1 decoratee = d3.
-	self assert: d1 decoratee decoratee = c1.
+	self assert: d1 decoratee decoratee = app w1.
 	d3 removeYourself.
-	self assert: d1 decoratee = c1
+	self assert: d1 decoratee = app w1
     ]
 
     testDependentWidget [
 	<category: 'testing'>
 	self withSessionDo: [
-	    c3 addDependentWidget: c2.
-	    c2 addDependentWidget: c1.
-
+	    app w3 addDependentWidget: app w2.
+	    app w2 addDependentWidget: app w1.
+	    
 	    self assert: (self session dirtyWidgets isEmpty).
-	    c3 markDirty.
-	    self assert: (self session dirtyWidgets includes: c3).
-	    self assert: (self session dirtyWidgets includes: c2).
-	    self assert: (self session dirtyWidgets includes: c1)]
+	    app build.
+	    app w3 markDirty.
+	    self assert: (self session dirtyWidgets includes: app w3).
+	    self assert: (self session dirtyWidgets includes: app w2).
+	    self assert: (self session dirtyWidgets includes: app w1)]
     ]
 
     testRetrieveControl [
@@ -67,13 +65,13 @@ TestCase subclass: ILWidgetTest [
 	| str |
 	str := WriteStream on: ''.
 	self withSessionDo: [
-		c1 show: c2.
-		c1 show: c3.
-		c1 build printHtmlOn: str.
+		app w1 show: app w2.
+		app w1 show: app w3.
+		app w1 build printHtmlOn: str.
 		self deny: ('*test widget 1*' match: str contents).
-		c1 retrieveControl.
+		app w1 retrieveControl.
 		str := WriteStream on: ''.
-		c1 build printHtmlOn: str.
+		app w1 build printHtmlOn: str.
 		self assert: ('*test widget 1*' match: str contents)]
     ]
 
@@ -82,20 +80,20 @@ TestCase subclass: ILWidgetTest [
 	| str |
 	str := WriteStream on: ''.
 	self withSessionDo: [
-		c1 show: c2.
-		c1 build printHtmlOn: str.
+		app w1 show: app w2.
+		app w1 build printHtmlOn: str.
 		self assert: (str contents matchRegex: '.*test widget 2.*').
 		str := WriteStream on: ''.
-		c2 show: c3.
-		c1 build printHtmlOn: str.
+		app w2 show: app w3.
+		app w1 build printHtmlOn: str.
 		self assert: (str contents matchRegex: '.*test widget 3.*').
 		str := WriteStream on: ''.
-		c3 answer.
-		c1 build printHtmlOn: str.
+		app w3 answer.
+		app w1 build printHtmlOn: str.
 		self assert: (str contents matchRegex: '.*test widget 2.*').
 		str := WriteStream on: ''.
-		c2 answer.
-		c1 build printHtmlOn: str.
+		app w2 answer.
+		app w1 build printHtmlOn: str.
 		self assert: (str contents matchRegex: '.*test widget 1.*')]
     ]
 
@@ -103,12 +101,12 @@ TestCase subclass: ILWidgetTest [
 	<category: 'testing'>
 	self withSessionDo: [
 		self assert: (self session dirtyWidgets isEmpty).
-		c1 markDirty.
-		self assert: (self session dirtyWidgets includes: c1).
-		self deny: (self session dirtyWidgets includes: c2).
-		c2 markDirty.
-		self assert: (self session dirtyWidgets includes: c1).
-		self assert: (self session dirtyWidgets includes: c2)]
+		app w1 markDirty.
+		self assert: (self session dirtyWidgets includes: app w1).
+		self deny: (self session dirtyWidgets includes: app w2).
+		app w2 markDirty.
+		self assert: (self session dirtyWidgets includes: app w1).
+		self assert: (self session dirtyWidgets includes: app w2)]
     ]
 
     testDirtyWidget2 [
@@ -116,26 +114,28 @@ TestCase subclass: ILWidgetTest [
 	when the owner and the widget are marked dirty"
 	<category: 'testing'>
 
-	| w1 w2 |
-	w1 := ILWidgetMock1 new.
-	w2 := ILWidgetMock1 new.
+	| widget |
+	widget := ILWidgetMock1 new.
 	self withSessionDo: [
-	    self session stateRegistry register: w1; register: w2.
 
-	    w1 
-		show: w2 
+	    app build.
+	    app w1 
+		show: widget
 		onAnswer: [:ans | 
-		    w2 markDirty. 
-		    w1 show: w2].
+		    widget markDirty. 
+		    app w1 show: widget].
+	    
+	    
+	    self assert: (self session dirtyWidgets includes: app w1).
+	    self deny: (self session dirtyWidgets includes: widget).
 
-	    self assert: (self session dirtyWidgets includes: w1).
-	    self deny: (self session dirtyWidgets includes: w2).
+	    app build.
+	    self deny: (self session dirtyWidgets includes: app w1).
+	    self deny: (self session dirtyWidgets includes: widget).
 
-	    self session stateRegistry register: w1; register: w2.
-	    w2 answer.
-
-	    self assert: (self session dirtyWidgets includes: w1).
-	    self deny: (self session dirtyWidgets includes: w2)]
+	    widget answer.
+	    self assert: (self session dirtyWidgets includes: app w1).
+	    self deny: (self session dirtyWidgets includes: widget)]
     ]
 
     session [
@@ -148,9 +148,8 @@ TestCase subclass: ILWidgetTest [
 	"To build widgets, we have to create a fake session,
 	with a context, aRequest and an application"
 	
-	| context app request |
+	| context request |
 	request := ILRequest new.
-	app := ILApplication new.
 	context := ILContext new 
 		application: app;
 		session: ILSession new;
@@ -162,9 +161,9 @@ TestCase subclass: ILWidgetTest [
 		    context request url: (ILUrl absolute: '/').
 		    context request fields: (Dictionary with: ('_state' -> context stateRegistry key)).	
 		    context stateRegistry 
-			register: c1;
-			register: c2;
-			register: c3.
+			register: app w1;
+			register: app w2;
+			register: app w3.
 		    app respondOn: ILResponse new.
 		    aBlock value]
     ]

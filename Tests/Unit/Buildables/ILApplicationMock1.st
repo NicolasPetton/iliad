@@ -1,7 +1,7 @@
 ILApplication subclass: ILApplicationMock1 [
-    
+
     <comment: nil>
-    <category: 'Iliad-Tests-Unit-Dispatching'>
+    <category: 'Iliad-Tests-Unit-Buildables'>
 
     ILApplicationMock1 class [
 	| path |

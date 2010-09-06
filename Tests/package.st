@@ -7,6 +7,7 @@ Eval [
     prereq: 'SUnit';
     testsBelow: 'Unit' matching: '*.st';
 
+    filein: 'Unit/Buildables/ILApplicationMock.st';
     filein: 'Unit/Buildables/ILApplicationMock1.st';
     filein: 'Unit/Buildables/ILApplicationMock2.st';
     filein: 'Unit/Buildables/ILApplicationTest.st';

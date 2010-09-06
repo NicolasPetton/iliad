@@ -16,6 +16,7 @@
     <filein>Unit/Utilities/ILIdTest.st</filein>
     <filein>Unit/Utilities/ILCompositeTest.st</filein>
     <filein>Unit/Utilities/ILModelProxyTest.st</filein>
+    <filein>Unit/Buildables/ILApplicationMock.st</filein>
     <filein>Unit/Buildables/ILApplicationTest.st</filein>
     <filein>Unit/Buildables/ILWidgetMock2.st</filein>
     <filein>Unit/Buildables/ILWidgetTest.st</filein>
@@ -102,6 +103,7 @@
     <file>Unit/Utilities/ILIdTest.st</file>
     <file>Unit/Utilities/ILCompositeTest.st</file>
     <file>Unit/Utilities/ILModelProxyTest.st</file>
+    <file>Unit/Buildables/ILApplicationMock.st</file>
     <file>Unit/Buildables/ILApplicationTest.st</file>
     <file>Unit/Buildables/ILWidgetMock2.st</file>
     <file>Unit/Buildables/ILWidgetTest.st</file>
@@ -260,6 +262,7 @@
       Iliad.ILAreaElementTest
     </sunit>
   </test>
+  <filein>Unit/Buildables/ILApplicationMock.st</filein>
   <filein>Unit/Buildables/ILApplicationMock1.st</filein>
   <filein>Unit/Buildables/ILApplicationMock2.st</filein>
   <filein>Unit/Buildables/ILApplicationTest.st</filein>
@@ -346,6 +349,7 @@
   <filein>Unit/RSS/ILRSSEnclosureElementTest.st</filein>
   <filein>Unit/RSS/ILRSSGuidElementTest.st</filein>
   <filein>Unit/RSS/ILRSSSourceElementTest.st</filein>
+  <file>Unit/Buildables/ILApplicationMock.st</file>
   <file>Unit/Buildables/ILApplicationMock1.st</file>
   <file>Unit/Buildables/ILApplicationMock2.st</file>
   <file>Unit/Buildables/ILApplicationTest.st</file>
