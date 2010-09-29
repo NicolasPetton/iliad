@@ -174,6 +174,12 @@ My subclasses must override #build method, which should return an instance of a 
 	self build respondOn: aResponse
     ]
 
+    printHtmlString [
+	<category: 'printing'>
+	^String streamContents: [:str |
+	    self build printHtmlOn: str]
+    ]
+
     withChildrenRegistrationDo: aBlock [
 	<category: 'private'>
 	children := OrderedCollection new.
