@@ -142,25 +142,33 @@ ILHTMLBuilderElement subclass: ILFormElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	self attributeAt: 'action' ifAbsentPut: [self url greaseString].
+	self attributeAt: 'action' ifAbsentPut: [self context baseUrl withoutParameters greaseString].
 	self attributeAt: 'method' ifAbsent: [self usePost].
 	self attributeAt: 'accept-charset' ifAbsentPut: [self session charset].
-	self add: (ILInputElement new
-	    beHidden;
-	    name: self context urlBuilder stateKey;
-	    value: self session stateRegistry key;
-	    yourself).
-	self session shouldUseSessionField ifTrue: [
-	    self add: (ILInputElement new
-		beHidden;
-		name: self context urlBuilder sessionKey;
-		value: self session id;
-		yourself)]
+	self addHiddenParameters
     ]
 
     isMultipart [
 	<category: 'testing'>
 	^self enctype = self class multipartFormData
+    ]
+
+    addHiddenParameters [
+	<category: 'private'>
+	self context urlBuilder baseUrl parameters keysAndValuesDo: [:key :value |
+	    self input
+		beHidden;
+		name: key;
+		value: value].
+	self input
+	    beHidden;
+	    name: self context urlBuilder stateKey;
+	    value: self session stateRegistry key.
+	self isMultipart ifTrue: [
+	    self input
+		beHidden;
+		name: '_callback';
+		value: (self context urlBuilder urlForAction: (self session registerActionFor: [])) greaseString]
     ]
 ]
 

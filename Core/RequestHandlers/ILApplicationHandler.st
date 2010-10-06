@@ -72,9 +72,9 @@ ILRequestHandler subclass: ILApplicationHandler [
     produceResponse [
 	<category: 'responding'>
 	self respond: [:response |
-	self addAllowHeaderTo: response.
-	self session useCookies ifTrue: [self addCookieHeaderTo: response].
-	self session refreshOnBacktrack ifTrue: [self addNoCacheHeaderTo: response]]
+	    self addAllowHeaderTo: response.
+	    self session useCookies ifTrue: [self addCookieHeaderTo: response].
+	    self session refreshOnBacktrack ifTrue: [self addNoCacheHeaderTo: response]]
     ]
 
     isRequestValid [

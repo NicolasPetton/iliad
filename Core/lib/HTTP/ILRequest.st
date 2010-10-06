@@ -230,7 +230,7 @@ I am a server independent http request object.'>
 
     isTypeOfRequestForRedirect [
 	<category: 'testing'>
-	^self isPost not and: [
+	^self isPost or: [
 	    self actionField notNil]
     ]
 

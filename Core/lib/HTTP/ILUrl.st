@@ -137,6 +137,11 @@ fragment:		<String> or nil'>
 	self path addAll: (aString tokenize: '/')
     ]
 
+    removeParameter: aString [
+	<category: 'removing'>
+	self parameters removeKey: aString ifAbsent: []
+    ]
+
     greaseString [
 	<category: 'converting'>
 	^self asString

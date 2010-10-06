@@ -141,8 +141,7 @@ ILObject subclass: ILUrlBuilder [
 
     baseUrl [
 	<category: 'generating'>
-	baseUrl ifNil: [
-	    baseUrl:= self urlFor: self context route pathString].
+	baseUrl ifNil: [self buildBaseUrl].
 	^baseUrl copy
     ]
 
@@ -194,5 +193,14 @@ ILObject subclass: ILUrlBuilder [
 	<category: 'testing'>
 	^(self request cookies 
 	    includesKey: self session sessionManager cookieName) not
+    ]
+ 
+    buildBaseUrl [
+	<category: 'private'>
+	'building page url...' printNl.
+	baseUrl:= self context request url copy.
+	{self stateKey. self actionKey} do: [:each |
+	    baseUrl removeParameter: each].
+	self application updateBaseUrl: baseUrl
     ]
 ]

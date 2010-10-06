@@ -143,7 +143,7 @@ var iliad = (function() {
 				upload_target.appendTo('body');
 			}
 			upload_target.one('load', function(e) {
-				evaluateAction('?_state='+jQuery(form).find('input[name=_state]').val());
+				evaluateAction(jQuery(form).children("input[name=_callback]").val());
 			});
 			jQuery(form).append(hidden);
 			jQuery(form).attr('target', '_upload_target');

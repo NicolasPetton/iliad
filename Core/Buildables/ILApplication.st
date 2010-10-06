@@ -224,6 +224,7 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	<category: 'dispatching'>
 	
 	| m |    
+	self updateFromRoute.
 	(aMethod isNil or: [aMethod isEmpty])
 	    ifTrue: [m := #index]
 	    ifFalse: [m := aMethod asSymbol].
@@ -238,6 +239,21 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	<category: 'dispatching'>
 
 	^nil
+    ]
+
+    updateFromRoute [
+	<category: 'updating'>
+	"Override this method to update to state of the application 
+	from the request url route.
+
+	This method will be called for each new request"
+
+    ]
+
+    updateBaseUrl: anUrl [
+	<category: 'updating'>
+	"Update the base url used for the current context"
+
     ]
 
     respond: aBlock [
