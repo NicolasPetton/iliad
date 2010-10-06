@@ -197,7 +197,6 @@ ILObject subclass: ILUrlBuilder [
  
     buildBaseUrl [
 	<category: 'private'>
-	'building page url...' printNl.
 	baseUrl:= self context request url copy.
 	{self stateKey. self actionKey} do: [:each |
 	    baseUrl removeParameter: each].
