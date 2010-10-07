@@ -130,7 +130,9 @@ var iliad = (function() {
 	function removeHiddenInput(button) {
 		var name = jQuery(button).attr("name");
 		if(name) {
-			jQuery(button).closest("form").remove("input:hidden[name="+ name + "]")
+			jQuery(button).closest("form")
+				.find("input:hidden[name="+ name + "]")
+				.replaceWith("");
 		}
 	}
 
