@@ -81,10 +81,7 @@ ILUIWidget subclass: ILViewTabs [
 
     selectedView [
 	<category: 'accessing'>
-	| route |
-	route := self router route copy.
-	route position: self application originalRoutePosition.
-	^route next ifNil: [self views first]
+	^self router controller ifNil: [self views first]
     ]
 
     views [

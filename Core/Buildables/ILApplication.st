@@ -39,7 +39,7 @@
 
 
 ILBuildable subclass: ILApplication [
-    | model originalRoutePosition page |
+    | model page |
 
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am the Iliad implementation of an application.
@@ -151,11 +151,6 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	model := anObject
     ]
 
-    originalRoutePosition [
-	<category: 'accessing'>
-	^originalRoutePosition
-    ]
-
     page [
 	<category: 'accessing'>
 	^page
@@ -199,7 +194,6 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	 different from nil, consider it handled."
 	<category: 'dispatching'>
 
-	self setRoutePosition.
 	^self dispatchOverride ifNil: [
 	    self dispatchOn: self router controller] 
     ]
@@ -300,21 +294,5 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
     newRootElement [
 	<category: 'private'>
 	^self rootElementClass new
-    ]
-
-    originalUrl [
-	"Answer an url String representing this application's
-	 original position within the url of the request."
-	<category: 'private'>
-	
-	self router route position: originalRoutePosition.
-	^self router route currentPath.
-    ]
-
-    setRoutePosition [
-	<category: 'private'>
-	originalRoutePosition
-	    ifNil: [originalRoutePosition := self router route position]
-	    ifNotNil: [self router route position: originalRoutePosition]
     ]
 ]
