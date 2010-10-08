@@ -38,7 +38,7 @@
 
 ILObject subclass: ILContext [
 
-    | request application route hashRoute session urlBuilder previousStateRegistry stateRegistry builtWidgets |
+    | request application route hashRoute session urlBuilder previousStateRegistry stateRegistry builtWidgets attributes |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I store current request context objects:
 - the route
@@ -116,6 +116,21 @@ A can be accessed through ILObject>>context'>
     builtWidgets [
 	<category: 'accessing'>
 	^builtWidgets ifNil: [builtWidgets := OrderedCollection new]
+    ]
+
+    attributes [
+	<category: 'accessing'>
+	^attributes ifNil: [attributes := Dictionary new]
+    ]
+
+    attributeAt: aKey [
+	<category: 'accessing-attributes'>
+	^self attributes at: aKey ifAbsent: [nil]
+    ]
+
+    attributeAt: aKey but: anObject [
+	<category: 'accessing-attributes'>
+	self attributes at: aKey put: anObject
     ]
 
     addBuiltWidget: aWidget [
