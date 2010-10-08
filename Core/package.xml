@@ -99,6 +99,7 @@
   <filein>Buildables/ILCurrentBuildable.st</filein>
   <filein>Dispatching/ILDispatchError.st</filein>
   <filein>Dispatching/ILDispatcher.st</filein>
+  <filein>Dispatching/ILRouter.st</filein>
   <filein>Dispatching/ILRoute.st</filein>
   <filein>RequestHandlers/ILResponseNotification.st</filein>
   <filein>RequestHandlers/ILRequestHandler.st</filein>
@@ -209,6 +210,7 @@
   <file>Buildables/ILCurrentBuildable.st</file>
   <file>Dispatching/ILDispatchError.st</file>
   <file>Dispatching/ILDispatcher.st</file>
+  <file>Dispatching/ILRouter.st</file>
   <file>Dispatching/ILRoute.st</file>
   <file>RequestHandlers/ILResponseNotification.st</file>
   <file>RequestHandlers/ILRequestHandler.st</file>

@@ -51,6 +51,11 @@ My subclasses must override #build method, which should return an instance of a 
 	^children ifNil: [children := OrderedCollection new]
     ]
 
+    router [
+	<category: 'accessing'>
+	^self context router
+    ]
+
     attributeAt: aSymbol [
 	<category: 'accessing attributes'>
 	^self attributes at: aSymbol ifAbsent: [nil]
@@ -166,7 +171,7 @@ My subclasses must override #build method, which should return an instance of a 
 	Redirect to the current controller method"
 	<category: 'redirecting'>
 	self redirectTo: 
-	    (self context urlBuilder urlFor: self application route pathString)
+	    (self context urlBuilder urlFor: self router route pathString)
 		greaseString
     ]
 

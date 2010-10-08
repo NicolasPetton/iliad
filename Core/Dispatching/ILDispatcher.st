@@ -68,20 +68,9 @@ and wait for a ILResponseNotification to respond to them.'>
 	self withErrorHandling: [
 	    ILCurrentContext 
 		use: (self createContextFor: aRequest)
-		during: [self 
-		    dispatch: aRequest 
-		    using: self context route]]
-    ]
-
-    dispatch: aRequest using: aRoute [
-	<category: 'dispatching'>
-	self withDispatchErrorHandling: [
-	    self shouldRedirect ifTrue: [
-		ILRedirectHandler new handleRequest].
-	    self context application: (self findApplicationFor: aRoute).
-	    self context application
-		ifNil: [ILFileHandler new handleRequest]
-		ifNotNil: [ILApplicationHandler new handleRequest]]
+		during: [
+		    self withDispatchErrorHandling: [ 
+			self context router dispatchRequest]]]
     ]
 
     withDispatchErrorHandling: aBlock [
@@ -114,48 +103,8 @@ and wait for a ILResponseNotification to respond to them.'>
 	    yourself
     ]
 
-    applicationClassFor: aRoute [
-	<category: 'private'>
-	| applicationClass |
-	applicationClass := nil.
-	[aRoute atEnd not] whileTrue: [
-	    aRoute next.
-	    applicationClass := ILApplication allSubclasses
-		detect: [:each | 
-		    (self absolutePathFor: each) = aRoute currentPath]
-		ifNone: [applicationClass]].
-	 applicationClass ifNotNil: [
-	    aRoute position: (ILUrl absolute: applicationClass path) path size].
-	    ^applicationClass
-    ]
-    
-    absolutePathFor: anApplicationClass [
-	<category: 'private'>
-	^(anApplicationClass path startsWith: '/')
-	    ifTrue: [anApplicationClass path]
-	    ifFalse: ['/', anApplicationClass path]
-
-    ]
-
-    findApplicationFor: aRoute [
-	<category: 'private'>
-	| applicationClass |
-	applicationClass := self applicationClassFor: aRoute.
-	applicationClass
-	    ifNil: [^nil]
-	    ifNotNil: [^ self session applications
-		    at: applicationClass
-		    ifAbsentPut: [applicationClass new]]
-    ]
-
     findSessionFor: aRequest [
 	<category: 'private'>
 	^ILSessionManager current sessionFor: aRequest
-    ]
-
-    shouldRedirect [
-	<category: 'testing'>
-	self request isTypeOfRequestForJson ifTrue: [^false].
-	^self request sessionField notNil and: [self request hasCookies]
     ]
 ]    

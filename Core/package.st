@@ -108,6 +108,7 @@ Eval [
 
 	filein: 'Dispatching/ILDispatchError.st';
 	filein: 'Dispatching/ILDispatcher.st'; 
+	filein: 'Dispatching/ILRouter.st'; 
 	filein: 'Dispatching/ILRoute.st'; 
 
 	filein: 'RequestHandlers/ILResponseNotification.st';

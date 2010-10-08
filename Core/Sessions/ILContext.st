@@ -38,24 +38,23 @@
 
 ILObject subclass: ILContext [
 
-    | request application route hashRoute session urlBuilder previousStateRegistry stateRegistry builtWidgets attributes |
+    | request router session urlBuilder previousStateRegistry stateRegistry builtWidgets attributes |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I store current request context objects:
-- the route
+- the router
 - the session
-- the application
 - the request itself
 
 A can be accessed through ILObject>>context'>
 
-    application [
+    router [
 	<category: 'accessing'>
-	^application
+	^router ifNil: [router := ILRouter new]
     ]
 
-    application: anApplication [
+    application [
 	<category: 'accessing'>
-	application := anApplication
+	^self router application
     ]
 
     urlBuilder [
@@ -87,19 +86,7 @@ A can be accessed through ILObject>>context'>
 	<category: 'accessing'>
 	session := aSession
     ]
-
-    route [
-	<category: 'accessing'>
-	^route ifNil: [route := ILRoute path: self request url path]
-    ]
-    
-    hashRoute [
-	<category: 'accessing'>
-	| hash |
-	hash := self request hashLocationField ifNil: [''].
-	^hashRoute ifNil: [hashRoute := ILRoute path: (hash tokenize: '/')]
-    ]
-
+   
     stateRegistry [
 	<category: 'accessing'>
 	^stateRegistry ifNil: [

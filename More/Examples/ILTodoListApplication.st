@@ -72,7 +72,7 @@ ILApplication subclass: ILTodoListApplication [
     updateFromHash [
 	<category: 'building'>
 	| path |
-	path := self hashRoute next.
+	path := self router hashRoute next.
 	path = 'pending' ifTrue: [self selectPending].
 	path = 'completed' ifTrue: [self selectCompleted] 
     ]

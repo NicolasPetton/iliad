@@ -61,7 +61,6 @@ ILRequestHandler subclass: ILJsonHandler [
 		ifFalse: [
 		    self shouldUpdateApplication 
 			ifFalse: [
-			    self updateApplicationFromRoute.
 			    self updateHead.
 			    self updateWidgets]
 			ifTrue: [self updateApplication]].
@@ -87,12 +86,6 @@ ILRequestHandler subclass: ILJsonHandler [
 	^ILResponse ok
 	    contentType: 'application/json'; 
 	    yourself
-    ]
-
-    updateApplicationFromRoute [
-	<category: 'private'>
-	self application route next.
-	self application updateFromRoute
     ]
 
     updateHead [

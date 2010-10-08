@@ -100,6 +100,13 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	    ^''
 	]
 
+	absolutePath [
+	    <category: 'accessing'>
+	    ^String streamContents: [:stream |
+		(self path startsWith: '/') ifFalse: [stream nextPut: $/].
+		stream nextPutAll: self path]
+	]
+
 	selectorFilter [
 	    <category: 'accessing'>
 	    ^selectorFilter ifNil: [self defaultSelectorFilter]
@@ -144,16 +151,6 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	model := anObject
     ]
 
-    route [
-	<category: 'accessing'>
-	^self context route
-    ]
-
-    hashRoute [
-	<category: 'accessing'>
-	^self context hashRoute
-    ]
-
     originalRoutePosition [
 	<category: 'accessing'>
 	^originalRoutePosition
@@ -188,16 +185,6 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	    yourself
     ]
 
-    updatePage: aPage [
-	"Override to add elements to aPage.
-	 super should always be called"
-	<category: 'building'>
-
-	aPage head javascript src: '/javascripts/jquery132min.js'.
-	aPage head javascript src: '/javascripts/no_conflict.js'.
-	aPage head javascript src: '/javascripts/iliad.js'.
-    ]
-
     allowedSelector: aSelector [
 	"Answer true if <aSelector> is ok to call from a URL.
 	 Default implementation is to use the pluggable filter block."
@@ -214,7 +201,7 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 
 	self setRoutePosition.
 	^self dispatchOverride ifNil: [
-	    self dispatchOn: self route next] 
+	    self dispatchOn: self router controller] 
     ]
 
     dispatchOn: aMethod [
@@ -224,7 +211,6 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	<category: 'dispatching'>
 	
 	| m |    
-	self updateFromRoute.
 	(aMethod isNil or: [aMethod isEmpty])
 	    ifTrue: [m := #index]
 	    ifFalse: [m := aMethod asSymbol].
@@ -241,7 +227,17 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	^nil
     ]
 
-    updateFromRoute [
+    updatePage: aPage [
+	"Override to add elements to aPage.
+	 super should always be called"
+	<category: 'updating'>
+
+	aPage head javascript src: '/javascripts/jquery132min.js'.
+	aPage head javascript src: '/javascripts/no_conflict.js'.
+	aPage head javascript src: '/javascripts/iliad.js'.
+    ]
+
+    updateFromRoute: aRoute [
 	<category: 'updating'>
 	"Override this method to update to state of the application 
 	from the request url route.
@@ -311,14 +307,14 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	 original position within the url of the request."
 	<category: 'private'>
 	
-	self route position: originalRoutePosition.
-	^self route currentPath.
+	self router route position: originalRoutePosition.
+	^self router route currentPath.
     ]
 
     setRoutePosition [
 	<category: 'private'>
 	originalRoutePosition
-	    ifNil: [originalRoutePosition := self route position]
-	    ifNotNil: [self route position: originalRoutePosition]
+	    ifNil: [originalRoutePosition := self router route position]
+	    ifNotNil: [self router route position: originalRoutePosition]
     ]
 ]
