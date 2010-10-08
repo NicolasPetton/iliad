@@ -128,7 +128,7 @@ A can be accessed through ILObject>>context'>
 	^self attributes at: aKey ifAbsent: [nil]
     ]
 
-    attributeAt: aKey but: anObject [
+    attributeAt: aKey put: anObject [
 	<category: 'accessing-attributes'>
 	self attributes at: aKey put: anObject
     ]
