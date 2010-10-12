@@ -57,7 +57,7 @@ ILObject subclass: ILStateRegistry [
 	<category: 'accessing'>
 	^self states 
 	    at: aWidget 
-	    ifAbsent: [nil]
+	    ifAbsent: [aWidget state]
     ]
 
     states [
