@@ -41,11 +41,12 @@ ILObject subclass: ILContext [
     | request router session urlBuilder previousStateRegistry stateRegistry builtWidgets attributes |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I store current request context objects:
+
 - the router
 - the session
 - the request itself
 
-A can be accessed through ILObject>>context'>
+I can be accessed through ILObject>>context'>
 
     router [
 	<category: 'accessing'>
