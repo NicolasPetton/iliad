@@ -201,6 +201,6 @@ ILObject subclass: ILUrlBuilder [
 	{self stateKey. self actionKey} do: [:each |
 	    baseUrl removeParameter: each].
 	self application updateBaseUrl: baseUrl.
-	self applyRewriteRulesTo: baseUrl
+	baseUrl := self applyRewriteRulesTo: baseUrl
     ]
 ]
