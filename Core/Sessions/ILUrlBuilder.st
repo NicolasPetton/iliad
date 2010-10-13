@@ -200,6 +200,7 @@ ILObject subclass: ILUrlBuilder [
 	baseUrl:= self context request url copy.
 	{self stateKey. self actionKey} do: [:each |
 	    baseUrl removeParameter: each].
+	self applyRewriteRulesTo: baseUrl.
 	self application updateBaseUrl: baseUrl
     ]
 ]
