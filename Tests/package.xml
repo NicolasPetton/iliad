@@ -11,7 +11,6 @@
     <filein>Unit/Sessions/ILSessionTest.st</filein>
     <filein>Unit/Sessions/ILSessionManagerTest.st</filein>
     <filein>Unit/Sessions/ILCurrentContextTest.st</filein>
-    <filein>Unit/Dispatching/ILDispatcherTest.st</filein>
     <filein>Unit/Dispatching/ILRouteTest.st</filein>
     <filein>Unit/Utilities/ILIdTest.st</filein>
     <filein>Unit/Utilities/ILCompositeTest.st</filein>
@@ -98,7 +97,6 @@
     <file>Unit/Sessions/ILSessionTest.st</file>
     <file>Unit/Sessions/ILSessionManagerTest.st</file>
     <file>Unit/Sessions/ILCurrentContextTest.st</file>
-    <file>Unit/Dispatching/ILDispatcherTest.st</file>
     <file>Unit/Dispatching/ILRouteTest.st</file>
     <file>Unit/Utilities/ILIdTest.st</file>
     <file>Unit/Utilities/ILCompositeTest.st</file>
@@ -186,7 +184,6 @@
       Iliad.ILSessionTest
       Iliad.ILSessionManagerTest
       Iliad.ILCurrentContextTest
-      Iliad.ILDispatcherTest
       Iliad.ILRouteTest
       Iliad.ILIdTest
       Iliad.ILCompositeTest
@@ -272,7 +269,6 @@
   <filein>Unit/Buildables/ILWidgetMock2.st</filein>
   <filein>Unit/Buildables/ILWidgetMock3.st</filein>
   <filein>Unit/Buildables/ILWidgetTest.st</filein>
-  <filein>Unit/Dispatching/ILDispatcherTest.st</filein>
   <filein>Unit/Dispatching/ILRouteTest.st</filein>
   <filein>Unit/Elements/ILElementTest.st</filein>
   <filein>Unit/Elements/ILHTMLBuilderElementTest.st</filein>
@@ -359,7 +355,6 @@
   <file>Unit/Buildables/ILWidgetMock2.st</file>
   <file>Unit/Buildables/ILWidgetMock3.st</file>
   <file>Unit/Buildables/ILWidgetTest.st</file>
-  <file>Unit/Dispatching/ILDispatcherTest.st</file>
   <file>Unit/Dispatching/ILRouteTest.st</file>
   <file>Unit/Elements/ILElementTest.st</file>
   <file>Unit/Elements/ILHTMLBuilderElementTest.st</file>

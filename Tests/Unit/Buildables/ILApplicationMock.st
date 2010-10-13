@@ -4,6 +4,20 @@ ILApplication subclass: ILApplicationMock [
     <comment: nil>
     <category: 'Iliad-Tests-Unit-Buildables'>
 
+    ILApplicationMock class [
+	| path |
+	
+	path [
+	    <category: 'accessing'>
+	    ^path ifNil: ['']
+	]
+
+	path: aString [
+	    <category: 'accessing'>
+	    path := aString
+	]
+    ]
+
 
     initialize [
 	<category: 'initialization'>

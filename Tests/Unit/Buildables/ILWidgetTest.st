@@ -6,7 +6,19 @@ TestCase subclass: ILWidgetTest [
 
     setUp [
 	<category: 'running'>
+	ILApplicationMock path: 'mock'.
 	app := ILApplicationMock new.
+    ]
+
+    tearDown [
+	<category: 'running'>
+	ILApplicationMock path: ''
+    ]
+
+    dirtyWidgets [
+	<category: 'accessing'>
+	^self session context 
+	    previousStateRegistry dirtyChildrenOf: app
     ]
 
     testAnswer [
@@ -52,12 +64,12 @@ TestCase subclass: ILWidgetTest [
 	    app w3 addDependentWidget: app w2.
 	    app w2 addDependentWidget: app w1.
 	    
-	    self assert: (self session dirtyWidgets isEmpty).
 	    app build.
+	    self assert: self dirtyWidgets isEmpty.
 	    app w3 markDirty.
-	    self assert: (self session dirtyWidgets includes: app w3).
-	    self assert: (self session dirtyWidgets includes: app w2).
-	    self assert: (self session dirtyWidgets includes: app w1)]
+	    self assert: (self dirtyWidgets includes: app w3).
+	    self assert: (self dirtyWidgets includes: app w2).
+	    self assert: (self dirtyWidgets includes: app w1)]
     ]
 
     testRetrieveControl [
@@ -100,13 +112,13 @@ TestCase subclass: ILWidgetTest [
     testDirtyWidget [
 	<category: 'testing'>
 	self withSessionDo: [
-		self assert: (self session dirtyWidgets isEmpty).
+		self assert: (self dirtyWidgets isEmpty).
 		app w1 markDirty.
-		self assert: (self session dirtyWidgets includes: app w1).
-		self deny: (self session dirtyWidgets includes: app w2).
+		self assert: (self dirtyWidgets includes: app w1).
+		self deny: (self dirtyWidgets includes: app w2).
 		app w2 markDirty.
-		self assert: (self session dirtyWidgets includes: app w1).
-		self assert: (self session dirtyWidgets includes: app w2)]
+		self assert: (self dirtyWidgets includes: app w1).
+		self assert: (self dirtyWidgets includes: app w2)]
     ]
 
     testDirtyWidget2 [
@@ -125,17 +137,16 @@ TestCase subclass: ILWidgetTest [
 		    widget markDirty. 
 		    app w1 show: widget].
 	    
-	    
-	    self assert: (self session dirtyWidgets includes: app w1).
-	    self deny: (self session dirtyWidgets includes: widget).
+	    self assert: (self dirtyWidgets includes: app w1).
+	    self deny: (self dirtyWidgets includes: widget).
 
 	    app build.
-	    self deny: (self session dirtyWidgets includes: app w1).
-	    self deny: (self session dirtyWidgets includes: widget).
+	    self deny: (self dirtyWidgets includes: app w1).
+	    self deny: (self dirtyWidgets includes: widget).
 
 	    widget answer.
-	    self assert: (self session dirtyWidgets includes: app w1).
-	    self deny: (self session dirtyWidgets includes: widget)]
+	    self assert: (self dirtyWidgets includes: app w1).
+	    self deny: (self dirtyWidgets includes: widget)]
     ]
 
     session [
@@ -151,19 +162,14 @@ TestCase subclass: ILWidgetTest [
 	| context request |
 	request := ILRequest new.
 	context := ILContext new 
-		application: app;
-		session: ILSession new;
-		request: request;
-		yourself.
+	    session: ILSession new;
+	    request: request;
+	    yourself.
 	ILCurrentContext 
 		use: context
 		during: [
-		    context request url: (ILUrl absolute: '/').
+		    request url: (ILUrl absolute: app class path).
 		    context request fields: (Dictionary with: ('_state' -> context stateRegistry key)).	
-		    context stateRegistry 
-			register: app w1;
-			register: app w2;
-			register: app w3.
 		    app respondOn: ILResponse new.
 		    aBlock value]
     ]
