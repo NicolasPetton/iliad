@@ -197,10 +197,11 @@ ILObject subclass: ILUrlBuilder [
  
     buildBaseUrl [
 	<category: 'private'>
-	baseUrl:= self context request url copy.
+	| tempUrl |
+	tempUrl := self context request url copy.
 	{self stateKey. self actionKey} do: [:each |
-	    baseUrl removeParameter: each].
-	self application updateBaseUrl: baseUrl.
-	baseUrl := self applyRewriteRulesTo: baseUrl
+	    tempUrl removeParameter: each].
+	self application updateBaseUrl: tempUrl.
+	baseUrl := self applyRewriteRulesTo: tempUrl
     ]
 ]
