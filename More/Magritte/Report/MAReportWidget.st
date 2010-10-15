@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -292,16 +292,16 @@ MAWidget subclass: MAReportWidget [
 	    self batchPageRange do: [:index | 
 		self batchPage = index 
 		    ifFalse: [e a action: [self batchPage: index];
-			text: index printString]
+			text: index greaseString]
 		    ifTrue: [e span class: 'current';
-			text: index printString].
+			text: index greaseString].
 		e space].
 	    self batchPageRangeEnd < (self batchMaxPages - 1) ifTrue: [
 		e text: '...'; space].
 	    self batchPageRangeEnd = self batchMaxPages ifFalse: [
 		e a
 		    action: [self batchPage: self batchMaxPages];
-		    text: self batchMaxPages printString]]
+		    text: self batchMaxPages greaseString]]
     ]
 
     batchLastContents [

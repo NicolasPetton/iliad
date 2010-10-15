@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -234,7 +234,7 @@ ILElement subclass: ILRSSElement [
     lastBuildDate: aDate [
 	<category: 'adding-conveniance'>
 	^self lastBuildDate
-	    text: (ILSupport rfc1123StringFor: (DateTime fromDays: aDate days));
+	    text: ((Grease.GRPinter rfc822WithTimeZone: 'GMT') print: (DateTime fromDays: aDate days));
 	    yourself
     ]
 
@@ -276,7 +276,7 @@ ILElement subclass: ILRSSElement [
     pubDate: aDate [
 	<category: 'adding-conveniance'>
 	^self pubDate
-	    text: (ILSupport rfc1123StringFor: (DateTime fromDays: aDate days));
+	    text: ((Grease.GRPrinter rfc822WithTimeZone: 'GMT') print: (DateTime fromDays: aDate days));
 	    yourself
     ]
 

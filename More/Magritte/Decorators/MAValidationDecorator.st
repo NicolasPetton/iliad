@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -64,7 +64,7 @@ MAWidgetDecorator subclass: MAValidationDecorator [
 		class: 'errors';
 		yourself.
 	self errors do: [:each |
-	    list li text: each printString]]
+	    list li text: each greaseString]]
     ]
 ]
 

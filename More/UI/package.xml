@@ -11,6 +11,7 @@
   <filein>ILWidgetTabs.st</filein>
   <filein>ILViewTabs.st</filein>
   <filein>ILPaginator.st</filein>
+  <filein>ILWidgetsPaginator.st</filein>
   <filein>ILDataGrid.st</filein>
   <filein>ILPagedDataGrid.st</filein>
   <filein>ILTree.st</filein>
@@ -26,17 +27,18 @@
   <file>ILWidgetTabs.st</file>
   <file>ILViewTabs.st</file>
   <file>ILPaginator.st</file>
+  <file>ILWidgetsPaginator.st</file>
   <file>ILDataGrid.st</file>
   <file>ILPagedDataGrid.st</file>
   <file>ILTree.st</file>
   <file>ILMessageDecorator.st</file>
   <file>ILApplicationBrowser.st</file>
   <file>postLoad.st</file>
-  <file>Public/javascripts/lightbox.js</file>
-  <file>Public/stylesheets/iliad-ui.css</file>
-  <file>Public/stylesheets/lightbox.css</file>
-  <file>Public/images/arrow_up.png</file>
   <file>Public/images/arrow_down.png</file>
-  <file>Public/images/arrow_right.png</file>
+  <file>Public/images/arrow_up.png</file>
   <file>Public/images/arrow_left.png</file>
+  <file>Public/images/arrow_right.png</file>
+  <file>Public/stylesheets/lightbox.css</file>
+  <file>Public/stylesheets/iliad-ui.css</file>
+  <file>Public/javascripts/lightbox.js</file>
 </package>

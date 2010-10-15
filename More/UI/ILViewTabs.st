@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2009 
+| Copyright (c) 2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -81,10 +81,7 @@ ILUIWidget subclass: ILViewTabs [
 
     selectedView [
 	<category: 'accessing'>
-	| route |
-	route := self context route copy.
-	route position: self application originalRoutePosition.
-	^route next ifNil: [self views first]
+	^self router controller ifNil: [self views first]
     ]
 
     views [

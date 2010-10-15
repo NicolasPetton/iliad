@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -68,6 +68,11 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	self shouldNotImplement
     ]
 
+    sessions [
+	<category: 'accessing'>
+	^sessions values
+    ]
+
     expiredSessions [
 	<category: 'accessing'>
 	^sessions values select: [:each | each isExpired]
@@ -115,10 +120,10 @@ To remove all expired sessions, call #removeExpiredSessions'>
 
     addSession: aSession [
 	<category: 'adding-removing'>
-	sessions at: aSession id asString put: aSession
+	sessions at: aSession id greaseString put: aSession
     ]
 
-    findOrMakeSessionFor: aRequest [
+    sessionFor: aRequest [
 	"Answer the according session for <aRequest>.
 	the session id may be found from <aRequest> cookies or <aRequest> fields.
 	If no session is found, create and return a new one"
@@ -127,7 +132,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	
 	self shouldRemoveExpiredSessions ifTrue: [
 	    self removeExpiredSessions].
-	^self findOrMakeSessionWithId: (self sessionIdFromRequest: aRequest)
+	^self findOrMakeSessionFor: aRequest 
     ]
 
     sessionsDo: aBlock [
@@ -136,7 +141,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	sessions := Dictionary new
     ]
@@ -145,7 +150,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	"Do not remove all expired sessions for each request"
 	<category: 'testing'>
 
-	^(Random new next * 10) asInteger = 0
+	^(Grease.GRPlatform current newRandom nextInt: 10) = 10
     ]
 
     hasSession: aSession [
@@ -153,20 +158,21 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^sessions values includes: aSession
     ]
 
-    findOrMakeSessionWithId: anId [
-	"find and answer  a not expired session with id <anId>.
-	Create a new session is no session found"
+    findOrMakeSessionFor: aRequest [
+	"Answer a valid session for <aRequest>.
+	Create a new session if no session is found"
 	<category: 'private'>
 
-	| session |
-	session := sessions at: anId ifAbsent: [^self newSession].
+	| session id |
+	id := self sessionIdFromRequest: aRequest.
+	session := sessions at: id ifAbsent: [^self newSession].
 	session isExpired
 	    ifFalse: [
 		session setModifiedTimestamp.
 		^session]
 	    ifTrue: [
 		self removeSession: session.
-		^self newSession]
+		^session]
     ]
 
     newSession [
@@ -180,7 +186,7 @@ To remove all expired sessions, call #removeExpiredSessions'>
     removeSession: aSession [
 	<category: 'adding-removing'>
 	sessions 
-	    removeKey: aSession id asString
+	    removeKey: aSession id greaseString
 	    ifAbsent: []
     ]
 

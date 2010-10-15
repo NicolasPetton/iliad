@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -64,32 +64,13 @@ and wait for a ILResponseNotification to respond to them.'>
     dispatch: aRequest [
 	"Entry point of requests"
 	<category: 'dispatching'>
-	
+
 	self withErrorHandling: [
 	    ILCurrentContext 
 		use: (self createContextFor: aRequest)
-		during: [self 
-		    dispatch: aRequest 
-		    using: self context route]]
-    ]
-
-    dispatch: aRequest using: aRoute [
-	<category: 'dispatching'>
-	self withDispatchErrorHandling: [
-	    self shouldDoInitialRedirect ifTrue: [
-		ILRedirectHandler new handleRequest].
-	    self context application: (self findApplicationFor: aRoute).
-	    self context application
-		ifNil: [ILFileHandler new handleRequest]
-		ifNotNil: [ILApplicationHandler new handleRequest]]
-    ]
-
-    createContextFor: aRequest [
-	<category: 'error handling'>
-	^ILContext new
-	    request: aRequest;
-	    session: (self findSessionFor: aRequest);
-	    yourself
+		during: [
+		    self withDispatchErrorHandling: [ 
+			self context router dispatchRequest]]]
     ]
 
     withDispatchErrorHandling: aBlock [
@@ -114,41 +95,16 @@ and wait for a ILResponseNotification to respond to them.'>
 		    handleRequest]
     ]
 
-    shouldDoInitialRedirect [
-	<category: 'testing'>
-	^(self request sessionField isNil and: [
-	    self request hasCookies not]) or: [
-		self request sessionField notNil and: [self request hasCookies]]
-    ]
-
-    applicationClassFor: aRoute [
+    createContextFor: aRequest [
 	<category: 'private'>
-	| applicationClass |
-	applicationClass := nil.
-	[aRoute atEnd not] whileTrue: [
-	    aRoute next.
-	    applicationClass := ILApplication allSubclasses
-		detect: [:each | 
-		    (self context urlBuilder absolutePathFor: each) = aRoute currentPath]
-		ifNone: [applicationClass]].
-	 applicationClass ifNotNil: [
-	    aRoute position: (ILUrl absolute: applicationClass path) path size].
-	    ^applicationClass
-    ]
-    
-    findApplicationFor: aRoute [
-	<category: 'private'>
-	| applicationClass |
-	applicationClass := self applicationClassFor: aRoute.
-	applicationClass
-	    ifNil: [^nil]
-	    ifNotNil: [^ self session applications
-		    at: applicationClass
-		    ifAbsentPut: [applicationClass new]]
+	^ILContext new
+	    request: aRequest;
+	    session: (self findSessionFor: aRequest);
+	    yourself
     ]
 
     findSessionFor: aRequest [
 	<category: 'private'>
-	^ILSessionManager current findOrMakeSessionFor: aRequest
+	^ILSessionManager current sessionFor: aRequest
     ]
 ]    

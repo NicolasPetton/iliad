@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -52,7 +52,7 @@ ILRSSElement subclass: ILRSSEnclosureElement [
 
     length: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'length' put: anInteger printString
+	self attributeAt: 'length' put: anInteger greaseString
     ]
 
     type: aString [

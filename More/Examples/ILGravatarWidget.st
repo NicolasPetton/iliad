@@ -51,8 +51,8 @@ ILWidget subclass: ILGravatarWidget [
 	    stream 
 		nextPut: $?;
 		nextPutAll: key;
-		nextPut: $=;
-		nextPutAll: (ILEncoder encodeUrl: value)].
+		nextPut: $=.
+	    ILEncoder encodeUrl: value on: stream].
 	^stream contents
     ]
 
@@ -68,7 +68,7 @@ ILWidget subclass: ILGravatarWidget [
 
     size: anInteger [
 	<category: 'accessing options'>
-	self options at: #size put: anInteger printString
+	self options at: #size put: anInteger greaseString
     ]
 
     rating [

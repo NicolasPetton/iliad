@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -83,7 +83,7 @@ MAMultipleSelectionWidget subclass: MACheckboxGroupWidget [
 
     optionId: anInteger [
 	<category: 'private'>
-	^self id: 'option' , anInteger printString
+	^self id: 'option' , anInteger greaseString
     ]
 
     optionsWithIndexDo: elementAndIndexBlock separatedBy: separatorBlock [

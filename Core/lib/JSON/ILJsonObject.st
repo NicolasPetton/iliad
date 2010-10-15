@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -45,7 +45,7 @@ ILObject subclass: ILJsonObject [
     <comment: nil>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	properties := OrderedCollection new
     ]
@@ -88,7 +88,7 @@ ILObject subclass: ILJsonObject [
     printJsonOn: aStream [
 	aStream nextPut: ${.
 	properties do: [:ea | 
-	    ea key printString jsonWriteOn: aStream.
+	    ea key greaseString jsonWriteOn: aStream.
 	    aStream nextPutAll: ': '.
 	    ea value printJsonOn: aStream]
 	separatedBy: [aStream nextPutAll: ', '].

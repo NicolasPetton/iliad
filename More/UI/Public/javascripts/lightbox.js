@@ -1,9 +1,10 @@
 function updateLightbox() {
-    _centerLightbox(jQuery(".lightbox"));
+    _centerLightbox();
 }
 
 
-function _centerLightbox(e) {
+function _centerLightbox() {
+    e = jQuery(".lightbox");
     e.css("position", "absolute");
     e.css("width", "auto");
     e.css("height", "auto");

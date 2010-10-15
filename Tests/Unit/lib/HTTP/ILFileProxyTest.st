@@ -14,6 +14,7 @@ TestCase subclass: ILFileProxyTest [
 	<category: 'testing'>
 	| timeStamp |
 	timeStamp := DateTime now.
+	self assert: (fileProxy timestampsAt: #foo) = nil.
 	fileProxy timestampsAt: #foo put: timeStamp.
 	self assert: (fileProxy timestamps at: #foo) = timeStamp
     ]

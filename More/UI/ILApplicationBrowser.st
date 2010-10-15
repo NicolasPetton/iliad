@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2009 
+| Copyright (c) 2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -60,9 +60,16 @@ ILApplication subclass: ILApplicationBrowser [
     mainContents [
 	<category: 'building'>
 	^[:e | 
-	    e img src: '/images/iliad.png' alt: 'Iliad'.
-	    e h3: 'Application Browser'.
-	    e build: self pathListContents]
+	    e div 
+		class: 'wrapper';
+		build: [:div |
+		    div a build: [:a | 
+			a href: 'http://www.iliadproject.org'.
+			a img
+			    class: 'logo';
+			    src: '/images/iliad.png' alt: 'Iliad'].
+		    div h1: 'Application Browser'.
+		    div build: self pathListContents]]
     ]
 
     pathListContents [

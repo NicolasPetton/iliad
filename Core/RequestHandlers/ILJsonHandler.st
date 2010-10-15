@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -37,45 +37,42 @@
 
 
 ILRequestHandler subclass: ILJsonHandler [
-    | jsonContents widgets scripts head widgetsToUpdate |
+    | jsonContents widgets scripts head |
 
     <comment: nil>
     <category: 'Iliad-Core-RequestHandlers'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	jsonContents := Dictionary new.
 	head := OrderedCollection new.
-	widgets := Dictionary new.
-	scripts := OrderedCollection new
-    ]
-
-    handleRequest [
-	<category: 'request handling'>
-	self shouldUpdateApplication 
-	    ifTrue: [widgetsToUpdate := {self application}]
-	    ifFalse: [widgetsToUpdate := self session dirtyWidgets copy].
-	self session clearDirtyWidgets.
-	super handleRequest
+	widgets := Dictionary new
     ]
 
     produceResponse [
 	<category: 'responding'>
 	self respond: [:response |
-	    self shouldRedirect ifTrue: [
-		jsonContents 
-		    at: 'redirect' 
-		    put: self session redirectUrl asString].
-	    self updateHead; updateWidgets.
+	    self shouldRedirect 
+		ifTrue: [
+		    jsonContents 
+			at: 'redirect' 
+			put: self session redirectUrl greaseString]
+		ifFalse: [
+		    self shouldUpdateApplication 
+			ifFalse: [
+			    self updateHead.
+			    self updateWidgets]
+			ifTrue: [self updateApplication]].
 	    response nextPutAll: (String streamContents: [:stream |
 		jsonContents printJsonOn: stream]).
-	    self session clearRedirectUrl]
+	    self session clearRedirectUrl.
+	    self addNoCacheHeaderTo: response]
     ]
 
     shouldRedirect [
 	<category: 'testing'>
-	^self session redirectUrl notNil or: [self session isNew]
+	^self session redirectUrl notNil
     ]
 
     shouldUpdateApplication [
@@ -95,7 +92,7 @@ ILRequestHandler subclass: ILJsonHandler [
 	<category: 'private'>
 	| headElement |
 	headElement := ILElement new.
-	widgetsToUpdate do: [:each | each buildHead: headElement].
+	self session dirtyWidgets do: [:each | each buildHead: headElement].
 	headElement childrenDo: [:each |
 	    (self application page head children includes: each) ifFalse: [
 		head add: each]].
@@ -104,14 +101,17 @@ ILRequestHandler subclass: ILJsonHandler [
 
     updateWidgets [
 	<category: 'private'>
-	widgetsToUpdate do: [:each || e |
+	self session dirtyWidgets do: [:each || e |
 	    e := each build.
-	    widgets at: each id put: e.
-	    e allChildrenDo: [:child |
-		child tag = 'script' ifTrue: [
-		    scripts add: child]]].
-	jsonContents at: 'widgets' put: widgets.
-	jsonContents at: 'scripts' put: scripts
+	    widgets at: each id put: e].
+	jsonContents 
+	    at: 'widgets' put: widgets
     ]
-						
+
+    updateApplication [
+	<category: 'private'>
+	jsonContents 
+	    at: 'application' 
+	    put: self application build
+    ]
 ]

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -41,7 +41,7 @@ ILUIWidget subclass: ILCalendar [
     <category: 'Iliad-Core-UI'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	self date: Date today.
 	self actionBlock: [:val | self answer: val]
@@ -60,12 +60,12 @@ ILUIWidget subclass: ILCalendar [
 	^[:e || form select |
 	    form := e form class: 'month_selection'; yourself.
 	    select := form select.
-	    self months do: [:each || option |
+	    (1 to: 12) do: [:each || option |
 		option := select option.
 		option 
-		    text: each asString;
-		    action: [self selectMonth: (Date indexOfMonth: each)].
-		(Date indexOfMonth: each) = self month ifTrue: [
+		    text: (self months at: each);
+		    action: [self selectMonth: each].
+		each = self month ifTrue: [
 		    option selected]].
 	    form input 
 		maxlength: 4; 
@@ -87,7 +87,7 @@ ILUIWidget subclass: ILCalendar [
 		date dayOfWeek - 1 \\ 7 = 0 ifTrue: [row := table tr].
 		row td a
 		    action: [self selectDate: selectedDate];
-		    text: selectedDate dayOfMonth asString.
+		    text: selectedDate dayOfMonth greaseString.
 		date := date addDays: 1]]
     ]
 

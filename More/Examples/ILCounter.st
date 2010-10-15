@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -42,7 +42,7 @@ ILWidget subclass: ILCounter [
     <category: 'Iliad-More-Examples'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	count := 0
     ]
@@ -50,15 +50,10 @@ ILWidget subclass: ILCounter [
     contents [
 	<category: 'building'>
 	^[:e |
-	    e h2: count printString.
+	    e h1: count greaseString.
 	    e a action: [self increase]; text: '++'.
 	    e space.
 	    e a action: [self decrease]; text: '--']
-    ]
-
-    styles [
-	<category: 'building'>
-	^#('/stylesheets/iliad.css')
     ]
 
     decrease [

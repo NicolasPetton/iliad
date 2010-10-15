@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -66,16 +66,6 @@ Object subclass: ILModelProxy [
 		    ifTrue: [
 			self performWrite: aMessage selector allButLast with: aMessage argument]
 		    ifFalse: [super doesNotUnderstand: aMessage]]
-    ]
-
-    name [
-	<category: 'forwarding'>
-	^model name
-    ]
-
-    value [
-	<category: 'forwarding'>
-	^model value
     ]
 
     model [

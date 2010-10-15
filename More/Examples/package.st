@@ -4,9 +4,8 @@ Eval [
     namespace: 'Iliad';
     prereq: 'Iliad-Core';
     prereq: 'Iliad-More-UI';
-    prereq: 'Iliad-More-Magritte';
     prereq: 'Iliad-More-Formula';
-    prereq: 'Iliad-More-Charts';
+    prereq: 'Iliad-More-Comet';
     prereq: 'Digest';
 
     filein: 'ILCounter.st'; 
@@ -15,12 +14,10 @@ Eval [
     filein: 'ILTodoListItemRepository.st'; 
     filein: 'ILTodoListGridWidget.st'; 
     filein: 'ILTodoListApplication.st'; 
-    filein: 'ILBlogPost.st';
-    filein: 'ILBlogRepository.st';
-    filein: 'ILBlogApplication.st';
     filein: 'ILGravatarWidget.st';
     filein: 'ILChartApplication.st';
     filein: 'ILChartDemo.st';
+    filein: 'ILCometCounter.st';
 
     buildXml
 ]

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2009 
+| Copyright (c) 2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -99,4 +99,3 @@ ILObject subclass: ILComposite [
 	aBlock value: tail
     ]
 ]
-

@@ -1,4 +1,3 @@
-
 TestCase subclass: ILElementTest [
     | e |
 
@@ -12,7 +11,14 @@ TestCase subclass: ILElementTest [
 
     shouldHaveAttribute: aKey value: aValue [
 	<category: 'conveniance'>
-	self assert: (e attributes includesAssociation: aKey -> aValue)
+	self assert: (e attributes associations includes: aKey -> aValue)
+    ]
+
+    withContextDo: aBlock [
+	<category: 'conveniance'>
+	ILCurrentContext 
+	    use: (ILContext new session: ILSession new)
+	    during: aBlock
     ]
 
     testAttributes [

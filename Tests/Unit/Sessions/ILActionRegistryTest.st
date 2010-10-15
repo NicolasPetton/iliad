@@ -7,7 +7,7 @@ TestCase subclass: ILActionRegistryTest [
 
     setUp [
 	<category: 'running'>
-	registry := ILActionRegistry owner: ILWidget new
+	registry := ILActionRegistry new
     ]
 
     testEvaluating [

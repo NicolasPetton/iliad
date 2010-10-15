@@ -7,25 +7,27 @@ Eval [
     prereq: 'SUnit';
     testsBelow: 'Unit' matching: '*.st';
 
+    filein: 'Unit/Buildables/ILApplicationMock.st';
     filein: 'Unit/Buildables/ILApplicationMock1.st';
     filein: 'Unit/Buildables/ILApplicationMock2.st';
     filein: 'Unit/Buildables/ILApplicationTest.st';
+    filein: 'Unit/Buildables/ILBuildableMock.st';
     filein: 'Unit/Buildables/ILBuildableTest.st';
     filein: 'Unit/Buildables/ILWidgetMock1.st';
     filein: 'Unit/Buildables/ILWidgetMock2.st';
     filein: 'Unit/Buildables/ILWidgetMock3.st';
     filein: 'Unit/Buildables/ILWidgetTest.st';
 
-    filein: 'Unit/Dispatching/ILDispatcherTest.st';
     filein: 'Unit/Dispatching/ILRouteTest.st';
 
     filein: 'Unit/Elements/ILElementTest.st';
-    filein: 'Unit/Elements/ILXHTMLElementTest.st';
+    filein: 'Unit/Elements/ILHTMLBuilderElementTest.st';
     filein: 'Unit/Elements/ILAnchorElementTest.st';
     filein: 'Unit/Elements/ILAreaElementTest.st';
     filein: 'Unit/Elements/ILBodyElementTest.st';
     filein: 'Unit/Elements/ILButtonElementTest.st';
     filein: 'Unit/Elements/ILCheckboxElementTest.st';
+    filein: 'Unit/Elements/ILConditionalCommentElementTest.st';
     filein: 'Unit/Elements/ILDirectionElementTest.st';
     filein: 'Unit/Elements/ILFieldsetElementTest.st';
     filein: 'Unit/Elements/ILFormElementElementTest.st';
@@ -70,10 +72,12 @@ Eval [
 
     filein: 'Unit/lib/JSON/ILJsonDummyTestObject.st';
     filein: 'Unit/lib/JSON/ILJsonTest.st';
+    filein: 'Unit/lib/JSON/ILJsonObjectTest.st';
     
     filein: 'Unit/lib/HTTP/ILFileProxyTest.st';
     filein: 'Unit/lib/HTTP/ILUrlTest.st';
     filein: 'Unit/lib/HTTP/ILResponseTest.st';
+    filein: 'Unit/lib/HTTP/ILRequestTest.st';
 
     filein: 'Unit/Sessions/ILActionRegistryTest.st';
     filein: 'Unit/Sessions/ILActionTest.st';

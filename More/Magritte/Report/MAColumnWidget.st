@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -250,7 +250,7 @@ Object subclass: MAColumnWidget [
 
     exportContent: anObject index: aNumber on: aStream [
 	<category: 'exporting'>
-	aStream nextPutAll: (anObject asString 
+	aStream nextPutAll: (anObject greaseString 
 		collect: [:each | each isSeparator ifTrue: [
 			Character space] ifFalse: [each]])
     ]

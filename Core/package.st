@@ -4,14 +4,12 @@ Eval [
 	name: 'Iliad-Core';
 	namespace: 'Iliad';
 	prereq: 'Iconv';
+	prereq: 'Grease';
 	filein: 'Utilities/ILObject.st';
-	filein: 'Utilities/ILSmallDictionary.st';
 	filein: 'Utilities/ILComposite.st';
 	filein: 'Utilities/ILDynamicVariable.st';
-	filein: 'Utilities/ILSupport.st'; 
 	filein: 'Utilities/ILId.st'; 
 	filein: 'Utilities/ILEncoder.st'; 
-	filein: 'Utilities/ILGSTEncoder.st'; 
 	filein: 'Utilities/ILModelProxy.st'; 
 
 	filein: 'lib/HTTP/ILUrl.st'; 
@@ -22,71 +20,74 @@ Eval [
 
 	filein: 'lib/JSON/ILJsonSyntaxError.st'; 
 	filein: 'lib/JSON/ILJson.st'; 
+	filein: 'lib/JSON/ILJsonObject.st'; 
 	filein: 'lib/JSON/Extensions.st'; 
 
 	filein: 'Sessions/ILUrlBuilder.st'; 
 	filein: 'Sessions/ILContext.st'; 
 	filein: 'Sessions/ILAction.st'; 
 	filein: 'Sessions/ILCurrentContext.st'; 
-	filein: 'Sessions/ILCurrentActionRegistry.st'; 
 	filein: 'Sessions/ILActionRegistry.st'; 
+	filein: 'Sessions/ILStateRegistry.st'; 
 	filein: 'Sessions/ILSession.st'; 
 	filein: 'Sessions/ILSessionManager.st'; 
 
 	filein: 'Elements/ILElements-Error.st'; 
 	filein: 'Elements/ILElement.st'; 
 	filein: 'Elements/ILTextElement.st'; 
+	filein: 'Elements/ILXmlElement.st'; 
 	filein: 'Elements/Extensions.st'; 
 
-	filein: 'XHTMLElements/ILXHTMLElement.st'; 
-	filein: 'XHTMLElements/ILTitleElement.st'; 
-	filein: 'XHTMLElements/ILBodyElement.st'; 
-	filein: 'XHTMLElements/ILClosingElement.st'; 
-	filein: 'XHTMLElements/ILAreaElement.st'; 
-	filein: 'XHTMLElements/ILBreakElement.st'; 
-	filein: 'XHTMLElements/ILHorizontalRuleElement.st'; 
-	filein: 'XHTMLElements/ILImageElement.st'; 
-	filein: 'XHTMLElements/ILMetaElement.st'; 
-	filein: 'XHTMLElements/ILParameterElement.st'; 
-	filein: 'XHTMLElements/ILDirectionElement.st'; 
-	filein: 'XHTMLElements/ILDivElement.st'; 
-	filein: 'XHTMLElements/ILFieldsetElement.st'; 
-	filein: 'XHTMLElements/ILFormElement.st'; 
-	filein: 'XHTMLElements/ILFormElementElement.st'; 
-	filein: 'XHTMLElements/ILButtonElement.st'; 
-	filein: 'XHTMLElements/ILCheckboxElement.st'; 
-	filein: 'XHTMLElements/ILRadioButtonElement.st'; 
-	filein: 'XHTMLElements/ILInputElement.st'; 
-	filein: 'XHTMLElements/ILSelectElement.st'; 
-	filein: 'XHTMLElements/ILTextAreaElement.st'; 
-	filein: 'XHTMLElements/ILHeadElement.st'; 
-	filein: 'XHTMLElements/ILHeadingElement.st'; 
-	filein: 'XHTMLElements/ILHtmlElement.st'; 
-	filein: 'XHTMLElements/ILLabelElement.st'; 
-	filein: 'XHTMLElements/ILLegendElement.st'; 
-	filein: 'XHTMLElements/ILLinkableElement.st'; 
-	filein: 'XHTMLElements/ILAnchorElement.st'; 
-	filein: 'XHTMLElements/ILLinkElement.st'; 
-	filein: 'XHTMLElements/ILListElement.st'; 
-	filein: 'XHTMLElements/ILListItemElement.st'; 
-	filein: 'XHTMLElements/ILMapElement.st'; 
-	filein: 'XHTMLElements/ILObjectElement.st'; 
-	filein: 'XHTMLElements/ILOptionElement.st'; 
-	filein: 'XHTMLElements/ILOptionGroupElement.st'; 
-	filein: 'XHTMLElements/ILParagraphElement.st'; 
-	filein: 'XHTMLElements/ILRawHtmlElement.st'; 
-	filein: 'XHTMLElements/ILRubyTextElement.st'; 
-	filein: 'XHTMLElements/ILScriptElement.st'; 
-	filein: 'XHTMLElements/ILSpanElement.st'; 
-	filein: 'XHTMLElements/ILTableElement.st'; 
-	filein: 'XHTMLElements/ILTableElementElement.st'; 
-	filein: 'XHTMLElements/ILTableBodyElement.st'; 
-	filein: 'XHTMLElements/ILTableCellElement.st'; 
-	filein: 'XHTMLElements/ILTableDataElement.st'; 
-	filein: 'XHTMLElements/ILTableHeaderElement.st'; 
-	filein: 'XHTMLElements/ILTableRowElement.st'; 
-	filein: 'XHTMLElements/ILTableFootElement.st'; 
-	filein: 'XHTMLElements/ILTableHeadElement.st'; 
+	filein: 'HTMLElements/ILHTMLBuilderElement.st'; 
+	filein: 'HTMLElements/ILTitleElement.st'; 
+	filein: 'HTMLElements/ILBodyElement.st'; 
+	filein: 'HTMLElements/ILClosingElement.st'; 
+	filein: 'HTMLElements/ILAreaElement.st'; 
+	filein: 'HTMLElements/ILBreakElement.st'; 
+	filein: 'HTMLElements/ILHorizontalRuleElement.st'; 
+	filein: 'HTMLElements/ILImageElement.st'; 
+	filein: 'HTMLElements/ILMetaElement.st'; 
+	filein: 'HTMLElements/ILParameterElement.st'; 
+	filein: 'HTMLElements/ILDirectionElement.st'; 
+	filein: 'HTMLElements/ILDivElement.st'; 
+	filein: 'HTMLElements/ILFieldsetElement.st'; 
+	filein: 'HTMLElements/ILFormElement.st'; 
+	filein: 'HTMLElements/ILFormElementElement.st'; 
+	filein: 'HTMLElements/ILButtonElement.st'; 
+	filein: 'HTMLElements/ILCheckboxElement.st'; 
+	filein: 'HTMLElements/ILRadioButtonElement.st'; 
+	filein: 'HTMLElements/ILInputElement.st'; 
+	filein: 'HTMLElements/ILSelectElement.st'; 
+	filein: 'HTMLElements/ILTextAreaElement.st'; 
+	filein: 'HTMLElements/ILHeadElement.st'; 
+	filein: 'HTMLElements/ILHeadingElement.st'; 
+	filein: 'HTMLElements/ILHtmlElement.st'; 
+	filein: 'HTMLElements/ILLabelElement.st'; 
+	filein: 'HTMLElements/ILLegendElement.st'; 
+	filein: 'HTMLElements/ILLinkableElement.st'; 
+	filein: 'HTMLElements/ILAnchorElement.st'; 
+	filein: 'HTMLElements/ILLinkElement.st'; 
+	filein: 'HTMLElements/ILListElement.st'; 
+	filein: 'HTMLElements/ILListItemElement.st'; 
+	filein: 'HTMLElements/ILMapElement.st'; 
+	filein: 'HTMLElements/ILObjectElement.st'; 
+	filein: 'HTMLElements/ILOptionElement.st'; 
+	filein: 'HTMLElements/ILOptionGroupElement.st'; 
+	filein: 'HTMLElements/ILParagraphElement.st'; 
+	filein: 'HTMLElements/ILRawHtmlElement.st'; 
+	filein: 'HTMLElements/ILRubyTextElement.st'; 
+	filein: 'HTMLElements/ILScriptElement.st'; 
+	filein: 'HTMLElements/ILSpanElement.st'; 
+	filein: 'HTMLElements/ILTableElement.st'; 
+	filein: 'HTMLElements/ILTableElementElement.st'; 
+	filein: 'HTMLElements/ILTableBodyElement.st'; 
+	filein: 'HTMLElements/ILTableCellElement.st'; 
+	filein: 'HTMLElements/ILTableDataElement.st'; 
+	filein: 'HTMLElements/ILTableHeaderElement.st'; 
+	filein: 'HTMLElements/ILTableRowElement.st'; 
+	filein: 'HTMLElements/ILTableFootElement.st'; 
+	filein: 'HTMLElements/ILTableHeadElement.st'; 
+	filein: 'HTMLElements/ILConditionalCommentElement.st'; 
 
 	filein: 'Buildables/Extensions.st';  
 	filein: 'Buildables/ILBuildable.st'; 
@@ -96,23 +97,36 @@ Eval [
 	filein: 'Buildables/ILAppendDelegator.st'; 
 	filein: 'Buildables/ILPrependDelegator.st'; 
 	filein: 'Buildables/ILWidget.st'; 
+	filein: 'Buildables/ILSequence.st'; 
+	filein: 'Buildables/ILInformationWidget.st'; 
+	filein: 'Buildables/ILConfirmationWidget.st'; 
 	filein: 'Buildables/ILPluggableWidget.st';
 	filein: 'Buildables/ILProfiler.st'; 
 	filein: 'Buildables/ILApplication.st'; 
-	filein: 'Buildables/ILXHTMLPage.st'; 
+	filein: 'Buildables/ILHTMLPage.st'; 
+	filein: 'Buildables/ILCurrentBuildable.st'; 
 
 	filein: 'Dispatching/ILDispatchError.st';
 	filein: 'Dispatching/ILDispatcher.st'; 
+	filein: 'Dispatching/ILRouter.st'; 
 	filein: 'Dispatching/ILRoute.st'; 
 
 	filein: 'RequestHandlers/ILResponseNotification.st';
 	filein: 'RequestHandlers/ILRequestHandler.st';
 	filein: 'RequestHandlers/ILErrorHandler.st';   
+	filein: 'RequestHandlers/ILDirectory.st'; 
+	filein: 'RequestHandlers/ILMemoryDirectory.st'; 
 	filein: 'RequestHandlers/ILFileHandler.st'; 
 	filein: 'RequestHandlers/ILNotFoundHandler.st'; 
 	filein: 'RequestHandlers/ILJsonHandler.st'; 
 	filein: 'RequestHandlers/ILApplicationHandler.st'; 
 	filein: 'RequestHandlers/ILRedirectHandler.st';
+
+	filein: 'GST/ILDiskDirectory.st';
+	filein: 'GST/Extensions.st';
+
+	filein: 'postLoad.st';
+
 	yourself.
 
     pubDir := Directory working / 'Public'.

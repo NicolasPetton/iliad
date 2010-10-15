@@ -2,14 +2,12 @@
   <name>Iliad-Core</name>
   <namespace>Iliad</namespace>
   <prereq>Iconv</prereq>
+  <prereq>Grease</prereq>
   <filein>Utilities/ILObject.st</filein>
-  <filein>Utilities/ILSmallDictionary.st</filein>
   <filein>Utilities/ILComposite.st</filein>
   <filein>Utilities/ILDynamicVariable.st</filein>
-  <filein>Utilities/ILSupport.st</filein>
   <filein>Utilities/ILId.st</filein>
   <filein>Utilities/ILEncoder.st</filein>
-  <filein>Utilities/ILGSTEncoder.st</filein>
   <filein>Utilities/ILModelProxy.st</filein>
   <filein>lib/HTTP/ILUrl.st</filein>
   <filein>lib/HTTP/ILFileProxy.st</filein>
@@ -18,68 +16,71 @@
   <filein>lib/HTTP/ILCookie.st</filein>
   <filein>lib/JSON/ILJsonSyntaxError.st</filein>
   <filein>lib/JSON/ILJson.st</filein>
+  <filein>lib/JSON/ILJsonObject.st</filein>
   <filein>lib/JSON/Extensions.st</filein>
   <filein>Sessions/ILUrlBuilder.st</filein>
   <filein>Sessions/ILContext.st</filein>
   <filein>Sessions/ILAction.st</filein>
   <filein>Sessions/ILCurrentContext.st</filein>
-  <filein>Sessions/ILCurrentActionRegistry.st</filein>
   <filein>Sessions/ILActionRegistry.st</filein>
+  <filein>Sessions/ILStateRegistry.st</filein>
   <filein>Sessions/ILSession.st</filein>
   <filein>Sessions/ILSessionManager.st</filein>
   <filein>Elements/ILElements-Error.st</filein>
   <filein>Elements/ILElement.st</filein>
   <filein>Elements/ILTextElement.st</filein>
+  <filein>Elements/ILXmlElement.st</filein>
   <filein>Elements/Extensions.st</filein>
-  <filein>XHTMLElements/ILXHTMLElement.st</filein>
-  <filein>XHTMLElements/ILTitleElement.st</filein>
-  <filein>XHTMLElements/ILBodyElement.st</filein>
-  <filein>XHTMLElements/ILClosingElement.st</filein>
-  <filein>XHTMLElements/ILAreaElement.st</filein>
-  <filein>XHTMLElements/ILBreakElement.st</filein>
-  <filein>XHTMLElements/ILHorizontalRuleElement.st</filein>
-  <filein>XHTMLElements/ILImageElement.st</filein>
-  <filein>XHTMLElements/ILMetaElement.st</filein>
-  <filein>XHTMLElements/ILParameterElement.st</filein>
-  <filein>XHTMLElements/ILDirectionElement.st</filein>
-  <filein>XHTMLElements/ILDivElement.st</filein>
-  <filein>XHTMLElements/ILFieldsetElement.st</filein>
-  <filein>XHTMLElements/ILFormElement.st</filein>
-  <filein>XHTMLElements/ILFormElementElement.st</filein>
-  <filein>XHTMLElements/ILButtonElement.st</filein>
-  <filein>XHTMLElements/ILCheckboxElement.st</filein>
-  <filein>XHTMLElements/ILRadioButtonElement.st</filein>
-  <filein>XHTMLElements/ILInputElement.st</filein>
-  <filein>XHTMLElements/ILSelectElement.st</filein>
-  <filein>XHTMLElements/ILTextAreaElement.st</filein>
-  <filein>XHTMLElements/ILHeadElement.st</filein>
-  <filein>XHTMLElements/ILHeadingElement.st</filein>
-  <filein>XHTMLElements/ILHtmlElement.st</filein>
-  <filein>XHTMLElements/ILLabelElement.st</filein>
-  <filein>XHTMLElements/ILLegendElement.st</filein>
-  <filein>XHTMLElements/ILLinkableElement.st</filein>
-  <filein>XHTMLElements/ILAnchorElement.st</filein>
-  <filein>XHTMLElements/ILLinkElement.st</filein>
-  <filein>XHTMLElements/ILListElement.st</filein>
-  <filein>XHTMLElements/ILListItemElement.st</filein>
-  <filein>XHTMLElements/ILMapElement.st</filein>
-  <filein>XHTMLElements/ILObjectElement.st</filein>
-  <filein>XHTMLElements/ILOptionElement.st</filein>
-  <filein>XHTMLElements/ILOptionGroupElement.st</filein>
-  <filein>XHTMLElements/ILParagraphElement.st</filein>
-  <filein>XHTMLElements/ILRawHtmlElement.st</filein>
-  <filein>XHTMLElements/ILRubyTextElement.st</filein>
-  <filein>XHTMLElements/ILScriptElement.st</filein>
-  <filein>XHTMLElements/ILSpanElement.st</filein>
-  <filein>XHTMLElements/ILTableElement.st</filein>
-  <filein>XHTMLElements/ILTableElementElement.st</filein>
-  <filein>XHTMLElements/ILTableBodyElement.st</filein>
-  <filein>XHTMLElements/ILTableCellElement.st</filein>
-  <filein>XHTMLElements/ILTableDataElement.st</filein>
-  <filein>XHTMLElements/ILTableHeaderElement.st</filein>
-  <filein>XHTMLElements/ILTableRowElement.st</filein>
-  <filein>XHTMLElements/ILTableFootElement.st</filein>
-  <filein>XHTMLElements/ILTableHeadElement.st</filein>
+  <filein>HTMLElements/ILHTMLBuilderElement.st</filein>
+  <filein>HTMLElements/ILTitleElement.st</filein>
+  <filein>HTMLElements/ILBodyElement.st</filein>
+  <filein>HTMLElements/ILClosingElement.st</filein>
+  <filein>HTMLElements/ILAreaElement.st</filein>
+  <filein>HTMLElements/ILBreakElement.st</filein>
+  <filein>HTMLElements/ILHorizontalRuleElement.st</filein>
+  <filein>HTMLElements/ILImageElement.st</filein>
+  <filein>HTMLElements/ILMetaElement.st</filein>
+  <filein>HTMLElements/ILParameterElement.st</filein>
+  <filein>HTMLElements/ILDirectionElement.st</filein>
+  <filein>HTMLElements/ILDivElement.st</filein>
+  <filein>HTMLElements/ILFieldsetElement.st</filein>
+  <filein>HTMLElements/ILFormElement.st</filein>
+  <filein>HTMLElements/ILFormElementElement.st</filein>
+  <filein>HTMLElements/ILButtonElement.st</filein>
+  <filein>HTMLElements/ILCheckboxElement.st</filein>
+  <filein>HTMLElements/ILRadioButtonElement.st</filein>
+  <filein>HTMLElements/ILInputElement.st</filein>
+  <filein>HTMLElements/ILSelectElement.st</filein>
+  <filein>HTMLElements/ILTextAreaElement.st</filein>
+  <filein>HTMLElements/ILHeadElement.st</filein>
+  <filein>HTMLElements/ILHeadingElement.st</filein>
+  <filein>HTMLElements/ILHtmlElement.st</filein>
+  <filein>HTMLElements/ILLabelElement.st</filein>
+  <filein>HTMLElements/ILLegendElement.st</filein>
+  <filein>HTMLElements/ILLinkableElement.st</filein>
+  <filein>HTMLElements/ILAnchorElement.st</filein>
+  <filein>HTMLElements/ILLinkElement.st</filein>
+  <filein>HTMLElements/ILListElement.st</filein>
+  <filein>HTMLElements/ILListItemElement.st</filein>
+  <filein>HTMLElements/ILMapElement.st</filein>
+  <filein>HTMLElements/ILObjectElement.st</filein>
+  <filein>HTMLElements/ILOptionElement.st</filein>
+  <filein>HTMLElements/ILOptionGroupElement.st</filein>
+  <filein>HTMLElements/ILParagraphElement.st</filein>
+  <filein>HTMLElements/ILRawHtmlElement.st</filein>
+  <filein>HTMLElements/ILRubyTextElement.st</filein>
+  <filein>HTMLElements/ILScriptElement.st</filein>
+  <filein>HTMLElements/ILSpanElement.st</filein>
+  <filein>HTMLElements/ILTableElement.st</filein>
+  <filein>HTMLElements/ILTableElementElement.st</filein>
+  <filein>HTMLElements/ILTableBodyElement.st</filein>
+  <filein>HTMLElements/ILTableCellElement.st</filein>
+  <filein>HTMLElements/ILTableDataElement.st</filein>
+  <filein>HTMLElements/ILTableHeaderElement.st</filein>
+  <filein>HTMLElements/ILTableRowElement.st</filein>
+  <filein>HTMLElements/ILTableFootElement.st</filein>
+  <filein>HTMLElements/ILTableHeadElement.st</filein>
+  <filein>HTMLElements/ILConditionalCommentElement.st</filein>
   <filein>Buildables/Extensions.st</filein>
   <filein>Buildables/ILBuildable.st</filein>
   <filein>Buildables/ILDecorator.st</filein>
@@ -88,29 +89,36 @@
   <filein>Buildables/ILAppendDelegator.st</filein>
   <filein>Buildables/ILPrependDelegator.st</filein>
   <filein>Buildables/ILWidget.st</filein>
+  <filein>Buildables/ILSequence.st</filein>
+  <filein>Buildables/ILInformationWidget.st</filein>
+  <filein>Buildables/ILConfirmationWidget.st</filein>
   <filein>Buildables/ILPluggableWidget.st</filein>
   <filein>Buildables/ILProfiler.st</filein>
   <filein>Buildables/ILApplication.st</filein>
-  <filein>Buildables/ILXHTMLPage.st</filein>
+  <filein>Buildables/ILHTMLPage.st</filein>
+  <filein>Buildables/ILCurrentBuildable.st</filein>
   <filein>Dispatching/ILDispatchError.st</filein>
   <filein>Dispatching/ILDispatcher.st</filein>
+  <filein>Dispatching/ILRouter.st</filein>
   <filein>Dispatching/ILRoute.st</filein>
   <filein>RequestHandlers/ILResponseNotification.st</filein>
   <filein>RequestHandlers/ILRequestHandler.st</filein>
   <filein>RequestHandlers/ILErrorHandler.st</filein>
+  <filein>RequestHandlers/ILDirectory.st</filein>
+  <filein>RequestHandlers/ILMemoryDirectory.st</filein>
   <filein>RequestHandlers/ILFileHandler.st</filein>
   <filein>RequestHandlers/ILNotFoundHandler.st</filein>
   <filein>RequestHandlers/ILJsonHandler.st</filein>
   <filein>RequestHandlers/ILApplicationHandler.st</filein>
   <filein>RequestHandlers/ILRedirectHandler.st</filein>
+  <filein>GST/ILDiskDirectory.st</filein>
+  <filein>GST/Extensions.st</filein>
+  <filein>postLoad.st</filein>
   <file>Utilities/ILObject.st</file>
-  <file>Utilities/ILSmallDictionary.st</file>
   <file>Utilities/ILComposite.st</file>
   <file>Utilities/ILDynamicVariable.st</file>
-  <file>Utilities/ILSupport.st</file>
   <file>Utilities/ILId.st</file>
   <file>Utilities/ILEncoder.st</file>
-  <file>Utilities/ILGSTEncoder.st</file>
   <file>Utilities/ILModelProxy.st</file>
   <file>lib/HTTP/ILUrl.st</file>
   <file>lib/HTTP/ILFileProxy.st</file>
@@ -119,68 +127,71 @@
   <file>lib/HTTP/ILCookie.st</file>
   <file>lib/JSON/ILJsonSyntaxError.st</file>
   <file>lib/JSON/ILJson.st</file>
+  <file>lib/JSON/ILJsonObject.st</file>
   <file>lib/JSON/Extensions.st</file>
   <file>Sessions/ILUrlBuilder.st</file>
   <file>Sessions/ILContext.st</file>
   <file>Sessions/ILAction.st</file>
   <file>Sessions/ILCurrentContext.st</file>
-  <file>Sessions/ILCurrentActionRegistry.st</file>
   <file>Sessions/ILActionRegistry.st</file>
+  <file>Sessions/ILStateRegistry.st</file>
   <file>Sessions/ILSession.st</file>
   <file>Sessions/ILSessionManager.st</file>
   <file>Elements/ILElements-Error.st</file>
   <file>Elements/ILElement.st</file>
   <file>Elements/ILTextElement.st</file>
+  <file>Elements/ILXmlElement.st</file>
   <file>Elements/Extensions.st</file>
-  <file>XHTMLElements/ILXHTMLElement.st</file>
-  <file>XHTMLElements/ILTitleElement.st</file>
-  <file>XHTMLElements/ILBodyElement.st</file>
-  <file>XHTMLElements/ILClosingElement.st</file>
-  <file>XHTMLElements/ILAreaElement.st</file>
-  <file>XHTMLElements/ILBreakElement.st</file>
-  <file>XHTMLElements/ILHorizontalRuleElement.st</file>
-  <file>XHTMLElements/ILImageElement.st</file>
-  <file>XHTMLElements/ILMetaElement.st</file>
-  <file>XHTMLElements/ILParameterElement.st</file>
-  <file>XHTMLElements/ILDirectionElement.st</file>
-  <file>XHTMLElements/ILDivElement.st</file>
-  <file>XHTMLElements/ILFieldsetElement.st</file>
-  <file>XHTMLElements/ILFormElement.st</file>
-  <file>XHTMLElements/ILFormElementElement.st</file>
-  <file>XHTMLElements/ILButtonElement.st</file>
-  <file>XHTMLElements/ILCheckboxElement.st</file>
-  <file>XHTMLElements/ILRadioButtonElement.st</file>
-  <file>XHTMLElements/ILInputElement.st</file>
-  <file>XHTMLElements/ILSelectElement.st</file>
-  <file>XHTMLElements/ILTextAreaElement.st</file>
-  <file>XHTMLElements/ILHeadElement.st</file>
-  <file>XHTMLElements/ILHeadingElement.st</file>
-  <file>XHTMLElements/ILHtmlElement.st</file>
-  <file>XHTMLElements/ILLabelElement.st</file>
-  <file>XHTMLElements/ILLegendElement.st</file>
-  <file>XHTMLElements/ILLinkableElement.st</file>
-  <file>XHTMLElements/ILAnchorElement.st</file>
-  <file>XHTMLElements/ILLinkElement.st</file>
-  <file>XHTMLElements/ILListElement.st</file>
-  <file>XHTMLElements/ILListItemElement.st</file>
-  <file>XHTMLElements/ILMapElement.st</file>
-  <file>XHTMLElements/ILObjectElement.st</file>
-  <file>XHTMLElements/ILOptionElement.st</file>
-  <file>XHTMLElements/ILOptionGroupElement.st</file>
-  <file>XHTMLElements/ILParagraphElement.st</file>
-  <file>XHTMLElements/ILRawHtmlElement.st</file>
-  <file>XHTMLElements/ILRubyTextElement.st</file>
-  <file>XHTMLElements/ILScriptElement.st</file>
-  <file>XHTMLElements/ILSpanElement.st</file>
-  <file>XHTMLElements/ILTableElement.st</file>
-  <file>XHTMLElements/ILTableElementElement.st</file>
-  <file>XHTMLElements/ILTableBodyElement.st</file>
-  <file>XHTMLElements/ILTableCellElement.st</file>
-  <file>XHTMLElements/ILTableDataElement.st</file>
-  <file>XHTMLElements/ILTableHeaderElement.st</file>
-  <file>XHTMLElements/ILTableRowElement.st</file>
-  <file>XHTMLElements/ILTableFootElement.st</file>
-  <file>XHTMLElements/ILTableHeadElement.st</file>
+  <file>HTMLElements/ILHTMLBuilderElement.st</file>
+  <file>HTMLElements/ILTitleElement.st</file>
+  <file>HTMLElements/ILBodyElement.st</file>
+  <file>HTMLElements/ILClosingElement.st</file>
+  <file>HTMLElements/ILAreaElement.st</file>
+  <file>HTMLElements/ILBreakElement.st</file>
+  <file>HTMLElements/ILHorizontalRuleElement.st</file>
+  <file>HTMLElements/ILImageElement.st</file>
+  <file>HTMLElements/ILMetaElement.st</file>
+  <file>HTMLElements/ILParameterElement.st</file>
+  <file>HTMLElements/ILDirectionElement.st</file>
+  <file>HTMLElements/ILDivElement.st</file>
+  <file>HTMLElements/ILFieldsetElement.st</file>
+  <file>HTMLElements/ILFormElement.st</file>
+  <file>HTMLElements/ILFormElementElement.st</file>
+  <file>HTMLElements/ILButtonElement.st</file>
+  <file>HTMLElements/ILCheckboxElement.st</file>
+  <file>HTMLElements/ILRadioButtonElement.st</file>
+  <file>HTMLElements/ILInputElement.st</file>
+  <file>HTMLElements/ILSelectElement.st</file>
+  <file>HTMLElements/ILTextAreaElement.st</file>
+  <file>HTMLElements/ILHeadElement.st</file>
+  <file>HTMLElements/ILHeadingElement.st</file>
+  <file>HTMLElements/ILHtmlElement.st</file>
+  <file>HTMLElements/ILLabelElement.st</file>
+  <file>HTMLElements/ILLegendElement.st</file>
+  <file>HTMLElements/ILLinkableElement.st</file>
+  <file>HTMLElements/ILAnchorElement.st</file>
+  <file>HTMLElements/ILLinkElement.st</file>
+  <file>HTMLElements/ILListElement.st</file>
+  <file>HTMLElements/ILListItemElement.st</file>
+  <file>HTMLElements/ILMapElement.st</file>
+  <file>HTMLElements/ILObjectElement.st</file>
+  <file>HTMLElements/ILOptionElement.st</file>
+  <file>HTMLElements/ILOptionGroupElement.st</file>
+  <file>HTMLElements/ILParagraphElement.st</file>
+  <file>HTMLElements/ILRawHtmlElement.st</file>
+  <file>HTMLElements/ILRubyTextElement.st</file>
+  <file>HTMLElements/ILScriptElement.st</file>
+  <file>HTMLElements/ILSpanElement.st</file>
+  <file>HTMLElements/ILTableElement.st</file>
+  <file>HTMLElements/ILTableElementElement.st</file>
+  <file>HTMLElements/ILTableBodyElement.st</file>
+  <file>HTMLElements/ILTableCellElement.st</file>
+  <file>HTMLElements/ILTableDataElement.st</file>
+  <file>HTMLElements/ILTableHeaderElement.st</file>
+  <file>HTMLElements/ILTableRowElement.st</file>
+  <file>HTMLElements/ILTableFootElement.st</file>
+  <file>HTMLElements/ILTableHeadElement.st</file>
+  <file>HTMLElements/ILConditionalCommentElement.st</file>
   <file>Buildables/Extensions.st</file>
   <file>Buildables/ILBuildable.st</file>
   <file>Buildables/ILDecorator.st</file>
@@ -189,26 +200,41 @@
   <file>Buildables/ILAppendDelegator.st</file>
   <file>Buildables/ILPrependDelegator.st</file>
   <file>Buildables/ILWidget.st</file>
+  <file>Buildables/ILSequence.st</file>
+  <file>Buildables/ILInformationWidget.st</file>
+  <file>Buildables/ILConfirmationWidget.st</file>
   <file>Buildables/ILPluggableWidget.st</file>
   <file>Buildables/ILProfiler.st</file>
   <file>Buildables/ILApplication.st</file>
-  <file>Buildables/ILXHTMLPage.st</file>
+  <file>Buildables/ILHTMLPage.st</file>
+  <file>Buildables/ILCurrentBuildable.st</file>
   <file>Dispatching/ILDispatchError.st</file>
   <file>Dispatching/ILDispatcher.st</file>
+  <file>Dispatching/ILRouter.st</file>
   <file>Dispatching/ILRoute.st</file>
   <file>RequestHandlers/ILResponseNotification.st</file>
   <file>RequestHandlers/ILRequestHandler.st</file>
   <file>RequestHandlers/ILErrorHandler.st</file>
+  <file>RequestHandlers/ILDirectory.st</file>
+  <file>RequestHandlers/ILMemoryDirectory.st</file>
   <file>RequestHandlers/ILFileHandler.st</file>
   <file>RequestHandlers/ILNotFoundHandler.st</file>
   <file>RequestHandlers/ILJsonHandler.st</file>
   <file>RequestHandlers/ILApplicationHandler.st</file>
   <file>RequestHandlers/ILRedirectHandler.st</file>
-  <file>Public/javascripts/no_conflict.js</file>
+  <file>GST/ILDiskDirectory.st</file>
+  <file>GST/Extensions.st</file>
+  <file>postLoad.st</file>
+  <file>Public/images/iliad_tiny.png</file>
+  <file>Public/images/iliad.png</file>
+  <file>Public/images/iliad_small.png</file>
+  <file>Public/images/ajax_loader.gif</file>
+  <file>Public/images/iliad_huge.png</file>
+  <file>Public/images/iliad_bleached.png</file>
+  <file>Public/images/iliad_big.png</file>
+  <file>Public/stylesheets/iliad.css</file>
   <file>Public/javascripts/iliad.js</file>
   <file>Public/javascripts/jquery132min.js</file>
-  <file>Public/stylesheets/iliad.css</file>
-  <file>Public/images/ajax_loader.gif</file>
-  <file>Public/images/iliad.png</file>
-  <file>Public/iliad_ie_history.html</file>
+  <file>Public/javascripts/no_conflict.js</file>
+  <file>Public/javascripts/iliad_ie_history.html</file>
 </package>

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| copyright (c) 2008-2009 
+| copyright (c) 2008-2010 
 | nicolas petton <petton.nicolas@gmail.com>,
 | sébastien audier <sebastien.audier@gmail.com>
 |
@@ -61,7 +61,7 @@ MAElementWidget subclass: MATextAreaWidget [
     viewerContents [
 	<category: 'buidling'>
 	^[:e | 
-	    (self string tokenize: Character cr asString)
+	    (self string tokenize: Character cr greaseString)
 		do: [:each | e text: each]
 		separatedBy: [e br]]
     ]

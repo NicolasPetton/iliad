@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -55,7 +55,7 @@ I am a server independent http request object.'>
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	headers := Dictionary new.
 	fields := Dictionary new.
 	cookies := Dictionary new
@@ -94,28 +94,42 @@ I am a server independent http request object.'>
     hashLocationField [
 	<category: 'accessing'>
 	^self
-	    at: ILUrlBuilder default hashKey
+	    at: ILUrlBuilder hashKey
 	    ifAbsent: [nil]
     ]
 
     sessionField [
 	<category: 'accessing'>
 	^self 
-	    at: ILUrlBuilder default sessionKey
-	    ifAbsent: [nil]
-    ]
-
-    tokenField [
-	<category: 'accessing'>
-	^self
-	    at: ILUrlBuilder default tokenKey
+	    at: ILUrlBuilder sessionKey
 	    ifAbsent: [nil]
     ]
 
     actionField [
 	<category: 'accessing'>
 	^self 
-	    at: ILUrlBuilder default actionKey
+	    at: ILUrlBuilder actionKey
+	    ifAbsent: [nil]
+    ]
+
+    ajaxUploadField [
+	<category: 'accessing'>
+	^self 
+	    at: ILUrlBuilder ajaxUploadKey
+	    ifAbsent: [nil]
+    ]
+
+    jsonField [
+	<category: 'accessing'>
+	^self 
+	    at: ILUrlBuilder jsonKey
+	    ifAbsent: [nil]
+    ]
+
+    stateField [
+	<category: 'accessing'>
+	^self 
+	    at: ILUrlBuilder stateKey
 	    ifAbsent: [nil]
     ]
 
@@ -179,6 +193,11 @@ I am a server independent http request object.'>
 	^self authorization ifNotNilDo: [:auth | auth copyUpTo: $:]
     ]
 
+    userAgent [
+	<category: 'accessing'>
+	^self headerAt: 'user-agent'
+    ]
+
     hasCookies [
 	<category: 'testing'>
 	^self cookies notNil and: [self cookies notEmpty]
@@ -211,7 +230,7 @@ I am a server independent http request object.'>
 
     isTypeOfRequestForRedirect [
 	<category: 'testing'>
-	^self isPost not and: [
+	^self isPost or: [
 	    self actionField notNil]
     ]
 
@@ -228,7 +247,7 @@ I am a server independent http request object.'>
 
     decodeAuthorization: aString [
 	<category: 'private'>
-	^ILSupport base64Decode: (aString tokenize: ' ') last
+	^Grease.GRPlatform current base64Decode: (aString tokenize: ' ') last
     ]
 
     setMethod: methodString url: urlString headers: headDict fields: fieldDict cookies: cookieDict [

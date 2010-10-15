@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -57,7 +57,7 @@ password:		<String> or nil
 hostname:		<String> or nil
 port:			<Integer> or nil
 path:			<OrderedCollection> or nil
-parameters:		<ILSmallDictionary>
+parameters:		<Grease.GRSmallDictionary>
 fragment:		<String> or nil'>
 
     ILUrl class >> absolute: aString [
@@ -102,12 +102,17 @@ fragment:		<String> or nil'>
 
     = anUrl [
 	<category: 'comparing'>
-	^self class = anUrl class and: [self printString = anUrl printString]
+	^self class = anUrl class and: [self greaseString = anUrl greaseString]
     ]
 
     hash [
 	<category: 'comparing'>
 	^self hostname hash bitXor: self path hash
+    ]
+
+    , aString [
+	<category: 'basic'>
+	^self greaseString, aString greaseString
     ]
 
     addAllToPath: aCollectionOfStrings [
@@ -129,7 +134,17 @@ fragment:		<String> or nil'>
 
     addToPath: aString [
 	<category: 'adding'>
-	self path addAll: (aString findTokens: '/')
+	self path addAll: (aString tokenize: '/')
+    ]
+
+    removeParameter: aString [
+	<category: 'removing'>
+	self parameters removeKey: aString ifAbsent: []
+    ]
+
+    greaseString [
+	<category: 'converting'>
+	^self asString
     ]
 
     asString [
@@ -141,7 +156,7 @@ fragment:		<String> or nil'>
 	"Answer the path converted to a string."
 
 	<category: 'converting'>
-	^String streamContents: [:stream | self encodePathOn: stream]
+	^String streamContents: [:stream | self printPathOn: stream encoded: false]
     ]
 
     relativeTo: anUrl [
@@ -185,27 +200,15 @@ fragment:		<String> or nil'>
 		ifTrue: [port := (httpHost copyAfter: $:) asNumber]]
     ]
 
-    encodeFragmentOn: aStream [
+    printOn: aStream encoded: aBoolean usingHtmlEntities: anotherBoolean [
 	<category: 'encoding'>
-	fragment ifNil: [^self].
-	aStream nextPut: $#.
-	aStream nextPutAll: (ILEncoder encode: fragment)
+	self printServerOn: aStream encoded: aBoolean.
+	self printPathOn: aStream encoded: aBoolean.
+	self printParametersOn: aStream encoded: aBoolean usingHtmlEntities: anotherBoolean.
+	self printFragmentOn: aStream encoded: aBoolean
     ]
 
-    encodeOn: aStream [
-	<category: 'encoding'>
-	self encodeOn: aStream usingHtmlEntities: true
-    ]
-
-    encodeOn: aStream usingHtmlEntities: aBoolean [
-	<category: 'encoding'>
-	self encodeServerOn: aStream.
-	self encodePathOn: aStream.
-	self encodeParametersOn: aStream usingHtmlEntities: aBoolean.
-	self encodeFragmentOn: aStream
-    ]
-
-    encodeParametersOn: aStream usingHtmlEntities: aBoolean [
+    printParametersOn: aStream encoded: aBoolean usingHtmlEntities: anotherBoolean [
 	<category: 'encoding'>
 	| first |
 	first := true.
@@ -213,44 +216,50 @@ fragment:		<String> or nil'>
 	parameters keysAndValuesDo: [:key :value | 
 	    aStream nextPutAll: (first 
 		ifTrue: [first := false. '?']
-		ifFalse: [aBoolean ifTrue: ['&amp;'] ifFalse: ['&']]).
-	    aStream nextPutAll: (ILEncoder encodeUrl: key).
-	    value ifNotNil: 
-		[aStream nextPut: $=.
-		aStream nextPutAll: (ILEncoder encodeUrl: value asString)]]
+		ifFalse: [anotherBoolean ifTrue: ['&amp;'] ifFalse: ['&']]).
+	    ILEncoder printUrl: key encoded: aBoolean on: aStream.
+	    value ifNotNil: [
+		aStream nextPut: $=.
+		ILEncoder printUrl: value greaseString encoded: aBoolean on: aStream]]
     ]
 
-    encodePathOn: aStream [
+    printPathOn: aStream encoded: aBoolean [
 	<category: 'encoding'>
 	path ifNil: [^self].
 	aStream nextPut: $/.
-	path do: [:each | aStream nextPutAll: (ILEncoder encodeUrl: each)]
+	path 
+	    do: [:each | 
+		ILEncoder printUrl: each encoded: aBoolean on: aStream]
 	    separatedBy: [aStream nextPut: $/]
     ]
 
-    encodeServerOn: aStream [
+    printServerOn: aStream encoded: aBoolean [
 	<category: 'encoding'>
 	hostname ifNil: [^self].
 	aStream
 	    nextPutAll: scheme;
 	    nextPutAll: '://'.
-	username notNil 
-	    ifTrue: [
-		aStream nextPutAll: (ILEncoder encodeUrl: username).
-		password notNil 
-		    ifTrue: [
-			aStream nextPut: $:.
-			aStream nextPutAll: (ILEncoder encodeUrl: password)].
-		aStream nextPut: $@].
-	aStream nextPutAll: (ILEncoder encodeUrl: hostname).
-	port notNil 
-	    ifTrue: [
-		((scheme = 'http' and: [port = 80]) 
-		    or: [scheme = 'https' and: [port = 443]]) 
-			ifFalse: [
-			    aStream
-				nextPut: $:;
-				print: port]]
+	username notNil ifTrue: [
+	    ILEncoder printUrl: username encoded: aBoolean on: aStream.
+	    password notNil ifTrue: [
+		aStream nextPut: $:.
+		ILEncoder printUrl: password encoded: aBoolean on: aStream].
+	    aStream nextPut: $@].
+	ILEncoder printUrl: hostname encoded: aBoolean on: aStream.
+	port notNil ifTrue: [
+	    ((scheme = 'http' and: [port = 80]) 
+		or: [scheme = 'https' and: [port = 443]]) 
+		    ifFalse: [
+			aStream
+			    nextPut: $:;
+			    print: port]]
+    ]
+
+    printFragmentOn: aStream encoded: aBoolean [
+	<category: 'encoding'>
+	fragment ifNil: [^self].
+	aStream nextPut: $#.
+	ILEncoder printUrl: fragment encoded: aBoolean on: aStream
     ]
 
     fragment [
@@ -279,7 +288,7 @@ fragment:		<String> or nil'>
 
     parameters [
 	<category: 'accessing'>
-	^parameters ifNil: [parameters := ILSmallDictionary new]
+	^parameters ifNil: [parameters := Grease.GRSmallDictionary new]
     ]
 
     password [
@@ -329,10 +338,10 @@ fragment:		<String> or nil'>
 
     scheme: aString [
 	"we really expect a String here, Old versions (2.7) expected a Symbol you can still pass a Symbol and get away with it but don't expect this behavior to be supported in future versions.
-	 #asString is the 'correct' way to convert a Symbol to a String since #displayString will add a hash on VW"
+	 #greaseString is the 'correct' way to convert a Symbol to a String since #displayString will add a hash on VW"
 
 	<category: 'accessing'>
-	scheme := aString asString
+	scheme := aString greaseString
     ]
 
     username [
@@ -403,7 +412,7 @@ fragment:		<String> or nil'>
 		    ifTrue: [
 			self username: (self decode: (temp copyFrom: 1 to: index - 1)).
 			self password: (self decode: (temp copyFrom: index + 1 to: temp size))]].
-	index := string lastIndexOf: $:.
+	index := string indexOf: $:.
 	index > 0 
 	    ifTrue: [
 		temp := string copyFrom: index + 1 to: string size.
@@ -482,9 +491,19 @@ fragment:		<String> or nil'>
 	    yourself
     ]
 
+    printOn: aStream encoded: aBoolean [
+	<category: 'printing'>
+	self printOn: aStream encoded: aBoolean usingHtmlEntities: false
+    ]
+
     printOn: aStream [
 	<category: 'printing'>
-	self encodeOn: aStream usingHtmlEntities: false
+	self printOn: aStream encoded: true
+    ]
+
+    printEncodedOn: aStream [
+	<category: 'printing'>
+	self printOn: aStream encoded: false usingHtmlEntities: true
     ]
 ]
 

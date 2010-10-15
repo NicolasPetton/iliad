@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -45,7 +45,7 @@ ILRequestHandler subclass: ILNotFoundHandler [
 	self respond: [:response |
 	    response
 		nextPutAll: '<h1>404 Not Found: ';
-		nextPutAll: self request url asString;
+		nextPutAll: self request url greaseString;
 		nextPutAll: '</h1>']
     ]
 

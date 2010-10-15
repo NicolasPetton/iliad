@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -219,7 +219,7 @@ I am a server independent http response object.'>
     printOn: aStream [
 	<category: 'printing'>
 	super printOn: aStream.
-	aStream space; nextPutAll: self status printString
+	aStream space; nextPutAll: self status greaseString
     ]
 ]
 

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -78,7 +78,7 @@ and can be streamed with methods in the <streaming> protocol.'>
     ]
 
     initializeWithPath: aCollection [
-	<category:'initialize-release'>
+	<category:'initialization'>
 	path := aCollection.
 	stream := ReadStream on: path
     ]

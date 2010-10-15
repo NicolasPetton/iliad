@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -49,9 +49,9 @@ ILWidget extend [
 	<category: '*Iliad-More-UI'>
 	
 	self 
-		show: aWidget 
-		onAnswer: aBlock
-		delegator: (ILLightbox new widget: aWidget; yourself)
+	    show: aWidget 
+	    onAnswer: aBlock
+	    delegator: (ILLightbox new widget: aWidget; yourself)
     ]
 
     addMessage: aBlock [

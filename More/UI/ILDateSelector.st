@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -70,7 +70,7 @@ ILUIWidget subclass: ILDateSelector [
 
     selectedDate: aDate [
 	<category: 'accessing'>
-	self selectedMonth: aDate monthName asString.
+	self selectedMonth: aDate monthName greaseString.
 	self selectedDay: aDate dayOfMonth.
 	self selectedYear: aDate year
     ]
@@ -156,10 +156,10 @@ ILUIWidget subclass: ILDateSelector [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	actionBlock := [:val | self answer: val].
-	selectedMonth := Date today monthName asString.
+	selectedMonth := Date today monthName greaseString.
 	selectedDay := Date today dayOfMonth.
 	selectedYear := Date today year
     ]

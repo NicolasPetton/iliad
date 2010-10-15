@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -58,7 +58,7 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 
     attributes [
 	<category: 'accessing'>
-	^attributes ifNil: [attributes := ILSmallDictionary new]
+	^attributes ifNil: [attributes := Grease.GRSmallDictionary new]
     ]
 
     attributeAt: akey [
@@ -122,10 +122,9 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	aStream
 	    nextPut: Character space;
 	    nextPutAll: anAttribute key;
-	    nextPut: $=;
-	    nextPut: $";
-	    nextPutAll: (ILEncoder encodeForHTTP: anAttribute value asString);
-	    nextPut: $"
+	    nextPutAll: '="'.
+	anAttribute value printEncodedOn: aStream.
+	aStream nextPut: $"
     ]
 
     printCloseTagOn: aStream [
@@ -153,6 +152,11 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
 	^self add: (ILTextElement new
 	    contents: aString;
 	    yourself)
+    ]
+
+    xml [
+	<category: 'adding-conveniance'>
+	^self add: ILXmlElement new
     ]
 
     attributeError: key [

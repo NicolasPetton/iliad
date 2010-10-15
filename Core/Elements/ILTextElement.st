@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -75,7 +75,7 @@ ILElement subclass: ILTextElement [
     printHtmlOn: aStream [
 	<category: 'printing'>
 	self printOpenTagOn: aStream.
-	aStream nextPutAll: (ILEncoder encodeForHTTP: self contents).
+	ILEncoder encodeForHTTP: self contents on: aStream.
 	self printCloseTagOn: aStream
     ]
 ]

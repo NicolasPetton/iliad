@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -35,9 +35,8 @@
 
 
 
-
 ILWidget subclass: ILTodoListGridWidget [
-    | selectBlock |
+    | selectBlock dataGrid |
     
     <comment: nil>
     <category: 'Iliad-More-Examples'>
@@ -49,7 +48,9 @@ ILWidget subclass: ILTodoListGridWidget [
 	self lightbox: ((self formulaForItem: newItem)
 	    addMessage: [:e | e h2: 'Add item ', newItem title];
 	    yourself)
-	    onAnswer: [:item | item ifNotNil: [self application model addItem: item]]
+	    onAnswer: [:item | item ifNotNil: [
+		self application model addItem: item.
+		self updateDataGridItems]]
     ]
 
     editItem: anItem [
@@ -68,48 +69,23 @@ ILWidget subclass: ILTodoListGridWidget [
     setItem: anItem completed: aBoolean [
 	<category: 'actions'>
 	anItem completed: aBoolean.
-	self markDirty
+	self updateDataGridItems
+    ]
+
+    updateDataGridItems [
+	<category: 'updating'>
+	self dataGrid items: 
+	    (self items asSortedCollection: [:a :b | a deadline < b deadline])
     ]
 
     contents [
 	<category: 'building'>
-	^[:e || table |
-	    table := e table.
-	    table build: self tableHeadContents.
-	    (self items asSortedCollection: [:a :b | a deadline < b deadline]) 
-		do: [:each | table build: (self rowContentsForItem: each)].
+	^[:e |
+	    self updateDataGridItems.
+	    e build: self dataGrid.
 	    e div a
 		action: [self addNewItem];
 		text: 'new']
-    ]
-
-    rowContentsForItem: anItem [
-	<category: 'building'>
-	^[:e || row |
-	    row := e tr.
-	    (row td form checkbox)
-		checked: anItem completed;
-		beSubmitOnClick;
-		action: [:val | self setItem: anItem completed: val].
-	    row td text: anItem title.
-	    row td text: anItem body.
-	    row td text: anItem deadline asString.
-	    row td a
-		action: [self editItem: anItem];
-		text: 'edit'.
-	    row td a
-		action: [self removeItem: anItem];
-		text: 'remove']
-    ]
-
-    tableHeadContents [
-	<category: 'building'>
-	^[:e || head |
-	    head := e thead.
-	    head td text: ''.
-	    head td text: 'Title'.
-	    head td text: 'Body'.
-	    head td text: 'Deadline']
     ]
 
     formulaForItem: anItem [
@@ -130,6 +106,25 @@ ILWidget subclass: ILTodoListGridWidget [
 	(formula checkboxOn: #completed)
 	    label: 'Completed'.
 	^formula
+    ]
+
+    dataGrid [
+	<category: 'accessing'>
+	^dataGrid ifNil: [
+	    dataGrid := (ILPagedDataGrid new
+		items: (self items asSortedCollection: [:a :b | a deadline < b deadline]);
+		columnNames: #('' 'Title' 'Body' 'Deadline' '' '');
+		column: 1 buildContents: [:e :item | e form checkbox
+		    checked: item completed;
+		    beSubmitOnClick;
+		    action: [:val | self setItem: item completed: val]];
+		column: 2 buildContents: [:e :item | e text: item title];
+		column: 3 buildContents: [:e :item | e text: item body];
+		column: 4 buildContents: [:e :item | e text: item deadline greaseString];
+		column: 5 buildContents: [:e :item | e a text: 'Edit'; action: [self editItem: item]];
+		column: 6 buildContents: [:e :item | e a text: 'Remove'; action: [self removeItem: item]];
+		rowsPerPage: 3;
+		yourself)]
     ]
 
     items [

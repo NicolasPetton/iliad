@@ -7,30 +7,39 @@ ILUIWidget subclass: ILPaginator [
     <comment: nil>
     <category: 'Iliad-More-UI'>
 
+    cssClass [
+	<category: 'accessing'>
+	^super cssClass, ' paginator'
+    ]
+
     contents [
 	<category: 'building'>
 	^[:e | 
-	    self currentPage = 1 
-		ifTrue: [e text: '<< ']
-		ifFalse: [
-		    e a
-			text: '<<';
-			action: [self selectPage: self currentPage - 1].
-		e space].
-	    1 to: self totalPages do: [:eachPageNumber | 
-		self currentPage = eachPageNumber 
-		    ifTrue: [e text: eachPageNumber printString]
-		    ifFalse: [
-			e a
-			    text: eachPageNumber printString;
-			    action: [self selectPage: eachPageNumber]].
-		e space].
-	(self currentPage = totalPages or: [totalPages = 0]) 
-	    ifTrue: [e text: '>>']
-	    ifFalse: [
-		e a
-		    text: '>>';
-		    action: [self selectPage: self currentPage + 1]]]
+	    e div 
+		class: self cssClass;
+		build: [:div |
+		    self totalPages > 1 ifTrue: [
+			self currentPage = 1 
+			    ifTrue: [div span text: '<< ']
+			    ifFalse: [
+				div a
+				    text: '<<';
+				    action: [self selectPage: self currentPage - 1].
+			    div space].
+			self range do: [:each | 
+			    self currentPage = each 
+				ifTrue: [div span class: 'selected'; text: each greaseString]
+				ifFalse: [
+				    div a
+					text: each greaseString;
+					action: [self selectPage: each]].
+			    div space].
+		    self currentPage = totalPages 
+			ifTrue: [div span text: '>>']
+			ifFalse: [
+			    div a
+				text: '>>';
+				action: [self selectPage: self currentPage + 1]]]]]
     ]
 
     action [
@@ -54,20 +63,35 @@ ILUIWidget subclass: ILPaginator [
 	self markDirty
     ]
 
+    range [
+	<category: 'accessing'>
+	^self rangeStart to: self rangeEnd
+    ]
+
+    rangeStart [
+	<category: 'accessing'>
+	^1 max: self currentPage - 5
+    ]
+
+    rangeEnd [
+	<category: 'accessing'>
+	^self totalPages min: self currentPage + 5
+    ]
+
     totalPages [
 	<category: 'accessing'>
 	^totalPages
     ]
 
-    totalPages: anObject [
+    totalPages: anInteger [
 	<category: 'accessing'>
-	totalPages := anObject.
+	totalPages := anInteger.
 	self markDirty
     ]
 
-    selectPage: aPage [
+    selectPage: anInteger [
 	<category: 'actions'>
-	self action value: aPage
+	self action value: anInteger
     ]
 ]
 

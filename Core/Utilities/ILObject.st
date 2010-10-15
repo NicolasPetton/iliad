@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -35,22 +35,11 @@
 
 
 
-Object subclass: ILObject [
+Grease.GRObject subclass: ILObject [
 	
     <category: 'Iliad-Core-Utilities'>
     <comment: 'ILObject is the base class for all Iliad classes. It guarantees that #initialize is send upon object creation. Additionally it provides convienience methods for accessing the current context, session and application.'>
 	    
-    ILObject class >> new [
-	<category: 'instance creation'>
-	^self basicNew
-	    initialize;
-	    yourself
-    ]
-
-    initialize [
-	<category: 'initialize-release'>
-    ]
-
     application [
 	<category: 'accessing'>
 	^self context application
@@ -60,7 +49,12 @@ Object subclass: ILObject [
 	<category: 'accessing'>
 	^ILCurrentContext value
     ]
-    
+   
+    urlBuilder [
+	<category: 'accessing'>
+	^self context urlBuilder
+    ]
+
     session [
 	<category: 'accessing'>
 	^self context session 

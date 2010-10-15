@@ -6,21 +6,35 @@
   <filein>ILCondition.st</filein>
   <filein>ILField.st</filein>
   <filein>ILInputField.st</filein>
+  <filein>ILNumberInputField.st</filein>
+  <filein>ILAutocompleteInputField.st</filein>
   <filein>ILTextareaField.st</filein>
   <filein>ILPasswordField.st</filein>
   <filein>ILCheckboxField.st</filein>
   <filein>ILOptionField.st</filein>
   <filein>ILSelectField.st</filein>
+  <filein>ILMultipleCheckboxField.st</filein>
   <filein>ILDateInputField.st</filein>
+  <filein>ILTimeInputField.st</filein>
+  <filein>ILFileInputField.st</filein>
   <filein>ILFormula.st</filein>
+  <filein>postLoad.st</filein>
   <file>ILCondition.st</file>
   <file>ILField.st</file>
   <file>ILInputField.st</file>
+  <file>ILNumberInputField.st</file>
+  <file>ILAutocompleteInputField.st</file>
   <file>ILTextareaField.st</file>
   <file>ILPasswordField.st</file>
   <file>ILCheckboxField.st</file>
   <file>ILOptionField.st</file>
   <file>ILSelectField.st</file>
+  <file>ILMultipleCheckboxField.st</file>
   <file>ILDateInputField.st</file>
+  <file>ILTimeInputField.st</file>
+  <file>ILFileInputField.st</file>
   <file>ILFormula.st</file>
+  <file>postLoad.st</file>
+  <file>Public/stylesheets/jquery.autocomplete.css</file>
+  <file>Public/javascripts/jquery.autocomplete.js</file>
 </package>

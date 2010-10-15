@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -40,10 +40,15 @@
 
 
 ILBuildable subclass: ILWidget [
-    | id decorator owner dependentWidgets |
+    | id state decorator owner dependentWidgets |
 
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am a stateful graphical component. 
+
+
+""""""""""""""""""""""""""""""
+" Building HTML with widgets "
+""""""""""""""""""""""""""""""
 
 To build HTML override the #contents method, which should always 
 return a view block, ie, a block which takes an element as parameter.
@@ -59,7 +64,8 @@ contents
             action: [self doSomething]]
 
 
-See Iliad.ILElement hierarchy for more information about building HTML with elements.
+See Iliad.ILElement hierarchy (Especially Iliad.ILHTMLBuilderElement ) for more information 
+about building HTML with elements.
 
 #contents method should *never* be called from the outside. Use #build instead. 
 For instance, to build a sub-widget in a view block, you should write something like:
@@ -68,20 +74,47 @@ contents [
     ^[:e | e build: mySubWidget]
 ]
 
+
+""""""""""""""""
+" Control flow "
+""""""""""""""""
+
 I can show (display instead of me) other widgets with #show* methods or answer 
 to widgets that called me with #answer. 
 
 When using the javascript layer, call #markDirty whenever my state change,
 so I will be updated on AJAX requests.
 
+Widgets which states depend on me can be automatically rebuilt whenever I am
+marked as dirty (see #addDependentWidget:).
+
+
+""""""""""""""
+" Decorators "
+""""""""""""""
+
 I can also have decorators that may modify my behavior. A decorator can be 
 added to the decoration chain with #decorateWith:.'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	decorator := ILDecorator decoratee: self.
-	dependentWidgets := OrderedCollection new
+	dependentWidgets := OrderedCollection new.
+    ]
+
+    postCopy [
+	<category: 'copying'>
+	super postCopy.
+	decorator := ILDecorator decoratee: self.
+	dependentWidgets := OrderedCollection new.
+	state := nil.
+	id := nil
+    ]
+
+    state [
+	<category: 'accessing'>
+	^state copy
     ]
 
     id: aString [
@@ -91,7 +124,7 @@ added to the decoration chain with #decorateWith:.'>
 
     id [
 	<category: 'accessing'>
-	^id ifNil: [id := ILId new]
+	^id ifNil: [id := self session nextId]
     ]
  
     owner: aWidget [
@@ -100,12 +133,17 @@ added to the decoration chain with #decorateWith:.'>
     ]
 
     owner [
-	"Return the widget which show me. if any"
+	"Answer the widget which shows me. if any"
 	<category: 'accessing'>
 
 	^owner
     ]
 
+    dependentWidgets [
+	<category: 'accessing'>
+	^dependentWidgets copy
+    ]
+    
     widget [
 	<category: 'accessing'>
 	^self
@@ -121,21 +159,32 @@ added to the decoration chain with #decorateWith:.'>
 	    yourself
     ]
 
+    stateRegistry [
+	<category: 'accessing'>
+	^self context stateRegistry
+    ]
+
     buildContents [
 	"Do *not* override this method. Use #contents instead"
 	<category: 'building'>
 
-	self buildHead: self application page head.	
-	
-	^self newRootElement div 
-	    class: '_widget ', self id;
-	    build: decorator contents;
+	self registerState.
+	self context addBuiltWidget: self.
+
+	^self newRootElement
+	    class: self id;
+	    build: self fullContents;
 	    yourself
+    ]
+
+    fullContents [
+	"Do *not* override this method. Use #contents instead"
+	<category: 'building'>
+	^decorator contents
     ]
 
     buildHead: aHead [
 	<category: 'building'>
-
 	decorator updateHead: aHead
     ]
 
@@ -216,13 +265,13 @@ added to the decoration chain with #decorateWith:.'>
 		dec2 decoratee: dec1 decoratee]
     ]
 
-    defaultRootElementClass [
+    rootElementClass [
 	<category: 'defaults'>
-	^ILXHTMLElement
+	^ILDivElement
     ]
     
     answer [
-	"Give the control back to the owner, i.e, the widget which showed me.
+	"Give the control back to the owner, i.e, the widget which showed the receiver.
 	 Answer self"
 	<category: 'control flow'>
 	
@@ -230,7 +279,7 @@ added to the decoration chain with #decorateWith:.'>
     ]
     
     answer: anAnswer [
-	"Give the control back to the owner, i.e, the widget which showed me.
+	"Give the control back to the owner, i.e, the widget which showed the receiver.
 	Answer <anAnswer>"
 	<category: 'control flow'>
 
@@ -241,9 +290,9 @@ added to the decoration chain with #decorateWith:.'>
 	<category: 'control flow'>
 	^nil
     ]
-  
+
     retrieveControl [
-	"Get the control back to the receiver from any showed widget, and make it answer nil"
+	"Give the control back to the receiver, and make any showed widget answer nil"
 	<category: 'control flow'>
 
 	self decoratorsDo: [:each |
@@ -253,7 +302,7 @@ added to the decoration chain with #decorateWith:.'>
 
     show: aWidget [
 	"Show another widget instead of the receiver.
-	I am also implicitely marked dirty"
+	The receiver is also implicitely marked dirty"
 	<category: 'control flow'>
 
 	self show: aWidget onAnswer: [:ans | ]
@@ -261,33 +310,15 @@ added to the decoration chain with #decorateWith:.'>
 
     show: aWidget onAnswer: aBlock [
 	"Show another widget instead of the receiver and catch the answer in <aBlock>.
-	I am also implicitely marked dirty"
+	The receiver is also implicitely marked dirty"
 	<category: 'control flow'>
-	
+
 	self
 	    show: aWidget
 	    onAnswer: aBlock
 	    delegator: (ILDelegator new widget: aWidget)
     ]
     
-    show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
-	<category: 'control flow'>
-	| answerHandler |
-	self retrieveControl.
-	answerHandler := ILAnswerHandler new.
-	self decorateWith: aDelegator.
-	answerHandler action: (ILAction new block: [:value |
-	    aDelegator removeYourself.
-	    self markDirty.
-	    aWidget owner: nil.
-	    answerHandler removeYourself.
-	    aBlock value: value]).
-	aWidget
-	    owner: self;
-	    markDirty;
-	    decorateWith: answerHandler
-    ]
-
     append: aWidget [
 	"Insert <aWidget> after the receiver"
 	<category: 'control flow'>
@@ -322,29 +353,47 @@ added to the decoration chain with #decorateWith:.'>
 	    delegator: (ILPrependDelegator new widget: aWidget)
     ]
 
-    printJsonOn: aStream [
-	<category:'printing'>
-	self build printJsonOn: aStream
+    show: aWidget onAnswer: aBlock delegator: aDelegator  [ 
+	<category: 'control flow'>
+	| answerHandler |
+	answerHandler := ILAnswerHandler new.
+	self 
+	    decorateWith: aDelegator;
+	    markDirty.
+	answerHandler action: (self session actionFor: [:value |
+		aDelegator removeYourself.
+		self markDirty.
+		aWidget owner: nil.
+		answerHandler removeYourself.
+		aBlock value: value]).
+	aWidget
+	    owner: self;
+	    decorateWith: answerHandler
     ]
 
-    markDirty [
-	"Mark the widget as 'dirty', ie, 
-	 The widget will be rebuilt on Ajax requests.
-	 You do not need to mark subwidgets as dirty. 
-	 They will be automatically rebuilt too"
-	<category: 'states'>
-	
-	self owner
-	    ifNil: [self setDirty]
-	    ifNotNil: [self owner markDirty].
-	dependentWidgets do: [:each | each markDirty]
+    inform: aString [
+	<category: 'control flow'>
+	self show: (ILInformationWidget new
+	    informationString: aString;
+	    yourself)
     ]
- 
-    setDirty [
-	"You shouldn't call this method directly unless you know what you are doing."
-	<category: 'states'>
-	
-	^self session addToDirtyWidgets: self
+
+    confirm: aString ifTrue: aBlock [
+	<category: 'control flow'>
+	self 
+	    confirm: aString 
+	    ifTrue: aBlock 
+	    ifFalse: []
+    ]
+
+    confirm: aString ifTrue: aBlock ifFalse: anotherBlock [
+	<category: 'control flow'>
+	self
+	    show: (ILConfirmationWidget new
+		confirmationString: aString;
+		yourself)
+	    onAnswer: [:boolean |
+		boolean ifTrue: aBlock ifFalse: anotherBlock]
     ]
 
     addDependentWidget: aWidget [
@@ -362,23 +411,50 @@ added to the decoration chain with #decorateWith:.'>
 	(dependentWidgets includes: aWidget) ifTrue: [
 	    dependentWidgets remove: aWidget]
     ]
+ 
+    registerState [
+	<category: 'states'>
+	self stateRegistry register: self
+    ]
+
+    markDirty [
+	"Mark the receiver as 'dirty', 
+	 so the widget will be rebuilt on Ajax requests.
+	 You do not need to mark subwidgets as dirty, 
+	 they will be rebuilt together with the receiver"
+	<category: 'states'>
+	
+	self owner
+	    ifNil: [self beDirty]
+	    ifNotNil: [self owner markDirty].
+	dependentWidgets do: [:each | each markDirty]
+    ]
+
+    printJsonOn: aStream [
+	<category: 'printing'>
+	self build printJsonOn: aStream
+    ]
 
     newRootElement [
 	<category: 'private'>
-	^self defaultRootElementClass new
+	^self rootElementClass new
     ]
 
     updateHead: aHead [
 	<category: 'private'>
 	self withDecoratorsDo: [:each |
 	    each scripts do: [:script || e |
-		e := self newRootElement javascript src: script.
+		e := ILHTMLBuilderElement new javascript src: script.
 		(aHead children includes: e) ifFalse: [
 		    aHead add: e]].
 	    each styles do: [:script || e |
-		e := self newRootElement stylesheet href: script.
+		e := ILHTMLBuilderElement new stylesheet href: script.
 		(aHead children includes: e) ifFalse: [
 		    aHead add: e]]]
     ]
-]
 
+    beDirty [
+	<category: 'private'>
+	state := self session nextId
+    ]
+]

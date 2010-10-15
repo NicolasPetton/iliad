@@ -3,9 +3,8 @@
   <namespace>Iliad</namespace>
   <prereq>Iliad-Core</prereq>
   <prereq>Iliad-More-UI</prereq>
-  <prereq>Iliad-More-Magritte</prereq>
   <prereq>Iliad-More-Formula</prereq>
-  <prereq>Iliad-More-Charts</prereq>
+  <prereq>Iliad-More-Comet</prereq>
   <prereq>Digest</prereq>
   <filein>ILCounter.st</filein>
   <filein>ILCounterApplication.st</filein>
@@ -13,20 +12,14 @@
   <filein>ILTodoListItemRepository.st</filein>
   <filein>ILTodoListGridWidget.st</filein>
   <filein>ILTodoListApplication.st</filein>
-  <filein>ILBlogPost.st</filein>
-  <filein>ILBlogRepository.st</filein>
-  <filein>ILBlogApplication.st</filein>
   <filein>ILGravatarWidget.st</filein>
-  <filein>ILChartApplication.st</filein>
+  <filein>ILCometCounter.st</filein>
   <file>ILCounter.st</file>
   <file>ILCounterApplication.st</file>
   <file>ILTodoListItem.st</file>
   <file>ILTodoListItemRepository.st</file>
   <file>ILTodoListGridWidget.st</file>
   <file>ILTodoListApplication.st</file>
-  <file>ILBlogPost.st</file>
-  <file>ILBlogRepository.st</file>
-  <file>ILBlogApplication.st</file>
   <file>ILGravatarWidget.st</file>
-  <file>ILChartApplication.st</file>
+  <file>ILCometCounter.st</file>
 </package>

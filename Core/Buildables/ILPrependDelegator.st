@@ -10,6 +10,10 @@
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
+| Some parts of this file reuse code from the Seaside framework written 
+| by Avi Bryant, Julian Fitzell, Lukas Renggli, Michel Bany, Philippe
+| Marschall and Seaside contributors http://www.seaside.st 
+|
 | This file is part of the Iliad framework.
 |
 | Permission is hereby granted, free of charge, to any person obtaining
@@ -44,6 +48,6 @@ ILDelegator subclass: ILPrependDelegator [
 	<category: 'building'>
 	^[:e | e 
 	    build: super contents;
-	    build: self decoratee] 
+	    build: self decoratee contents] 
     ]
 ]

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -200,18 +200,18 @@ MADescriptionWidget subclass: MAContainerWidget [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	errors := OrderedCollection new
     ]
 
     setChildren: aDictionary [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	children := aDictionary
     ]
 
     setDescription: aDescription [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super setDescription: aDescription.
 	self setChildren: self buildChildren
     ]

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -62,7 +62,7 @@ ILRSSElement subclass: ILRSSRssElement [
 
     version: aNumber [
 	<category: 'accessing attributes'>
-	self attributeAt: 'version' put: aNumber printString
+	self attributeAt: 'version' put: aNumber greaseString
     ]
 
     xmlns: aString [

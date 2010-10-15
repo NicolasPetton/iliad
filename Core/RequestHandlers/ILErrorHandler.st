@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -40,7 +40,52 @@ ILRequestHandler subclass: ILErrorHandler [
     | error |
     
     <category: 'Iliad-Core-RequestHandlers'>
-    <comment: nil>
+    <comment: '
+    
+""""""""""""""""""""""""
+" Error handling modes "
+""""""""""""""""""""""""
+
+Error handlers can be in one of the following modes: deployment, verbose or 
+debug. The default mode is verbose.
+You can switch between modes with class methods in the <accessing modes> 
+protocol.
+
+When errors occur, the framework with handle them differently depending on 
+the application mode:
+- in deployment mode, it will respond an error 500;
+- in verbose mode, it will also respond an error 500, but with error details;
+- in debug mode, a debugger window will be opened on the error;'>
+
+    ILErrorHandler class [
+	| mode |
+ 
+        mode [
+	    <category: 'accessing'>
+	    ^mode ifNil: [mode := #verbose]
+	]
+    
+	mode: aSymbol [
+	    <category: 'accessing'>
+	    mode := aSymbol
+	] 
+    
+	verboseMode [
+	    <category: 'accessing modes'>
+	    self mode: #verbose
+	]
+    
+	debugMode [
+	    <category: 'accessing modes'>
+	    self mode: #debug
+	]
+
+	deploymentMode [
+	    <category: 'accessing modes'>
+	    self mode: #deployment
+	]
+
+    ]
 
     error [
 	<category: 'accessing'>
@@ -52,6 +97,11 @@ ILRequestHandler subclass: ILErrorHandler [
 	error := anError
     ]
 
+    mode [
+	<category: 'accessing'>
+	^self class mode
+    ]
+
     newResponse [
 	<category: 'accessing'>
 	^ILResponse new
@@ -61,11 +111,11 @@ ILRequestHandler subclass: ILErrorHandler [
 
     produceResponse [
 	<category: 'responding'>
-	self application isDebugMode ifTrue: [
+	self isDebugMode ifTrue: [
 	    self produceDebugResponse].
-	self application isVerboseMode ifTrue: [
+	self isVerboseMode ifTrue: [
 	    self produceVerboseResponse].
-	self application isDeploymentMode ifTrue: [
+	self isDeploymentMode ifTrue: [
 	    self produceDeploymentResponse]
     ]
 
@@ -86,7 +136,7 @@ ILRequestHandler subclass: ILErrorHandler [
 	info := WriteStream on: ''. 
 	self respond: [:response || page e |
 	    response nextPutAll: (String streamContents: [:stream |
-		page := ILXHTMLPage new.
+		page := ILHTMLPage new.
 		page body h1: 'Internal Error';
 		    h2: self error description;
 		    h3: self error messageText.
@@ -97,9 +147,26 @@ ILRequestHandler subclass: ILErrorHandler [
 		Transcript show: info contents; cr.
 		page build printHtmlOn: stream])]
     ]
+
+
+    isDebugMode [
+        <category: 'testing'>
+        ^self mode = #debug
+    ]
+    
+    isVerboseMode [
+        <category: 'testing'>
+        ^self mode = #verbose
+    ]
+
+    isDeploymentMode [
+        <category: 'testing'>
+        ^self isDebugMode not and: [
+	self isVerboseMode not]
+    ]
 ]
 
-Signal extend [
+Exception extend [
     resumeContext [
 	^resumeBlock outerContext home
     ]

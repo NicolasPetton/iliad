@@ -1,38 +1,40 @@
 Object subclass: ILEncoder [
 
-    <shape: #byte>
     <category: 'Iliad-Core-Utilities'>
     <comment: nil>
 
     ILEncoder class [
-    
-	encodeUrl: aString [
+
+	printUrl: aString encoded: aBoolean on: aStream [
 	    <category: 'encoding'>
-	    ^String streamContents: [:stream |
-		aString do: [:char |
-		    self encodeUrl: char on: stream]]
+	    aBoolean 
+		ifTrue: [self encodeUrl: aString on: aStream]
+		ifFalse: [aStream nextPutAll: aString]
+	]
+
+	encodeUrl: aString on: aStream[
+	    <category: 'encoding'>
+	    aString do: [:char |
+		self encodeUrlCharacter: char on: aStream]
 	]	
 
-	encodeUrl: aCharacter on: aStream [
+	encodeUrlCharacter: aCharacter on: aStream [
 	    <category: 'encoding'>
 	    | value |
-	('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_."' includes: aCharacter)
-	    ifTrue: [^aStream nextPut: aCharacter].
-	value := aCharacter asInteger.
-	aStream nextPut: $%.
-	aStream nextPutAll: ((value radix: 16) copyFrom: 4)
+	    ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_."' includes: aCharacter)
+		ifTrue: [^aStream nextPut: aCharacter].
+	    value := aCharacter asInteger.
+	    aStream nextPut: $%.
+	    aStream nextPutAll: ((value radix: 16) copyFrom: 4)
 	]
 
-	encodeForHTTP: aString [
+	encodeForHTTP: aString on: aStream [
 	    <category: 'encoding'>
-	    | stream |
-	    stream := WriteStream on: String new.
 	    aString do: [:char |
-		self encodeForHTTP: char on: stream].
-	    ^stream contents
+		self encodeCharacterForHTTP: char on: aStream]
 	]
 
-	encodeForHTTP: aCharacter on: aStream [
+	encodeCharacterForHTTP: aCharacter on: aStream [
 	    <category: 'encoding'>
 	    aCharacter = $" ifTrue: [^aStream nextPutAll: '&quot;'].
 	    aCharacter = $< ifTrue: [^aStream nextPutAll: '&lt;'].
@@ -40,16 +42,5 @@ Object subclass: ILEncoder [
 	    aCharacter = $> ifTrue: [^aStream nextPutAll: '&gt;'].
 	    aStream nextPut: aCharacter
 	]	
-
-	encode: aString [
-	    <category: 'encoding'>
-	    ^aString 
-	]
-	
-	decode: aString [
-	    <category: 'encoding'>
-	    ^aString 
-	]
     ]
 ]
-

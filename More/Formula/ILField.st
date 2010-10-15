@@ -1,25 +1,74 @@
+"======================================================================
+|
+|   Iliad.ILField class definition
+|
+ ======================================================================"
+
+"======================================================================
+|
+| Copyright (c) 2008-2010 
+| Nicolas Petton <petton.nicolas@gmail.com>,
+| Sébastien Audier <sebastien.audier@gmail.com>
+|
+|
+| This file is part of the Iliad framework.
+|
+| Permission is hereby granted, free of charge, to any person obtaining
+| a copy of this software and associated documentation files (the 
+| 'Software'), to deal in the Software without restriction, including 
+| without limitation the rights to use, copy, modify, merge, publish, 
+| distribute, sublicense, and/or sell copies of the Software, and to 
+| permit persons to whom the Software is furnished to do so, subject to 
+| the following conditions:
+|
+| The above copyright notice and this permission notice shall be 
+| included in all copies or substantial portions of the Software.
+|
+| THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, 
+| EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+| MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+| IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+| CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+| TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+| SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  
+|
+ ======================================================================"
+
+
+
+
 ILBuildable subclass: ILField [
-    | conditions errors key labelContents commentContents value action |
+    | conditions errors reader writer labelContents commentContents formula |
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
 
-    ILField class >> on: aSelector of: anObject [
+    ILField class >> on: aFormula selector: aSelector [
 	<category: 'instance creation'>
 	^self new
-	    on: aSelector
-	    of: anObject;
+	    on: aFormula
+	    selector: aSelector;
 	    yourself
     ]
 
-    key [
+    reader [
 	<category: 'accessing'>
-	^key
+	^reader
     ]
 
-    key: aSymbol [
+    reader: aSymbol [
 	<category: 'accessing'>
-	key := aSymbol
+	reader := aSymbol
+    ]
+
+    writer [
+	<category: 'accessing'>
+	^writer
+    ]
+
+    writer: aSymbol [
+	<category: 'accessing'>
+	writer := aSymbol
     ]
 
     label: aString [
@@ -49,21 +98,23 @@ ILBuildable subclass: ILField [
 
     commentContents [
 	<category: 'accessing'>
-	^commentContents ifNil: [
-	    [:e |]]
+	^commentContents 
     ]
 
     value [
 	<category: 'accessing'>
-	^value
+	^formula proxy perform: self reader
     ]
 
     value: anObject [
 	<category: 'accessing'>
-	value := anObject
+	formula proxy 
+	    perform: self writer
+	    with: anObject
     ]
 
     errors [
+	<category: 'accessing'>
 	^errors ifNil: [{}]
     ]
 
@@ -93,14 +144,9 @@ ILBuildable subclass: ILField [
 		self errors add: (each labelFor: self value)]].
     ]
 
-    commit [
-	<category: 'actions'>
-	action value: self value
-    ]
-
-    buildContents [
+    build [
 	<category: 'building'>
-	^Iliad.ILXHTMLElement new 
+	^Iliad.ILHTMLBuilderElement new 
 	    build: self tableRowContents;
 	    yourself
     ]
@@ -109,17 +155,19 @@ ILBuildable subclass: ILField [
 	<category: 'building'>
 	^[:tbody|
 	    tbody tr build: [:tr |
+		tr cssClass: 'field'.
 		self isValid ifFalse: [
-		    tr class: 'error'].
-		tr td 
+		    tr cssClass: tr cssClass, ' error'].
+		tr th 
 		    build: self labelContents.
 		tr td 
 		    build: self fieldContents].
-	    tbody tr build: [:tr |
-		tr td.
-		tr td
-		    class: 'comment';
-		    build: self commentContents].
+	    self commentContents ifNotNil: [
+		tbody tr build: [:tr |
+		    tr td.
+			tr td
+			    cssClass: 'comment';
+			    build: self commentContents]].
 	    tbody build: self errorsContents]
     ]
 
@@ -145,12 +193,16 @@ ILBuildable subclass: ILField [
 	^self errors isEmpty
     ]
 
-    on: aSelector of: anObject [
+    isMultipart [
+	<category: 'testing'>
+	^false
+    ]
+
+    on: aFormula selector: aSelector [
 	<category: 'private'>
-	key ifNil: [key := aSelector].
-	labelContents ifNil: [self label: aSelector asString].
-	value := anObject perform: aSelector.
-	action := [:val | 
-	    anObject perform: (aSelector, ':') asSymbol with: val]
+	reader ifNil: [reader := aSelector].
+	writer ifNil: [writer := (aSelector, ':') asSymbol].
+	labelContents ifNil: [self label: aSelector greaseString].
+	formula := aFormula
     ]
 ]

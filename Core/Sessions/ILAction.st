@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -74,7 +74,7 @@ ILObject subclass: ILAction [
     evaluate [
 	<category: 'evaluating'>
 	self block ifNil: [^nil].
-	^self block cull: self value
+	^self block valueWithPossibleArguments: (Array with: self value)
     ]
 
     respondOn: aResponse [

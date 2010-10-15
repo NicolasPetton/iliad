@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -49,12 +49,12 @@ Object subclass: ILFileProxy [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self setCreatedTimestamp
     ]
 
     setCreatedTimestamp [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	self timestampsAt: #created put: DateTime now
     ]
 

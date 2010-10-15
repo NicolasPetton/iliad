@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -36,24 +36,11 @@
 
 
 ILObject subclass: ILActionRegistry [
-    | actions owner |
+    | actions |
     
     <category: 'Iliad-Core-Sessions'>
-    <comment: 'I implement a registry of actions.
+    <comment: 'I implement a registry of actions.'>
     
-    My <owner> is responsible for registering actions,
-    and unregister them when they are obsolete. 
-    
-    Action registries should always be stored in Iliad sessions.'>
-
-    ILActionRegistry class >> owner: aWidget [
-	<category: 'instance creation'>
-	^self basicNew
-	    owner: aWidget;
-	    initialize;
-	    yourself
-    ]
-
     actionAt: aKey [
 	<category: 'accessing'>
 	^self actions 
@@ -64,16 +51,6 @@ ILObject subclass: ILActionRegistry [
     actions [
 	<category: 'accessing'>
 	^actions ifNil: [actions := Dictionary new]
-    ]
-
-    owner [
-	<category: 'accessing'>
-	^owner
-    ]
-
-    owner: anObject [
-	<category: 'accessing'>
-	owner := anObject
     ]
 
     evaluateActionKey: aString [
@@ -102,4 +79,3 @@ ILObject subclass: ILActionRegistry [
 	actions := nil
     ]
 ]
-

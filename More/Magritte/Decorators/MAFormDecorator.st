@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -53,7 +53,7 @@ MAContainerDecorator subclass: MAFormDecorator [
 
     addButton: aSymbol [
 	<category: 'actions'>
-	self addButton: aSymbol label: aSymbol asString
+	self addButton: aSymbol label: aSymbol greaseString
     ]
 
     addButton: aSymbolOrOneArgumentBlock label: aString [
@@ -80,7 +80,7 @@ MAContainerDecorator subclass: MAFormDecorator [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	self buttons: OrderedCollection new
     ]

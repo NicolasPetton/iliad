@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -38,7 +38,7 @@
 
 
 
-Error subclass: ILJsonSyntaxError [
+Grease.GRError subclass: ILJsonSyntaxError [
     
     <category: 'Iliad-Core-lib-JSON'>
     <comment: 'Class Json signals instances of me when an input stream contains invalid JSON input.'>

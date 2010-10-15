@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -49,13 +49,13 @@ ILApplication subclass: ILTodoListApplication [
     selectCompleted [
 	<category: 'accessing'>
 	self todoListGridWidget selectBlock: [:item | item completed].
-	self markDirty
+	self todoListGridWidget markDirty
     ]
 
     selectPending [
 	<category: 'accessing'>
 	self todoListGridWidget selectBlock: [:item | item completed not].
-	self markDirty
+	self todoListGridWidget markDirty
     ]
 
     todoListGridWidget [
@@ -64,7 +64,7 @@ ILApplication subclass: ILTodoListApplication [
     ]
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	self model: ILTodoListItemRepository default
     ]
@@ -72,7 +72,7 @@ ILApplication subclass: ILTodoListApplication [
     updateFromHash [
 	<category: 'building'>
 	| path |
-	path := self hashRoute next.
+	path := self router hashRoute next.
 	path = 'pending' ifTrue: [self selectPending].
 	path = 'completed' ifTrue: [self selectCompleted] 
     ]
@@ -91,10 +91,13 @@ ILApplication subclass: ILTodoListApplication [
 
     mainContents [
 	<category: 'building'>
-	^ [:e |
-	    e h1: 'Todo List'.
-	    e build: self actionLinksContents.
-	    e build: self todoListGridWidget]
+	^[:e |
+	    e div 
+		class: 'wrapper';
+		build: [:div |
+		    div h1: 'Todo List'.
+		    div build: self actionLinksContents.
+		    div build: self todoListGridWidget]]
     ]
 
     actionLinksContents [

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -77,6 +77,12 @@ ILApplication subclass: ILCounterApplication [
 			ILCounter new.
 			ILCounter new.
 			ILCounter new}]
+    ]
+
+    updatePage: aPage [
+	<category: 'building'>
+	super updatePage: aPage.
+	aPage head stylesheet href: '/stylesheets/iliad.css'
     ]
 ]
 

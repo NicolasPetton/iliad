@@ -1,8 +1,23 @@
 body {
-    background-color: #fdfffc;
+    background-color: #f4f1f1;
     font-family: "Verdana", "DejaVu Sans", sans-serif;
     color: #636363;
     font-size: 12px;
+    text-align: center;
+}
+
+img {
+    border: 0 none
+}
+
+.wrapper {
+    margin: 0 auto;
+    text-align: left;
+    width: 600px;
+}
+
+.logo {
+    text-align: center;
 }
 
 h1, h2, h3 {
@@ -10,8 +25,8 @@ h1, h2, h3 {
 }
 
 h1 {
-    color: #e75635;
-    font-size: 26px;
+    color: #3B3B3B;
+    font-size: 32px;
 }
 
 h2 {
@@ -25,22 +40,21 @@ h3 {
 }
 
 a, a:visited {
-    color: #e75635;
-    text-decoration: none;
+    color: #660e7b;
     font-weight: bold;
+    text-decoration: none;
 }
 
 a:hover {
-    color: #ffffff;
-    background-color: #e75635;
+    color: #111;
 }
 
 table {
     margin: 10px;
     padding: 10px;
     line-height: 1.5em;
-    background-color: #f5fff4;
-    border: 1px solid #cef6c9;
+    border: 1px solid #ccc;
+    background: #fcfcfc
 }
 
 thead {
@@ -56,8 +70,8 @@ pre {
     margin: 10px;
     padding: 10px;
     line-height: 1.5em;
-    background-color: #f5fff4;
-    border: 1px solid #cef6c9 ;
+    background-color: #fafafa;
+    border: 1px solid #cef6c9;
 }
 
 input, textarea {
@@ -77,5 +91,3 @@ input, textarea {
     border: 1px solid #d51a2c}
 
 .required:after {content: ' *'; color: #d51a2c; font-weight: bold}
-
-

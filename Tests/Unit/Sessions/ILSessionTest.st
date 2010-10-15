@@ -7,35 +7,15 @@ TestCase subclass: ILSessionTest [
 
     setUp [
 	<category: 'running'>
-	session := ILSession new
+	session := ILSession new.
+	ILApplicationMock1 path: 'test'.
+	ILApplicationMock2 path: 'test/foo'
     ]
 
-    testActionRegistries [
-	<category: 'testing'>
-	| widget1 widget2 actionRegistry1 actionRegistry2 |
-	widget1 := ILWidget new.
-	widget2 := ILWidget new.
-	actionRegistry1 := session addActionRegistryFor: widget1.
-	self assert: (session actionRegistryFor: widget1) == actionRegistry1.
-	actionRegistry2 := session addActionRegistryFor: widget2.
-	self assert: (session actionRegistryFor: widget2) == actionRegistry2.
-	self assert: session actionRegistries size = 2.
-	session clearActionRegistries.
-	self assert: session actionRegistries size = 0
-    ]
-
-    testDirtyWidgets [
-	<category: 'testing'>
-	| widget1 widget2 |
-	widget1 := ILWidget new.
-	widget2 := ILWidget new.
-	session addToDirtyWidgets: widget1.
-	self assert: (session dirtyWidgets includes: widget1).
-	session addToDirtyWidgets: widget2.
-	self assert: (session dirtyWidgets includes: widget2).
-	self assert: session dirtyWidgets size = 2.
-	session clearDirtyWidgets.
-	self assert: session dirtyWidgets size = 0
+    tearDown [
+	<category: 'running'>
+	ILApplicationMock1 path: nil.
+	ILApplicationMock2 path: nil
     ]
 
     testExpire [
@@ -70,4 +50,3 @@ TestCase subclass: ILSessionTest [
 	self assert: (session useCookies = true)
     ]
 ]
-

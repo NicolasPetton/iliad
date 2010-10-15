@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -42,7 +42,7 @@ ILRSSElement subclass: ILRSSGuidElement [
 
     isPermaLink: aBoolean [
 	<category: 'accessing attributes'>
-	self attributeAt: 'isPermaLink' put: aBoolean asString
+	self attributeAt: 'isPermaLink' put: aBoolean greaseString
     ]
 
     tag [

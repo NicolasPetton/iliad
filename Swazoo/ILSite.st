@@ -1,5 +1,5 @@
 Swazoo.SwazooSite subclass: ILSite [
-    | encoder |    
+    | codec |    
     <comment: nil>
     <category: 'Iliad-Swazoo'>
 
@@ -48,19 +48,19 @@ Swazoo.SwazooSite subclass: ILSite [
 	    port: aPort
     ]
 
-    encoder [
+    codec [
 	<category: 'accesing'>
-	^encoder ifNil: [encoder := self defaultEncoder]
+	^codec ifNil: [codec := self defaultCodec]
     ]
 
-    encoder: anEncoder [
+    codec: aCodec [
 	<category: 'accesing'>
-	encoder := anEncoder
+	codec := aCodec
     ]
 
-    defaultEncoder [
+    defaultCodec [
 	<category: 'defaults'>
-	^ILGSTEncoder
+	^Grease.GRNullCodec new
     ]
 
     answerTo: aRequest [
@@ -129,7 +129,7 @@ Swazoo.SwazooSite subclass: ILSite [
 	swazooResponse entity: ((self isBinaryResponse: aResponse)
 	    ifTrue: [aResponse contents]
 	    ifFalse: [self encode: aResponse contents]).
-	swazooResponse contentType: aResponse contentType asString.
+	swazooResponse contentType: aResponse contentType greaseString.
 	aResponse release.
 	^swazooResponse
     ]
@@ -153,12 +153,12 @@ Swazoo.SwazooSite subclass: ILSite [
 
     decode: aString [
 	<category: 'private-serving'>
-	^self encoder decode: aString
+	^self codec decode: aString
     ]
 
     encode: aString [
 	<category: 'private-serving'>
-	^self encoder encode: aString
+	^self codec encode: aString
     ]
 
     isBinaryResponse: aResponse [

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -36,40 +36,31 @@
 
 
 
-Object subclass: ILContext [
+ILObject subclass: ILContext [
 
-    | request application route hashRoute session |
+    | request router session urlBuilder previousStateRegistry stateRegistry builtWidgets attributes |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I store current request context objects:
-- the route
+
+- the router
 - the session
-- the application
 - the request itself
 
-A can be accessed through ILObject>>context'>
+I can be accessed through ILObject>>context'>
 
-    ILContext class [
-
-	new [
-	    <category: 'instance creation'>
-	    ^self basicNew
-		initialize;
-		yourself
-	]
-    ]
-
-    initialize [
-	<category: 'initialize-release'>
+    router [
+	<category: 'accessing'>
+	^router ifNil: [router := ILRouter new]
     ]
 
     application [
 	<category: 'accessing'>
-	^application
+	^self router application
     ]
 
-    application: anApplication [
+    urlBuilder [
 	<category: 'accessing'>
-	application := anApplication
+	^urlBuilder ifNil: [urlBuilder := ILUrlBuilder new]
     ]
 
     baseUrl [
@@ -96,22 +87,43 @@ A can be accessed through ILObject>>context'>
 	<category: 'accessing'>
 	session := aSession
     ]
-
-    route [
-	<category: 'accessing'>
-	^route ifNil: [route := ILRoute path: self request url path]
-    ]
-    
-    hashRoute [
-	<category: 'accessing'>
-	| hash |
-	hash := self request hashLocationField ifNil: [''].
-	^hashRoute ifNil: [hashRoute := ILRoute path: (hash tokenize: '/')]
-    ]
    
-    urlBuilder [
+    stateRegistry [
 	<category: 'accessing'>
-	^ILUrlBuilder default
+	^stateRegistry ifNil: [
+	    stateRegistry := (self session stateRegistryAt: self request stateField) 
+		ifNil: [self session newStateRegistry]]
+    ]
+
+    previousStateRegistry [
+	<category: 'accessing'>
+	^previousStateRegistry ifNil: [
+	    previousStateRegistry := (self session stateRegistryAt: self request stateField) copy]
+    ]
+
+    builtWidgets [
+	<category: 'accessing'>
+	^builtWidgets ifNil: [builtWidgets := OrderedCollection new]
+    ]
+
+    attributes [
+	<category: 'accessing'>
+	^attributes ifNil: [attributes := Dictionary new]
+    ]
+
+    attributeAt: aKey [
+	<category: 'accessing-attributes'>
+	^self attributes at: aKey ifAbsent: [nil]
+    ]
+
+    attributeAt: aKey put: anObject [
+	<category: 'accessing-attributes'>
+	self attributes at: aKey put: anObject
+    ]
+
+    addBuiltWidget: aWidget [
+	<category: 'adding'>
+	self builtWidgets add: aWidget
     ]
 ]
 

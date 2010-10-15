@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -47,27 +47,27 @@ ILRSSElement subclass: ILRSSCloudElement [
 
     domain: anUrl [
 	<category: 'accessing attributes'>
-	self attributeAt: 'domain' put: anUrl asString
+	self attributeAt: 'domain' put: anUrl greaseString
     ]
 
     path: aPath [
 	<category: 'accessing attributes'>
-	self attributeAt: 'path' put: aPath asString
+	self attributeAt: 'path' put: aPath greaseString
     ]
 
     port: anInteger [
 	<category: 'accessing attributes'>
-	self attributeAt: 'port' put: anInteger printString
+	self attributeAt: 'port' put: anInteger greaseString
     ]
 
     protocol: aProtocol [
 	<category: 'accessing attributes'>
-	self attributeAt: 'protocol' put: aProtocol asString
+	self attributeAt: 'protocol' put: aProtocol greaseString
     ]
 
     registerProcedure: aNamespace [
 	<category: 'accessing attributes'>
-	self attributeAt: 'registerProcedure' put: aNamespace asString
+	self attributeAt: 'registerProcedure' put: aNamespace greaseString
     ]
 ]
 

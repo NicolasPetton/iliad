@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -40,11 +40,21 @@
 
 
 ILObject subclass: ILBuildable [
-    | attributes |
+    | attributes children |
     
     <category: 'Iliad-Core-Buildables'>
     <comment: 'I am an abstract buildable object. 
-My subclasses must override the #buildContents method, which should return an instance of a subclass of Iliad.ILElement.'>
+My subclasses must override #build method, which should return an instance of a subclass of Iliad.ILElement.'>
+
+    children [
+	<category: 'accessing'>
+	^children ifNil: [children := OrderedCollection new]
+    ]
+
+    router [
+	<category: 'accessing'>
+	^self context router
+    ]
 
     attributeAt: aSymbol [
 	<category: 'accessing attributes'>
@@ -66,10 +76,29 @@ My subclasses must override the #buildContents method, which should return an in
 	^attributes ifNil: [attributes := Dictionary new]
     ]
 
+    send: aSymbol [
+	<category: 'actions'>
+	^self send: aSymbol to: self
+    ]
+
+    send: aSymbol to: anObject [
+	<category: 'actions'>
+	^self send: aSymbol to: anObject arguments: #()
+    ]
+
+    send: aSymbol to: anObject arguments: anArray [
+	<category: 'actions'>
+	^Grease.GRDelayedSend 
+	    receiver: anObject 
+	    selector: aSymbol 
+	    arguments: anArray
+    ]
+
     build [
 	<category: 'building'>
-	self withActionRegistry: [
-	    ^self buildContents]	
+	self withChildrenRegistrationDo: [
+	    ^self buildContents
+	]
     ]
 
     buildContents [
@@ -85,14 +114,65 @@ My subclasses must override the #buildContents method, which should return an in
 	anElement add: self build
     ]
 
-    redirectTo: aString [
+    registerChild: aBuildable [
+	<category: 'building'>
+	(self children includes: aBuildable) ifFalse: [
+	    self children add: aBuildable]
+    ]
+
+    redirectTo: anUrlString [
+	"Abort all other request handling.
+	 Redirect to anUrlString"
 	<category: 'redirecting'>
-	self application redirectTo: aString
+
+	self session
+	    redirectUrl: anUrlString;
+	    redirect
+    ]
+
+    redirectToIndex [
+	"Abort all other request handling.
+	 Redirect to the index method of this class"
+	<category: 'redirecting'>
+
+	self redirectToLocal: 'index'
     ]
 
     redirectToLocal: aString [
+	"Abort all other request handling.
+	 Make a redirection to another controller method in this application"
 	<category: 'redirecting'>
-	self application redirectToLocal: aString
+
+	self 
+	    redirectToApplication: self application class 
+	    controller: aString
+    ]
+
+    redirectToApplication: aClass [
+	"Abort all other request handling.
+	Redirect to the index method of <aClass>"
+	<category: 'redirecting'>
+
+	self redirectToApplication: aClass controller: ''
+    ]
+
+    redirectToApplication: aClass controller: aString [
+	"Abort all other request handling.
+	Redirect to the controller named <aString> of <aClass>"
+	<category: 'redirecting'>
+
+	self redirectTo: 
+	    (self context urlBuilder urlFor: aClass path, '/', aString) 
+		greaseString
+    ]
+
+    redirectToCurrentController [
+	"Abort all other request handling.
+	Redirect to the current controller method"
+	<category: 'redirecting'>
+	self redirectTo: 
+	    (self context urlBuilder urlFor: self router route pathString)
+		greaseString
     ]
 
     respondOn: aResponse [
@@ -100,12 +180,16 @@ My subclasses must override the #buildContents method, which should return an in
 	self build respondOn: aResponse
     ]
 
-    withActionRegistry: aBlock [
+    printHtmlString [
+	<category: 'printing'>
+	^String streamContents: [:str |
+	    self build printHtmlOn: str]
+    ]
+
+    withChildrenRegistrationDo: aBlock [
 	<category: 'private'>
-	ILCurrentActionRegistry 
-	    use: (self session actionRegistryFor: self)
-	    during: aBlock
+	ILCurrentBuildable value ifNotNil: [:parent |
+	    parent registerChild: self].
+	ILCurrentBuildable use: self during: aBlock
     ]
 ]
-
-

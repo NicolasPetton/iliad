@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -43,7 +43,7 @@ ILBuildable subclass: ILDecorator [
     | decoratee |
     
     <category: 'Iliad-Core-Buildables'>
-    <comment: 'I am an abstract decorator for Widgets. I can be added to a widget by calling: #decorateWith: from a widget.
+    <comment: 'I am a decorator for Widgets. I can be added to a widget by calling #decorateWith: from a widget.
 Subclasses can be used to modify the building process of a widget, or change its behavior'>
 
     ILDecorator class >> decoratee: aDecoratee [
@@ -114,4 +114,3 @@ Subclasses can be used to modify the building process of a widget, or change its
 	^false
     ]
 ]
-

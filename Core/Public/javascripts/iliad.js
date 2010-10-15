@@ -43,7 +43,9 @@ var iliad = (function() {
 	
 	var hash           = "";
 	var actionsLocked  = false;
+	var ajax_enabled   = true;
 	var ie67           = false;
+	var ajaxLoader     = false;
 	
 
 	/* ---
@@ -54,7 +56,7 @@ var iliad = (function() {
 		ie67 = jQuery.browser.msie && parseInt(jQuery.browser.version) < 8;
 		if(ie67) {
 			var iDoc = jQuery("<iframe id='_iliad_ie_history_iframe'" +
-				"src='/iliad_ie_history.html'" +
+				"src='/javascripts/iliad_ie_history.html'" +
 				"style='display: none'></iframe>").prependTo("body")[0];
 			var iframe = iDoc.contentWindow.document || iDoc.document;
 			if(window.location.hash) {
@@ -65,31 +67,57 @@ var iliad = (function() {
 			iframe.location.title = window.title;
 		}
 		checkHashChange();
+		enableAjaxActions()
 	}
 
+	function enableAjaxActions() {
+		jQuery('body').click(function(event) {
+			if (event.metaKey)
+				return;
+			var anchor = jQuery(event.target).closest("a");
+			if(anchor.length == 1) {
+				if(hasActionUrl(anchor)) {
+				evaluateAnchorAction(anchor, event);
+				}
+			}
+			var button = jQuery(event.target).closest("button");
+			if(button.length == 1) {
+				addHiddenInput(button);
+				evaluateFormElementAction(button, event);
+				removeHiddenInput(button);
+			}
+		})
+	}
+	
 
 	/* ---
 	 * Action evaluation
 	 * -------------------------------------------------------------- */
 
-	 function evaluateAnchorAction(anchor, hashString) {
-		var actionUrl = jQuery(anchor).attr('href');
-		this.evaluateAction(actionUrl);
-		if(hashString) setHash(hashString);
+	 function evaluateAnchorAction(anchor, event) {
+		if(hasActionUrl(anchor) && ajax_enabled) {
+			var actionUrl = jQuery(anchor).attr('href');
+			evaluateAction(actionUrl);
+			if(hasHashUrl(anchor)) {
+				setHash(hashUrl(anchor));
+			};
+			if(event) event.preventDefault();
+		}
 	}
 
-	function evaluateFormAction(form) {
-		var actionUrl = getFormActionUrl(form);
-		var data = jQuery(form).serialize();
-		this.evaluateAction(actionUrl, "post", data);
-	}
-
-	function evaluateFormElementAction(formElement) {
+	function evaluateFormElementAction(formElement, event) {
 		var form = jQuery(formElement).closest("form");
-		this.evaluateFormAction(form);
+		if(ajax_enabled) {
+			if(isMultipart(form)) {
+				evaluateMultipartFormAction(form);
+			} else {
+				evaluateFormAction(form);
+				if(event) event.preventDefault();
+			}
+		}
 	}
 
-	function enableSubmitAction(button) {
+	function addHiddenInput(button) {
 		var name = jQuery(button).attr("name");
 		if(name) {
 			var hidden = "<input type='hidden' name='" + 
@@ -99,10 +127,46 @@ var iliad = (function() {
 		}
 	}
 
+	function removeHiddenInput(button) {
+		var name = jQuery(button).attr("name");
+		if(name) {
+			jQuery(button).closest("form")
+				.find("input:hidden[name="+ name + "]")
+				.replaceWith("");
+		}
+	}
+
+	function evaluateFormAction(form) {
+		var actionUrl = getFormActionUrl(form);
+		var data = jQuery(form).serialize();
+		evaluateAction(actionUrl, "post", data);
+	}
+
+	function evaluateMultipartFormAction(form) {
+		if(!actionsLocked) {
+			var hidden = "<input type='hidden' name='_ajax_upload'></input>";
+			var upload_target = jQuery('#_upload_target');
+			if(upload_target.size() == 0) {
+				upload_target = jQuery(
+					"<iframe id='_upload_target' name='_upload_target' " +
+					"src='#' style='display:none'></iframe>");
+				upload_target.appendTo('body');
+			}
+			upload_target.one('load', function(e) {
+				evaluateAction(jQuery(form).children("input[name=_callback]").val());
+			});
+			jQuery(form).append(hidden);
+			jQuery(form).attr('target', '_upload_target');
+			startUpload(form);
+		}
+		else {return false}
+	}
+
+
 	function evaluateAction(actionUrl, method, data, lock) {
 		if(!actionsLocked) {
 			if(!method) method = 'get';
-			if(lock === null) lock = true;
+			if(lock == null) lock = true;
 			if(lock) lockActions();
 			jQuery.ajax({
 				url: actionUrl,
@@ -111,14 +175,14 @@ var iliad = (function() {
 				dataType: 'json',
 				data: data,
 				beforeSend: function(xhr) {
-					insertAjaxLoader();},
+					if(ajaxLoader) insertAjaxLoader();},
 				success: function(json) {
 					processUpdates(json);
-					removeAjaxLoader();
+					if(ajaxLoader) removeAjaxLoader();
 					unlockActions();
 				},
 				error: function(err) {
-					showError(actionUrl);
+					showError(err, actionUrl);
 					unlockActions();
 				}
 			});
@@ -133,10 +197,32 @@ var iliad = (function() {
 		actionsLocked = false;
 	}
 
+	function disableAjax() {
+		ajax_enabled = false
+	}
+
+	function enableAjax() {
+		ajax_enabled = true
+	}
+
 	function hasActionUrl(anchor) {
 		if(anchor && jQuery(anchor).attr('href')) {
 			return (/_action?=(.*)$/).test(jQuery(anchor).attr('href'));
 		}
+	}
+
+	function hasHashUrl(anchor) {
+		if(anchor && jQuery(anchor).attr('href')) {
+			return (/_hash?=(.*)$/).test(jQuery(anchor).attr('href'));
+		}
+	}
+
+	function hashUrl(anchor) {
+		return /_hash=([^\#|\&]+)/.exec(anchor.attr('href'))[1]
+	}
+
+	function isMultipart(form) {
+		return jQuery(form).attr('enctype') == "multipart/form-data";
 	}
 
 	function getFormActionUrl(form) {
@@ -192,7 +278,9 @@ var iliad = (function() {
 	 * -------------------------------------------------------------- */
 
 	function processUpdates(json) {
-		
+		var script_extractor= /<script(.|\s)*?\/script>/ig;
+		var scripts = [];
+
 		/* handle redirect if any */
 		if(json.redirect) {
 			return (window.location.href = json.redirect);
@@ -203,14 +291,25 @@ var iliad = (function() {
 			jQuery('head').append(json.head[i]);
 		}
 
+		/*  update application */
+		if(json.application) {
+			jQuery('body').html(json.application)
+		}
+
 		/*  update dirty widgets */
 		var dirtyWidgets = json.widgets;
 		for(var i in dirtyWidgets) {
-			updateWidget(i, dirtyWidgets[i]);
+			var script = dirtyWidgets[i].match(script_extractor);
+			if(script) {
+				for(var j = 0; j < script.length; j++) {
+					scripts.push(script[j]);
+				}
+			}
+			updateWidget(i, dirtyWidgets[i].replace(script_extractor, ''));
 		}
 
 		/* evaluate scripts */
-		var scripts = json.scripts;
+		//var scripts = json.scripts;
 		for(var i in scripts) {
 			evalScript(scripts[i]);
 		}
@@ -229,20 +328,24 @@ var iliad = (function() {
 	 * Various
 	 * -------------------------------------------------------------- */
 
-	function insertAjaxLoader() {
-	jQuery('body').append(
-		"<div class='ajax_loader'" +
-		"style='position: fixed; _position: absolute;" +
-		"top: 10px; right: 10px; z-index: 9999'>" +
-		"<img src='/images/ajax_loader.gif'/></div>");
+	function showAjaxLoader(bool) {
+		ajaxLoader = bool
 	}
 
-	function showError(actionUrl){
+	function insertAjaxLoader() {
+		jQuery('body').append(
+			"<div class='ajax_loader'" +
+			"style='position: fixed; _position: absolute;" +
+			"top: 10px; right: 10px; z-index: 9999'>" +
+			"<img src='/images/ajax_loader.gif'/></div>");
+	}
+
+	function showError(error, actionUrl){
 		//jQuery("body").html("<h1>Error 500: Internal server error</h1>");
 	}
 
 	function removeAjaxLoader() {
-		jQuery(".ajax_loader").replaceWith("");
+		jQuery(".ajax_loader, .ajax_upload").replaceWith("");
 	}
 
 	function sizeOf(obj) {
@@ -254,19 +357,33 @@ var iliad = (function() {
 		return size;
 	}
 
+	function startUpload(form){
+		var fileInputs = jQuery(form).find('input:file');
+		jQuery.each(fileInputs, function(){
+			if(jQuery(this).val()) {
+				jQuery(this).after(
+					'<div class="ajax_upload">loading...<br/>' +
+					'<img src="/images/ajax_loader.gif"/></div>');
+			}
+		})
+	}
+
 
 	/* ---
 	 * Public API
 	 * -------------------------------------------------------------- */
 
 	return {
-		evaluateAnchorAction: evaluateAnchorAction,
-		evaluateFormAction: evaluateFormAction,
-		evaluateFormElementAction: evaluateFormElementAction,
-		evaluateAction: evaluateAction,
-		enableSubmitAction: enableSubmitAction,
-		checkHashChange: checkHashChange,
-		initialize: initialize
+		evaluateAnchorAction:          evaluateAnchorAction,
+		evaluateFormAction:            evaluateFormAction,
+		evaluateMultipartFormAction:   evaluateMultipartFormAction,
+		evaluateFormElementAction:     evaluateFormElementAction,
+		evaluateAction:                evaluateAction,
+		checkHashChange:               checkHashChange,
+		showAjaxLoader:                showAjaxLoader,
+		disableAjax:                   disableAjax,
+		enableAjax:                    enableAjax,
+		initialize:                    initialize
 	};
 })();
 

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -71,7 +71,7 @@ MAElementWidget subclass: MARelationWidget [
 		    self classes do: 
 			[:each | 
 			    (select option)
-				value: each label;
+				text: each label;
 				selected: each = self selected;
 				action: [self selected: each]]].
 	    self classes notEmpty ifTrue: [e build: self selectButtonContents]]

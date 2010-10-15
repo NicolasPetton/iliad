@@ -14,6 +14,7 @@ Eval [
 	filein: 'ILWidgetTabs.st'; 
 	filein: 'ILViewTabs.st'; 
 	filein: 'ILPaginator.st'; 
+	filein: 'ILWidgetsPaginator.st'; 
 	filein: 'ILDataGrid.st'; 
 	filein: 'ILPagedDataGrid.st'; 
 	filein: 'ILTree.st'; 

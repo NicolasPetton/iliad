@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -42,16 +42,9 @@ ILRequestHandler subclass: ILApplicationHandler [
     <category: 'Iliad-Core-RequestHandlers'>
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	actions := OrderedCollection new
-    ]
-
-    lastAction [
-	<category: 'accessing'>
-	actions notEmpty
-	    ifTrue: [^actions last]
-	    ifFalse: [^nil]
     ]
 
     evaluateActions [
@@ -63,13 +56,14 @@ ILRequestHandler subclass: ILApplicationHandler [
 
     handleRequest [
 	<category: 'request handling'>
+	self session isExpired ifTrue: [self session onExpire].
 	self isRequestValid 
 	    ifTrue: [self evaluateActions]
 	    ifFalse: [ILRedirectHandler new handleRequest].
+	self shouldReturnEmptyResponse ifTrue: [
+	    self returnResponse: ILResponse ok].
 	self shouldRespondInJson ifTrue: [
 	    ILJsonHandler new handleRequest].
-	self request isAjaxRequest ifTrue: [self returnResponse: self lastAction asResponse].
-	self cleanUpSession.
 	self shouldRedirect
 	    ifTrue: [ILRedirectHandler new handleRequest]
 	    ifFalse: [self produceResponse]
@@ -78,15 +72,15 @@ ILRequestHandler subclass: ILApplicationHandler [
     produceResponse [
 	<category: 'responding'>
 	self respond: [:response |
-	self addAllowHeaderTo: response.
-	self session useCookies ifTrue: [self addCookieHeaderTo: response].
-	self session refreshOnBacktrack ifTrue: [self addNoCacheHeaderTo: response]]
+	    self addAllowHeaderTo: response.
+	    self session useCookies ifTrue: [self addCookieHeaderTo: response].
+	    self session refreshOnBacktrack ifTrue: [self addNoCacheHeaderTo: response]]
     ]
 
     isRequestValid [
 	<category: 'testing'>
-	^(self request tokenField = self session token asString) or: [
-	    self request actionField isNil and: [self request isGet]]
+	^self context previousStateRegistry notNil
+	    or: [self request actionField isNil and: [self request isGet]]
     ]
 
     shouldRedirect [
@@ -97,6 +91,11 @@ ILRequestHandler subclass: ILApplicationHandler [
     shouldRespondInJson [
 	<category: 'testing'>
 	^self request isTypeOfRequestForJson
+    ]
+
+    shouldReturnEmptyResponse [
+	<category: 'testing'>
+	^self request ajaxUploadField notNil
     ]
 
     newResponse [
@@ -119,14 +118,5 @@ ILRequestHandler subclass: ILApplicationHandler [
 		    action := self session actionAt: asso key.
 		    action ifNotNil: [action value: asso value]].
 		action ifNotNil: [actions add: action]]]
-    ]
-
-    cleanUpSession [
-	<category: 'private'>
-	self session
-	    clearNextId;
-	    clearToken;
-	    clearActionRegistries;
-	    clearDirtyWidgets
     ]
 ]

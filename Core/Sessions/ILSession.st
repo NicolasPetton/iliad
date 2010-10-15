@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILSession [
-    | id preferences timestamps expired redirectUrl applications actionRegistries dirtyWidgets nextId token |
+    | id preferences others timestamps expired redirectUrl applications actionRegistry stateRegistries nextId |
 
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I represent a session in Iliad. 
@@ -47,28 +47,11 @@ ILObject subclass: ILSession [
     I also store actions and applications'> 
 
     initialize [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	super initialize.
 	expired := false.
 	self setCreatedTimestamp; 
 	    setRandomId
-    ]
-
-    clearToken [
-	<category: 'cleaning'>
-	token := nil
-    ]
-
-    clearNextId [ 
-	<category: 'cleaning'>
-	nextId := nil
-    ]
-
-    clearDirtyWidgets [
-	<category: 'cleaning'>
-	self dirtyWidgets do: [:each |
-	    (self actionRegistryFor: each) unregisterAllActions].
-	dirtyWidgets := nil
     ]
 
     clearRedirectUrl [
@@ -76,9 +59,14 @@ ILObject subclass: ILSession [
 	redirectUrl := nil
     ]
 
-    clearActionRegistries [
+    clearActionRegistry [
 	<category: 'cleaning'>
-	actionRegistries := nil
+	actionRegistry := nil
+    ]
+
+    clearStateRegistries [
+	<category: 'cleaning'>
+	stateRegistries := nil
     ]
 
     id [
@@ -93,9 +81,9 @@ ILObject subclass: ILSession [
 
     nextId [
 	<category: 'accessing'>
-	nextId ifNil: [nextId := (Random new next * 100000) asInteger].
+	nextId ifNil: [nextId := Grease.GRPlatform current newRandom nextInt: 100000].
 	nextId := nextId + 1.
-	^nextId printString
+	^nextId greaseString
     ]
 
     applications [
@@ -103,10 +91,11 @@ ILObject subclass: ILSession [
 	^applications ifNil: [applications := IdentityDictionary new]
     ]
 
-
     dirtyWidgets [
 	<category: 'accessing'>
-	^dirtyWidgets ifNil: [dirtyWidgets := IdentitySet new]
+	^self previousStateRegistry 
+	    ifNil: [#()]
+	    ifNotNil: [self previousStateRegistry dirtyWidgets]
     ]
 
     encoding [
@@ -119,14 +108,29 @@ ILObject subclass: ILSession [
 	^self context route
     ]
 
+    stateRegistry [
+	<category: 'accessing'>
+	^self context stateRegistry
+    ]
+
+    previousStateRegistry [
+	<category: 'accessing'>
+	^self context previousStateRegistry
+    ]
+
+    stateRegistry [
+	<category: 'accessing'>
+	^self context stateRegistry
+    ]
+
+    previousStateRegistry [
+	<category: 'accessing'>
+	^self context previousStateRegistry
+    ]
+
     sessionManager [
 	<category: 'accessing'>
 	^ILSessionManager current
-    ]
-
-    token [
-	<category: 'accessing'>
-	^token ifNil: [token := ILId new: 8]
     ]
 
     charset [
@@ -159,6 +163,26 @@ ILObject subclass: ILSession [
 	^self preferences at: #language put: aSymbol
     ]
 
+    refreshOnBacktrack [
+	<category: 'accessing preferences'>
+	^self preferenceAt: #refreshOnBacktrack ifAbsentPut: [true]
+    ]
+
+    refreshOnBacktrack: aBoolean [
+	<category: 'accessing preferences'>
+	^self preferenceAt: #refreshOnBacktrack put: aBoolean
+    ]
+
+    useCookies [
+	<category: 'accessing preferences'>
+	^self preferenceAt: #cookies ifAbsentPut: [^true]
+    ]
+
+    useCookies: aBoolean [
+	<category: 'accessing preferences'>
+	^self preferenceAt: #cookies put: aBoolean
+    ]
+
     preferenceAt: aSymbol [
 	<category: 'accessing preferences'>
 	^self preferences at: aSymbol ifAbsent: [nil]
@@ -177,26 +201,6 @@ ILObject subclass: ILSession [
     preferences [
 	<category: 'accessing preferences'>
 	^preferences ifNil: [preferences := Dictionary new]
-    ]
-
-    refreshOnBacktrack [
-	<category: 'accessing preferences'>
-	^self preferenceAt: #refreshOnBacktrack ifAbsentPut: [true]
-    ]
-
-    refreshOnBacktrack: aBoolean [
-	<category: 'accessing preferences'>
-	^self preferenceAt: #refreshOnBacktrack put: aBoolean
-    ]
-
-    useCookies [
-	<category: 'accessing preferences'>
-	^self preferences at: #cookies ifAbsent: [^true]
-    ]
-
-    useCookies: aBoolean [
-	<category: 'accessing preferences'>
-	^self preferenceAt: #cookies put: aBoolean
     ]
 
     createdTimestamp [
@@ -239,9 +243,29 @@ ILObject subclass: ILSession [
 	^timestamps ifNil: [timestamps := Dictionary new]
     ]
 
+    others [
+	<category: 'accessing others'>
+	^others ifNil: [others := Dictionary new]
+    ]
+
+    otherAt: aKey [
+	<category: 'accessing others'>
+	^self others at: aKey ifAbsent: [nil]
+    ]
+
+    otherAt: aKey put: anObject [
+	<category: 'accessing others'>
+	self others at: aKey put: anObject
+    ]
+
+    otherAt: aKey ifAbsentPut: aBlock [
+	<category: 'accessing others'>
+	^self others at: aKey ifAbsentPut: aBlock
+    ]
+
     defaultExpirySeconds [
 	<category: 'defaults'>
-	^3600
+	^1800
     ]
 
     defaultLanguage [
@@ -249,53 +273,66 @@ ILObject subclass: ILSession [
 	^'en'
     ]
 
-    actionRegistries [
-	<category: 'actions'>
-	^actionRegistries ifNil: [
-	    actionRegistries := OrderedCollection new]
+    onExpire [
+	<category: 'events'>
+	self redirect
     ]
 
-    actionRegistryFor: aWidget [
-	<category: 'actions'>
-	^self actionRegistries 
-	    detect: [:each | each owner = aWidget]
-	    ifNone: [self addActionRegistryFor: aWidget]
+    stateRegistries [
+	<category: 'states'>
+	^stateRegistries ifNil: [stateRegistries := OrderedCollection new]
     ]
-    
-    addActionRegistryFor: aWidget [
+
+    stateRegistryAt: aString [
+	<category: 'states'>
+	^self stateRegistries 
+	    detect: [:each | each key = aString]
+	    ifNone: [nil]
+    ]
+
+    newStateRegistry [
+	<category: 'states'>
+	| registry |
+	registry := ILStateRegistry new.
+	self stateRegistries add: registry.
+	^registry
+    ]
+
+    actionRegistry [
 	<category: 'actions'>
-	^self actionRegistries add: (ILActionRegistry owner: aWidget)
+	^actionRegistry ifNil: [
+	    actionRegistry := ILActionRegistry new]
     ]
 
     actionAt: aKeyString [
 	<category: 'actions'>
-	| action |
-	self actionRegistries do: [:each |
-	    action := each actionAt: aKeyString.
-	    action ifNotNil: [^action]].
-	^nil
+	^self actionRegistry actionAt: aKeyString
+    ]
+
+    actionFor: aBlock [
+	<category: 'actions'>
+	^ILAction new
+	    block: aBlock;
+	    key: self nextId;
+	    yourself
     ]
 
     registerActionFor: aBlock [
 	<category: 'actions'>
 	| action |
-	action := ILAction new
-	    key: self nextId;
-	    block: aBlock;
-	    yourself.
+	action := self actionFor: aBlock.
 	self registerAction: action.
 	^action
     ]
 
     registerAction: anAction [
 	<category: 'actions'>
-	ILCurrentActionRegistry value register: anAction
+	self actionRegistry register: anAction
     ]
 
     evaluateActionKey: aString [
 	<category: 'actions'>
-	self actionRegistries do: [:each |
-	    each evaluateActionKey: aString]
+	self actionRegistry evaluateActionKey: aString
     ]
 
     redirect [
@@ -321,7 +358,7 @@ ILObject subclass: ILSession [
 
     redirectUrl: aString [
 	<category: 'redirection'>
-	redirectUrl := self context urlBuilder urlForRedirection: aString
+	redirectUrl := (self context urlBuilder urlForRedirection: aString) asString
     ]
 
     redirectToIndex [
@@ -337,24 +374,15 @@ ILObject subclass: ILSession [
 	^expired
     ]
 
-    isNew [
-	<category: 'testing'>
-	^self createdTimestamp = self modifiedTimestamp
-    ]
-
     shouldUseSessionField [
 	<category: 'testing'>
 	    ^(self request cookies 
 		includesKey: self sessionManager cookieName) not
     ]
 
-    addToDirtyWidgets: aWidget [
-	<category: 'states'>
-	self dirtyWidgets add: aWidget
-    ]
-
     expire [
 	<category: 'private'>
+	self actionRegistry unregisterAllActions.
 	expired := true
     ]
 
@@ -363,4 +391,3 @@ ILObject subclass: ILSession [
 	^self id: ILId new
     ]
 ]
-

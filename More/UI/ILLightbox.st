@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -43,10 +43,17 @@ ILDelegator subclass: ILLightbox [
 	<category: 'building'>
 	^[:e || div |
 	    e build: self decoratee contents.
-	    e div class: 'overlay'.
+	    e div 
+		class: 'overlay';
+		onClickDo: [self widget answer: nil].
 	    div := e div class: 'lightbox'; yourself.
 	    div script: self lighter.
-	    div build: self widget]
+	    div build: self lightboxContents]
+    ]
+
+    lightboxContents [
+	<category: 'building'>
+	^self widget
     ]
 
     updateHead: aHead [

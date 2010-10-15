@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -38,53 +38,73 @@
 
 
 
-ILWidget subclass: ILApplication [
-    | model originalRoutePosition page |
+ILBuildable subclass: ILApplication [
+    | model page |
 
     <category: 'Iliad-Core-Buildables'>
-    <comment: 'I am the implementation of an application.
- 
-The first thing to do to develop web applications with Iliad is to subclass me.
-You don''t have to bother about instantiating applications, the framework 
-will handle session and application instances. 
+    <comment: 'I am the Iliad implementation of an application.
+
+I am is the root object of a buildable object tree. Applications have a
+set of controllers, methods used to dispatch requests to the corresponding 
+sub-tree of buildable objects (oftenly a composition of stateful widgets).
+
 In concrete subclasses, the class method #path should return the base path 
 (string) for the application.
 
-Like other widgets, I have state, and can have decorators.
-Unlike other widgets I know how to dispatch a request with #dispatch : 
+
+"""""""""""""""""""""""""""
+" Applications & UI state "
+"""""""""""""""""""""""""""
+
+You don''t have to bother about instantiating applications, the framework 
+will handle session and application instances. Application instances are stored 
+in sessions. Each session stores one instance of the same application class.
+
+Root widgets should be stored in applications to keep their state across requests.
+
+
+""""""""""""""""""""""
+" Controller methods "
+""""""""""""""""""""""
+
+Like widgets, I am stateful.
+Unlike widgets I know how to dispatch a request with #dispatch : 
 the controller method corresponding to the url will be called.
 
-View methods must:
- - answer a buildable.
+Controller methods must:
+ - answer a buildable object (a block closure or an instance of ILWidget for example).
  - be in the ''controllers'' method protocol (with the default selector filter)
 
 The default controller method is #index.
 
+
+""""""""""""""""""
+" selectorFilter "
+""""""""""""""""""
+
 The class inst var <selectorFilter> is used to filter controller methods. 
-By default it allows all methods in the ''controllers'' protocol,
-but you can override the class method #defaultSelectorFilter to supply 
-your own selectorFilter or plug it in using the class method #selectorFilter:
+By default it allows all methods in the ''controllers'' protocol.
 
-Applications can be in one the following modes: deployment, verbose or 
-debug. The default mode is verbose.
-You can switch between modes with class methods in the <accessing-modes> 
-protocol.
-
-When errors occur, the framework with handle them differently depending on 
-the application mode:
-- in deployment mode, it will respond an error 500;
-- in verbose mode, it will also respond an error 500, but with error details;
-- in debug mode, a debugger window will open on the error;'>
+Alternatively, you can override the class method #defaultSelectorFilter to supply 
+your own selectorFilter or plug it in using the class method #selectorFilter:'>
     
     ILApplication class [
-	| selectorFilter mode |
+	| selectorFilter |
 
 	path [
-	    "Override this method in concrete subclasses. 
+	    "Base path of the application.
+	     Override this method in concrete subclasses. 
 	     It should return a string"
 	    <category: 'accessing'>
 	    
 	    ^''
+	]
+
+	absolutePath [
+	    <category: 'accessing'>
+	    ^String streamContents: [:stream |
+		(self path startsWith: '/') ifFalse: [stream nextPut: $/].
+		stream nextPutAll: self path]
 	]
 
 	selectorFilter [
@@ -96,32 +116,7 @@ the application mode:
 	    <category: 'accessing'>
 	    selectorFilter := aBlock
 	]
-    
-	mode [
-	    <category: 'accessing'>
-	    ^mode ifNil: [mode := #verbose]
-	]
-    
-	mode: aSymbol [
-	    <category: 'accessing'>
-	    mode := aSymbol
-	] 
-    
-	verboseMode [
-	    <category: 'accessing-modes'>
-	    self mode: #verbose
-	]
-    
-	debugMode [
-	    <category: 'accessing-modes'>
-	    self mode: #debug
-	]
-
-	deploymentMode [
-	    <category: 'accessing-modes'>
-	    self mode: #deployment
-	]
-
+   
 	defaultSelectorFilter [
 	    "Override this method to supply your own selectorFilter
 	     or plug it in using #selectorFilter:"
@@ -135,7 +130,7 @@ the application mode:
 	]
 
 	categoryOfElement: aSelector inClassOrSuperclass: aClass [
-	    "Find first category of <aSelector> up the superclass chain."
+	    "Find the first category of <aSelector> up the superclass chain."
 	    <category: 'private'>
 	    
 	    ^aClass ifNotNil: [
@@ -143,22 +138,6 @@ the application mode:
 		    self 
 			categoryOfElement: aSelector 
 			inClassOrSuperclass: aClass superclass]]
-	]
-
-	isDebugMode [
-	    <category: 'testing'>
-	    ^self mode = #debug
-	]
-    
-	isVerboseMode [
-	    <category: 'testing'>
-	    ^self mode = #verbose
-	]
-
-	isDeploymentMode [
-	    <category: 'testing'>
-	    ^self isDebugMode not and: [
-		self isVerboseMode not]
 	]
     ]
 
@@ -172,21 +151,6 @@ the application mode:
 	model := anObject
     ]
 
-    route [
-	<category: 'accessing'>
-	^self context route
-    ]
-
-    hashRoute [
-	<category: 'accessing'>
-	^self context hashRoute
-    ]
-
-    originalRoutePosition [
-	<category: 'accessing'>
-	^originalRoutePosition
-    ]
-
     page [
 	<category: 'accessing'>
 	^page
@@ -197,22 +161,23 @@ the application mode:
 	^self class selectorFilter
     ]
 
-    contents [
+    widgetFor: aBuildable [
+	"Convenience method. This is useful for building anonymous widgets.
+	ex: myWidget := self widgetFor: [:e | e h1: 'Hello world!']"
+	<category: 'accessing'>
+
+	^ILPluggableWidget new 
+	    contentsBlock: aBuildable; 
+	    yourself
+    ]
+
+    buildContents [
 	"Call #dispatch. A buildable is expected from #dispatch"
 	<category: 'building'>
 	
-	^[:e |
-	     e build: self dispatch]
-    ]
-
-    updatePage: aPage [
-	"Override to add elements to aPage.
-	 super should always be called"
-	<category: 'building'>
-
-	aPage head javascript src: '/javascripts/jquery132min.js'.
-	aPage head javascript src: '/javascripts/no_conflict.js'.
-	aPage head javascript src: '/javascripts/iliad.js'.
+	^self newRootElement 
+	    build: self dispatch;
+	    yourself
     ]
 
     allowedSelector: aSelector [
@@ -229,9 +194,8 @@ the application mode:
 	 different from nil, consider it handled."
 	<category: 'dispatching'>
 
-	self setRoutePosition.
 	^self dispatchOverride ifNil: [
-	    self dispatchOn: self route next] 
+	    self dispatchOn: self router controller] 
     ]
 
     dispatchOn: aMethod [
@@ -257,46 +221,29 @@ the application mode:
 	^nil
     ]
 
-    redirectTo: anUrlString [
-	"Abort all other request handling.
-	 Redirect to anUrlString"
-	<category: 'redirecting'>
+    updatePage: aPage [
+	"Override to add elements to aPage.
+	 super should always be called"
+	<category: 'updating'>
 
-	self session
-	    redirectUrl: anUrlString;
-	    redirect
+	aPage head javascript src: '/javascripts/jquery132min.js'.
+	aPage head javascript src: '/javascripts/no_conflict.js'.
+	aPage head javascript src: '/javascripts/iliad.js'.
     ]
 
-    redirectToIndex [
-	"Abort all other request handling.
-	 Redirect to the index method of this class"
-	<category: 'redirecting'>
+    updateFromRoute: aRoute [
+	<category: 'updating'>
+	"Override this method to update to state of the application 
+	from the request url route.
 
-	self redirectToLocal: 'index'
+	This method will be called for each new request"
+
     ]
 
-    redirectToLocal: aString [
-	"Abort all other request handling.
-	 Make a redirection to another controller method in this application"
-	<category: 'redirecting'>
+    updateBaseUrl: anUrl [
+	<category: 'updating'>
+	"Update the base url used for the current context"
 
-	self redirectTo: self originalUrl , '/' , aString
-    ]
-
-    redirectToApplication: aClass [
-	"Abort all other request handling.
-	Redirect to the index method of <aClass>"
-	<category: 'redirecting'>
-
-	self redirectToApplication: aClass controller: ''
-    ]
-
-    redirectToApplication: anApplicationClass controller: aString [
-	"Abort all other request handling.
-	Redirect to the controller named <aString> of <aClass>"
-	<category: 'redirecting'>
-
-	self redirectTo: (self context urlBuilder absolutePathFor: anApplicationClass), '/', aString
     ]
 
     respond: aBlock [
@@ -309,14 +256,13 @@ the application mode:
 	self returnResponse: response
     ]
 
-    respond: aBlock [
+    returnResponse: aResponse [
 	"Abort all other request handling"
 	<category: 'redirecting'>
-
-	| response |
-	response := ILResponse new.
-	aBlock value: response.
-	self returnResponse: response
+	
+	ILResponseNotification new
+	    response: aResponse;
+	    signal
     ]
 
     index [
@@ -329,47 +275,24 @@ the application mode:
     respondOn: aResponse [
 	<category: 'converting'>
 	page := self defaultPageClass new.
-	self updatePage: page.
 	page body build: self.
+	self updatePage: page.
+	self context builtWidgets do: [:each | each buildHead: page head].
 	page respondOn: aResponse
     ]
 
     defaultPageClass [
 	<category: 'defaults'>
-	^ILXHTMLPage
+	^ILHTMLPage
     ]
 
-    isDebugMode [
-	<category: 'testing'>
-	^self class isDebugMode
+    rootElementClass [
+	<category: 'defaults'>
+	^ILHTMLBuilderElement
     ]
-
-    isVerboseMode [
-	<category: 'testing'>
-	^self class isVerboseMode
-    ]
-
-    isDeploymentMode [
-	<category: 'testing'>
-	^self class isDeploymentMode
-    ]
-
-    originalUrl [
-	"Answer an url String representing this application's
-	 original position within the url of the request."
+ 
+    newRootElement [
 	<category: 'private'>
-	
-	| curPos result |
-	curPos := self route position.
-	self route position: originalRoutePosition.
-	result := self route currentPath.
-	^result
-    ]
-
-    setRoutePosition [
-	<category: 'private'>
-	originalRoutePosition
-	    ifNil: [originalRoutePosition := self route position]
-	    ifNotNil: [self route position: originalRoutePosition]
+	^self rootElementClass new
     ]
 ]

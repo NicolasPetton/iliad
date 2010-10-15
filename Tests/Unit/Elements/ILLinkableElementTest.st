@@ -72,7 +72,10 @@ ILElementTest subclass: ILLinkableElementTest [
 	e beContents.
 	self shouldHaveAttribute: 'rel' value: 'Contents'.
 	e fromGlossary.
-	self shouldHaveAttribute: 'rev' value: 'Glossary'
+	self shouldHaveAttribute: 'rev' value: 'Glossary'.
+	e beRss.
+	self shouldHaveAttribute: 'rel' value: 'alternate'.
+	self shouldHaveAttribute: 'type' value: 'application/rss+xml'
     ]
 
     testCharset [
@@ -97,6 +100,12 @@ ILElementTest subclass: ILLinkableElementTest [
 	<category: 'testing'>
 	e hreflang: 'foo'.
 	self shouldHaveAttribute: 'hreflang' value: 'foo'
+    ]
+
+    testTarget [
+	<category: 'testing'>
+	e target: 'foo'.
+	self shouldHaveAttribute: 'target' value: 'foo'
     ]
 
     testRel [

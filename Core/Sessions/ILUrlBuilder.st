@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2009 
+| Copyright (c) 2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -35,38 +35,100 @@
 
 
 ILObject subclass: ILUrlBuilder [
-    | actionKey sessionKey tokenKey hashKey |
+    | baseUrl |
     
     <comment: nil>
     <category: 'Iliad-Core-Sessions'>
 
     ILUrlBuilder class [
-	| default |
-	
-	default [
-	    <category: 'instance creation'>
-	    ^default ifNil: [default := self new]
+	| actionKey hashKey sessionKey ajaxUploadKey stateKey rewriteRules |
+
+	rewriteRules [
+	    "Rewrite rules are used to replace patterns in the baseUrl"
+	    <category: 'accessing'>
+
+	    ^rewriteRules ifNil: [rewriteRules := OrderedCollection new]
+	]
+
+	addRewriteRule: aBlock [
+	    <category: 'accessing'>
+	    self rewriteRules add: aBlock
+	]
+
+	actionKey [
+	    <category: 'accessing'>
+	    ^actionKey ifNil: [actionKey := self defaultActionKey]
+	]
+
+	hashKey [
+	    <category: 'accessing'>
+	    ^hashKey ifNil: [hashKey := self defaultHashKey]
+	]
+
+	sessionKey [
+	    <category: 'accessing'>
+	    ^sessionKey ifNil: [sessionKey := self defaultSessionKey]
+	]
+
+	ajaxUploadKey [
+	    <category: 'accessing'>
+	    ^ajaxUploadKey ifNil: [ajaxUploadKey := self defaultAjaxUploadKey]
+	]
+
+	stateKey [
+	    <category: 'accessing'>
+	    ^stateKey ifNil: [stateKey := self defaultStateKey]
+	]
+
+	defaultActionKey [
+	    <category: 'defaults'>
+	    ^'_action'
+	]
+
+	defaultHashKey [
+	    <category: 'defaults'>
+	    ^'_hash'
+	]
+
+	defaultSessionKey [
+	    <category: 'defaults'>
+	    ^'_session'
+	]
+
+	defaultAjaxUploadKey [
+	    <category: 'defaults'>
+	    ^'_ajax_upload'
+	]
+
+	defaultStateKey [
+	    <category: 'defaults'>
+	    ^'_state'
 	]
     ]
 
     actionKey [
 	<category: 'accessing'>
-	^actionKey ifNil: [actionKey := self defaultActionKey]
+	^self class actionKey
     ]
 
     hashKey [
 	<category: 'accessing'>
-	^hashKey ifNil: [hashKey := self defaultHashKey]
+	^self class hashKey
     ]
 
     sessionKey [
 	<category: 'accessing'>
-	^sessionKey ifNil: [sessionKey := self defaultSessionKey]
+	^self class sessionKey
     ]
 
-    tokenKey [
+    stateKey [
 	<category: 'accessing'>
-	^tokenKey ifNil: [tokenKey := self defaultTokenKey]
+	^self class stateKey
+    ]
+
+    rewriteRules [
+	<category: 'accessing'>
+	^self class rewriteRules
     ]
 
     addDefaultParametersTo: anUrl [
@@ -74,69 +136,72 @@ ILObject subclass: ILUrlBuilder [
 	self shouldUseSessionField ifTrue: [
 	    anUrl 
 		addParameter: self sessionKey 
-		value: self session id asString]
+		value: self session id greaseString]
     ]
 
     baseUrl [
 	<category: 'generating'>
+	baseUrl ifNil: [self buildBaseUrl].
+	^baseUrl copy
+    ]
+
+    urlFor: aString [
+	<category: 'generating'>
 	| url |
-	url := ILUrl absolute: self context route pathString.
+	url := ILUrl absolute: aString.
 	self addDefaultParametersTo: url.
-	^url
+	^self applyRewriteRulesTo: url
     ]
 
     urlForAction: anAction [
 	<category: 'generating'>
-	^self urlForActionKey: anAction key
+	^self urlForAction: anAction hash: ''
     ]
 
-    urlForActionKey: aKey [
+    urlForAction: anAction hash: aHashString [
 	<category: 'generating'>
-	^self baseUrl
-	    addParameter: self actionKey value: aKey;
-	    addParameter: self tokenKey value: self session token;
-	    yourself
+	^self urlForActionKey: anAction key hash: aHashString
+    ]
+
+    urlForActionKey: aKeyString hash: aHashString [
+	<category: 'generating'>
+	| url |
+	url := self baseUrl.
+	url
+	    addParameter: self actionKey value: aKeyString;
+	    addParameter: self stateKey value: self session stateRegistry key.
+	aHashString notEmpty ifTrue: [
+	    url addParameter: self hashKey value: aHashString].
+	^url
     ]
 
     urlForRedirection: aString [
 	<category: 'generating'>
-	| url |
-	url := ILUrl absolute: aString.
-	self shouldUseSessionField ifTrue: [
-	    url addParameter: self sessionKey value: self session id asString].
-	^url
+	^ILUrl absolute: aString
     ]
 
-    absolutePathFor: anApplicationClass [
+    applyRewriteRulesTo: anUrl [
 	<category: 'generating'>
-	(anApplicationClass path startsWith: '/')
-	    ifTrue: [^anApplicationClass path]
-	    ifFalse: [^'/', anApplicationClass path]
-    ]
-
-    defaultActionKey [
-	<category: 'defaults'>
-	^'_action'
-    ]
-
-    defaultHashKey [
-	<category: 'defaults'>
-	^'_hash'
-    ]
-
-    defaultSessionKey [
-	<category: 'defaults'>
-	^'_session'
-    ]
-
-    defaultTokenKey [
-	<category: 'defaults'>
-	^'_token'
+	| tempUrl |
+	tempUrl := anUrl.
+	self rewriteRules do: [:each |
+	    tempUrl := ILUrl absolute: (each value: tempUrl greaseString)].
+	^tempUrl
     ]
 
     shouldUseSessionField [
 	<category: 'testing'>
 	^(self request cookies 
 	    includesKey: self session sessionManager cookieName) not
+    ]
+ 
+    buildBaseUrl [
+	<category: 'private'>
+	| tempUrl |
+	tempUrl := self context request url copy.
+	{self stateKey. self actionKey} do: [:each |
+	    tempUrl removeParameter: each].
+	self application updateBaseUrl: tempUrl.
+	baseUrl := self applyRewriteRulesTo: tempUrl
     ]
 ]

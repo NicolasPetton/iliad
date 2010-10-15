@@ -1,4 +1,6 @@
-Many thanks to code contributors, testers, people writing documentation, and all the people from the GNU-Smalltalk community.
+Many thanks to Steven Costiou for the Squeak/Pharo version of Iliad.
+
+We would also like to thank code contributors, testers, people writing documentation, and all the people from the GNU-Smalltalk community.
 
 Paolo Bonzini
 Stefan Schmiedl
@@ -7,6 +9,5 @@ Bèrto ëd Sèra
 Joachim Jaeckel
 Janko Mivšek
 Gwenael Casaccio
-Samuel Lebeau
 Eli Green
 

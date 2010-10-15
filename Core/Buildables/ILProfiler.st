@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2009 
+| Copyright (c) 2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -44,10 +44,10 @@ ILDecorator subclass: ILProfiler [
 	<category: 'building'>
 	^[:e |
 	    Transcript 
-		show: '-- Iliad Profiler on: ', self widget printString , ' --';
+		show: '-- Iliad Profiler on: ', self widget greaseString , ' --';
 		cr.
 	    [e build: self decoratee contents] profile do: [:each | 
-		Transcript show: each printString; cr].
+		Transcript show: each greaseString; cr].
 	]
     ]
 ]
@@ -62,7 +62,7 @@ BlockClosure extend [
 	workProcess := Processor activeProcess.
 	finished := false.
 	profProcess := [
-	    [(Delay forMilliseconds: 5) wait.
+	    [(Delay forMilliseconds: 2) wait.
 	    finished] whileFalse: [
 		results add: workProcess suspendedContext method].
 	    s signal] 

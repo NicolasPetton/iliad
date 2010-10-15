@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -95,7 +95,7 @@ MAWidget subclass: MADescriptionWidget [
 
     id [
 	<category: 'accessing-dynamic'>
-	^self class name asLowercase , self hash asString
+	^self class name asLowercase , self hash greaseString
     ]
 
     model [
@@ -120,17 +120,17 @@ MAWidget subclass: MADescriptionWidget [
     ]
 
     setDescription: aDescription [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	description := aDescription
     ]
 
     setMemento: aMemento [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	memento := aMemento
     ]
 
     setParent: aComponent [
-	<category: 'initialize-release'>
+	<category: 'initialization'>
 	parent := aComponent
     ]
 ]

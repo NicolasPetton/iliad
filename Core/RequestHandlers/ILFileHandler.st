@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -43,7 +43,7 @@ ILRequestHandler subclass: ILFileHandler [
     <category: 'Iliad-Core-RequestHandlers'>
 
     MimeTypes := nil.
-    BaseDirectories := nil.
+    Directories := nil.
 
     ILFileHandler class >> defaultMimeType [
 	<category: 'accessing'>
@@ -476,43 +476,45 @@ ILRequestHandler subclass: ILFileHandler [
 	^MimeTypes
     ]
 
-    ILFileHandler class >> baseDirectories [
+    ILFileHandler class >> directories [
 	<category: 'acccessing'>
-	^BaseDirectories ifNil: [BaseDirectories := self defaultBaseDirectories]
+	^Directories ifNil: [Directories := OrderedCollection new]
     ]    
 
-    ILFileHandler class >> baseDirectories: aCollection [
+    ILFileHandler class >> directories: aCollection [
 	<category: 'accessing'>
-	BaseDirectories := aCollection
+	Directories := aCollection
     ]
 
-    ILFileHandler class >> addBaseDirectory: aDirectory [
+    ILFileHandler class >> addDirectory: aDirectory [
 	<category: 'accessing'>
-	self baseDirectories add: aDirectory
-    ]
-
-    ILFileHandler class >> defaultBaseDirectories [
-	<category: 'defaults'>
-	| directories |
-	directories := OrderedCollection new.
-	(Directory image / 'Public') exists ifTrue: [
-	    directories add: (Directory image / 'Public')].
-	directories add: (PackageLoader packageAt: 'Iliad-Core') directory / 'Public'.
-	^directories
+	self directories add: aDirectory
     ]
 
     ILFileHandler class >> initMimeTypes [
 	<category: 'defaults'>
-	MimeTypes :=Dictionary new.
+	MimeTypes := Dictionary new.
 	1 to: self defaultMimeTypes size by: 2 do: [:index |
 	    MimeTypes
 		at: (self defaultMimeTypes at: index)
 		put: (self defaultMimeTypes at: index + 1)]	
     ]
 
-    baseDirectories [
+    ILFileHandler class >> isBinary: aFilename [
+	<category: 'testing'>
+	| tokens type |
+	tokens := (ILFileHandler mimeTypeFor: (aFilename copyAfterLast: $.)) subStrings: '/'.
+	type := tokens first.
+	type = 'text' ifTrue: [^false].
+	type = 'application' ifFalse: [^true].
+	tokens size = 1 ifTrue: [^true].
+	^(tokens second subStrings: '+') noneSatisfy: [:each |
+	    #('x-javascript' 'xml') includes: each]
+    ]
+
+    directories [
 	<category: 'accessing'>
-	^self class baseDirectories
+	^self class directories
     ]
 
     mimeTypeFor: aFilename [
@@ -528,7 +530,7 @@ ILRequestHandler subclass: ILFileHandler [
 
     handleRequest [
 	<category: 'request handling'>
-	file := self fullPathOf: (self adjustPath: self request url asString).
+	file := self fileContentsFor: self request url greaseString.
 	file isNil ifTrue: [
 	    ILDispatchError signal].
 	super handleRequest
@@ -540,25 +542,18 @@ ILRequestHandler subclass: ILFileHandler [
 	    stream := file readStream.
 	    [response nextPutAll: stream contents]
 		ensure: [stream close].
-	    response contentType: (self mimeTypeFor: file name).
+	    response contentType: (self mimeTypeFor: self request url greaseString).
 	    self addAllowHeaderTo: response.
-	    self session useCookies ifTrue: [
-		self addCookieHeaderTo: response].
 	    self addCacheHeaderTo: response]
     ]
 
-    fullPathOf: aFileName [
-	"Try to find a file with <aFileName> in one of the base directories"
+    fileContentsFor: aFileName [
+	"Try to find a file with <aFileName> in one of the directories"
 	<category: 'private'>
-
-	self baseDirectories do: [:each || file |
-	    file := each / aFileName.
-	    (file notNil and: [file exists]) ifTrue: [^file]].
+	aFileName isEmpty ifTrue: [^nil].
+	self directories do: [:each || fileContents |
+	    fileContents := (each fileContentsFor: aFileName).
+	    (fileContents notNil) ifTrue: [^fileContents]].
 	^nil
-    ]
-
-    adjustPath: aFileName [
-	<category: 'private'>
-	^aFileName copyReplacingRegex: '^\/' with: ''
     ]
 ]

@@ -6,7 +6,7 @@
 
 "======================================================================
 |
-| Copyright (c) 2008-2009 
+| Copyright (c) 2008-2010 
 | Nicolas Petton <petton.nicolas@gmail.com>,
 | Sébastien Audier <sebastien.audier@gmail.com>
 |
@@ -77,7 +77,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
 	aCollection do: [:each | 
 	    (each isKindOf: Association) 
 		ifTrue: [m add: each]
-		ifFalse: [m at: each printString put: each]].
+		ifFalse: [m at: each greaseString put: each]].
 	^self new
 	    ctorMap: m;
 	    yourself
@@ -110,7 +110,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
 	    do: [:ivarName | map at: ivarName put: (anObject instVarNamed: ivarName)].
 	self 
 	    render: map
-	    withConstructor: anObject class name asString
+	    withConstructor: anObject class name greaseString
 	    on: aStream
     ]
 
