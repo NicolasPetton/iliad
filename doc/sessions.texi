@@ -1,0 +1,2 @@
+@node Managing sessions
+@chapter Managing sessions

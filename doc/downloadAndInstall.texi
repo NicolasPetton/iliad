@@ -1,0 +1,132 @@
+@node Downloading and installing Iliad
+@chapter Downloading and installing Iliad
+
+@menu
+* GNU Smalltalk:: 		Installing Iliad on GNU Smalltalk.
+* Pharo Smalltalk:: 		Installing Iliad on Pharo Smalltalk.
+* Loading and starting Iliad::
+@end menu
+
+Iliad is currently available for GNU Smalltalk, Squeak and Pharo. In this chapter you will find detailed installation instructions for each supported Smalltalk dialect.
+
+@node GNU Smalltalk
+@section GNU Smalltalk
+@cindex gnu smalltalk
+@cindex gst
+
+@unnumberedsubsec @code{gst-package}
+
+With @dfn{GNU Smalltalk} 3.2 or newer, @code{gst-package} can be used to download and install Iliad.
+
+@example
+~$ gst-package --download grease -t ~/.st
+~$ gst-package --download iliad -t ~/.st
+@end example
+
+@unnumberedsubsec Git
+
+You can download Iliad by cloning the @dfn{Git} repository.
+
+@example
+~$ git clone http://github.com/NicolasPetton/Grease.git
+~$ cd Grease
+~$ gst-package -t ~/.st ./package.xml
+@end example
+
+@example
+~$ git clone git://github.com/NicolasPetton/iliad-stable.git
+~$ cd iliad-stable
+~$ ./scripts/make_packages
+@end example
+
+@node Pharo Smalltalk
+@section Pharo Smalltalk
+@cindex pharo
+@cindex squeak
+
+@unnumberedsubsec Using Metacello
+@cindex metacello
+
+Download @code{ConfigurationOfIliad} package from the Metacello repository from squeaksource :
+
+@example
+MCHttpRepository
+	location: 'http://www.squeaksource.com/MetacelloRepository'
+	user: ''
+	password: ''
+@end example
+
+Open a workspace and @dfn{do-it}:
+
+@example
+ConfigurationOfIliad load
+@end example
+
+@unnumberedsubsec Manually
+@cindex squeaksource
+
+Load @uref{http://www.squeaksource.com/Swazoo, Swazoo 2.2} and @uref{http://www.squeaksource.com/Seaside30, Grease} from SqueakSource. Load packages from the @uref{http://www.squeaksource.com/iliad, SqueakSource repository} in the following order:
+
+@itemize
+@item Iliad-Core
+@item Iliad-Swazoo
+@item Iliad-More-UI
+@item Iliad-More-Rss
+@item Iliad-More-Formula
+@item Iliad-More-Comet
+@item Iliad-More-Examples
+@item Iliad-More-Tests
+@end itemize
+
+@node Loading and starting Iliad
+@section Loading and starting Iliad
+
+Iliad is webserver agnostic. However, only one server adapter for @uref{http://www.swazoo.org, Swazoo} has been written so far.
+This adapter is available for Pharo Smalltalk and GNU Smalltalk.
+
+@subsection GNU Smalltalk
+
+@unnumberedsubsubsec The start script
+The git repository of Iliad includes a @code{start} script, which will create an image with all required packages loaded and start Iliad with gst-remote.
+
+@example
+~$ ./scripts/start -p PORT
+@end example
+
+@unnumberedsubsubsec gst's REPL
+
+You can load Iliad packages into a GNU Smalltalk image with the PackageLoader.
+When using gst's REPL, you will have to suspend the active process to make Swazoo listen to a given port:
+
+@example
+st> PackageLoader fileInPackage: 'Iliad'
+st> Iliad.SwazooIliad startOn: 8888
+st> processor activeProcess suspend
+@end example
+
+@unnumberedsubsubsec With gst-remote
+
+You can create a bash script and use it to load the desired packages and start iliad:
+
+@example
+#!/bin/bash
+
+# load packages into a new image named iliad.im
+echo "PackageLoader fileInPackage: 'Iliad'. ObjectMemory snapshot: 'iliad.im'" | gst
+
+# start gst-remote with the image
+gst-remote --server -I iliad.im &
+sleep 2
+
+# start Swazoo on port 8888
+gst-remote --eval "Iliad.SwazooIliad startOn: 8888"
+@end example
+
+@subsection Pharo Smalltalk
+
+To start Swazoo with the Iliad adapter, @dfn{do-it}:
+
+@example
+SwazooIliad startOn: 8888
+@end example
+

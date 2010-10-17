@@ -1,0 +1,9445 @@
+@c Define the class index, method index, and selector cross-reference
+@ifclear CLASS-INDICES
+@set CLASS-INDICES
+@defindex cl
+@defcodeindex me
+@defcodeindex sl 
+@end ifclear
+
+@c These are used for both TeX and HTML
+@set BEFORE1
+@set  AFTER1
+@set BEFORE2
+@set  AFTER2
+
+@ifinfo
+@c Use asis so that leading and trailing spaces are meaningful.
+@c Remember we're inside a @menu command, hence the blanks are
+@c kept in the output.
+@set BEFORE1 @asis{* }
+@set  AFTER1 @asis{::}
+@set BEFORE2 @asis{  (}
+@set  AFTER2 @asis{)}
+@end ifinfo
+
+@macro class {a,b}
+@value{BEFORE1}\a\\a\@b{\b\}@value{AFTER1}
+@end macro
+@macro superclass {a,b}
+\a\\a\@value{BEFORE2}@i{\b\}@value{AFTER2}
+@end macro
+
+@ifnotinfo
+@macro begindetailmenu
+@display
+@end macro
+@macro enddetailmenu
+@end display
+@end macro
+@end ifnotinfo
+
+@ifinfo
+@macro begindetailmenu
+@detailmenu
+@end macro
+@macro enddetailmenu
+@end detailmenu
+@end macro
+@end ifinfo
+
+@iftex
+@macro beginmenu
+@end macro
+@macro endmenu
+@end macro
+@end iftex
+
+@ifnottex
+@macro beginmenu
+@menu
+@end macro
+@macro endmenu
+@end menu
+@end macro
+@end ifnottex
+
+@beginmenu
+@ifnottex
+Alphabetic list:
+* Iliad.IdentityBag::
+* Iliad.ILAction::
+* Iliad.ILActionRegistry::
+* Iliad.ILAnchorElement::
+* Iliad.ILAnswerHandler::
+* Iliad.ILAppendDelegator::
+* Iliad.ILApplication::
+* Iliad.ILApplicationHandler::
+* Iliad.ILAreaElement::
+* Iliad.ILAttributeError::
+* Iliad.ILAttributeNotUnderstood::
+* Iliad.ILBodyElement::
+* Iliad.ILBreakElement::
+* Iliad.ILBuildable::
+* Iliad.ILButtonElement::
+* Iliad.ILCheckboxElement::
+* Iliad.ILClosingElement::
+* Iliad.ILComposite::
+* Iliad.ILConditionalCommentElement::
+* Iliad.ILConfirmationWidget::
+* Iliad.ILContext::
+* Iliad.ILCookie::
+* Iliad.ILCurrentBuildable::
+* Iliad.ILCurrentContext::
+* Iliad.ILDecorator::
+* Iliad.ILDelegator::
+* Iliad.ILDirectionElement::
+* Iliad.ILDirectory::
+* Iliad.ILDiskDirectory::
+* Iliad.ILDispatcher::
+* Iliad.ILDispatchError::
+* Iliad.ILDivElement::
+* Iliad.ILDynamicVariable::
+* Iliad.ILElement::
+* Iliad.ILElementError::
+* Iliad.ILEncoder::
+* Iliad.ILErrorHandler::
+* Iliad.ILFieldsetElement::
+* Iliad.ILFileHandler::
+* Iliad.ILFileProxy::
+* Iliad.ILFormElement::
+* Iliad.ILFormElementElement::
+* Iliad.ILHeadElement::
+* Iliad.ILHeadingElement::
+* Iliad.ILHorizontalRuleElement::
+* Iliad.ILHTMLBuilderElement::
+* Iliad.ILHtmlElement::
+* Iliad.ILHTMLPage::
+* Iliad.ILId::
+* Iliad.ILImageElement::
+* Iliad.ILInformationWidget::
+* Iliad.ILInputElement::
+* Iliad.ILJson::
+* Iliad.ILJsonHandler::
+* Iliad.ILJsonObject::
+* Iliad.ILJsonSyntaxError::
+* Iliad.ILLabelElement::
+* Iliad.ILLegendElement::
+* Iliad.ILLinkableElement::
+* Iliad.ILLinkElement::
+* Iliad.ILListElement::
+* Iliad.ILListItemElement::
+* Iliad.ILMapElement::
+* Iliad.ILMemoryDirectory::
+* Iliad.ILMetaElement::
+* Iliad.ILModelProxy::
+* Iliad.ILNotFoundHandler::
+* Iliad.ILObject::
+* Iliad.ILObjectElement::
+* Iliad.ILOptionElement::
+* Iliad.ILOptionGroupElement::
+* Iliad.ILParagraphElement::
+* Iliad.ILParameterElement::
+* Iliad.ILPluggableWidget::
+* Iliad.ILPrependDelegator::
+* Iliad.ILProfiler::
+* Iliad.ILRadioButtonElement::
+* Iliad.ILRawHtmlElement::
+* Iliad.ILRedirectHandler::
+* Iliad.ILRequest::
+* Iliad.ILRequestHandler::
+* Iliad.ILResponse::
+* Iliad.ILResponseNotification::
+* Iliad.ILRoute::
+* Iliad.ILRouter::
+* Iliad.ILRubyTextElement::
+* Iliad.ILScriptElement::
+* Iliad.ILSelectElement::
+* Iliad.ILSequence::
+* Iliad.ILSession::
+* Iliad.ILSessionManager::
+* Iliad.ILSpanElement::
+* Iliad.ILStateRegistry::
+* Iliad.ILTableBodyElement::
+* Iliad.ILTableCellElement::
+* Iliad.ILTableDataElement::
+* Iliad.ILTableElement::
+* Iliad.ILTableElementElement::
+* Iliad.ILTableFootElement::
+* Iliad.ILTableHeadElement::
+* Iliad.ILTableHeaderElement::
+* Iliad.ILTableRowElement::
+* Iliad.ILTextAreaElement::
+* Iliad.ILTextElement::
+* Iliad.ILTitleElement::
+* Iliad.ILUrl::
+* Iliad.ILUrlBuilder::
+* Iliad.ILWidget::
+* Iliad.ILXmlElement::
+@end ifnottex
+
+@ifinfo
+Class tree:
+@end ifinfo
+@iftex
+@section Tree
+@end iftex
+@ifnotinfo
+
+Classes documented in this manual are @b{boldfaced}.
+
+@end ifnotinfo
+@begindetailmenu
+@superclass{@t{}, Object}
+@superclass{@t{ }, Exception}
+@superclass{@t{  }, Error}
+@superclass{@t{   }, Grease.Grease.GRError}
+@class{@t{    }, Iliad.ILAttributeError}
+@class{@t{    }, Iliad.ILAttributeNotUnderstood}
+@class{@t{    }, Iliad.ILDispatchError}
+@class{@t{    }, Iliad.ILElementError}
+@class{@t{    }, Iliad.ILJsonSyntaxError}
+@superclass{@t{  }, Notification}
+@class{@t{   }, Iliad.ILResponseNotification}
+@superclass{@t{ }, Grease.Grease.GRObject}
+@class{@t{  }, Iliad.ILObject}
+@class{@t{   }, Iliad.ILAction}
+@class{@t{   }, Iliad.ILActionRegistry}
+@class{@t{   }, Iliad.ILBuildable}
+@class{@t{    }, Iliad.ILApplication}
+@class{@t{    }, Iliad.ILDecorator}
+@class{@t{     }, Iliad.ILAnswerHandler}
+@class{@t{     }, Iliad.ILDelegator}
+@class{@t{      }, Iliad.ILAppendDelegator}
+@class{@t{      }, Iliad.ILPrependDelegator}
+@class{@t{     }, Iliad.ILProfiler}
+@class{@t{    }, Iliad.ILHTMLPage}
+@class{@t{    }, Iliad.ILWidget}
+@class{@t{     }, Iliad.ILConfirmationWidget}
+@class{@t{     }, Iliad.ILInformationWidget}
+@class{@t{     }, Iliad.ILPluggableWidget}
+@class{@t{     }, Iliad.ILSequence}
+@class{@t{   }, Iliad.ILComposite}
+@class{@t{    }, Iliad.ILElement}
+@class{@t{     }, Iliad.ILHTMLBuilderElement}
+@class{@t{      }, Iliad.ILBodyElement}
+@class{@t{      }, Iliad.ILClosingElement}
+@class{@t{       }, Iliad.ILAreaElement}
+@class{@t{       }, Iliad.ILBreakElement}
+@class{@t{       }, Iliad.ILHorizontalRuleElement}
+@class{@t{       }, Iliad.ILImageElement}
+@class{@t{       }, Iliad.ILMetaElement}
+@class{@t{       }, Iliad.ILParameterElement}
+@class{@t{      }, Iliad.ILConditionalCommentElement}
+@class{@t{      }, Iliad.ILDirectionElement}
+@class{@t{      }, Iliad.ILDivElement}
+@class{@t{      }, Iliad.ILFieldsetElement}
+@class{@t{      }, Iliad.ILFormElement}
+@class{@t{      }, Iliad.ILFormElementElement}
+@class{@t{       }, Iliad.ILButtonElement}
+@class{@t{       }, Iliad.ILCheckboxElement}
+@class{@t{       }, Iliad.ILInputElement}
+@class{@t{       }, Iliad.ILRadioButtonElement}
+@class{@t{       }, Iliad.ILSelectElement}
+@class{@t{       }, Iliad.ILTextAreaElement}
+@class{@t{      }, Iliad.ILHeadElement}
+@class{@t{      }, Iliad.ILHeadingElement}
+@class{@t{      }, Iliad.ILHtmlElement}
+@class{@t{      }, Iliad.ILLabelElement}
+@class{@t{      }, Iliad.ILLegendElement}
+@class{@t{      }, Iliad.ILLinkableElement}
+@class{@t{       }, Iliad.ILAnchorElement}
+@class{@t{       }, Iliad.ILLinkElement}
+@class{@t{      }, Iliad.ILListElement}
+@class{@t{      }, Iliad.ILListItemElement}
+@class{@t{      }, Iliad.ILMapElement}
+@class{@t{      }, Iliad.ILObjectElement}
+@class{@t{      }, Iliad.ILOptionElement}
+@class{@t{      }, Iliad.ILOptionGroupElement}
+@class{@t{      }, Iliad.ILParagraphElement}
+@class{@t{      }, Iliad.ILRubyTextElement}
+@class{@t{      }, Iliad.ILScriptElement}
+@class{@t{      }, Iliad.ILSpanElement}
+@class{@t{      }, Iliad.ILTableElement}
+@class{@t{      }, Iliad.ILTableElementElement}
+@class{@t{       }, Iliad.ILTableBodyElement}
+@class{@t{       }, Iliad.ILTableCellElement}
+@class{@t{        }, Iliad.ILTableDataElement}
+@class{@t{        }, Iliad.ILTableHeaderElement}
+@class{@t{        }, Iliad.ILTableRowElement}
+@class{@t{       }, Iliad.ILTableFootElement}
+@class{@t{       }, Iliad.ILTableHeadElement}
+@class{@t{      }, Iliad.ILTitleElement}
+@class{@t{     }, Iliad.ILRawHtmlElement}
+@class{@t{     }, Iliad.ILTextElement}
+@class{@t{     }, Iliad.ILXmlElement}
+@class{@t{   }, Iliad.ILContext}
+@class{@t{   }, Iliad.ILDirectory}
+@class{@t{    }, Iliad.ILDiskDirectory}
+@class{@t{    }, Iliad.ILMemoryDirectory}
+@class{@t{   }, Iliad.ILDispatcher}
+@class{@t{   }, Iliad.ILJson}
+@class{@t{   }, Iliad.ILJsonObject}
+@class{@t{   }, Iliad.ILRequestHandler}
+@class{@t{    }, Iliad.ILApplicationHandler}
+@class{@t{    }, Iliad.ILErrorHandler}
+@class{@t{    }, Iliad.ILFileHandler}
+@class{@t{    }, Iliad.ILJsonHandler}
+@class{@t{    }, Iliad.ILNotFoundHandler}
+@class{@t{    }, Iliad.ILRedirectHandler}
+@class{@t{   }, Iliad.ILRoute}
+@class{@t{   }, Iliad.ILRouter}
+@class{@t{   }, Iliad.ILSession}
+@class{@t{   }, Iliad.ILSessionManager}
+@class{@t{   }, Iliad.ILStateRegistry}
+@class{@t{   }, Iliad.ILUrlBuilder}
+@class{@t{ }, Iliad.ILCookie}
+@class{@t{ }, Iliad.ILDynamicVariable}
+@class{@t{  }, Iliad.ILCurrentBuildable}
+@class{@t{  }, Iliad.ILCurrentContext}
+@class{@t{ }, Iliad.ILEncoder}
+@class{@t{ }, Iliad.ILFileProxy}
+@class{@t{ }, Iliad.ILModelProxy}
+@class{@t{ }, Iliad.ILRequest}
+@class{@t{ }, Iliad.ILResponse}
+@class{@t{ }, Iliad.ILUrl}
+@superclass{@t{ }, Iterable}
+@superclass{@t{  }, Collection}
+@superclass{@t{   }, Bag}
+@class{@t{    }, Iliad.IdentityBag}
+@superclass{@t{   }, SequenceableCollection}
+@superclass{@t{    }, ArrayedCollection}
+@superclass{@t{     }, ByteArray}
+@class{@t{      }, Iliad.ILId}
+@enddetailmenu
+@endmenu
+@unmacro class
+@unmacro superclass
+@unmacro endmenu
+@unmacro beginmenu
+@unmacro enddetailmenu
+@unmacro begindetailmenu
+@node Iliad.IdentityBag
+@section Iliad.IdentityBag
+@clindex Iliad.IdentityBag
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Bag
+@itemx Category: 
+
+@end table
+
+@menu
+@end menu
+
+@node Iliad.ILAction
+@section Iliad.ILAction
+@clindex Iliad.ILAction
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Sessions
+
+@end table
+
+@menu
+* Iliad.ILAction-accessing::  (instance)
+* Iliad.ILAction-converting::  (instance)
+* Iliad.ILAction-evaluating::  (instance)
+@end menu
+
+
+
+@node Iliad.ILAction-accessing
+@subsection Iliad.ILAction:@- accessing
+
+@table @b
+@meindex block
+@item block
+Answer `block'.
+
+@meindex block:@-
+@item block:@- aBlock
+Not commented.
+
+@meindex key
+@item key
+Answer `key'.
+
+@meindex key:@-
+@item key:@- anId
+Not commented.
+
+@meindex value
+@item value
+Answer `value'.
+
+@meindex value:@-
+@item value:@- anObject
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILAction-converting
+@subsection Iliad.ILAction:@- converting
+
+@table @b
+@meindex respondOn:@-
+@item respondOn:@- aResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILAction-evaluating
+@subsection Iliad.ILAction:@- evaluating
+
+@table @b
+@meindex evaluate
+@item evaluate
+Not commented.
+
+@end table
+
+@node Iliad.ILActionRegistry
+@section Iliad.ILActionRegistry
+@clindex Iliad.ILActionRegistry
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Sessions
+I implement a registry of actions.
+@end table
+
+@menu
+* Iliad.ILActionRegistry-accessing::  (instance)
+* Iliad.ILActionRegistry-actions::  (instance)
+@end menu
+
+
+
+@node Iliad.ILActionRegistry-accessing
+@subsection Iliad.ILActionRegistry:@- accessing
+
+@table @b
+@meindex actionAt:@-
+@item actionAt:@- aKey
+Not commented.
+
+@meindex actions
+@item actions
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILActionRegistry-actions
+@subsection Iliad.ILActionRegistry:@- actions
+
+@table @b
+@meindex evaluateActionKey:@-
+@item evaluateActionKey:@- aString
+Not commented.
+
+@meindex register:@-
+@item register:@- anAction
+Not commented.
+
+@meindex unregister:@-
+@item unregister:@- anAction
+Not commented.
+
+@meindex unregisterAllActions
+@item unregisterAllActions
+Not commented.
+
+@end table
+
+@node Iliad.ILAnchorElement
+@section Iliad.ILAnchorElement
+@clindex Iliad.ILAnchorElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILLinkableElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILAnchorElement-accessing::  (instance)
+* Iliad.ILAnchorElement-accessing attributes::  (instance)
+* Iliad.ILAnchorElement-accessing attributes-imagemap::  (instance)
+@end menu
+
+
+
+@node Iliad.ILAnchorElement-accessing
+@subsection Iliad.ILAnchorElement:@- accessing
+
+@table @b
+@meindex action:@-
+@item action:@- aBlock
+Not commented.
+
+@meindex action:@-hash:@-
+@item action:@- aBlock hash:@- aString
+Not commented.
+
+@meindex tag
+@item tag
+Answer `'a''.
+
+@end table
+
+
+
+@node Iliad.ILAnchorElement-accessing attributes
+@subsection Iliad.ILAnchorElement:@- accessing attributes
+
+@table @b
+@meindex tabindex:@-
+@item tabindex:@- anInteger
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILAnchorElement-accessing attributes-imagemap
+@subsection Iliad.ILAnchorElement:@- accessing attributes-imagemap
+
+@table @b
+@meindex circleShape
+@item circleShape
+Not commented.
+
+@meindex coords:@-
+@item coords:@- aString
+Not commented.
+
+@meindex defaultShape
+@item defaultShape
+Not commented.
+
+@meindex polyShape
+@item polyShape
+Not commented.
+
+@meindex rectShape
+@item rectShape
+Not commented.
+
+@meindex shape:@-
+@item shape:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILAnswerHandler
+@section Iliad.ILAnswerHandler
+@clindex Iliad.ILAnswerHandler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDecorator
+@itemx Category: Iliad-Core-Buildables
+I am a special decorator for Widgets, used to handle widget answers. 
+See #handleAnswer:@- and ILWidget>>show:@-onAnswer:@-
+@end table
+
+@menu
+* Iliad.ILAnswerHandler-accessing::  (instance)
+* Iliad.ILAnswerHandler-decorations::  (instance)
+@end menu
+
+
+
+@node Iliad.ILAnswerHandler-accessing
+@subsection Iliad.ILAnswerHandler:@- accessing
+
+@table @b
+@meindex action
+@item action
+Answer `action'.
+
+@meindex action:@-
+@item action:@- anAction
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILAnswerHandler-decorations
+@subsection Iliad.ILAnswerHandler:@- decorations
+
+@table @b
+@meindex handleAnswer:@-
+@item handleAnswer:@- anAnswer
+Not commented.
+
+@end table
+
+@node Iliad.ILAppendDelegator
+@section Iliad.ILAppendDelegator
+@clindex Iliad.ILAppendDelegator
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDelegator
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILAppendDelegator-building::  (instance)
+@end menu
+
+
+
+@node Iliad.ILAppendDelegator-building
+@subsection Iliad.ILAppendDelegator:@- building
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@end table
+
+@node Iliad.ILApplication
+@section Iliad.ILApplication
+@clindex Iliad.ILApplication
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILBuildable
+@itemx Category: Iliad-Core-Buildables
+I am the Iliad implementation of an application.
+
+I am is the root object of a buildable object tree. Applications have a
+set of controllers, methods used to dispatch requests to the corresponding 
+sub-tree of buildable objects (oftenly a composition of stateful widgets).
+
+In concrete subclasses, the class method #path should return the base path 
+(string) for the application.
+
+
+"""""""""""""""""""""""""""
+" Applications & UI state "
+"""""""""""""""""""""""""""
+
+You don't have to bother about instantiating applications, the framework 
+will handle session and application instances. Application instances are stored 
+in sessions. Each session stores one instance of the same application class.
+
+Root widgets should be stored in applications to keep their state across requests.
+
+
+""""""""""""""""""""""
+" Controller methods "
+""""""""""""""""""""""
+
+Like widgets, I am stateful.
+Unlike widgets I know how to dispatch a request with #dispatch : 
+the controller method corresponding to the url will be called.
+
+Controller methods must:@-
+ - answer a buildable object (a block closure or an instance of ILWidget for example).
+ - be in the 'controllers' method protocol (with the default selector filter)
+
+The default controller method is #index.
+
+
+""""""""""""""""""
+" selectorFilter "
+""""""""""""""""""
+
+The class inst var <selectorFilter> is used to filter controller methods. 
+By default it allows all methods in the 'controllers' protocol.
+
+Alternatively, you can override the class method #defaultSelectorFilter to supply 
+your own selectorFilter or plug it in using the class method #selectorFilter:@-
+@end table
+
+@menu
+* Iliad.ILApplication class-accessing::  (class)
+* Iliad.ILApplication class-defaults::  (class)
+* Iliad.ILApplication-accessing::  (instance)
+* Iliad.ILApplication-building::  (instance)
+* Iliad.ILApplication-controllers::  (instance)
+* Iliad.ILApplication-converting::  (instance)
+* Iliad.ILApplication-defaults::  (instance)
+* Iliad.ILApplication-dispatching::  (instance)
+* Iliad.ILApplication-redirecting::  (instance)
+* Iliad.ILApplication-updating::  (instance)
+@end menu
+
+
+
+@node Iliad.ILApplication class-accessing
+@subsection Iliad.ILApplication class:@- accessing
+
+@table @b
+@meindex absolutePath
+@item absolutePath
+Not commented.
+
+@meindex path
+@item path
+Base path of the application.
+Override this method in concrete subclasses. 
+It should return a string
+
+
+@meindex selectorFilter
+@item selectorFilter
+Not commented.
+
+@meindex selectorFilter:@-
+@item selectorFilter:@- aBlock
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILApplication class-defaults
+@subsection Iliad.ILApplication class:@- defaults
+
+@table @b
+@meindex defaultSelectorFilter
+@slindex selectorFilter:@-
+@item defaultSelectorFilter
+Override this method to supply your own selectorFilter
+or plug it in using #selectorFilter:@-
+
+
+@end table
+
+
+
+@node Iliad.ILApplication-accessing
+@subsection Iliad.ILApplication:@- accessing
+
+@table @b
+@meindex model
+@item model
+Answer `model'.
+
+@meindex model:@-
+@item model:@- anObject
+Not commented.
+
+@meindex page
+@item page
+Answer `page'.
+
+@meindex selectorFilter
+@item selectorFilter
+Not commented.
+
+@meindex widgetFor:@-
+@item widgetFor:@- aBuildable
+Convenience method. This is useful for building anonymous widgets.
+ex:@- myWidget := self widgetFor:@- [:@-e | e h1:@- 'Hello world!']
+
+
+@end table
+
+
+
+@node Iliad.ILApplication-building
+@subsection Iliad.ILApplication:@- building
+
+@table @b
+@meindex buildContents
+@slindex dispatch
+@slindex dispatch
+@item buildContents
+Call #dispatch. A buildable is expected from #dispatch
+
+
+@end table
+
+
+
+@node Iliad.ILApplication-controllers
+@subsection Iliad.ILApplication:@- controllers
+
+@table @b
+@meindex index
+@item index
+default view method
+
+
+@end table
+
+
+
+@node Iliad.ILApplication-converting
+@subsection Iliad.ILApplication:@- converting
+
+@table @b
+@meindex respondOn:@-
+@item respondOn:@- aResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILApplication-defaults
+@subsection Iliad.ILApplication:@- defaults
+
+@table @b
+@meindex defaultPageClass
+@item defaultPageClass
+Answer `ILHTMLPage'.
+
+@meindex rootElementClass
+@item rootElementClass
+Answer `ILHTMLBuilderElement'.
+
+@end table
+
+
+
+@node Iliad.ILApplication-dispatching
+@subsection Iliad.ILApplication:@- dispatching
+
+@table @b
+@meindex allowedSelector:@-
+@item allowedSelector:@- aSelector
+Answer true if <aSelector> is ok to call from a URL.
+Default implementation is to use the pluggable filter block.
+
+
+@meindex dispatch
+@item dispatch
+Dispatch to correct controller method.
+If dispatchOverride returns something
+different from nil, consider it handled.
+
+
+@meindex dispatchOn:@-
+@slindex index
+@item dispatchOn:@- aMethod
+Dispatch to correct method:@-
+- If <aMethod> is empty we call #index
+- If the selector is allowed to be executed then we just call it
+
+
+@meindex dispatchOverride
+@item dispatchOverride
+Handle special urls. Subclass implementors
+should call super first and see if it was handled.
+
+
+@end table
+
+
+
+@node Iliad.ILApplication-redirecting
+@subsection Iliad.ILApplication:@- redirecting
+
+@table @b
+@meindex respond:@-
+@item respond:@- aBlock
+Abort all other request handling
+
+
+@meindex returnResponse:@-
+@item returnResponse:@- aResponse
+Abort all other request handling
+
+
+@end table
+
+
+
+@node Iliad.ILApplication-updating
+@subsection Iliad.ILApplication:@- updating
+
+@table @b
+@meindex updateBaseUrl:@-
+@item updateBaseUrl:@- anUrl
+Answer the receiver.
+
+@meindex updateFromRoute:@-
+@item updateFromRoute:@- aRoute
+Answer the receiver.
+
+@meindex updatePage:@-
+@item updatePage:@- aPage
+Override to add elements to aPage.
+super should always be called
+
+
+@end table
+
+@node Iliad.ILApplicationHandler
+@section Iliad.ILApplicationHandler
+@clindex Iliad.ILApplicationHandler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILRequestHandler
+@itemx Category: Iliad-Core-RequestHandlers
+
+@end table
+
+@menu
+* Iliad.ILApplicationHandler-initialization::  (instance)
+* Iliad.ILApplicationHandler-request handling::  (instance)
+* Iliad.ILApplicationHandler-responding::  (instance)
+* Iliad.ILApplicationHandler-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILApplicationHandler-initialization
+@subsection Iliad.ILApplicationHandler:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILApplicationHandler-request handling
+@subsection Iliad.ILApplicationHandler:@- request handling
+
+@table @b
+@meindex evaluateActions
+@item evaluateActions
+Not commented.
+
+@meindex handleRequest
+@item handleRequest
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILApplicationHandler-responding
+@subsection Iliad.ILApplicationHandler:@- responding
+
+@table @b
+@meindex produceResponse
+@item produceResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILApplicationHandler-testing
+@subsection Iliad.ILApplicationHandler:@- testing
+
+@table @b
+@meindex isRequestValid
+@item isRequestValid
+Not commented.
+
+@meindex shouldRedirect
+@item shouldRedirect
+Not commented.
+
+@meindex shouldRespondInJson
+@item shouldRespondInJson
+Not commented.
+
+@meindex shouldReturnEmptyResponse
+@item shouldReturnEmptyResponse
+Not commented.
+
+@end table
+
+@node Iliad.ILAreaElement
+@section Iliad.ILAreaElement
+@clindex Iliad.ILAreaElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILClosingElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILAreaElement-accessing::  (instance)
+* Iliad.ILAreaElement-accessing attributes::  (instance)
+* Iliad.ILAreaElement-accessing attributes-imagemap::  (instance)
+@end menu
+
+
+
+@node Iliad.ILAreaElement-accessing
+@subsection Iliad.ILAreaElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'area''.
+
+@end table
+
+
+
+@node Iliad.ILAreaElement-accessing attributes
+@subsection Iliad.ILAreaElement:@- accessing attributes
+
+@table @b
+@meindex accesskey:@-
+@item accesskey:@- aCharacter
+Not commented.
+
+@meindex alt:@-
+@item alt:@- aString
+Not commented.
+
+@meindex href:@-
+@item href:@- aString
+Not commented.
+
+@meindex nohref
+@item nohref
+Not commented.
+
+@meindex tabindex:@-
+@item tabindex:@- anInteger
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILAreaElement-accessing attributes-imagemap
+@subsection Iliad.ILAreaElement:@- accessing attributes-imagemap
+
+@table @b
+@meindex circleShape
+@item circleShape
+Not commented.
+
+@meindex coords:@-
+@item coords:@- aString
+Not commented.
+
+@meindex defaultShape
+@item defaultShape
+Not commented.
+
+@meindex polyShape
+@item polyShape
+Not commented.
+
+@meindex rectShape
+@item rectShape
+Not commented.
+
+@meindex shape:@-
+@item shape:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILAttributeError
+@section Iliad.ILAttributeError
+@clindex Iliad.ILAttributeError
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Grease.Grease.GRError
+@itemx Category: Iliad-Core-Elements
+
+@end table
+
+@menu
+@end menu
+
+@node Iliad.ILAttributeNotUnderstood
+@section Iliad.ILAttributeNotUnderstood
+@clindex Iliad.ILAttributeNotUnderstood
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Grease.Grease.GRError
+@itemx Category: Iliad-Core-Elements
+
+@end table
+
+@menu
+* Iliad.ILAttributeNotUnderstood class-instance creation::  (class)
+* Iliad.ILAttributeNotUnderstood-accessing::  (instance)
+* Iliad.ILAttributeNotUnderstood-exceptionDescription::  (instance)
+* Iliad.ILAttributeNotUnderstood-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILAttributeNotUnderstood class-instance creation
+@subsection Iliad.ILAttributeNotUnderstood class:@- instance creation
+
+@table @b
+@meindex element:@-attribute:@-
+@item element:@- anElement attribute:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILAttributeNotUnderstood-accessing
+@subsection Iliad.ILAttributeNotUnderstood:@- accessing
+
+@table @b
+@meindex attribute
+@item attribute
+Answer `attribute'.
+
+@meindex attribute:@-
+@item attribute:@- anObject
+Not commented.
+
+@meindex element
+@item element
+Answer `element'.
+
+@meindex element:@-
+@item element:@- anElement
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILAttributeNotUnderstood-exceptionDescription
+@subsection Iliad.ILAttributeNotUnderstood:@- exceptionDescription
+
+@table @b
+@meindex defaultAction
+@item defaultAction
+Answer the receiver.
+
+@meindex isResumable
+@item isResumable
+Answer `true'.
+
+@end table
+
+
+
+@node Iliad.ILAttributeNotUnderstood-printing
+@subsection Iliad.ILAttributeNotUnderstood:@- printing
+
+@table @b
+@meindex messageText
+@item messageText
+Not commented.
+
+@end table
+
+@node Iliad.ILBodyElement
+@section Iliad.ILBodyElement
+@clindex Iliad.ILBodyElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILBodyElement-accessing::  (instance)
+* Iliad.ILBodyElement-addessing attributes-events::  (instance)
+@end menu
+
+
+
+@node Iliad.ILBodyElement-accessing
+@subsection Iliad.ILBodyElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'body''.
+
+@end table
+
+
+
+@node Iliad.ILBodyElement-addessing attributes-events
+@subsection Iliad.ILBodyElement:@- addessing attributes-events
+
+@table @b
+@meindex onLoad:@-
+@item onLoad:@- aString
+Not commented.
+
+@meindex onUnload:@-
+@item onUnload:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILBreakElement
+@section Iliad.ILBreakElement
+@clindex Iliad.ILBreakElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILClosingElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILBreakElement-accessing::  (instance)
+* Iliad.ILBreakElement-accessing attributes-events::  (instance)
+@end menu
+
+
+
+@node Iliad.ILBreakElement-accessing
+@subsection Iliad.ILBreakElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'br''.
+
+@end table
+
+
+
+@node Iliad.ILBreakElement-accessing attributes-events
+@subsection Iliad.ILBreakElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- event add:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILBuildable
+@section Iliad.ILBuildable
+@clindex Iliad.ILBuildable
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Buildables
+I am an abstract buildable object. 
+My subclasses must override #build method, which should return an instance of a subclass of Iliad.ILElement.
+@end table
+
+@menu
+* Iliad.ILBuildable-accessing::  (instance)
+* Iliad.ILBuildable-accessing attributes::  (instance)
+* Iliad.ILBuildable-actions::  (instance)
+* Iliad.ILBuildable-building::  (instance)
+* Iliad.ILBuildable-converting::  (instance)
+* Iliad.ILBuildable-printing::  (instance)
+* Iliad.ILBuildable-redirecting::  (instance)
+@end menu
+
+
+
+@node Iliad.ILBuildable-accessing
+@subsection Iliad.ILBuildable:@- accessing
+
+@table @b
+@meindex children
+@item children
+Not commented.
+
+@meindex router
+@item router
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILBuildable-accessing attributes
+@subsection Iliad.ILBuildable:@- accessing attributes
+
+@table @b
+@meindex attributeAt:@-
+@item attributeAt:@- aSymbol
+Not commented.
+
+@meindex attributeAt:@-ifAbsentPut:@-
+@item attributeAt:@- aSymbol ifAbsentPut:@- aBlock
+Not commented.
+
+@meindex attributeAt:@-put:@-
+@item attributeAt:@- aSymbol put:@- anObject
+Not commented.
+
+@meindex attributes
+@item attributes
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILBuildable-actions
+@subsection Iliad.ILBuildable:@- actions
+
+@table @b
+@meindex send:@-
+@item send:@- aSymbol
+Not commented.
+
+@meindex send:@-to:@-
+@item send:@- aSymbol to:@- anObject
+Not commented.
+
+@meindex send:@-to:@-arguments:@-
+@item send:@- aSymbol to:@- anObject arguments:@- anArray
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILBuildable-building
+@subsection Iliad.ILBuildable:@- building
+
+@table @b
+@meindex build
+@item build
+Not commented.
+
+@meindex buildContents
+@item buildContents
+Override this method in subclasses.
+It must answer an Element
+
+
+@meindex buildOn:@-
+@item buildOn:@- anElement
+Not commented.
+
+@meindex registerChild:@-
+@item registerChild:@- aBuildable
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILBuildable-converting
+@subsection Iliad.ILBuildable:@- converting
+
+@table @b
+@meindex respondOn:@-
+@item respondOn:@- aResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILBuildable-printing
+@subsection Iliad.ILBuildable:@- printing
+
+@table @b
+@meindex printHtmlString
+@item printHtmlString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILBuildable-redirecting
+@subsection Iliad.ILBuildable:@- redirecting
+
+@table @b
+@meindex redirectTo:@-
+@item redirectTo:@- anUrlString
+Abort all other request handling.
+Redirect to anUrlString
+
+
+@meindex redirectToApplication:@-
+@item redirectToApplication:@- aClass
+Abort all other request handling.
+Redirect to the index method of <aClass>
+
+
+@meindex redirectToApplication:@-controller:@-
+@item redirectToApplication:@- aClass controller:@- aString
+Abort all other request handling.
+Redirect to the controller named <aString> of <aClass>
+
+
+@meindex redirectToCurrentController
+@item redirectToCurrentController
+Abort all other request handling.
+Redirect to the current controller method
+
+
+@meindex redirectToIndex
+@item redirectToIndex
+Abort all other request handling.
+Redirect to the index method of this class
+
+
+@meindex redirectToLocal:@-
+@item redirectToLocal:@- aString
+Abort all other request handling.
+Make a redirection to another controller method in this application
+
+
+@end table
+
+@node Iliad.ILButtonElement
+@section Iliad.ILButtonElement
+@clindex Iliad.ILButtonElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILFormElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILButtonElement-accessing::  (instance)
+* Iliad.ILButtonElement-accessing attributes::  (instance)
+* Iliad.ILButtonElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILButtonElement-accessing
+@subsection Iliad.ILButtonElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'button''.
+
+@end table
+
+
+
+@node Iliad.ILButtonElement-accessing attributes
+@subsection Iliad.ILButtonElement:@- accessing attributes
+
+@table @b
+@meindex beButton
+@item beButton
+Not commented.
+
+@meindex beReset
+@item beReset
+Not commented.
+
+@meindex beSubmit
+@item beSubmit
+Not commented.
+
+@meindex type:@-
+@item type:@- aString
+Not commented.
+
+@meindex value:@-
+@item value:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILButtonElement-printing
+@subsection Iliad.ILButtonElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+@node Iliad.ILCheckboxElement
+@section Iliad.ILCheckboxElement
+@clindex Iliad.ILCheckboxElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILFormElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILCheckboxElement-accessing::  (instance)
+* Iliad.ILCheckboxElement-accessing attributes::  (instance)
+* Iliad.ILCheckboxElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILCheckboxElement-accessing
+@subsection Iliad.ILCheckboxElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'input''.
+
+@end table
+
+
+
+@node Iliad.ILCheckboxElement-accessing attributes
+@subsection Iliad.ILCheckboxElement:@- accessing attributes
+
+@table @b
+@meindex action:@-
+@item action:@- aBlock
+Not commented.
+
+@meindex beChecked
+@item beChecked
+Not commented.
+
+@meindex checked:@-
+@item checked:@- aBoolean
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILCheckboxElement-printing
+@subsection Iliad.ILCheckboxElement:@- printing
+
+@table @b
+@meindex addHiddenInput
+@item addHiddenInput
+Not commented.
+
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+@node Iliad.ILClosingElement
+@section Iliad.ILClosingElement
+@clindex Iliad.ILClosingElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILClosingElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILClosingElement-printing
+@subsection Iliad.ILClosingElement:@- printing
+
+@table @b
+@meindex printHtmlOn:@-
+@item printHtmlOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILComposite
+@section Iliad.ILComposite
+@clindex Iliad.ILComposite
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Utilities
+
+@end table
+
+@menu
+* Iliad.ILComposite-accessing::  (instance)
+* Iliad.ILComposite-adding::  (instance)
+* Iliad.ILComposite-comparing::  (instance)
+* Iliad.ILComposite-enumerating::  (instance)
+@end menu
+
+
+
+@node Iliad.ILComposite-accessing
+@subsection Iliad.ILComposite:@- accessing
+
+@table @b
+@meindex children
+@item children
+Not commented.
+
+@meindex next
+@item next
+Answer `next'.
+
+@meindex next:@-
+@item next:@- aComposite
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILComposite-adding
+@subsection Iliad.ILComposite:@- adding
+
+@table @b
+@meindex add:@-
+@item add:@- aComposite
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILComposite-comparing
+@subsection Iliad.ILComposite:@- comparing
+
+@table @b
+@meindex =
+@item = anObject
+Not commented.
+
+@meindex hash
+@item hash
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILComposite-enumerating
+@subsection Iliad.ILComposite:@- enumerating
+
+@table @b
+@meindex allChildrenDo:@-
+@item allChildrenDo:@- aBlock
+Not commented.
+
+@meindex childrenDo:@-
+@item childrenDo:@- aBlock
+Not commented.
+
+@end table
+
+@node Iliad.ILConditionalCommentElement
+@section Iliad.ILConditionalCommentElement
+@clindex Iliad.ILConditionalCommentElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILConditionalCommentElement-accessing::  (instance)
+* Iliad.ILConditionalCommentElement-accessing attributes-events::  (instance)
+* Iliad.ILConditionalCommentElement-conditions::  (instance)
+* Iliad.ILConditionalCommentElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILConditionalCommentElement-accessing
+@subsection Iliad.ILConditionalCommentElement:@- accessing
+
+@table @b
+@meindex conditions
+@item conditions
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILConditionalCommentElement-accessing attributes-events
+@subsection Iliad.ILConditionalCommentElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- event add:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILConditionalCommentElement-conditions
+@subsection Iliad.ILConditionalCommentElement:@- conditions
+
+@table @b
+@meindex gt
+@item gt
+Greater than
+
+
+@meindex ie
+@item ie
+Not commented.
+
+@meindex ie5
+@item ie5
+Not commented.
+
+@meindex ie50
+@item ie50
+Not commented.
+
+@meindex ie55
+@item ie55
+Not commented.
+
+@meindex ie6
+@item ie6
+Not commented.
+
+@meindex ie7
+@item ie7
+Not commented.
+
+@meindex ie8
+@item ie8
+Not commented.
+
+@meindex lt
+@item lt
+Less than
+
+
+@meindex not
+@item not
+Not
+
+
+@end table
+
+
+
+@node Iliad.ILConditionalCommentElement-printing
+@subsection Iliad.ILConditionalCommentElement:@- printing
+
+@table @b
+@meindex printCloseTagOn:@-
+@item printCloseTagOn:@- aStream
+Not commented.
+
+@meindex printOpenTagOn:@-
+@item printOpenTagOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILConfirmationWidget
+@section Iliad.ILConfirmationWidget
+@clindex Iliad.ILConfirmationWidget
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILWidget
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILConfirmationWidget-accessing::  (instance)
+* Iliad.ILConfirmationWidget-building::  (instance)
+@end menu
+
+
+
+@node Iliad.ILConfirmationWidget-accessing
+@subsection Iliad.ILConfirmationWidget:@- accessing
+
+@table @b
+@meindex confirmationString
+@item confirmationString
+Answer `confirmationString'.
+
+@meindex confirmationString:@-
+@item confirmationString:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILConfirmationWidget-building
+@subsection Iliad.ILConfirmationWidget:@- building
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@end table
+
+@node Iliad.ILContext
+@section Iliad.ILContext
+@clindex Iliad.ILContext
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Sessions
+I store current request context objects:@-
+
+- the router
+- the session
+- the request itself
+
+I can be accessed through ILObject>>context
+@end table
+
+@menu
+* Iliad.ILContext-accessing::  (instance)
+* Iliad.ILContext-accessing-attributes::  (instance)
+* Iliad.ILContext-adding::  (instance)
+@end menu
+
+
+
+@node Iliad.ILContext-accessing
+@subsection Iliad.ILContext:@- accessing
+
+@table @b
+@meindex application
+@item application
+Not commented.
+
+@meindex attributes
+@item attributes
+Not commented.
+
+@meindex baseUrl
+@item baseUrl
+Not commented.
+
+@meindex builtWidgets
+@item builtWidgets
+Not commented.
+
+@meindex previousStateRegistry
+@item previousStateRegistry
+Not commented.
+
+@meindex request
+@item request
+Answer `request'.
+
+@meindex request:@-
+@item request:@- aRequest
+Not commented.
+
+@meindex router
+@item router
+Not commented.
+
+@meindex session
+@item session
+Answer `session'.
+
+@meindex session:@-
+@item session:@- aSession
+Not commented.
+
+@meindex stateRegistry
+@item stateRegistry
+Not commented.
+
+@meindex urlBuilder
+@item urlBuilder
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILContext-accessing-attributes
+@subsection Iliad.ILContext:@- accessing-attributes
+
+@table @b
+@meindex attributeAt:@-
+@item attributeAt:@- aKey
+Not commented.
+
+@meindex attributeAt:@-put:@-
+@item attributeAt:@- aKey put:@- anObject
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILContext-adding
+@subsection Iliad.ILContext:@- adding
+
+@table @b
+@meindex addBuiltWidget:@-
+@item addBuiltWidget:@- aWidget
+Not commented.
+
+@end table
+
+@node Iliad.ILCookie
+@section Iliad.ILCookie
+@clindex Iliad.ILCookie
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Object
+@itemx Category: Iliad-Core-lib-HTTP
+From Seaside 2.8
+
+I represent a cookie, a piece of information that is stored on the client 
+and read and writable by the server. I am basically a key/value pair of strings.
+You can never trust information in a cookie, the client is free to edit it.
+I model only a part of the full cookie specification.
+
+For more information see  RFC2965 (http:@-//tools.ietf.org/html/rfc2965)
+@end table
+
+@menu
+* Iliad.ILCookie class-instance creation::  (class)
+* Iliad.ILCookie-accessing::  (instance)
+* Iliad.ILCookie-api::  (instance)
+* Iliad.ILCookie-comparing::  (instance)
+* Iliad.ILCookie-writing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILCookie class-instance creation
+@subsection Iliad.ILCookie class:@- instance creation
+
+@table @b
+@meindex key:@-value:@-
+@item key:@- keyString value:@- valueString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILCookie-accessing
+@subsection Iliad.ILCookie:@- accessing
+
+@table @b
+@meindex expiry
+@item expiry
+Answer `expiry'.
+
+@meindex expiry:@-
+@item expiry:@- anInteger
+Not commented.
+
+@meindex key
+@item key
+Answer `key'.
+
+@meindex key:@-
+@item key:@- aString
+Not commented.
+
+@meindex path
+@item path
+Not commented.
+
+@meindex path:@-
+@item path:@- aString
+Not commented.
+
+@meindex value
+@item value
+Answer `value'.
+
+@meindex value:@-
+@item value:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILCookie-api
+@subsection Iliad.ILCookie:@- api
+
+@table @b
+@meindex expireIn:@-
+@item expireIn:@- aDuration
+Not commented.
+
+@meindex valueWithExpiry
+@item valueWithExpiry
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILCookie-comparing
+@subsection Iliad.ILCookie:@- comparing
+
+@table @b
+@meindex =
+@item = other
+Not commented.
+
+@meindex hash
+@item hash
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILCookie-writing
+@subsection Iliad.ILCookie:@- writing
+
+@table @b
+@meindex writeOn:@-
+@item writeOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILCurrentBuildable
+@section Iliad.ILCurrentBuildable
+@clindex Iliad.ILCurrentBuildable
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDynamicVariable
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+@end menu
+
+@node Iliad.ILCurrentContext
+@section Iliad.ILCurrentContext
+@clindex Iliad.ILCurrentContext
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDynamicVariable
+@itemx Category: Iliad-Core-Sessions
+
+@end table
+
+@menu
+@end menu
+
+@node Iliad.ILDecorator
+@section Iliad.ILDecorator
+@clindex Iliad.ILDecorator
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILBuildable
+@itemx Category: Iliad-Core-Buildables
+I am a decorator for Widgets. I can be added to a widget by calling #decorateWith:@- from a widget.
+Subclasses can be used to modify the building process of a widget, or change its behavior
+@end table
+
+@menu
+* Iliad.ILDecorator class-instance creation::  (class)
+* Iliad.ILDecorator-accessing::  (instance)
+* Iliad.ILDecorator-building::  (instance)
+* Iliad.ILDecorator-decorations::  (instance)
+* Iliad.ILDecorator-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILDecorator class-instance creation
+@subsection Iliad.ILDecorator class:@- instance creation
+
+@table @b
+@meindex decoratee:@-
+@item decoratee:@- aDecoratee
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDecorator-accessing
+@subsection Iliad.ILDecorator:@- accessing
+
+@table @b
+@meindex decoratee
+@item decoratee
+Answer `decoratee'.
+
+@meindex decoratee:@-
+@item decoratee:@- aDecoratee
+Not commented.
+
+@meindex widget
+@item widget
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDecorator-building
+@subsection Iliad.ILDecorator:@- building
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@meindex scripts
+@item scripts
+Answer `@-#()'.
+
+@meindex styles
+@item styles
+Answer `@-#()'.
+
+@meindex updateHead:@-
+@item updateHead:@- aHead
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDecorator-decorations
+@subsection Iliad.ILDecorator:@- decorations
+
+@table @b
+@meindex handleAnswer:@-
+@item handleAnswer:@- anAnswer
+Not commented.
+
+@meindex removeDecorator:@-
+@item removeDecorator:@- aDecorator
+Not commented.
+
+@meindex removeYourself
+@item removeYourself
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDecorator-testing
+@subsection Iliad.ILDecorator:@- testing
+
+@table @b
+@meindex isDelegator
+@item isDelegator
+Answer `false'.
+
+@meindex isGlobal
+@item isGlobal
+Answer `false'.
+
+@end table
+
+@node Iliad.ILDelegator
+@section Iliad.ILDelegator
+@clindex Iliad.ILDelegator
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDecorator
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILDelegator-accessing::  (instance)
+* Iliad.ILDelegator-building::  (instance)
+* Iliad.ILDelegator-decorations::  (instance)
+* Iliad.ILDelegator-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILDelegator-accessing
+@subsection Iliad.ILDelegator:@- accessing
+
+@table @b
+@meindex newRootElement
+@item newRootElement
+Not commented.
+
+@meindex widget
+@item widget
+Answer `widget'.
+
+@meindex widget:@-
+@item widget:@- aWidget
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDelegator-building
+@subsection Iliad.ILDelegator:@- building
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@meindex updateHead:@-
+@item updateHead:@- aHead
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDelegator-decorations
+@subsection Iliad.ILDelegator:@- decorations
+
+@table @b
+@meindex handleAnswer:@-
+@item handleAnswer:@- anAnswer
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDelegator-testing
+@subsection Iliad.ILDelegator:@- testing
+
+@table @b
+@meindex isDelegator
+@item isDelegator
+Answer `true'.
+
+@meindex isGlobal
+@item isGlobal
+Answer `true'.
+
+@end table
+
+@node Iliad.ILDirectionElement
+@section Iliad.ILDirectionElement
+@clindex Iliad.ILDirectionElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILDirectionElement-accessing::  (instance)
+* Iliad.ILDirectionElement-accessing attributes-events::  (instance)
+* Iliad.ILDirectionElement-acessing attributes::  (instance)
+* Iliad.ILDirectionElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILDirectionElement-accessing
+@subsection Iliad.ILDirectionElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'bdo''.
+
+@meindex xmlLang:@-
+@item xmlLang:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDirectionElement-accessing attributes-events
+@subsection Iliad.ILDirectionElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- event add:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDirectionElement-acessing attributes
+@subsection Iliad.ILDirectionElement:@- acessing attributes
+
+@table @b
+@meindex dir:@-
+@item dir:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILDirectionElement-printing
+@subsection Iliad.ILDirectionElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+@node Iliad.ILDirectory
+@section Iliad.ILDirectory
+@clindex Iliad.ILDirectory
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-RequestHandlers
+
+@end table
+
+@menu
+* Iliad.ILDirectory-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILDirectory-accessing
+@subsection Iliad.ILDirectory:@- accessing
+
+@table @b
+@meindex fileContentsFor:@-
+@item fileContentsFor:@- aFilename
+This method's functionality should be implemented by subclasses of ILDirectory
+
+@end table
+
+@node Iliad.ILDiskDirectory
+@section Iliad.ILDiskDirectory
+@clindex Iliad.ILDiskDirectory
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDirectory
+@itemx Category: Iliad-Core-GST
+An ILDiskDirectory allows files to be served by Iliad directly from directories of even archives like .star files.
+    I shouldn't be used in production.
+
+    Usage example:@- 
+    
+    Iliad.ILFileHandler addDirectory:@- 
+     (Iliad.ILDiskDirectory new 
+        directory:@- (PackageLoader packageAt:@- 'SomePackage') directory / 'Public';
+    
+@end table
+
+@menu
+* Iliad.ILDiskDirectory-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILDiskDirectory-accessing
+@subsection Iliad.ILDiskDirectory:@- accessing
+
+@table @b
+@meindex directory
+@item directory
+Answer `directory'.
+
+@meindex directory:@-
+@item directory:@- aDirectory
+Not commented.
+
+@meindex fileContentsFor:@-
+@item fileContentsFor:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILDispatcher
+@section Iliad.ILDispatcher
+@clindex Iliad.ILDispatcher
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Dispatching
+I am the entry point of requests. 
+I dispatch them with the #dispatch:@- method to an ILApplicationHandler or a 
+ILFileHandler.
+
+Web server adapters should use the #dispatch:@- method on the current instance
+of ILDispatcher - returned by ILDispatcher class>>current - to handle requests, 
+and wait for a ILResponseNotification to respond to them.
+@end table
+
+@menu
+* Iliad.ILDispatcher class-instance creation::  (class)
+* Iliad.ILDispatcher-dispatching::  (instance)
+* Iliad.ILDispatcher-error-handling::  (instance)
+@end menu
+
+
+
+@node Iliad.ILDispatcher class-instance creation
+@subsection Iliad.ILDispatcher class:@- instance creation
+
+@table @b
+@meindex current
+@item current
+Not commented.
+
+@meindex new
+@item new
+This method should not be called for instances of this class.
+
+@end table
+
+
+
+@node Iliad.ILDispatcher-dispatching
+@subsection Iliad.ILDispatcher:@- dispatching
+
+@table @b
+@meindex dispatch:@-
+@item dispatch:@- aRequest
+Entry point of requests
+
+
+@end table
+
+
+
+@node Iliad.ILDispatcher-error-handling
+@subsection Iliad.ILDispatcher:@- error-handling
+
+@table @b
+@meindex withDispatchErrorHandling:@-
+@item withDispatchErrorHandling:@- aBlock
+Catch dispatch errors
+
+
+@meindex withErrorHandling:@-
+@item withErrorHandling:@- aBlock
+Catch errors and use an ILErrorHandler to handle them
+
+
+@end table
+
+@node Iliad.ILDispatchError
+@section Iliad.ILDispatchError
+@clindex Iliad.ILDispatchError
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Grease.Grease.GRError
+@itemx Category: Iliad-Core-Dispatching
+
+@end table
+
+@menu
+@end menu
+
+@node Iliad.ILDivElement
+@section Iliad.ILDivElement
+@clindex Iliad.ILDivElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILDivElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILDivElement-accessing
+@subsection Iliad.ILDivElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'div''.
+
+@end table
+
+@node Iliad.ILDynamicVariable
+@section Iliad.ILDynamicVariable
+@clindex Iliad.ILDynamicVariable
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Object
+@itemx Category: Iliad-Core-Utilities
+
+@end table
+
+@menu
+* Iliad.ILDynamicVariable class-defaults::  (class)
+* Iliad.ILDynamicVariable class-evaluating::  (class)
+@end menu
+
+
+
+@node Iliad.ILDynamicVariable class-defaults
+@subsection Iliad.ILDynamicVariable class:@- defaults
+
+@table @b
+@meindex defaultValue
+@item defaultValue
+Answer `nil'.
+
+@end table
+
+
+
+@node Iliad.ILDynamicVariable class-evaluating
+@subsection Iliad.ILDynamicVariable class:@- evaluating
+
+@table @b
+@meindex use:@-during:@-
+@item use:@- anObject during:@- aBlock
+Not commented.
+
+@meindex value
+@item value
+Not commented.
+
+@end table
+
+@node Iliad.ILElement
+@section Iliad.ILElement
+@clindex Iliad.ILElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILComposite
+@itemx Category: Iliad-Core-Elements
+I am the abstract root class of the composite element hierarchy.
+
+I know how to print myself in HTML format with the #printHtmlOn:@- method
+@end table
+
+@menu
+* Iliad.ILElement-accessing::  (instance)
+* Iliad.ILElement-adding-conveniance::  (instance)
+* Iliad.ILElement-building::  (instance)
+* Iliad.ILElement-comparing::  (instance)
+* Iliad.ILElement-converting::  (instance)
+* Iliad.ILElement-error handling::  (instance)
+* Iliad.ILElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILElement-accessing
+@subsection Iliad.ILElement:@- accessing
+
+@table @b
+@meindex attributeAt:@-
+@item attributeAt:@- akey
+Not commented.
+
+@meindex attributeAt:@-ifAbsent:@-
+@item attributeAt:@- akey ifAbsent:@- aBlock
+Not commented.
+
+@meindex attributeAt:@-ifAbsentPut:@-
+@item attributeAt:@- akey ifAbsentPut:@- aBlock
+Not commented.
+
+@meindex attributeAt:@-put:@-
+@item attributeAt:@- aKey put:@- aValue
+Not commented.
+
+@meindex attributes
+@item attributes
+Not commented.
+
+@meindex contentType
+@item contentType
+This method's functionality should be implemented by subclasses of ILElement
+
+@meindex tag
+@item tag
+Answer `nil'.
+
+@end table
+
+
+
+@node Iliad.ILElement-adding-conveniance
+@subsection Iliad.ILElement:@- adding-conveniance
+
+@table @b
+@meindex text:@-
+@item text:@- aString
+Not commented.
+
+@meindex xml
+@item xml
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILElement-building
+@subsection Iliad.ILElement:@- building
+
+@table @b
+@meindex build:@-
+@item build:@- aBuildable
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILElement-comparing
+@subsection Iliad.ILElement:@- comparing
+
+@table @b
+@meindex =
+@item = anObject
+Not commented.
+
+@meindex hash
+@item hash
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILElement-converting
+@subsection Iliad.ILElement:@- converting
+
+@table @b
+@meindex respondOn:@-
+@item respondOn:@- aResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILElement-error handling
+@subsection Iliad.ILElement:@- error handling
+
+@table @b
+@meindex attributeError:@-
+@item attributeError:@- key
+Not commented.
+
+@meindex doesNotUnderstandAttribute:@-
+@item doesNotUnderstandAttribute:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILElement-printing
+@subsection Iliad.ILElement:@- printing
+
+@table @b
+@meindex afterPrintHtml
+@item afterPrintHtml
+Answer the receiver.
+
+@meindex beforePrintHtml
+@item beforePrintHtml
+Answer the receiver.
+
+@meindex printAttribute:@-on:@-
+@item printAttribute:@- anAttribute on:@- aStream
+Not commented.
+
+@meindex printCloseTagOn:@-
+@item printCloseTagOn:@- aStream
+Not commented.
+
+@meindex printHtmlOn:@-
+@item printHtmlOn:@- aStream
+Not commented.
+
+@meindex printJsonOn:@-
+@item printJsonOn:@- aStream
+Not commented.
+
+@meindex printOpenTagOn:@-
+@item printOpenTagOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILElementError
+@section Iliad.ILElementError
+@clindex Iliad.ILElementError
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Grease.Grease.GRError
+@itemx Category: Iliad-Core-Elements
+
+@end table
+
+@menu
+@end menu
+
+@node Iliad.ILEncoder
+@section Iliad.ILEncoder
+@clindex Iliad.ILEncoder
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Object
+@itemx Category: Iliad-Core-Utilities
+
+@end table
+
+@menu
+* Iliad.ILEncoder class-encoding::  (class)
+@end menu
+
+
+
+@node Iliad.ILEncoder class-encoding
+@subsection Iliad.ILEncoder class:@- encoding
+
+@table @b
+@meindex encodeCharacterForHTTP:@-on:@-
+@item encodeCharacterForHTTP:@- aCharacter on:@- aStream
+Not commented.
+
+@meindex encodeForHTTP:@-on:@-
+@item encodeForHTTP:@- aString on:@- aStream
+Not commented.
+
+@meindex encodeUrl:@-on:@-
+@item encodeUrl:@- aString on:@- aStream
+Not commented.
+
+@meindex encodeUrlCharacter:@-on:@-
+@item encodeUrlCharacter:@- aCharacter on:@- aStream
+Not commented.
+
+@meindex printUrl:@-encoded:@-on:@-
+@item printUrl:@- aString encoded:@- aBoolean on:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILErrorHandler
+@section Iliad.ILErrorHandler
+@clindex Iliad.ILErrorHandler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILRequestHandler
+@itemx Category: Iliad-Core-RequestHandlers
+
+    
+""""""""""""""""""""""""
+" Error handling modes "
+""""""""""""""""""""""""
+
+Error handlers can be in one of the following modes:@- deployment, verbose or 
+debug. The default mode is verbose.
+You can switch between modes with class methods in the <accessing modes> 
+protocol.
+
+When errors occur, the framework with handle them differently depending on 
+the application mode:@-
+- in deployment mode, it will respond an error 500;
+- in verbose mode, it will also respond an error 500, but with error details;
+- in debug mode, a debugger window will be opened on the error;
+@end table
+
+@menu
+* Iliad.ILErrorHandler class-accessing::  (class)
+* Iliad.ILErrorHandler class-accessing modes::  (class)
+* Iliad.ILErrorHandler-accessing::  (instance)
+* Iliad.ILErrorHandler-responding::  (instance)
+* Iliad.ILErrorHandler-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILErrorHandler class-accessing
+@subsection Iliad.ILErrorHandler class:@- accessing
+
+@table @b
+@meindex mode
+@item mode
+Not commented.
+
+@meindex mode:@-
+@item mode:@- aSymbol
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILErrorHandler class-accessing modes
+@subsection Iliad.ILErrorHandler class:@- accessing modes
+
+@table @b
+@meindex debugMode
+@item debugMode
+Not commented.
+
+@meindex deploymentMode
+@item deploymentMode
+Not commented.
+
+@meindex verboseMode
+@item verboseMode
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILErrorHandler-accessing
+@subsection Iliad.ILErrorHandler:@- accessing
+
+@table @b
+@meindex error
+@item error
+Answer `error'.
+
+@meindex error:@-
+@item error:@- anError
+Not commented.
+
+@meindex mode
+@item mode
+Not commented.
+
+@meindex newResponse
+@item newResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILErrorHandler-responding
+@subsection Iliad.ILErrorHandler:@- responding
+
+@table @b
+@meindex produceDebugResponse
+@item produceDebugResponse
+Not commented.
+
+@meindex produceDeploymentResponse
+@item produceDeploymentResponse
+Not commented.
+
+@meindex produceResponse
+@item produceResponse
+Not commented.
+
+@meindex produceVerboseResponse
+@item produceVerboseResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILErrorHandler-testing
+@subsection Iliad.ILErrorHandler:@- testing
+
+@table @b
+@meindex isDebugMode
+@item isDebugMode
+Not commented.
+
+@meindex isDeploymentMode
+@item isDeploymentMode
+Not commented.
+
+@meindex isVerboseMode
+@item isVerboseMode
+Not commented.
+
+@end table
+
+@node Iliad.ILFieldsetElement
+@section Iliad.ILFieldsetElement
+@clindex Iliad.ILFieldsetElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILFieldsetElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILFieldsetElement-accessing
+@subsection Iliad.ILFieldsetElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'fieldset''.
+
+@end table
+
+@node Iliad.ILFileHandler
+@section Iliad.ILFileHandler
+@clindex Iliad.ILFileHandler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILRequestHandler
+@itemx Category: Iliad-Core-RequestHandlers
+
+@end table
+
+@menu
+* Iliad.ILFileHandler class-acccessing::  (class)
+* Iliad.ILFileHandler class-accessing::  (class)
+* Iliad.ILFileHandler class-defaults::  (class)
+* Iliad.ILFileHandler class-testing::  (class)
+* Iliad.ILFileHandler-accessing::  (instance)
+* Iliad.ILFileHandler-request handling::  (instance)
+* Iliad.ILFileHandler-responding::  (instance)
+@end menu
+
+
+
+@node Iliad.ILFileHandler class-acccessing
+@subsection Iliad.ILFileHandler class:@- acccessing
+
+@table @b
+@meindex directories
+@item directories
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileHandler class-accessing
+@subsection Iliad.ILFileHandler class:@- accessing
+
+@table @b
+@meindex addDirectory:@-
+@item addDirectory:@- aDirectory
+Not commented.
+
+@meindex defaultMimeType
+@item defaultMimeType
+Answer `'application/octet-stream''.
+
+@meindex defaultMimeTypes
+@item defaultMimeTypes
+Not commented.
+
+@meindex directories:@-
+@item directories:@- aCollection
+Not commented.
+
+@meindex mimeTypeFor:@-
+@item mimeTypeFor:@- aString
+Not commented.
+
+@meindex mimeTypes
+@item mimeTypes
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileHandler class-defaults
+@subsection Iliad.ILFileHandler class:@- defaults
+
+@table @b
+@meindex initMimeTypes
+@item initMimeTypes
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileHandler class-testing
+@subsection Iliad.ILFileHandler class:@- testing
+
+@table @b
+@meindex isBinary:@-
+@item isBinary:@- aFilename
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileHandler-accessing
+@subsection Iliad.ILFileHandler:@- accessing
+
+@table @b
+@meindex directories
+@item directories
+Not commented.
+
+@meindex mimeTypeFor:@-
+@item mimeTypeFor:@- aFilename
+Not commented.
+
+@meindex newResponse
+@item newResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileHandler-request handling
+@subsection Iliad.ILFileHandler:@- request handling
+
+@table @b
+@meindex handleRequest
+@item handleRequest
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileHandler-responding
+@subsection Iliad.ILFileHandler:@- responding
+
+@table @b
+@meindex produceResponse
+@item produceResponse
+Not commented.
+
+@end table
+
+@node Iliad.ILFileProxy
+@section Iliad.ILFileProxy
+@clindex Iliad.ILFileProxy
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Object
+@itemx Category: Iliad-Core-lib-HTTP
+
+@end table
+
+@menu
+* Iliad.ILFileProxy class-instance creation::  (class)
+* Iliad.ILFileProxy-accessing::  (instance)
+* Iliad.ILFileProxy-initialization::  (instance)
+* Iliad.ILFileProxy-writing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILFileProxy class-instance creation
+@subsection Iliad.ILFileProxy class:@- instance creation
+
+@table @b
+@meindex new
+@item new
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileProxy-accessing
+@subsection Iliad.ILFileProxy:@- accessing
+
+@table @b
+@meindex contentType
+@item contentType
+Answer `contentType'.
+
+@meindex contentType:@-
+@item contentType:@- anObject
+Not commented.
+
+@meindex contents
+@item contents
+Answer `contents'.
+
+@meindex contents:@-
+@item contents:@- anObject
+Not commented.
+
+@meindex createdTimestamp
+@item createdTimestamp
+Not commented.
+
+@meindex filename
+@item filename
+Answer `filename'.
+
+@meindex filename:@-
+@item filename:@- anObject
+Not commented.
+
+@meindex timestamps
+@item timestamps
+Not commented.
+
+@meindex timestampsAt:@-
+@item timestampsAt:@- aSymbol
+Not commented.
+
+@meindex timestampsAt:@-put:@-
+@item timestampsAt:@- aSymbol put:@- aTimestamp
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileProxy-initialization
+@subsection Iliad.ILFileProxy:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@meindex setCreatedTimestamp
+@item setCreatedTimestamp
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFileProxy-writing
+@subsection Iliad.ILFileProxy:@- writing
+
+@table @b
+@meindex writeToFile
+@item writeToFile
+Not commented.
+
+@end table
+
+@node Iliad.ILFormElement
+@section Iliad.ILFormElement
+@clindex Iliad.ILFormElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILFormElement class-defaults::  (class)
+* Iliad.ILFormElement-accessing::  (instance)
+* Iliad.ILFormElement-accessing attributes::  (instance)
+* Iliad.ILFormElement-accessing attributes-events::  (instance)
+* Iliad.ILFormElement-printing::  (instance)
+* Iliad.ILFormElement-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILFormElement class-defaults
+@subsection Iliad.ILFormElement class:@- defaults
+
+@table @b
+@meindex encodingType
+@item encodingType
+Answer `'application/x-www-form-urlencoded''.
+
+@meindex multipartFormData
+@item multipartFormData
+Answer `'multipart/form-data''.
+
+@end table
+
+
+
+@node Iliad.ILFormElement-accessing
+@subsection Iliad.ILFormElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'form''.
+
+@meindex url
+@item url
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFormElement-accessing attributes
+@subsection Iliad.ILFormElement:@- accessing attributes
+
+@table @b
+@meindex accept:@-
+@item accept:@- aString
+Not commented.
+
+@meindex acceptCharset:@-
+@item acceptCharset:@- aString
+Not commented.
+
+@meindex acceptCharsets:@-
+@item acceptCharsets:@- aCollection
+Not commented.
+
+@meindex accepts:@-
+@item accepts:@- aCollection
+Not commented.
+
+@meindex beMultipart
+@item beMultipart
+Not commented.
+
+@meindex enctype
+@item enctype
+Not commented.
+
+@meindex enctype:@-
+@item enctype:@- aString
+Not commented.
+
+@meindex multipart:@-
+@item multipart:@- aBoolean
+Not commented.
+
+@meindex useGet
+@item useGet
+Not commented.
+
+@meindex usePost
+@item usePost
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFormElement-accessing attributes-events
+@subsection Iliad.ILFormElement:@- accessing attributes-events
+
+@table @b
+@meindex onReset:@-
+@item onReset:@- aString
+Not commented.
+
+@meindex onResetDo:@-
+@item onResetDo:@- aBlock
+Not commented.
+
+@meindex onSubmit:@-
+@item onSubmit:@- aString
+Not commented.
+
+@meindex onSubmitDo:@-
+@item onSubmitDo:@- aBlock
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFormElement-printing
+@subsection Iliad.ILFormElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFormElement-testing
+@subsection Iliad.ILFormElement:@- testing
+
+@table @b
+@meindex isMultipart
+@item isMultipart
+Not commented.
+
+@end table
+
+@node Iliad.ILFormElementElement
+@section Iliad.ILFormElementElement
+@clindex Iliad.ILFormElementElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILFormElementElement-accessing::  (instance)
+* Iliad.ILFormElementElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILFormElementElement-accessing
+@subsection Iliad.ILFormElementElement:@- accessing
+
+@table @b
+@meindex accesskey:@-
+@item accesskey:@- aCharacter
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILFormElementElement-accessing attributes
+@subsection Iliad.ILFormElementElement:@- accessing attributes
+
+@table @b
+@meindex action:@-
+@item action:@- aBlock
+Not commented.
+
+@meindex beSubmitOnChange
+@item beSubmitOnChange
+Not commented.
+
+@meindex beSubmitOnClick
+@item beSubmitOnClick
+Not commented.
+
+@meindex beSubmitOnEvent:@-
+@item beSubmitOnEvent:@- aString
+Not commented.
+
+@meindex disabled
+@item disabled
+Not commented.
+
+@meindex disabled:@-
+@item disabled:@- aBoolean
+Not commented.
+
+@meindex name
+@item name
+Not commented.
+
+@meindex name:@-
+@item name:@- aString
+Not commented.
+
+@meindex readonly:@-
+@item readonly:@- aBoolean
+Not commented.
+
+@end table
+
+@node Iliad.ILHeadElement
+@section Iliad.ILHeadElement
+@clindex Iliad.ILHeadElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILHeadElement-accessing::  (instance)
+* Iliad.ILHeadElement-accessing attributes::  (instance)
+* Iliad.ILHeadElement-accessing attributes-events::  (instance)
+* Iliad.ILHeadElement-adding-conveniance::  (instance)
+* Iliad.ILHeadElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILHeadElement-accessing
+@subsection Iliad.ILHeadElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'head''.
+
+@end table
+
+
+
+@node Iliad.ILHeadElement-accessing attributes
+@subsection Iliad.ILHeadElement:@- accessing attributes
+
+@table @b
+@meindex profile:@-
+@item profile:@- aString
+Not commented.
+
+@meindex profiles:@-
+@item profiles:@- aCollection
+Not commented.
+
+@meindex title
+@item title
+Not commented.
+
+@meindex title:@-
+@item title:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHeadElement-accessing attributes-events
+@subsection Iliad.ILHeadElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- event add:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHeadElement-adding-conveniance
+@subsection Iliad.ILHeadElement:@- adding-conveniance
+
+@table @b
+@meindex style
+@item style
+Not commented.
+
+@meindex style:@-
+@item style:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHeadElement-printing
+@subsection Iliad.ILHeadElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+@node Iliad.ILHeadingElement
+@section Iliad.ILHeadingElement
+@clindex Iliad.ILHeadingElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILHeadingElement-accessing::  (instance)
+* Iliad.ILHeadingElement-accessing attributes-events::  (instance)
+@end menu
+
+
+
+@node Iliad.ILHeadingElement-accessing
+@subsection Iliad.ILHeadingElement:@- accessing
+
+@table @b
+@meindex level
+@item level
+Answer `level'.
+
+@meindex level:@-
+@item level:@- anInteger
+Not commented.
+
+@meindex tag
+@item tag
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHeadingElement-accessing attributes-events
+@subsection Iliad.ILHeadingElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- event add:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILHorizontalRuleElement
+@section Iliad.ILHorizontalRuleElement
+@clindex Iliad.ILHorizontalRuleElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILClosingElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILHorizontalRuleElement-accessing::  (instance)
+* Iliad.ILHorizontalRuleElement-accessing attributes-events::  (instance)
+@end menu
+
+
+
+@node Iliad.ILHorizontalRuleElement-accessing
+@subsection Iliad.ILHorizontalRuleElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'hr''.
+
+@end table
+
+
+
+@node Iliad.ILHorizontalRuleElement-accessing attributes-events
+@subsection Iliad.ILHorizontalRuleElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- anEvent add:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILHTMLBuilderElement
+@section Iliad.ILHTMLBuilderElement
+@clindex Iliad.ILHTMLBuilderElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILHTMLBuilderElement-accessing::  (instance)
+* Iliad.ILHTMLBuilderElement-accessing  attributes-events::  (instance)
+* Iliad.ILHTMLBuilderElement-accessing attibutes::  (instance)
+* Iliad.ILHTMLBuilderElement-accessing attributes::  (instance)
+* Iliad.ILHTMLBuilderElement-accessing attributes-events::  (instance)
+* Iliad.ILHTMLBuilderElement-adding-conveenience::  (instance)
+* Iliad.ILHTMLBuilderElement-adding-conveniance::  (instance)
+@end menu
+
+
+
+@node Iliad.ILHTMLBuilderElement-accessing
+@subsection Iliad.ILHTMLBuilderElement:@- accessing
+
+@table @b
+@meindex class:@-
+@item class:@- aString
+Not commented.
+
+@meindex contentType
+@item contentType
+Not commented.
+
+@meindex if
+@item if
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHTMLBuilderElement-accessing  attributes-events
+@subsection Iliad.ILHTMLBuilderElement:@- accessing  attributes-events
+
+@table @b
+@meindex onChange:@-
+@item onChange:@- aString
+Not commented.
+
+@meindex onChangeDo:@-
+@item onChangeDo:@- aBlock
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHTMLBuilderElement-accessing attibutes
+@subsection Iliad.ILHTMLBuilderElement:@- accessing attibutes
+
+@table @b
+@meindex style:@-
+@item style:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHTMLBuilderElement-accessing attributes
+@subsection Iliad.ILHTMLBuilderElement:@- accessing attributes
+
+@table @b
+@meindex cssClass
+@item cssClass
+Not commented.
+
+@meindex cssClass:@-
+@item cssClass:@- aString
+Not commented.
+
+@meindex id
+@item id
+Not commented.
+
+@meindex id:@-
+@item id:@- aString
+Not commented.
+
+@meindex lang:@-
+@item lang:@- aString
+Not commented.
+
+@meindex style
+@item style
+Not commented.
+
+@meindex title
+@item title
+Not commented.
+
+@meindex title:@-
+@item title:@- aString
+Not commented.
+
+@meindex xmlLang:@-
+@item xmlLang:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHTMLBuilderElement-accessing attributes-events
+@subsection Iliad.ILHTMLBuilderElement:@- accessing attributes-events
+
+@table @b
+@meindex onBlur:@-
+@item onBlur:@- aString
+Not commented.
+
+@meindex onBlurDo:@-
+@item onBlurDo:@- aBlock
+Not commented.
+
+@meindex onClick:@-
+@item onClick:@- aString
+Not commented.
+
+@meindex onClickDo:@-
+@item onClickDo:@- aBlock
+Not commented.
+
+@meindex onDoubleClick:@-
+@item onDoubleClick:@- aString
+Not commented.
+
+@meindex onDoubleClickDo:@-
+@item onDoubleClickDo:@- aBlock
+Not commented.
+
+@meindex onEvent:@-add:@-
+@item onEvent:@- aString add:@- anotherString
+Not commented.
+
+@meindex onEvent:@-do:@-
+@item onEvent:@- aString do:@- aBlock
+Not commented.
+
+@meindex onFocus:@-
+@item onFocus:@- aString
+Not commented.
+
+@meindex onKeyDown:@-
+@item onKeyDown:@- aString
+Not commented.
+
+@meindex onKeyPress:@-
+@item onKeyPress:@- aString
+Not commented.
+
+@meindex onKeyUp:@-
+@item onKeyUp:@- aString
+Not commented.
+
+@meindex onMouseOut:@-
+@item onMouseOut:@- aString
+Not commented.
+
+@meindex onMouseOver:@-
+@item onMouseOver:@- aString
+Not commented.
+
+@meindex onSelect:@-
+@item onSelect:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHTMLBuilderElement-adding-conveenience
+@subsection Iliad.ILHTMLBuilderElement:@- adding-conveenience
+
+@table @b
+@meindex link
+@item link
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHTMLBuilderElement-adding-conveniance
+@subsection Iliad.ILHTMLBuilderElement:@- adding-conveniance
+
+@table @b
+@meindex a
+@item a
+Not commented.
+
+@meindex area
+@item area
+Not commented.
+
+@meindex b
+@item b
+Not commented.
+
+@meindex b:@-
+@item b:@- aString
+Not commented.
+
+@meindex bdo
+@item bdo
+Not commented.
+
+@meindex big
+@item big
+Not commented.
+
+@meindex big:@-
+@item big:@- aString
+Not commented.
+
+@meindex blockquote
+@item blockquote
+Not commented.
+
+@meindex blockquote:@-
+@item blockquote:@- aString
+Not commented.
+
+@meindex br
+@item br
+Not commented.
+
+@meindex button
+@item button
+Not commented.
+
+@meindex checkbox
+@item checkbox
+Not commented.
+
+@meindex cite
+@item cite
+Not commented.
+
+@meindex cite:@-
+@item cite:@- aString
+Not commented.
+
+@meindex code
+@item code
+Not commented.
+
+@meindex code:@-
+@item code:@- aString
+Not commented.
+
+@meindex dd
+@item dd
+Not commented.
+
+@meindex dfn
+@item dfn
+Not commented.
+
+@meindex div
+@item div
+Not commented.
+
+@meindex dl
+@item dl
+Not commented.
+
+@meindex dt
+@item dt
+Not commented.
+
+@meindex em
+@item em
+Not commented.
+
+@meindex em:@-
+@item em:@- aString
+Not commented.
+
+@meindex favicon
+@item favicon
+Not commented.
+
+@meindex favicon:@-
+@item favicon:@- aString
+Not commented.
+
+@meindex fieldset
+@item fieldset
+Not commented.
+
+@meindex file
+@item file
+Not commented.
+
+@meindex form
+@item form
+Not commented.
+
+@meindex h
+@item h
+Not commented.
+
+@meindex h1
+@item h1
+Not commented.
+
+@meindex h1:@-
+@item h1:@- aString
+Not commented.
+
+@meindex h2
+@item h2
+Not commented.
+
+@meindex h2:@-
+@item h2:@- aString
+Not commented.
+
+@meindex h3
+@item h3
+Not commented.
+
+@meindex h3:@-
+@item h3:@- aString
+Not commented.
+
+@meindex h4
+@item h4
+Not commented.
+
+@meindex h4:@-
+@item h4:@- aString
+Not commented.
+
+@meindex h5
+@item h5
+Not commented.
+
+@meindex h5:@-
+@item h5:@- aString
+Not commented.
+
+@meindex h6
+@item h6
+Not commented.
+
+@meindex h6:@-
+@item h6:@- aString
+Not commented.
+
+@meindex hr
+@item hr
+Not commented.
+
+@meindex html:@-
+@item html:@- aString
+Not commented.
+
+@meindex i
+@item i
+Not commented.
+
+@meindex i:@-
+@item i:@- aString
+Not commented.
+
+@meindex img
+@item img
+Not commented.
+
+@meindex img:@-
+@item img:@- aString
+Not commented.
+
+@meindex input
+@item input
+Not commented.
+
+@meindex javascript
+@item javascript
+Not commented.
+
+@meindex label
+@item label
+Not commented.
+
+@meindex legend
+@item legend
+Not commented.
+
+@meindex legend:@-
+@item legend:@- aString
+Not commented.
+
+@meindex li
+@item li
+Not commented.
+
+@meindex map
+@item map
+Not commented.
+
+@meindex meta
+@item meta
+Not commented.
+
+@meindex object
+@item object
+Not commented.
+
+@meindex ol
+@item ol
+Not commented.
+
+@meindex optgroup
+@item optgroup
+Not commented.
+
+@meindex option
+@item option
+Not commented.
+
+@meindex p
+@item p
+Not commented.
+
+@meindex param
+@item param
+Not commented.
+
+@meindex password
+@item password
+Not commented.
+
+@meindex pre
+@item pre
+Not commented.
+
+@meindex pre:@-
+@item pre:@- aString
+Not commented.
+
+@meindex quote
+@item quote
+Not commented.
+
+@meindex quote:@-
+@item quote:@- aString
+Not commented.
+
+@meindex radio
+@item radio
+Not commented.
+
+@meindex reset
+@item reset
+Not commented.
+
+@meindex script
+@item script
+Not commented.
+
+@meindex script:@-
+@item script:@- aString
+Not commented.
+
+@meindex select
+@item select
+Not commented.
+
+@meindex small
+@item small
+Not commented.
+
+@meindex small:@-
+@item small:@- aString
+Not commented.
+
+@meindex space
+@item space
+Not commented.
+
+@meindex span
+@item span
+Not commented.
+
+@meindex strong
+@item strong
+Not commented.
+
+@meindex strong:@-
+@item strong:@- aString
+Not commented.
+
+@meindex stylesheet
+@item stylesheet
+Not commented.
+
+@meindex submit
+@item submit
+Not commented.
+
+@meindex subscript
+@item subscript
+Not commented.
+
+@meindex subscript:@-
+@item subscript:@- aString
+Not commented.
+
+@meindex superscript
+@item superscript
+Not commented.
+
+@meindex superscript:@-
+@item superscript:@- aString
+Not commented.
+
+@meindex table
+@item table
+Not commented.
+
+@meindex tbody
+@item tbody
+Not commented.
+
+@meindex td
+@item td
+Not commented.
+
+@meindex textarea
+@item textarea
+Not commented.
+
+@meindex tfoot
+@item tfoot
+Not commented.
+
+@meindex th
+@item th
+Not commented.
+
+@meindex thead
+@item thead
+Not commented.
+
+@meindex tr
+@item tr
+Not commented.
+
+@meindex tt
+@item tt
+Not commented.
+
+@meindex ul
+@item ul
+Not commented.
+
+@meindex var
+@item var
+Not commented.
+
+@meindex var:@-
+@item var:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILHtmlElement
+@section Iliad.ILHtmlElement
+@clindex Iliad.ILHtmlElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILHtmlElement-accessing::  (instance)
+* Iliad.ILHtmlElement-accessing attributes::  (instance)
+* Iliad.ILHtmlElement-accessing attributes-events::  (instance)
+* Iliad.ILHtmlElement-defaults::  (instance)
+* Iliad.ILHtmlElement-printing::  (instance)
+* Iliad.ILHtmlElement-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILHtmlElement-accessing
+@subsection Iliad.ILHtmlElement:@- accessing
+
+@table @b
+@meindex beHtml5
+@item beHtml5
+Not commented.
+
+@meindex beXhtml10Strict
+@item beXhtml10Strict
+Not commented.
+
+@meindex beXhtml10Transitional
+@item beXhtml10Transitional
+Not commented.
+
+@meindex beXhtml11
+@item beXhtml11
+Not commented.
+
+@meindex doctype
+@item doctype
+Answer `doctype'.
+
+@meindex doctype:@-
+@item doctype:@- aString
+Not commented.
+
+@meindex setXmlTag
+@item setXmlTag
+Not commented.
+
+@meindex tag
+@item tag
+Answer `'html''.
+
+@meindex xmlTag
+@item xmlTag
+Answer `xmlTag'.
+
+@meindex xmlTag:@-
+@item xmlTag:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHtmlElement-accessing attributes
+@subsection Iliad.ILHtmlElement:@- accessing attributes
+
+@table @b
+@meindex version:@-
+@item version:@- aNumber
+Not commented.
+
+@meindex xmlns
+@item xmlns
+Not commented.
+
+@meindex xmlns:@-
+@item xmlns:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHtmlElement-accessing attributes-events
+@subsection Iliad.ILHtmlElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- event add:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHtmlElement-defaults
+@subsection Iliad.ILHtmlElement:@- defaults
+
+@table @b
+@meindex defaultXmlns
+@item defaultXmlns
+Answer `'http:@-//www.w3.org/1999/xhtml''.
+
+@end table
+
+
+
+@node Iliad.ILHtmlElement-printing
+@subsection Iliad.ILHtmlElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@meindex printHtmlOn:@-
+@item printHtmlOn:@- aStream
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHtmlElement-testing
+@subsection Iliad.ILHtmlElement:@- testing
+
+@table @b
+@meindex hasXmlTag
+@item hasXmlTag
+Not commented.
+
+@end table
+
+@node Iliad.ILHTMLPage
+@section Iliad.ILHTMLPage
+@clindex Iliad.ILHTMLPage
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILBuildable
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILHTMLPage-accessing attributes::  (instance)
+* Iliad.ILHTMLPage-building::  (instance)
+@end menu
+
+
+
+@node Iliad.ILHTMLPage-accessing attributes
+@subsection Iliad.ILHTMLPage:@- accessing attributes
+
+@table @b
+@meindex body
+@item body
+Not commented.
+
+@meindex head
+@item head
+Not commented.
+
+@meindex html
+@item html
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILHTMLPage-building
+@subsection Iliad.ILHTMLPage:@- building
+
+@table @b
+@meindex build
+@item build
+Not commented.
+
+@end table
+
+@node Iliad.ILId
+@section Iliad.ILId
+@clindex Iliad.ILId
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: ByteArray
+@itemx Category: Iliad-Core-Utilities
+
+@end table
+
+@menu
+* Iliad.ILId class-defaults::  (class)
+* Iliad.ILId class-instance creation::  (class)
+* Iliad.ILId-accessing::  (instance)
+* Iliad.ILId-initialization::  (instance)
+* Iliad.ILId-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILId class-defaults
+@subsection Iliad.ILId class:@- defaults
+
+@table @b
+@meindex defaultSize
+@item defaultSize
+Answer `12'.
+
+@end table
+
+
+
+@node Iliad.ILId class-instance creation
+@subsection Iliad.ILId class:@- instance creation
+
+@table @b
+@meindex new
+@item new
+Not commented.
+
+@meindex new:@-
+@item new:@- anInteger
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILId-accessing
+@subsection Iliad.ILId:@- accessing
+
+@table @b
+@meindex table
+@item table
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILId-initialization
+@subsection Iliad.ILId:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILId-printing
+@subsection Iliad.ILId:@- printing
+
+@table @b
+@meindex printOn:@-
+@item printOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILImageElement
+@section Iliad.ILImageElement
+@clindex Iliad.ILImageElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILClosingElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILImageElement-accessing::  (instance)
+* Iliad.ILImageElement-accessing attributes::  (instance)
+* Iliad.ILImageElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILImageElement-accessing
+@subsection Iliad.ILImageElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'img''.
+
+@end table
+
+
+
+@node Iliad.ILImageElement-accessing attributes
+@subsection Iliad.ILImageElement:@- accessing attributes
+
+@table @b
+@meindex alt:@-
+@item alt:@- aString
+Not commented.
+
+@meindex height:@-
+@item height:@- anInteger
+Not commented.
+
+@meindex ismap
+@item ismap
+Not commented.
+
+@meindex longdesc:@-
+@item longdesc:@- aString
+Not commented.
+
+@meindex src:@-
+@item src:@- aString
+Not commented.
+
+@meindex src:@-alt:@-
+@item src:@- src alt:@- alt
+Not commented.
+
+@meindex usemap:@-
+@item usemap:@- aString
+Not commented.
+
+@meindex width:@-
+@item width:@- anInteger
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILImageElement-printing
+@subsection Iliad.ILImageElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+@node Iliad.ILInformationWidget
+@section Iliad.ILInformationWidget
+@clindex Iliad.ILInformationWidget
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILWidget
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILInformationWidget-accessing::  (instance)
+* Iliad.ILInformationWidget-building::  (instance)
+@end menu
+
+
+
+@node Iliad.ILInformationWidget-accessing
+@subsection Iliad.ILInformationWidget:@- accessing
+
+@table @b
+@meindex informationString
+@item informationString
+Answer `informationString'.
+
+@meindex informationString:@-
+@item informationString:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILInformationWidget-building
+@subsection Iliad.ILInformationWidget:@- building
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@end table
+
+@node Iliad.ILInputElement
+@section Iliad.ILInputElement
+@clindex Iliad.ILInputElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILFormElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILInputElement-accessing::  (instance)
+* Iliad.ILInputElement-accessing attributes::  (instance)
+* Iliad.ILInputElement-accessing attributes-types::  (instance)
+* Iliad.ILInputElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILInputElement-accessing
+@subsection Iliad.ILInputElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'input''.
+
+@end table
+
+
+
+@node Iliad.ILInputElement-accessing attributes
+@subsection Iliad.ILInputElement:@- accessing attributes
+
+@table @b
+@meindex accept:@-
+@item accept:@- aString
+Not commented.
+
+@meindex accepts:@-
+@item accepts:@- aCollection
+Not commented.
+
+@meindex alt:@-
+@item alt:@- aString
+Not commented.
+
+@meindex ismap
+@item ismap
+Not commented.
+
+@meindex maxlength:@-
+@item maxlength:@- anInteger
+Not commented.
+
+@meindex size:@-
+@item size:@- anInteger
+Not commented.
+
+@meindex usemap:@-
+@item usemap:@- aString
+Not commented.
+
+@meindex value:@-
+@item value:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILInputElement-accessing attributes-types
+@subsection Iliad.ILInputElement:@- accessing attributes-types
+
+@table @b
+@meindex beFile
+@item beFile
+Not commented.
+
+@meindex beHidden
+@item beHidden
+Not commented.
+
+@meindex beImage
+@item beImage
+Not commented.
+
+@meindex bePassword
+@item bePassword
+Not commented.
+
+@meindex beReset
+@item beReset
+Not commented.
+
+@meindex beSubmit
+@item beSubmit
+Not commented.
+
+@meindex beText
+@item beText
+Not commented.
+
+@meindex type:@-
+@item type:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILInputElement-printing
+@subsection Iliad.ILInputElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@meindex printHtmlOn:@-
+@item printHtmlOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILJson
+@section Iliad.ILJson
+@clindex Iliad.ILJson
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-lib-JSON
+This class reads and writes JSON format data - strings, numbers, 
+boolean, nil, arrays and dictionaries. 
+See http:@-//www.crockford.com/JSON/index.html. 
+It has been extended with syntax for invoking a prearranged list of constructors on read objects.
+@end table
+
+@menu
+* Iliad.ILJson-accessing::  (instance)
+* Iliad.ILJson-parsing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILJson-accessing
+@subsection Iliad.ILJson:@- accessing
+
+@table @b
+@meindex ctorMap
+@item ctorMap
+Answer `ctorMap'.
+
+@meindex ctorMap:@-
+@item ctorMap:@- m
+Not commented.
+
+@meindex stream
+@item stream
+Answer the value of stream
+
+
+@meindex stream:@-
+@item stream:@- anObject
+Set the value of stream
+
+
+@end table
+
+
+
+@node Iliad.ILJson-parsing
+@subsection Iliad.ILJson:@- parsing
+
+@table @b
+@meindex readAny
+@item readAny
+This is the main entry point for the JSON parser. See also readFrom:@- on the class side.
+
+
+@meindex readFrom:@-
+@item readFrom:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILJsonHandler
+@section Iliad.ILJsonHandler
+@clindex Iliad.ILJsonHandler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILRequestHandler
+@itemx Category: Iliad-Core-RequestHandlers
+
+@end table
+
+@menu
+* Iliad.ILJsonHandler-initialization::  (instance)
+* Iliad.ILJsonHandler-responding::  (instance)
+* Iliad.ILJsonHandler-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILJsonHandler-initialization
+@subsection Iliad.ILJsonHandler:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILJsonHandler-responding
+@subsection Iliad.ILJsonHandler:@- responding
+
+@table @b
+@meindex produceResponse
+@item produceResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILJsonHandler-testing
+@subsection Iliad.ILJsonHandler:@- testing
+
+@table @b
+@meindex shouldRedirect
+@item shouldRedirect
+Not commented.
+
+@meindex shouldUpdateApplication
+@item shouldUpdateApplication
+Not commented.
+
+@end table
+
+@node Iliad.ILJsonObject
+@section Iliad.ILJsonObject
+@clindex Iliad.ILJsonObject
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-lib-JSON
+
+@end table
+
+@menu
+* Iliad.ILJsonObject-accessing::  (instance)
+* Iliad.ILJsonObject-error handling::  (instance)
+* Iliad.ILJsonObject-initialization::  (instance)
+@end menu
+
+
+
+@node Iliad.ILJsonObject-accessing
+@subsection Iliad.ILJsonObject:@- accessing
+
+@table @b
+@meindex at:@-
+@item at:@- key
+Not commented.
+
+@meindex at:@-ifAbsent:@-
+@item at:@- key ifAbsent:@- aBlock
+Not commented.
+
+@meindex at:@-put:@-
+@item at:@- key put:@- value
+Not commented.
+
+@meindex properties
+@item properties
+Answer `properties'.
+
+@end table
+
+
+
+@node Iliad.ILJsonObject-error handling
+@subsection Iliad.ILJsonObject:@- error handling
+
+@table @b
+@meindex doesNotUnderstand:@-
+@item doesNotUnderstand:@- aMessage
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILJsonObject-initialization
+@subsection Iliad.ILJsonObject:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+@node Iliad.ILJsonSyntaxError
+@section Iliad.ILJsonSyntaxError
+@clindex Iliad.ILJsonSyntaxError
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Grease.Grease.GRError
+@itemx Category: Iliad-Core-lib-JSON
+Class Json signals instances of me when an input stream contains invalid JSON input.
+@end table
+
+@menu
+@end menu
+
+@node Iliad.ILLabelElement
+@section Iliad.ILLabelElement
+@clindex Iliad.ILLabelElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILLabelElement-accessing::  (instance)
+* Iliad.ILLabelElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILLabelElement-accessing
+@subsection Iliad.ILLabelElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'label''.
+
+@end table
+
+
+
+@node Iliad.ILLabelElement-accessing attributes
+@subsection Iliad.ILLabelElement:@- accessing attributes
+
+@table @b
+@meindex accesskey:@-
+@item accesskey:@- aCharacter
+Not commented.
+
+@meindex for:@-
+@item for:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILLegendElement
+@section Iliad.ILLegendElement
+@clindex Iliad.ILLegendElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILLegendElement-accessing::  (instance)
+* Iliad.ILLegendElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILLegendElement-accessing
+@subsection Iliad.ILLegendElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'legend''.
+
+@end table
+
+
+
+@node Iliad.ILLegendElement-accessing attributes
+@subsection Iliad.ILLegendElement:@- accessing attributes
+
+@table @b
+@meindex accesskey:@-
+@item accesskey:@- aCharacter
+Not commented.
+
+@end table
+
+@node Iliad.ILLinkableElement
+@section Iliad.ILLinkableElement
+@clindex Iliad.ILLinkableElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILLinkableElement-accessing attributes::  (instance)
+* Iliad.ILLinkableElement-accessing attributes-relationships::  (instance)
+* Iliad.ILLinkableElement-accessing attributes-reverse links::  (instance)
+@end menu
+
+
+
+@node Iliad.ILLinkableElement-accessing attributes
+@subsection Iliad.ILLinkableElement:@- accessing attributes
+
+@table @b
+@meindex accesskey:@-
+@item accesskey:@- aCharacter
+Not commented.
+
+@meindex charset:@-
+@item charset:@- aString
+Not commented.
+
+@meindex contentType:@-
+@item contentType:@- aString
+Not commented.
+
+@meindex href:@-
+@item href:@- aString
+Not commented.
+
+@meindex hreflang:@-
+@item hreflang:@- aString
+Not commented.
+
+@meindex linkToApplication:@-
+@item linkToApplication:@- anApplicationClass
+Not commented.
+
+@meindex linkToApplication:@-controller:@-
+@item linkToApplication:@- anApplicationClass controller:@- aString
+Not commented.
+
+@meindex linkToLocal:@-
+@item linkToLocal:@- aString
+Not commented.
+
+@meindex target:@-
+@item target:@- aString
+Not commented.
+
+@meindex type:@-
+@item type:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILLinkableElement-accessing attributes-relationships
+@subsection Iliad.ILLinkableElement:@- accessing attributes-relationships
+
+@table @b
+@meindex beAlternate
+@item beAlternate
+Not commented.
+
+@meindex beAppendix
+@item beAppendix
+Not commented.
+
+@meindex beBookmark
+@item beBookmark
+Not commented.
+
+@meindex beChapter
+@item beChapter
+Not commented.
+
+@meindex beContents
+@item beContents
+Not commented.
+
+@meindex beCopyright
+@item beCopyright
+Not commented.
+
+@meindex beFavicon
+@item beFavicon
+Not commented.
+
+@meindex beGlossary
+@item beGlossary
+Not commented.
+
+@meindex beHelp
+@item beHelp
+Not commented.
+
+@meindex beIndex
+@item beIndex
+Not commented.
+
+@meindex beNext
+@item beNext
+Not commented.
+
+@meindex bePrev
+@item bePrev
+Not commented.
+
+@meindex bePrevious
+@item bePrevious
+Not commented.
+
+@meindex beRss
+@item beRss
+Not commented.
+
+@meindex beSection
+@item beSection
+Not commented.
+
+@meindex beStart
+@item beStart
+Not commented.
+
+@meindex beStylesheet
+@item beStylesheet
+Not commented.
+
+@meindex beSubsection
+@item beSubsection
+Not commented.
+
+@meindex rel:@-
+@item rel:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILLinkableElement-accessing attributes-reverse links
+@subsection Iliad.ILLinkableElement:@- accessing attributes-reverse links
+
+@table @b
+@meindex fromAlternate
+@item fromAlternate
+Not commented.
+
+@meindex fromAppendix
+@item fromAppendix
+Not commented.
+
+@meindex fromBookmark
+@item fromBookmark
+Not commented.
+
+@meindex fromChapter
+@item fromChapter
+Not commented.
+
+@meindex fromContents
+@item fromContents
+Not commented.
+
+@meindex fromCopyright
+@item fromCopyright
+Not commented.
+
+@meindex fromGlossary
+@item fromGlossary
+Not commented.
+
+@meindex fromHelp
+@item fromHelp
+Not commented.
+
+@meindex fromIndex
+@item fromIndex
+Not commented.
+
+@meindex fromNext
+@item fromNext
+Not commented.
+
+@meindex fromPrev
+@item fromPrev
+Not commented.
+
+@meindex fromPrevious
+@item fromPrevious
+Not commented.
+
+@meindex fromSection
+@item fromSection
+Not commented.
+
+@meindex fromStart
+@item fromStart
+Not commented.
+
+@meindex fromStylesheet
+@item fromStylesheet
+Not commented.
+
+@meindex fromSubsection
+@item fromSubsection
+Not commented.
+
+@meindex rev:@-
+@item rev:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILLinkElement
+@section Iliad.ILLinkElement
+@clindex Iliad.ILLinkElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILLinkableElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILLinkElement-accessing::  (instance)
+* Iliad.ILLinkElement-accessing attributes::  (instance)
+* Iliad.ILLinkElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILLinkElement-accessing
+@subsection Iliad.ILLinkElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'link''.
+
+@end table
+
+
+
+@node Iliad.ILLinkElement-accessing attributes
+@subsection Iliad.ILLinkElement:@- accessing attributes
+
+@table @b
+@meindex allMedia
+@item allMedia
+Not commented.
+
+@meindex auralMedia
+@item auralMedia
+Not commented.
+
+@meindex brailleMedia
+@item brailleMedia
+Not commented.
+
+@meindex handheldMedia
+@item handheldMedia
+Not commented.
+
+@meindex media:@-
+@item media:@- aString
+Not commented.
+
+@meindex printMedia
+@item printMedia
+Not commented.
+
+@meindex projectionMedia
+@item projectionMedia
+Not commented.
+
+@meindex screenMedia
+@item screenMedia
+Not commented.
+
+@meindex ttyMedia
+@item ttyMedia
+Not commented.
+
+@meindex tvMedia
+@item tvMedia
+Not commented.
+
+@meindex type:@-
+@item type:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILLinkElement-printing
+@subsection Iliad.ILLinkElement:@- printing
+
+@table @b
+@meindex printHtmlOn:@-
+@item printHtmlOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILListElement
+@section Iliad.ILListElement
+@clindex Iliad.ILListElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILListElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILListElement-accessing
+@subsection Iliad.ILListElement:@- accessing
+
+@table @b
+@meindex beOrdered
+@item beOrdered
+Not commented.
+
+@meindex beUnordered
+@item beUnordered
+Not commented.
+
+@meindex tag
+@item tag
+Answer `tag'.
+
+@meindex tag:@-
+@item tag:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILListItemElement
+@section Iliad.ILListItemElement
+@clindex Iliad.ILListItemElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILListItemElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILListItemElement-accessing
+@subsection Iliad.ILListItemElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'li''.
+
+@end table
+
+@node Iliad.ILMapElement
+@section Iliad.ILMapElement
+@clindex Iliad.ILMapElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILMapElement-accessing::  (instance)
+* Iliad.ILMapElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILMapElement-accessing
+@subsection Iliad.ILMapElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'map''.
+
+@end table
+
+
+
+@node Iliad.ILMapElement-accessing attributes
+@subsection Iliad.ILMapElement:@- accessing attributes
+
+@table @b
+@meindex classes:@-
+@item classes:@- aCollection
+Not commented.
+
+@end table
+
+@node Iliad.ILMemoryDirectory
+@section Iliad.ILMemoryDirectory
+@clindex Iliad.ILMemoryDirectory
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDirectory
+@itemx Category: Iliad-Core-RequestHandlers
+
+@end table
+
+@menu
+* Iliad.ILMemoryDirectory class-maintenance::  (class)
+* Iliad.ILMemoryDirectory-accessing::  (instance)
+* Iliad.ILMemoryDirectory-maintenence::  (instance)
+* Iliad.ILMemoryDirectory-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILMemoryDirectory class-maintenance
+@subsection Iliad.ILMemoryDirectory class:@- maintenance
+
+@table @b
+@meindex addAllFilesIn:@-
+@item addAllFilesIn:@- aPathString
+Answer the receiver.
+
+@meindex addFileAt:@-
+@item addFileAt:@- aPath
+Answer the receiver.
+
+@end table
+
+
+
+@node Iliad.ILMemoryDirectory-accessing
+@subsection Iliad.ILMemoryDirectory:@- accessing
+
+@table @b
+@meindex fileContentsFor:@-
+@item fileContentsFor:@- aString
+Not commented.
+
+@meindex fileSelectors
+@item fileSelectors
+Not commented.
+
+@meindex path
+@item path
+answer the base path of the memory directory
+
+
+@end table
+
+
+
+@node Iliad.ILMemoryDirectory-maintenence
+@subsection Iliad.ILMemoryDirectory:@- maintenence
+
+@table @b
+@meindex deployFiles
+@item deployFiles
+Write to disk the files that the receiver use to serve as methods.
+The files are stored in a subfolder named like the classname of the receiver in a subfolder of Smalltalk image folder.
+
+
+@meindex removeFile:@-
+@item removeFile:@- aFilename
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILMemoryDirectory-testing
+@subsection Iliad.ILMemoryDirectory:@- testing
+
+@table @b
+@meindex isFileSelector:@-
+@item isFileSelector:@- aSelector
+Only methods in 'files' protocol are allowed to be served as files
+
+
+@end table
+
+@node Iliad.ILMetaElement
+@section Iliad.ILMetaElement
+@clindex Iliad.ILMetaElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILClosingElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILMetaElement-accessing::  (instance)
+* Iliad.ILMetaElement-accessing attributes::  (instance)
+* Iliad.ILMetaElement-accessing attributes-events::  (instance)
+* Iliad.ILMetaElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILMetaElement-accessing
+@subsection Iliad.ILMetaElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'meta''.
+
+@end table
+
+
+
+@node Iliad.ILMetaElement-accessing attributes
+@subsection Iliad.ILMetaElement:@- accessing attributes
+
+@table @b
+@meindex class:@-
+@item class:@- aString
+Not commented.
+
+@meindex classes:@-
+@item classes:@- aCollection
+Not commented.
+
+@meindex content:@-
+@item content:@- aString
+Not commented.
+
+@meindex contentType
+@item contentType
+Not commented.
+
+@meindex expires
+@item expires
+Not commented.
+
+@meindex httpEquiv:@-
+@item httpEquiv:@- aString
+Not commented.
+
+@meindex name:@-
+@item name:@- aString
+Not commented.
+
+@meindex refresh
+@item refresh
+Not commented.
+
+@meindex scheme:@-
+@item scheme:@- aString
+Not commented.
+
+@meindex setCookie
+@item setCookie
+Not commented.
+
+@meindex title:@-
+@item title:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILMetaElement-accessing attributes-events
+@subsection Iliad.ILMetaElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- event add:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILMetaElement-printing
+@subsection Iliad.ILMetaElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+@node Iliad.ILModelProxy
+@section Iliad.ILModelProxy
+@clindex Iliad.ILModelProxy
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Object
+@itemx Category: Iliad-Core-Utilities
+
+@end table
+
+@menu
+* Iliad.ILModelProxy class-instance creation::  (class)
+* Iliad.ILModelProxy-accessing::  (instance)
+* Iliad.ILModelProxy-forwarding::  (instance)
+* Iliad.ILModelProxy-initializing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILModelProxy class-instance creation
+@subsection Iliad.ILModelProxy class:@- instance creation
+
+@table @b
+@meindex on:@-
+@item on:@- anObject
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILModelProxy-accessing
+@subsection Iliad.ILModelProxy:@- accessing
+
+@table @b
+@meindex model
+@item model
+Answer `model'.
+
+@end table
+
+
+
+@node Iliad.ILModelProxy-forwarding
+@subsection Iliad.ILModelProxy:@- forwarding
+
+@table @b
+@meindex commit
+@item commit
+Not commented.
+
+@meindex doesNotUnderstand:@-
+@item doesNotUnderstand:@- aMessage
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILModelProxy-initializing
+@subsection Iliad.ILModelProxy:@- initializing
+
+@table @b
+@meindex setModel:@-
+@item setModel:@- anObject
+Not commented.
+
+@end table
+
+@node Iliad.ILNotFoundHandler
+@section Iliad.ILNotFoundHandler
+@clindex Iliad.ILNotFoundHandler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILRequestHandler
+@itemx Category: Iliad-Core-RequestHandlers
+
+@end table
+
+@menu
+* Iliad.ILNotFoundHandler-responding::  (instance)
+@end menu
+
+
+
+@node Iliad.ILNotFoundHandler-responding
+@subsection Iliad.ILNotFoundHandler:@- responding
+
+@table @b
+@meindex produceResponse
+@item produceResponse
+Not commented.
+
+@end table
+
+@node Iliad.ILObject
+@section Iliad.ILObject
+@clindex Iliad.ILObject
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Grease.Grease.GRObject
+@itemx Category: Iliad-Core-Utilities
+ILObject is the base class for all Iliad classes. It guarantees that #initialize is send upon object creation. Additionally it provides convienience methods for accessing the current context, session and application.
+@end table
+
+@menu
+* Iliad.ILObject-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILObject-accessing
+@subsection Iliad.ILObject:@- accessing
+
+@table @b
+@meindex application
+@item application
+Not commented.
+
+@meindex context
+@item context
+Not commented.
+
+@meindex request
+@item request
+Not commented.
+
+@meindex session
+@item session
+Not commented.
+
+@meindex urlBuilder
+@item urlBuilder
+Not commented.
+
+@end table
+
+@node Iliad.ILObjectElement
+@section Iliad.ILObjectElement
+@clindex Iliad.ILObjectElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILObjectElement-accessing::  (instance)
+* Iliad.ILObjectElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILObjectElement-accessing
+@subsection Iliad.ILObjectElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'object''.
+
+@end table
+
+
+
+@node Iliad.ILObjectElement-accessing attributes
+@subsection Iliad.ILObjectElement:@- accessing attributes
+
+@table @b
+@meindex archive:@-
+@item archive:@- aString
+Not commented.
+
+@meindex archives:@-
+@item archives:@- aCollection
+Not commented.
+
+@meindex classid:@-
+@item classid:@- aString
+Not commented.
+
+@meindex codebase:@-
+@item codebase:@- aString
+Not commented.
+
+@meindex codetype:@-
+@item codetype:@- aString
+Not commented.
+
+@meindex data:@-
+@item data:@- aString
+Not commented.
+
+@meindex declare
+@item declare
+Not commented.
+
+@meindex declareOnly
+@item declareOnly
+Not commented.
+
+@meindex height:@-
+@item height:@- anInteger
+Not commented.
+
+@meindex name:@-
+@item name:@- aString
+Not commented.
+
+@meindex standby:@-
+@item standby:@- aString
+Not commented.
+
+@meindex tabindex:@-
+@item tabindex:@- anInteger
+Not commented.
+
+@meindex type:@-
+@item type:@- aString
+Not commented.
+
+@meindex usemap:@-
+@item usemap:@- aString
+Not commented.
+
+@meindex width:@-
+@item width:@- anInteger
+Not commented.
+
+@end table
+
+@node Iliad.ILOptionElement
+@section Iliad.ILOptionElement
+@clindex Iliad.ILOptionElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILOptionElement-accessing::  (instance)
+* Iliad.ILOptionElement-accessing attributes::  (instance)
+* Iliad.ILOptionElement-accessing-attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILOptionElement-accessing
+@subsection Iliad.ILOptionElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'option''.
+
+@end table
+
+
+
+@node Iliad.ILOptionElement-accessing attributes
+@subsection Iliad.ILOptionElement:@- accessing attributes
+
+@table @b
+@meindex disabled
+@item disabled
+Not commented.
+
+@meindex disabled:@-
+@item disabled:@- aBoolean
+Not commented.
+
+@meindex label:@-
+@item label:@- aString
+Not commented.
+
+@meindex selected
+@item selected
+Not commented.
+
+@meindex selected:@-
+@item selected:@- aBoolean
+Not commented.
+
+@meindex value:@-
+@item value:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILOptionElement-accessing-attributes
+@subsection Iliad.ILOptionElement:@- accessing-attributes
+
+@table @b
+@meindex action:@-
+@item action:@- aBlock
+Not commented.
+
+@end table
+
+@node Iliad.ILOptionGroupElement
+@section Iliad.ILOptionGroupElement
+@clindex Iliad.ILOptionGroupElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILOptionGroupElement-accessing::  (instance)
+* Iliad.ILOptionGroupElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILOptionGroupElement-accessing
+@subsection Iliad.ILOptionGroupElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'optgroup''.
+
+@end table
+
+
+
+@node Iliad.ILOptionGroupElement-accessing attributes
+@subsection Iliad.ILOptionGroupElement:@- accessing attributes
+
+@table @b
+@meindex disabled
+@item disabled
+Not commented.
+
+@meindex label:@-
+@item label:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILParagraphElement
+@section Iliad.ILParagraphElement
+@clindex Iliad.ILParagraphElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILParagraphElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILParagraphElement-accessing
+@subsection Iliad.ILParagraphElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'p''.
+
+@end table
+
+@node Iliad.ILParameterElement
+@section Iliad.ILParameterElement
+@clindex Iliad.ILParameterElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILClosingElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILParameterElement-accessing::  (instance)
+* Iliad.ILParameterElement-accessing attributes::  (instance)
+* Iliad.ILParameterElement-adding::  (instance)
+* Iliad.ILParameterElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILParameterElement-accessing
+@subsection Iliad.ILParameterElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'param''.
+
+@end table
+
+
+
+@node Iliad.ILParameterElement-accessing attributes
+@subsection Iliad.ILParameterElement:@- accessing attributes
+
+@table @b
+@meindex beData
+@item beData
+Not commented.
+
+@meindex beObject
+@item beObject
+Not commented.
+
+@meindex beReference
+@item beReference
+Not commented.
+
+@meindex name:@-
+@item name:@- aString
+Not commented.
+
+@meindex type:@-
+@item type:@- aString
+Not commented.
+
+@meindex value:@-
+@item value:@- aString
+Not commented.
+
+@meindex valuetype:@-
+@item valuetype:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILParameterElement-adding
+@subsection Iliad.ILParameterElement:@- adding
+
+@table @b
+@meindex add:@-
+@item add:@- anElement
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILParameterElement-printing
+@subsection Iliad.ILParameterElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+@node Iliad.ILPluggableWidget
+@section Iliad.ILPluggableWidget
+@clindex Iliad.ILPluggableWidget
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILWidget
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILPluggableWidget-accessing::  (instance)
+* Iliad.ILPluggableWidget-building::  (instance)
+@end menu
+
+
+
+@node Iliad.ILPluggableWidget-accessing
+@subsection Iliad.ILPluggableWidget:@- accessing
+
+@table @b
+@meindex contentsBlock
+@item contentsBlock
+Not commented.
+
+@meindex contentsBlock:@-
+@item contentsBlock:@- aBlock
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILPluggableWidget-building
+@subsection Iliad.ILPluggableWidget:@- building
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@end table
+
+@node Iliad.ILPrependDelegator
+@section Iliad.ILPrependDelegator
+@clindex Iliad.ILPrependDelegator
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDelegator
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILPrependDelegator-building::  (instance)
+@end menu
+
+
+
+@node Iliad.ILPrependDelegator-building
+@subsection Iliad.ILPrependDelegator:@- building
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@end table
+
+@node Iliad.ILProfiler
+@section Iliad.ILProfiler
+@clindex Iliad.ILProfiler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILDecorator
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILProfiler-building::  (instance)
+@end menu
+
+
+
+@node Iliad.ILProfiler-building
+@subsection Iliad.ILProfiler:@- building
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@end table
+
+@node Iliad.ILRadioButtonElement
+@section Iliad.ILRadioButtonElement
+@clindex Iliad.ILRadioButtonElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILFormElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILRadioButtonElement-accessing::  (instance)
+* Iliad.ILRadioButtonElement-accessing attributes::  (instance)
+* Iliad.ILRadioButtonElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILRadioButtonElement-accessing
+@subsection Iliad.ILRadioButtonElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'input''.
+
+@end table
+
+
+
+@node Iliad.ILRadioButtonElement-accessing attributes
+@subsection Iliad.ILRadioButtonElement:@- accessing attributes
+
+@table @b
+@meindex action:@-
+@item action:@- aBlock
+Not commented.
+
+@meindex beSelected
+@item beSelected
+Not commented.
+
+@meindex selected:@-
+@item selected:@- aBoolean
+Not commented.
+
+@meindex value:@-
+@item value:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRadioButtonElement-printing
+@subsection Iliad.ILRadioButtonElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@end table
+
+@node Iliad.ILRawHtmlElement
+@section Iliad.ILRawHtmlElement
+@clindex Iliad.ILRawHtmlElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILRawHtmlElement-accessing::  (instance)
+* Iliad.ILRawHtmlElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILRawHtmlElement-accessing
+@subsection Iliad.ILRawHtmlElement:@- accessing
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@meindex contents:@-
+@item contents:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRawHtmlElement-printing
+@subsection Iliad.ILRawHtmlElement:@- printing
+
+@table @b
+@meindex printHtmlOn:@-
+@item printHtmlOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILRedirectHandler
+@section Iliad.ILRedirectHandler
+@clindex Iliad.ILRedirectHandler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILRequestHandler
+@itemx Category: Iliad-Core-RequestHandlers
+
+@end table
+
+@menu
+* Iliad.ILRedirectHandler-responding::  (instance)
+* Iliad.ILRedirectHandler-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILRedirectHandler-responding
+@subsection Iliad.ILRedirectHandler:@- responding
+
+@table @b
+@meindex produceResponse
+@item produceResponse
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRedirectHandler-testing
+@subsection Iliad.ILRedirectHandler:@- testing
+
+@table @b
+@meindex shouldRespondInJson
+@item shouldRespondInJson
+Not commented.
+
+@end table
+
+@node Iliad.ILRequest
+@section Iliad.ILRequest
+@clindex Iliad.ILRequest
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Object
+@itemx Category: Iliad-Core-lib-HTTP
+From Seaside 2.8.
+
+I am a server independent http request object.
+@end table
+
+@menu
+* Iliad.ILRequest class-instance creation::  (class)
+* Iliad.ILRequest-accessing::  (instance)
+* Iliad.ILRequest-initialization::  (instance)
+* Iliad.ILRequest-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILRequest class-instance creation
+@subsection Iliad.ILRequest class:@- instance creation
+
+@table @b
+@meindex new
+@item new
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRequest-accessing
+@subsection Iliad.ILRequest:@- accessing
+
+@table @b
+@meindex actionField
+@item actionField
+Not commented.
+
+@meindex ajaxUploadField
+@item ajaxUploadField
+Not commented.
+
+@meindex at:@-
+@item at:@- key
+Not commented.
+
+@meindex at:@-ifAbsent:@-
+@item at:@- key ifAbsent:@- aBlock
+Not commented.
+
+@meindex cookies
+@item cookies
+Answer `cookies'.
+
+@meindex cookies:@-
+@item cookies:@- anObject
+Not commented.
+
+@meindex fields
+@item fields
+Answer `fields'.
+
+@meindex fields:@-
+@item fields:@- anObject
+Not commented.
+
+@meindex hashLocationField
+@item hashLocationField
+Not commented.
+
+@meindex headerAt:@-
+@item headerAt:@- aKey
+Not commented.
+
+@meindex headerAt:@-ifAbsent:@-
+@item headerAt:@- aKey ifAbsent:@- aBlock
+Not commented.
+
+@meindex headers
+@item headers
+Answer `headers'.
+
+@meindex headers:@-
+@item headers:@- aDictionary
+Not commented.
+
+@meindex jsonField
+@item jsonField
+Not commented.
+
+@meindex method
+@item method
+Answer `method'.
+
+@meindex method:@-
+@item method:@- aString
+Not commented.
+
+@meindex nativeRequest
+@item nativeRequest
+Answer `nativeRequest'.
+
+@meindex nativeRequest:@-
+@item nativeRequest:@- aRequest
+Not commented.
+
+@meindex password
+@item password
+Not commented.
+
+@meindex sessionField
+@item sessionField
+Not commented.
+
+@meindex stateField
+@item stateField
+Not commented.
+
+@meindex url
+@item url
+Answer `url'.
+
+@meindex url:@-
+@item url:@- anUrl
+Not commented.
+
+@meindex user
+@item user
+Not commented.
+
+@meindex userAgent
+@item userAgent
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRequest-initialization
+@subsection Iliad.ILRequest:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRequest-testing
+@subsection Iliad.ILRequest:@- testing
+
+@table @b
+@meindex hasCookies
+@item hasCookies
+Not commented.
+
+@meindex isAjaxRequest
+@item isAjaxRequest
+Not commented.
+
+@meindex isGet
+@item isGet
+Not commented.
+
+@meindex isPost
+@item isPost
+Not commented.
+
+@meindex isPrefetch
+@item isPrefetch
+Not commented.
+
+@meindex isPut
+@item isPut
+Not commented.
+
+@meindex isTypeOfRequestForJson
+@item isTypeOfRequestForJson
+Not commented.
+
+@meindex isTypeOfRequestForRedirect
+@item isTypeOfRequestForRedirect
+Not commented.
+
+@end table
+
+@node Iliad.ILRequestHandler
+@section Iliad.ILRequestHandler
+@clindex Iliad.ILRequestHandler
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-RequestHandlers
+I implement the basic behavior needed to handle requests.
+
+My sublcasses must override #newResponse to handle requests, and most likely #produceResponse.
+The current handled request is answered by the #request method inherited from ILObject
+@end table
+
+@menu
+* Iliad.ILRequestHandler-request handling::  (instance)
+* Iliad.ILRequestHandler-responding::  (instance)
+@end menu
+
+
+
+@node Iliad.ILRequestHandler-request handling
+@subsection Iliad.ILRequestHandler:@- request handling
+
+@table @b
+@meindex handleRequest
+@item handleRequest
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRequestHandler-responding
+@subsection Iliad.ILRequestHandler:@- responding
+
+@table @b
+@meindex produceResponse
+@item produceResponse
+Not commented.
+
+@end table
+
+@node Iliad.ILResponse
+@section Iliad.ILResponse
+@clindex Iliad.ILResponse
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Object
+@itemx Category: Iliad-Core-lib-HTTP
+From Seaside 2.8
+
+I am a server independent http response object.
+@end table
+
+@menu
+* Iliad.ILResponse class-instance creation::  (class)
+* Iliad.ILResponse-accessing::  (instance)
+* Iliad.ILResponse-convenience::  (instance)
+* Iliad.ILResponse-printing::  (instance)
+* Iliad.ILResponse-status::  (instance)
+* Iliad.ILResponse-streaming::  (instance)
+@end menu
+
+
+
+@node Iliad.ILResponse class-instance creation
+@subsection Iliad.ILResponse class:@- instance creation
+
+@table @b
+@meindex forbidden
+@item forbidden
+Not commented.
+
+@meindex new
+@item new
+Not commented.
+
+@meindex notFound
+@item notFound
+Not commented.
+
+@meindex ok
+@item ok
+Not commented.
+
+@meindex redirect
+@item redirect
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILResponse-accessing
+@subsection Iliad.ILResponse:@- accessing
+
+@table @b
+@meindex addCookie:@-
+@item addCookie:@- aCookie
+Not commented.
+
+@meindex contentType
+@item contentType
+Answer `contentType'.
+
+@meindex contentType:@-
+@item contentType:@- mimeTypeString
+Not commented.
+
+@meindex contents
+@item contents
+Not commented.
+
+@meindex contents:@-
+@item contents:@- aStream
+Not commented.
+
+@meindex cookieAt:@-put:@-
+@item cookieAt:@- key put:@- value
+Not commented.
+
+@meindex cookies
+@item cookies
+Not commented.
+
+@meindex headerAt:@-put:@-
+@item headerAt:@- key put:@- value
+Not commented.
+
+@meindex headers
+@item headers
+Not commented.
+
+@meindex initialize
+@item initialize
+Not commented.
+
+@meindex release
+@item release
+Not commented.
+
+@meindex status
+@item status
+Answer `status'.
+
+@meindex status:@-
+@item status:@- anInteger
+Not commented.
+
+@meindex stream
+@item stream
+Answer `stream'.
+
+@meindex stream:@-
+@item stream:@- aStream
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILResponse-convenience
+@subsection Iliad.ILResponse:@- convenience
+
+@table @b
+@meindex attachmentWithFileName:@-
+@item attachmentWithFileName:@- aString
+Not commented.
+
+@meindex basicAuthenticationRealm:@-
+@item basicAuthenticationRealm:@- aString
+Not commented.
+
+@meindex redirectTo:@-
+@item redirectTo:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILResponse-printing
+@subsection Iliad.ILResponse:@- printing
+
+@table @b
+@meindex printOn:@-
+@item printOn:@- aStream
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILResponse-status
+@subsection Iliad.ILResponse:@- status
+
+@table @b
+@meindex authenticationFailed
+@item authenticationFailed
+Not commented.
+
+@meindex forbidden
+@item forbidden
+Not commented.
+
+@meindex internalError
+@item internalError
+Not commented.
+
+@meindex notFound
+@item notFound
+Not commented.
+
+@meindex ok
+@item ok
+Not commented.
+
+@meindex redirect
+@item redirect
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILResponse-streaming
+@subsection Iliad.ILResponse:@- streaming
+
+@table @b
+@meindex nextPut:@-
+@item nextPut:@- aCharacter
+Not commented.
+
+@meindex nextPutAll:@-
+@item nextPutAll:@- aString
+Not commented.
+
+@meindex space
+@item space
+Not commented.
+
+@end table
+
+@node Iliad.ILResponseNotification
+@section Iliad.ILResponseNotification
+@clindex Iliad.ILResponseNotification
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Notification
+@itemx Category: Iliad-Core-RequestHandlers
+
+@end table
+
+@menu
+* Iliad.ILResponseNotification-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILResponseNotification-accessing
+@subsection Iliad.ILResponseNotification:@- accessing
+
+@table @b
+@meindex response
+@item response
+Answer `response'.
+
+@meindex response:@-
+@item response:@- aResponse
+Not commented.
+
+@end table
+
+@node Iliad.ILRoute
+@section Iliad.ILRoute
+@clindex Iliad.ILRoute
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Dispatching
+I represent a route, used to dispatch a request. 
+My path is a collection of string, representing each part of the path of an url,
+and can be streamed with methods in the <streaming> protocol.
+@end table
+
+@menu
+* Iliad.ILRoute class-accessing::  (class)
+* Iliad.ILRoute class-instance creation::  (class)
+* Iliad.ILRoute-accessing::  (instance)
+* Iliad.ILRoute-converting::  (instance)
+* Iliad.ILRoute-initialization::  (instance)
+* Iliad.ILRoute-iterating::  (instance)
+* Iliad.ILRoute-printing::  (instance)
+* Iliad.ILRoute-streaming::  (instance)
+@end menu
+
+
+
+@node Iliad.ILRoute class-accessing
+@subsection Iliad.ILRoute class:@- accessing
+
+@table @b
+@meindex delimiters
+@item delimiters
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRoute class-instance creation
+@subsection Iliad.ILRoute class:@- instance creation
+
+@table @b
+@meindex path:@-
+@item path:@- aCollection
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRoute-accessing
+@subsection Iliad.ILRoute:@- accessing
+
+@table @b
+@meindex basePath
+@item basePath
+Not commented.
+
+@meindex delimiter
+@item delimiter
+Not commented.
+
+@meindex delimiters
+@item delimiters
+Not commented.
+
+@meindex path
+@item path
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRoute-converting
+@subsection Iliad.ILRoute:@- converting
+
+@table @b
+@meindex pathString
+@item pathString
+Not commented.
+
+@meindex uriString
+@item uriString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRoute-initialization
+@subsection Iliad.ILRoute:@- initialization
+
+@table @b
+@meindex initializeWithPath:@-
+@item initializeWithPath:@- aCollection
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRoute-iterating
+@subsection Iliad.ILRoute:@- iterating
+
+@table @b
+@meindex currentPath
+@item currentPath
+Return an absolute url of the current streamed path
+separated with delimiters, like this:@-
+/foo/bar/baz
+
+
+@end table
+
+
+
+@node Iliad.ILRoute-printing
+@subsection Iliad.ILRoute:@- printing
+
+@table @b
+@meindex printOn:@-
+@item printOn:@- aStream
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRoute-streaming
+@subsection Iliad.ILRoute:@- streaming
+
+@table @b
+@meindex atEnd
+@item atEnd
+Not commented.
+
+@meindex next
+@item next
+Not commented.
+
+@meindex peek
+@item peek
+Not commented.
+
+@meindex position
+@item position
+Not commented.
+
+@meindex position:@-
+@item position:@- anInteger
+Not commented.
+
+@meindex reset
+@item reset
+Not commented.
+
+@end table
+
+@node Iliad.ILRouter
+@section Iliad.ILRouter
+@clindex Iliad.ILRouter
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Dispatching
+
+@end table
+
+@menu
+* Iliad.ILRouter-accessing::  (instance)
+* Iliad.ILRouter-dispatching::  (instance)
+* Iliad.ILRouter-initialization::  (instance)
+* Iliad.ILRouter-testing::  (instance)
+* Iliad.ILRouter-updating::  (instance)
+@end menu
+
+
+
+@node Iliad.ILRouter-accessing
+@subsection Iliad.ILRouter:@- accessing
+
+@table @b
+@meindex application
+@item application
+Answer `application'.
+
+@meindex controller
+@item controller
+Answer `controller'.
+
+@meindex hashRoute
+@item hashRoute
+Not commented.
+
+@meindex route
+@item route
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRouter-dispatching
+@subsection Iliad.ILRouter:@- dispatching
+
+@table @b
+@meindex dispatchRequest
+@item dispatchRequest
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRouter-initialization
+@subsection Iliad.ILRouter:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRouter-testing
+@subsection Iliad.ILRouter:@- testing
+
+@table @b
+@meindex shouldRedirect
+@item shouldRedirect
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILRouter-updating
+@subsection Iliad.ILRouter:@- updating
+
+@table @b
+@meindex updateApplicationFromRoute
+@item updateApplicationFromRoute
+Not commented.
+
+@end table
+
+@node Iliad.ILRubyTextElement
+@section Iliad.ILRubyTextElement
+@clindex Iliad.ILRubyTextElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILRubyTextElement-accessing::  (instance)
+* Iliad.ILRubyTextElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILRubyTextElement-accessing
+@subsection Iliad.ILRubyTextElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'rt''.
+
+@end table
+
+
+
+@node Iliad.ILRubyTextElement-accessing attributes
+@subsection Iliad.ILRubyTextElement:@- accessing attributes
+
+@table @b
+@meindex rbspan:@-
+@item rbspan:@- anInteger
+Not commented.
+
+@end table
+
+@node Iliad.ILScriptElement
+@section Iliad.ILScriptElement
+@clindex Iliad.ILScriptElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILScriptElement-accessing::  (instance)
+* Iliad.ILScriptElement-accessing attributes::  (instance)
+* Iliad.ILScriptElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILScriptElement-accessing
+@subsection Iliad.ILScriptElement:@- accessing
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@meindex contents:@-
+@item contents:@- aString
+Not commented.
+
+@meindex tag
+@item tag
+Answer `'script''.
+
+@end table
+
+
+
+@node Iliad.ILScriptElement-accessing attributes
+@subsection Iliad.ILScriptElement:@- accessing attributes
+
+@table @b
+@meindex beJavascript
+@item beJavascript
+Not commented.
+
+@meindex charset:@-
+@item charset:@- aString
+Not commented.
+
+@meindex defer
+@item defer
+Not commented.
+
+@meindex language:@-
+@item language:@- aString
+Not commented.
+
+@meindex src:@-
+@item src:@- aString
+Not commented.
+
+@meindex type:@-
+@item type:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILScriptElement-printing
+@subsection Iliad.ILScriptElement:@- printing
+
+@table @b
+@meindex beforePrintHtml
+@item beforePrintHtml
+Not commented.
+
+@meindex printHtmlOn:@-
+@item printHtmlOn:@- aStream
+do not encode contents!!
+
+
+@end table
+
+@node Iliad.ILSelectElement
+@section Iliad.ILSelectElement
+@clindex Iliad.ILSelectElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILFormElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILSelectElement-accessing::  (instance)
+* Iliad.ILSelectElement-accessing attributes::  (instance)
+* Iliad.ILSelectElement-initialize release::  (instance)
+@end menu
+
+
+
+@node Iliad.ILSelectElement-accessing
+@subsection Iliad.ILSelectElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'select''.
+
+@end table
+
+
+
+@node Iliad.ILSelectElement-accessing attributes
+@subsection Iliad.ILSelectElement:@- accessing attributes
+
+@table @b
+@meindex action:@-
+@item action:@- aBlock
+This method should not be called for instances of this class.
+
+@meindex beMultiple
+@item beMultiple
+Not commented.
+
+@meindex size:@-
+@item size:@- anInteger
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSelectElement-initialize release
+@subsection Iliad.ILSelectElement:@- initialize release
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+@node Iliad.ILSequence
+@section Iliad.ILSequence
+@clindex Iliad.ILSequence
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILWidget
+@itemx Category: Iliad-Core-Buildables
+
+@end table
+
+@menu
+* Iliad.ILSequence-building::  (instance)
+* Iliad.ILSequence-control flow::  (instance)
+* Iliad.ILSequence-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILSequence-building
+@subsection Iliad.ILSequence:@- building
+
+@table @b
+@meindex build
+@item build
+Not commented.
+
+@meindex contents
+@item contents
+This method should not be called for instances of this class.
+
+@end table
+
+
+
+@node Iliad.ILSequence-control flow
+@subsection Iliad.ILSequence:@- control flow
+
+@table @b
+@meindex restart
+@item restart
+Not commented.
+
+@meindex start
+@item start
+Answer the receiver.
+
+@end table
+
+
+
+@node Iliad.ILSequence-testing
+@subsection Iliad.ILSequence:@- testing
+
+@table @b
+@meindex shouldStart
+@item shouldStart
+Not commented.
+
+@end table
+
+@node Iliad.ILSession
+@section Iliad.ILSession
+@clindex Iliad.ILSession
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Sessions
+I represent a session in Iliad. 
+    I persist as long as I am active (i.e. an user interacts with an application). 
+    When I am inactive, 
+    I expire after a timeout set by #expirySeconds.
+    I also store actions and applications
+@end table
+
+@menu
+* Iliad.ILSession-accessing::  (instance)
+* Iliad.ILSession-accessing others::  (instance)
+* Iliad.ILSession-accessing preferences::  (instance)
+* Iliad.ILSession-accessing timestamps::  (instance)
+* Iliad.ILSession-actions::  (instance)
+* Iliad.ILSession-cleaning::  (instance)
+* Iliad.ILSession-defaults::  (instance)
+* Iliad.ILSession-events::  (instance)
+* Iliad.ILSession-initialization::  (instance)
+* Iliad.ILSession-redirection::  (instance)
+* Iliad.ILSession-states::  (instance)
+* Iliad.ILSession-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILSession-accessing
+@subsection Iliad.ILSession:@- accessing
+
+@table @b
+@meindex applications
+@item applications
+Not commented.
+
+@meindex dirtyWidgets
+@item dirtyWidgets
+Not commented.
+
+@meindex encoding
+@item encoding
+Not commented.
+
+@meindex id
+@item id
+Answer `id'.
+
+@meindex id:@-
+@item id:@- anObject
+Not commented.
+
+@meindex nextId
+@item nextId
+Not commented.
+
+@meindex previousStateRegistry
+@item previousStateRegistry
+Not commented.
+
+@meindex route
+@item route
+Not commented.
+
+@meindex sessionManager
+@item sessionManager
+Not commented.
+
+@meindex stateRegistry
+@item stateRegistry
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-accessing others
+@subsection Iliad.ILSession:@- accessing others
+
+@table @b
+@meindex otherAt:@-
+@item otherAt:@- aKey
+Not commented.
+
+@meindex otherAt:@-ifAbsentPut:@-
+@item otherAt:@- aKey ifAbsentPut:@- aBlock
+Not commented.
+
+@meindex otherAt:@-put:@-
+@item otherAt:@- aKey put:@- anObject
+Not commented.
+
+@meindex others
+@item others
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-accessing preferences
+@subsection Iliad.ILSession:@- accessing preferences
+
+@table @b
+@meindex charset
+@item charset
+Not commented.
+
+@meindex charset:@-
+@item charset:@- aString
+Not commented.
+
+@meindex expirySeconds
+@item expirySeconds
+Not commented.
+
+@meindex expirySeconds:@-
+@item expirySeconds:@- anInteger
+Not commented.
+
+@meindex language
+@item language
+Not commented.
+
+@meindex language:@-
+@item language:@- aSymbol
+Not commented.
+
+@meindex preferenceAt:@-
+@item preferenceAt:@- aSymbol
+Not commented.
+
+@meindex preferenceAt:@-ifAbsentPut:@-
+@item preferenceAt:@- aSymbol ifAbsentPut:@- aBlock
+Not commented.
+
+@meindex preferenceAt:@-put:@-
+@item preferenceAt:@- aSymbol put:@- anObject
+Not commented.
+
+@meindex preferences
+@item preferences
+Not commented.
+
+@meindex refreshOnBacktrack
+@item refreshOnBacktrack
+Not commented.
+
+@meindex refreshOnBacktrack:@-
+@item refreshOnBacktrack:@- aBoolean
+Not commented.
+
+@meindex useCookies
+@item useCookies
+Not commented.
+
+@meindex useCookies:@-
+@item useCookies:@- aBoolean
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-accessing timestamps
+@subsection Iliad.ILSession:@- accessing timestamps
+
+@table @b
+@meindex createdTimestamp
+@item createdTimestamp
+Not commented.
+
+@meindex modifiedTimestamp
+@item modifiedTimestamp
+Not commented.
+
+@meindex setCreatedTimestamp
+@item setCreatedTimestamp
+Not commented.
+
+@meindex setModifiedTimestamp
+@item setModifiedTimestamp
+Not commented.
+
+@meindex timestampAt:@-
+@item timestampAt:@- aSymbol
+Not commented.
+
+@meindex timestampAt:@-ifAbsentPut:@-
+@item timestampAt:@- aSymbol ifAbsentPut:@- aBlock
+Not commented.
+
+@meindex timestampAt:@-put:@-
+@item timestampAt:@- aSymbol put:@- anObject
+Not commented.
+
+@meindex timestamps
+@item timestamps
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-actions
+@subsection Iliad.ILSession:@- actions
+
+@table @b
+@meindex actionAt:@-
+@item actionAt:@- aKeyString
+Not commented.
+
+@meindex actionFor:@-
+@item actionFor:@- aBlock
+Not commented.
+
+@meindex actionRegistry
+@item actionRegistry
+Not commented.
+
+@meindex evaluateActionKey:@-
+@item evaluateActionKey:@- aString
+Not commented.
+
+@meindex registerAction:@-
+@item registerAction:@- anAction
+Not commented.
+
+@meindex registerActionFor:@-
+@item registerActionFor:@- aBlock
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-cleaning
+@subsection Iliad.ILSession:@- cleaning
+
+@table @b
+@meindex clearActionRegistry
+@item clearActionRegistry
+Not commented.
+
+@meindex clearRedirectUrl
+@item clearRedirectUrl
+Not commented.
+
+@meindex clearStateRegistries
+@item clearStateRegistries
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-defaults
+@subsection Iliad.ILSession:@- defaults
+
+@table @b
+@meindex defaultExpirySeconds
+@item defaultExpirySeconds
+Answer `1800'.
+
+@meindex defaultLanguage
+@item defaultLanguage
+Answer `'en''.
+
+@end table
+
+
+
+@node Iliad.ILSession-events
+@subsection Iliad.ILSession:@- events
+
+@table @b
+@meindex onExpire
+@item onExpire
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-initialization
+@subsection Iliad.ILSession:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-redirection
+@subsection Iliad.ILSession:@- redirection
+
+@table @b
+@meindex redirect
+@item redirect
+Not commented.
+
+@meindex redirectTo:@-
+@item redirectTo:@- anUrlString
+Not commented.
+
+@meindex redirectToIndex
+@item redirectToIndex
+Not commented.
+
+@meindex redirectToLocal:@-
+@item redirectToLocal:@- anUrlString
+Not commented.
+
+@meindex redirectUrl
+@item redirectUrl
+Answer `redirectUrl'.
+
+@meindex redirectUrl:@-
+@item redirectUrl:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-states
+@subsection Iliad.ILSession:@- states
+
+@table @b
+@meindex newStateRegistry
+@item newStateRegistry
+Not commented.
+
+@meindex stateRegistries
+@item stateRegistries
+Not commented.
+
+@meindex stateRegistryAt:@-
+@item stateRegistryAt:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSession-testing
+@subsection Iliad.ILSession:@- testing
+
+@table @b
+@meindex isExpired
+@item isExpired
+Not commented.
+
+@meindex shouldUseSessionField
+@item shouldUseSessionField
+Not commented.
+
+@end table
+
+@node Iliad.ILSessionManager
+@section Iliad.ILSessionManager
+@clindex Iliad.ILSessionManager
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Sessions
+I am responsible for managing, creating and removing sessions.
+The class method #current answers my only instance.
+
+You shouldn't subclass me. 
+Instead, you can change my preferences with methods in the 
+<accessing preferences> protocol.
+
+In addition, do not try to access the current session from here, 
+use ILContext>>session instead.
+
+-- maintenance --
+
+To remove all sessions, even not expired ones, call #removeAllSessions.
+To remove all expired sessions, call #removeExpiredSessions
+@end table
+
+@menu
+* Iliad.ILSessionManager class-instance creation::  (class)
+* Iliad.ILSessionManager-accessing::  (instance)
+* Iliad.ILSessionManager-accessing preferences::  (instance)
+* Iliad.ILSessionManager-adding-removing::  (instance)
+* Iliad.ILSessionManager-enumerating::  (instance)
+* Iliad.ILSessionManager-initialization::  (instance)
+* Iliad.ILSessionManager-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILSessionManager class-instance creation
+@subsection Iliad.ILSessionManager class:@- instance creation
+
+@table @b
+@meindex current
+@item current
+Not commented.
+
+@meindex new
+@item new
+This method should not be called for instances of this class.
+
+@end table
+
+
+
+@node Iliad.ILSessionManager-accessing
+@subsection Iliad.ILSessionManager:@- accessing
+
+@table @b
+@meindex expiredSessions
+@item expiredSessions
+Not commented.
+
+@meindex sessions
+@item sessions
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSessionManager-accessing preferences
+@subsection Iliad.ILSessionManager:@- accessing preferences
+
+@table @b
+@meindex cookieName
+@item cookieName
+Not commented.
+
+@meindex cookieName:@-
+@item cookieName:@- aString
+Not commented.
+
+@meindex preferenceAt:@-
+@item preferenceAt:@- aSymbol
+Not commented.
+
+@meindex preferenceAt:@-ifAbsentPut:@-
+@item preferenceAt:@- aSymbol ifAbsentPut:@- aBlock
+Not commented.
+
+@meindex preferenceAt:@-put:@-
+@item preferenceAt:@- aSymbol put:@- anObject
+Not commented.
+
+@meindex preferences
+@item preferences
+Not commented.
+
+@meindex sessionClass
+@item sessionClass
+Not commented.
+
+@meindex sessionClass:@-
+@item sessionClass:@- aSessionClass
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSessionManager-adding-removing
+@subsection Iliad.ILSessionManager:@- adding-removing
+
+@table @b
+@meindex addSession:@-
+@item addSession:@- aSession
+Not commented.
+
+@meindex removeSession:@-
+@item removeSession:@- aSession
+Not commented.
+
+@meindex sessionFor:@-
+@item sessionFor:@- aRequest
+Answer the according session for <aRequest>.
+the session id may be found from <aRequest> cookies or <aRequest> fields.
+If no session is found, create and return a new one
+
+
+@end table
+
+
+
+@node Iliad.ILSessionManager-enumerating
+@subsection Iliad.ILSessionManager:@- enumerating
+
+@table @b
+@meindex sessionsDo:@-
+@item sessionsDo:@- aBlock
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSessionManager-initialization
+@subsection Iliad.ILSessionManager:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILSessionManager-testing
+@subsection Iliad.ILSessionManager:@- testing
+
+@table @b
+@meindex hasSession:@-
+@item hasSession:@- aSession
+Not commented.
+
+@meindex shouldRemoveExpiredSessions
+@item shouldRemoveExpiredSessions
+Do not remove all expired sessions for each request
+
+
+@end table
+
+@node Iliad.ILSpanElement
+@section Iliad.ILSpanElement
+@clindex Iliad.ILSpanElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILSpanElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILSpanElement-accessing
+@subsection Iliad.ILSpanElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'span''.
+
+@end table
+
+@node Iliad.ILStateRegistry
+@section Iliad.ILStateRegistry
+@clindex Iliad.ILStateRegistry
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Sessions
+
+@end table
+
+@menu
+* Iliad.ILStateRegistry class-instance creation::  (class)
+* Iliad.ILStateRegistry-accessing::  (instance)
+* Iliad.ILStateRegistry-states::  (instance)
+* Iliad.ILStateRegistry-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILStateRegistry class-instance creation
+@subsection Iliad.ILStateRegistry class:@- instance creation
+
+@table @b
+@meindex fromRegistry:@-
+@item fromRegistry:@- aStateRegistry
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILStateRegistry-accessing
+@subsection Iliad.ILStateRegistry:@- accessing
+
+@table @b
+@meindex key
+@item key
+Not commented.
+
+@meindex setStates:@-
+@item setStates:@- aDictionary
+Not commented.
+
+@meindex stateAt:@-
+@item stateAt:@- aWidget
+Not commented.
+
+@meindex states
+@item states
+Not commented.
+
+@meindex widgets
+@item widgets
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILStateRegistry-states
+@subsection Iliad.ILStateRegistry:@- states
+
+@table @b
+@meindex dirtyChildrenOf:@-
+@item dirtyChildrenOf:@- aBuildable
+Not commented.
+
+@meindex dirtyWidgets
+@item dirtyWidgets
+Answer all widgets which state has changed
+
+
+@meindex register:@-
+@item register:@- aWidget
+Not commented.
+
+@meindex unregister:@-
+@item unregister:@- aWidget
+Not commented.
+
+@meindex unregisterAllWidgets
+@item unregisterAllWidgets
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILStateRegistry-testing
+@subsection Iliad.ILStateRegistry:@- testing
+
+@table @b
+@meindex isWidgetDirty:@-
+@item isWidgetDirty:@- aWidget
+Not commented.
+
+@end table
+
+@node Iliad.ILTableBodyElement
+@section Iliad.ILTableBodyElement
+@clindex Iliad.ILTableBodyElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILTableElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableBodyElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableBodyElement-accessing
+@subsection Iliad.ILTableBodyElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'tbody''.
+
+@end table
+
+@node Iliad.ILTableCellElement
+@section Iliad.ILTableCellElement
+@clindex Iliad.ILTableCellElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILTableElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableCellElement-accessing attributes-table::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableCellElement-accessing attributes-table
+@subsection Iliad.ILTableCellElement:@- accessing attributes-table
+
+@table @b
+@meindex abbr:@-
+@item abbr:@- aString
+Not commented.
+
+@meindex axis:@-
+@item axis:@- aString
+Not commented.
+
+@meindex colScope
+@item colScope
+Not commented.
+
+@meindex colgroupScope
+@item colgroupScope
+Not commented.
+
+@meindex colspan:@-
+@item colspan:@- anInteger
+Not commented.
+
+@meindex headers:@-
+@item headers:@- aCollection
+Not commented.
+
+@meindex rowScope
+@item rowScope
+Not commented.
+
+@meindex rowgroupScope
+@item rowgroupScope
+Not commented.
+
+@meindex rowspan:@-
+@item rowspan:@- anInteger
+Not commented.
+
+@meindex scope:@-
+@item scope:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILTableDataElement
+@section Iliad.ILTableDataElement
+@clindex Iliad.ILTableDataElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILTableCellElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableDataElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableDataElement-accessing
+@subsection Iliad.ILTableDataElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'td''.
+
+@end table
+
+@node Iliad.ILTableElement
+@section Iliad.ILTableElement
+@clindex Iliad.ILTableElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableElement-accessing::  (instance)
+* Iliad.ILTableElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableElement-accessing
+@subsection Iliad.ILTableElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'table''.
+
+@end table
+
+
+
+@node Iliad.ILTableElement-accessing attributes
+@subsection Iliad.ILTableElement:@- accessing attributes
+
+@table @b
+@meindex aboveFrame
+@item aboveFrame
+Not commented.
+
+@meindex allRules
+@item allRules
+Not commented.
+
+@meindex belowFrame
+@item belowFrame
+Not commented.
+
+@meindex border:@-
+@item border:@- anInteger
+Not commented.
+
+@meindex borderFrame
+@item borderFrame
+Not commented.
+
+@meindex boxFrame
+@item boxFrame
+Not commented.
+
+@meindex cellpadding:@-
+@item cellpadding:@- anInteger
+Not commented.
+
+@meindex cellspacing:@-
+@item cellspacing:@- anInteger
+Not commented.
+
+@meindex colsRules
+@item colsRules
+Not commented.
+
+@meindex frame:@-
+@item frame:@- aString
+Not commented.
+
+@meindex groupRules
+@item groupRules
+Not commented.
+
+@meindex hsidesFrame
+@item hsidesFrame
+Not commented.
+
+@meindex lhsFrame
+@item lhsFrame
+Not commented.
+
+@meindex noRules
+@item noRules
+Not commented.
+
+@meindex rhsFrame
+@item rhsFrame
+Not commented.
+
+@meindex rowsRules
+@item rowsRules
+Not commented.
+
+@meindex rules:@-
+@item rules:@- aString
+Not commented.
+
+@meindex summary:@-
+@item summary:@- aString
+Not commented.
+
+@meindex voidFrame
+@item voidFrame
+Not commented.
+
+@meindex vsidesFrame
+@item vsidesFrame
+Not commented.
+
+@meindex width:@-
+@item width:@- anInteger
+Not commented.
+
+@end table
+
+@node Iliad.ILTableElementElement
+@section Iliad.ILTableElementElement
+@clindex Iliad.ILTableElementElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableElementElement-accessing attributes-table::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableElementElement-accessing attributes-table
+@subsection Iliad.ILTableElementElement:@- accessing attributes-table
+
+@table @b
+@meindex align:@-
+@item align:@- aString
+Not commented.
+
+@meindex baselineValign
+@item baselineValign
+Not commented.
+
+@meindex bottomValign
+@item bottomValign
+Not commented.
+
+@meindex centerAlign
+@item centerAlign
+Not commented.
+
+@meindex character:@-
+@item character:@- aCharacter
+Not commented.
+
+@meindex characterAlign
+@item characterAlign
+Not commented.
+
+@meindex charoff:@-
+@item charoff:@- anInteger
+Not commented.
+
+@meindex justifyAlign
+@item justifyAlign
+Not commented.
+
+@meindex leftAlign
+@item leftAlign
+Not commented.
+
+@meindex middleValign
+@item middleValign
+Not commented.
+
+@meindex rightAlign
+@item rightAlign
+Not commented.
+
+@meindex topValign
+@item topValign
+Not commented.
+
+@meindex valign:@-
+@item valign:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILTableFootElement
+@section Iliad.ILTableFootElement
+@clindex Iliad.ILTableFootElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILTableElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableFootElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableFootElement-accessing
+@subsection Iliad.ILTableFootElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'tfoot''.
+
+@end table
+
+@node Iliad.ILTableHeadElement
+@section Iliad.ILTableHeadElement
+@clindex Iliad.ILTableHeadElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILTableElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableHeadElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableHeadElement-accessing
+@subsection Iliad.ILTableHeadElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'thead''.
+
+@end table
+
+@node Iliad.ILTableHeaderElement
+@section Iliad.ILTableHeaderElement
+@clindex Iliad.ILTableHeaderElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILTableCellElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableHeaderElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableHeaderElement-accessing
+@subsection Iliad.ILTableHeaderElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'th''.
+
+@end table
+
+@node Iliad.ILTableRowElement
+@section Iliad.ILTableRowElement
+@clindex Iliad.ILTableRowElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILTableCellElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTableRowElement-accessing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTableRowElement-accessing
+@subsection Iliad.ILTableRowElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'tr''.
+
+@end table
+
+@node Iliad.ILTextAreaElement
+@section Iliad.ILTextAreaElement
+@clindex Iliad.ILTextAreaElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILFormElementElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTextAreaElement-accessing::  (instance)
+* Iliad.ILTextAreaElement-accessing attributes::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTextAreaElement-accessing
+@subsection Iliad.ILTextAreaElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'textarea''.
+
+@end table
+
+
+
+@node Iliad.ILTextAreaElement-accessing attributes
+@subsection Iliad.ILTextAreaElement:@- accessing attributes
+
+@table @b
+@meindex cols:@-
+@item cols:@- anInteger
+Not commented.
+
+@meindex rows:@-
+@item rows:@- anInteger
+Not commented.
+
+@meindex tabindex:@-
+@item tabindex:@- anInteger
+Not commented.
+
+@end table
+
+@node Iliad.ILTextElement
+@section Iliad.ILTextElement
+@clindex Iliad.ILTextElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILElement
+@itemx Category: Iliad-Core-Elements
+
+@end table
+
+@menu
+* Iliad.ILTextElement-accessing::  (instance)
+* Iliad.ILTextElement-adding::  (instance)
+* Iliad.ILTextElement-printing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTextElement-accessing
+@subsection Iliad.ILTextElement:@- accessing
+
+@table @b
+@meindex contents
+@item contents
+Not commented.
+
+@meindex contents:@-
+@item contents:@- aString
+Not commented.
+
+@meindex tag
+@item tag
+Answer `tag'.
+
+@meindex tag:@-
+@item tag:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILTextElement-adding
+@subsection Iliad.ILTextElement:@- adding
+
+@table @b
+@meindex add:@-
+@item add:@- anElement
+Not commented.
+
+@meindex text:@-
+@item text:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILTextElement-printing
+@subsection Iliad.ILTextElement:@- printing
+
+@table @b
+@meindex printHtmlOn:@-
+@item printHtmlOn:@- aStream
+Not commented.
+
+@end table
+
+@node Iliad.ILTitleElement
+@section Iliad.ILTitleElement
+@clindex Iliad.ILTitleElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILHTMLBuilderElement
+@itemx Category: Iliad-Core-XHTMLElements
+
+@end table
+
+@menu
+* Iliad.ILTitleElement-accessing::  (instance)
+* Iliad.ILTitleElement-accessing attributes-events::  (instance)
+@end menu
+
+
+
+@node Iliad.ILTitleElement-accessing
+@subsection Iliad.ILTitleElement:@- accessing
+
+@table @b
+@meindex tag
+@item tag
+Answer `'title''.
+
+@end table
+
+
+
+@node Iliad.ILTitleElement-accessing attributes-events
+@subsection Iliad.ILTitleElement:@- accessing attributes-events
+
+@table @b
+@meindex onEvent:@-add:@-
+@item onEvent:@- anEvent add:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILUrl
+@section Iliad.ILUrl
+@clindex Iliad.ILUrl
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Object
+@itemx Category: Iliad-Core-lib-HTTP
+I represent all portions of an URL as described by the RFC 1738. 
+I include scheme, username, password, hostname, port, path, parameters, and fragment.
+    
+    Portions of this code are based on code of Kazuki Yasumatsu and Paolo Bonzini.
+    
+Instance Variables
+scheme:@-                 <String> or nil
+username:@-               <String> or nil
+password:@-               <String> or nil
+hostname:@-               <String> or nil
+port:@-                   <Integer> or nil
+path:@-                  <OrderedCollection> or nil
+parameters:@-          <Grease.GRSmallDictionary>
+fragment:@-            <String> or nil
+@end table
+
+@menu
+* Iliad.ILUrl class-decoding::  (class)
+* Iliad.ILUrl class-instance creation::  (class)
+* Iliad.ILUrl class-parsing::  (class)
+* Iliad.ILUrl-accessing::  (instance)
+* Iliad.ILUrl-adding::  (instance)
+* Iliad.ILUrl-basic::  (instance)
+* Iliad.ILUrl-comparing::  (instance)
+* Iliad.ILUrl-converting::  (instance)
+* Iliad.ILUrl-copying::  (instance)
+* Iliad.ILUrl-encoding::  (instance)
+* Iliad.ILUrl-initialization::  (instance)
+* Iliad.ILUrl-parsing::  (instance)
+* Iliad.ILUrl-printing::  (instance)
+* Iliad.ILUrl-removing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILUrl class-decoding
+@subsection Iliad.ILUrl class:@- decoding
+
+@table @b
+@meindex decodePercent:@-
+@item decodePercent:@- aString
+percent decodes the given String
+
+
+@end table
+
+
+
+@node Iliad.ILUrl class-instance creation
+@subsection Iliad.ILUrl class:@- instance creation
+
+@table @b
+@meindex new
+@item new
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl class-parsing
+@subsection Iliad.ILUrl class:@- parsing
+
+@table @b
+@meindex absolute:@-
+@item absolute:@- aString
+Parse aString as an absolute URL.
+
+
+@meindex absolute:@-relative:@-
+@item absolute:@- aString relative:@- aRelativeString
+Take absolute URL aString and combine it with a relative path aRelativeString.
+
+
+@end table
+
+
+
+@node Iliad.ILUrl-accessing
+@subsection Iliad.ILUrl:@- accessing
+
+@table @b
+@meindex fragment
+@item fragment
+Answer the fragment part of the URL.
+
+
+@meindex fragment:@-
+@item fragment:@- aString
+Not commented.
+
+@meindex hostname
+@item hostname
+Answer the host part of the URL.
+
+
+@meindex hostname:@-
+@item hostname:@- aString
+Not commented.
+
+@meindex parameters
+@item parameters
+Not commented.
+
+@meindex password
+@item password
+Answer the password part of the URL.
+
+
+@meindex password:@-
+@item password:@- aString
+Not commented.
+
+@meindex path
+@item path
+Answer the path part of the URL.
+
+
+@meindex path:@-
+@item path:@- aCollection
+Set the path part of the URL to aCollection.
+
+
+@meindex port
+@item port
+Answer the port number part of the URL.
+
+
+@meindex port:@-
+@item port:@- aNumber
+Not commented.
+
+@meindex scheme
+@item scheme
+Answer the URL's scheme.
+
+
+@meindex scheme:@-
+@slindex greaseString
+@slindex displayString
+@item scheme:@- aString
+we really expect a String here, Old versions (2.7) expected a Symbol you can still pass a Symbol and get away with it but don't expect this behavior to be supported in future versions.
+#greaseString is the 'correct' way to convert a Symbol to a String since #displayString will add a hash on VW
+
+
+@meindex username
+@item username
+Answer the username part of the URL.
+
+
+@meindex username:@-
+@item username:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-adding
+@subsection Iliad.ILUrl:@- adding
+
+@table @b
+@meindex addAllToPath:@-
+@item addAllToPath:@- aCollectionOfStrings
+convenice method to add a collection of strings to the path
+
+
+@meindex addParameter:@-
+@item addParameter:@- aString
+Not commented.
+
+@meindex addParameter:@-value:@-
+@item addParameter:@- keyString value:@- valueString
+Not commented.
+
+@meindex addToPath:@-
+@item addToPath:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-basic
+@subsection Iliad.ILUrl:@- basic
+
+@table @b
+@meindex ,
+@item , aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-comparing
+@subsection Iliad.ILUrl:@- comparing
+
+@table @b
+@meindex =
+@item = anUrl
+Not commented.
+
+@meindex hash
+@item hash
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-converting
+@subsection Iliad.ILUrl:@- converting
+
+@table @b
+@meindex asString
+@item asString
+Not commented.
+
+@meindex greaseString
+@item greaseString
+Not commented.
+
+@meindex pathString
+@item pathString
+Answer the path converted to a string.
+
+
+@meindex relativeTo:@-
+@item relativeTo:@- anUrl
+Answer a path element collection relative from the receiver to anUrl.
+
+
+@end table
+
+
+
+@node Iliad.ILUrl-copying
+@subsection Iliad.ILUrl:@- copying
+
+@table @b
+@meindex postCopy
+@item postCopy
+Not commented.
+
+@meindex with:@-
+@item with:@- pathString
+Not commented.
+
+@meindex withParameter:@-
+@item withParameter:@- aString
+Not commented.
+
+@meindex withParameter:@-value:@-
+@item withParameter:@- aString value:@- valueString
+Not commented.
+
+@meindex withoutParameters
+@item withoutParameters
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-encoding
+@subsection Iliad.ILUrl:@- encoding
+
+@table @b
+@meindex printFragmentOn:@-encoded:@-
+@item printFragmentOn:@- aStream encoded:@- aBoolean
+Not commented.
+
+@meindex printOn:@-encoded:@-usingHtmlEntities:@-
+@item printOn:@- aStream encoded:@- aBoolean usingHtmlEntities:@- anotherBoolean
+Not commented.
+
+@meindex printParametersOn:@-encoded:@-usingHtmlEntities:@-
+@item printParametersOn:@- aStream encoded:@- aBoolean usingHtmlEntities:@- anotherBoolean
+Not commented.
+
+@meindex printPathOn:@-encoded:@-
+@item printPathOn:@- aStream encoded:@- aBoolean
+Not commented.
+
+@meindex printServerOn:@-encoded:@-
+@item printServerOn:@- aStream encoded:@- aBoolean
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-initialization
+@subsection Iliad.ILUrl:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@meindex initializeFromString:@-
+@item initializeFromString:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-parsing
+@subsection Iliad.ILUrl:@- parsing
+
+@table @b
+@meindex parseFragment:@-
+@item parseFragment:@- aString
+Not commented.
+
+@meindex parseHost:@-
+@item parseHost:@- aString
+Not commented.
+
+@meindex parseParameters:@-
+@item parseParameters:@- aString
+Not commented.
+
+@meindex parsePath:@-
+@item parsePath:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-printing
+@subsection Iliad.ILUrl:@- printing
+
+@table @b
+@meindex printEncodedOn:@-
+@item printEncodedOn:@- aStream
+Not commented.
+
+@meindex printOn:@-
+@item printOn:@- aStream
+Not commented.
+
+@meindex printOn:@-encoded:@-
+@item printOn:@- aStream encoded:@- aBoolean
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrl-removing
+@subsection Iliad.ILUrl:@- removing
+
+@table @b
+@meindex removeParameter:@-
+@item removeParameter:@- aString
+Not commented.
+
+@end table
+
+@node Iliad.ILUrlBuilder
+@section Iliad.ILUrlBuilder
+@clindex Iliad.ILUrlBuilder
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILObject
+@itemx Category: Iliad-Core-Sessions
+
+@end table
+
+@menu
+* Iliad.ILUrlBuilder class-accessing::  (class)
+* Iliad.ILUrlBuilder class-defaults::  (class)
+* Iliad.ILUrlBuilder-accessing::  (instance)
+* Iliad.ILUrlBuilder-generating::  (instance)
+* Iliad.ILUrlBuilder-testing::  (instance)
+@end menu
+
+
+
+@node Iliad.ILUrlBuilder class-accessing
+@subsection Iliad.ILUrlBuilder class:@- accessing
+
+@table @b
+@meindex actionKey
+@item actionKey
+Not commented.
+
+@meindex addRewriteRule:@-
+@item addRewriteRule:@- aBlock
+Not commented.
+
+@meindex ajaxUploadKey
+@item ajaxUploadKey
+Not commented.
+
+@meindex hashKey
+@item hashKey
+Not commented.
+
+@meindex rewriteRules
+@item rewriteRules
+Rewrite rules are used to replace patterns in the baseUrl
+
+
+@meindex sessionKey
+@item sessionKey
+Not commented.
+
+@meindex stateKey
+@item stateKey
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrlBuilder class-defaults
+@subsection Iliad.ILUrlBuilder class:@- defaults
+
+@table @b
+@meindex defaultActionKey
+@item defaultActionKey
+Answer `'_action''.
+
+@meindex defaultAjaxUploadKey
+@item defaultAjaxUploadKey
+Answer `'_ajax_upload''.
+
+@meindex defaultHashKey
+@item defaultHashKey
+Answer `'_hash''.
+
+@meindex defaultSessionKey
+@item defaultSessionKey
+Answer `'_session''.
+
+@meindex defaultStateKey
+@item defaultStateKey
+Answer `'_state''.
+
+@end table
+
+
+
+@node Iliad.ILUrlBuilder-accessing
+@subsection Iliad.ILUrlBuilder:@- accessing
+
+@table @b
+@meindex actionKey
+@item actionKey
+Not commented.
+
+@meindex hashKey
+@item hashKey
+Not commented.
+
+@meindex rewriteRules
+@item rewriteRules
+Not commented.
+
+@meindex sessionKey
+@item sessionKey
+Not commented.
+
+@meindex stateKey
+@item stateKey
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrlBuilder-generating
+@subsection Iliad.ILUrlBuilder:@- generating
+
+@table @b
+@meindex addDefaultParametersTo:@-
+@item addDefaultParametersTo:@- anUrl
+Not commented.
+
+@meindex applyRewriteRulesTo:@-
+@item applyRewriteRulesTo:@- anUrl
+Not commented.
+
+@meindex baseUrl
+@item baseUrl
+Not commented.
+
+@meindex urlFor:@-
+@item urlFor:@- aString
+Not commented.
+
+@meindex urlForAction:@-
+@item urlForAction:@- anAction
+Not commented.
+
+@meindex urlForAction:@-hash:@-
+@item urlForAction:@- anAction hash:@- aHashString
+Not commented.
+
+@meindex urlForActionKey:@-hash:@-
+@item urlForActionKey:@- aKeyString hash:@- aHashString
+Not commented.
+
+@meindex urlForRedirection:@-
+@item urlForRedirection:@- aString
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILUrlBuilder-testing
+@subsection Iliad.ILUrlBuilder:@- testing
+
+@table @b
+@meindex shouldUseSessionField
+@item shouldUseSessionField
+Not commented.
+
+@end table
+
+@node Iliad.ILWidget
+@section Iliad.ILWidget
+@clindex Iliad.ILWidget
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILBuildable
+@itemx Category: Iliad-Core-Buildables
+I am a stateful graphical component. 
+
+
+""""""""""""""""""""""""""""""
+" Building HTML with widgets "
+""""""""""""""""""""""""""""""
+
+To build HTML override the #contents method, which should always 
+return a view block, ie, a block which takes an element as parameter.
+
+Example:@- 
+
+contents 
+    ^[:@-e || div |
+        div := e div class:@- 'foo'.
+        div h1:@- 'Bar'.
+        div a
+            text:@- 'do something';
+            action:@- [self doSomething]]
+
+
+See Iliad.ILElement hierarchy (Especially Iliad.ILHTMLBuilderElement ) for more information 
+about building HTML with elements.
+
+#contents method should *never* be called from the outside. Use #build instead. 
+For instance, to build a sub-widget in a view block, you should write something like:@-
+
+contents [
+    ^[:@-e | e build:@- mySubWidget]
+]
+
+
+""""""""""""""""
+" Control flow "
+""""""""""""""""
+
+I can show (display instead of me) other widgets with #show* methods or answer 
+to widgets that called me with #answer. 
+
+When using the javascript layer, call #markDirty whenever my state change,
+so I will be updated on AJAX requests.
+
+Widgets which states depend on me can be automatically rebuilt whenever I am
+marked as dirty (see #addDependentWidget:@-).
+
+
+""""""""""""""
+" Decorators "
+""""""""""""""
+
+I can also have decorators that may modify my behavior. A decorator can be 
+added to the decoration chain with #decorateWith:@-.
+@end table
+
+@menu
+* Iliad.ILWidget-accessing::  (instance)
+* Iliad.ILWidget-building::  (instance)
+* Iliad.ILWidget-control flow::  (instance)
+* Iliad.ILWidget-copying::  (instance)
+* Iliad.ILWidget-decorators::  (instance)
+* Iliad.ILWidget-defaults::  (instance)
+* Iliad.ILWidget-initialization::  (instance)
+* Iliad.ILWidget-printing::  (instance)
+* Iliad.ILWidget-states::  (instance)
+@end menu
+
+
+
+@node Iliad.ILWidget-accessing
+@subsection Iliad.ILWidget:@- accessing
+
+@table @b
+@meindex dependentWidgets
+@item dependentWidgets
+Not commented.
+
+@meindex id
+@item id
+Not commented.
+
+@meindex id:@-
+@item id:@- aString
+Not commented.
+
+@meindex owner
+@item owner
+Answer the widget which shows me. if any
+
+
+@meindex owner:@-
+@item owner:@- aWidget
+Not commented.
+
+@meindex state
+@item state
+Not commented.
+
+@meindex stateRegistry
+@item stateRegistry
+Not commented.
+
+@meindex widget
+@item widget
+Answer the receiver.
+
+@meindex widgetFor:@-
+@item widgetFor:@- aBuildable
+Convenience method. This is useful for building anonymous widgets.
+ex:@- myWidget := self widgetFor:@- [:@-e | e h1:@- 'Hello world!']
+
+
+@end table
+
+
+
+@node Iliad.ILWidget-building
+@subsection Iliad.ILWidget:@- building
+
+@table @b
+@meindex buildContents
+@slindex contents
+@item buildContents
+Do *not* override this method. Use #contents instead
+
+
+@meindex buildHead:@-
+@item buildHead:@- aHead
+Not commented.
+
+@meindex contents
+@item contents
+Override this method to add contents to your widget
+
+
+@meindex fullContents
+@slindex contents
+@item fullContents
+Do *not* override this method. Use #contents instead
+
+
+@meindex scripts
+@item scripts
+Answer a collection of strings.
+Override in subclasses to add scripts to load with the widget
+
+
+@meindex styles
+@item styles
+Answer a collection of strings.
+Override in subclasses to add styles to load with the widget
+
+
+@end table
+
+
+
+@node Iliad.ILWidget-control flow
+@subsection Iliad.ILWidget:@- control flow
+
+@table @b
+@meindex addDependentWidget:@-
+@item addDependentWidget:@- aWidget
+Add <aWidget> to my dependent widgets.
+Each dependent widget will be rebuilt on AJAX requests whenever
+I am rebuilt
+
+
+@meindex answer
+@item answer
+Give the control back to the owner, i.e, the widget which showed the receiver.
+Answer self
+
+
+@meindex answer:@-
+@item answer:@- anAnswer
+Give the control back to the owner, i.e, the widget which showed the receiver.
+Answer <anAnswer>
+
+
+@meindex append:@-
+@item append:@- aWidget
+Insert <aWidget> after the receiver
+
+
+@meindex append:@-onAnswer:@-
+@item append:@- aWidget onAnswer:@- aBlock
+Insert <aWidget> after the receiver
+
+
+@meindex confirm:@-ifTrue:@-
+@item confirm:@- aString ifTrue:@- aBlock
+Not commented.
+
+@meindex confirm:@-ifTrue:@-ifFalse:@-
+@item confirm:@- aString ifTrue:@- aBlock ifFalse:@- anotherBlock
+Not commented.
+
+@meindex handleAnswer:@-
+@item handleAnswer:@- anAnswer
+Answer `nil'.
+
+@meindex inform:@-
+@item inform:@- aString
+Not commented.
+
+@meindex prepend:@-
+@item prepend:@- aWidget
+Insert <aWidget> before the receiver
+
+
+@meindex prepend:@-onAnswer:@-
+@item prepend:@- aWidget onAnswer:@- aBlock
+Insert <aWidget> before the receiver
+
+
+@meindex removeDependentWidget:@-
+@item removeDependentWidget:@- aWidget
+Not commented.
+
+@meindex retrieveControl
+@item retrieveControl
+Give the control back to the receiver, and make any showed widget answer nil
+
+
+@meindex show:@-
+@item show:@- aWidget
+Show another widget instead of the receiver.
+The receiver is also implicitely marked dirty
+
+
+@meindex show:@-onAnswer:@-
+@item show:@- aWidget onAnswer:@- aBlock
+Show another widget instead of the receiver and catch the answer in <aBlock>.
+The receiver is also implicitely marked dirty
+
+
+@meindex show:@-onAnswer:@-delegator:@-
+@item show:@- aWidget onAnswer:@- aBlock delegator:@- aDelegator
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILWidget-copying
+@subsection Iliad.ILWidget:@- copying
+
+@table @b
+@meindex postCopy
+@item postCopy
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILWidget-decorators
+@subsection Iliad.ILWidget:@- decorators
+
+@table @b
+@meindex decorateWith:@-
+@item decorateWith:@- aDecorator
+Not commented.
+
+@meindex decorateWith:@-during:@-
+@item decorateWith:@- aDecorator during:@- aBlock
+Not commented.
+
+@meindex decoratorsDo:@-
+@item decoratorsDo:@- aBlock
+Not commented.
+
+@meindex removeDecorator:@-
+@item removeDecorator:@- aDecorator
+Remove <aDecorator> from the decoration chain,
+except if <aDecorator> is the initial one
+
+
+@meindex withDecoratorsDo:@-
+@item withDecoratorsDo:@- aBlock
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILWidget-defaults
+@subsection Iliad.ILWidget:@- defaults
+
+@table @b
+@meindex rootElementClass
+@item rootElementClass
+Answer `ILDivElement'.
+
+@end table
+
+
+
+@node Iliad.ILWidget-initialization
+@subsection Iliad.ILWidget:@- initialization
+
+@table @b
+@meindex initialize
+@item initialize
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILWidget-printing
+@subsection Iliad.ILWidget:@- printing
+
+@table @b
+@meindex printJsonOn:@-
+@item printJsonOn:@- aStream
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILWidget-states
+@subsection Iliad.ILWidget:@- states
+
+@table @b
+@meindex markDirty
+@item markDirty
+Mark the receiver as 'dirty', 
+so the widget will be rebuilt on Ajax requests.
+You do not need to mark subwidgets as dirty, 
+they will be rebuilt together with the receiver
+
+
+@meindex registerState
+@item registerState
+Not commented.
+
+@end table
+
+@node Iliad.ILXmlElement
+@section Iliad.ILXmlElement
+@clindex Iliad.ILXmlElement
+
+@table @b
+@item Defined in namespace Iliad
+@itemx Superclass: Iliad.ILElement
+@itemx Category: Iliad-Core-Elements
+
+@end table
+
+@menu
+* Iliad.ILXmlElement-accessing::  (instance)
+* Iliad.ILXmlElement-converting::  (instance)
+@end menu
+
+
+
+@node Iliad.ILXmlElement-accessing
+@subsection Iliad.ILXmlElement:@- accessing
+
+@table @b
+@meindex contentType
+@item contentType
+Not commented.
+
+@meindex tag
+@item tag
+Answer `tag'.
+
+@meindex tag:@-
+@item tag:@- aString
+Not commented.
+
+@meindex xmlTag
+@item xmlTag
+Not commented.
+
+@end table
+
+
+
+@node Iliad.ILXmlElement-converting
+@subsection Iliad.ILXmlElement:@- converting
+
+@table @b
+@meindex respondOn:@-
+@item respondOn:@- aResponse
+Not commented.
+
+@end table
+

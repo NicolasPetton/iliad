@@ -1,0 +1,110 @@
+\input texinfo @c -*- texinfo -*-
+
+@c %**start of header
+@setfilename iliad.texi
+@settitle Iliad developper's guide
+@setchapternewpage odd
+@c %**end of header
+
+@copying
+@quotation
+The contents of this book are protected under Creative Commons Attribution-ShareAlike 3.0 Unported license.
+
+You are free:
+@itemize @bullet
+@item
+to Share — to copy, distribute and transmit the work
+@item
+to Remix — to adapt the work
+@end itemize
+
+Under the following conditions:
+@itemize @bullet
+@item
+Attribution. You must attribute the work in the manner specified by the author or licensor (but
+not in any way that suggests that they endorse you or your use of the work).
+@item
+Share Alike. If you alter, transform, or build upon this work, you may distribute the resulting
+work only under the same, similar or a compatible license.
+@end itemize
+
+@itemize
+@item
+For any reuse or distribution, you must make clear to others the license terms of this work.
+The best way to do this is with a link to this web page: creativecommons.org/licenses/by-sa/3.0/
+@item
+Any of the above conditions can be waived if you get permission from the copyright
+holder.
+@item
+Nothing in this license impairs or restricts the author’s moral rights.
+@end itemize
+
+@end quotation
+@end copying
+
+@c Title page
+
+@titlepage
+@title Iliad developper's guide
+@subtitle Version 0.9.1
+@subtitle @today{}
+@author Nicolas Petton
+
+@c Insert copying
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@c Table of contents
+
+@contents
+
+@c Menu
+
+@ifnottex
+@node Top
+@top Iliad developper's guide
+@end ifnottex
+
+@menu
+* Introduction:: 			
+* Downloading and installing Iliad:: 	How to get Iliad for your favorite Smalltalk dialect.
+* Getting started:: 			
+* Applications:: 			
+* Widgets:: 			
+* Elements:: 			
+* Routing:: 			
+* Managing sessions:: 			
+* RSS:: 			
+* Formula:: 			
+* Deploying Iliad applications:: 			
+* Iliad class library reference:: 	
+* Index:: 				
+@end menu
+
+@c include files
+
+@include introduction.texi
+@include downloadAndInstall.texi
+@include gettingStarted.texi
+@include applications.texi
+@include widgets.texi
+@include elements.texi
+@include routing.texi
+@include sessions.texi
+@include rss.texi
+@include formula.texi
+@include deployment.texi
+
+@node Iliad class library reference
+@chapter Iliad class library reference
+@include classes.texi
+
+@c end of file
+
+@node Index
+@unnumbered Index
+@printindex cp
+
+@bye
