@@ -2,7 +2,7 @@
 
 @c %**start of header
 @setfilename iliad.texi
-@settitle Iliad developper's guide
+@settitle Iliad developer's guide
 @setchapternewpage odd
 @c %**end of header
 
@@ -45,7 +45,7 @@ Nothing in this license impairs or restricts the author’s moral rights.
 @c Title page
 
 @titlepage
-@title Iliad developper's guide
+@title Iliad developer's guide
 @subtitle Version 0.9.1
 @subtitle @today{}
 @author Nicolas Petton
@@ -64,7 +64,7 @@ Nothing in this license impairs or restricts the author’s moral rights.
 
 @ifnottex
 @node Top
-@top Iliad developper's guide
+@top Iliad developer's guide
 @end ifnottex
 
 @menu
