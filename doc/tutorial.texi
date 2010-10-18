@@ -13,12 +13,12 @@ Widgets are subclasses of ILWidget. Our widget will have a @code{count} @dfn{ins
 
 @example
 Iliad.ILWidget subclass: CounterWidget [
-	| count |
+    | count |
 
-	initialize [
-		super initiliaze.
-		count := 0
-	]
+    initialize [
+        super initiliaze.
+        count := 0
+    ]
 ]
 @end example
 
@@ -26,7 +26,7 @@ To build HTML Iliad calls the @code{#contents} method of a widget. This method a
 
 @example
 contents [
-	^[:e | e h1: count printString]
+    ^[:e | e h1: count printString]
 ]
 @end example
 
@@ -36,13 +36,13 @@ Now we can add action methods to increase and decrease the counter.
 
 @example
 increase [
-	count := count + 1
+    count := count + 1
 ]
 @end example
 
 @example
 decrease [
-	count := count - 1
+    count := count - 1
 ]
 @end example
 
@@ -50,14 +50,14 @@ To allow the user to increase or decrease the counter, we build anchors which wi
 
 @example
 contents [
-	^[:e |
-		e h1: self count printString.
-		e a 
-			action: [self increase];
-			text: '++'.
-		e a
-			action: [self decrease];
-			text: '++']
+    ^[:e |
+        e h1: self count printString.
+        e a 
+            action: [self increase];
+            text: '++'.
+        e a
+            action: [self decrease];
+            text: '++']
 ]
 @end example
 
@@ -65,15 +65,15 @@ To tell Iliad that the state of the counter has changed and that it should be re
 
 @example 
 increase [
-	count := count + 1.
-	self increase
+    count := count + 1.
+    self increase
 ]
 @end example
 
 @example
 decrease [
-	count := count - 1.
-	self decrease
+    count := count - 1.
+    self decrease
 ]
 @end example
 
@@ -83,19 +83,19 @@ To see our widget in action, we build it in an application. Applications are sim
 
 @example
 Iliad.ILApplication subclass: CounterApplication [
-	
-	CounterApplication class >> path [
-		^'counter'
-	]
+    
+    CounterApplication class >> path [
+        ^'counter'
+    ]
 
-	counterWidget [
-		^counterWidget ifNil: [counterWidget := CounterWidget new]
-	]
+    counterWidget [
+        ^counterWidget ifNil: [counterWidget := CounterWidget new]
+    ]
 
-	index [
-		<category: 'controllers'>
-		^self counterWidget
-	]
+    index [
+        <category: 'controllers'>
+        ^self counterWidget
+    ]
 ]
 @end example
 

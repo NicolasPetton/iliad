@@ -19,16 +19,34 @@ This means you will never have to worry about writing valid HTML yourself, but i
 @node The ILHTMLBuilderELement object
 @section The @code{ILHTMLBuilderELement} object
 
-@code{ILHTMLBuilderELement} is the root class of the HTML element hierarchy. It has convenience methods for adding other HTML elements, and manipulate HTML attributes. These convenience methods follow HTML tag and attribute names.
+@code{ILHTMLBuilderELement} is the root class of the HTML element hierarchy. It has convenience methods for adding other HTML elements, and manipulate HTML attributes. These convenience methods follow HTML tag and attribute names. You can browse them in the @code{adding-convenience} protocol.
 
-@sp 1
+@unnumberedsubsec Composing the element tree
 
+The API provides the @code{#add:} method for adding a child to an element. Convenience methods use this method to compose the tree of elements.
 
+@example
+p [
+	<category: 'adding-conveniance'>
+	^self add: ILParagraphElement new
+]
+@end example
 
+The following example
 
+@example
+e p: 'Hello world'.
+e a
+    href: 'http://www.iliadproject.org';
+    text: 'Iliad website'.
+@end example
 
+Will produce the HTML:
 
-
+@example
+<p>Hello world</p>
+<a href='http://www.iliadproject.org'>Iliad website</a>
+@end example
 
 @c TODO
 
