@@ -1,2 +1,9 @@
 @node Managing sessions
 @chapter Managing sessions
+
+TODO
+@itemize
+@item The session manager
+@item Subclassing ILSession
+@item Managing session expiration
+@end itemize

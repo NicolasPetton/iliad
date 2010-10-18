@@ -3,3 +3,13 @@
 
 @cindex widget
 @cindex buildable
+
+TODO
+@itemize
+@item Maintaining state
+@item dirty widgets
+@item dependent widgets
+@item #show:answer:
+@item decorators
+@item redirecting
+@end itemize

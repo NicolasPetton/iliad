@@ -61,19 +61,19 @@ contents [
 ]
 @end example
 
-To tell Iliad that the state of the counter has changed and that it should be rebuilt, we call its @code{#markDirty} method in the actions methods.
+To tell Iliad that the state of the counter has changed and that it should be rebuilt, we call its @code{#markDirty} method in the action methods.
 
 @example 
 increase [
     count := count + 1.
-    self increase
+    self markDirty
 ]
 @end example
 
 @example
 decrease [
     count := count - 1.
-    self decrease
+    self markDirty
 ]
 @end example
 

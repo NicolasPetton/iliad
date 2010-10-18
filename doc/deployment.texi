@@ -1,2 +1,9 @@
 @node Deploying Iliad applications
 @chapter Deploying Iliad applications
+
+TODO
+@itemize
+@item Configuring apache
+@item Serving static files
+@item ILUrlBuilder and rewrite rules
+@end itemize
