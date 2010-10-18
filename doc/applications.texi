@@ -1,9 +1,51 @@
 @node Applications
 @chapter Applications
 
-TODO
-@itemize
-@item Controllers
-@item routes
-@item selectorFilter
-@end itemize
+@cindex application
+@cindex ILApplication
+
+@menu
+* The base path::
+* Controller methods::
+* The @code{selectorFilter}::
+@end menu
+
+An application is the root of a buildable object tree composing the user interface. Applications are used to dispatch requests to other buildables, typically widgets (@pxref{Widgets}), and hold their state. Unlike widgets they don't have one building method but several @dfn{controller methods} used to dispatch requests to the right buildable object.
+
+Applications instances are handled by the framework. Iliad stores one instance of an application class per session, which will persist through requests.
+
+@node The base path
+@section The base path
+
+@cindex path
+@cindex base path
+
+Each application class should have an unique @dfn{base path}, a string corresponding to the path of the application. The base path is answered by class method @code{path}.
+
+@example
+Iliad.ILApplication subclass: MyApplication [
+    MyApplication class >> path [
+        "Answer the base path of the application"
+        ^'my_application'
+    ]
+]
+@end example
+
+During a request processing, Iliad will determine to which application the request will be dispatched depending on its base path. If Iliad is running on port 8888, instances of MyApplication will be reached at:
+
+@example
+http://localhost:8888/my_application
+@end example
+
+By default, @code{ILApplication}'s path is the empty string. This means the class method @code{path} must be overriden, else the application will not be reachable.
+
+@sp 1
+The base path of an application is an absolute path and can freely be composed with @code{'/'}. We can for example create two application classes with the same first path fragment: @code{'/foo/bar'} and @code{'/foo/baz'}.
+
+@node Controller methods
+@section Controller methods
+
+@cindex controller method
+
+@node The @code{selectorFilter}
+@section The @code{selectorFilter}

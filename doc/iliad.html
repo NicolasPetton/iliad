@@ -91,9 +91,9 @@ ul.toc {list-style: none}
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Elements">3. Elements</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Widgets">4. Widgets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
+<tr><td align="left" valign="top"><a href="#Applications">4. Applications</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Applications">5. Applications</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
+<tr><td align="left" valign="top"><a href="#Widgets">5. Widgets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Routes-and-urls">6. Routes and urls</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
 </td></tr>
@@ -571,7 +571,7 @@ gst-remote --eval &quot;Iliad.SwazooIliad startOn: 8888&quot;
 <a name="index-application"></a>
 
 <p>In this short tutorial we will build our first Iliad widget: a simple counter.
-Widgets are high-level reusable, stateful, graphical objects. We will create the class and a method to build HTML, then add some behavior to increase and decrease the counter.
+Widgets (see section <a href="#Widgets">Widgets</a>) are high-level reusable, stateful, graphical objects. We will create the class and a method to build HTML, then add some behavior to increase and decrease the counter.
 </p>
 <hr size="6">
 <a name="Our-first-widget"></a>
@@ -643,7 +643,7 @@ Widgets are high-level reusable, stateful, graphical objects. We will create the
 ]
 </pre></td></tr></table>
 
-<p>To allow the user to increase or decrease the counter, we build anchors which will call the action methods, and modify the <code>contents</code> method as follow.
+<p>To allow the user to increase or decrease the counter, we build anchors which will call the action methods (see section <a href="#Actions">Actions</a>), and modify the <code>contents</code> method as follow.
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">contents [
     ^[:e |
@@ -691,7 +691,7 @@ Widgets are high-level reusable, stateful, graphical objects. We will create the
 </tr></table>
 <h2 class="unnumberedsec">Using the counter widget in an application</h2>
 
-<p>To see our widget in action, we build it in an application. Applications are similar to widgets except that they dispatch requests in <em>controller methods</em>, similar to the <code>#contents</code> method of widgets. The default controller method is <code>#index</code>.
+<p>To see our widget in action, we build it in an application. Applications (see section <a href="#Applications">Applications</a>) are similar to widgets except that they dispatch requests in <em>controller methods</em>, similar to the <code>#contents</code> method of widgets. The default controller method is <code>#index</code>.
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">Iliad.ILApplication subclass: CounterApplication [
     
@@ -719,7 +719,7 @@ Widgets are high-level reusable, stateful, graphical objects. We will create the
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Short-tutorial" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -751,7 +751,7 @@ Widgets are high-level reusable, stateful, graphical objects. We will create the
 This means you will never have to worry about writing valid HTML yourself, but instead use the element API to build HTML in Smalltalk.
 </p>
 <br>
-<p><code>#contents</code> methods of widgets or <em>controller methods</em> of applications are called by Iliad to build HTML using elements.
+<p><code>#contents</code> methods of widgets (see section <a href="#Widgets">Widgets</a>) or <em>controller methods</em> of applications (see section <a href="#Applications">Applications</a>) are called by Iliad to build HTML using elements.
 </p>
 
 <hr size="6">
@@ -762,7 +762,7 @@ This means you will never have to worry about writing valid HTML yourself, but i
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Elements" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -783,7 +783,7 @@ This means you will never have to worry about writing valid HTML yourself, but i
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Composing-the-element-tree" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -794,6 +794,8 @@ This means you will never have to worry about writing valid HTML yourself, but i
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="unnumberedsubsec">Adding elements</h3>
+
+<a name="index-ILHTMLBuilderELement"></a>
 
 <p><code>ILHTMLBuilderELement</code> is the root class of the HTML element hierarchy. It has convenience methods for adding other HTML elements, and manipulate HTML attributes. These convenience methods follow HTML tag and attribute names. You can browse them in the <code>adding-convenience</code> protocol. All HTML elements inherit these methods.
 </p>
@@ -815,7 +817,7 @@ This means you will never have to worry about writing valid HTML yourself, but i
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Composing-the-element-tree" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -857,7 +859,7 @@ e a
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Elements" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -931,7 +933,7 @@ div h1: 'Iliad rocks!'
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Elements" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -959,7 +961,7 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Actions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1009,7 +1011,7 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Actions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1051,7 +1053,7 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Elements" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1078,11 +1080,11 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <a name="Evaluating-actions-on-DOM-Events"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#DOM-events" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#DOM-events" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1101,14 +1103,14 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
     onClickDo: [Transcript show: 'Clicked!'; cr]
 </pre></td></tr></table>
 <hr size="6">
-<a name="Widgets"></a>
+<a name="Applications"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Evaluating-actions-on-DOM-Events" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Applications" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-base-path" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Elements" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Applications" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1118,28 +1120,119 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Widgets-1"></a>
-<h1 class="chapter">4. Widgets</h1>
+<a name="Applications-1"></a>
+<h1 class="chapter">4. Applications</h1>
 
-<a name="index-widget-1"></a>
-<a name="index-buildable-2"></a>
+<a name="index-application-1"></a>
+<a name="index-ILApplication"></a>
 
-<p>TODO
-</p><ul>
-<li> Maintaining state
-</li><li> dirty widgets
-</li><li> dependent widgets
-</li><li> #show:answer:
-</li><li> decorators
-</li><li> redirecting
-</li></ul>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#The-base-path">4.1 The base path</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Controller-methods">4.2 Controller methods</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-selectorFilter">4.3 The <code>selectorFilter</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<p>An application is the root of a buildable object tree composing the user interface. Applications are used to dispatch requests to other buildables, typically widgets (see section <a href="#Widgets">Widgets</a>), and hold their state. Unlike widgets they don&rsquo;t have one building method but several <em>controller methods</em> used to dispatch requests to the right buildable object.
+</p>
+<p>Applications instances are handled by the framework. Iliad stores one instance of an application class per session (@pxref{Managing Sessions}), which will persist through requests.
+</p>
 <hr size="6">
-<a name="Applications"></a>
+<a name="The-base-path"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Widgets" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Applications" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Controller-methods" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-base-path-1"></a>
+<h2 class="section">4.1 The base path</h2>
+
+<a name="index-path"></a>
+<a name="index-base-path"></a>
+
+<p>Each application class should have an unique <em>base path</em>, a string corresponding to the path of the application. The base path is answered by class method <code>path</code>.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">Iliad.ILApplication subclass: MyApplication [
+    MyApplication class &gt;&gt; path [
+        &quot;Answer the base path of the application&quot;
+        ^'my_application'
+    ]
+]
+</pre></td></tr></table>
+
+<p>During a request processing, Iliad will determine to which application the request will be dispatched depending on its base path. If Iliad is running on port 8888, instances of MyApplication will be reached at:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">http://localhost:8888/my_application
+</pre></td></tr></table>
+
+<p>By default, <code>ILApplication</code>&rsquo;s path is the empty string. This means the class method <code>path</code> must be overriden, else the application will not be reachable.
+</p>
+<br>
+<p>The base path of an application is an absolute path and can freely be composed with <code>'/'</code>. We can for example create two application classes with the same first fragment of path: <code>'/foo/bar'</code> and <code>'/foo/baz'</code>.
+</p>
+<hr size="6">
+<a name="Controller-methods"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#The-base-path" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-selectorFilter" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Controller-methods-1"></a>
+<h2 class="section">4.2 Controller methods</h2>
+
+<a name="index-controller-method"></a>
+
+<hr size="6">
+<a name="The-selectorFilter"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Controller-methods" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-selectorFilter-1"></a>
+<h2 class="section">4.3 The <code>selectorFilter</code></h2>
+<hr size="6">
+<a name="Widgets"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#The-selectorFilter" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1151,22 +1244,32 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Applications-1"></a>
-<h1 class="chapter">5. Applications</h1>
+<a name="Widgets-1"></a>
+<h1 class="chapter">5. Widgets</h1>
 
+<a name="index-widget-1"></a>
+<a name="index-buildable-2"></a>
+
+<p>Iliad web pages are composed of nested Widgets. Widgets are high-level, reusable graphical objects. Widgets are not only about building HTML, they also hold the state of your application and will persist through requests. <code>ILWidget</code> is probably the most important class of Iliad, as widgets will compose most of your user interfaces and control flow.
+</p>
+<p>Widgets are created by subclassing <code>ILWidget</code>. 
+</p>
 <p>TODO
 </p><ul>
-<li> Controllers
-</li><li> routes
-</li><li> selectorFilter
+<li> Maintaining state
+</li><li> dirty widgets
+</li><li> dependent widgets
+</li><li> iteracting with other widgets
+</li><li> decorators
+</li><li> redirecting
 </li></ul>
 <hr size="6">
 <a name="Routes-and-urls"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Applications" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Widgets" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Managing-sessions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Managing-sessions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2431,7 +2534,7 @@ your own selectorFilter or plug it in using the class method #selectorFilter:
 <dt> <b>absolutePath</b></dt>
 <dd><p>Not commented.
 </p>
-<a name="index-path"></a>
+<a name="index-path-1"></a>
 </dd>
 <dt> <b>path</b></dt>
 <dd><p>Base path of the application.
@@ -4905,7 +5008,7 @@ Make a redirection to another controller method in this application
 <h3 class="subsection">11.21.1 Iliad.ILContext: accessing</h3>
 
 <dl compact="compact">
-<dd><a name="index-application-1"></a>
+<dd><a name="index-application-2"></a>
 </dd>
 <dt> <b>application</b></dt>
 <dd><p>Not commented.
@@ -5163,7 +5266,7 @@ I model only a part of the full cookie specification.
 <dt> <b>key: aString</b></dt>
 <dd><p>Not commented.
 </p>
-<a name="index-path-1"></a>
+<a name="index-path-2"></a>
 </dd>
 <dt> <b>path</b></dt>
 <dd><p>Not commented.
@@ -8756,7 +8859,7 @@ the application mode:
 <td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents-1"></a>
+<a name="Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents"></a>
 <h3 class="subsection">11.46.2 Iliad.ILHTMLBuilderElement: accessing attributes-events</h3>
 
 <dl compact="compact">
@@ -8811,7 +8914,7 @@ the application mode:
 <a name="Iliad_002eILHTMLBuilderElement_002daccessing-attributes"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement_002daccessing-attibutes" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Iliad-class-library-reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement" title="Up section"> Up </a>]</td>
@@ -8880,7 +8983,7 @@ the application mode:
 
 
 <hr size="6">
-<a name="Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents"></a>
+<a name="Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents-1"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement_002daccessing-attributes" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement_002dadding_002dconveenience" title="Next section in reading order"> &gt; </a>]</td>
@@ -8983,7 +9086,7 @@ the application mode:
 <hr size="6">
 <a name="Iliad_002eILHTMLBuilderElement_002dadding_002dconveenience"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Iliad_002eILHTMLBuilderElement_002dadding_002dconveniance" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Iliad-class-library-reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -12168,7 +12271,7 @@ It has been extended with syntax for invoking a prearranged list of constructors
 <dt> <b>fileSelectors</b></dt>
 <dd><p>Not commented.
 </p>
-<a name="index-path-2"></a>
+<a name="index-path-3"></a>
 </dd>
 <dt> <b>path</b></dt>
 <dd><p>answer the base path of the memory directory
@@ -12762,7 +12865,7 @@ The files are stored in a subfolder named like the classname of the receiver in 
 <h3 class="subsection">11.68.1 Iliad.ILObject: accessing</h3>
 
 <dl compact="compact">
-<dd><a name="index-application-2"></a>
+<dd><a name="index-application-3"></a>
 </dd>
 <dt> <b>application</b></dt>
 <dd><p>Not commented.
@@ -15096,7 +15199,7 @@ and can be streamed with methods in the &lt;streaming&gt; protocol.
 <dt> <b>delimiters</b></dt>
 <dd><p>Not commented.
 </p>
-<a name="index-path-3"></a>
+<a name="index-path-4"></a>
 </dd>
 <dt> <b>path</b></dt>
 <dd><p>Not commented.
@@ -15362,7 +15465,7 @@ separated with delimiters, like this:
 <h3 class="subsection">11.85.1 Iliad.ILRouter: accessing</h3>
 
 <dl compact="compact">
-<dd><a name="index-application-3"></a>
+<dd><a name="index-application-4"></a>
 </dd>
 <dt> <b>application</b></dt>
 <dd><p>Answer &lsquo;application&rsquo;.
@@ -18803,7 +18906,7 @@ fragment:            &lt;String&gt; or nil
 <dt> <b>password: aString</b></dt>
 <dd><p>Not commented.
 </p>
-<a name="index-path-4"></a>
+<a name="index-path-5"></a>
 </dd>
 <dt> <b>path</b></dt>
 <dd><p>Answer the path part of the URL.
@@ -20319,11 +20422,15 @@ they will be rebuilt together with the receiver
  &nbsp; 
 <a href="#Index-1_cp_letter-B" class="summary-letter"><b>B</b></a>
  &nbsp; 
+<a href="#Index-1_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
 <a href="#Index-1_cp_letter-E" class="summary-letter"><b>E</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-G" class="summary-letter"><b>G</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-I" class="summary-letter"><b>I</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-M" class="summary-letter"><b>M</b></a>
  &nbsp; 
@@ -20340,13 +20447,18 @@ they will be rebuilt together with the receiver
 <tr><th><a name="Index-1_cp_letter-A">A</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-action">action</a></td><td valign="top"><a href="#Actions">3.3 Actions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-application">application</a></td><td valign="top"><a href="#Short-tutorial">2. Short tutorial</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-application-1">application</a></td><td valign="top"><a href="#Applications">4. Applications</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-B">B</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-base-path">base path</a></td><td valign="top"><a href="#The-base-path">4.1 The base path</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-build">build</a></td><td valign="top"><a href="#Elements-and-buildables">3.2 Elements and buildables</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-buildable">buildable</a></td><td valign="top"><a href="#Short-tutorial">2. Short tutorial</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-buildable-1">buildable</a></td><td valign="top"><a href="#Elements-and-buildables">3.2 Elements and buildables</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-buildable-2">buildable</a></td><td valign="top"><a href="#Widgets">4. Widgets</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-buildable-2">buildable</a></td><td valign="top"><a href="#Widgets">5. Widgets</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-building-HTML">building HTML</a></td><td valign="top"><a href="#Elements">3. Elements</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-C">C</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-controller-method">controller method</a></td><td valign="top"><a href="#Controller-methods">4.2 Controller methods</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-E">E</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-element">element</a></td><td valign="top"><a href="#Elements">3. Elements</a></td></tr>
@@ -20358,10 +20470,15 @@ they will be rebuilt together with the receiver
 <tr><th><a name="Index-1_cp_letter-H">H</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-HTML">HTML</a></td><td valign="top"><a href="#Elements">3. Elements</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-I">I</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ILApplication">ILApplication</a></td><td valign="top"><a href="#Applications">4. Applications</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ILHTMLBuilderELement">ILHTMLBuilderELement</a></td><td valign="top"><a href="#Adding-elements">Adding elements</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-M">M</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-metacello">metacello</a></td><td valign="top"><a href="#Using-Metacello">Using Metacello</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-P">P</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-path">path</a></td><td valign="top"><a href="#The-base-path">4.1 The base path</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-pharo">pharo</a></td><td valign="top"><a href="#Installing-on-Pharo-Smalltalk">1.2 Installing on Pharo Smalltalk</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-S">S</a></th><td></td><td></td></tr>
@@ -20370,18 +20487,22 @@ they will be rebuilt together with the receiver
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-W">W</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-widget">widget</a></td><td valign="top"><a href="#Short-tutorial">2. Short tutorial</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-widget-1">widget</a></td><td valign="top"><a href="#Widgets">4. Widgets</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-widget-1">widget</a></td><td valign="top"><a href="#Widgets">5. Widgets</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 </table>
 <table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Index-1_cp_letter-A" class="summary-letter"><b>A</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-B" class="summary-letter"><b>B</b></a>
  &nbsp; 
+<a href="#Index-1_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
 <a href="#Index-1_cp_letter-E" class="summary-letter"><b>E</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-G" class="summary-letter"><b>G</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-I" class="summary-letter"><b>I</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-M" class="summary-letter"><b>M</b></a>
  &nbsp; 
@@ -20463,8 +20584,13 @@ they will be rebuilt together with the receiver
     </ul>
 </li>
   </ul></li>
-  <li><a name="toc-Widgets-1" href="#Widgets">4. Widgets</a></li>
-  <li><a name="toc-Applications-1" href="#Applications">5. Applications</a></li>
+  <li><a name="toc-Applications-1" href="#Applications">4. Applications</a>
+  <ul class="toc">
+    <li><a name="toc-The-base-path-1" href="#The-base-path">4.1 The base path</a></li>
+    <li><a name="toc-Controller-methods-1" href="#Controller-methods">4.2 Controller methods</a></li>
+    <li><a name="toc-The-selectorFilter-1" href="#The-selectorFilter">4.3 The <code>selectorFilter</code></a></li>
+  </ul></li>
+  <li><a name="toc-Widgets-1" href="#Widgets">5. Widgets</a></li>
   <li><a name="toc-Routes-and-urls-1" href="#Routes-and-urls">6. Routes and urls</a></li>
   <li><a name="toc-Managing-sessions-1" href="#Managing-sessions">7. Managing sessions</a></li>
   <li><a name="toc-RSS-1" href="#RSS">8. RSS</a></li>
@@ -20729,10 +20855,10 @@ they will be rebuilt together with the receiver
     <li><a name="toc-Iliad_002eILHTMLBuilderElement-1" href="#Iliad_002eILHTMLBuilderElement">11.46 Iliad.ILHTMLBuilderElement</a>
     <ul class="toc">
       <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-accessing" href="#Iliad_002eILHTMLBuilderElement_002daccessing">11.46.1 Iliad.ILHTMLBuilderElement: accessing</a></li>
-      <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents-1" href="#Iliad_002eILHTMLBuilderElement_002daccessing-attributes_002devents">11.46.2 Iliad.ILHTMLBuilderElement: accessing attributes-events</a></li>
+      <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents" href="#Iliad_002eILHTMLBuilderElement_002daccessing-attributes_002devents">11.46.2 Iliad.ILHTMLBuilderElement: accessing attributes-events</a></li>
       <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-accessing-attibutes" href="#Iliad_002eILHTMLBuilderElement_002daccessing-attibutes">11.46.3 Iliad.ILHTMLBuilderElement: accessing attibutes</a></li>
       <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-accessing-attributes" href="#Iliad_002eILHTMLBuilderElement_002daccessing-attributes">11.46.4 Iliad.ILHTMLBuilderElement: accessing attributes</a></li>
-      <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents" href="#Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents">11.46.5 Iliad.ILHTMLBuilderElement: accessing attributes-events</a></li>
+      <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents-1" href="#Iliad_002eILHTMLBuilderElement_003a-accessing-attributes_002devents-1">11.46.5 Iliad.ILHTMLBuilderElement: accessing attributes-events</a></li>
       <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-adding_002dconveenience" href="#Iliad_002eILHTMLBuilderElement_002dadding_002dconveenience">11.46.6 Iliad.ILHTMLBuilderElement: adding-conveenience</a></li>
       <li><a name="toc-Iliad_002eILHTMLBuilderElement_003a-adding_002dconveniance" href="#Iliad_002eILHTMLBuilderElement_002dadding_002dconveniance">11.46.7 Iliad.ILHTMLBuilderElement: adding-conveniance</a></li>
     </ul></li>

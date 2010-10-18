@@ -72,8 +72,8 @@ Nothing in this license impairs or restricts the author’s moral rights.
 * Downloading and installing Iliad:: 	How to get Iliad for your favorite Smalltalk dialect.
 * Short tutorial:: 			
 * Elements:: 			
-* Widgets:: 			
 * Applications:: 			
+* Widgets:: 			
 * Routes and urls:: 			
 * Managing sessions:: 			
 * RSS:: 			
@@ -89,8 +89,8 @@ Nothing in this license impairs or restricts the author’s moral rights.
 @include downloadAndInstall.texi
 @include tutorial.texi
 @include elements.texi
-@include widgets.texi
 @include applications.texi
+@include widgets.texi
 @include routesAndUrls.texi
 @include sessions.texi
 @include rss.texi

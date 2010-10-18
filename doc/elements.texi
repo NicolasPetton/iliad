@@ -16,13 +16,15 @@ Elements are low-level stateless objects composed in a tree to build valid (X)HT
 This means you will never have to worry about writing valid HTML yourself, but instead use the element API to build HTML in Smalltalk.
 
 @sp 1
-@code{#contents} methods of widgets or @dfn{controller methods} of applications are called by Iliad to build HTML using elements.
+@code{#contents} methods of widgets (@pxref{Widgets}) or @dfn{controller methods} of applications (@pxref{Applications}) are called by Iliad to build HTML using elements.
 
 
 @node Composing the element tree
 @section Composing the element tree
 
 @unnumberedsubsec Adding elements
+
+@cindex ILHTMLBuilderELement
 
 @code{ILHTMLBuilderELement} is the root class of the HTML element hierarchy. It has convenience methods for adding other HTML elements, and manipulate HTML attributes. These convenience methods follow HTML tag and attribute names. You can browse them in the @code{adding-convenience} protocol. All HTML elements inherit these methods.
 
