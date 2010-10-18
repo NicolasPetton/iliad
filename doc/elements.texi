@@ -88,7 +88,7 @@ e add: myWidget contents. "Not valid"
 e build: myWidget. "Valid"
 @end example
 
-Block closures can be used to make building methods simpler and easier to understand.
+Block closures can be used to make building methods simpler by nesting elements.
 
 @example
 | div a |
@@ -147,17 +147,72 @@ Because @code{#action:} will add an @code{href} attribute with a generated URL, 
 @example
 e a
     text: 'Click!';
-    action: [Transcript show: 'Anchor clicked.'];
+    action: [Transcript show: 'Anchor clicked.'; cr];
     href: 'http://www/smalltalk.org' "This will override the href set by #action:"
+@end example
+
+The counter widget example in @code{Iliad-More-Examples} is a good example of actions in anchors.
+
+@example
+contents [
+    ^[:e |
+        e h1: self count printString.
+        e a
+            action: [self increase];
+            text: '++'.
+        e space.
+        e a
+            action: [self decrease];
+            text: '--']
+]
 @end example
 
 @unnumberedsubsec Actions in forms
 
+Form elements can also have actions, evaluated when the form is submitted. We can modify the @code{#contents} method of the counter example to use a form and buttons instead of anchors.
+
+@example
+contents [
+    ^[:e |
+        e h1: self count printString.
+        e form build: [:form |
+            form button
+                text: '++';
+                action: [self increase].
+            form button
+                text: '--';
+                action: [self decrease]]]
+]
+@end example
+
+Some form elements like inputs or textareas have a one argument block as action. The argument is the value entered by the user.
+
+@example
+e form build: [:form |
+    form input action: [:val | self doSomethingWith: val].
+    form button text: 'Ok']
+@end example
 
 @node DOM Events
 @section DOM Events
 
-Iliad provides a simple API to associate javascript code to DOM events (click, focus, etc).
-If an element cannot be associated with DOM events, an @code{ILAttributeNotUnderstood} error will be raised.
+Iliad provides a simple API to associate javascript code to DOM events (click, focus, etc) in the @code{accessing attributes-events} method protocol. The main method is @code{#on:add:} which takes two strings as arguments, the first one for the event, and the last one for the associated javascript code. Many shortcut methods exist for specific events, like @code{#onClick:} or @code{#onFocus:}. 
+
+@example
+e p 
+    text: 'Click';
+    onClick: 'alert("clicked!");'.
+@end example
+
+@sp 1
+If an element cannot be associated with a DOM event, an @code{ILAttributeNotUnderstood} error will be raised.
 
 @unnumberedsubsec Evaluating actions on DOM Events
+
+It is also possible to associate actions to DOM events. The naming of methods follow the same convention, but end with @dfn{do:} and take a block as parameter.
+
+@example
+e p
+    text: 'An action block is evaluated on a click event';
+    onClickDo: [Transcript show: 'Clicked!'; cr]
+@end example
