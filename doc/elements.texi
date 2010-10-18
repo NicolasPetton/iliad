@@ -6,7 +6,10 @@
 @cindex HTML
 
 @menu
-* The ILHTMLBuilderELement object::
+* Composing the element tree::
+* Elements and buildables::
+* DOM events::
+* Actions::
 @end menu
 
 Elements are low-level stateless objects composed in a tree to build valid (X)HTML. For each element class there is a corresponding HTML tag.
@@ -16,26 +19,34 @@ This means you will never have to worry about writing valid HTML yourself, but i
 @code{#contents} methods of widgets or @dfn{controller methods} of applications are called by Iliad to build HTML using elements.
 
 
-@node The ILHTMLBuilderELement object
-@section The @code{ILHTMLBuilderELement} object
+@node Composing the element tree
+@section Composing the element tree
+
+@unnumberedsubsec Adding elements
 
 @code{ILHTMLBuilderELement} is the root class of the HTML element hierarchy. It has convenience methods for adding other HTML elements, and manipulate HTML attributes. These convenience methods follow HTML tag and attribute names. You can browse them in the @code{adding-convenience} protocol. All HTML elements inherit these methods.
 
-@unnumberedsubsec Composing the element tree
-
+@sp 1
 The API provides the @code{#add:} method for adding a child to an element. Convenience methods use this method to compose the tree of elements.
 
 @example
 p [
-	<category: 'adding-conveniance'>
-	^self add: ILParagraphElement new
+    <category: 'adding-conveniance'>
+    ^self add: ILParagraphElement new
 ]
 @end example
+
+
+@unnumberedsubsec The HTML API
+
+Each element in the tree represents a given HTML tag. Each attribute of an element has a corresponding HTML tag attribute. We compose HMTL by combining the two kind of methods. 
+As methods are named depending on the HTML tag they represent, building HTML with Iliad looks very similar to actual HTML code.
 
 The following example
 
 @example
 e p: 'Hello world'.
+e br.
 e a
     href: 'http://www.iliadproject.org';
     text: 'Iliad website'.
@@ -45,14 +56,84 @@ Will produce the HTML:
 
 @example
 <p>Hello world</p>
+<br/>
 <a href='http://www.iliadproject.org'>Iliad website</a>
 @end example
 
+Most of the time you won't have to learn the HTML API if you already know the HTML tag names or attributes you want to write. If you can't find the name of a convenience method, you can browse the @code{ILHTMLBuilderELement} class and its subclasses in @code{Iliad-Core-HTMLElements}.
 
-TODO
-@itemize
-@item The building protocol
-@item Actions
-@item attributes
-@item DOM events
-@end itemize
+
+@node Elements and buildables
+@section Elements and buildables
+
+@cindex buildable
+@cindex build
+
+Buildable objects are high-level stateful graphical objects. They use elements to build themselves as HTML. They must implement the @code{#buildOn:} method, taking an element as parameter.
+
+A buildable object can be built on an element with the @code{ILElement>>build:} method.
+
+Default buildable objects in Iliad includes @dfn{Block closures} and @dfn{Widgets}.
+
+@example 
+div build: [:e | e text: 'hello world'].
+div build: myWidget.
+@end example
+
+@sp 1
+Buildables should never be built using their @code{#contents} method or the @code{ILElement>>add:} method. Therefore, the following example is not valid.
+
+@example 
+e add: myWidget contents. "Not valid"
+e build: myWidget. "Valid"
+@end example
+
+Block closures can be used to make building methods simpler and easier to understand.
+
+@example
+| div a |
+div := e div.
+a := div a.
+a href: 'http://www.iliadproject.org'.
+a img 
+    src: 'iliad.png'; 
+    alt: 'Iliad logo'.
+div h1: 'Iliad rocks!'
+@end example
+
+Can be written:
+
+@example
+e div build: [:div |
+    div a build: [:a |
+        a href: 'http://www.iliadproject.org'.
+        a img
+            src: 'iliad.png';
+            alt: 'Iliad logo'].
+    div h1: 'Iliad rocks!']
+@end example
+
+And will build the following HTML code:
+
+@example
+<div>
+    <a href='http://www.iliadproject.org'>
+        <img src='iliad.png' alt='Iliad logo'/>
+    </a>
+    <h1>Iliad rocks!</h1>
+</div>
+@end example
+
+@node DOM Events
+@section DOM Events
+
+@node Actions
+@section Actions
+
+@cindex action
+
+@unnumberedsubsec Actions in anchors
+
+@unnumberedsubsec Actions in forms
+
+@unnumberedsubsec Evaluating actions on DOM Events
