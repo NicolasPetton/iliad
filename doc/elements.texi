@@ -195,8 +195,8 @@ e form build: [:form |
     form button text: 'Ok']
 @end example
 
-@node DOM Events
-@section DOM Events
+@node DOM events
+@section DOM events
 
 Iliad provides a simple API to associate javascript code to DOM events (click, focus, etc.) in the @code{accessing attributes-events} method protocol. The main method is @code{#on:add:} which takes two strings as arguments, the first one for the event, and the last one for the associated javascript code. Many shortcut methods exist for specific events, like @code{#onClick:} or @code{#onFocus:}. 
 

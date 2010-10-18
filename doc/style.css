@@ -1,0 +1,41 @@
+body {
+	font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;
+	line-height:160%;
+	margin: 0 auto;
+	text-align:left;
+	width:766px;
+	background: #FFFFFE;
+}
+
+table, tr, th, td {
+	border:0 none;
+	margin:0;
+	padding:0;
+	vertical-align:baseline;
+}
+
+hr {
+	border: 0px solid;
+	border-top: 1px dashed #aaa;
+	height: 1px;
+	width: 96%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family:Georgia,Palatino,"Times New Roman",Times,serif;
+	color: #3F074D;
+	font-style: italic;
+}
+
+a {color: #3F074D}
+a:hover {color: #000; background: #FFFEB5;}
+
+pre.example {
+	background-color: #F9F9F9;
+	padding: 10px 15px;
+        border: 1px dashed #999;
+}
+
+code {background-color: #E0E0E0; padding: 2px; color: #333}
+
+
