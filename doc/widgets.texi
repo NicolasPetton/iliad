@@ -4,6 +4,8 @@
 @cindex widget
 @cindex buildable
 
+Widgets 
+
 TODO
 @itemize
 @item Maintaining state
