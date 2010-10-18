@@ -8,8 +8,8 @@
 @menu
 * Composing the element tree::
 * Elements and buildables::
-* DOM events::
 * Actions::
+* DOM events::
 @end menu
 
 Elements are low-level stateless objects composed in a tree to build valid (X)HTML. For each element class there is a corresponding HTML tag.
@@ -124,16 +124,40 @@ And will build the following HTML code:
 </div>
 @end example
 
-@node DOM Events
-@section DOM Events
-
 @node Actions
 @section Actions
 
 @cindex action
 
+Instead of having to parse URLs and requests, Iliad uses actions to trigger smalltalk code when the user interacts with the page, click on a link or submit a form.
+An @dfn{action} is a smalltalk block associated with an id.
+
 @unnumberedsubsec Actions in anchors
 
+The @code{ILAnchorElement} class provides the @code{#action:} method.
+
+@example 
+e a
+    text: 'Click!';
+    action: [Transcript show: 'Anchor clicked.']
+@end example
+
+Because @code{#action:} will add an @code{href} attribute with a generated URL, anchors can't have both an associated action and an href.
+
+@example
+e a
+    text: 'Click!';
+    action: [Transcript show: 'Anchor clicked.'];
+    href: 'http://www/smalltalk.org' "This will override the href set by #action:"
+@end example
+
 @unnumberedsubsec Actions in forms
+
+
+@node DOM Events
+@section DOM Events
+
+Iliad provides a simple API to associate javascript code to DOM events (click, focus, etc).
+If an element cannot be associated with DOM events, an @code{ILAttributeNotUnderstood} error will be raised.
 
 @unnumberedsubsec Evaluating actions on DOM Events
