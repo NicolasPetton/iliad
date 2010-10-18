@@ -8,7 +8,7 @@
 
 @copying
 @quotation
-The contents of this book are protected under Creative Commons Attribution-ShareAlike 3.0 Unported license.
+The contents of this documentation are protected under Creative Commons Attribution-ShareAlike 3.0 Unported license.
 
 You are free:
 @itemize @bullet
@@ -70,11 +70,11 @@ Nothing in this license impairs or restricts the author’s moral rights.
 @menu
 * Introduction:: 			
 * Downloading and installing Iliad:: 	How to get Iliad for your favorite Smalltalk dialect.
-* Getting started:: 			
-* Applications:: 			
-* Widgets:: 			
+* Short tutorial:: 			
 * Elements:: 			
-* Routing:: 			
+* Widgets:: 			
+* Applications:: 			
+* Routes and urls:: 			
 * Managing sessions:: 			
 * RSS:: 			
 * Formula:: 			
@@ -87,11 +87,11 @@ Nothing in this license impairs or restricts the author’s moral rights.
 
 @include introduction.texi
 @include downloadAndInstall.texi
-@include gettingStarted.texi
-@include applications.texi
-@include widgets.texi
+@include tutorial.texi
 @include elements.texi
-@include routing.texi
+@include widgets.texi
+@include applications.texi
+@include routesAndUrls.texi
 @include sessions.texi
 @include rss.texi
 @include formula.texi

@@ -1,2 +1,38 @@
 @node Elements
 @chapter Elements
+
+@cindex element
+@cindex building HTML
+@cindex HTML
+
+@menu
+* The ILHTMLBuilderELement object::
+@end menu
+
+Elements are low-level stateless objects composed in a tree to build valid (X)HTML. For each element class there is a corresponding HTML tag.
+This means you will never have to worry about writing valid HTML yourself, but instead use the element API to build HTML in Smalltalk.
+
+@sp 1
+@code{#contents} methods of widgets or @dfn{controller methods} of applications are called by Iliad to build HTML using elements.
+
+
+@node The ILHTMLBuilderELement object
+@section The @code{ILHTMLBuilderELement} object
+
+@code{ILHTMLBuilderELement} is the root class of the HTML element hierarchy. It has convenience methods for adding other HTML elements, and manipulate HTML attributes. These convenience methods follow HTML tag and attribute names.
+
+@sp 1
+
+
+
+
+
+
+
+
+@c TODO
+
+@c The building protocol
+@c Actions
+@c attributes
+@c DOM events

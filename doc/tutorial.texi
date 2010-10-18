@@ -1,0 +1,102 @@
+@node Short tutorial
+@chapter Short tutorial
+
+@cindex buildable
+@cindex widget
+@cindex application
+
+In this short tutorial we will build our first Iliad widget: a simple counter.
+Widgets are high-level reusable, stateful, graphical objects. We will create the class and a method to build HTML, then add some behavior to increase and decrease the counter.
+
+@unnumberedsec Our first widget
+Widgets are subclasses of ILWidget. Our widget will have a @code{count} @dfn{instance variable}, initiliazed to zero.
+
+@example
+Iliad.ILWidget subclass: CounterWidget [
+	| count |
+
+	initialize [
+		super initiliaze.
+		count := 0
+	]
+]
+@end example
+
+To build HTML Iliad calls the @code{#contents} method of a widget. This method answers a buildable object: almost always a @dfn{block closure} or another widget.
+
+@example
+contents [
+	^[:e | e h1: count printString]
+]
+@end example
+
+@unnumberedsec Action methods
+
+Now we can add action methods to increase and decrease the counter.
+
+@example
+increase [
+	count := count + 1
+]
+@end example
+
+@example
+decrease [
+	count := count - 1
+]
+@end example
+
+To allow the user to increase or decrease the counter, we build anchors which will call the action methods, and modify the @code{contents} method as follow.
+
+@example
+contents [
+	^[:e |
+		e h1: self count printString.
+		e a 
+			action: [self increase];
+			text: '++'.
+		e a
+			action: [self decrease];
+			text: '++']
+]
+@end example
+
+To tell Iliad that the state of the counter has changed and that it should be rebuilt, we call its @code{#markDirty} method in the actions methods.
+
+@example 
+increase [
+	count := count + 1.
+	self increase
+]
+@end example
+
+@example
+decrease [
+	count := count - 1.
+	self decrease
+]
+@end example
+
+@unnumberedsec Using the counter widget in an application
+
+To see our widget in action, we build it in an application. Applications are similar to widgets except that they dispatch requests in @dfn{controller methods}, similar to the @code{#contents} method of widgets. The default controller method is @code{#index}.
+
+@example
+Iliad.ILApplication subclass: CounterApplication [
+	
+	CounterApplication class >> path [
+		^'counter'
+	]
+
+	counterWidget [
+		^counterWidget ifNil: [counterWidget := CounterWidget new]
+	]
+
+	index [
+		<category: 'controllers'>
+		^self counterWidget
+	]
+]
+@end example
+
+The class side @code{#path} method answers the base path of our application.

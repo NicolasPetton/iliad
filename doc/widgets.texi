@@ -1,2 +1,5 @@
 @node Widgets
 @chapter Widgets
+
+@cindex widget
+@cindex buildable

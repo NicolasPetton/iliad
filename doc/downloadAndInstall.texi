@@ -2,15 +2,15 @@
 @chapter Downloading and installing Iliad
 
 @menu
-* GNU Smalltalk:: 		Installing Iliad on GNU Smalltalk.
-* Pharo Smalltalk:: 		Installing Iliad on Pharo Smalltalk.
+* Installing on GNU Smalltalk::
+* Installing on Pharo Smalltalk::
 * Loading and starting Iliad::
 @end menu
 
 Iliad is currently available for GNU Smalltalk, Squeak and Pharo. In this chapter you will find detailed installation instructions for each supported Smalltalk dialect.
 
-@node GNU Smalltalk
-@section GNU Smalltalk
+@node Installing on GNU Smalltalk
+@section Installing on GNU Smalltalk
 @cindex gnu smalltalk
 @cindex gst
 
@@ -39,8 +39,8 @@ You can download Iliad by cloning the @dfn{Git} repository.
 ~$ ./scripts/make_packages
 @end example
 
-@node Pharo Smalltalk
-@section Pharo Smalltalk
+@node Installing on Pharo Smalltalk
+@section Installing on Pharo Smalltalk
 @cindex pharo
 @cindex squeak
 
