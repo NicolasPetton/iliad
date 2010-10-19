@@ -213,6 +213,8 @@ Thanks to its javascript layer Iliad automatically uses AJAX requests to update 
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Loading-and-starting-Iliad">1.3 Loading and starting Iliad</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
+<tr><td align="left" valign="top"><a href="#Testing-the-installation">1.4 Testing the installation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
 </table>
 
 <p>Iliad is currently available for GNU Smalltalk, Squeak and Pharo. In this chapter you will find detailed installation instructions for each supported Smalltalk dialect.
@@ -524,7 +526,7 @@ gst-remote --eval &quot;Iliad.SwazooIliad startOn: 8888&quot;
 <a name="Pharo-Smalltalk"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#With-gst_002dremote" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Short-tutorial" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Testing-the-installation" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Downloading-and-installing-Iliad" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Loading-and-starting-Iliad" title="Up section"> Up </a>]</td>
@@ -546,9 +548,31 @@ gst-remote --eval &quot;Iliad.SwazooIliad startOn: 8888&quot;
 </pre></td></tr></table>
 
 <hr size="6">
-<a name="Short-tutorial"></a>
+<a name="Testing-the-installation"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Pharo-Smalltalk" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Short-tutorial" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Downloading-and-installing-Iliad" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Downloading-and-installing-Iliad" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Short-tutorial" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Testing-the-installation-1"></a>
+<h2 class="section">1.4 Testing the installation</h2>
+
+<p>Open <a href="'http://localhost:8888/browse'">&rsquo;http://localhost:8888/browse&rsquo;</a> in your browser. You should see the list of loaded Iliad applications.
+</p><hr size="6">
+<a name="Short-tutorial"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Testing-the-installation" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Our-first-widget" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Downloading-and-installing-Iliad" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -1131,13 +1155,13 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Controller-methods">4.2 Controller methods</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-selectorFilter">4.3 The <code>selectorFilter</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-selector-filter">4.3 The selector filter</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
 <p>An application is the root of a buildable object tree composing the user interface. Applications are used to dispatch requests to other buildables, typically widgets (see section <a href="#Widgets">Widgets</a>), and hold their state. Unlike widgets they don&rsquo;t have one building method but several <em>controller methods</em> used to dispatch requests to the right buildable object.
 </p>
-<p>Applications instances are handled by the framework. Iliad stores one instance of an application class per session (@pxref{Managing Sessions}), which will persist through requests.
+<p>Applications instances are handled by the framework. Iliad stores one instance of an application class per session, which will persist through requests.
 </p>
 <hr size="6">
 <a name="The-base-path"></a>
@@ -1181,13 +1205,13 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <p>By default, <code>ILApplication</code>&rsquo;s path is the empty string. This means the class method <code>path</code> must be overriden, else the application will not be reachable.
 </p>
 <br>
-<p>The base path of an application is an absolute path and can freely be composed with <code>'/'</code>. We can for example create two application classes with the same first fragment of path: <code>'/foo/bar'</code> and <code>'/foo/baz'</code>.
+<p>The base path of an application is an absolute path and can freely be composed with <code>'/'</code>. We can for example create two application classes with the same first path fragment: <code>'/foo/bar'</code> and <code>'/foo/baz'</code>.
 </p>
 <hr size="6">
 <a name="Controller-methods"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#The-base-path" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#The-selectorFilter" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-selector-filter" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Applications" title="Up section"> Up </a>]</td>
@@ -1206,8 +1230,14 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 
 <a name="index-controller-method"></a>
 
+<p>Controller methods are special building methods used to dispatch requests. The application will dispatch the request to the method named after the next fragment of the URL. The default controller method is <code>#index</code>. Concrete applications should always override this method to answer a buildable object.
+</p>
+<p>For example, if the base path of the application is <code>'foo'</code>, the application will try to dispatch <code>'/foo/bar'</code> to the controller method <code>#bar</code>. If there is no method matching this rule, <code>#index</code> will be called.
+</p>
+<p>By default, controller methods must be in the <code>'controllers'</code> method protocol to be allowed to be called as controller methods (see section <a href="#The-selector-filter">The selector filter</a>).
+</p>
 <hr size="6">
-<a name="The-selectorFilter"></a>
+<a name="The-selector-filter"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Controller-methods" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Widgets" title="Next section in reading order"> &gt; </a>]</td>
@@ -1224,12 +1254,12 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="The-selectorFilter-1"></a>
-<h2 class="section">4.3 The <code>selectorFilter</code></h2>
+<a name="The-selector-filter-1"></a>
+<h2 class="section">4.3 The selector filter</h2>
 <hr size="6">
 <a name="Widgets"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#The-selectorFilter" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#The-selector-filter" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -20556,8 +20586,8 @@ they will be rebuilt together with the receiver
         <li><a name="toc-With-gst_002dremote" href="#With-gst_002dremote">With gst-remote</a></li>
       </ul></li>
       <li><a name="toc-Pharo-Smalltalk" href="#Pharo-Smalltalk">1.3.2 Pharo Smalltalk</a></li>
-    </ul>
-</li>
+    </ul></li>
+    <li><a name="toc-Testing-the-installation-1" href="#Testing-the-installation">1.4 Testing the installation</a></li>
   </ul></li>
   <li><a name="toc-Short-tutorial-1" href="#Short-tutorial">2. Short tutorial</a>
   <ul class="toc">
@@ -20588,7 +20618,7 @@ they will be rebuilt together with the receiver
   <ul class="toc">
     <li><a name="toc-The-base-path-1" href="#The-base-path">4.1 The base path</a></li>
     <li><a name="toc-Controller-methods-1" href="#Controller-methods">4.2 Controller methods</a></li>
-    <li><a name="toc-The-selectorFilter-1" href="#The-selectorFilter">4.3 The <code>selectorFilter</code></a></li>
+    <li><a name="toc-The-selector-filter-1" href="#The-selector-filter">4.3 The selector filter</a></li>
   </ul></li>
   <li><a name="toc-Widgets-1" href="#Widgets">5. Widgets</a></li>
   <li><a name="toc-Routes-and-urls-1" href="#Routes-and-urls">6. Routes and urls</a></li>

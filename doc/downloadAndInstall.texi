@@ -5,6 +5,7 @@
 * Installing on GNU Smalltalk::
 * Installing on Pharo Smalltalk::
 * Loading and starting Iliad::
+* Testing the installation::
 @end menu
 
 Iliad is currently available for GNU Smalltalk, Squeak and Pharo. In this chapter you will find detailed installation instructions for each supported Smalltalk dialect.
@@ -130,3 +131,7 @@ To start Swazoo with the Iliad adapter, @dfn{do-it}:
 SwazooIliad startOn: 8888
 @end example
 
+@node Testing the installation
+@section Testing the installation
+
+Open @uref{'http://localhost:8888/browse', 'http://localhost:8888/browse'} in your browser. You should see the list of loaded Iliad applications.

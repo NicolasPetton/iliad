@@ -7,7 +7,7 @@
 @menu
 * The base path::
 * Controller methods::
-* The @code{selectorFilter}::
+* The selector filter::
 @end menu
 
 An application is the root of a buildable object tree composing the user interface. Applications are used to dispatch requests to other buildables, typically widgets (@pxref{Widgets}), and hold their state. Unlike widgets they don't have one building method but several @dfn{controller methods} used to dispatch requests to the right buildable object.
@@ -47,5 +47,11 @@ The base path of an application is an absolute path and can freely be composed w
 
 @cindex controller method
 
-@node The @code{selectorFilter}
-@section The @code{selectorFilter}
+Controller methods are building methods used to dispatch requests. The application will dispatch the request to the method named after the next fragment of the URL. The default controller method is @code{#index}. Concrete applications should always override this method to answer a buildable object.
+
+For example, if the base path of the application is @code{'foo'}, the application will try to dispatch a request url @code{'/foo/bar'} to the controller method @code{#bar}. If there is no method matching this rule, @code{#index} will be called.
+
+By default, controller methods must be in the @code{'controllers'} method protocol to be allowed to be called as controller methods (@pxref{The selector filter}).
+
+@node The selector filter
+@section The selector filter
