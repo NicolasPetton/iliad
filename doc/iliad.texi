@@ -75,6 +75,8 @@ Nothing in this license impairs or restricts the author’s moral rights.
 * Applications:: 			
 * Widgets:: 			
 * Routes and urls:: 			
+* The Javascript layer::
+* Serving static files::
 * Managing sessions:: 			
 * RSS:: 			
 * Formula:: 			
@@ -92,6 +94,8 @@ Nothing in this license impairs or restricts the author’s moral rights.
 @include applications.texi
 @include widgets.texi
 @include routesAndUrls.texi
+@include javascript.texi
+@include staticFiles.texi
 @include sessions.texi
 @include rss.texi
 @include formula.texi

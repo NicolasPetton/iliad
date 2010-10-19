@@ -7,7 +7,8 @@
 @menu
 * The base path::
 * Controller methods::
-* The selector filter::
+* Filtering controllers::
+* Updating the page::
 @end menu
 
 An application is the root of a buildable object tree composing the user interface. Applications are used to dispatch requests to other buildables, typically widgets (@pxref{Widgets}), and hold their state. Unlike widgets they don't have one building method but several @dfn{controller methods} used to dispatch requests to the right buildable object.
@@ -51,7 +52,97 @@ Controller methods are building methods used to dispatch requests. The applicati
 
 For example, if the base path of the application is @code{'foo'}, the application will try to dispatch a request url @code{'/foo/bar'} to the controller method @code{#bar}. If there is no method matching this rule, @code{#index} will be called.
 
-By default, controller methods must be in the @code{'controllers'} method protocol to be allowed to be called as controller methods (@pxref{The selector filter}).
+By default, controller methods must be in the @code{'controllers'} method protocol to be allowed to be called as controller methods (@pxref{Filtering controllers}).
 
-@node The selector filter
-@section The selector filter
+@unnumberedsubsec A 'hello world' application
+
+At this point we can write a 'hello world' application, with a base path and an @code{#index} controller.
+
+@example
+Iliad.ILApplication subclass: HelloWorldApplication [
+    
+    HelloWorldApplication class >> path [
+        <category: 'accessing'>
+        ^'hello_world'
+    ]
+
+    index [
+        <category: 'controllers'>
+        ^[:e | e h1: 'hello world']
+    ]
+]
+@end example
+
+After starting Iliad on port 8888, the application can be browsed at @uref{http://localhost:8888/hello_world, http://localhost:8888/hello_world}. As expected, the application will dispatch both @code{/hello_world} and @code{/hello_world/index} to the @code{#index} controller.
+
+@unnumberedsubsec A multi-counter application
+
+Let's improve the counter application written in the tutorial (@pxref{Short tutorial}) and make it a multi-counter application. The application will build several counter widgets in the @code{#index} controller.
+
+@example
+Iliad.ILApplication subclass: CounterApplication [
+    CounterApplication class >> path [
+        <category: 'accessing'>
+        ^'counter'
+    ]
+
+    initialize [
+        <category: ’initialization’>
+        super initialize.
+            counters := Array
+            with: CounterWidget new
+            with: CounterWidget new
+            with: CounterWidget new
+    ]
+
+    index [
+        <category: ’controllers’>
+        ^[:e |
+            counters do: [:each | e build: each]]
+    ]
+]
+@end example
+
+To persist through requests, widgets must be stored in instance variables. In this example counters are stored at initialization in a collection.
+
+
+@node Filtering controllers
+@section Filtering controllers
+
+@cindex selector filter
+@cindex selectorFilter:
+
+The use of a method of an application as a controller methods is restricted by the @dfn{selector filter}. Each application class has its own selector filter.
+Each time an application dispatches a request to a controller method, the selector filter block is evaluated against a selector to determine if the corresponding method is allowed to be used as controller or not. The default selector filter allows all methods in the @code{'controllers'} protocol, but you may want to filter selectors differently.
+
+The default selector filter can be overriden in the class side @code{#defaultSelectoreFilter} method, or you can plug in a new selector filter with the class side @code{#selectorFilter:}. A selector filter block must be a one argument block and answer a boolean.
+
+@sp 1
+In the following example, the only selector allowed is @code{#index}, all other methods will be forbidden.
+
+@example
+MyApplication selectorFilter: [:selector | selector == #index]
+@end example
+
+@node Updating the page
+@section Updating the page
+
+@cindex updatePage:
+
+During the generation of a page for a request processing, the application can update any part of it using the @code{#updatePage:} method. This method will be called for each new request excepting AJAX ones. In this method we can for example change the title of the page, update its @code{<head>} section, etc. 
+
+@code{#updatePage:} should not be used to update contents of widgets included in the @code{<body>} section, as widgets may not be built yet when Iliad calls @code{#updatePage:}.
+
+The argument sent to @code{#updatePage:} is an instance if @code{Iliad.ILPage}. This class has accessors for both the @code{<head>} section and the @code{<body>} section of the page, respectively instances of @code{Iliad.ILHeadElement} and @code{Iliad.ILBodyElement}.
+
+@example
+updatePage: aPage [
+    <cateogry: 'updating'>
+    super updatePage: aPage.
+    aPage title: 'The multi-counter example'.
+    aPage stylesheet href: '/path/to/my/style.css'
+]
+@end example
+
+@code{super} should always be called, as Iliad uses Javascript files (@pxref{The Javascript layer}) by default to send AJAX requests automatically.
+@xref{Serving static files, Serving static files}, for more details about how to serve static files with Iliad.
