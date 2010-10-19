@@ -41,7 +41,7 @@ p [
 
 @unnumberedsubsec The HTML API
 
-Each element in the tree represents a given HTML tag. Each attribute of an element has a corresponding HTML tag attribute. We compose HMTL by combining the two kind of methods. 
+Each element in the tree represents a given HTML tag. Each attribute of an element has a corresponding HTML tag attribute. We compose HTML by combining the two kind of methods. 
 As methods are named depending on the HTML tag they represent, building HTML with Iliad looks very similar to actual HTML code.
 
 The following example
@@ -133,8 +133,8 @@ And will build the following HTML code:
 
 Buildables can do more than just build HTML. They can behave, change their state and react to user interactions through Smalltalk code evaluated in actions.
 
-Instead of having to parse URLs and requests, Iliad uses action objects to trigger smalltalk code when the user interacts with the page, click on a link or submit a form.
-An @dfn{action} is an Iliad object with a smalltalk block associated to an id, but we will oftenly refer to the block of an action as the action itself.
+Instead of having to parse URLs and requests, Iliad uses action objects to trigger Smalltalk code when the user interacts with the page, clicks on a link or submits a form.
+An @dfn{action} is an Iliad object with a Smalltalk block associated to an id, but we will oftenly refer to the block of an action as the action itself.
 
 @unnumberedsubsec Actions in anchors
 
@@ -200,7 +200,7 @@ e form build: [:form |
 @node DOM events
 @section DOM events
 
-Iliad provides a simple API to associate javascript code to DOM events (click, focus, etc.) in the @code{accessing attributes-events} method protocol. The main method is @code{#on:add:} which takes two strings as arguments, the first one for the event, and the last one for the associated javascript code. Many shortcut methods exist for specific events, like @code{#onClick:} or @code{#onFocus:}. 
+Iliad provides a simple API to associate JavaScript code to DOM events (click, focus, etc.) in the @code{accessing attributes-events} method protocol. The main method is @code{#on:add:} which takes two strings as arguments, the first one for the event, and the last one for the associated JavaScript code. Many shortcut methods exist for specific events, like @code{#onClick:} or @code{#onFocus:}. 
 
 @example
 e p 

@@ -107,7 +107,7 @@ st> processor activeProcess suspend
 
 @unnumberedsubsubsec With gst-remote
 
-You can create a bash script and use it to load the desired packages and start iliad:
+You can create a bash script and use it to load the desired packages and start Iliad:
 
 @example
 #!/bin/bash
