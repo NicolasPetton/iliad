@@ -4,16 +4,33 @@
 @cindex widget
 @cindex buildable
 
-Iliad web pages are composed of nested Widgets. Widgets are high-level, reusable graphical objects. Widgets are not only about building HTML, they also hold the state of your application and will persist through requests. @code{ILWidget} is probably the most important class of Iliad, as widgets will compose most of your user interfaces and control flow.
+@menu
+* Maintaining the user interface state::
+* Maintaining the client state::
+@end menu
 
-Widgets are created by subclassing @code{ILWidget}. 
+Iliad web pages are composed of nested Widgets. Widgets are high-level, reusable graphical objects. Widgets are not only about building HTML, they also hold the state of web applications and will persist through requests. @code{ILWidget} is probably the most important class of Iliad, as widgets will compose most of your user interfaces and control flow.
+
+@node Maintaining the user interface state
+@section Maintaining the user interface state
+
+To store the user interface state, applications and widgets must know and store their children. Applications themselves are stored in sessions (@pxref{Managing sessions}). Widgets are stored in instance variables in a tree of widget by their parent, applications or other widgets. During a request processing, after the actions evaluation step, widgets are rebuilt and sent to the client in HTML or JSON (@pxref{Maitaining the client state}).
+
+
+
+@node Maintaining the client state
+@section Maintaining the client state
+
+@cindex markDirty
+@cindex dirty widgets
 
 TODO
 @itemize
 @item Maintaining state
 @item dirty widgets
 @item dependent widgets
-@item iteracting with other widgets
+@item interacting with other widgets
 @item decorators
 @item redirecting
+@item updating the page
 @end itemize
