@@ -13,7 +13,7 @@
 
 An application is the root of a buildable object tree composing the user interface. Applications are used to dispatch requests to other buildables, typically widgets (@pxref{Widgets}), and hold their state. Unlike widgets they don't have one building method but several @dfn{controller methods} used to dispatch requests to the right buildable object.
 
-Applications instances are handled by the framework. Iliad stores one instance of an application class per session, which will persist through requests.
+Application instances are handled by the framework. Iliad stores one instance of an application class per session, which will persist through requests.
 
 @node The base path
 @section The base path
@@ -112,7 +112,7 @@ To persist through requests, widgets must be stored in instance variables. In th
 @cindex selector filter
 @cindex selectorFilter:
 
-The use of a method of an application as a controller methods is restricted by the @dfn{selector filter}. Each application class has its own selector filter.
+The use of a method of an application as a controller method is restricted by the @dfn{selector filter}. Each application class has its own selector filter.
 Each time an application dispatches a request to a controller method, the selector filter block is evaluated against a selector to determine if the corresponding method is allowed to be used as controller or not. The default selector filter allows all methods in the @code{'controllers'} protocol, but you may want to filter selectors differently.
 
 The default selector filter can be overriden in the class side @code{#defaultSelectoreFilter} method, or you can plug in a new selector filter with the class side @code{#selectorFilter:}. A selector filter block must be a one argument block and answer a boolean.
@@ -133,7 +133,7 @@ During the generation of a page for a request processing, the application can up
 
 @code{#updatePage:} should not be used to update contents of widgets included in the @code{<body>} section, as widgets may not be built yet when Iliad calls @code{#updatePage:}.
 
-The argument sent to @code{#updatePage:} is an instance if @code{Iliad.ILPage}. This class has accessors for both the @code{<head>} section and the @code{<body>} section of the page, respectively instances of @code{Iliad.ILHeadElement} and @code{Iliad.ILBodyElement}.
+The argument sent to @code{#updatePage:} is an instance of @code{Iliad.ILPage}. This class has accessors for both the @code{<head>} section and the @code{<body>} section of the page, respectively instances of @code{Iliad.ILHeadElement} and @code{Iliad.ILBodyElement}.
 
 @example
 updatePage: aPage [

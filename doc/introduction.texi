@@ -2,9 +2,9 @@
 @unnumbered Introduction
 
 Iliad is a Smalltalk web application framework.
-Heavily based on reusable stateful widgets, Iliad lets you build powerful dynamic applications easily. It allows you to trigger smalltalk code when an user clicks on a link or submit a form instead of bothering you with low level details.
+Heavily based on reusable stateful widgets, Iliad lets you build powerful dynamic applications easily. It allows you to trigger Smalltalk code when an user clicks on a link or submits a form instead of bothering you with low level details.
 @sp 1
-Thanks to its javascript layer Iliad automatically uses AJAX requests to update the client state, and it will nicely degrade to normal requests if javascript is not enabled, so you don't have to bother about that either.
+Thanks to its JavaScript layer Iliad automatically uses AJAX requests to update the client state, and it will nicely degrade to normal requests if JavaScript is not enabled, so you don't have to bother about that either.
 
 @unnumberedsubsec Resources
 Here is a short list of Iliad related resources:
