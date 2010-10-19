@@ -153,6 +153,14 @@ ILObject subclass: ILUrlBuilder [
 	^self applyRewriteRulesTo: url
     ]
 
+    urlForFormAction  [
+	<category: 'generating'>
+	^self baseUrl
+	    addParameter: self stateKey
+	    value: self session stateRegistry key;
+	    yourself
+    ]
+
     urlForAction: anAction [
 	<category: 'generating'>
 	^self urlForAction: anAction hash: ''
@@ -202,6 +210,7 @@ ILObject subclass: ILUrlBuilder [
 	{self stateKey. self actionKey} do: [:each |
 	    tempUrl removeParameter: each].
 	self application updateBaseUrl: tempUrl.
-	baseUrl := self applyRewriteRulesTo: tempUrl
+	baseUrl := self applyRewriteRulesTo: tempUrl.
+	self addDefaultParametersTo: baseUrl
     ]
 ]
