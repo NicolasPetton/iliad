@@ -48,7 +48,7 @@ Nothing in this license impairs or restricts the author’s moral rights.
 @title Iliad developer's guide
 @subtitle Version 0.9.1
 @subtitle @today{}
-@author Nicolas Petton
+@author Nicolas Petton and Steven Costiou
 
 @c Insert copying
 @page
