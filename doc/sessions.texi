@@ -1,9 +1,110 @@
 @node Managing sessions
 @chapter Managing sessions
 
-TODO
-@itemize
-@item The session manager
-@item Subclassing ILSession
-@item Managing session expiration
-@end itemize
+@cindex ILSession
+@cindex session
+
+@menu
+* The session manager::
+* Using a custom session class::
+* Handling session expiration::
+* Note about the lifetime of sessions and UI objects::
+@end menu
+
+@dfn{Session} objects are automatically instanciated by the framework during the first interaction with an Iliad application. Sessions hold the state of the web application: application instances, actions and states of widgets. They can also be used to keep globally accessible and shared informations among the user interface. A session persists as long as it is active, i.e., as long as the user interacts with the application. After a timeout, if the user is not interacting with the application anymore, the session will expire.
+
+@node The session manager
+@section The session manager
+
+@cindex session manager
+@cindex ILSessionManager
+
+The @dfn{session manager} is the object responsible for managing sessions throughout every Iliad application. The current session manager can be accessed through the class side method @code{ILSessionManager>>current}. @code{ILSessionManager} implements methods for internal session management. These methods are part of the Iliad core, and are intended to be used while developping, deploying or debugging an Iliad application. Manually removing or invalidate data from sessions is not recommended.
+
+@unnumberedsubsec Convenience methods
+
+The session manager can at will remove all sessions it contains:
+
+@example
+Iliad.ILSessionManager current removeAllSessions
+@end example
+
+Expired sessions are automatically removed from the session manager from time to time. However, you can explicitely remove all expired sessions with:
+
+@example
+Iliad.ILSessionManager current removeExpiredSessions
+@end example
+
+@unnumberedsubsec Accessing sessions
+
+Sessions can be accessed with the @code{#sessions} accessor. Iteration through sessions can be done with @code{#sessionsDo:}. Note that widgets and applications should never try to access the current session through the session manager, but instead use their @code{#session} accessor.
+
+@sp 1
+Accessing the current session from a debugger or an inspector is not always possible since it is only accessible in the context of a request processing. A workaround is to inspect the session object while processing the request by adding the following code inside the @code{#contents} method of a widget or inside a controller method of an application:
+
+@example
+self session inspect
+@end example
+
+@node Using a custom session class
+@section Using a custom session class
+
+@code{ILSession} is the default session class and can be subclassed to store special informations or handle actions. As an example we will write a session class with very basic login facilities and use it in a simple application.
+
+@example
+Iliad.ILSession subclass: MySession [
+    | username |
+
+    username [
+        ^username
+    ]
+
+    username: aString [
+        username := aString
+    ]
+]
+@end example
+
+We can create an application class that will only be accessible to logged in users:
+
+@example
+Iliad.ILApplication subclass: MyApplication [
+
+    MyApplication class >> path [^'my_app']
+]
+@end example
+
+A login form with validation, registration, password recovery, etc. should be built using a custom widget. In a matter of simplicity, here we will just write the form in a building method in the application.
+
+@example
+loginContents [
+    <category: 'building'>
+    ^[:e |
+        e form build: [:form |
+            form input action: [:val | self login: val].
+            form button text: 'Login']]
+]
+
+login: aString [
+    <category: 'actions'>
+    self session username: aString.
+    self redirectToCurrentController
+]
+@end example
+
+Testing if the user is logged in or not can happen in a controller method. However, if we want the application to globally accessible to logged in users only, we can use the hook method @code{#dispatchOverride} (@pxref{Custom request dispatching}).
+
+@example
+dispatchOverride [
+    <category: 'dispatching'>
+    ^self session username 
+        ifNil: [self loginContents]
+        ifNotNil: [super dispatchOverride]
+]
+@end example
+
+@node Handling session expiration
+@section Handling session expiration
+
+@node Note about the lifetime of sessions and UI objects
+@section Note about the lifetime of sessions and UI objects

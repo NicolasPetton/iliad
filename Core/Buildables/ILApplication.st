@@ -214,7 +214,7 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
     ]
 
     dispatchOverride [
-	"Handle special urls. Subclass implementors
+	"Handle special urls or requests. Subclass implementors
 	 should call super first and see if it was handled."
 	<category: 'dispatching'>
 

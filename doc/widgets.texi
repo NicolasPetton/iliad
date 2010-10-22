@@ -16,10 +16,12 @@ Iliad web pages are composed of nested Widgets. Widgets are high-level, reusable
 
 To store the user interface state, applications and widgets must know and store their children. Applications themselves are stored in sessions (@pxref{Managing sessions}). Widgets are stored in instance variables in a tree of widgets by their parent, applications or other widgets. During a request processing, after the actions evaluation step, widgets are rebuilt and sent to the client in HTML or JSON (@pxref{Maintaining the client state}).
 
-@sp1
+@sp 1
 
 @node Maintaining the client state
 @section Maintaining the client state
+
+
 
 @cindex markDirty
 @cindex dirty widgets

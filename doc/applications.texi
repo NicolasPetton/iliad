@@ -8,6 +8,7 @@
 * The base path::
 * Controller methods::
 * Filtering controllers::
+* Custom request dispatching::
 * Updating the page::
 @end menu
 
@@ -123,6 +124,19 @@ In the following example, the only selector allowed is @code{#index}, all other 
 @example
 MyApplication selectorFilter: [:selector | selector == #index]
 @end example
+
+@node Custom request dispatching
+@section Custom request dispatching
+
+@cindex dispatchOverride
+
+@code{ILApplication} provides the @code{#dispatchOverride} hook method to handle special cases for dispatching a request. Subclasses of @code{ILApplication} should call @code{super} first to see if it was already handled.
+
+@sp 1
+The behavior of @code{#dispatchOverride} is very simple. Before dispatching a request to a controller method, @code{#dispatchOverride} is called. If the answer is anything but @code{nil}, the application will consider the request as handled and will not dispatch it to a controller method.
+
+@sp 1
+@xref{Using a custom session class}, for a simple usage example of this method.
 
 @node Updating the page
 @section Updating the page
