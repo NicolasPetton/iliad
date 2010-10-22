@@ -30,7 +30,7 @@ Nothing in this license impairs or restricts the author’s moral rights.
 
 
  -->
-<!-- Created on October 19, 2010 by texi2html 1.82
+<!-- Created on October 22, 2010 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -97,11 +97,11 @@ ul.toc {list-style: none}
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Routes-and-urls">6. Routes and urls</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-Javascript-layer">7. The Javascript layer</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Managing-sessions">7. Managing sessions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Serving-static-files">8. Serving static files</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-Javascript-layer">8. The Javascript layer</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Managing-sessions">9. Managing sessions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
+<tr><td align="left" valign="top"><a href="#Serving-static-files">9. Serving static files</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top"><a href="#RSS">10. RSS</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 			
 </td></tr>
@@ -138,9 +138,9 @@ ul.toc {list-style: none}
 <h1 class="unnumbered">Introduction</h1>
 
 <p>Iliad is a Smalltalk web application framework.
-Heavily based on reusable stateful widgets, Iliad lets you build powerful dynamic applications easily. It allows you to trigger smalltalk code when an user clicks on a link or submit a form instead of bothering you with low level details.
+Heavily based on reusable stateful widgets, Iliad lets you build powerful dynamic applications easily. It allows you to trigger Smalltalk code when an user clicks on a link or submits a form instead of bothering you with low level details.
 <br>
-Thanks to its javascript layer Iliad automatically uses AJAX requests to update the client state, and it will nicely degrade to normal requests if javascript is not enabled, so you don&rsquo;t have to bother about that either.
+Thanks to its JavaScript layer Iliad automatically uses AJAX requests to update the client state, and it will nicely degrade to normal requests if JavaScript is not enabled, so you don&rsquo;t have to bother about that either.
 </p>
 <hr size="6">
 <a name="Resources"></a>
@@ -511,7 +511,7 @@ st&gt; processor activeProcess suspend
 </tr></table>
 <h4 class="unnumberedsubsubsec">With gst-remote</h4>
 
-<p>You can create a bash script and use it to load the desired packages and start iliad:
+<p>You can create a bash script and use it to load the desired packages and start Iliad:
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">#!/bin/bash
 
@@ -857,7 +857,7 @@ This means you will never have to worry about writing valid HTML yourself, but i
 </tr></table>
 <h3 class="unnumberedsubsec">The HTML API</h3>
 
-<p>Each element in the tree represents a given HTML tag. Each attribute of an element has a corresponding HTML tag attribute. We compose HMTL by combining the two kind of methods. 
+<p>Each element in the tree represents a given HTML tag. Each attribute of an element has a corresponding HTML tag attribute. We compose HTML by combining the two kind of methods. 
 As methods are named depending on the HTML tag they represent, building HTML with Iliad looks very similar to actual HTML code.
 </p>
 <p>The following example
@@ -978,8 +978,8 @@ div h1: 'Iliad rocks!'
 
 <p>Buildables can do more than just build HTML. They can behave, change their state and react to user interactions through Smalltalk code evaluated in actions.
 </p>
-<p>Instead of having to parse URLs and requests, Iliad uses action objects to trigger smalltalk code when the user interacts with the page, click on a link or submit a form.
-An <em>action</em> is an Iliad object with a smalltalk block associated to an id, but we will oftenly refer to the block of an action as the action itself.
+<p>Instead of having to parse URLs and requests, Iliad uses action objects to trigger Smalltalk code when the user interacts with the page, clicks on a link or submits a form.
+An <em>action</em> is an Iliad object with a Smalltalk block associated to an id, but we will oftenly refer to the block of an action as the action itself.
 </p>
 <hr size="6">
 <a name="Actions-in-anchors"></a>
@@ -1094,7 +1094,7 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <a name="DOM-events-1"></a>
 <h2 class="section">3.4 DOM events</h2>
 
-<p>Iliad provides a simple API to associate javascript code to DOM events (click, focus, etc.) in the <code>accessing attributes-events</code> method protocol. The main method is <code>#on:add:</code> which takes two strings as arguments, the first one for the event, and the last one for the associated javascript code. Many shortcut methods exist for specific events, like <code>#onClick:</code> or <code>#onFocus:</code>. 
+<p>Iliad provides a simple API to associate JavaScript code to DOM events (click, focus, etc.) in the <code>accessing attributes-events</code> method protocol. The main method is <code>#on:add:</code> which takes two strings as arguments, the first one for the event, and the last one for the associated JavaScript code. Many shortcut methods exist for specific events, like <code>#onClick:</code> or <code>#onFocus:</code>. 
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">e p 
     text: 'Click';
@@ -1161,13 +1161,15 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Filtering-controllers">4.3 Filtering controllers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Updating-the-page">4.4 Updating the page</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Custom-request-dispatching">4.4 Custom request dispatching</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Updating-the-page">4.5 Updating the page</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
 <p>An application is the root of a buildable object tree composing the user interface. Applications are used to dispatch requests to other buildables, typically widgets (see section <a href="#Widgets">Widgets</a>), and hold their state. Unlike widgets they don&rsquo;t have one building method but several <em>controller methods</em> used to dispatch requests to the right buildable object.
 </p>
-<p>Applications instances are handled by the framework. Iliad stores one instance of an application class per session, which will persist through requests.
+<p>Application instances are handled by the framework. Iliad stores one instance of an application class per session, which will persist through requests.
 </p>
 <hr size="6">
 <a name="The-base-path"></a>
@@ -1311,7 +1313,7 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
     initialize [
         &lt;category: ’initialization’&gt;
         super initialize.
-            counters := Array
+        counters := Array
             with: CounterWidget new
             with: CounterWidget new
             with: CounterWidget new
@@ -1332,7 +1334,7 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <a name="Filtering-controllers"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#A-multi_002dcounter-application" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Updating-the-page" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Custom-request-dispatching" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Applications" title="Up section"> Up </a>]</td>
@@ -1352,7 +1354,7 @@ An <em>action</em> is an Iliad object with a smalltalk block associated to an id
 <a name="index-selector-filter"></a>
 <a name="index-selectorFilter_003a"></a>
 
-<p>The use of a method of an application as a controller methods is restricted by the <em>selector filter</em>. Each application class has its own selector filter.
+<p>The use of a method of an application as a controller method is restricted by the <em>selector filter</em>. Each application class has its own selector filter.
 Each time an application dispatches a request to a controller method, the selector filter block is evaluated against a selector to determine if the corresponding method is allowed to be used as controller or not. The default selector filter allows all methods in the <code>'controllers'</code> protocol, but you may want to filter selectors differently.
 </p>
 <p>The default selector filter can be overriden in the class side <code>#defaultSelectoreFilter</code> method, or you can plug in a new selector filter with the class side <code>#selectorFilter:</code>. A selector filter block must be a one argument block and answer a boolean.
@@ -1364,9 +1366,40 @@ Each time an application dispatches a request to a controller method, the select
 </pre></td></tr></table>
 
 <hr size="6">
-<a name="Updating-the-page"></a>
+<a name="Custom-request-dispatching"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Filtering-controllers" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Updating-the-page" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Applications" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Custom-request-dispatching-1"></a>
+<h2 class="section">4.4 Custom request dispatching</h2>
+
+<a name="index-dispatchOverride"></a>
+
+<p><code>ILApplication</code> provides the <code>#dispatchOverride</code> hook method to handle special cases for dispatching a request. Subclasses of <code>ILApplication</code> should call <code>super</code> first to see if it was already handled.
+</p>
+<br>
+<p>The behavior of <code>#dispatchOverride</code> is very simple. Before dispatching a request to a controller method, <code>#dispatchOverride</code> is called. If the answer is anything but <code>nil</code>, the application will consider the request as handled and will not dispatch it to a controller method.
+</p>
+<br>
+<p>See section <a href="#Using-a-custom-session-class">Using a custom session class</a>, for a simple usage example of this method.
+</p>
+<hr size="6">
+<a name="Updating-the-page"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Custom-request-dispatching" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Widgets" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -1382,7 +1415,7 @@ Each time an application dispatches a request to a controller method, the select
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Updating-the-page-1"></a>
-<h2 class="section">4.4 Updating the page</h2>
+<h2 class="section">4.5 Updating the page</h2>
 
 <a name="index-updatePage_003a"></a>
 
@@ -1390,13 +1423,13 @@ Each time an application dispatches a request to a controller method, the select
 </p>
 <p><code>#updatePage:</code> should not be used to update contents of widgets included in the <code>&lt;body&gt;</code> section, as widgets may not be built yet when Iliad calls <code>#updatePage:</code>.
 </p>
-<p>The argument sent to <code>#updatePage:</code> is an instance if <code>Iliad.ILPage</code>. This class has accessors for both the <code>&lt;head&gt;</code> section and the <code>&lt;body&gt;</code> section of the page, respectively instances of <code>Iliad.ILHeadElement</code> and <code>Iliad.ILBodyElement</code>.
+<p>The argument sent to <code>#updatePage:</code> is an instance of <code>Iliad.ILPage</code>. This class has accessors for both the <code>&lt;head&gt;</code> section and the <code>&lt;body&gt;</code> section of the page, respectively instances of <code>Iliad.ILHeadElement</code> and <code>Iliad.ILBodyElement</code>.
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">updatePage: aPage [
     &lt;cateogry: 'updating'&gt;
     super updatePage: aPage.
-    aPage title: 'The multi-counter example'.
-    aPage stylesheet href: '/path/to/my/style.css'
+    aPage head title: 'The multi-counter example'.
+    aPage head stylesheet href: '/path/to/my/style.css'
 ]
 </pre></td></tr></table>
 
@@ -1406,7 +1439,7 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 <a name="Widgets"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Updating-the-page" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Maintaining-the-user-interface-state" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Applications" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
@@ -1426,28 +1459,85 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 <a name="index-widget-1"></a>
 <a name="index-buildable-2"></a>
 
-<p>Iliad web pages are composed of nested Widgets. Widgets are high-level, reusable graphical objects. Widgets are not only about building HTML, they also hold the state of your application and will persist through requests. <code>ILWidget</code> is probably the most important class of Iliad, as widgets will compose most of your user interfaces and control flow.
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Maintaining-the-user-interface-state">5.1 Maintaining the user interface state</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Maintaining-the-client-state">5.2 Maintaining the client state</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<p>Iliad web pages are composed of nested Widgets. Widgets are high-level, reusable graphical objects. Widgets are not only about building HTML, they also hold the state of web applications and will persist through requests. <code>ILWidget</code> is probably the most important class of Iliad, as widgets will compose most of your user interfaces and control flow.
 </p>
-<p>Widgets are created by subclassing <code>ILWidget</code>. 
+<hr size="6">
+<a name="Maintaining-the-user-interface-state"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Widgets" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Maintaining-the-client-state" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Maintaining-the-user-interface-state-1"></a>
+<h2 class="section">5.1 Maintaining the user interface state</h2>
+
+<p>To store the user interface state, applications and widgets must know and store their children. Applications themselves are stored in sessions (see section <a href="#Managing-sessions">Managing sessions</a>). Widgets are stored in instance variables in a tree of widgets by their parent, applications or other widgets. During a request processing, after the actions evaluation step, widgets are rebuilt and sent to the client in HTML or JSON (see section <a href="#Maintaining-the-client-state">Maintaining the client state</a>).
 </p>
+<br>
+
+<hr size="6">
+<a name="Maintaining-the-client-state"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Maintaining-the-user-interface-state" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Maintaining-the-client-state-1"></a>
+<h2 class="section">5.2 Maintaining the client state</h2>
+
+
+
+<a name="index-markDirty"></a>
+<a name="index-dirty-widgets"></a>
+
 <p>TODO
 </p><ul>
 <li> Maintaining state
 </li><li> dirty widgets
 </li><li> dependent widgets
-</li><li> iteracting with other widgets
+</li><li> interacting with other widgets
 </li><li> decorators
 </li><li> redirecting
+</li><li> updating the page
 </li></ul>
 <hr size="6">
 <a name="Routes-and-urls"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Widgets" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Maintaining-the-client-state" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1467,12 +1557,245 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 </li><li> ILUrlBuilder and the base url
 </li></ul>
 <hr size="6">
-<a name="The-Javascript-layer"></a>
+<a name="Managing-sessions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Routes-and-urls" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Serving-static-files" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-session-manager" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Routes-and-urls" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Managing-sessions-1"></a>
+<h1 class="chapter">7. Managing sessions</h1>
+
+<a name="index-ILSession"></a>
+<a name="index-session"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#The-session-manager">7.1 The session manager</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Using-a-custom-session-class">7.2 Using a custom session class</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Handling-session-expiration">7.3 Handling session expiration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Note-about-the-lifetime-of-sessions-and-UI-objects">7.4 Note about the lifetime of sessions and UI objects</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<p><em>Session</em> objects are automatically instanciated by the framework during the first interaction with an Iliad application. Sessions hold the state of the web application: application instances, actions and states of widgets. They can also be used to keep globally accessible and shared informations among the user interface. A session persists as long as it is active, i.e., as long as the user interacts with the application. After a timeout, if the user is not interacting with the application anymore, the session will expire.
+</p>
+<hr size="6">
+<a name="The-session-manager"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Managing-sessions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Convenience-methods" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-session-manager-1"></a>
+<h2 class="section">7.1 The session manager</h2>
+
+<a name="index-session-manager"></a>
+<a name="index-ILSessionManager"></a>
+
+<p>The <em>session manager</em> is the object responsible for managing sessions throughout every Iliad application. The current session manager can be accessed through the class side method <code>ILSessionManager&gt;&gt;current</code>. <code>ILSessionManager</code> implements methods for internal session management. These methods are part of the Iliad core, and are intended to be used while developping, deploying or debugging an Iliad application. Manually removing or invalidate data from sessions is not recommended.
+</p>
+<hr size="6">
+<a name="Convenience-methods"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#The-session-manager" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Accessing-sessions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-session-manager" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="unnumberedsubsec">Convenience methods</h3>
+
+<p>The session manager can at will remove all sessions it contains:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">Iliad.ILSessionManager current removeAllSessions
+</pre></td></tr></table>
+
+<p>Expired sessions are automatically removed from the session manager from time to time. However, you can explicitely remove all expired sessions with:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">Iliad.ILSessionManager current removeExpiredSessions
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="Accessing-sessions"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Convenience-methods" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Using-a-custom-session-class" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-session-manager" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="unnumberedsubsec">Accessing sessions</h3>
+
+<p>Sessions can be accessed with the <code>#sessions</code> accessor. Iteration through sessions can be done with <code>#sessionsDo:</code>. Note that widgets and applications should never try to access the current session through the session manager, but instead use their <code>#session</code> accessor.
+</p>
+<br>
+<p>Accessing the current session from a debugger or an inspector is not always possible since it is only accessible in the context of a request processing. A workaround is to inspect the session object while processing the request by adding the following code inside the <code>#contents</code> method of a widget or inside a controller method of an application:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">self session inspect
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="Using-a-custom-session-class"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Accessing-sessions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Handling-session-expiration" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Using-a-custom-session-class-1"></a>
+<h2 class="section">7.2 Using a custom session class</h2>
+
+<p><code>ILSession</code> is the default session class and can be subclassed to store special informations or handle actions. As an example we will write a session class with very basic login facilities and use it in a simple application.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">Iliad.ILSession subclass: MySession [
+    | username |
+
+    username [
+        ^username
+    ]
+
+    username: aString [
+        username := aString
+    ]
+]
+</pre></td></tr></table>
+
+<p>We can create an application class that will only be accessible to logged in users:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">Iliad.ILApplication subclass: MyApplication [
+
+    MyApplication class &gt;&gt; path [^'my_app']
+]
+</pre></td></tr></table>
+
+<p>A login form with validation, registration, password recovery, etc. should be built using a custom widget. In a matter of simplicity, here we will just write the form in a building method in the application.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">loginContents [
+    &lt;category: 'building'&gt;
+    ^[:e |
+        e form build: [:form |
+            form input action: [:val | self login: val].
+            form button text: 'Login']]
+]
+
+login: aString [
+    &lt;category: 'actions'&gt;
+    self session username: aString.
+    self redirectToCurrentController
+]
+</pre></td></tr></table>
+
+<p>Testing if the user is logged in or not can happen in a controller method. However, if we want the application to globally accessible to logged in users only, we can use the hook method <code>#dispatchOverride</code> (see section <a href="#Custom-request-dispatching">Custom request dispatching</a>).
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">dispatchOverride [
+    &lt;category: 'dispatching'&gt;
+    ^self session username 
+        ifNil: [self loginContents]
+        ifNotNil: [super dispatchOverride]
+]
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="Handling-session-expiration"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Using-a-custom-session-class" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Note-about-the-lifetime-of-sessions-and-UI-objects" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Handling-session-expiration-1"></a>
+<h2 class="section">7.3 Handling session expiration</h2>
+
+<hr size="6">
+<a name="Note-about-the-lifetime-of-sessions-and-UI-objects"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Handling-session-expiration" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Note-about-the-lifetime-of-sessions-and-UI-objects-1"></a>
+<h2 class="section">7.4 Note about the lifetime of sessions and UI objects</h2>
+<hr size="6">
+<a name="The-Javascript-layer"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Note-about-the-lifetime-of-sessions-and-UI-objects" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Serving-static-files" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Serving-static-files" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1485,34 +1808,14 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="The-Javascript-layer-1"></a>
-<h1 class="chapter">7. The Javascript layer</h1>
+<h1 class="chapter">8. The Javascript layer</h1>
 <hr size="6">
 <a name="Serving-static-files"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Managing-sessions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Managing-sessions" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<a name="Serving-static-files-1"></a>
-<h1 class="chapter">8. Serving static files</h1>
-<hr size="6">
-<a name="Managing-sessions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Serving-static-files" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#RSS" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Serving-static-files" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#RSS" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1524,22 +1827,15 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 <td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Managing-sessions-1"></a>
-<h1 class="chapter">9. Managing sessions</h1>
-
-<p>TODO
-</p><ul>
-<li> The session manager
-</li><li> Subclassing ILSession
-</li><li> Managing session expiration
-</li></ul>
+<a name="Serving-static-files-1"></a>
+<h1 class="chapter">9. Serving static files</h1>
 <hr size="6">
 <a name="RSS"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Managing-sessions" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Serving-static-files" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Formula" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Serving-static-files" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Formula" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3045,7 +3341,7 @@ different from nil, consider it handled.
 - If the selector is allowed to be executed then we just call it
 </p>
 
-<a name="index-dispatchOverride"></a>
+<a name="index-dispatchOverride-1"></a>
 </dd>
 <dt> <b>dispatchOverride</b></dt>
 <dd><p>Handle special urls. Subclass implementors
@@ -5264,7 +5560,7 @@ Make a redirection to another controller method in this application
 <dt> <b>router</b></dt>
 <dd><p>Not commented.
 </p>
-<a name="index-session"></a>
+<a name="index-session-1"></a>
 </dd>
 <dt> <b>session</b></dt>
 <dd><p>Answer &lsquo;session&rsquo;.
@@ -13096,7 +13392,7 @@ The files are stored in a subfolder named like the classname of the receiver in 
 <dt> <b>request</b></dt>
 <dd><p>Not commented.
 </p>
-<a name="index-session-1"></a>
+<a name="index-session-2"></a>
 </dd>
 <dt> <b>session</b></dt>
 <dd><p>Not commented.
@@ -20481,7 +20777,7 @@ except if &lt;aDecorator&gt; is the initial one
 <h3 class="subsection">13.108.9 Iliad.ILWidget: states</h3>
 
 <dl compact="compact">
-<dd><a name="index-markDirty"></a>
+<dd><a name="index-markDirty-1"></a>
 </dd>
 <dt> <b>markDirty</b></dt>
 <dd><p>Mark the receiver as &rsquo;dirty&rsquo;, 
@@ -20640,6 +20936,8 @@ they will be rebuilt together with the receiver
  &nbsp; 
 <a href="#Index-1_cp_letter-C" class="summary-letter"><b>C</b></a>
  &nbsp; 
+<a href="#Index-1_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
 <a href="#Index-1_cp_letter-E" class="summary-letter"><b>E</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-G" class="summary-letter"><b>G</b></a>
@@ -20678,6 +20976,10 @@ they will be rebuilt together with the receiver
 <tr><th><a name="Index-1_cp_letter-C">C</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-controller-method">controller method</a></td><td valign="top"><a href="#Controller-methods">4.2 Controller methods</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-1_cp_letter-D">D</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-dirty-widgets">dirty widgets</a></td><td valign="top"><a href="#Maintaining-the-client-state">5.2 Maintaining the client state</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-dispatchOverride">dispatchOverride</a></td><td valign="top"><a href="#Custom-request-dispatching">4.4 Custom request dispatching</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-E">E</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-element">element</a></td><td valign="top"><a href="#Elements">3. Elements</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
@@ -20691,8 +20993,11 @@ they will be rebuilt together with the receiver
 <tr><th><a name="Index-1_cp_letter-I">I</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ILApplication">ILApplication</a></td><td valign="top"><a href="#Applications">4. Applications</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ILHTMLBuilderELement">ILHTMLBuilderELement</a></td><td valign="top"><a href="#Adding-elements">Adding elements</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ILSession">ILSession</a></td><td valign="top"><a href="#Managing-sessions">7. Managing sessions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ILSessionManager">ILSessionManager</a></td><td valign="top"><a href="#The-session-manager">7.1 The session manager</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-M">M</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-markDirty">markDirty</a></td><td valign="top"><a href="#Maintaining-the-client-state">5.2 Maintaining the client state</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-metacello">metacello</a></td><td valign="top"><a href="#Using-Metacello">Using Metacello</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-P">P</a></th><td></td><td></td></tr>
@@ -20702,11 +21007,13 @@ they will be rebuilt together with the receiver
 <tr><th><a name="Index-1_cp_letter-S">S</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-selector-filter">selector filter</a></td><td valign="top"><a href="#Filtering-controllers">4.3 Filtering controllers</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-selectorFilter_003a">selectorFilter:</a></td><td valign="top"><a href="#Filtering-controllers">4.3 Filtering controllers</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-session">session</a></td><td valign="top"><a href="#Managing-sessions">7. Managing sessions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-session-manager">session manager</a></td><td valign="top"><a href="#The-session-manager">7.1 The session manager</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-squeak">squeak</a></td><td valign="top"><a href="#Installing-on-Pharo-Smalltalk">1.2 Installing on Pharo Smalltalk</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-squeaksource">squeaksource</a></td><td valign="top"><a href="#Manually">Manually</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-U">U</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-updatePage_003a">updatePage:</a></td><td valign="top"><a href="#Updating-the-page">4.4 Updating the page</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-updatePage_003a">updatePage:</a></td><td valign="top"><a href="#Updating-the-page">4.5 Updating the page</a></td></tr>
 <tr><td colspan="3"> <hr></td></tr>
 <tr><th><a name="Index-1_cp_letter-W">W</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-widget">widget</a></td><td valign="top"><a href="#Short-tutorial">2. Short tutorial</a></td></tr>
@@ -20718,6 +21025,8 @@ they will be rebuilt together with the receiver
 <a href="#Index-1_cp_letter-B" class="summary-letter"><b>B</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="#Index-1_cp_letter-D" class="summary-letter"><b>D</b></a>
  &nbsp; 
 <a href="#Index-1_cp_letter-E" class="summary-letter"><b>E</b></a>
  &nbsp; 
@@ -20818,13 +21127,28 @@ they will be rebuilt together with the receiver
       <li><a name="toc-A-multi_002dcounter-application" href="#A-multi_002dcounter-application">A multi-counter application</a></li>
     </ul></li>
     <li><a name="toc-Filtering-controllers-1" href="#Filtering-controllers">4.3 Filtering controllers</a></li>
-    <li><a name="toc-Updating-the-page-1" href="#Updating-the-page">4.4 Updating the page</a></li>
+    <li><a name="toc-Custom-request-dispatching-1" href="#Custom-request-dispatching">4.4 Custom request dispatching</a></li>
+    <li><a name="toc-Updating-the-page-1" href="#Updating-the-page">4.5 Updating the page</a></li>
   </ul></li>
-  <li><a name="toc-Widgets-1" href="#Widgets">5. Widgets</a></li>
+  <li><a name="toc-Widgets-1" href="#Widgets">5. Widgets</a>
+  <ul class="toc">
+    <li><a name="toc-Maintaining-the-user-interface-state-1" href="#Maintaining-the-user-interface-state">5.1 Maintaining the user interface state</a></li>
+    <li><a name="toc-Maintaining-the-client-state-1" href="#Maintaining-the-client-state">5.2 Maintaining the client state</a></li>
+  </ul></li>
   <li><a name="toc-Routes-and-urls-1" href="#Routes-and-urls">6. Routes and urls</a></li>
-  <li><a name="toc-The-Javascript-layer-1" href="#The-Javascript-layer">7. The Javascript layer</a></li>
-  <li><a name="toc-Serving-static-files-1" href="#Serving-static-files">8. Serving static files</a></li>
-  <li><a name="toc-Managing-sessions-1" href="#Managing-sessions">9. Managing sessions</a></li>
+  <li><a name="toc-Managing-sessions-1" href="#Managing-sessions">7. Managing sessions</a>
+  <ul class="toc">
+    <li><a name="toc-The-session-manager-1" href="#The-session-manager">7.1 The session manager</a>
+    <ul class="toc">
+      <li><a name="toc-Convenience-methods" href="#Convenience-methods">Convenience methods</a></li>
+      <li><a name="toc-Accessing-sessions" href="#Accessing-sessions">Accessing sessions</a></li>
+    </ul></li>
+    <li><a name="toc-Using-a-custom-session-class-1" href="#Using-a-custom-session-class">7.2 Using a custom session class</a></li>
+    <li><a name="toc-Handling-session-expiration-1" href="#Handling-session-expiration">7.3 Handling session expiration</a></li>
+    <li><a name="toc-Note-about-the-lifetime-of-sessions-and-UI-objects-1" href="#Note-about-the-lifetime-of-sessions-and-UI-objects">7.4 Note about the lifetime of sessions and UI objects</a></li>
+  </ul></li>
+  <li><a name="toc-The-Javascript-layer-1" href="#The-Javascript-layer">8. The Javascript layer</a></li>
+  <li><a name="toc-Serving-static-files-1" href="#Serving-static-files">9. Serving static files</a></li>
   <li><a name="toc-RSS-1" href="#RSS">10. RSS</a></li>
   <li><a name="toc-Formula-1" href="#Formula">11. Formula</a></li>
   <li><a name="toc-Deploying-Iliad-applications-1" href="#Deploying-Iliad-applications">12. Deploying Iliad applications</a></li>
@@ -21485,7 +21809,7 @@ they will be rebuilt together with the receiver
 </tr></table>
 <h1>About This Document</h1>
 <p>
-  This document was generated by <em>Nicolas Petton</em> on <em>October 19, 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Nicolas Petton</em> on <em>October 22, 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
 </p>
 <p>
   The buttons in the navigation panels have the following meaning:
@@ -21587,7 +21911,7 @@ they will be rebuilt together with the receiver
 <hr size="1">
 <p>
  <font size="-1">
-  This document was generated by <em>Nicolas Petton</em> on <em>October 19, 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Nicolas Petton</em> on <em>October 22, 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
