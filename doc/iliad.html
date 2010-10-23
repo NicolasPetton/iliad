@@ -30,7 +30,7 @@ Nothing in this license impairs or restricts the author’s moral rights.
 
 
  -->
-<!-- Created on October 22, 2010 by texi2html 1.82
+<!-- Created on October 23, 2010 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -1464,9 +1464,21 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Maintaining-the-client-state">5.2 Maintaining the client state</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
+<tr><td align="left" valign="top"><a href="#Dependent-widgets">5.3 Dependent widgets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Interacting-with-other-widgets">5.4 Interacting with other widgets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> 
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Sequencing-with-ILSequence">5.5 Sequencing with <code>ILSequence</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Widget-decorators">5.6 Widget decorators</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Redirecting">5.7 Redirecting</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Updating-the-_003chead_003e-section-of-the-page">5.8 Updating the <code>&lt;head&gt;</code> section of the page</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
 </table>
 
-<p>Iliad web pages are composed of nested Widgets. Widgets are high-level, reusable graphical objects. Widgets are not only about building HTML, they also hold the state of web applications and will persist through requests. <code>ILWidget</code> is probably the most important class of Iliad, as widgets will compose most of your user interfaces and control flow.
+<p>Iliad web pages are composed of embedded Widgets. Widgets are high-level, reusable graphical objects. Widgets are not only about building HTML, they also hold the state of web applications and will persist through requests. <code>ILWidget</code> is probably the most important class of Iliad, as widgets will compose most of your user interfaces and control flow.
 </p>
 <hr size="6">
 <a name="Maintaining-the-user-interface-state"></a>
@@ -1491,13 +1503,11 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 
 <p>To store the user interface state, applications and widgets must know and store their children. Applications themselves are stored in sessions (see section <a href="#Managing-sessions">Managing sessions</a>). Widgets are stored in instance variables in a tree of widgets by their parent, applications or other widgets. During a request processing, after the actions evaluation step, widgets are rebuilt and sent to the client in HTML or JSON (see section <a href="#Maintaining-the-client-state">Maintaining the client state</a>).
 </p>
-<br>
-
 <hr size="6">
 <a name="Maintaining-the-client-state"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Maintaining-the-user-interface-state" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Dependent-widgets" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
@@ -1514,25 +1524,148 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 <a name="Maintaining-the-client-state-1"></a>
 <h2 class="section">5.2 Maintaining the client state</h2>
 
-
-
 <a name="index-markDirty"></a>
 <a name="index-dirty-widgets"></a>
 
-<p>TODO
-</p><ul>
-<li> Maintaining state
-</li><li> dirty widgets
-</li><li> dependent widgets
-</li><li> interacting with other widgets
-</li><li> decorators
-</li><li> redirecting
-</li><li> updating the page
-</li></ul>
+<p>When updating the client state, refreshing the entire page to update some widgets - therefore rebuilding the entire application with all its children widgets - would be a waste of bandwidth and time. Iliad is designed to automatically build full-blown AJAX applications without hard-coding Javascript inside the HTML page. Because Iliad uses a thin Javascript layer, your content will automatically degrade on clients that don&rsquo;t have Javascript enabled.
+</p>
+<br>
+<p>With Javascript enabled web browsers, Iliad automatically uses AJAX to update the client state. The javascript layer (see section <a href="#The-Javascript-layer">The Javascript layer</a>) catches clicks on anchors with actions and form submissions, and send to the server a XmlHTTPRequest. During the request processing, widgets which state has changed are sent back to the browser in JSON. The Javascript layer will then update the page with the new data to keep the client state up-to-date. 
+</p>
+<br>
+<p>The <code>#markDirty</code> method is used to inform Iliad that a widget&rsquo;s state has changed. It will rebuild it and send it&rsquo;s new HTML contents in JSON to the client.
+</p>
+
+<hr size="6">
+<a name="Dependent-widgets"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Maintaining-the-client-state" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Interacting-with-other-widgets" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Dependent-widgets-1"></a>
+<h2 class="section">5.3 Dependent widgets</h2>
+
+<hr size="6">
+<a name="Interacting-with-other-widgets"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Dependent-widgets" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Sequencing-with-ILSequence" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Interacting-with-other-widgets-1"></a>
+<h2 class="section">5.4 Interacting with other widgets</h2>
+
+
+<hr size="6">
+<a name="Sequencing-with-ILSequence"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Interacting-with-other-widgets" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widget-decorators" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Sequencing-with-ILSequence-1"></a>
+<h2 class="section">5.5 Sequencing with <code>ILSequence</code></h2>
+
+<hr size="6">
+<a name="Widget-decorators"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Sequencing-with-ILSequence" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Redirecting" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Widget-decorators-1"></a>
+<h2 class="section">5.6 Widget decorators</h2>
+
+<hr size="6">
+<a name="Redirecting"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Widget-decorators" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Updating-the-_003chead_003e-section-of-the-page" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Redirecting-1"></a>
+<h2 class="section">5.7 Redirecting</h2>
+
+<hr size="6">
+<a name="Updating-the-_003chead_003e-section-of-the-page"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Redirecting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Routes-and-urls" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Updating-the-_003chead_003e-section-of-the-page-1"></a>
+<h2 class="section">5.8 Updating the <code>&lt;head&gt;</code> section of the page</h2>
 <hr size="6">
 <a name="Routes-and-urls"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Maintaining-the-client-state" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Updating-the-_003chead_003e-section-of-the-page" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Managing-sessions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -1587,7 +1720,7 @@ See section <a href="#Serving-static-files">Serving static files</a>, for more d
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Handling-session-expiration">7.3 Handling session expiration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Note-about-the-lifetime-of-sessions-and-UI-objects">7.4 Note about the lifetime of sessions and UI objects</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; Note about the lifetime of sessions and UI objects</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -1752,7 +1885,7 @@ login: aString [
 <a name="Handling-session-expiration"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Using-a-custom-session-class" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Note-about-the-lifetime-of-sessions-and-UI-objects" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Managing-sessions" title="Up section"> Up </a>]</td>
@@ -1769,30 +1902,20 @@ login: aString [
 <a name="Handling-session-expiration-1"></a>
 <h2 class="section">7.3 Handling session expiration</h2>
 
-<hr size="6">
-<a name="Note-about-the-lifetime-of-sessions-and-UI-objects"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Handling-session-expiration" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Managing-sessions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#The-Javascript-layer" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="#Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<a name="Note-about-the-lifetime-of-sessions-and-UI-objects-1"></a>
-<h2 class="section">7.4 Note about the lifetime of sessions and UI objects</h2>
+<p>Sessions expire after some time if the user is not interacting with the application. The default timeout is set to 1800 seconds, and can be changed with: <code>ILSession&gt;&gt;expirySeconds:</code>.
+</p>
+<p>When a session expires, Iliad calls its <code>#onExpire</code> method. If you use your own session class, you can override this method to trigger events for session expiration: close database connections, displaying session expiration informations to the user, etc. To illustrate this behavior, we will reuse our session class and logout the user when its session expires.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">onExpire [
+    &lt;category: 'events'&gt;
+    self username: nil.
+    super onExpire
+]
+</pre></td></tr></table>
 <hr size="6">
 <a name="The-Javascript-layer"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Note-about-the-lifetime-of-sessions-and-UI-objects" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Handling-session-expiration" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Serving-static-files" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Managing-sessions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -21134,6 +21257,12 @@ they will be rebuilt together with the receiver
   <ul class="toc">
     <li><a name="toc-Maintaining-the-user-interface-state-1" href="#Maintaining-the-user-interface-state">5.1 Maintaining the user interface state</a></li>
     <li><a name="toc-Maintaining-the-client-state-1" href="#Maintaining-the-client-state">5.2 Maintaining the client state</a></li>
+    <li><a name="toc-Dependent-widgets-1" href="#Dependent-widgets">5.3 Dependent widgets</a></li>
+    <li><a name="toc-Interacting-with-other-widgets-1" href="#Interacting-with-other-widgets">5.4 Interacting with other widgets</a></li>
+    <li><a name="toc-Sequencing-with-ILSequence-1" href="#Sequencing-with-ILSequence">5.5 Sequencing with <code>ILSequence</code></a></li>
+    <li><a name="toc-Widget-decorators-1" href="#Widget-decorators">5.6 Widget decorators</a></li>
+    <li><a name="toc-Redirecting-1" href="#Redirecting">5.7 Redirecting</a></li>
+    <li><a name="toc-Updating-the-_003chead_003e-section-of-the-page-1" href="#Updating-the-_003chead_003e-section-of-the-page">5.8 Updating the <code>&lt;head&gt;</code> section of the page</a></li>
   </ul></li>
   <li><a name="toc-Routes-and-urls-1" href="#Routes-and-urls">6. Routes and urls</a></li>
   <li><a name="toc-Managing-sessions-1" href="#Managing-sessions">7. Managing sessions</a>
@@ -21145,7 +21274,6 @@ they will be rebuilt together with the receiver
     </ul></li>
     <li><a name="toc-Using-a-custom-session-class-1" href="#Using-a-custom-session-class">7.2 Using a custom session class</a></li>
     <li><a name="toc-Handling-session-expiration-1" href="#Handling-session-expiration">7.3 Handling session expiration</a></li>
-    <li><a name="toc-Note-about-the-lifetime-of-sessions-and-UI-objects-1" href="#Note-about-the-lifetime-of-sessions-and-UI-objects">7.4 Note about the lifetime of sessions and UI objects</a></li>
   </ul></li>
   <li><a name="toc-The-Javascript-layer-1" href="#The-Javascript-layer">8. The Javascript layer</a></li>
   <li><a name="toc-Serving-static-files-1" href="#Serving-static-files">9. Serving static files</a></li>
@@ -21809,7 +21937,7 @@ they will be rebuilt together with the receiver
 </tr></table>
 <h1>About This Document</h1>
 <p>
-  This document was generated by <em>Nicolas Petton</em> on <em>October 22, 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Nicolas Petton</em> on <em>October 23, 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
 </p>
 <p>
   The buttons in the navigation panels have the following meaning:
@@ -21911,7 +22039,7 @@ they will be rebuilt together with the receiver
 <hr size="1">
 <p>
  <font size="-1">
-  This document was generated by <em>Nicolas Petton</em> on <em>October 22, 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Nicolas Petton</em> on <em>October 23, 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

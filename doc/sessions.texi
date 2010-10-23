@@ -106,5 +106,14 @@ dispatchOverride [
 @node Handling session expiration
 @section Handling session expiration
 
-@node Note about the lifetime of sessions and UI objects
-@section Note about the lifetime of sessions and UI objects
+Sessions expire after some time if the user is not interacting with the application. The default timeout is set to 1800 seconds, and can be changed with: @code{ILSession>>expirySeconds:}.
+
+When a session expires, Iliad calls its @code{#onExpire} method. If you use your own session class, you can override this method to trigger events for session expiration: close database connections, displaying session expiration informations to the user, etc. To illustrate this behavior, we will reuse our session class and logout the user when its session expires.
+
+@example
+onExpire [
+    <category: 'events'>
+    self username: nil.
+    super onExpire
+]
+@end example
