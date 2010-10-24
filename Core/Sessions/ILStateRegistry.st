@@ -95,7 +95,9 @@ ILObject subclass: ILStateRegistry [
     dirtyWidgets [
 	"Answer all widgets which state has changed"
 	<category: 'states'>
-	^self dirtyChildrenOf: self session application
+	^(self isWidgetDirty: self session application)
+	    ifTrue: [Array with: self session application]
+	    ifFalse: [self dirtyChildrenOf: self session application]
     ]
 
     dirtyChildrenOf: aBuildable [

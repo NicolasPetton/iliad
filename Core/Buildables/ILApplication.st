@@ -38,7 +38,7 @@
 
 
 
-ILBuildable subclass: ILApplication [
+ILWidget subclass: ILApplication [
     | model page |
 
     <category: 'Iliad-Core-Buildables'>
@@ -171,13 +171,11 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	    yourself
     ]
 
-    buildContents [
+    contents [
 	"Call #dispatch. A buildable is expected from #dispatch"
 	<category: 'building'>
 	
-	^self newRootElement 
-	    build: self dispatch;
-	    yourself
+	^self dispatch
     ]
 
     allowedSelector: aSelector [

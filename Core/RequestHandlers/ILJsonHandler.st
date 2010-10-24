@@ -77,6 +77,7 @@ ILRequestHandler subclass: ILJsonHandler [
 
     shouldUpdateApplication [
 	<category: 'testing'>
+	(self session dirtyWidgets includes: self application) ifTrue: [^true].
 	^self request hashLocationField notNil and: [
 	    self request actionField isNil]
     ]
