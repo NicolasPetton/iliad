@@ -57,7 +57,7 @@ contents [
             text: '++'.
         e a
             action: [self decrease];
-            text: '++']
+            text: '--']
 ]
 @end example
 
