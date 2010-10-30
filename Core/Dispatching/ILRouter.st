@@ -48,8 +48,7 @@ ILObject subclass: ILRouter [
 	self 
 	    setApplication;
 	    setRoutePosition;
-	    setController;
-	    updateApplicationFromRoute
+	    setController
     ]
 
     dispatchRequest [
@@ -121,11 +120,5 @@ ILObject subclass: ILRouter [
 		detect: [:each | each absolutePath = self route currentPath]
 		ifNone: [applicationClass]].
 	^applicationClass
-    ]
-    
-    updateApplicationFromRoute [
-	<category: 'updating'>
-	self application ifNotNil: [
-	    self application updateFromRoute: self route]
     ]
 ]

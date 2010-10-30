@@ -141,14 +141,19 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	]
     ]
 
+    route [
+	<category: 'accessing'>
+	^self router route
+    ]
+
     model [
 	<category: 'accessing'>
-	^model
+	^self uiState at: #model
     ]
 
     model: anObject [
 	<category: 'accessing'>
-	model := anObject
+	self uiState at: #model put: anObject
     ]
 
     page [
@@ -227,21 +232,6 @@ your own selectorFilter or plug it in using the class method #selectorFilter:'>
 	aPage head javascript src: '/javascripts/jquery132min.js'.
 	aPage head javascript src: '/javascripts/no_conflict.js'.
 	aPage head javascript src: '/javascripts/iliad.js'.
-    ]
-
-    updateFromRoute: aRoute [
-	<category: 'updating'>
-	"Override this method to update to state of the application 
-	from the request url route.
-
-	This method will be called for each new request"
-
-    ]
-
-    updateBaseUrl: anUrl [
-	<category: 'updating'>
-	"Update the base url used for the current context"
-
     ]
 
     respond: aBlock [

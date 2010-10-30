@@ -26,6 +26,7 @@ Eval [
 	filein: 'Sessions/ILUrlBuilder.st'; 
 	filein: 'Sessions/ILContext.st'; 
 	filein: 'Sessions/ILAction.st'; 
+	filein: 'Sessions/ILState.st'; 
 	filein: 'Sessions/ILCurrentContext.st'; 
 	filein: 'Sessions/ILActionRegistry.st'; 
 	filein: 'Sessions/ILStateRegistry.st'; 

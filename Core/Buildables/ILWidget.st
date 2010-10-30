@@ -101,6 +101,7 @@ added to the decoration chain with #decorateWith:.'>
 	super initialize.
 	decorator := ILDecorator decoratee: self.
 	dependentWidgets := OrderedCollection new.
+	state := self stateClass new
     ]
 
     postCopy [
@@ -108,13 +109,26 @@ added to the decoration chain with #decorateWith:.'>
 	super postCopy.
 	decorator := ILDecorator decoratee: self.
 	dependentWidgets := OrderedCollection new.
-	state := nil.
-	id := nil
+	state := state copy 
+	    setKey;
+	    yourself.
+	id := nil.
+
+    ]
+
+    stateClass [
+	<category: 'accessing'>
+	^ILState
     ]
 
     state [
 	<category: 'accessing'>
 	^state copy
+    ]
+
+    uiState [
+	<category: 'accessing'>
+	^self stateRegistry stateAt: self
     ]
 
     id: aString [
@@ -414,6 +428,12 @@ added to the decoration chain with #decorateWith:.'>
  
     registerState [
 	<category: 'states'>
+	"Register the state of the receiver into the current state registry.
+	UI specific state stored in uiState is restored."
+
+	state := self uiState copy
+	    key: state key;
+	    yourself.
 	self stateRegistry register: self
     ]
 
@@ -455,6 +475,6 @@ added to the decoration chain with #decorateWith:.'>
 
     beDirty [
 	<category: 'private'>
-	state := self session nextId
+	state newKey
     ]
 ]

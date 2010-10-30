@@ -93,9 +93,9 @@ ILObject subclass: ILSession [
 
     dirtyWidgets [
 	<category: 'accessing'>
-	^self previousStateRegistry 
+	^self stateRegistry 
 	    ifNil: [#()]
-	    ifNotNil: [self previousStateRegistry dirtyWidgets]
+	    ifNotNil: [self stateRegistry dirtyWidgets]
     ]
 
     encoding [
@@ -111,21 +111,6 @@ ILObject subclass: ILSession [
     stateRegistry [
 	<category: 'accessing'>
 	^self context stateRegistry
-    ]
-
-    previousStateRegistry [
-	<category: 'accessing'>
-	^self context previousStateRegistry
-    ]
-
-    stateRegistry [
-	<category: 'accessing'>
-	^self context stateRegistry
-    ]
-
-    previousStateRegistry [
-	<category: 'accessing'>
-	^self context previousStateRegistry
     ]
 
     sessionManager [

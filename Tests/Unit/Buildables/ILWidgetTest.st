@@ -18,7 +18,7 @@ TestCase subclass: ILWidgetTest [
     dirtyWidgets [
 	<category: 'accessing'>
 	^self session context 
-	    previousStateRegistry dirtyChildrenOf: app
+	    stateRegistry dirtyChildrenOf: app
     ]
 
     testAnswer [
