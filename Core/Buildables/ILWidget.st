@@ -123,7 +123,7 @@ added to the decoration chain with #decorateWith:.'>
 
     state [
 	<category: 'accessing'>
-	^state copy
+	^state
     ]
 
     uiState [
@@ -431,9 +431,7 @@ added to the decoration chain with #decorateWith:.'>
 	"Register the state of the receiver into the current state registry.
 	UI specific state stored in uiState is restored."
 
-	state := self uiState copy
-	    key: state key;
-	    yourself.
+	state := self uiState.
 	self stateRegistry register: self
     ]
 
@@ -475,6 +473,8 @@ added to the decoration chain with #decorateWith:.'>
 
     beDirty [
 	<category: 'private'>
-	state newKey
+	state := state copy 
+	    newKey;
+	    yourself
     ]
 ]
