@@ -1,5 +1,5 @@
 ILApplication subclass: ILClassSearchApplication [
-    | searchPart |
+    | searchWidget |
 
     <comment: nil>
     <category: 'Iliad-More-Examples'>
@@ -9,15 +9,15 @@ ILApplication subclass: ILClassSearchApplication [
 	^'search'
     ]
     
-    searchPart [
+    searchWidget [
 	<category: 'accessing'>
-	^searchPart ifNil: [searchPart := ILSearchPart new]
+	^searchWidget ifNil: [searchWidget := ILClassSearchWidget new]
     ]
 
     index [
 	<category: 'controllers'>
 	^[:e |
-	    e build: self searchPart]
+	    e build: self searchWidget]
     ]
 
     updatePage: aPage [

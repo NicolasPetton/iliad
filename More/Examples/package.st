@@ -17,7 +17,7 @@ Eval [
     filein: 'ILGravatarWidget.st';
     filein: 'ILCometCounter.st';
     filein: 'ILClassSearchApplication.st';
-    filein: 'ILSearchPart.st';
+    filein: 'ILClassSearchWidget.st';
 
     buildXml
 ]

@@ -15,7 +15,7 @@
   <filein>ILGravatarWidget.st</filein>
   <filein>ILCometCounter.st</filein>
   <filein>ILClassSearchApplication.st</filein>
-  <filein>ILSearchPart.st</filein>
+  <filein>ILClassSearchWidget.st</filein>
   <file>ILCounter.st</file>
   <file>ILCounterApplication.st</file>
   <file>ILTodoListItem.st</file>
@@ -25,5 +25,5 @@
   <file>ILGravatarWidget.st</file>
   <file>ILCometCounter.st</file>
   <file>ILClassSearchApplication.st</file>
-  <file>ILSearchPart.st</file>
+  <file>ILClassSearchWidget.st</file>
 </package>
