@@ -1,11 +1,22 @@
-ILWidget subclass: ILSearchPart [
+ILWidget subclass: ILClassSearchWidget [
+    | resultsWidget searchText |
 
     <comment: nil>
     <category: 'Iliad-More-Examples'>
 
+    searchText [
+	<category: 'accessing'>
+	^searchText ifNil: [searchText := '']
+    ]
+
+    searchText: aString [
+	<category: 'accessing'>
+	searchText := aString
+    ]
+
     contents [
 	<category: 'building'>
-	^[:e | | results searchText |
+	^[:e |
 	    e h1: 'Search Smalltalk classes'.
 	    e br.
 	    e form class: 'search_class';
@@ -13,15 +24,20 @@ ILWidget subclass: ILSearchPart [
 		    form text: 'Search: '.
 		    form input
 			beSubmitOnEvent: 'keyup';
-			action: [:val |
-			    searchText := val.
-			    results markDirty].
-		    form build: (results := self widgetFor: [:w |
-			(self search: searchText) do: [:each |
-			   w div 
-				class: 'results';
-				text: each.
-			   w br]])]]
+			action: [:val | 
+			    self searchText: val.
+			    self results markDirty].
+		    form build: self resultsWidget]]
+    ]
+
+    resultsWidget [
+	<category: 'accessing'>
+	^resultsWidget ifNil: [resultsWidget := self widgetFor: [:widget |
+	    (self search: self searchText) do: [:each |
+		widget div
+		    class: 'results';
+		    text: each.
+		widget br]]]
     ]
 
     search: aString [
