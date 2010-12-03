@@ -16,6 +16,8 @@ Eval [
     filein: 'ILTodoListApplication.st'; 
     filein: 'ILGravatarWidget.st';
     filein: 'ILCometCounter.st';
+    filein: 'ILClassSearchApplication.st';
+    filein: 'ILSearchPart.st';
 
     buildXml
 ]

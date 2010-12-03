@@ -91,3 +91,11 @@ input, textarea {
     border: 1px solid #d51a2c}
 
 .required:after {content: ' *'; color: #d51a2c; font-weight: bold}
+
+.results {
+	float: left;
+}
+
+.search_class {
+	float: left
+}

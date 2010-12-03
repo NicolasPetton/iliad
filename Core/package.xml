@@ -225,16 +225,17 @@
   <file>GST/ILDiskDirectory.st</file>
   <file>GST/Extensions.st</file>
   <file>postLoad.st</file>
-  <file>Public/images/iliad_tiny.png</file>
-  <file>Public/images/iliad.png</file>
-  <file>Public/images/iliad_small.png</file>
-  <file>Public/images/ajax_loader.gif</file>
-  <file>Public/images/iliad_huge.png</file>
-  <file>Public/images/iliad_bleached.png</file>
-  <file>Public/images/iliad_big.png</file>
-  <file>Public/stylesheets/iliad.css</file>
-  <file>Public/javascripts/iliad.js</file>
-  <file>Public/javascripts/jquery132min.js</file>
   <file>Public/javascripts/no_conflict.js</file>
+  <file>Public/javascripts/iliad.js</file>
   <file>Public/javascripts/iliad_ie_history.html</file>
+  <file>Public/javascripts/jquery132min.js</file>
+  <file>Public/stylesheets/jquery.autocomplete.css</file>
+  <file>Public/stylesheets/iliad.css</file>
+  <file>Public/images/iliad_tiny.png</file>
+  <file>Public/images/iliad_bleached.png</file>
+  <file>Public/images/iliad_huge.png</file>
+  <file>Public/images/ajax_loader.gif</file>
+  <file>Public/images/iliad.png</file>
+  <file>Public/images/iliad_big.png</file>
+  <file>Public/images/iliad_small.png</file>
 </package>
