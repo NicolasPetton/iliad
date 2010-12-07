@@ -36,9 +36,8 @@
 
 
 
-
-ILAbstractField subclass: ILField [
-    | conditions errors reader writer labelContents commentContents |
+ILBuildable subclass: ILField [
+    | formula conditions errors reader writer labelContents commentContents |
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -49,6 +48,21 @@ ILAbstractField subclass: ILField [
 	    on: aFormula
 	    selector: aSelector;
 	    yourself
+    ]
+
+    postCopyTo: aContainer [
+	<category: 'copying'>
+	formula := aContainer formula
+    ]
+
+    formula [
+	<category: 'accessing'>
+	^formula
+    ]
+
+    formula: aFormula [
+	<category: 'accessing'>
+	formula := aFormula
     ]
 
     reader [

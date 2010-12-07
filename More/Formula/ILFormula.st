@@ -37,7 +37,7 @@
 
 
 ILWidget subclass: ILFormula [
-    | proxy conditions containers buttons saveAction cancelAction errors multipart subFormula |
+    | proxy conditions containers formulas buttons saveAction cancelAction errors multipart subFormula |
 	
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -94,6 +94,11 @@ ILWidget subclass: ILFormula [
 	^containers ifNil: [containers := OrderedCollection new]
     ]
 
+    formulas [
+	<category: 'accessing'>
+	^formulas ifNil: [formulas := OrderedCollection new]
+    ]
+
     newContainer [
 	<category: 'accessing'>
 	^self newContainerLabelled: ''
@@ -109,6 +114,7 @@ ILWidget subclass: ILFormula [
 	| fields |
 	fields := OrderedCollection new.
 	self containers do: [:each | fields addAll: each fields].
+	self formulas do: [:each | fields addAll: each fields].
 	^fields
     ]
 
@@ -191,7 +197,7 @@ ILWidget subclass: ILFormula [
     addFormula: aFormula [
 	<category: 'adding'>
 	aFormula beSubFormula.
-	^self addField: (ILFormulaField on: self child: aFormula)
+	^self formulas add: aFormula
     ]
 
     inputOn: aSelector [
@@ -318,6 +324,8 @@ ILWidget subclass: ILFormula [
 	<category: 'building'>
 	^[:e |
 	    self containers do: [:each |
+		e build: each].
+	    self formulas do: [:each |
 		e build: each]]
     ]
 
@@ -357,7 +365,7 @@ ILWidget subclass: ILFormula [
 
     commit [
 	<category: 'actions'>
-	self fields do: [:each | each commit].
+	self formulas do: [:each | each commit].
 	proxy commit
     ]
 
@@ -365,6 +373,7 @@ ILWidget subclass: ILFormula [
 	<category: 'actions'>
 	errors := OrderedCollection new.
 	self fields do: [:each | each validate].
+	self formulas do: [:each | each validate].
 	self isValid ifTrue: [
 	    self conditions do: [:each |
 		(each validate: self proxy) ifFalse: [
@@ -380,13 +389,16 @@ ILWidget subclass: ILFormula [
 	<category: 'testing'>
 	self fields do: [:each |
 	    each isValid ifFalse: [^false]].
+	self formulas do: [:each |
+	    each isValid ifFalse: [^false]].
 	^self errors isEmpty
     ]
 
     isMultipart [
 	<category: 'testing'>
 	^self multipart or: [
-	    (self fields select: [:each | each isMultipart]) notEmpty]
+	    ((self fields addAll: self formulas; yourself) select: [:each | 
+		each isMultipart]) notEmpty]
     ]
 
     isSubFormula [

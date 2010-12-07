@@ -8,7 +8,6 @@ Eval [
 	prereq: 'Iliad-More-UI';
 
 	filein: 'ILCondition.st';
-	filein: 'ILAbstractField.st';
 	filein: 'ILField.st';
 	filein: 'ILInputField.st';
 	filein: 'ILNumberInputField.st';
@@ -22,7 +21,6 @@ Eval [
 	filein: 'ILDateInputField.st';
 	filein: 'ILTimeInputField.st';
 	filein: 'ILFileInputField.st';
-	filein: 'ILFormulaField.st';
 	filein: 'ILFieldContainer.st';
 	filein: 'ILFormula.st';
 

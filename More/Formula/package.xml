@@ -17,6 +17,7 @@
   <filein>ILDateInputField.st</filein>
   <filein>ILTimeInputField.st</filein>
   <filein>ILFileInputField.st</filein>
+  <filein>ILFieldContainer.st</filein>
   <filein>ILFormula.st</filein>
   <filein>postLoad.st</filein>
   <file>ILCondition.st</file>
@@ -33,8 +34,9 @@
   <file>ILDateInputField.st</file>
   <file>ILTimeInputField.st</file>
   <file>ILFileInputField.st</file>
+  <file>ILFieldContainer.st</file>
   <file>ILFormula.st</file>
   <file>postLoad.st</file>
-  <file>Public/javascripts/jquery.autocomplete.js</file>
   <file>Public/stylesheets/jquery.autocomplete.css</file>
+  <file>Public/javascripts/jquery.autocomplete.js</file>
 </package>
