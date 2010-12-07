@@ -43,7 +43,7 @@ ILAbstractField subclass: ILFormulaField [
     <category: 'Iliad-More-Formula'>
     <comment: nil>
 
-    ILField class >> on: aFormula child: anotherFormula [
+    ILFormulaField class >> on: aFormula child: anotherFormula [
 	<category: 'instance creation'>
 	^self new
 	    on: aFormula
