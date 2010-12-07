@@ -38,7 +38,7 @@
 
 
 ILWidget subclass: ILFormula [
-    | proxy conditions fields buttons saveAction cancelAction errors multipart |
+    | proxy conditions fields buttons saveAction cancelAction errors multipart subFormula |
 	
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -133,6 +133,16 @@ ILWidget subclass: ILFormula [
 	^multipart ifNil: [false]
     ]
 
+    beSubFormula [
+	<category: 'accessing'>
+	subFormula := true
+    ]
+
+    subFormula [
+	<category: 'accessing'>
+	^subFormula ifNil: [false]
+    ]
+
     defaultButtons [
 	<category: 'defaults'>
 	^{'Save' -> #save. 'Cancel' -> #cancel}
@@ -151,6 +161,11 @@ ILWidget subclass: ILFormula [
     addField: aField [
 	<category: 'adding'>
 	^self fields add: aField
+    ]
+
+    addFormula: aFormula [
+	<category: 'adding'>
+	^self addField: (ILFormulaField on: self child: aFormula)
     ]
 
     inputOn: aSelector [
@@ -244,6 +259,14 @@ ILWidget subclass: ILFormula [
     contents [
 	<category: 'building'>
 	^[:e |
+	    e build: (self isSubFormula 
+	      ifFalse: [self mainFormulaContents]
+	      ifTrue: [self subFormulaContents])]
+    ]
+    
+    mainFormulaContents [
+	<category: 'building'>
+	^[:e |
 	    e div 
 		class: 'formula';
 		build: self errorsContents;
@@ -258,6 +281,11 @@ ILWidget subclass: ILFormula [
 			form div 
 			    class: 'buttons';
 			    build: self buttonsContents]]]
+    ]
+
+    subFormulaContents [
+	<category: 'building'>
+	^self tableContents
     ]
 
     tableContents [
@@ -303,6 +331,7 @@ ILWidget subclass: ILFormula [
 
     commit [
 	<category: 'actions'>
+	self fields do: [:each | each commit].
 	proxy commit
     ]
 
@@ -332,6 +361,11 @@ ILWidget subclass: ILFormula [
 	<category: 'testing'>
 	^self multipart or: [
 	    (self fields select: [:each | each isMultipart]) notEmpty]
+    ]
+
+    isSubFormula [
+	<category: 'testing'>
+	^self subFormula
     ]
 
     setModel: anObject [

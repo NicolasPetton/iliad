@@ -37,8 +37,8 @@
 
 
 
-ILBuildable subclass: ILField [
-    | conditions errors reader writer labelContents commentContents formula |
+ILAbstractField subclass: ILField [
+    | conditions errors reader writer labelContents commentContents |
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -144,6 +144,12 @@ ILBuildable subclass: ILField [
 		self errors add: (each labelFor: self value)]].
     ]
 
+    commit [
+	<category: 'actions'>
+	
+	"Do nothing"
+    ]
+
     build [
 	<category: 'building'>
 	^Iliad.ILHTMLBuilderElement new 
@@ -203,6 +209,6 @@ ILBuildable subclass: ILField [
 	reader ifNil: [reader := aSelector].
 	writer ifNil: [writer := (aSelector, ':') asSymbol].
 	labelContents ifNil: [self label: aSelector greaseString].
-	formula := aFormula
+	self formula: aFormula
     ]
 ]
