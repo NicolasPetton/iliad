@@ -174,7 +174,7 @@ ILWidget subclass: ILFormula [
 
     defaultCancelAction [
 	<category: 'defaults'>
-	^[:model | 'cancelling' printNl. self answer: nil]
+	^[:model | self answer: nil]
     ]
 
     addField: aField [
