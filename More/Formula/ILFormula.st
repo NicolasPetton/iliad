@@ -36,9 +36,8 @@
 
 
 
-
 ILWidget subclass: ILFormula [
-    | proxy conditions fields buttons saveAction cancelAction errors multipart subFormula |
+    | proxy conditions containers buttons saveAction cancelAction errors multipart subFormula |
 	
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -48,6 +47,13 @@ ILWidget subclass: ILFormula [
 	^self new
 	    setModel: anObject;
 	    yourself
+    ]
+
+    postCopy [
+	<category: 'copying'>
+	super postCopy.
+	containers := self containers collect: [:each | 
+	    each copy postCopyTo: self; yourself]
     ]
 
     model [
@@ -83,14 +89,27 @@ ILWidget subclass: ILFormula [
 	    yourself)
     ]
 
-    fields [
+    containers [
 	<category: 'accessing'>
-	^fields ifNil: [fields := OrderedCollection new]
+	^containers ifNil: [containers := OrderedCollection new]
     ]
 
-    setFields: aCollection [
+    newContainer [
 	<category: 'accessing'>
-	fields := aCollection
+	^self newContainerLabelled: ''
+    ]
+
+    newContainerLabelled: aString [
+	<category: 'accessing'>
+	^self containers add: (ILFieldContainer on: self label: aString)
+    ]
+
+    fields [
+	<category: 'accessing'>
+	| fields |
+	fields := OrderedCollection new.
+	self containers do: [:each | fields addAll: each fields].
+	^fields
     ]
 
     buttons [
@@ -155,16 +174,23 @@ ILWidget subclass: ILFormula [
 
     defaultCancelAction [
 	<category: 'defaults'>
-	^[:model | self answer: nil]
+	^[:model | 'cancelling' printNl. self answer: nil]
     ]
 
     addField: aField [
 	<category: 'adding'>
-	^self fields add: aField
+	| container |
+	container := self containers isEmpty 
+    	    ifTrue: [
+		self newContainer]
+	    ifFalse: [
+		self containers last].
+	^container addField: aField
     ]
 
     addFormula: aFormula [
 	<category: 'adding'>
+	aFormula beSubFormula.
 	^self addField: (ILFormulaField on: self child: aFormula)
     ]
 
@@ -226,24 +252,29 @@ ILWidget subclass: ILFormula [
 
     collect: aBlock [
 	<category: 'enumerating'>
-	^self copy
-	    setFields: (self fields collect: aBlock);
-	    yourself
+	| copy |
+	copy := self copy.
+	copy containers do: [:each |
+	    each setFields: (each fields collect: aBlock)].
+	^copy
     ]
 
     select: aBlock [
 	<category: 'enumerating'>
-	^self copy
-	    setFields: (self fields select: aBlock);
-	    yourself
+	| copy |
+	copy := self copy.
+	copy containers do: [:each |
+	    each setFields: (each fields select: aBlock)].
+	^copy
     ]
 
     reject: aBlock [
 	<category: 'enumerating'>
-	^self copy
-	    setFields: (self fields reject: aBlock);
-	    yourself
-    
+	| copy |
+	copy := self copy.
+	copy containers do: [:each |
+	    each setFields: (each fields reject: aBlock)].
+	^copy
     ]
 
     scripts [
@@ -258,10 +289,9 @@ ILWidget subclass: ILFormula [
 
     contents [
 	<category: 'building'>
-	^[:e |
-	    e build: (self isSubFormula 
+	^self isSubFormula 
 	      ifFalse: [self mainFormulaContents]
-	      ifTrue: [self subFormulaContents])]
+	      ifTrue: [self subFormulaContents]
     ]
     
     mainFormulaContents [
@@ -273,11 +303,7 @@ ILWidget subclass: ILFormula [
 		build: [:div |
 		    div form build: [:form |
 			form multipart: self isMultipart.
-			form 
-			    div
-				class: 'fields';
-				build: [:div2 |
-				    div2 table tbody build: self tableContents].
+			form build: self containersContents.
 			form div 
 			    class: 'buttons';
 			    build: self buttonsContents]]]
@@ -285,21 +311,21 @@ ILWidget subclass: ILFormula [
 
     subFormulaContents [
 	<category: 'building'>
-	^self tableContents
+	^self containersContents
     ]
 
-    tableContents [
+    containersContents [
 	<category: 'building'>
-	^[:tbody |
-	    self fields do: [:each |
-		tbody build: each]]
+	^[:e |
+	    self containers do: [:each |
+		e build: each]]
     ]
 
     buttonsContents [
 	<category: 'building'>
-	^[:form |
+	^[:e |
 	    self buttons do: [:each |
-		form button
+		e button
 		    text: each key;
 		    action: [self perform: each value]]]
     ]

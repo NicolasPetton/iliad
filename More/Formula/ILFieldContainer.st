@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ILAbstractField class definition
+|   Iliad.ILFieldContainer class definition
 |
  ======================================================================"
 
@@ -36,20 +36,25 @@
 
 
 
-ILBuildable subclass: ILAbstractField [
-    | formula |
-
+ILWidget subclass: ILFieldContainer [
+    | fields label formula |
+	
     <category: 'Iliad-More-Formula'>
     <comment: nil>
 
-    postCopyTo: aContainer [
-	<category: 'copying'>
-	formula := aContainer formula
+    ILFieldContainer class >> on: aFormula label: aString [
+	<category: 'instance creation'>
+	^self new
+	    formula: aFormula;
+	    label: aString;
+	    yourself
     ]
 
-    formula [
-	<category: 'accessing'>
-	^formula
+    postCopyTo: aFormula [
+	<category: 'copying'>
+	self formula: aFormula.
+	fields := self fields collect: [:each | 
+	    each copy postCopyTo: self; yourself]
     ]
 
     formula: aFormula [
@@ -57,36 +62,56 @@ ILBuildable subclass: ILAbstractField [
 	formula := aFormula
     ]
 
-    errors [
+    formula [
 	<category: 'accessing'>
-	self subclassResponsibility
+	^formula
     ]
 
-    validate [
-	<category: 'actions'>
-	self subclassResponsibility
+    label [
+	<category: 'accessing'>
+	^label ifNil: ['']
     ]
 
-    commit [
-	<category: 'actions'>
-
-	"Do nothing by default"
+    label: aString [
+	<category: 'accessing'>
+	label := aString
     ]
 
-    build [
+    fields [
+	<category: 'accessing'>
+	^fields ifNil: [fields := OrderedCollection new]
+    ]
+
+    addField: aField [
+	<category: 'adding'>
+	^self fields add: aField
+    ]
+
+    setFields: aCollection [
+	<category: 'accessing'>
+	fields := aCollection.
+    ]
+
+    contents [
 	<category: 'building'>
-	^Iliad.ILHTMLBuilderElement new 
-	    build: self child;
-	    yourself
+	^[:e || root |
+	    root := self useFieldset 
+    		ifTrue: [
+		    (e fieldset legend: self label) div class: 'fields']
+		ifFalse: [e div class: 'fields'].
+	    root build: self tableContents]
     ]
 
-    isValid [
-	<category: 'testing'>
-	^self errors isEmpty
+    tableContents [
+	<category: 'building'>
+	^[:e |
+	    e table tbody build: [:tbody |
+		self fields do: [:each |
+		    tbody build: each]]]
     ]
 
-    isMultipart [
+    useFieldset [
 	<category: 'testing'>
-	^false
+	^self label notEmpty
     ]
 ]

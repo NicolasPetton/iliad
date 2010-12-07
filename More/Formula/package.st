@@ -23,6 +23,7 @@ Eval [
 	filein: 'ILTimeInputField.st';
 	filein: 'ILFileInputField.st';
 	filein: 'ILFormulaField.st';
+	filein: 'ILFieldContainer.st';
 	filein: 'ILFormula.st';
 
 	filein: 'postLoad.st';

@@ -78,7 +78,7 @@ ILAbstractField subclass: ILFormulaField [
 
     build [
 	<category: 'building'>
-	^Iliad.ILHTMLBuilderElement new 
+	^ILHTMLBuilderElement new 
 	    build: self child;
 	    yourself
     ]
