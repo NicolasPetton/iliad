@@ -62,16 +62,15 @@ ILOptionField subclass: ILSelectField [
 	<category: 'building'>
 	^[:e | 
 	    e select build: [:select |
-		self isMultiple ifTrue: [
-		    select beMultiple].
+		self isMultiple ifTrue: [select beMultiple].
 		self options do: [:each |
-		    select option 
-			selected: (self isMultiple
+		    select option build: [:option |
+			option selected: (self isMultiple
 			    ifTrue: [self value includes: each]
-			    ifFalse: [self value = each]);
-			text: (self optionLabelBlock value: each);
-			action: [self isMultiple
+			    ifFalse: [self value = each]).
+			self optionLabelBlock value: option value: each.
+			option action: [self isMultiple
 			    ifFalse: [self value: each]
-			    ifTrue: [self add: each]]]]]
+			    ifTrue: [self add: each]]]]]]
     ]
 ]

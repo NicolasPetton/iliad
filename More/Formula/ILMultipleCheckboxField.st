@@ -52,7 +52,7 @@ ILOptionField subclass: ILMultipleCheckboxField [
 			    ifTrue: [self add: each]
 			    ifFalse: [self remove: each]].
 		    e space.
-		    e label text: (self optionLabelBlock value: each)]
+		    self optionLabelBlock value: e value: each]
 		separatedBy: [e br]]
     ]
 ]

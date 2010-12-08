@@ -54,10 +54,10 @@ ILField subclass: ILOptionField [
 
     defaultOptionLabelBlock [
 	<category: 'defaults'>
-	^[:option | 
-	    option isString
+	^[:e :option | 
+	    e text: (option isString
 		ifTrue: [option]
-		ifFalse: [option greaseString]]
+		ifFalse: [option greaseString])]
     ]
 
     options [
@@ -72,6 +72,13 @@ ILField subclass: ILOptionField [
 
     options: aCollection labels: aBlock [
 	<category: 'accessing'>
+	self 
+	    options: aCollection;
+	    labelContents: [:e :option |
+		e text: (aBlock value: option)]
+    ]
+
+    options: aCollection labelContents: aBlock [
 	self options: aCollection.
 	self optionLabelBlock: aBlock
     ]
