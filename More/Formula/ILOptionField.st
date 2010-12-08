@@ -73,7 +73,7 @@ ILField subclass: ILOptionField [
     options: aCollection labels: aBlock [
 	<category: 'accessing'>
 	self 
-	    options: aCollection;
+	    options: aCollection
 	    labelContents: [:e :option |
 		e text: (aBlock value: option)]
     ]
