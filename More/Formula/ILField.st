@@ -37,7 +37,7 @@
 
 
 ILBuildable subclass: ILField [
-    | formula conditions errors reader writer labelContents commentContents |
+    | formula conditions errors customRows reader writer labelContents commentContents |
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -150,18 +150,22 @@ ILBuildable subclass: ILField [
 	    yourself)
     ]
 
+    customRows [
+	<category: 'accessing'>
+	^customRows ifNil: [customRows := OrderedCollection new]
+    ]
+
+    addRow: aBlock [
+	<category: 'accessing'>
+	self customRows add: aBlock
+    ]
+
     validate [
 	<category: 'actions'>
 	errors := OrderedCollection new.
 	self conditions do: [:each |
 	    (each validate: self value) ifFalse: [
 		self errors add: (each labelFor: self value)]].
-    ]
-
-    commit [
-	<category: 'actions'>
-	
-	"Do nothing"
     ]
 
     build [
@@ -188,7 +192,9 @@ ILBuildable subclass: ILField [
 			tr td
 			    cssClass: 'comment';
 			    build: self commentContents]].
-	    tbody build: self errorsContents]
+	    tbody 
+		build: self errorsContents;
+		build: self customRowsContents]
     ]
 
     fieldContents [
@@ -206,6 +212,15 @@ ILBuildable subclass: ILField [
 			class: 'errors';
 			build: [:div |
 			    div text: self errors first]]]]
+    ]
+
+    customRowsContents [
+	<category: 'building'>
+	^[:tbody |
+	    self customRows do: [:each |
+		tbody tr build: [:tr |
+		    tr td.
+		    tr td class: 'custom'; build: each]]]
     ]
 
     isValid [
