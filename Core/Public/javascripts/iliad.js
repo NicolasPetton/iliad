@@ -41,11 +41,12 @@ var iliad = (function() {
 	 * Variables
 	 * -------------------------------------------------------------- */
 	
-	var hash           = "";
-	var actionsLocked  = false;
-	var ajax_enabled   = true;
-	var ie67           = false;
-	var ajaxLoader     = false;
+	var hash                  = "";
+	var actionsLocked         = false;
+	var ajax_enabled          = true;
+	var ajax_upload_enabled   = true;
+	var ie67                  = false;
+	var ajaxLoader            = false;
 	
 
 	/* ---
@@ -143,7 +144,7 @@ var iliad = (function() {
 	}
 
 	function evaluateMultipartFormAction(form) {
-		if(!actionsLocked) {
+		if(!actionsLocked && ajax_upload_enabled) {
 			var hidden = "<input type='hidden' name='_ajax_upload'></input>";
 			var upload_target = jQuery('#_upload_target');
 			if(upload_target.size() == 0) {
@@ -203,6 +204,14 @@ var iliad = (function() {
 
 	function enableAjax() {
 		ajax_enabled = true
+	}
+
+	function disableAjaxUpload() {
+		ajax_upload_enabled = false
+	}
+
+	function enableAjaxUpload() {
+		ajax_upload_enabled = true
 	}
 
 	function hasActionUrl(anchor) {
@@ -383,6 +392,8 @@ var iliad = (function() {
 		showAjaxLoader:                showAjaxLoader,
 		disableAjax:                   disableAjax,
 		enableAjax:                    enableAjax,
+		disableAjaxUpload:             disableAjaxUpload,
+		enableAjaxUpload:              enableAjaxUpload,
 		initialize:                    initialize
 	};
 })();

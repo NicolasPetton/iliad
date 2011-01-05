@@ -142,7 +142,7 @@ ILHTMLBuilderElement subclass: ILFormElement [
 
     beforePrintHtml [
 	<category: 'printing'>
-	self attributeAt: 'action' ifAbsentPut: [self context baseUrl withoutParameters greaseString].
+	self attributeAt: 'action' ifAbsentPut: [self context baseUrl greaseString].
 	self attributeAt: 'method' ifAbsent: [self usePost].
 	self attributeAt: 'accept-charset' ifAbsentPut: [self session charset].
 	self addHiddenParameters
