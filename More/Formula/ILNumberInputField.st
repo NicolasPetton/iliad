@@ -46,6 +46,11 @@ ILInputField subclass: ILNumberInputField [
 	^[:e | 
 	    e input
 		value: (self value ifNil: [''] ifNotNil: [self value greaseString]);
-		action: [:val | self value: val asNumber]]
+		action: [:val | self value: (self convertToNumber: val)]]
+    ]
+
+    convertToNumber: aString [
+	<category: 'private'>
+	^(aString copyReplaceAll: ',' with: '.') asNumber
     ]
 ]
