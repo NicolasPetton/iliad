@@ -234,7 +234,7 @@
   <file>Public/images/iliad_big.png</file>
   <file>Public/stylesheets/iliad.css</file>
   <file>Public/javascripts/iliad.js</file>
-  <file>Public/javascripts/jquery132min.js</file>
+  <file>Public/javascripts/jquery-1.4.4.min.js</file>
   <file>Public/javascripts/no_conflict.js</file>
   <file>Public/javascripts/iliad_ie_history.html</file>
 </package>
