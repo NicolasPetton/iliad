@@ -1,5 +1,5 @@
 ILWidget subclass: ILClassSearchWidget [
-    | resultsWidget searchText |
+    | resultsWidget searchText selectedClass infoWidget |
 
     <comment: nil>
     <category: 'Iliad-More-Examples'>
@@ -12,6 +12,16 @@ ILWidget subclass: ILClassSearchWidget [
     searchText: aString [
 	<category: 'accessing'>
 	searchText := aString
+    ]
+
+    selectedClass [ 
+	<category: 'accessing'>
+	^selectedClass
+    ]
+
+    selectedClass: aClass [ 
+	<category: 'accessing'>
+	selectedClass := aClass
     ]
 
     contents [
@@ -27,7 +37,8 @@ ILWidget subclass: ILClassSearchWidget [
 			action: [:val | 
 			    self searchText: val.
 			    self resultsWidget markDirty].
-		    form build: self resultsWidget]]
+		    form build: self resultsWidget].
+	    e build: self infoWidget]
     ]
 
     resultsWidget [
@@ -36,8 +47,30 @@ ILWidget subclass: ILClassSearchWidget [
 	    (self search: self searchText) do: [:each |
 		widget div
 		    class: 'results';
-		    text: each.
+		    onClickDo: [ 
+			self selectedClass: each.
+			self infoWidget markDirty ];
+		    text: each name asString.
 		widget br]]]
+    ]
+
+    infoWidget [ 
+	<category: 'accessing'>
+	^infoWidget ifNil: [ infoWidget := self widgetFor: [ :widget |
+	    widget style: 'float:left; text-align:left; width:40%; margin-left:5em;'.
+	    self selectedClass ifNotNil: [ :aClass | |ul|
+		widget h2 text: aClass name asString.
+		widget p text: aClass comment.
+		ul := widget ul.
+		( self sortedMessagesForClass: aClass) 
+		    do: [ :each | ul li text: each asString ]
+	    ]
+	]]
+    ]
+
+    sortedMessagesForClass: aClass [ 
+	<category: 'private'>
+	^aClass methodDictionary keys asSortedCollection
     ]
 
     search: aString [
@@ -47,8 +80,7 @@ ILWidget subclass: ILClassSearchWidget [
 	    ifFalse: [
 		(Class allSubclasses 
 		    select: [:each |
-			each instanceClass name asString beginsWith: aString]) 
-		    collect: [:each |
-			each instanceClass name asString]]
+			each instanceClass name asString beginsWith: aString])
+		    collect: [ :each | each instanceClass ]]
     ]
 ]
