@@ -5,7 +5,8 @@
 @cindex widget
 @cindex application
 
-In this short tutorial we will build our first Iliad widget: a simple counter.
+In this short tutorial we will build a simple counter as our first Iliad widget and embed it into a simple application.
+
 Widgets (@pxref{Widgets}) are high-level reusable, stateful, graphical objects. We will create the class and a method to build HTML, then add some behavior to increase and decrease the counter.
 
 @unnumberedsec Our first widget
@@ -16,7 +17,7 @@ Iliad.ILWidget subclass: CounterWidget [
     | count |
 
     initialize [
-        super initiliaze.
+        super initialize.
         count := 0
     ]
 ]
@@ -32,7 +33,7 @@ contents [
 
 @unnumberedsec Action methods
 
-Now we can add action methods to increase and decrease the counter.
+Now we can add action methods (@pxref{Actions}) to increase and decrease the counter.
 
 @example
 increase [
@@ -46,7 +47,7 @@ decrease [
 ]
 @end example
 
-To allow the user to increase or decrease the counter, we build anchors which will call the action methods (@pxref{Actions}), and modify the @code{contents} method as follow.
+To allow the user to increase or decrease the counter, we add anchors sending these messages to the @code{contents} method.
 
 @example
 contents [
@@ -61,7 +62,7 @@ contents [
 ]
 @end example
 
-To tell Iliad that the state of the counter has changed and that it should be rebuilt, we call its @code{#markDirty} method in the action methods.
+If you try the code at this point, you will notice that the displayed counter value does not change, although the count instance variable is being updated. The missing link here is that you have to tell Iliad that changing the value of the @code{count} variable requires a client side update of the widget, too. Iliad will take care of this, but you have to decide and tell Iliad which widget(s) need rebuilding. You do this by sending the message @code{markDirty} to the widget(s) in question.
 
 @example 
 increase [
@@ -79,10 +80,11 @@ decrease [
 
 @unnumberedsec Using the counter widget in an application
 
-To see our widget in action, we build it in an application. Applications (@pxref{Applications}) are similar to widgets except that they dispatch requests in @dfn{controller methods}, similar to the @code{#contents} method of widgets. The default controller method is @code{#index}.
+To see our widget in action, we embed it into an application. Applications (@pxref{Applications}) are similar to widgets except that they dispatch requests in @dfn{controller methods}, similar to the @code{#contents} method of widgets. The default controller method is @code{#index}.
 
 @example
 Iliad.ILApplication subclass: CounterApplication [
+    | counterWidget |
     
     CounterApplication class >> path [
         ^'counter'
@@ -99,4 +101,5 @@ Iliad.ILApplication subclass: CounterApplication [
 ]
 @end example
 
-The class side @code{#path} method answers the base path of our application.
+The class side @code{#path} method answers the base path of our application. All requests using this path will be handled by the application.
+As seen above, widgets are usually initialized lazily. While you have to provide the implementation for every widget you @emph{might} use, not every widget @emph{will} be used. By using this pattern, only those widgets are built that are actually used.
