@@ -1,5 +1,5 @@
 ILWidget subclass: ILClassSearchWidget [
-    | resultsWidget searchText selectedClass infoWidget selectedMethod codeWidget |
+    | resultsWidget searchText selectedClass infoWidget selectedMessage codeWidget |
 
     <comment: nil>
     <category: 'Iliad-More-Examples'>
@@ -11,7 +11,8 @@ ILWidget subclass: ILClassSearchWidget [
 
     searchText: aString [
 	<category: 'accessing'>
-	searchText := aString
+	searchText := aString.
+	self resultsWidget markDirty
     ]
 
     selectedClass [ 
@@ -22,17 +23,19 @@ ILWidget subclass: ILClassSearchWidget [
     selectedClass: aClass [ 
 	<category: 'accessing'>
 	selectedClass := aClass.
-	selectedMethod := nil
+	self infoWidget markDirty.
+	self selectedMessage: nil
     ]
 
-    selectedMethod [ 
+    selectedMessage [ 
 	<category: 'accessing'>
-	^selectedMethod
+	^selectedMessage
     ]
 
-    selectedMethod: aSymbol [ 
+    selectedMessage: aSymbol [ 
 	<category: 'accessing'>
-	selectedMethod := aSymbol
+	selectedMessage := aSymbol.
+	self codeWidget markDirty
     ]
 
     contents [
@@ -45,9 +48,7 @@ ILWidget subclass: ILClassSearchWidget [
 		    form text: 'Search: '.
 		    form input
 			beSubmitOnEvent: 'keyup';
-			action: [:val | 
-			    self searchText: val.
-			    self resultsWidget markDirty].
+			action: [:val | self searchText: val].
 		    form build: self resultsWidget].
 	    e build: self infoWidget.
 	    e build: self codeWidget]
@@ -59,9 +60,7 @@ ILWidget subclass: ILClassSearchWidget [
 	    (self search: self searchText) do: [:each |
 		widget a
 		    class: 'results';
-		    onClickDo: [ 
-			self selectedClass: each.
-			self infoWidget markDirty ];
+		    onClickDo: [ self selectedClass: each ];
 		    text: each displayString.
 		widget br]]]
     ]
@@ -70,8 +69,8 @@ ILWidget subclass: ILClassSearchWidget [
 	<category: 'accessing'>
 	^codeWidget ifNil: [ codeWidget := self widgetFor: [ :widget |
 	    widget style: 'float:left; text-align:left; width:40%; margin-left:5em;'.
-	    self selectedMethod ifNotNil: [ :aSymbol |
-	    widget pre text: (self selectedClass decompile: aSymbol) ]]]
+	    self selectedMessage ifNotNil: [ :aSymbol | 
+		widget pre text: (self selectedClass decompile: aSymbol) ]]]
     ]
 
     infoWidget [ 
@@ -83,15 +82,15 @@ ILWidget subclass: ILClassSearchWidget [
 		self renderSuperclassOf: aClass on: widget div.
 		self renderSubclassesOf: aClass on: widget div.
 		widget p text: aClass comment.
-		self renderMethodsOf: aClass on: widget ul ]]]
+		self renderInstanceMethodsOf: aClass on: widget ul ]]]
     ]
 
-    renderMethodsOf: aClass on: aListContainer [ 
+    renderInstanceMethodsOf: aClass on: aListContainer [ 
 	<category: 'private'>
 	( self sortedMethodsForClass: aClass) 
 	    do: [ :each |
 		aListContainer li 
-		    onClickDo: [ self selectedMethod: each. self codeWidget markDirty ];
+		    onClickDo: [ self selectInstanceMethod: each ];
 		    text: each asString;
 		    text: ' (';
 		    text: (aClass compiledMethodAt: each) methodCategory;
@@ -101,10 +100,10 @@ ILWidget subclass: ILClassSearchWidget [
     renderSubclassesOf: aClass on: aContainer [
 	<category: 'private'>
 	aContainer text: 'subclass(es): '.
-	aClass allSubclasses
+	( aClass allSubclasses asSortedCollection: [ :a :b | a displayString <= b displayString ] )
 	    do: [ :each |
 		aContainer a 
-		    onClickDo: [ self selectedClass: each. self infoWidget markDirty ];
+		    onClickDo: [ self selectedClass: each ];
 		    text: each displayString ]
 	    separatedBy: [ aContainer text: ', ' ].
     ]
@@ -116,7 +115,7 @@ ILWidget subclass: ILClassSearchWidget [
 	    ifNil: [ aContainer text: 'nil' ]
 	    ifNotNil: [:supa |
 		aContainer a 
-		    onClickDo: [ self selectedClass: supa. self infoWidget markDirty ];
+		    onClickDo: [ self selectedClass: supa ];
 		    text: supa displayString].
     ]
 
