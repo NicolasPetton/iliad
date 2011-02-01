@@ -99,6 +99,11 @@ ILWidget subclass: ILFormula [
 	^formulas ifNil: [formulas := OrderedCollection new]
     ]
 
+    formulas: aCollection [
+	<category: 'accessing'>
+	formulas := aCollection
+    ]
+
     newContainer [
 	<category: 'accessing'>
 	^self newContainerLabelled: ''
@@ -263,7 +268,7 @@ ILWidget subclass: ILFormula [
 	copy := self copy.
 	copy containers do: [:each |
 	    each setFields: (each fields collect: aBlock)].
-	self formulas do: [:each | each collect: aBlock].
+	copy formulas: (copy formulas collect: [:each | each collect: aBlock]).
 	^copy
     ]
 
@@ -273,7 +278,7 @@ ILWidget subclass: ILFormula [
 	copy := self copy.
 	copy containers do: [:each |
 	    each setFields: (each fields select: aBlock)].
-	self formulas do: [:each | each select: aBlock].
+	copy formulas: (copy formulas collect: [:each | each select: aBlock]).
 	^copy
     ]
 
@@ -283,7 +288,7 @@ ILWidget subclass: ILFormula [
 	copy := self copy.
 	copy containers do: [:each |
 	    each setFields: (each fields reject: aBlock)].
-	self formulas do: [:each | each reject: aBlock].
+	copy formulas: (copy formulas collect: [:each | each reject: aBlock]).
 	^copy
     ]
 
