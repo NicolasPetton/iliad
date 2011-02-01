@@ -187,7 +187,7 @@ ILWidget subclass: ILFormula [
 	<category: 'adding'>
 	| container |
 	container := self containers isEmpty 
-    	    ifTrue: [
+	    ifTrue: [
 		self newContainer]
 	    ifFalse: [
 		self containers last].
@@ -252,7 +252,8 @@ ILWidget subclass: ILFormula [
 
     do: aBlock [
 	<category: 'enumerating'>
-	^self fields do: aBlock
+	self fields do: aBlock.
+	self formulas do: aBlock
     
     ]
 
@@ -262,6 +263,7 @@ ILWidget subclass: ILFormula [
 	copy := self copy.
 	copy containers do: [:each |
 	    each setFields: (each fields collect: aBlock)].
+	self formulas do: [:each | each collect: aBlock].
 	^copy
     ]
 
@@ -271,6 +273,7 @@ ILWidget subclass: ILFormula [
 	copy := self copy.
 	copy containers do: [:each |
 	    each setFields: (each fields select: aBlock)].
+	self formulas do: [:each | each select: aBlock].
 	^copy
     ]
 
@@ -280,6 +283,7 @@ ILWidget subclass: ILFormula [
 	copy := self copy.
 	copy containers do: [:each |
 	    each setFields: (each fields reject: aBlock)].
+	self formulas do: [:each | each reject: aBlock].
 	^copy
     ]
 
