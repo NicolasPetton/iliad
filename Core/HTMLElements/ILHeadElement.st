@@ -73,7 +73,7 @@ ILHTMLBuilderElement subclass: ILHeadElement [
     ]
 
     style [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILTextElement new
 	    tag: 'style';
 	    attributeAt: 'type' put: 'text/css';
@@ -81,7 +81,7 @@ ILHTMLBuilderElement subclass: ILHeadElement [
     ]
 
     style: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self style
 	    contents: aString;
 	    yourself

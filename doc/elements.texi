@@ -33,7 +33,7 @@ The API provides the @code{#add:} method for adding a child to an element. Conve
 
 @example
 p [
-    <category: 'adding-conveniance'>
+    <category: 'adding-convenience'>
     ^self add: ILParagraphElement new
 ]
 @end example
