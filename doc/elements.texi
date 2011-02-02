@@ -71,11 +71,11 @@ Most of the time you won't have to learn the HTML API if you already know the HT
 @cindex buildable
 @cindex build
 
-Buildable objects are high-level stateful graphical objects. They use elements to build themselves as HTML. They must implement the @code{#buildOn:} method, taking an element as parameter.
+Buildable objects are high-level stateful graphical objects. They use elements to build themselves as HTML. They must implement the @code{#buildOn:} method, taking an element as parameter, which acts as a container for the contents of the buildable object.
 
-A buildable object can be built on an element with the @code{ILElement>>build:} method.
+A buildable object can be built on an element by sending the @code{ILElement>>build:} message to the element, using the buildable object as argument.
 
-Default buildable objects in Iliad includes @dfn{Block closures} and @dfn{Widgets}.
+Default buildable objects in Iliad include @dfn{Block closures} and @dfn{Widgets}.
 
 @example 
 div build: [:e | e text: 'hello world'].
