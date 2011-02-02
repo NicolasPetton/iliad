@@ -42,16 +42,16 @@ http://localhost:8888/my_application
 By default, @code{ILApplication}'s path is the empty string. This means the class method @code{path} must be overriden, else the application will not be reachable.
 
 @sp 1
-The base path of an application is an absolute path and can freely be composed with @code{'/'}. We can for example create two application classes with the same first path fragment: @code{'/foo/bar'} and @code{'/foo/baz'}.
+The base path of an application is interpreted as an absolute path, even if the leading @code{'/'} is omitted. Different Application classes can share the leading path fragments, as long as the complete path is unique for each application: @code{'/foo/bar'} and @code{'/foo/baz'} can be used for two distinct applications being served on the same port.
 
 @node Controller methods
 @section Controller methods
 
 @cindex controller method
 
-Controller methods are building methods used to dispatch requests. The application will dispatch the request to the method named after the next fragment of the URL. The default controller method is @code{#index}. Concrete applications should always override this method to answer a buildable object.
+Controller methods are building methods used to answer requests. The application will dispatch the request to the method named after the first fragment of the URL following the application's @code{path}. The default controller method is called @code{#index}. Concrete applications should always override this method to answer a buildable object.
 
-For example, if the base path of the application is @code{'foo'}, the application will try to dispatch a request url @code{'/foo/bar'} to the controller method @code{#bar}. If there is no method matching this rule, @code{#index} will be called.
+For example, an application with base path @code{'foo'} will try to dispatch a request url @code{'/foo/bar'} to its controller method @code{#bar}. If there is no method matching this rule, @code{#index} will be called instead.
 
 By default, controller methods must be in the @code{'controllers'} method protocol to be allowed to be called as controller methods (@pxref{Filtering controllers}).
 
@@ -74,14 +74,17 @@ Iliad.ILApplication subclass: HelloWorldApplication [
 ]
 @end example
 
-After starting Iliad on port 8888, the application can be browsed at @uref{http://localhost:8888/hello_world, http://localhost:8888/hello_world}. As expected, the application will dispatch both @code{/hello_world} and @code{/hello_world/index} to the @code{#index} controller.
+After starting Iliad on port 8888, the application can be browsed at @uref{http://localhost:8888/hello_world, http://localhost:8888/hello_world}. As expected, the application will dispatch both @code{/hello_world}, @code{/hello_world/} and @code{/hello_world/index} to the @code{#index} controller.
 
 @unnumberedsubsec A multi-counter application
 
-Let's improve the counter application written in the tutorial (@pxref{Short tutorial}) and make it a multi-counter application. The application will build several counter widgets in the @code{#index} controller.
+Let's improve the counter application written in the tutorial (@pxref{Short tutorial}) and make it a multi-counter application with several independent counters on the same page. 
+As a rule of thumb, the application only references widgets, which in turn reference the "real" data.
 
 @example
 Iliad.ILApplication subclass: CounterApplication [
+    | counters |
+
     CounterApplication class >> path [
         <category: 'accessing'>
         ^'counter'
@@ -104,7 +107,9 @@ Iliad.ILApplication subclass: CounterApplication [
 ]
 @end example
 
-To persist through requests, widgets must be stored in instance variables. In this example counters are stored at initialization in a collection.
+To persist through requests, widget state must be stored in a long-lived object. This duty typically falls to the application instance, as it is @emph{the} object that is long-lived enough for a session and, at the same time, small enough to be specific to only the current session.
+Since our counter widgets are intended to be local to the user session, we use an instance variable to reference them.
+"Global" counters, which would be shared between sessions, would be referenced via a class instance variable of the application.
 
 
 @node Filtering controllers
@@ -113,10 +118,10 @@ To persist through requests, widgets must be stored in instance variables. In th
 @cindex selector filter
 @cindex selectorFilter:
 
-The use of a method of an application as a controller method is restricted by the @dfn{selector filter}. Each application class has its own selector filter.
-Each time an application dispatches a request to a controller method, the selector filter block is evaluated against a selector to determine if the corresponding method is allowed to be used as controller or not. The default selector filter allows all methods in the @code{'controllers'} protocol, but you may want to filter selectors differently.
-
-The default selector filter can be overriden in the class side @code{#defaultSelectoreFilter} method, or you can plug in a new selector filter with the class side @code{#selectorFilter:}. A selector filter block must be a one argument block and answer a boolean.
+The use of a method of an application as a controller method is restricted by the @dfn{selector filter}.
+The default selector filter allows exactly the methods in the @code{'controllers'} protocol, but every application class can implement its own selector filter.
+You can override the class side @code{#defaultSelectoreFilter} method, or you can plug in a new selector filter with the class side @code{#selectorFilter:} method, which requires a selector filter block taking a single argument and answering a boolean.
+Each time an application tries to dispatch a request to a potential controller method, the selector filter block is evaluated against its selector to determine if the corresponding method is allowed to be used as controller.
 
 @sp 1
 In the following example, the only selector allowed is @code{#index}, all other methods will be forbidden.
@@ -130,10 +135,10 @@ MyApplication selectorFilter: [:selector | selector == #index]
 
 @cindex dispatchOverride
 
-@code{ILApplication} provides the @code{#dispatchOverride} hook method to handle special cases for dispatching a request. Subclasses of @code{ILApplication} should call @code{super} first to see if it was already handled.
+If you need a special dispatcher for your application, implement the hook method @code{#dispatchOverride} in your @code{ILApplication}. 
 
-@sp 1
-The behavior of @code{#dispatchOverride} is very simple. Before dispatching a request to a controller method, @code{#dispatchOverride} is called. If the answer is anything but @code{nil}, the application will consider the request as handled and will not dispatch it to a controller method.
+The behavior of @code{#dispatchOverride} is very simple. Before going the default dispatch route, @code{#dispatchOverride} is called. If the answer is anything but @code{nil}, the application will consider the request as handled and will not dispatch it to a controller method.
+Subclasses of @code{ILApplication} should call @code{super dispatchOverride} at some point to see if the request has already been handled.
 
 @sp 1
 @xref{Using a custom session class}, for a simple usage example of this method.
@@ -143,9 +148,10 @@ The behavior of @code{#dispatchOverride} is very simple. Before dispatching a re
 
 @cindex updatePage:
 
-During the generation of a page for a request processing, the application can update any part of it using the @code{#updatePage:} method. This method will be called for each new request excepting AJAX ones. In this method we can for example change the title of the page, update its @code{<head>} section, etc. 
+During the generation of a page for request processing, the application can update any part of it using the @code{#updatePage:} method. This method will be called for each new request excepting AJAX ones.
+In this method we can for example change the title of the page by updating its @code{<head>} section.
 
-@code{#updatePage:} should not be used to update contents of widgets included in the @code{<body>} section, as widgets may not be built yet when Iliad calls @code{#updatePage:}.
+@code{#updatePage:} should not be used to update contents of widgets included in the @code{<body>} section, as these widgets may not have been built, when Iliad calls @code{#updatePage:}.
 
 The argument sent to @code{#updatePage:} is an instance of @code{Iliad.ILPage}. This class has accessors for both the @code{<head>} section and the @code{<body>} section of the page, respectively instances of @code{Iliad.ILHeadElement} and @code{Iliad.ILBodyElement}.
 
@@ -158,5 +164,5 @@ updatePage: aPage [
 ]
 @end example
 
-@code{super} should always be called, as Iliad uses Javascript files (@pxref{The Javascript layer}) by default to send AJAX requests automatically.
+The call to @code{super} should always be included, as Iliad itself includes some Javascript files (@pxref{The Javascript layer}) to send AJAX requests automatically.
 @xref{Serving static files, Serving static files}, for more details about how to serve static files with Iliad.
