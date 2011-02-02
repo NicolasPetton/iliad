@@ -131,9 +131,9 @@ And will build the following HTML code:
 
 @cindex action
 
-Buildables can do more than just build HTML. They can behave, change their state and react to user interactions through Smalltalk code evaluated in actions.
+Buildables can do more than just build HTML. They can behave, change their state and react to user interactions through executing server-side Smalltalk code defined in actions.
 
-Instead of having to parse URLs and requests, Iliad uses action objects to trigger Smalltalk code when the user interacts with the page, clicks on a link or submits a form.
+Instead of passing the burden of handling URLs, requests and parameters on to the developer, Iliad uses action objects to trigger Smalltalk code when the user interacts with the page, clicks on a link or submits a form.
 An @dfn{action} is an Iliad object with a Smalltalk block associated to an id, but we will oftenly refer to the block of an action as the action itself.
 
 @unnumberedsubsec Actions in anchors
@@ -146,7 +146,7 @@ e a
     action: [Transcript show: 'Anchor clicked.']
 @end example
 
-Because @code{#action:} will add an @code{href} attribute with a generated URL, anchors can't have both an associated action and an href.
+Because @code{#action:} will use the @code{href} attribute with a generated URL, anchors can't have both an associated action and an href.
 
 @example
 e a
@@ -155,7 +155,9 @@ e a
     href: 'http://www/smalltalk.org' "This will override the href set by #action:"
 @end example
 
-The counter widget example in @code{Iliad-More-Examples} is a good example of actions in anchors.
+If you do send both @code{action:} and @code{href:} messages to an anchor element, the final message decides on the outcome.
+
+Note that a @code{href} will cause the browser to navigate to the specified URL, while the anchor will cause the server to execute Smalltalk code, which in turn @emph{might} result in a (partial or full) reload of the page's contents. Play a bit with the "mulit counter example" (@code{Iliad-More-Examples}) of the ILCounterApplication, which can be found in the demo site.
 
 @example
 contents [
@@ -171,9 +173,11 @@ contents [
 ]
 @end example
 
+
 @unnumberedsubsec Actions in forms
 
-Form elements can also have actions, evaluated when the form is submitted. We can modify the @code{#contents} method of the counter example to use a form and buttons instead of anchors.
+Form elements can and usually do have actions, which are evaluated when the form is submitted.
+We can modify the @code{#contents} method of the counter example to use a form and buttons instead of anchors.
 
 @example
 contents [
@@ -189,7 +193,7 @@ contents [
 ]
 @end example
 
-Some form elements like inputs or textareas take a one argument action block. The argument is the value entered by the user.
+Form elements like input, select  or textarea, which allow the user to enter or select a value, take a one argument action block. The argument is the value defined by the user.
 
 @example
 e form build: [:form |
@@ -200,7 +204,7 @@ e form build: [:form |
 @node DOM events
 @section DOM events
 
-Iliad provides a simple API to associate JavaScript code to DOM events (click, focus, etc.) in the @code{accessing attributes-events} method protocol. The main method is @code{#on:add:} which takes two strings as arguments, the first one for the event, and the last one for the associated JavaScript code. Many shortcut methods exist for specific events, like @code{#onClick:} or @code{#onFocus:}. 
+Iliad provides a simple API to associate JavaScript code to DOM events (click, focus, etc.) in the @code{accessing attributes-events} method protocol. The basic method is @code{#onEvent:add:} which takes two strings as arguments, the first one for the name of the event, the other for the associated JavaScript code. Many shortcut methods exist for specific events, like @code{#onClick:} or @code{#onFocus:}. 
 
 @example
 e p 
@@ -213,7 +217,8 @@ If an element cannot be associated with a DOM event, an @code{ILAttributeNotUnde
 
 @unnumberedsubsec Evaluating actions on DOM Events
 
-It is also possible to associate actions to DOM events. Names of methods follow the same convention, but end with @dfn{do:} and take a block as parameter.
+While the methods in the previous section are useful for executing client-side Javascript code, you again make use of actions to execute server-side Smalltalk code, when a DOM event occurs.
+The names of these action methods are the shortcuts of the previous section with the suffix @code{Do:} attached to their names taking a block as argument.
 
 @example
 e p
