@@ -2,7 +2,7 @@
 
 
 ILUIWidget subclass: ILPaginator [ 
-    | currentPage totalPages action beforeContentsBlock afterContentsBlock |
+    | currentPage totalPages action |
     
     <comment: nil>
     <category: 'Iliad-More-UI'>
@@ -18,8 +18,6 @@ ILUIWidget subclass: ILPaginator [
 	    e div 
 		class: self cssClass;
 		build: [:div |
-		    self beforeContentsBlock ifNotNil: [:block |
-			div build: block].
 		    self totalPages > 1 ifTrue: [
 			self currentPage = 1 
 			    ifTrue: [div span text: '<< ']
@@ -41,31 +39,8 @@ ILUIWidget subclass: ILPaginator [
 			ifFalse: [
 			    div a
 				text: '>>';
-				action: [self selectPage: self currentPage + 1]]].
-		    self afterContentsBlock ifNotNil: [:block |
-			div build: block]]]
+				action: [self selectPage: self currentPage + 1]]]]]
     ]
-
-    beforeContentsBlock [
-	<category: 'accessing'>
-	^beforeContentsBlock
-    ]
-
-    beforeContentsBlock: aBlock [
-	<category: 'accessing'>
-	beforeContentsBlock := aBlock
-    ]
-
-    afterContentsBlock [
-	<category: 'accessing'>
-	^afterContentsBlock
-    ]
-
-    afterContentsBlock: aBlock [
-	<category: 'accessing'>
-	afterContentsBlock := aBlock
-    ]
-
 
     action [
 	<category: 'accessing'>

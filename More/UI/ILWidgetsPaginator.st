@@ -1,5 +1,5 @@
 ILWidget subclass: ILWidgetsPaginator [
-    | widgets currentPage widgetsPerPage |
+    | widgets currentPage widgetsPerPage beforeContentsBlock afterContentsBlock |
 
     <category: 'Iliad-More-UI'>
     <comment: nil>
@@ -56,6 +56,26 @@ ILWidget subclass: ILWidgetsPaginator [
 	^(fromIndex to: toIndex) collect: [:each | self widgets at: each]
     ]
 
+    beforeContentsBlock [
+	<category: 'accessing'>
+	^beforeContentsBlock
+    ]
+
+    beforeContentsBlock: aBlock [
+	<category: 'accessing'>
+	beforeContentsBlock := aBlock
+    ]
+
+    afterContentsBlock [
+	<category: 'accessing'>
+	^afterContentsBlock
+    ]
+
+    afterContentsBlock: aBlock [
+	<category: 'accessing'>
+	afterContentsBlock := aBlock
+    ]
+
     defaultWidgetsPerPage [
 	<category: 'defaults'>
 	^5
@@ -64,8 +84,12 @@ ILWidget subclass: ILWidgetsPaginator [
     contents [
 	<category: 'building'>
 	^[:e |
+	    self beforeContentsBlock ifNotNil: [
+		e build: self beforeContentsBlock].
 	    self visibleWidgets do: [:each |
 		e build: each].
+	    self afterContentsBlock ifNotNil: [
+		e build: self afterContentsBlock].
 	    e build: self paginator]
     ]
 ]
