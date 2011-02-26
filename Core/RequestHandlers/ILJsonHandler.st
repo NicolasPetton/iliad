@@ -92,7 +92,7 @@ ILRequestHandler subclass: ILJsonHandler [
     updateHead [
 	<category: 'private'>
 	| headElement |
-	headElement := ILElement new.
+	headElement := ILHeadElement new.
 	self session dirtyWidgets do: [:each | each buildHead: headElement].
 	headElement childrenDo: [:each |
 	    (self application page head children includes: each) ifFalse: [
