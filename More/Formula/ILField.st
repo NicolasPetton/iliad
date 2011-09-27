@@ -54,6 +54,11 @@ ILBuildable subclass: ILField [
 	<category: 'copying'>
 	formula := aContainer formula
     ]
+	
+    scripts [
+	<category: 'accessing'>
+	^{}
+    ]
 
     formula [
 	<category: 'accessing'>

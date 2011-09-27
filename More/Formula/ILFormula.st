@@ -292,9 +292,17 @@ ILWidget subclass: ILFormula [
 	^copy
     ]
 
-    scripts [
+    fieldsScripts [
 	<category: 'building'>
-	^{'/javascripts/jquery.autocomplete.js'}
+	^Array streamContents: [:str |
+		self fields do: [:each |
+			str nextPutAll: each scripts]]
+    ]
+ 
+    scripts [
+	{'/javascripts/jquery.autocomplete.js'}
+    		addAll: self fieldsScripts;
+		yourself
     ]
 
     styles [
