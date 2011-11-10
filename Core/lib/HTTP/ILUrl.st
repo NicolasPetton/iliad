@@ -252,7 +252,7 @@ fragment:		<String> or nil'>
 		    ifFalse: [
 			aStream
 			    nextPut: $:;
-			    print: port]]
+			    nextPutAll: port printString]]
     ]
 
     printFragmentOn: aStream encoded: aBoolean [
