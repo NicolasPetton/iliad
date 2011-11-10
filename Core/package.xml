@@ -39,6 +39,7 @@
   <filein>HTMLElements/ILBreakElement.st</filein>
   <filein>HTMLElements/ILHorizontalRuleElement.st</filein>
   <filein>HTMLElements/ILImageElement.st</filein>
+  <filein>HTMLElements/ILIframeElement.st</filein>
   <filein>HTMLElements/ILMetaElement.st</filein>
   <filein>HTMLElements/ILParameterElement.st</filein>
   <filein>HTMLElements/ILDirectionElement.st</filein>
@@ -150,6 +151,7 @@
   <file>HTMLElements/ILBreakElement.st</file>
   <file>HTMLElements/ILHorizontalRuleElement.st</file>
   <file>HTMLElements/ILImageElement.st</file>
+  <file>HTMLElements/ILIframeElement.st</file>
   <file>HTMLElements/ILMetaElement.st</file>
   <file>HTMLElements/ILParameterElement.st</file>
   <file>HTMLElements/ILDirectionElement.st</file>
