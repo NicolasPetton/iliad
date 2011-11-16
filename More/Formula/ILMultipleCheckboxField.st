@@ -47,7 +47,7 @@ ILOptionField subclass: ILMultipleCheckboxField [
 	    self options 
 		do: [:each |
 		    e checkbox
-			attributeAt: 'style' put: self cssClass;
+			class: self cssClass;
 			checked: (self value includes: each);
 			action: [:boolean | boolean 
 			    ifTrue: [self add: each]
