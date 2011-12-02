@@ -80,7 +80,7 @@ ILRequestHandler subclass: ILApplicationHandler [
     isRequestValid [
 	<category: 'testing'>
 	^self context previousStateRegistry notNil
-	    or: [self request actionField isNil and: [self request isGet]]
+	    or: [self request actionField isNil and: [self request isPost not]]
     ]
 
     shouldRedirect [
