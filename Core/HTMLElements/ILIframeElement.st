@@ -1,6 +1,6 @@
 "======================================================================
 |
-|   Iliad.ILMultipleCheckboxField class definition
+|   Iliad.ILIframeElement class definition
 |
  ======================================================================"
 
@@ -36,24 +36,34 @@
 
 
 
-ILOptionField subclass: ILMultipleCheckboxField [
+ILHTMLBuilderElement subclass: ILIframeElement [
 
-    <category: 'Iliad-More-Formula'>
     <comment: nil>
+    <category: 'Iliad-Core-XHTMLElements'>
 
-    fieldContents [
-	<category: 'building'>
-	^[:e | 
-	    self options 
-		do: [:each |
-		    e checkbox
-			class: self cssClass;
-			checked: (self value includes: each);
-			action: [:boolean | boolean 
-			    ifTrue: [self add: each]
-			    ifFalse: [self remove: each]].
-		    e space.
-		    self optionLabelBlock value: e value: each]
-		separatedBy: [e br]]
+    tag [
+	<category: 'accessing'>
+	^'iframe'
+    ]
+    
+    src: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: 'src' put: aString
+    ]
+
+    height: anInteger [
+	<category: 'accessing attributes'>
+	self attributeAt: 'height' put: anInteger greaseString
+    ]
+
+    name: aString [
+	<category: 'accessing attributes'>
+	self attributeAt: 'name' put: aString
+    ]
+
+    width: anInteger [
+	<category: 'accessing attributes'>
+	self attributeAt: 'width' put: anInteger greaseString
     ]
 ]
+
