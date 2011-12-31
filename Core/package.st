@@ -46,6 +46,7 @@ Eval [
 	filein: 'HTMLElements/ILBreakElement.st'; 
 	filein: 'HTMLElements/ILHorizontalRuleElement.st'; 
 	filein: 'HTMLElements/ILImageElement.st'; 
+	filein: 'HTMLElements/ILIframeElement.st'; 
 	filein: 'HTMLElements/ILMetaElement.st'; 
 	filein: 'HTMLElements/ILParameterElement.st'; 
 	filein: 'HTMLElements/ILDirectionElement.st'; 

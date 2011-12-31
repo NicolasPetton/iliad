@@ -37,6 +37,7 @@ ILDirectory subclass: ILDiskDirectory [
 
 	| file |
 	aFilename isEmpty ifTrue: [^nil].
+	self directory ifNil: [^nil]. 
 	file := self directory / aFilename.
 	(file notNil and: [file exists]) ifTrue: [^file].
 	^nil

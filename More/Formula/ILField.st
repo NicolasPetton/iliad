@@ -37,7 +37,7 @@
 
 
 ILBuildable subclass: ILField [
-    | formula conditions errors customRows reader writer labelContents commentContents |
+    | formula conditions errors customRows reader writer labelContents commentContents cssClass |
 
     <category: 'Iliad-More-Formula'>
     <comment: nil>
@@ -53,6 +53,11 @@ ILBuildable subclass: ILField [
     postCopyTo: aContainer [
 	<category: 'copying'>
 	formula := aContainer formula
+    ]
+	
+    scripts [
+	<category: 'accessing'>
+	^{}
     ]
 
     formula [
@@ -113,6 +118,16 @@ ILBuildable subclass: ILField [
     commentContents [
 	<category: 'accessing'>
 	^commentContents 
+    ]
+
+    cssClass [
+	<category: 'accessing'>
+	^cssClass ifNil: [cssClass := '']
+    ]
+
+    cssClass: aString [
+	<category: 'accessing'>
+	cssClass := aString
     ]
 
     value [

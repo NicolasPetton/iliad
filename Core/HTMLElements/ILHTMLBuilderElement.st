@@ -544,6 +544,11 @@ ILElement subclass: ILHTMLBuilderElement [
 	    yourself
     ]
 
+    iframe [
+	<category: 'adding-conveniance'>
+	^self add: ILIframeElement new
+    ]
+
     javascript [
 	<category: 'adding-convenience'>
 	^self script

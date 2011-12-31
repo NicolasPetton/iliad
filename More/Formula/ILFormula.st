@@ -2,7 +2,7 @@
 |
 |   Iliad.ILFormula class definition
 |
- ======================================================================"
+======================================================================"
 
 "======================================================================
 |
@@ -32,269 +32,277 @@
 | TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 | SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  
 |
- ======================================================================"
+======================================================================"
 
 
 
 ILWidget subclass: ILFormula [
-    | proxy conditions containers formulas buttons saveAction cancelAction errors multipart subFormula |
-	
-    <category: 'Iliad-More-Formula'>
-    <comment: nil>
+| proxy conditions containers formulas buttons saveAction cancelAction errors multipart subFormula |
 
-    ILFormula class >> on: anObject [
-	<category: 'instance creation'>
-	^self new
-	    setModel: anObject;
-	    yourself
-    ]
+<category: 'Iliad-More-Formula'>
+<comment: nil>
 
-    postCopy [
-	<category: 'copying'>
-	super postCopy.
-	containers := self containers collect: [:each | 
-	    each copy postCopyTo: self; yourself]
-    ]
+ILFormula class >> on: anObject [
+<category: 'instance creation'>
+^self new
+    setModel: anObject;
+    yourself
+]
 
-    model [
-	<category: 'accessing'>
-	^proxy model
-    ]
+postCopy [
+<category: 'copying'>
+super postCopy.
+containers := self containers collect: [:each | 
+    each copy postCopyTo: self; yourself]
+]
 
-    proxy [
-	<category: 'accessing'>
-	^proxy
-    ]
+model [
+<category: 'accessing'>
+^proxy model
+]
 
-    conditions [
-	<category: 'accessing'>
-	^conditions ifNil: [conditions := OrderedCollection new]
-    ]
+proxy [
+<category: 'accessing'>
+^proxy
+]
 
-    errors [
-	<category: 'accessing'>
-	^errors ifNil: [errors := OrderedCollection new]
-    ]
+conditions [
+<category: 'accessing'>
+^conditions ifNil: [conditions := OrderedCollection new]
+]
 
-    addCondition: aCondition [
-	<category: 'accessing'>
-	self conditions add: aCondition
-    ]
+errors [
+<category: 'accessing'>
+^errors ifNil: [errors := OrderedCollection new]
+]
 
-    addCondition: aBlock labelled: anotherBlock [
-	<category: 'conditions'>
-	self addCondition: (ILCondition new
-	    conditionBlock: aBlock;
-	    labelBlock: anotherBlock;
-	    yourself)
-    ]
+addCondition: aCondition [
+<category: 'accessing'>
+self conditions add: aCondition
+]
 
-    containers [
-	<category: 'accessing'>
-	^containers ifNil: [containers := OrderedCollection new]
-    ]
+addCondition: aBlock labelled: anotherBlock [
+<category: 'conditions'>
+self addCondition: (ILCondition new
+    conditionBlock: aBlock;
+    labelBlock: anotherBlock;
+    yourself)
+]
 
-    formulas [
-	<category: 'accessing'>
-	^formulas ifNil: [formulas := OrderedCollection new]
-    ]
+containers [
+<category: 'accessing'>
+^containers ifNil: [containers := OrderedCollection new]
+]
 
-    formulas: aCollection [
-	<category: 'accessing'>
-	formulas := aCollection
-    ]
+formulas [
+<category: 'accessing'>
+^formulas ifNil: [formulas := OrderedCollection new]
+]
 
-    newContainer [
-	<category: 'accessing'>
-	^self newContainerLabelled: ''
-    ]
+formulas: aCollection [
+<category: 'accessing'>
+formulas := aCollection
+]
 
-    newContainerLabelled: aString [
-	<category: 'accessing'>
-	^self containers add: (ILFieldContainer on: self label: aString)
-    ]
+newContainer [
+<category: 'accessing'>
+^self newContainerLabelled: ''
+]
 
-    fields [
-	<category: 'accessing'>
-	| fields |
-	fields := OrderedCollection new.
-	self containers do: [:each | fields addAll: each fields].
-	self formulas do: [:each | fields addAll: each fields].
-	^fields
-    ]
+newContainerLabelled: aString [
+<category: 'accessing'>
+^self containers add: (ILFieldContainer on: self label: aString)
+]
 
-    buttons [
-	<category: 'accessing'>
-	^buttons ifNil: [self defaultButtons]
-    ]
-    
-    buttons: aCollection [
-	<category: 'accessing'>
-	buttons := aCollection
-    ]
+fields [
+<category: 'accessing'>
+| fields |
+fields := OrderedCollection new.
+self containers do: [:each | fields addAll: each fields].
+self formulas do: [:each | fields addAll: each fields].
+^fields
+]
 
-    saveAction [
-	<category: 'accessing'>
-	^saveAction ifNil: [self defaultSaveAction]
-    ]
+buttons [
+<category: 'accessing'>
+^buttons ifNil: [self defaultButtons]
+]
 
-    saveAction: aBlock [
-	<category: 'accessing'>
-	saveAction := aBlock
+buttons: aCollection [
+<category: 'accessing'>
+buttons := aCollection
+]
+
+saveAction [
+<category: 'accessing'>
+^saveAction ifNil: [self defaultSaveAction]
+]
+
+saveAction: aBlock [
+<category: 'accessing'>
+saveAction := aBlock
+]
+
+cancelAction [
+<category: 'accessing'>
+^cancelAction ifNil: [self defaultCancelAction]
+]
+
+cancelAction: aBlock [
+<category: 'accessing'>
+cancelAction := aBlock
+]
+
+beMultipart [
+<category: 'accessing'>
+multipart := true
+]
+
+multipart [
+<category: 'accessing'>
+^multipart ifNil: [false]
+]
+
+beSubFormula [
+<category: 'accessing'>
+subFormula := true
+]
+
+subFormula [
+<category: 'accessing'>
+^subFormula ifNil: [false]
+]
+
+defaultButtons [
+<category: 'defaults'>
+^{'Save' -> #save. 'Cancel' -> #cancel}
+]
+
+defaultSaveAction [
+<category: 'defaults'>
+^[:model | self commit. self answer: self model]
+]
+
+defaultCancelAction [
+<category: 'defaults'>
+^[:model | self answer: nil]
+]
+
+addField: aField [
+<category: 'adding'>
+| container |
+container := self containers isEmpty 
+    ifTrue: [
+	self newContainer]
+    ifFalse: [
+	self containers last].
+^container addField: aField
+]
+
+addFormula: aFormula [
+<category: 'adding'>
+aFormula beSubFormula.
+^self formulas add: aFormula
+]
+
+inputOn: aSelector [
+<category: 'adding'>
+^self addField: (ILInputField on: self selector: aSelector)
+]
+
+textareaOn: aSelector [
+<category: 'adding'>
+^self addField: (ILTextareaField on: self selector: aSelector)
+]
+
+checkboxOn: aSelector [
+<category: 'adding'>
+^self addField: (ILCheckboxField on: self selector: aSelector)
+]
+
+passwordOn: aSelector [
+<category: 'adding'>
+^self addField: (ILPasswordField on: self selector: aSelector)
+]
+
+dateInputOn: aSelector [
+<category: 'adding'>
+^self addField: (ILDateInputField on: self selector: aSelector)
+]
+
+numberInputOn: aSelector [
+<category: 'adding'>
+^self addField: (ILNumberInputField on: self selector: aSelector)
+]
+
+selectOn: aSelector [
+<category: 'adding'>
+^self addField: (ILSelectField on: self selector: aSelector)
+]
+
+multipleCheckboxOn: aSelector [
+<category: 'adding'>
+^self addField: (ILMultipleCheckboxField on: self selector: aSelector)
+]
+
+fileInputOn: aSelector [
+<category: 'adding'>
+^self addField: (ILFileInputField on: self selector: aSelector)
+]
+
+autocompleteInputOn: aSelector [
+<category: 'adding'>
+^self addField: (ILAutocompleteInputField on: self selector: aSelector)
+]
+
+do: aBlock [
+<category: 'enumerating'>
+self fields do: aBlock.
+self formulas do: aBlock
+
+]
+
+collect: aBlock [
+<category: 'enumerating'>
+| copy |
+copy := self copy.
+copy containers do: [:each |
+    each setFields: (each fields collect: aBlock)].
+copy formulas: (copy formulas collect: [:each | each collect: aBlock]).
+^copy
+]
+
+select: aBlock [
+<category: 'enumerating'>
+| copy |
+copy := self copy.
+copy containers do: [:each |
+    each setFields: (each fields select: aBlock)].
+copy formulas: (copy formulas collect: [:each | each select: aBlock]).
+^copy
+]
+
+reject: aBlock [
+<category: 'enumerating'>
+| copy |
+copy := self copy.
+copy containers do: [:each |
+    each setFields: (each fields reject: aBlock)].
+copy formulas: (copy formulas collect: [:each | each reject: aBlock]).
+^copy
+]
+
+fieldsScripts [
+<category: 'building'>
+^Array streamContents: [:str |
+	self fields do: [:each |
+		str nextPutAll: each scripts]]
     ]
  
-    cancelAction [
-	<category: 'accessing'>
-	^cancelAction ifNil: [self defaultCancelAction]
-    ]
-
-    cancelAction: aBlock [
-	<category: 'accessing'>
-	cancelAction := aBlock
-    ]
-
-    beMultipart [
-	<category: 'accessing'>
-	multipart := true
-    ]
-
-    multipart [
-	<category: 'accessing'>
-	^multipart ifNil: [false]
-    ]
-
-    beSubFormula [
-	<category: 'accessing'>
-	subFormula := true
-    ]
-
-    subFormula [
-	<category: 'accessing'>
-	^subFormula ifNil: [false]
-    ]
-
-    defaultButtons [
-	<category: 'defaults'>
-	^{'Save' -> #save. 'Cancel' -> #cancel}
-    ]
-
-    defaultSaveAction [
-	<category: 'defaults'>
-	^[:model | self commit. self answer: self model]
-    ]
-
-    defaultCancelAction [
-	<category: 'defaults'>
-	^[:model | self answer: nil]
-    ]
-
-    addField: aField [
-	<category: 'adding'>
-	| container |
-	container := self containers isEmpty 
-	    ifTrue: [
-		self newContainer]
-	    ifFalse: [
-		self containers last].
-	^container addField: aField
-    ]
-
-    addFormula: aFormula [
-	<category: 'adding'>
-	aFormula beSubFormula.
-	^self formulas add: aFormula
-    ]
-
-    inputOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILInputField on: self selector: aSelector)
-    ]
-
-    textareaOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILTextareaField on: self selector: aSelector)
-    ]
-
-    checkboxOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILCheckboxField on: self selector: aSelector)
-    ]
-
-    passwordOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILPasswordField on: self selector: aSelector)
-    ]
-
-    dateInputOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILDateInputField on: self selector: aSelector)
-    ]
-
-    numberInputOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILNumberInputField on: self selector: aSelector)
-    ]
-
-    selectOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILSelectField on: self selector: aSelector)
-    ]
-
-    multipleCheckboxOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILMultipleCheckboxField on: self selector: aSelector)
-    ]
-
-    fileInputOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILFileInputField on: self selector: aSelector)
-    ]
-
-    autocompleteInputOn: aSelector [
-	<category: 'adding'>
-	^self addField: (ILAutocompleteInputField on: self selector: aSelector)
-    ]
-
-    do: aBlock [
-	<category: 'enumerating'>
-	self fields do: aBlock.
-	self formulas do: aBlock
-    
-    ]
-
-    collect: aBlock [
-	<category: 'enumerating'>
-	| copy |
-	copy := self copy.
-	copy containers do: [:each |
-	    each setFields: (each fields collect: aBlock)].
-	copy formulas: (copy formulas collect: [:each | each collect: aBlock]).
-	^copy
-    ]
-
-    select: aBlock [
-	<category: 'enumerating'>
-	| copy |
-	copy := self copy.
-	copy containers do: [:each |
-	    each setFields: (each fields select: aBlock)].
-	copy formulas: (copy formulas collect: [:each | each select: aBlock]).
-	^copy
-    ]
-
-    reject: aBlock [
-	<category: 'enumerating'>
-	| copy |
-	copy := self copy.
-	copy containers do: [:each |
-	    each setFields: (each fields reject: aBlock)].
-	copy formulas: (copy formulas collect: [:each | each reject: aBlock]).
-	^copy
-    ]
-
     scripts [
-	<category: 'building'>
-	^{'/javascripts/jquery.autocomplete.js'}
+	^(OrderedCollection with: '/javascripts/jquery.autocomplete.js')
+    		addAll: self fieldsScripts;
+		yourself
     ]
 
     styles [

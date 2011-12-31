@@ -96,8 +96,8 @@ ILWidget subclass: ILFieldContainer [
 	<category: 'building'>
 	^[:e || root |
 	    root := self useFieldset 
-    		ifTrue: [
-		    (e fieldset legend: self label) div class: 'fields']
+		ifTrue: [
+		    (e fieldset legend: self label; yourself) div class: 'fields']
 		ifFalse: [e div class: 'fields'].
 	    root build: self tableContents]
     ]
