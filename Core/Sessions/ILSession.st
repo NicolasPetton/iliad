@@ -306,7 +306,7 @@ ILObject subclass: ILSession [
 
     checkExpired [
 	<category: 'actions'>
-	(TimeStamp now asSeconds - self modifiedTimestamp asSeconds > self expirySeconds)
+	(DateTime now asSeconds - self modifiedTimestamp asSeconds > self expirySeconds)
 	    ifTrue: [self expire]
     ]
     
