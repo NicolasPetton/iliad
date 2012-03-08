@@ -304,6 +304,12 @@ ILObject subclass: ILSession [
 	    actionRegistry := ILActionRegistry new]
     ]
 
+    checkExpired [
+	<category: 'actions'>
+	(TimeStamp now asSeconds - self modifiedTimestamp asSeconds > self expirySeconds)
+	    ifTrue: [self expire]
+    ]
+    
     actionAt: aKeyString [
 	<category: 'actions'>
 	^self actionRegistry actionAt: aKeyString
@@ -368,9 +374,6 @@ ILObject subclass: ILSession [
 
     isExpired [
 	<category: 'testing'>
-	(DateTime now asSeconds - self modifiedTimestamp asSeconds
-	    > self expirySeconds) ifTrue: [
-		self expire].
 	^expired
     ]
 
@@ -383,6 +386,7 @@ ILObject subclass: ILSession [
     expire [
 	<category: 'private'>
 	self actionRegistry unregisterAllActions.
+	self sessionManager removeSession: self.
 	expired := true
     ]
 

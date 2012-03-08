@@ -73,11 +73,6 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^sessions values
     ]
 
-    expiredSessions [
-	<category: 'accessing'>
-	^sessions values select: [:each | each isExpired]
-    ]
-
     cookieName [
 	<category: 'accessing preferences'>
 	^self preferenceAt: #cookieName ifAbsentPut: ['_iliad685744']
@@ -218,8 +213,8 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	"Remove all expired sessions"
 	<category: 'private'>
 
-	self expiredSessions do: [:each |
-	    self removeSession: each]
+	self sessions do: [:each |
+	    each checkExpired]
     ]
 
     sessionIdFromCookies: cookies [
