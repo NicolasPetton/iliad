@@ -37,7 +37,7 @@
 
 
 ILObject subclass: ILSessionManager [
-    | sessions preferences |
+    | sessions preferences expirationProcess |
     <category: 'Iliad-Core-Sessions'>
     <comment: 'I am responsible for managing, creating and removing sessions.
 The class method #current answers my only instance.
@@ -129,9 +129,6 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	If no session is found, create and return a new one"
 	<category: 'adding-removing'>
 
-	
-	self shouldRemoveExpiredSessions ifTrue: [
-	    self removeExpiredSessions].
 	^self findOrMakeSessionFor: aRequest 
     ]
 
@@ -143,7 +140,8 @@ To remove all expired sessions, call #removeExpiredSessions'>
     initialize [
 	<category: 'initialization'>
 	super initialize.
-	sessions := Dictionary new
+	sessions := Dictionary new.
+	self startSessionExpirationProcess
     ]
 
     shouldRemoveExpiredSessions [
@@ -158,6 +156,17 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	^sessions values includes: aSession
     ]
 
+    sessionExpirationDelay [
+	<category: 'private'>
+	^10 minutes asSeconds
+    ]
+
+    sessionExpirationLoop [
+	<category: 'private'>
+	^[(Delay forSeconds: self sessionExpirationDelay) wait.
+	    self removeExpiredSessions]
+    ]
+
     findOrMakeSessionFor: aRequest [
 	"Answer a valid session for <aRequest>.
 	Create a new session if no session is found"
@@ -166,13 +175,8 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	| session id |
 	id := self sessionIdFromRequest: aRequest.
 	session := sessions at: id ifAbsent: [^self newSession].
-	session isExpired
-	    ifFalse: [
-		session setModifiedTimestamp.
-		^session]
-	    ifTrue: [
-		self removeSession: session.
-		^session]
+	session setModifiedTimestamp.
+	    ^session
     ]
 
     newSession [
@@ -181,6 +185,19 @@ To remove all expired sessions, call #removeExpiredSessions'>
 	session := self sessionClass new.
 	self addSession: session.
 	^session
+    ]
+
+    startSessionExpirationProcess [
+	<category: 'private'>
+	expirationProcess ifNil: [
+	    expirationProcess := [self sessionExpirationLoop repeat]
+		forkAt: Processor lowestPriority]
+    ]
+
+    stopSessionExpirationProcess [
+	<category: 'private'>
+	expirationProcess ifNotNil: [
+	    expirationProcess terminate. expirationProcess := nil]
     ]
 
     removeSession: aSession [

@@ -9,6 +9,7 @@ Eval [
 	filein: 'Utilities/ILComposite.st';
 	filein: 'Utilities/ILDynamicVariable.st';
 	filein: 'Utilities/ILId.st'; 
+	filein: 'Utilities/UUID.st'; 
 	filein: 'Utilities/ILEncoder.st'; 
 	filein: 'Utilities/ILModelProxy.st'; 
 

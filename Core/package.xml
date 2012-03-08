@@ -7,6 +7,7 @@
   <filein>Utilities/ILComposite.st</filein>
   <filein>Utilities/ILDynamicVariable.st</filein>
   <filein>Utilities/ILId.st</filein>
+  <filein>Utilities/UUID.st</filein>
   <filein>Utilities/ILEncoder.st</filein>
   <filein>Utilities/ILModelProxy.st</filein>
   <filein>lib/HTTP/ILUrl.st</filein>
@@ -119,6 +120,7 @@
   <file>Utilities/ILComposite.st</file>
   <file>Utilities/ILDynamicVariable.st</file>
   <file>Utilities/ILId.st</file>
+  <file>Utilities/UUID.st</file>
   <file>Utilities/ILEncoder.st</file>
   <file>Utilities/ILModelProxy.st</file>
   <file>lib/HTTP/ILUrl.st</file>

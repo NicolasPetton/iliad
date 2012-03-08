@@ -146,7 +146,7 @@ For more information see  RFC2965 (http://tools.ietf.org/html/rfc2965)'>
 
     value: aString [
 	<category: 'accessing'>
-	value := aString
+	value := aString asString
     ]
 ]
 

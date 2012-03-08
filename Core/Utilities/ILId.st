@@ -1,12 +1,12 @@
-ByteArray subclass: ILId [
+String subclass: ILId [
 
-    <shape: #byte>
+    <shape: #character>
     <comment: nil>
     <category: 'Iliad-Core-Utilities'>
 
     ILId class >> defaultSize [
 	<category: 'defaults'>
-	^12
+	^36
     ]
 
     ILId class >> new [
@@ -16,38 +16,26 @@ ByteArray subclass: ILId [
 
     ILId class >> new: anInteger [
 	<category: 'instance creation'>
-	^(self basicNew: anInteger)
+	^(self basicNew: self defaultSize)
 	    initialize;
 	    yourself
     ]
 
     initialize [
 	<category: 'initialization'>
-	Grease.GRPlatform current semaphoreClass forMutualExclusion critical: [
-		self at: 1 put: ($a to: $z) atRandom asInteger.
-		2 to: self size do: [:each |
-		    self at: each put: self table atRandom asInteger]]
+	| id |
+	id := UUID new printString.
+	1 to: self size do: [:each |
+	    self at: each put: (id at: each)]	
     ]
 
-    table [
-	<category: 'accessing'>
-	^($a to: $z), ($A to: $Z), ($0 to: $9), (Array with: $_ with: $-)
+    asString [
+	<category: 'converting'>
+	^String withAll: self
     ]
 
     printOn: aStream [
 	<category: 'printing'>
-	self do: [:each | 
-	    aStream nextPut: (Character value: each)]
-    ]
-]
-
-
-
-Character extend [
-    
-    to: aCharacter [
-	^self codePoint
-	    to: aCharacter codePoint
-	    collect: [:i | Character codePoint: i]
+	aStream nextPutAll: self
     ]
 ]
