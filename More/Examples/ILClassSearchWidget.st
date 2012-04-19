@@ -1,5 +1,5 @@
 ILWidget subclass: ILClassSearchWidget [
-    | resultsWidget searchText selectedClass infoWidget selectedMessage codeWidget |
+    | resultsWidget searchText selectedClass infoWidget selectedMethod codeWidget |
 
     <comment: nil>
     <category: 'Iliad-More-Examples'>
@@ -24,17 +24,17 @@ ILWidget subclass: ILClassSearchWidget [
 	<category: 'accessing'>
 	selectedClass := aClass.
 	self infoWidget markDirty.
-	self selectedMessage: nil
+	self selectedMethod: nil
     ]
 
-    selectedMessage [ 
+    selectedMethod [ 
 	<category: 'accessing'>
-	^selectedMessage
+	^selectedMethod
     ]
 
-    selectedMessage: aSymbol [ 
+    selectedMethod: aCompiledMethod [ 
 	<category: 'accessing'>
-	selectedMessage := aSymbol.
+	selectedMethod := aCompiledMethod.
 	self codeWidget markDirty
     ]
 
@@ -69,8 +69,8 @@ ILWidget subclass: ILClassSearchWidget [
 	<category: 'accessing'>
 	^codeWidget ifNil: [ codeWidget := self widgetFor: [ :widget |
 	    widget style: 'float:left; text-align:left; width:40%; margin-left:5em;'.
-	    self selectedMessage ifNotNil: [ :aSymbol | 
-		widget pre text: (self selectedClass decompile: aSymbol) ]]]
+	    self selectedMethod ifNotNil: [ :aCompiledMethod | 
+		widget pre text: (aCompiledMethod methodClass decompile: aCompiledMethod selector) ]]]
     ]
 
     infoWidget [ 
@@ -82,7 +82,10 @@ ILWidget subclass: ILClassSearchWidget [
 		self renderSuperclassOf: aClass on: widget div.
 		self renderSubclassesOf: aClass on: widget div.
 		widget p text: aClass comment.
-		self renderInstanceMethodsOf: aClass on: widget ul ]]]
+		widget h3: 'Instance Methods'.
+		self renderInstanceMethodsOf: aClass on: widget ul.
+		widget h3: 'Class Methods'.
+		self renderInstanceMethodsOf: aClass class on: widget ul ]]]
     ]
 
     renderInstanceMethodsOf: aClass on: aListContainer [ 
@@ -90,17 +93,17 @@ ILWidget subclass: ILClassSearchWidget [
 	( self sortedMethodsForClass: aClass) 
 	    do: [ :each |
 		aListContainer li 
-		    onClickDo: [ self selectInstanceMethod: each ];
-		    text: each asString;
+		    onClickDo: [ self selectedMethod: each ];
+		    text: each selector asString;
 		    text: ' (';
-		    text: (aClass compiledMethodAt: each) methodCategory;
+		    text: each methodCategory;
 		    text: ')' ]
     ]
 
     renderSubclassesOf: aClass on: aContainer [
 	<category: 'private'>
 	aContainer text: 'subclass(es): '.
-	( aClass allSubclasses asSortedCollection: [ :a :b | a displayString <= b displayString ] )
+	( aClass subclasses asSortedCollection: [ :a :b | a displayString <= b displayString ] )
 	    do: [ :each |
 		aContainer a 
 		    onClickDo: [ self selectedClass: each ];
@@ -121,7 +124,10 @@ ILWidget subclass: ILClassSearchWidget [
 
     sortedMethodsForClass: aClass [ 
 	<category: 'private'>
-	^aClass methodDictionary keys asSortedCollection
+	^(aClass methodDictionary
+	    ifNil: [ OrderedCollection new ]
+	    ifNotNil: [ :dict | dict keys asSortedCollection ]) collect: [ :message |
+		aClass compiledMethodAt: message ]
     ]
 
     search: aString [

@@ -2569,7 +2569,7 @@ I know how to print myself in HTML format with the #printHtmlOn:@- method
 
 @menu
 * Iliad.ILElement-accessing::  (instance)
-* Iliad.ILElement-adding-conveniance::  (instance)
+* Iliad.ILElement-adding-convenience::  (instance)
 * Iliad.ILElement-building::  (instance)
 * Iliad.ILElement-comparing::  (instance)
 * Iliad.ILElement-converting::  (instance)
@@ -2615,8 +2615,8 @@ Answer `nil'.
 
 
 
-@node Iliad.ILElement-adding-conveniance
-@subsection Iliad.ILElement:@- adding-conveniance
+@node Iliad.ILElement-adding-convenience
+@subsection Iliad.ILElement:@- adding-convenience
 
 @table @b
 @meindex text:@-
@@ -3417,7 +3417,7 @@ Not commented.
 * Iliad.ILHeadElement-accessing::  (instance)
 * Iliad.ILHeadElement-accessing attributes::  (instance)
 * Iliad.ILHeadElement-accessing attributes-events::  (instance)
-* Iliad.ILHeadElement-adding-conveniance::  (instance)
+* Iliad.ILHeadElement-adding-convenience::  (instance)
 * Iliad.ILHeadElement-printing::  (instance)
 @end menu
 
@@ -3471,8 +3471,8 @@ Not commented.
 
 
 
-@node Iliad.ILHeadElement-adding-conveniance
-@subsection Iliad.ILHeadElement:@- adding-conveniance
+@node Iliad.ILHeadElement-adding-convenience
+@subsection Iliad.ILHeadElement:@- adding-convenience
 
 @table @b
 @meindex style
@@ -3603,7 +3603,7 @@ Not commented.
 * Iliad.ILHTMLBuilderElement-accessing attributes::  (instance)
 * Iliad.ILHTMLBuilderElement-accessing attributes-events::  (instance)
 * Iliad.ILHTMLBuilderElement-adding-conveenience::  (instance)
-* Iliad.ILHTMLBuilderElement-adding-conveniance::  (instance)
+* Iliad.ILHTMLBuilderElement-adding-convenience::  (instance)
 @end menu
 
 
@@ -3780,8 +3780,8 @@ Not commented.
 
 
 
-@node Iliad.ILHTMLBuilderElement-adding-conveniance
-@subsection Iliad.ILHTMLBuilderElement:@- adding-conveniance
+@node Iliad.ILHTMLBuilderElement-adding-convenience
+@subsection Iliad.ILHTMLBuilderElement:@- adding-convenience
 
 @table @b
 @meindex a

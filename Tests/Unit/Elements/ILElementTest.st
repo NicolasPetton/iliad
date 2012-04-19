@@ -10,12 +10,12 @@ TestCase subclass: ILElementTest [
     ]
 
     shouldHaveAttribute: aKey value: aValue [
-	<category: 'conveniance'>
+	<category: 'convenience'>
 	self assert: (e attributes associations includes: aKey -> aValue)
     ]
 
     withContextDo: aBlock [
-	<category: 'conveniance'>
+	<category: 'convenience'>
 	ILCurrentContext 
 	    use: (ILContext new session: ILSession new)
 	    during: aBlock
