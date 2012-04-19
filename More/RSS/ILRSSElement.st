@@ -74,310 +74,310 @@ ILElement subclass: ILRSSElement [
     ]
 
     author [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'author';
 	    yourself)
     ]
 
     author: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self author
 	    text: aString;
 	    yourself
     ]
 
     category [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: ILRSSCategoryElement new
     ]
 
     category: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self category
 	    text: aString;
 	    yourself
     ]
 
     channel [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'channel';
 	    yourself)
     ]
 
     cloud [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: ILRSSCloudElement new
     ]
 
     comment [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'wfw:comment';
 	    yourself)
     ]
 
     comment: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self comment
 	    text: aString;
 	    yourself
     ]
 
     comments [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: ILRSSCommentsElement new
     ]
 
     comments: anUrl [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self comments
 	    text: anUrl;
 	    yourself
     ]
 
     copyright [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'copyright';
 	    yourself)
     ]
 
     copyright: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self copyright
 	    text: aString;
 	    yourself
     ]
 
     description [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'description';
 	    yourself)
     ]
 
     description: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self description
 	    text: aString;
 	    yourself
     ]
 
     generator [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'generator';
 	    yourself)
     ]
 
     generator: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self generator
 	    text: aString;
 	    yourself
     ]
 
     guid [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: ILRSSGuidElement new
     ]
 
     guid: anUrl [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self guid text: anUrl yourself
     ]
 
     image [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'image';
 	    yourself)
     ]
 
     image: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self image
 	    text: aString;
 	    yourself
     ]
 
     item [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'item';
 	    yourself)
     ]
 
     language [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'language';
 	    yourself)
     ]
 
     language: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self language
 	    text: aString;
 	    yourself
     ]
 
     lastBuildDate [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'lastBuildDate';
 	    yourself)
     ]
 
     lastBuildDate: aDate [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self lastBuildDate
 	    text: ((Grease.GRPinter rfc822WithTimeZone: 'GMT') print: (DateTime fromDays: aDate days));
 	    yourself
     ]
 
     link [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'link';
 	    yourself)
     ]
 
     link: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self link
 	    text: aString;
 	    yourself
     ]
 
     managingEditor [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'managingEditor';
 	    yourself)
     ]
 
     managingEditor: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self managingEditor
 	    text: aString;
 	    yourself
     ]
 
     pubDate [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'pubDate';
 	    yourself)
     ]
 
     pubDate: aDate [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self pubDate
 	    text: ((Grease.GRPrinter rfc822WithTimeZone: 'GMT') print: (DateTime fromDays: aDate days));
 	    yourself
     ]
 
     rating [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'rating';
 	    yourself)
     ]
 
     rating: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self rating
 	    text: aString;
 	    yourself
     ]
 
     rss [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: ILRSSRssElement new
     ]
 
     skipDays [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'skipDays';
 	    yourself)
     ]
 
     skipDays: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self skipDays
 	    text: aString;
 	    yourself
     ]
 
     skipHours [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'skipHours';
 	    yourself)
     ]
 
     skipHours: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self skipHours
 	    text: aString;
 	    yourself
     ]
 
     textInput [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'textInput';
 	    yourself)
     ]
 
     textInput: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self textInput
 	    text: aString;
 	    yourself
     ]
 
     title [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'title';
 	    yourself)
     ]
 
     title: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self title
 	    text: aString;
 	    yourself
     ]
 
     ttl [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'ttl';
 	    yourself)
     ]
 
     ttl: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self ttl
 	    text: aString;
 	    yourself
     ]
 
     webMaster [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILRSSElement new
 	    tag: 'webMaster';
 	    yourself)
     ]
 
     webMaster: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self webMaster
 	    text: aString;
 	    yourself

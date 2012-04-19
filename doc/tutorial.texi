@@ -10,7 +10,7 @@ In this short tutorial we will build a simple counter as our first Iliad widget 
 Widgets (@pxref{Widgets}) are high-level reusable, stateful, graphical objects. We will create the class and a method to build HTML, then add some behavior to increase and decrease the counter.
 
 @unnumberedsec Our first widget
-Widgets are subclasses of ILWidget. Our widget will have a @code{count} @dfn{instance variable}, initiliazed to zero.
+Widgets are subclasses of ILWidget. Our widget will have a @code{count} @dfn{instance variable}, initialized to zero.
 
 @example
 Iliad.ILWidget subclass: CounterWidget [

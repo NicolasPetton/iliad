@@ -148,14 +148,14 @@ I know how to print myself in HTML format with the #printHtmlOn: method'>
     ]
 
     text: aString [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: (ILTextElement new
 	    contents: aString;
 	    yourself)
     ]
 
     xml [
-	<category: 'adding-conveniance'>
+	<category: 'adding-convenience'>
 	^self add: ILXmlElement new
     ]
 
