@@ -56,10 +56,5 @@ ILHTMLBuilderElement subclass: ILHeadingElement [
 	<category: 'accessing'>
 	^'h' , self level
     ]
-
-    onEvent: event add: aString [
-	<category: 'accessing attributes-events'>
-	self doesNotUnderstandAttribute: 'on' , event
-    ]
 ]
 
